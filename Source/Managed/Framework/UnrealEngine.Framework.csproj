@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <Platforms>x64</Platforms>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
+    <NoWarn>CA1028, CA1030, CA1034, CA1067, CA1303, CA1305, CA1720</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Label="DefaultDocumentation">
+    <DefaultDocumentationFolder>docs/API</DefaultDocumentationFolder>
+    <DefaultDocumentationNestedTypeVisibility>DeclaringType</DefaultDocumentationNestedTypeVisibility>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DefaultDocumentation" Version="0.6.7" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

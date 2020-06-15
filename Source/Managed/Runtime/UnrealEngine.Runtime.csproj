@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <Platforms>x64</Platforms>
+    <EnableDynamicLoading>True</EnableDynamicLoading>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <TieredCompilation>False</TieredCompilation>
+    <ServerGarbageCollection>False</ServerGarbageCollection>
+    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="UnrealEngine.Plugins">
+      <HintPath>libs/UnrealEngine.Plugins.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

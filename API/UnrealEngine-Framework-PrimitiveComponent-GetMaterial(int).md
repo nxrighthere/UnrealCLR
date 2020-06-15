@@ -1,0 +1,12 @@
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./UnrealEngine-Framework-PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
+## PrimitiveComponent.GetMaterial(int) Method
+Returns the material at the specified element index  
+```csharp
+public UnrealEngine.Framework.MaterialInstanceDynamic GetMaterial(int elementIndex);
+```
+#### Parameters
+<a name='UnrealEngine-Framework-PrimitiveComponent-GetMaterial(int)-elementIndex'></a>
+`elementIndex` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')  
+  
+#### Returns
+[MaterialInstanceDynamic](./UnrealEngine-Framework-MaterialInstanceDynamic.md 'UnrealEngine.Framework.MaterialInstanceDynamic')  

@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "UnrealCLR",
+	"Description": ".NET Common Language Runtime",
+	"Category": "Scripting",
+	"CreatedBy": "nxrighthere",
+	"CreatedByURL": "https://github.com/nxrighthere",
+	"DocsURL": "https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md",
+	"MarketplaceURL": "",
+	"SupportURL": "https://gumroad.com/l/unrealclr",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "UnrealCLR",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux",
+				"Mac"
+			]
+		}
+	]
+}

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <Platforms>x64</Platforms>
+    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
+    <DefineConstants>$(DefineConstants);ASSERTIONS</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="UnrealEngine.Framework">
+      <HintPath>../Framework/bin/Release/UnrealEngine.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
