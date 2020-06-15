@@ -3608,7 +3608,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	///	The base class of playable sound objects
+	/// The base class of playable sound objects
 	/// </summary>
 	public abstract partial class SoundBase : IEquatable<SoundBase> {
 		private IntPtr pointer;
