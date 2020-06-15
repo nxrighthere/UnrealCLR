@@ -10,15 +10,15 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
 
-            Actor alarmSound = new Actor("AlarmSound");
-            AudioComponent alarmAudioComponent = new AudioComponent(alarmSound);
-            SoundWave alarmSoundWave = SoundWave.Load("/Game/Tests/AlarmSound");
+			Actor alarmSound = new Actor("AlarmSound");
+			AudioComponent alarmAudioComponent = new AudioComponent(alarmSound);
+			SoundWave alarmSoundWave = SoundWave.Load("/Game/Tests/AlarmSound");
 
 			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Sound wave duration: " + alarmSoundWave.Duration + " seconds");
 
 			alarmSoundWave.Loop = true;
-            alarmAudioComponent.SetSound(alarmSoundWave);
-            alarmAudioComponent.Play();
+			alarmAudioComponent.SetSound(alarmSoundWave);
+			alarmAudioComponent.Play();
 		}
 
 		public static void OnEndPlay() {
