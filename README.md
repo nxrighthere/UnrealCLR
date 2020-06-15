@@ -2,7 +2,7 @@
 	<img src="https://i.imgur.com/c6Zn7SE.png" alt="alt logo">
 </p>
 
-[![GitHub release](https://img.shields.io/github/release/nxrighthere/UnrealCLR.svg?style=flat-square)](https://github.com/nxrighthere/UnrealCLR/releases) [![PayPal](https://github.com/Rageware/Shields/blob/master/paypal.svg)](https://www.paypal.me/nxrighthere) [![Bountysource](https://github.com/Rageware/Shields/blob/master/bountysource.svg)](https://salt.bountysource.com/checkout/amount?team=nxrighthere) [![Coinbase](https://github.com/Rageware/Shields/blob/master/coinbase.svg)](https://commerce.coinbase.com/checkout/03e11816-b6fc-4e14-b974-29a1d0886697)
+[![PayPal](https://github.com/Rageware/Shields/blob/master/paypal.svg)](https://www.paypal.me/nxrighthere) [![Bountysource](https://github.com/Rageware/Shields/blob/master/bountysource.svg)](https://salt.bountysource.com/checkout/amount?team=nxrighthere) [![Coinbase](https://github.com/Rageware/Shields/blob/master/coinbase.svg)](https://commerce.coinbase.com/checkout/03e11816-b6fc-4e14-b974-29a1d0886697)
 
 UnrealCLR is a plugin which natively integrates .NET Core host into the Unreal Engine with the Common Language Runtime for direct execution of the managed code through user-driven blueprint pipelines to build a game logic using the full power of .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
 
