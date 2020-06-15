@@ -4,7 +4,7 @@ https://www.reddit.com/r/csharp/comments/fcpj2f/integration_of_net_core_into_the
 
 https://www.reddit.com/r/unrealengine/comments/fc6r0y/integration_of_net_core_into_the_unreal_engine_4/
 
-https://www.linkedin.com/posts/stasdenisov_unrealengine4-dotnet-dotnetcore-activity-6640099020020695040-opY_
+https://www.linkedin.com/posts/stasdenisov_unrealengine4-dotnet-dotnetcore-activity-6640099020020695040-opY_/
 
 #### Plugin possibilities
 
