@@ -20,17 +20,17 @@ namespace UnrealEngine.Tests {
 		private const string mouseYKey = Keys.MouseY;
 
 		public static void OnBeginPlay() {
-			Assert.IsTrue(variable.IsBool);
-			Assert.IsTrue(variable.IsFloat);
-			Assert.IsTrue(variable.IsString);
-			Assert.IsFalse(variable.IsInt);
-			Assert.IsFalse(variable.GetInt() == variableValue);
+			Assert.IsFalse(variable.IsBool);
+			Assert.IsFalse(variable.IsFloat);
+			Assert.IsFalse(variable.IsString);
+			Assert.IsTrue(variable.IsInt);
+			Assert.IsTrue(variable.GetInt() == variableValue);
 
 			variable.SetOnChangedCallback(VariableEvent);
 
 			ConsoleManager.RegisterCommand(consoleCommand, "Executes a test command", ConsoleCommand);
 
-			Assert.IsFalse(ConsoleManager.IsRegisteredVariable(consoleCommand));
+			Assert.IsTrue(ConsoleManager.IsRegisteredVariable(consoleCommand));
 
 			Engine.AddActionMapping(pauseResumeAction, pauseResumeKey);
 			Engine.AddAxisMapping(mouseXAction, mouseXKey);
@@ -38,13 +38,13 @@ namespace UnrealEngine.Tests {
 
 			InputComponent inputComponent = playerController.InputComponent;
 
-			Assert.IsTrue(inputComponent.HasBindings);
+			Assert.IsFalse(inputComponent.HasBindings);
 
 			inputComponent.BindAction(pauseResumeAction, InputEvent.Pressed, PauseResume, true);
 			inputComponent.BindAxis(mouseXAction, MouseXMessage);
 			inputComponent.BindAxis(mouseYAction, MouseYMessage);
 
-			Assert.IsFalse(inputComponent.HasBindings);
+			Assert.IsTrue(inputComponent.HasBindings);
 		}
 
 		public static void OnEndPlay() {

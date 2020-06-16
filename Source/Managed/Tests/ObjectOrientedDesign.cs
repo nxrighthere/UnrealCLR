@@ -67,8 +67,8 @@ namespace UnrealEngine.Tests {
 				Entity entity = World.GetActor<Entity>(entityName);
 				StateComponent component = entity.GetComponent<StateComponent>();
 
-				Assert.IsFalse(entity.Equals(entities[i]));
-				Assert.IsFalse(component.Equals(entities[i].StateComponent));
+				Assert.IsTrue(entity.Equals(entities[i]));
+				Assert.IsTrue(component.Equals(entities[i].StateComponent));
 			}
 
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, "Actors are spawned! Number of actors in the world: " + World.ActorCount);
