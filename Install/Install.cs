@@ -4,7 +4,7 @@ using System.IO;
 
 public static class Install {
 	private static void Main() {
-		Console.Title = "UnrealCLR installation tool";
+		Console.Title = "UnrealCLR Installation Tool";
 		Console.SetIn(new StreamReader(Console.OpenStandardInput(8192), Console.InputEncoding, false, bufferSize: 1024));
 
 		Console.WriteLine("Welcome to UnrealCLR installation tool!");
@@ -29,7 +29,8 @@ public static class Install {
 
 				Console.WriteLine(Environment.NewLine + "Removing the previous plugin installation...");
 
-				Directory.Delete(projectPath + "/Plugins/UnrealCLR", true);
+				if (Directory.Exists(projectPath + "/Plugins/UnrealCLR"))
+					Directory.Delete(projectPath + "/Plugins/UnrealCLR", true);
 
 				Console.WriteLine("Copying native source code of the plugin...");
 
