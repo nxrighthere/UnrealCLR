@@ -4729,6 +4729,22 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Gets or sets the angular damping of the component
+		/// </summary>
+		public float AngularDamping {
+			get => getAngularDamping(Pointer);
+			set => setAngularDamping(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the linear damping of the component
+		/// </summary>
+		public float LinearDamping {
+			get => getLinearDamping(Pointer);
+			set => setLinearDamping(Pointer, value);
+		}
+
+		/// <summary>
 		/// Returns number of material elements in the primitive
 		/// </summary>
 		public int MaterialsNumber => getMaterialsNumber(Pointer);

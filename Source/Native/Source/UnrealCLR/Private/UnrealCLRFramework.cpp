@@ -1565,6 +1565,14 @@ namespace UnrealCLRFramework {
 			return result;
 		}
 
+		float GetAngularDamping(UPrimitiveComponent* PrimitiveComponent) {
+			return PrimitiveComponent->GetAngularDamping();
+		}
+
+		float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent) {
+			return PrimitiveComponent->GetLinearDamping();
+		}
+
 		void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
@@ -1589,6 +1597,14 @@ namespace UnrealCLRFramework {
 
 		void SetSimulatePhysics(UPrimitiveComponent* PrimitiveComponent, bool Value) {
 			PrimitiveComponent->SetSimulatePhysics(Value);
+		}
+
+		void SetAngularDamping(UPrimitiveComponent* PrimitiveComponent, float Value) {
+			PrimitiveComponent->SetAngularDamping(Value);
+		}
+
+		void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value) {
+			PrimitiveComponent->SetLinearDamping(Value);
 		}
 
 		UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex) {

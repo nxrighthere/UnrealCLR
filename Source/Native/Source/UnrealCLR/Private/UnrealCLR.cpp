@@ -542,12 +542,16 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetMaterialsNumber;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetDistanceToCollision;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetSquaredDistanceToCollision;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetAngularDamping;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetLinearDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetMass;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCastShadow;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetOnlyOwnerSee;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetOwnerNoSee;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetMaterial;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetSimulatePhysics;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetAngularDamping;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetLinearDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::CreateAndSetMaterialInstanceDynamic;
 			}
 

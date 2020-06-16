@@ -445,12 +445,16 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.getMaterialsNumber = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialsNumberFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.getDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.getSquaredDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetSquaredDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setCastShadow = GenerateOptimizedFunction<PrimitiveComponent.SetCastShadowFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.SetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.SetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setMaterial = GenerateOptimizedFunction<PrimitiveComponent.SetMaterialFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setSimulatePhysics = GenerateOptimizedFunction<PrimitiveComponent.SetSimulatePhysicsFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
 					}
 
@@ -1295,12 +1299,16 @@ namespace UnrealEngine.Framework {
 		internal delegate int GetMaterialsNumberFunction(IntPtr primitiveComponent);
 		internal delegate float GetDistanceToCollisionFunction(IntPtr primitiveComponent, in Vector3 point, ref Vector3 closestPointOnCollision);
 		internal delegate Bool GetSquaredDistanceToCollisionFunction(IntPtr primitiveComponent, in Vector3 point, ref float squaredDistance, ref Vector3 closestPointOnCollision);
+		internal delegate float GetAngularDampingFunction(IntPtr primitiveComponent);
+		internal delegate float GetLinearDampingFunction(IntPtr primitiveComponent);
 		internal delegate void SetMassFunction(IntPtr primitiveComponent, float mass, string boneName);
 		internal delegate void SetCastShadowFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetOnlyOwnerSeeFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetOwnerNoSeeFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetMaterialFunction(IntPtr primitiveComponent, int elementIndex, IntPtr material);
 		internal delegate void SetSimulatePhysicsFunction(IntPtr primitiveComponent, Bool value);
+		internal delegate void SetAngularDampingFunction(IntPtr primitiveComponent, float value);
+		internal delegate void SetLinearDampingFunction(IntPtr primitiveComponent, float value);
 		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
 
 		internal static AddAngularImpulseInDegreesFunction addAngularImpulseInDegrees;
@@ -1321,12 +1329,16 @@ namespace UnrealEngine.Framework {
 		internal static GetMaterialsNumberFunction getMaterialsNumber;
 		internal static GetDistanceToCollisionFunction getDistanceToCollision;
 		internal static GetSquaredDistanceToCollisionFunction getSquaredDistanceToCollision;
+		internal static GetAngularDampingFunction getAngularDamping;
+		internal static GetLinearDampingFunction getLinearDamping;
 		internal static SetMassFunction setMass;
 		internal static SetCastShadowFunction setCastShadow;
 		internal static SetOnlyOwnerSeeFunction setOnlyOwnerSee;
 		internal static SetOwnerNoSeeFunction setOwnerNoSee;
 		internal static SetMaterialFunction setMaterial;
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
+		internal static SetAngularDampingFunction setAngularDamping;
+		internal static SetLinearDampingFunction setLinearDamping;
 		internal static CreateAndSetMaterialInstanceDynamicFunction createAndSetMaterialInstanceDynamic;
 	}
 

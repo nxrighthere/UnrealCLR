@@ -629,12 +629,16 @@ namespace UnrealCLRFramework {
 		static int32 GetMaterialsNumber(UPrimitiveComponent* PrimitiveComponent);
 		static float GetDistanceToCollision(UPrimitiveComponent* PrimitiveComponent, const Vector3* Point, Vector3* ClosestPointOnCollision);
 		static bool GetSquaredDistanceToCollision(UPrimitiveComponent* PrimitiveComponent, const Vector3* Point, float* SquaredDistance, Vector3* ClosestPointOnCollision);
+		static float GetAngularDamping(UPrimitiveComponent* PrimitiveComponent);
+		static float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent);
 		static void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName);
 		static void SetCastShadow(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetOnlyOwnerSee(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetOwnerNoSee(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetMaterial(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex, UMaterialInterface* Material);
 		static void SetSimulatePhysics(UPrimitiveComponent* PrimitiveComponent, bool Value);
+		static void SetAngularDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
+		static void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
 		static UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
 	}
 

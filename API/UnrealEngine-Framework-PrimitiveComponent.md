@@ -12,7 +12,9 @@ Derived
 &#8627; [MotionControllerComponent](./UnrealEngine-Framework-MotionControllerComponent.md 'UnrealEngine.Framework.MotionControllerComponent')  
 &#8627; [ShapeComponent](./UnrealEngine-Framework-ShapeComponent.md 'UnrealEngine.Framework.ShapeComponent')  
 ### Properties
+- [AngularDamping](./UnrealEngine-Framework-PrimitiveComponent-AngularDamping.md 'UnrealEngine.Framework.PrimitiveComponent.AngularDamping')
 - [CastShadow](./UnrealEngine-Framework-PrimitiveComponent-CastShadow.md 'UnrealEngine.Framework.PrimitiveComponent.CastShadow')
+- [LinearDamping](./UnrealEngine-Framework-PrimitiveComponent-LinearDamping.md 'UnrealEngine.Framework.PrimitiveComponent.LinearDamping')
 - [Mass](./UnrealEngine-Framework-PrimitiveComponent-Mass.md 'UnrealEngine.Framework.PrimitiveComponent.Mass')
 - [MaterialsNumber](./UnrealEngine-Framework-PrimitiveComponent-MaterialsNumber.md 'UnrealEngine.Framework.PrimitiveComponent.MaterialsNumber')
 - [OnlyOwnerSee](./UnrealEngine-Framework-PrimitiveComponent-OnlyOwnerSee.md 'UnrealEngine.Framework.PrimitiveComponent.OnlyOwnerSee')
