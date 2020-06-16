@@ -32,6 +32,8 @@
 UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealManaged, Log, All);
 UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealAssert, Log, All);
 
+#define UNREALCLR_Z_UP 0
+
 namespace UnrealCLRFramework {
 	using AnimationMode = EAnimationMode::Type;
 	using CameraProjectionMode = ECameraProjectionMode::Type;
@@ -120,9 +122,15 @@ namespace UnrealCLRFramework {
 		float Z;
 
 		FORCEINLINE Vector3(FVector Value) {
-			X = Value.Y;
-			Y = Value.Z;
-			Z = Value.X;
+			#if UNREALCLR_Z_UP
+				X = Value.X;
+				Y = Value.Y;
+				Z = Value.Z;
+			#else
+				X = Value.Y;
+				Y = Value.Z;
+				Z = Value.X;
+			#endif
 		}
 
 		FORCEINLINE operator FVector() const { return FVector(Z, X, Y); }
@@ -135,10 +143,17 @@ namespace UnrealCLRFramework {
 		float W;
 
 		FORCEINLINE Quaternion(FQuat Value) {
-			X = Value.Y;
-			Y = Value.Z;
-			Z = Value.X;
-			W = Value.W;
+			#if UNREALCLR_Z_UP
+				X = Value.X;
+				Y = Value.Y;
+				Z = Value.Z;
+				W = Value.W;
+			#else
+				X = Value.Y;
+				Y = Value.Z;
+				Z = Value.X;
+				W = Value.W;
+			#endif
 		}
 
 		FORCEINLINE operator FQuat() const { return FQuat(Z, X, Y, W); }

@@ -76,7 +76,9 @@ The runtime redirects all unhandled exceptions to log files and on-screen messag
 Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, or blueprints.
 
 ### World coordinate system
-By default, the engine uses a left-handed, z-up world coordinate system, but the framework is transparently remapping vector types to a left-handed, y-up world coordinates. Yaw, pitch, and roll from .NET numerics are always correctly translated to Unreal Engine. Axis conventions changed to: forward direction Z axis, right direction X axis, up direction Y axis. One unit remains equal to one centimeter.
+By default, the engine uses a left-handed, z-up world coordinate system, but the framework is optionally remapping vector types to a left-handed, y-up world coordinates. Yaw, pitch, and roll from .NET numerics are always correctly translated to Unreal Engine. Axis conventions changed to: forward direction Z axis, right direction X axis, up direction Y axis. One unit remains equal to one centimeter.
+
+To use a left-handed, z-up world coordinate system, set `UNREALCLR_Z_UP` constant in `Native/Source/UnrealCLR/Public/UnrealCLRFramework.h` to a non-zero value and recompile the plugin from `Window -> Developer Tools -> Modules`. Restart the engine after recompilation. This option affects the re-mapping of all coordinate system specific .NET numerics.
 
 ### Ecosystem compatibility
 The framework replicates the classes hierarchy of the engine with full interoperability support. Any external C++ code, blueprints, and plugins are compatible and extensible with UnrealCLR by design through the engine API.
