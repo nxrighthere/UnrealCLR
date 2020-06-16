@@ -4273,7 +4273,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		///	Unregister the component, removes it from its outer actor's components array and marks for pending kill
+		/// Unregister the component, removes it from its outer actor's components array and marks for pending kill
 		/// </summary>
 		/// <param name="promoteChildren">Promotes the children component in the hierarchy during the destruction</param>
 		public void Destroy(bool promoteChildren = false) => destroy(Pointer, promoteChildren);

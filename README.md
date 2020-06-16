@@ -34,29 +34,46 @@ Building
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html) with platform-specific dependencies
 - [.NET Core SDK 3.1.301](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
-### Compilation
+### Auto
+
+#### Compilation
+Create a new or use an existing Unreal Engine C++ project. Clone the repository, navigate to `Install` folder, and run `dotnet run`. Follow the installation instructions. Open the project after the installation process is complete.
+
+#### Upgrading
+To upgrade the plugin, re-run the installation process.
+
+### Manual
+
+#### Compilation
+
+##### Plugin
 Create a new or use an existing Unreal Engine C++ project. Clone the repository, copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
 
-Make sure that the plugin is initialized. Open the console window from `Window -> Developer Tools -> Output Log`, find `UnrealCLR` logs using the search input.
-
-### Upgrading
-To upgrade the plugin, repeat all steps from the compilation section, except that the plugin should be recompiled from `Window -> Developer Tools -> Modules`. Restart the engine after recompilation.
-
-Usage
---------
-The plugin is independent of the compilation routine of user assemblies. It's loading assemblies in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
-
+##### Tests
 To quickly start testing, open a project with the plugin in Unreal Engine, copy all folders from the `Content` of the cloned repository to `%Project%/Content` directory, and wait until they loaded in the Content Browser. Compile the managed assemblies from `Source/Managed/Tests` folder by running the following commands:
 ```
 dotnet publish "../Framework" --configuration Release --framework netcoreapp3.1
 dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Managed/Tests"
 ```
+
+#### Upgrading
+To upgrade, delete the plugin folder from a project, and repeat all steps from the compilation section.
+
+Running
+--------
+### Plugin
+The plugin is automatically loaded at startup. To make sure that the plugin is initialized open the console window from `Window -> Developer Tools -> Output Log`, find `UnrealCLR` logs using the search input.
+
+### Tests
 Open the scene with tests in the editor and enter the play mode. To switch a test, navigate to `Blueprints -> Open Level Blueprint`, select the Test Systems enumeration, and change default value on the right panel.
 
 Overview
 --------
 ### Design and architecture
 UnrealCLR is designed to be flexible and extensible. The plugin is transparently managing core functionality of the runtime, binding and caching the engine API for managed environment. The programmer has full control over execution flow through blueprint pipelines that allow to dynamically weave native events of the engine and its objects with managed logic. There's no hidden states or obscured order of execution behind the lifecycle of scripts.
+
+### Hot reload
+The plugin is independent of the compilation routine of user assemblies. It's loading assemblies in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
 
 ### Assemblies management
 At runtime, UnrealCLR loading managed assemblies into a cached isolated context. It allows dynamically replace assemblies after unloading them from memory, therefore the programmer can work with code without restarting the editor for continuous development. The compilation pipeline is entirely up to a developer, it can be organized in any desirable way without any limitations and with full support of [NuGet](https://www.nuget.org) packages.
