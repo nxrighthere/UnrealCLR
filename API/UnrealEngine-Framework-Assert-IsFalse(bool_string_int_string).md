@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Assert](./UnrealEngine-Framework-Assert.md 'UnrealEngine.Framework.Assert')
 ## Assert.IsFalse(bool, string, int, string) Method
-Logs an assertion if condition is `false`, and prints it on the screen  
+Logs an assertion if condition is `true`, and prints it on the screen  
 ```csharp
 public static void IsFalse(bool condition, string message=null, int callerLineNumber=0, string callerFilePath=null);
 ```

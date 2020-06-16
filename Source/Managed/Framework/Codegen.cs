@@ -4,12 +4,11 @@
  *  Permission to use, copy, modify, and/or distribute this software free of
  *  charge is hereby granted, provided that the above copyright notice and this
  *  permission notice appear in all copies or portions of this software with
- *  respect to the following additional terms and conditions that apply to the
- *  software which distributed in a non-compiled and/or non-object files:
+ *  respect to the following terms and conditions:
  *
  *  1. Without specific prior written permission of the copyright holder,
  *  this software is forbidden for rebranding, sublicensing, and the exploitation
- *  of its original brand to get payments in any form.
+ *  of it original brand to get payments in any form.
  *
  *  2. In accordance with DMCA (Digital Millennium Copyright Act), the copyright
  *  holder reserves exclusive permission to take down at any time any publicly

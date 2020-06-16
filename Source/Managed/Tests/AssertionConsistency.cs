@@ -6,13 +6,13 @@ namespace UnrealEngine.Tests {
         private static Actor actor = null;
 
         public static void OnBeginPlay() {
-            Assert.IsFalse(false, "Is false");
-            Assert.IsTrue(true, "Is true");
-            Assert.IsNull(actor, "Is null");
+            Assert.IsFalse(true, "Is true");
+            Assert.IsTrue(false, "Is false");
+            Assert.IsNotNull(actor, "Is null");
 
             actor = new Actor();
 
-            Assert.IsNotNull(actor, "Is not null");
+            Assert.IsNull(actor, "Is not null");
         }
     }
 }

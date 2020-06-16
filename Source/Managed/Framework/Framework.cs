@@ -4,12 +4,11 @@
  *  Permission to use, copy, modify, and/or distribute this software free of
  *  charge is hereby granted, provided that the above copyright notice and this
  *  permission notice appear in all copies or portions of this software with
- *  respect to the following additional terms and conditions that apply to the
- *  software which distributed in a non-compiled and/or non-object files:
+ *  respect to the following terms and conditions:
  *
  *  1. Without specific prior written permission of the copyright holder,
  *  this software is forbidden for rebranding, sublicensing, and the exploitation
- *  of its original brand to get payments in any form.
+ *  of it original brand to get payments in any form.
  *
  *  2. In accordance with DMCA (Digital Millennium Copyright Act), the copyright
  *  holder reserves exclusive permission to take down at any time any publicly
@@ -287,7 +286,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Window modes
+	/// Specifies the window mode
 	/// </summary>
 	public enum WindowMode : int {
 		/// <summary/>
@@ -2115,29 +2114,20 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Logs an assertion if condition is <c>false</c>, and prints it on the screen
-		/// </summary>
-		[Conditional("DEBUG"), Conditional("ASSERTIONS")]
-		public static void IsFalse(bool condition, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) {
-			if (!condition)
-				Message(message, callerLineNumber, callerFilePath);
-		}
-
-		/// <summary>
 		/// Logs an assertion if condition is <c>true</c>, and prints it on the screen
 		/// </summary>
 		[Conditional("DEBUG"), Conditional("ASSERTIONS")]
-		public static void IsTrue(bool condition, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) {
+		public static void IsFalse(bool condition, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) {
 			if (condition)
 				Message(message, callerLineNumber, callerFilePath);
 		}
 
 		/// <summary>
-		/// Logs an assertion if value is `null`, and prints it on the screen
+		/// Logs an assertion if condition is <c>false</c>, and prints it on the screen
 		/// </summary>
 		[Conditional("DEBUG"), Conditional("ASSERTIONS")]
-		public static void IsNull<T>(T value, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) where T : class {
-			if (value == null)
+		public static void IsTrue(bool condition, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) {
+			if (!condition)
 				Message(message, callerLineNumber, callerFilePath);
 		}
 
@@ -2145,8 +2135,17 @@ namespace UnrealEngine.Framework {
 		/// Logs an assertion if value is not `null`, and prints it on the screen
 		/// </summary>
 		[Conditional("DEBUG"), Conditional("ASSERTIONS")]
-		public static void IsNotNull<T>(T value, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) where T : class {
+		public static void IsNull<T>(T value, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) where T : class {
 			if (value != null)
+				Message(message, callerLineNumber, callerFilePath);
+		}
+
+		/// <summary>
+		/// Logs an assertion if value is `null`, and prints it on the screen
+		/// </summary>
+		[Conditional("DEBUG"), Conditional("ASSERTIONS")]
+		public static void IsNotNull<T>(T value, string message = null, [CallerLineNumber] int callerLineNumber = 0, [CallerFilePath] string callerFilePath = null) where T : class {
+			if (value == null)
 				Message(message, callerLineNumber, callerFilePath);
 		}
 	}

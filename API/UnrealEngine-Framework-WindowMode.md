@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## WindowMode Enum
-Window modes  
+Specifies the window mode  
 ```csharp
 public enum WindowMode
 ```

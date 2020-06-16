@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Assert](./UnrealEngine-Framework-Assert.md 'UnrealEngine.Framework.Assert')
 ## Assert.IsNull&lt;T&gt;(T, string, int, string) Method
-Logs an assertion if value is `null`, and prints it on the screen  
+Logs an assertion if value is not `null`, and prints it on the screen  
 ```csharp
 public static void IsNull<T>(T value, string message=null, int callerLineNumber=0, string callerFilePath=null);
 ```
