@@ -4174,6 +4174,36 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A single texture asset
+	/// </summary>
+	public partial class Texture2D : Texture {
+		private protected Texture2D() { }
+
+		internal Texture2D(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Finds and loads a texture by name
+		/// </summary>
+		/// <returns>A texture or <c>null</c> on failure</returns>
+		public static Texture2D Load(string name) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			IntPtr pointer = Object.load(ObjectType.Texture2D, name);
+
+			if (pointer != IntPtr.Zero)
+				return new Texture2D(pointer);
+
+			return null;
+		}
+
+		/// <summary>
+		/// Retrieves size of the texture
+		/// </summary>
+		public void GetSize(ref Vector2 value) => getSize(Pointer, ref value);
+	}
+
+	/// <summary>
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
 	public partial class ActorComponent : IEquatable<ActorComponent> {

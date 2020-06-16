@@ -152,6 +152,7 @@ namespace UnrealCLR {
 		void* SoundWaveFunctions[storageSize];
 		void* AnimationInstanceFunctions[storageSize];
 		void* PlayerInputFunctions[storageSize];
+		void* Texture2DFunctions[storageSize];
 		void* ActorComponentFunctions[storageSize];
 		void* InputComponentFunctions[storageSize];
 		void* SceneComponentFunctions[storageSize];

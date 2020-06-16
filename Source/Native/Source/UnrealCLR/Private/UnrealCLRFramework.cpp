@@ -333,6 +333,11 @@ namespace UnrealCLRFramework {
 					break;
 				}
 
+				case ObjectType::Texture2D: {
+					object = StaticLoadObject(UTexture2D::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					break;
+				}
+
 				default:
 					break;
 			}
@@ -1095,6 +1100,13 @@ namespace UnrealCLRFramework {
 
 		void SetMouseSensitivity(UPlayerInput* PlayerInput, const Vector2* Value) {
 			PlayerInput->SetMouseSensitivity(Value->X, Value->Y);
+		}
+	}
+
+	namespace Texture2D {
+		void GetSize(UTexture2D* Texture2D, Vector2* Value) {
+			Value->X = Texture2D->GetSizeX();
+			Value->Y = Texture2D->GetSizeY();
 		}
 	}
 

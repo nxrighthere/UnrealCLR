@@ -206,7 +206,8 @@ namespace UnrealCLRFramework {
 		AnimationMontage,
 		StaticMesh,
 		SkeletalMesh,
-		Material
+		Material,
+		Texture2D
 	};
 
 	enum struct ActorType : int32 {
@@ -529,6 +530,10 @@ namespace UnrealCLRFramework {
 
 	namespace Texture {
 
+	}
+
+	namespace Texture2D {
+		static void GetSize(UTexture2D* Texture2D, Vector2* Value);
 	}
 
 	namespace ActorComponent {

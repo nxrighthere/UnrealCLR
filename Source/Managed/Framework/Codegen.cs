@@ -331,6 +331,13 @@ namespace UnrealEngine.Framework {
 
 					unchecked {
 						int head = 0;
+						IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
+
+						Texture2D.getSize = GenerateOptimizedFunction<Texture2D.GetSizeFunction>(texture2DFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
 						IntPtr* actorComponentFunctions = (IntPtr*)buffer[position++];
 
 						ActorComponent.isOwnerSelected = GenerateOptimizedFunction<ActorComponent.IsOwnerSelectedFunction>(actorComponentFunctions[head++]);
@@ -635,7 +642,8 @@ namespace UnrealEngine.Framework {
 		AnimationMontage,
 		StaticMesh,
 		SkeletalMesh,
-		Material
+		Material,
+		Texture2D
 	}
 
 	internal enum ActorType : int {
@@ -1130,6 +1138,12 @@ namespace UnrealEngine.Framework {
 
 	partial class Texture {
 
+	}
+
+	partial class Texture2D {
+		internal delegate void GetSizeFunction(IntPtr texture2D, ref Vector2 value);
+
+		internal static GetSizeFunction getSize;
 	}
 
 	partial class ActorComponent {

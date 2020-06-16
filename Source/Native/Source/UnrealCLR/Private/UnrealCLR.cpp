@@ -428,6 +428,13 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::Texture2DFunctions;
+
+				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::GetSize;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::ActorComponentFunctions;
 
 				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::IsOwnerSelected;

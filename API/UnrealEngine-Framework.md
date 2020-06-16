@@ -60,6 +60,7 @@
 - [StaticMeshComponent](./UnrealEngine-Framework-StaticMeshComponent.md 'UnrealEngine.Framework.StaticMeshComponent')
 - [StreamableRenderAsset](./UnrealEngine-Framework-StreamableRenderAsset.md 'UnrealEngine.Framework.StreamableRenderAsset')
 - [Texture](./UnrealEngine-Framework-Texture.md 'UnrealEngine.Framework.Texture')
+- [Texture2D](./UnrealEngine-Framework-Texture2D.md 'UnrealEngine.Framework.Texture2D')
 - [Volume](./UnrealEngine-Framework-Volume.md 'UnrealEngine.Framework.Volume')
 - [World](./UnrealEngine-Framework-World.md 'UnrealEngine.Framework.World')
 ### Structs
