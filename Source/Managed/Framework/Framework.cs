@@ -4730,6 +4730,11 @@ namespace UnrealEngine.Framework {
 		private protected PrimitiveComponent() { }
 
 		/// <summary>
+		/// Returns <c>true</c> if the component is affected by gravity, always returns <c>false</c> if physics simulation is disabled for the component
+		/// </summary>
+		public bool IsGravityEnabled => isGravityEnabled(Pointer);
+
+		/// <summary>
 		/// Returns approximate mass in kilograms
 		/// </summary>
 		public float Mass => getMass(Pointer);
@@ -4907,6 +4912,11 @@ namespace UnrealEngine.Framework {
 		/// Sets whether or not a single body should use physics simulation, or should be kinematic, if the component is currently attached to something, beginning simulation will detach it
 		/// </summary>
 		public void SetSimulatePhysics(bool value) => setSimulatePhysics(Pointer, value);
+
+		/// <summary>
+		/// Sets whether or not the component is affected by gravity, applies only to components with enabled physics simulation
+		/// </summary>
+		public void SetEnableGravity(bool value) => setEnableGravity(Pointer, value);
 
 		/// <summary>
 		/// Creates a dynamic material instance for the specified element index, the parent of the instance is set to the material being replaced

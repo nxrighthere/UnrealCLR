@@ -14,6 +14,7 @@ Derived
 ### Properties
 - [AngularDamping](./UnrealEngine-Framework-PrimitiveComponent-AngularDamping.md 'UnrealEngine.Framework.PrimitiveComponent.AngularDamping')
 - [CastShadow](./UnrealEngine-Framework-PrimitiveComponent-CastShadow.md 'UnrealEngine.Framework.PrimitiveComponent.CastShadow')
+- [IsGravityEnabled](./UnrealEngine-Framework-PrimitiveComponent-IsGravityEnabled.md 'UnrealEngine.Framework.PrimitiveComponent.IsGravityEnabled')
 - [LinearDamping](./UnrealEngine-Framework-PrimitiveComponent-LinearDamping.md 'UnrealEngine.Framework.PrimitiveComponent.LinearDamping')
 - [Mass](./UnrealEngine-Framework-PrimitiveComponent-Mass.md 'UnrealEngine.Framework.PrimitiveComponent.Mass')
 - [MaterialsNumber](./UnrealEngine-Framework-PrimitiveComponent-MaterialsNumber.md 'UnrealEngine.Framework.PrimitiveComponent.MaterialsNumber')
@@ -34,6 +35,7 @@ Derived
 - [GetDistanceToCollision(System.Numerics.Vector3, System.Numerics.Vector3)](./UnrealEngine-Framework-PrimitiveComponent-GetDistanceToCollision(System-Numerics-Vector3_System-Numerics-Vector3).md 'UnrealEngine.Framework.PrimitiveComponent.GetDistanceToCollision(System.Numerics.Vector3, System.Numerics.Vector3)')
 - [GetMaterial(int)](./UnrealEngine-Framework-PrimitiveComponent-GetMaterial(int).md 'UnrealEngine.Framework.PrimitiveComponent.GetMaterial(int)')
 - [GetSquaredDistanceToCollision(System.Numerics.Vector3, float, System.Numerics.Vector3)](./UnrealEngine-Framework-PrimitiveComponent-GetSquaredDistanceToCollision(System-Numerics-Vector3_float_System-Numerics-Vector3).md 'UnrealEngine.Framework.PrimitiveComponent.GetSquaredDistanceToCollision(System.Numerics.Vector3, float, System.Numerics.Vector3)')
+- [SetEnableGravity(bool)](./UnrealEngine-Framework-PrimitiveComponent-SetEnableGravity(bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetEnableGravity(bool)')
 - [SetMass(float, string)](./UnrealEngine-Framework-PrimitiveComponent-SetMass(float_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetMass(float, string)')
 - [SetMaterial(int, UnrealEngine.Framework.MaterialInterface)](./UnrealEngine-Framework-PrimitiveComponent-SetMaterial(int_UnrealEngine-Framework-MaterialInterface).md 'UnrealEngine.Framework.PrimitiveComponent.SetMaterial(int, UnrealEngine.Framework.MaterialInterface)')
 - [SetSimulatePhysics(bool)](./UnrealEngine-Framework-PrimitiveComponent-SetSimulatePhysics(bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetSimulatePhysics(bool)')

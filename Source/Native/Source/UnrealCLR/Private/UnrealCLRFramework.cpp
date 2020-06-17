@@ -1472,6 +1472,10 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace PrimitiveComponent {
+		bool IsGravityEnabled(UPrimitiveComponent* PrimitiveComponent) {
+			return PrimitiveComponent->IsGravityEnabled();
+		}
+
 		void AddAngularImpulseInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
@@ -1617,6 +1621,10 @@ namespace UnrealCLRFramework {
 
 		void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value) {
 			PrimitiveComponent->SetLinearDamping(Value);
+		}
+
+		void SetEnableGravity(UPrimitiveComponent* PrimitiveComponent, bool Value) {
+			PrimitiveComponent->SetEnableGravity(Value);
 		}
 
 		UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex) {

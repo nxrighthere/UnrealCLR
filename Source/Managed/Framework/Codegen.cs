@@ -434,6 +434,7 @@ namespace UnrealEngine.Framework {
 						int head = 0;
 						IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
 
+						PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.addAngularImpulseInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInDegreesFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.addAngularImpulseInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInRadiansFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.addForce = GenerateOptimizedFunction<PrimitiveComponent.AddForceFunction>(primitiveComponentFunctions[head++]);
@@ -462,6 +463,7 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.setSimulatePhysics = GenerateOptimizedFunction<PrimitiveComponent.SetSimulatePhysicsFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
 					}
 
@@ -1295,6 +1297,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class PrimitiveComponent {
+		internal delegate Bool IsGravityEnabledFunction(IntPtr primitiveComponent);
 		internal delegate void AddAngularImpulseInDegreesFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
 		internal delegate void AddAngularImpulseInRadiansFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
 		internal delegate void AddForceFunction(IntPtr primitiveComponent, in Vector3 force, string boneName, Bool accelerationChange);
@@ -1323,8 +1326,10 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetSimulatePhysicsFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetAngularDampingFunction(IntPtr primitiveComponent, float value);
 		internal delegate void SetLinearDampingFunction(IntPtr primitiveComponent, float value);
+		internal delegate void SetEnableGravityFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
 
+		internal static IsGravityEnabledFunction isGravityEnabled;
 		internal static AddAngularImpulseInDegreesFunction addAngularImpulseInDegrees;
 		internal static AddAngularImpulseInRadiansFunction addAngularImpulseInRadians;
 		internal static AddForceFunction addForce;
@@ -1353,6 +1358,7 @@ namespace UnrealEngine.Framework {
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetAngularDampingFunction setAngularDamping;
 		internal static SetLinearDampingFunction setLinearDamping;
+		internal static SetEnableGravityFunction setEnableGravity;
 		internal static CreateAndSetMaterialInstanceDynamicFunction createAndSetMaterialInstanceDynamic;
 	}
 

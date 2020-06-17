@@ -616,6 +616,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace PrimitiveComponent {
+		static bool IsGravityEnabled(UPrimitiveComponent* PrimitiveComponent);
 		static void AddAngularImpulseInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange);
 		static void AddAngularImpulseInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange);
 		static void AddForce(UPrimitiveComponent* PrimitiveComponent, const Vector3* Force, const char* BoneName, bool AccelerationChange);
@@ -644,6 +645,7 @@ namespace UnrealCLRFramework {
 		static void SetSimulatePhysics(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetAngularDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
 		static void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
+		static void SetEnableGravity(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
 	}
 

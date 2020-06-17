@@ -37,7 +37,7 @@ Building
 ### Auto
 
 #### Compilation
-Create a new or use an existing Unreal Engine C++ project. Clone the repository, navigate to `Install` folder, and run `dotnet run`. Follow the installation instructions. Open the project after the installation process is complete.
+Create a new or use an existing Unreal Engine C++ project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run`. Follow the installation instructions. Open the project after the installation process is complete.
 
 #### Upgrading
 To upgrade the plugin, re-run the installation process.
@@ -47,7 +47,7 @@ To upgrade the plugin, re-run the installation process.
 #### Compilation
 
 ##### Plugin
-Create a new or use an existing Unreal Engine C++ project. Clone the repository, copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
+Create a new or use an existing Unreal Engine C++ project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
 
 ##### Tests
 To quickly start testing, open a project with the plugin in Unreal Engine, copy all folders from the `Content` of the cloned repository to `%Project%/Content` directory, and wait until they loaded in the Content Browser. Compile the managed assemblies from `Source/Managed/Tests` folder by running the following commands:

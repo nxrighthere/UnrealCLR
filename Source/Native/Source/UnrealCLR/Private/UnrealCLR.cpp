@@ -531,6 +531,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PrimitiveComponentFunctions;
 
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInDegrees;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInRadians;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddForce;
@@ -559,6 +560,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetSimulatePhysics;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetAngularDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetLinearDamping;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetEnableGravity;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::CreateAndSetMaterialInstanceDynamic;
 			}
 

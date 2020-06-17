@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.01",
+	"VersionName": "1.02",
 	"FriendlyName": "UnrealCLR",
 	"Description": ".NET Common Language Runtime",
 	"Category": "Scripting",
@@ -12,7 +12,7 @@
 	"SupportURL": "https://gumroad.com/l/unrealclr",
 	"EnabledByDefault": true,
 	"CanContainContent": false,
-	"IsBetaVersion": true,
+	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Modules": [
