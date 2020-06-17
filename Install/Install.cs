@@ -32,7 +32,7 @@ public static class Install {
 				if (Directory.Exists(projectPath + "/Plugins/UnrealCLR"))
 					Directory.Delete(projectPath + "/Plugins/UnrealCLR", true);
 
-				Console.WriteLine("Copying native source code of the plugin...");
+				Console.WriteLine("Copying native source code and the runtime host of the plugin...");
 
 				foreach (string directoriesPath in Directory.GetDirectories(nativeSource, "*", SearchOption.AllDirectories)) {
 					Directory.CreateDirectory(directoriesPath.Replace(nativeSource, projectPath + "/Plugins/UnrealCLR"));
@@ -44,12 +44,17 @@ public static class Install {
 
 				Console.WriteLine("Launching compilation of the managed runtime...");
 
-				Process.Start(new ProcessStartInfo {
+				var runtimeCompilation = Process.Start(new ProcessStartInfo {
 					FileName = "dotnet",
 					Arguments =  "publish " + sourcePath + "/Source/Managed/Runtime --configuration Release --framework netcoreapp3.1 --output \"" + projectPath + "/Plugins/UnrealCLR/Managed\"",
 					CreateNoWindow = false,
 					UseShellExecute = true
 				});
+
+				runtimeCompilation.WaitForExit();
+
+				if (runtimeCompilation.ExitCode != 0)
+					Error("Compilation of the runtime was finished with an error!");
 
 				if (compileTests) {
 					string contentPath = sourcePath + "/Content";
@@ -75,22 +80,37 @@ public static class Install {
 
 					frameworkCompilation.WaitForExit();
 
+					if (frameworkCompilation.ExitCode != 0)
+						Error("Compilation of the framework was finished with an error!");
+
 					Console.WriteLine("Launching compilation of the tests...");
 
-					Process.Start(new ProcessStartInfo {
+					var testsCompilation = Process.Start(new ProcessStartInfo {
 						FileName = "dotnet",
 						Arguments =  "publish " + sourcePath + "/Source/Managed/Tests --configuration Release --framework netcoreapp3.1 --output \"" + projectPath + "/Managed/Tests\"",
 						CreateNoWindow = false,
 						UseShellExecute = true
 					});
+
+					testsCompilation.WaitForExit();
+
+					if (testsCompilation.ExitCode != 0)
+						Error("Compilation of the tests was finished with an error!");
 				}
 
-				Console.WriteLine(Environment.NewLine + "Done!");
+				Console.WriteLine("Done!");
 			} else {
 				Console.WriteLine(Environment.NewLine + "Installation canceled");
 			}
 		} else {
 			Console.WriteLine("Project file not found in \"" + projectPath + "\" folder!");
 		}
+	}
+
+	private static void Error(string message) {
+		Console.ForegroundColor = ConsoleColor.Red;
+		Console.WriteLine(message);
+		Console.ResetColor();
+		Environment.Exit(-1);
 	}
 }
