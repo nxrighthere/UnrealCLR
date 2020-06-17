@@ -34,12 +34,12 @@ public static class Install {
 
 				Console.WriteLine("Copying native source code of the plugin...");
 
-				foreach (string dirPath in Directory.GetDirectories(nativeSource, "*", SearchOption.AllDirectories)) {
-					Directory.CreateDirectory(dirPath.Replace(nativeSource, projectPath + "/Plugins/UnrealCLR"));
+				foreach (string directoriesPath in Directory.GetDirectories(nativeSource, "*", SearchOption.AllDirectories)) {
+					Directory.CreateDirectory(directoriesPath.Replace(nativeSource, projectPath + "/Plugins/UnrealCLR"));
 				}
 
-				foreach (string newPath in Directory.GetFiles(nativeSource, "*.*", SearchOption.AllDirectories)) {
-					File.Copy(newPath, newPath.Replace(nativeSource, projectPath  + "/Plugins/UnrealCLR"), true);
+				foreach (string filesPath in Directory.GetFiles(nativeSource, "*.*", SearchOption.AllDirectories)) {
+					File.Copy(filesPath, filesPath.Replace(nativeSource, projectPath  + "/Plugins/UnrealCLR"), true);
 				}
 
 				Console.WriteLine("Launching compilation of the managed runtime...");
@@ -56,12 +56,12 @@ public static class Install {
 
 					Console.WriteLine("Copying the content of the tests...");
 
-					foreach (string dirPath in Directory.GetDirectories(contentPath, "*", SearchOption.AllDirectories)) {
-						Directory.CreateDirectory(dirPath.Replace(contentPath, projectPath + "/Content"));
+					foreach (string directoriesPath in Directory.GetDirectories(contentPath, "*", SearchOption.AllDirectories)) {
+						Directory.CreateDirectory(directoriesPath.Replace(contentPath, projectPath + "/Content"));
 					}
 
-					foreach (string newPath in Directory.GetFiles(contentPath, "*.*", SearchOption.AllDirectories)) {
-						File.Copy(newPath, newPath.Replace(contentPath, projectPath  + "/Content"), true);
+					foreach (string filesPath in Directory.GetFiles(contentPath, "*.*", SearchOption.AllDirectories)) {
+						File.Copy(filesPath, filesPath.Replace(contentPath, projectPath  + "/Content"), true);
 					}
 
 					Console.WriteLine("Launching compilation of the framework...");
@@ -84,6 +84,8 @@ public static class Install {
 						UseShellExecute = true
 					});
 				}
+
+				Console.WriteLine(Environment.NewLine + "Done!");
 			} else {
 				Console.WriteLine(Environment.NewLine + "Installation canceled");
 			}

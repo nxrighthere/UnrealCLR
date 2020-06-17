@@ -1,5 +1,5 @@
-Source/Install/bin
-Source/Install/obj
+Install/bin
+Install/obj
 Source/Managed/Framework/bin
 Source/Managed/Framework/obj
 Source/Managed/Runtime/bin
