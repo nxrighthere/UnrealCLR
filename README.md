@@ -50,7 +50,7 @@ To upgrade the plugin, re-run the installation process.
 Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
 
 ##### Tests
-To quickly start testing, open a project with the plugin in Unreal Engine, copy all folders from the `Content` of the cloned repository to `%Project%/Content` directory, and wait until they loaded in the Content Browser. Compile the managed assemblies from `Source/Managed/Tests` folder by running the following commands:
+To quickly start testing, open a project with the plugin in Unreal Engine, copy all folders from the `Content` of the repository to `%Project%/Content` directory, and wait until they loaded in the Content Browser. Compile the managed assemblies from `Source/Managed/Tests` folder by running the following commands:
 ```
 dotnet publish "../Framework" --configuration Release --framework netcoreapp3.1
 dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Managed/Tests"
@@ -62,7 +62,7 @@ To upgrade, delete the plugin folder from a project, and repeat all steps from t
 Running
 --------
 ### Plugin
-The plugin is automatically loaded at startup. To make sure that the plugin is initialized open the console window from `Window -> Developer Tools -> Output Log`, find `UnrealCLR` logs using the search input.
+The plugin is automatically loaded at startup. To make sure that it's initialized open the console window from `Window -> Developer Tools -> Output Log`, find `UnrealCLR` logs using the search input.
 
 ### Tests
 Open the scene with tests in the editor and enter the play mode. To switch a test, navigate to `Blueprints -> Open Level Blueprint`, select the Test Systems enumeration, and change default value on the right panel.

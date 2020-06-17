@@ -72,6 +72,7 @@
 - [AttachmentTransformRule](./UnrealEngine-Framework-AttachmentTransformRule.md 'UnrealEngine.Framework.AttachmentTransformRule')
 - [BlendType](./UnrealEngine-Framework-BlendType.md 'UnrealEngine.Framework.BlendType')
 - [CameraProjectionMode](./UnrealEngine-Framework-CameraProjectionMode.md 'UnrealEngine.Framework.CameraProjectionMode')
+- [CollisionMode](./UnrealEngine-Framework-CollisionMode.md 'UnrealEngine.Framework.CollisionMode')
 - [ComponentMobility](./UnrealEngine-Framework-ComponentMobility.md 'UnrealEngine.Framework.ComponentMobility')
 - [InputEvent](./UnrealEngine-Framework-InputEvent.md 'UnrealEngine.Framework.InputEvent')
 - [LogLevel](./UnrealEngine-Framework-LogLevel.md 'UnrealEngine.Framework.LogLevel')

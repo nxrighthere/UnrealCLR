@@ -271,6 +271,28 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Specifies the collision mode
+	/// </summary>
+	public enum CollisionMode : int {
+		/// <summary>
+		/// No collision
+		/// </summary>
+		NoCollision,
+		/// <summary>
+		/// Used for spatial queries (raycasts, sweeps, and overlaps)
+		/// </summary>
+		QueryOnly,
+		/// <summary>
+		/// Used for physics simulation (rigid bodies, and constraints)
+		/// </summary>
+		PhysicsOnly,
+		/// <summary>
+		/// Can be used for both spatial queries and physics simulation
+		/// </summary>
+		QueryAndPhysics
+	}
+
+	/// <summary>
 	/// Specifies the window mode
 	/// </summary>
 	public enum WindowMode : int {
@@ -4901,6 +4923,11 @@ namespace UnrealEngine.Framework {
 		/// Sets whether or not the component is affected by gravity, applies only to components with enabled physics simulation
 		/// </summary>
 		public void SetEnableGravity(bool value) => setEnableGravity(Pointer, value);
+
+		/// <summary>
+		/// Sets the collision mode of the component
+		/// </summary>
+		public void SetCollisionMode(CollisionMode mode) => setCollisionMode(Pointer, mode);
 
 		/// <summary>
 		/// Creates a dynamic material instance for the specified element index, the parent of the instance is set to the material being replaced

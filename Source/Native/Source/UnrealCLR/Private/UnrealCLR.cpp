@@ -545,6 +545,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetAngularDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetLinearDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetEnableGravity;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionMode;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::CreateAndSetMaterialInstanceDynamic;
 			}
 

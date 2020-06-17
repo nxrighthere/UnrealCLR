@@ -22,6 +22,7 @@ UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealAssert, Log, All);
 namespace UnrealCLRFramework {
 	using AnimationMode = EAnimationMode::Type;
 	using CameraProjectionMode = ECameraProjectionMode::Type;
+	using CollisionMode = ECollisionEnabled::Type;
 	using WindowMode = EWindowMode::Type;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
@@ -630,6 +631,7 @@ namespace UnrealCLRFramework {
 		static void SetAngularDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
 		static void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
 		static void SetEnableGravity(UPrimitiveComponent* PrimitiveComponent, bool Value);
+		static void SetCollisionMode(UPrimitiveComponent* PrimitiveComponent, CollisionMode Mode);
 		static UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
 	}
 

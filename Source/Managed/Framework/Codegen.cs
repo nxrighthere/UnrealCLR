@@ -448,6 +448,7 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
 					}
 
@@ -1311,6 +1312,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetAngularDampingFunction(IntPtr primitiveComponent, float value);
 		internal delegate void SetLinearDampingFunction(IntPtr primitiveComponent, float value);
 		internal delegate void SetEnableGravityFunction(IntPtr primitiveComponent, Bool value);
+		internal delegate void SetCollisionModeFunction(IntPtr primitiveComponent, CollisionMode mode);
 		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
 
 		internal static IsGravityEnabledFunction isGravityEnabled;
@@ -1343,6 +1345,7 @@ namespace UnrealEngine.Framework {
 		internal static SetAngularDampingFunction setAngularDamping;
 		internal static SetLinearDampingFunction setLinearDamping;
 		internal static SetEnableGravityFunction setEnableGravity;
+		internal static SetCollisionModeFunction setCollisionMode;
 		internal static CreateAndSetMaterialInstanceDynamicFunction createAndSetMaterialInstanceDynamic;
 	}
 

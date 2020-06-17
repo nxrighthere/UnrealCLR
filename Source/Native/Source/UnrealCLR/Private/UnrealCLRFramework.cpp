@@ -1611,6 +1611,10 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->SetEnableGravity(Value);
 		}
 
+		void SetCollisionMode(UPrimitiveComponent* PrimitiveComponent, CollisionMode Mode) {
+			PrimitiveComponent->SetCollisionEnabled(Mode);
+		}
+
 		UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex) {
 			return PrimitiveComponent->CreateAndSetMaterialInstanceDynamic(ElementIndex);
 		}
