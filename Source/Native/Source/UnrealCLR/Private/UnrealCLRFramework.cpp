@@ -97,6 +97,12 @@ namespace UnrealCLRFramework {
 			case ComponentType::Camera:\
 				Result = Head UCameraComponent Tail;\
 				break;\
+			case ComponentType::Light:\
+				Result = Head ULightComponent Tail;\
+				break;\
+			case ComponentType::DirectionalLight:\
+				Result = Head UDirectionalLightComponent Tail;\
+				break;\
 			case ComponentType::MotionController:\
 				Result = Head UMotionControllerComponent Tail;\
 				break;\
@@ -133,6 +139,12 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::Camera:\
 				Result = Head UCameraComponent Tail;\
+				break;\
+			case ComponentType::Light:\
+				Result = Head ULightComponent Tail;\
+				break;\
+			case ComponentType::DirectionalLight:\
+				Result = Head UDirectionalLightComponent Tail;\
 				break;\
 			case ComponentType::MotionController:\
 				Result = Head UMotionControllerComponent Tail;\
@@ -1840,6 +1852,30 @@ namespace UnrealCLRFramework {
 		int32 GetMaterialIndex(UMeshComponent* MeshComponent, const char* MaterialSlotName) {
 			return MeshComponent->GetMaterialIndex(FName(ANSI_TO_TCHAR(MaterialSlotName)));
 		}
+	}
+
+	namespace LightComponentBase {
+		float GetIntensity(ULightComponentBase* LightComponentBase) {
+			return LightComponentBase->Intensity;
+		}
+
+		bool GetCastShadows(ULightComponentBase* LightComponentBase) {
+			return LightComponentBase->CastShadows;
+		}
+
+		void SetCastShadows(ULightComponentBase* LightComponentBase, bool Value) {
+			LightComponentBase->SetCastShadows(Value);
+		}
+	}
+
+	namespace LightComponent {
+		void SetIntensity(ULightComponent* LightComponent, float Value) {
+			LightComponent->SetIntensity(Value);
+		}
+	}
+
+	namespace DirectionalLightComponent {
+
 	}
 
 	namespace MotionControllerComponent {

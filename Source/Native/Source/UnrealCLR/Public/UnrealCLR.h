@@ -26,7 +26,10 @@
 #include "Components/AudioComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/DirectionalLightComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/LightComponent.h"
+#include "Components/LightComponentBase.h"
 #include "Components/ShapeComponent.h"
 #include "Components/SphereComponent.h"
 #include "DrawDebugHelpers.h"
@@ -148,6 +151,8 @@ namespace UnrealCLR {
 		void* SphereComponentFunctions[storageSize];
 		void* CapsuleComponentFunctions[storageSize];
 		void* MeshComponentFunctions[storageSize];
+		void* LightComponentBaseFunctions[storageSize];
+		void* LightComponentFunctions[storageSize];
 		void* MotionControllerComponentFunctions[storageSize];
 		void* StaticMeshComponentFunctions[storageSize];
 		void* InstancedStaticMeshComponentFunctions[storageSize];

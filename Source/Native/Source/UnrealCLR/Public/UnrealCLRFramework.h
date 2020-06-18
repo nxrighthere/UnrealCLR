@@ -218,6 +218,8 @@ namespace UnrealCLRFramework {
 		Scene,
 		Audio,
 		Camera,
+		Light,
+		DirectionalLight,
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
@@ -691,6 +693,20 @@ namespace UnrealCLRFramework {
 
 	namespace MeshComponent {
 		static int32 GetMaterialIndex(UMeshComponent* MeshComponent, const char* MaterialSlotName);
+	}
+
+	namespace LightComponentBase {
+		static float GetIntensity(ULightComponentBase* LightComponentBase);
+		static bool GetCastShadows(ULightComponentBase* LightComponentBase);
+		static void SetCastShadows(ULightComponentBase* LightComponentBase, bool Value);
+	}
+
+	namespace LightComponent {
+		static void SetIntensity(ULightComponent* LightComponent, float Value);
+	}
+
+	namespace DirectionalLightComponent {
+
 	}
 
 	namespace MotionControllerComponent {

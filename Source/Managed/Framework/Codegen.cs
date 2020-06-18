@@ -527,6 +527,22 @@ namespace UnrealEngine.Framework {
 
 					unchecked {
 						int head = 0;
+						IntPtr* lightComponentBaseFunctions = (IntPtr*)buffer[position++];
+
+						LightComponentBase.getIntensity = GenerateOptimizedFunction<LightComponentBase.GetIntensityFunction>(lightComponentBaseFunctions[head++]);
+						LightComponentBase.getCastShadows = GenerateOptimizedFunction<LightComponentBase.GetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
+						LightComponentBase.setCastShadows = GenerateOptimizedFunction<LightComponentBase.SetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
+						IntPtr* lightComponentFunctions = (IntPtr*)buffer[position++];
+
+						LightComponent.setIntensity = GenerateOptimizedFunction<LightComponent.SetIntensityFunction>(lightComponentFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
 						IntPtr* motionControllerComponentFunctions = (IntPtr*)buffer[position++];
 
 						MotionControllerComponent.isTracked = GenerateOptimizedFunction<MotionControllerComponent.IsTrackedFunction>(motionControllerComponentFunctions[head++]);
@@ -687,6 +703,8 @@ namespace UnrealEngine.Framework {
 		Scene,
 		Audio,
 		Camera,
+		Light,
+		DirectionalLight,
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
@@ -1484,6 +1502,26 @@ namespace UnrealEngine.Framework {
 		internal delegate int GetMaterialIndexFunction(IntPtr meshComponent, string materialSlotName);
 
 		internal static GetMaterialIndexFunction getMaterialIndex;
+	}
+
+	partial class LightComponentBase {
+		internal delegate float GetIntensityFunction(IntPtr lightComponentBase);
+		internal delegate Bool GetCastShadowsFunction(IntPtr lightComponentBase);
+		internal delegate void SetCastShadowsFunction(IntPtr lightComponentBase, Bool value);
+
+		internal static GetIntensityFunction getIntensity;
+		internal static GetCastShadowsFunction getCastShadows;
+		internal static SetCastShadowsFunction setCastShadows;
+	}
+
+	partial class LightComponent {
+		internal delegate void SetIntensityFunction(IntPtr lightComponent, float value);
+
+		internal static SetIntensityFunction setIntensity;
+	}
+
+	partial class DirectionalLightComponent {
+
 	}
 
 	partial class MotionControllerComponent {

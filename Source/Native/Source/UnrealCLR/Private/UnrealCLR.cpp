@@ -624,6 +624,22 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::LightComponentBaseFunctions;
+
+				Shared::LightComponentBaseFunctions[head++] = &UnrealCLRFramework::LightComponentBase::GetIntensity;
+				Shared::LightComponentBaseFunctions[head++] = &UnrealCLRFramework::LightComponentBase::GetCastShadows;
+				Shared::LightComponentBaseFunctions[head++] = &UnrealCLRFramework::LightComponentBase::SetCastShadows;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::LightComponentFunctions;
+
+				Shared::LightComponentFunctions[head++] = &UnrealCLRFramework::LightComponent::SetIntensity;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::MotionControllerComponentFunctions;
 
 				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::IsTracked;

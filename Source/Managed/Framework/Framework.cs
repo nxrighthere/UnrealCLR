@@ -5688,6 +5688,53 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// The base class of light components
+	/// </summary>
+	public abstract partial class LightComponentBase : SceneComponent {
+		private protected LightComponentBase() { }
+
+		/// <summary>
+		/// Returns the total energy that the light emits
+		/// </summary>
+		public float Intensity => getIntensity(Pointer);
+
+		/// <summary>
+		/// Gets or sets whether the light should cast shadows
+		/// </summary>
+		public bool CastShadows {
+			get => getCastShadows(Pointer);
+			set => setCastShadows(Pointer, value);
+		}
+	}
+
+	/// <summary>
+	/// A component that represents light
+	/// </summary>
+	public partial class LightComponent : LightComponentBase {
+		internal override ComponentType Type => ComponentType.Light;
+
+		private protected LightComponent() { }
+
+		internal LightComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Sets the intensity of the light
+		/// </summary>
+		public void SetIntensity(float value) => setIntensity(Pointer, value);
+	}
+
+	/// <summary>
+	/// A component that represents directional light
+	/// </summary>
+	public partial class DirectionalLightComponent : LightComponent {
+		internal override ComponentType Type => ComponentType.DirectionalLight;
+
+		private protected DirectionalLightComponent() { }
+
+		internal DirectionalLightComponent(IntPtr pointer) => Pointer = pointer;
+	}
+
+	/// <summary>
 	/// A component that represents a physical motion controller in 3D space
 	/// </summary>
 	public partial class MotionControllerComponent : PrimitiveComponent {
