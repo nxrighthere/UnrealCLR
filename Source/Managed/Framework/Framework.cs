@@ -2759,6 +2759,58 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Interface for engine objects
+	/// </summary>
+	public interface IObject {
+		/// <summary/>
+		string Name { get; }
+		/// <summary/>
+		bool GetBool(string name, ref bool value);
+		/// <summary/>
+		bool GetByte(string name, ref byte value);
+		/// <summary/>
+		bool GetShort(string name, ref short value);
+		/// <summary/>
+		bool GetInt(string name, ref int value);
+		/// <summary/>
+		bool GetLong(string name, ref long value);
+		/// <summary/>
+		bool GetUShort(string name, ref ushort value);
+		/// <summary/>
+		bool GetUInt(string name, ref uint value);
+		/// <summary/>
+		bool GetULong(string name, ref ulong value);
+		/// <summary/>
+		bool GetFloat(string name, ref float value);
+		/// <summary/>
+		bool GetDouble(string name, ref double value);
+		/// <summary/>
+		bool GetText(string name, ref string value);
+		/// <summary/>
+		bool SetBool(string name, bool value);
+		/// <summary/>
+		bool SetByte(string name, byte value);
+		/// <summary/>
+		bool SetShort(string name, short value);
+		/// <summary/>
+		bool SetInt(string name, int value);
+		/// <summary/>
+		bool SetLong(string name, long value);
+		/// <summary/>
+		bool SetUShort(string name, ushort value);
+		/// <summary/>
+		bool SetUInt(string name, uint value);
+		/// <summary/>
+		bool SetULong(string name, ulong value);
+		/// <summary/>
+		bool SetFloat(string name, float value);
+		/// <summary/>
+		bool SetDouble(string name, double value);
+		/// <summary/>
+		bool SetText(string name, string value);
+	}
+
+	/// <summary>
 	/// Interface for console objects
 	/// </summary>
 	public partial class ConsoleObject : IEquatable<ConsoleObject> {
@@ -2909,7 +2961,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of an object that can be placed or spawned in a level
 	/// </summary>
-	public partial class Actor : IEquatable<Actor> {
+	public partial class Actor : IObject, IEquatable<Actor> {
 		[ThreadStatic]
 		private static StringBuilder stringBuffer = new StringBuilder(8192);
 
@@ -2980,6 +3032,257 @@ namespace UnrealEngine.Framework {
 
 				return stringBuffer.ToString();
 			}
+		}
+
+		/// <summary>
+		/// Retrieves the value of the bool property
+		/// </summary>
+		public bool GetBool(string name, ref bool value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getBool(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the byte property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetByte(string name, ref byte value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getByte(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetShort(string name, ref short value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getShort(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetInt(string name, ref int value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getInt(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetLong(string name, ref long value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getLong(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the unsigned short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetUShort(string name, ref ushort value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getUShort(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the unsigned integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetUInt(string name, ref uint value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getUInt(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the unsigned long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetULong(string name, ref ulong value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getULong(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the float property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetFloat(string name, ref float value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getFloat(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the double property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetDouble(string name, ref double value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getDouble(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the text property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetText(string name, ref string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			stringBuffer.Clear();
+
+			if (Object.getText(Pointer, name, stringBuffer)) {
+				value = stringBuffer.ToString();
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Sets the value of the bool property
+		/// </summary>
+		public bool SetBool(string name, bool value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setBool(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the byte property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetByte(string name, byte value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setByte(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetShort(string name, short value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setShort(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetInt(string name, int value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setInt(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetLong(string name, long value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setLong(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the unsigned short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetUShort(string name, ushort value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setUShort(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the unsigned integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetUInt(string name, uint value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setUInt(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the unsigned long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetULong(string name, ulong value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setULong(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the float property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetFloat(string name, float value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setFloat(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the double property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetDouble(string name, double value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setDouble(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the text property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetText(string name, string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			return Object.setText(Pointer, name, value);
 		}
 
 		/// <summary>
@@ -4202,7 +4505,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
-	public partial class ActorComponent : IEquatable<ActorComponent> {
+	public partial class ActorComponent : IObject, IEquatable<ActorComponent> {
 		[ThreadStatic]
 		private static StringBuilder stringBuffer = new StringBuilder(8192);
 
@@ -4246,6 +4549,257 @@ namespace UnrealEngine.Framework {
 
 				return stringBuffer.ToString();
 			}
+		}
+
+		/// <summary>
+		/// Retrieves the value of the bool property
+		/// </summary>
+		public bool GetBool(string name, ref bool value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getBool(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the byte property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetByte(string name, ref byte value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getByte(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetShort(string name, ref short value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getShort(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetInt(string name, ref int value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getInt(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetLong(string name, ref long value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getLong(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the unsigned short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetUShort(string name, ref ushort value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getUShort(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the unsigned integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetUInt(string name, ref uint value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getUInt(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the unsigned long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetULong(string name, ref ulong value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getULong(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the float property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetFloat(string name, ref float value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getFloat(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the double property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetDouble(string name, ref double value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.getDouble(Pointer, name, ref value);
+		}
+
+		/// <summary>
+		/// Retrieves the value of the text property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetText(string name, ref string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			stringBuffer.Clear();
+
+			if (Object.getText(Pointer, name, stringBuffer)) {
+				value = stringBuffer.ToString();
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Sets the value of the bool property
+		/// </summary>
+		public bool SetBool(string name, bool value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setBool(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the byte property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetByte(string name, byte value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setByte(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetShort(string name, short value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setShort(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetInt(string name, int value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setInt(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetLong(string name, long value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setLong(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the unsigned short property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetUShort(string name, ushort value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setUShort(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the unsigned integer property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetUInt(string name, uint value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setUInt(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the unsigned long property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetULong(string name, ulong value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setULong(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the float property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetFloat(string name, float value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setFloat(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the double property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetDouble(string name, double value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setDouble(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the text property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetText(string name, string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			return Object.setText(Pointer, name, value);
 		}
 
 		/// <summary>

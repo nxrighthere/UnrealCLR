@@ -66,6 +66,8 @@
 ### Structs
 - [LinearColor](./UnrealEngine-Framework-LinearColor.md 'UnrealEngine.Framework.LinearColor')
 - [Transform](./UnrealEngine-Framework-Transform.md 'UnrealEngine.Framework.Transform')
+### Interfaces
+- [IObject](./UnrealEngine-Framework-IObject.md 'UnrealEngine.Framework.IObject')
 ### Enums
 - [AIFocusPriority](./UnrealEngine-Framework-AIFocusPriority.md 'UnrealEngine.Framework.AIFocusPriority')
 - [AnimationMode](./UnrealEngine-Framework-AnimationMode.md 'UnrealEngine.Framework.AnimationMode')

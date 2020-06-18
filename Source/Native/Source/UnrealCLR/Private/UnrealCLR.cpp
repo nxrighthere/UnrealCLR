@@ -172,6 +172,28 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Load;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Rename;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetName;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetBool;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetByte;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetShort;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetInt;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetLong;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetUShort;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetUInt;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetULong;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetFloat;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetDouble;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetText;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetBool;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetByte;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetShort;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetInt;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetLong;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetUShort;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetUInt;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetULong;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetFloat;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetDouble;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetText;
 			}
 
 			{

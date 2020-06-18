@@ -160,6 +160,28 @@ namespace UnrealCLRFramework {
 		}\
 	}
 
+	#define UNREALCLR_GET_PROPERTY_VALUE(Type, Object, Name, Value)\
+		FName name(ANSI_TO_TCHAR(Name));\
+		for (TFieldIterator<Type> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {\
+			Type* property = *currentProperty;\
+			if (property->GetFName() == name) {\
+				*Value = property->GetPropertyValue_InContainer(Object);\
+				return true;\
+			}\
+		}\
+		return false;
+
+	#define UNREALCLR_SET_PROPERTY_VALUE(Type, Object, Name, Value)\
+		FName name(ANSI_TO_TCHAR(Name));\
+		for (TFieldIterator<Type> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {\
+			Type* property = *currentProperty;\
+			if (property->GetFName() == name) {\
+				property->SetPropertyValue_InContainer(Object, Value);\
+				return true;\
+			}\
+		}\
+		return false;
+
 	#define UNREALCLR_SET_BONE_NAME(Name)\
 		FName boneName;\
 		if (!Name)\
@@ -339,6 +361,120 @@ namespace UnrealCLRFramework {
 			const char* name = TCHAR_TO_ANSI(*Object->GetName());
 
 			UnrealCLR::Utility::Strcpy(Name, name, UnrealCLR::Utility::Strlen(name));
+		}
+
+		bool GetBool(UObject* Object, const char* Name, bool* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FBoolProperty, Object, Name, Value);
+		}
+
+		bool GetByte(UObject* Object, const char* Name, int8* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FByteProperty, Object, Name, Value);
+		}
+
+		bool GetShort(UObject* Object, const char* Name, int16* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FInt16Property, Object, Name, Value);
+		}
+
+		bool GetInt(UObject* Object, const char* Name, int32* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FIntProperty, Object, Name, Value);
+		}
+
+		bool GetLong(UObject* Object, const char* Name, int64* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FInt64Property, Object, Name, Value);
+		}
+
+		bool GetUShort(UObject* Object, const char* Name, uint16* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FUInt16Property, Object, Name, Value);
+		}
+
+		bool GetUInt(UObject* Object, const char* Name, uint32* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FUInt32Property, Object, Name, Value);
+		}
+
+		bool GetULong(UObject* Object, const char* Name, uint64* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FUInt64Property, Object, Name, Value);
+		}
+
+		bool GetFloat(UObject* Object, const char* Name, float* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FFloatProperty, Object, Name, Value);
+		}
+
+		bool GetDouble(UObject* Object, const char* Name, double* Value) {
+			UNREALCLR_GET_PROPERTY_VALUE(FDoubleProperty, Object, Name, Value);
+		}
+
+		bool GetText(UObject* Object, const char* Name, char* Value) {
+			FName name(ANSI_TO_TCHAR(Name));
+
+			for (TFieldIterator<FTextProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
+				FTextProperty* property = *currentProperty;
+
+				if (property->GetFName() == name) {
+					const char* string = TCHAR_TO_ANSI(*property->GetPropertyValue_InContainer(Object).ToString());
+
+					UnrealCLR::Utility::Strcpy(Value, string, UnrealCLR::Utility::Strlen(string));
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		bool SetBool(UObject* Object, const char* Name, bool Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FBoolProperty, Object, Name, Value);
+		}
+
+		bool SetByte(UObject* Object, const char* Name, int8 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FByteProperty, Object, Name, Value);
+		}
+
+		bool SetShort(UObject* Object, const char* Name, int16 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FInt16Property, Object, Name, Value);
+		}
+
+		bool SetInt(UObject* Object, const char* Name, int32 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FIntProperty, Object, Name, Value);
+		}
+
+		bool SetLong(UObject* Object, const char* Name, int64 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FInt64Property, Object, Name, Value);
+		}
+
+		bool SetUShort(UObject* Object, const char* Name, uint16 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FUInt16Property, Object, Name, Value);
+		}
+
+		bool SetUInt(UObject* Object, const char* Name, uint32 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FUInt32Property, Object, Name, Value);
+		}
+
+		bool SetULong(UObject* Object, const char* Name, uint64 Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FUInt64Property, Object, Name, Value);
+		}
+
+		bool SetFloat(UObject* Object, const char* Name, float Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FFloatProperty, Object, Name, Value);
+		}
+
+		bool SetDouble(UObject* Object, const char* Name, double Value) {
+			UNREALCLR_SET_PROPERTY_VALUE(FDoubleProperty, Object, Name, Value);
+		}
+
+		bool SetText(UObject* Object, const char* Name, const char* Value) {
+			FName name(ANSI_TO_TCHAR(Name));
+
+			for (TFieldIterator<FTextProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
+				FTextProperty* property = *currentProperty;
+
+				if (property->GetFName() == name) {
+					property->SetPropertyValue_InContainer(Object, FText::FromString(FString(ANSI_TO_TCHAR(Value))));
+
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 

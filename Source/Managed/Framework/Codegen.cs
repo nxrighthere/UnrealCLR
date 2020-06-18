@@ -75,6 +75,28 @@ namespace UnrealEngine.Framework {
 						Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
 						Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
 						Object.getName = GenerateOptimizedFunction<Object.GetNameFunction>(objectFunctions[head++]);
+						Object.getBool = GenerateOptimizedFunction<Object.GetBoolFunction>(objectFunctions[head++]);
+						Object.getByte = GenerateOptimizedFunction<Object.GetByteFunction>(objectFunctions[head++]);
+						Object.getShort = GenerateOptimizedFunction<Object.GetShortFunction>(objectFunctions[head++]);
+						Object.getInt = GenerateOptimizedFunction<Object.GetIntFunction>(objectFunctions[head++]);
+						Object.getLong = GenerateOptimizedFunction<Object.GetLongFunction>(objectFunctions[head++]);
+						Object.getUShort = GenerateOptimizedFunction<Object.GetUShortFunction>(objectFunctions[head++]);
+						Object.getUInt = GenerateOptimizedFunction<Object.GetUIntFunction>(objectFunctions[head++]);
+						Object.getULong = GenerateOptimizedFunction<Object.GetULongFunction>(objectFunctions[head++]);
+						Object.getFloat = GenerateOptimizedFunction<Object.GetFloatFunction>(objectFunctions[head++]);
+						Object.getDouble = GenerateOptimizedFunction<Object.GetDoubleFunction>(objectFunctions[head++]);
+						Object.getText = GenerateOptimizedFunction<Object.GetTextFunction>(objectFunctions[head++]);
+						Object.setBool = GenerateOptimizedFunction<Object.SetBoolFunction>(objectFunctions[head++]);
+						Object.setByte = GenerateOptimizedFunction<Object.SetByteFunction>(objectFunctions[head++]);
+						Object.setShort = GenerateOptimizedFunction<Object.SetShortFunction>(objectFunctions[head++]);
+						Object.setInt = GenerateOptimizedFunction<Object.SetIntFunction>(objectFunctions[head++]);
+						Object.setLong = GenerateOptimizedFunction<Object.SetLongFunction>(objectFunctions[head++]);
+						Object.setUShort = GenerateOptimizedFunction<Object.SetUShortFunction>(objectFunctions[head++]);
+						Object.setUInt = GenerateOptimizedFunction<Object.SetUIntFunction>(objectFunctions[head++]);
+						Object.setULong = GenerateOptimizedFunction<Object.SetULongFunction>(objectFunctions[head++]);
+						Object.setFloat = GenerateOptimizedFunction<Object.SetFloatFunction>(objectFunctions[head++]);
+						Object.setDouble = GenerateOptimizedFunction<Object.SetDoubleFunction>(objectFunctions[head++]);
+						Object.setText = GenerateOptimizedFunction<Object.SetTextFunction>(objectFunctions[head++]);
 					}
 
 					unchecked {
@@ -725,12 +747,56 @@ namespace UnrealEngine.Framework {
 		internal delegate IntPtr LoadFunction(ObjectType type, string name);
 		internal delegate void RenameFunction(IntPtr @object, string name);
 		internal delegate void GetNameFunction(IntPtr @object, StringBuilder name);
+		internal delegate Bool GetBoolFunction(IntPtr @object, string name, ref bool value);
+		internal delegate Bool GetByteFunction(IntPtr @object, string name, ref byte value);
+		internal delegate Bool GetShortFunction(IntPtr @object, string name, ref short value);
+		internal delegate Bool GetIntFunction(IntPtr @object, string name, ref int value);
+		internal delegate Bool GetLongFunction(IntPtr @object, string name, ref long value);
+		internal delegate Bool GetUShortFunction(IntPtr @object, string name, ref ushort value);
+		internal delegate Bool GetUIntFunction(IntPtr @object, string name, ref uint value);
+		internal delegate Bool GetULongFunction(IntPtr @object, string name, ref ulong value);
+		internal delegate Bool GetFloatFunction(IntPtr @object, string name, ref float value);
+		internal delegate Bool GetDoubleFunction(IntPtr @object, string name, ref double value);
+		internal delegate Bool GetTextFunction(IntPtr @object, string name, StringBuilder value);
+		internal delegate Bool SetBoolFunction(IntPtr @object, string name, Bool value);
+		internal delegate Bool SetByteFunction(IntPtr @object, string name, byte value);
+		internal delegate Bool SetShortFunction(IntPtr @object, string name, short value);
+		internal delegate Bool SetIntFunction(IntPtr @object, string name, int value);
+		internal delegate Bool SetLongFunction(IntPtr @object, string name, long value);
+		internal delegate Bool SetUShortFunction(IntPtr @object, string name, ushort value);
+		internal delegate Bool SetUIntFunction(IntPtr @object, string name, uint value);
+		internal delegate Bool SetULongFunction(IntPtr @object, string name, ulong value);
+		internal delegate Bool SetFloatFunction(IntPtr @object, string name, float value);
+		internal delegate Bool SetDoubleFunction(IntPtr @object, string name, double value);
+		internal delegate Bool SetTextFunction(IntPtr @object, string name, string value);
 
 		internal static IsPendingKillFunction isPendingKill;
 		internal static IsValidFunction isValid;
 		internal static LoadFunction load;
 		internal static RenameFunction rename;
 		internal static GetNameFunction getName;
+		internal static GetBoolFunction getBool;
+		internal static GetByteFunction getByte;
+		internal static GetShortFunction getShort;
+		internal static GetIntFunction getInt;
+		internal static GetLongFunction getLong;
+		internal static GetUShortFunction getUShort;
+		internal static GetUIntFunction getUInt;
+		internal static GetULongFunction getULong;
+		internal static GetFloatFunction getFloat;
+		internal static GetDoubleFunction getDouble;
+		internal static GetTextFunction getText;
+		internal static SetBoolFunction setBool;
+		internal static SetByteFunction setByte;
+		internal static SetShortFunction setShort;
+		internal static SetIntFunction setInt;
+		internal static SetLongFunction setLong;
+		internal static SetUShortFunction setUShort;
+		internal static SetUIntFunction setUInt;
+		internal static SetULongFunction setULong;
+		internal static SetFloatFunction setFloat;
+		internal static SetDoubleFunction setDouble;
+		internal static SetTextFunction setText;
 	}
 
 	static partial class Application {

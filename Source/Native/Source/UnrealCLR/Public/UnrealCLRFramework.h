@@ -260,6 +260,28 @@ namespace UnrealCLRFramework {
 		static UObject* Load(ObjectType Type, const char* Name);
 		static void Rename(UObject* Object, const char* Name);
 		static void GetName(UObject* Object, char* Name);
+		static bool GetBool(UObject* Object, const char* Name, bool* value);
+		static bool GetByte(UObject* Object, const char* Name, int8* Value);
+		static bool GetShort(UObject* Object, const char* Name, int16* Value);
+		static bool GetInt(UObject* Object, const char* Name, int32* Value);
+		static bool GetLong(UObject* Object, const char* Name, int64* Value);
+		static bool GetUShort(UObject* Object, const char* Name, uint16* Value);
+		static bool GetUInt(UObject* Object, const char* Name, uint32* Value);
+		static bool GetULong(UObject* Object, const char* Name, uint64* Value);
+		static bool GetFloat(UObject* Object, const char* Name, float* Value);
+		static bool GetDouble(UObject* Object, const char* Name, double* Value);
+		static bool GetText(UObject* Object, const char* Name, char* Value);
+		static bool SetBool(UObject* Object, const char* Name, bool value);
+		static bool SetByte(UObject* Object, const char* Name, int8 Value);
+		static bool SetShort(UObject* Object, const char* Name, int16 Value);
+		static bool SetInt(UObject* Object, const char* Name, int32 Value);
+		static bool SetLong(UObject* Object, const char* Name, int64 Value);
+		static bool SetUShort(UObject* Object, const char* Name, uint16 Value);
+		static bool SetUInt(UObject* Object, const char* Name, uint32 Value);
+		static bool SetULong(UObject* Object, const char* Name, uint64 Value);
+		static bool SetFloat(UObject* Object, const char* Name, float Value);
+		static bool SetDouble(UObject* Object, const char* Name, double Value);
+		static bool SetText(UObject* Object, const char* Name, const char* Value);
 	}
 
 	namespace Application {
