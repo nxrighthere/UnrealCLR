@@ -215,7 +215,6 @@ namespace UnrealEngine.Framework {
 						Actor.destroy = GenerateOptimizedFunction<Actor.DestroyFunction>(actorFunctions[head++]);
 						Actor.rename = GenerateOptimizedFunction<Actor.RenameFunction>(actorFunctions[head++]);
 						Actor.hide = GenerateOptimizedFunction<Actor.HideFunction>(actorFunctions[head++]);
-						Actor.attachToActor = GenerateOptimizedFunction<Actor.AttachToActorFunction>(actorFunctions[head++]);
 						Actor.teleportTo = GenerateOptimizedFunction<Actor.TeleportToFunction>(actorFunctions[head++]);
 						Actor.getComponent = GenerateOptimizedFunction<Actor.GetComponentFunction>(actorFunctions[head++]);
 						Actor.getRootComponent = GenerateOptimizedFunction<Actor.GetRootComponentFunction>(actorFunctions[head++]);
@@ -961,7 +960,6 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool DestroyFunction(IntPtr actor);
 		internal delegate void RenameFunction(IntPtr actor, string name);
 		internal delegate void HideFunction(IntPtr actor, Bool value);
-		internal delegate void AttachToActorFunction(IntPtr actor, IntPtr parent, AttachmentTransformRule attachmentRule, string socketName);
 		internal delegate Bool TeleportToFunction(IntPtr actor, in Vector3 destinationLocation, in Quaternion destinationRotation, Bool isATest, Bool noCheck);
 		internal delegate IntPtr GetComponentFunction(IntPtr actor, string name, ComponentType type);
 		internal delegate IntPtr GetRootComponentFunction(IntPtr actor, ComponentType type);
@@ -985,7 +983,6 @@ namespace UnrealEngine.Framework {
 		internal static DestroyFunction destroy;
 		internal static RenameFunction rename;
 		internal static HideFunction hide;
-		internal static AttachToActorFunction attachToActor;
 		internal static TeleportToFunction teleportTo;
 		internal static GetComponentFunction getComponent;
 		internal static GetRootComponentFunction getRootComponent;

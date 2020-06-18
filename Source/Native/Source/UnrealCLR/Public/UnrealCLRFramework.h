@@ -378,7 +378,6 @@ namespace UnrealCLRFramework {
 		static bool Destroy(AActor* Actor);
 		static void Rename(AActor* Actor, const char* Name);
 		static void Hide(AActor* Actor, bool Value);
-		static void AttachToActor(AActor* Actor, AActor* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName);
 		static bool TeleportTo(AActor* Actor, const Vector3* DestinationLocation, const Quaternion* DestinationRotation, bool IsATest, bool NoCheck);
 		static UActorComponent* GetComponent(AActor* Actor, const char* Name, ComponentType Type);
 		static USceneComponent* GetRootComponent(AActor* Actor, ComponentType Type);

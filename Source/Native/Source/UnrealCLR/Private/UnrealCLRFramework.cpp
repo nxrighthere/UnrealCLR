@@ -875,18 +875,6 @@ namespace UnrealCLRFramework {
 			Actor->SetActorHiddenInGame(Value);
 		}
 
-		void AttachToActor(AActor* Actor, AActor* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName) {
-			FAttachmentTransformRules attachmentRules = FAttachmentTransformRules::KeepRelativeTransform;
-			FName socketName;
-
-			UNREALCLR_GET_ATTACHMENT_RULE(AttachmentRule, attachmentRules);
-
-			if (SocketName)
-				socketName = FName(ANSI_TO_TCHAR(SocketName));
-
-			Actor->AttachToActor(Parent, attachmentRules, socketName);
-		}
-
 		bool TeleportTo(AActor* Actor, const Vector3* DestinationLocation, const Quaternion* DestinationRotation, bool IsATest, bool NoCheck) {
 			return Actor->TeleportTo(*DestinationLocation, FRotator(*DestinationRotation), IsATest, NoCheck);
 		}

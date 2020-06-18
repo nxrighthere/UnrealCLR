@@ -3345,16 +3345,6 @@ namespace UnrealEngine.Framework {
 		public void Hide(bool value) => hide(Pointer, value);
 
 		/// <summary>
-		/// Attaches the root component of this actor to the root component of the supplied actor, optionally at a named socket
-		/// </summary>
-		public void AttachToActor(Actor parent, AttachmentTransformRule attachmentRule, string socketName = null) {
-			if (parent == null)
-				throw new ArgumentNullException(nameof(parent));
-
-			attachToActor(Pointer, parent.Pointer, attachmentRule, socketName);
-		}
-
-		/// <summary>
 		/// Teleports an actor to a new location
 		/// </summary>
 		/// <param name="destinationLocation">The target destination point</param>

@@ -65,7 +65,7 @@ Running
 The plugin is automatically loaded at startup. To make sure that it's initialized open the console window from `Window -> Developer Tools -> Output Log`, find `UnrealCLR` logs using the search input.
 
 ### Tests
-Open the scene with tests in the editor and enter the play mode. To switch a test, navigate to `Blueprints -> Open Level Blueprint`, select the Tests Systems enumeration, and change default value on the right panel.
+Open the scene with tests in the editor and enter the play mode. To switch a test, navigate to `Blueprints -> Open Level Blueprint`, select the `Test Systems` enumeration, and change default value on the right panel.
 
 Overview
 --------

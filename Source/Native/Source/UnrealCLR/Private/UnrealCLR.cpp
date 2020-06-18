@@ -312,7 +312,6 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Destroy;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Rename;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Hide;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::AttachToActor;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::TeleportTo;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetRootComponent;
