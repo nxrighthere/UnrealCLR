@@ -43,16 +43,6 @@ namespace UnrealEngine.Framework {
 		}
 	}
 
-	internal struct Bool {
-		private byte value;
-
-		public Bool(byte value) => this.value = value;
-
-		public static implicit operator bool(Bool value) => value.value != 0;
-
-		public static implicit operator Bool(bool value) => !value ? new Bool(0) : new Bool(1);
-	}
-
 	// Public
 
 	/// <summary>
