@@ -114,7 +114,7 @@ namespace UnrealCLR {
 	}
 
 	namespace Shared {
-		constexpr int32 storageSize = 32;
+		constexpr int32 storageSize = 64;
 
 		void* AssertFunctions[storageSize];
 		void* CommandLineFunctions[storageSize];

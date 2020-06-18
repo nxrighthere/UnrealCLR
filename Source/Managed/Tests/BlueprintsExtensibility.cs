@@ -39,9 +39,9 @@ namespace UnrealEngine.Tests {
 		private static void TestActorBoolProperty() {
 			bool value = false;
 
-			Assert.IsTrue(actor.SetBool("TestBool", true));
+			Assert.IsTrue(actor.SetBool("Test Bool", true));
 
-			if (actor.GetBool("TestBool", ref value))
+			if (actor.GetBool("Test Bool", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
@@ -50,9 +50,9 @@ namespace UnrealEngine.Tests {
 		private static void TestActorByteProperty() {
 			byte value = 0;
 
-			Assert.IsTrue(actor.SetByte("TestByte", 128));
+			Assert.IsTrue(actor.SetByte("Test Byte", 128));
 
-			if (actor.GetByte("TestByte", ref value))
+			if (actor.GetByte("Test Byte", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
@@ -61,9 +61,9 @@ namespace UnrealEngine.Tests {
 		private static void TestActorIntProperty() {
 			int value = 0;
 
-			Assert.IsTrue(actor.SetInt("TestInt", 500));
+			Assert.IsTrue(actor.SetInt("Test Int", 500));
 
-			if (actor.GetInt("TestInt", ref value))
+			if (actor.GetInt("Test Int", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
@@ -72,9 +72,9 @@ namespace UnrealEngine.Tests {
 		private static void TestActorFloatProperty() {
 			float value = 0;
 
-			Assert.IsTrue(actor.SetFloat("TestFloat", 250.5f));
+			Assert.IsTrue(actor.SetFloat("Test Float", 250.5f));
 
-			if (actor.GetFloat("TestFloat", ref value))
+			if (actor.GetFloat("Test Float", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
@@ -83,9 +83,9 @@ namespace UnrealEngine.Tests {
 		private static void TestActorTextProperty() {
 			string value = String.Empty;
 
-			Assert.IsTrue(actor.SetText("TestText", "Test message from managed code"));
+			Assert.IsTrue(actor.SetText("Test Text", "Test message from managed code"));
 
-			if (actor.GetText("TestText", ref value))
+			if (actor.GetText("Test Text", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
@@ -94,9 +94,9 @@ namespace UnrealEngine.Tests {
 		private static void TestSceneComponentBoolProperty() {
 			bool value = false;
 
-			Assert.IsTrue(sceneComponent.SetBool("TestBool", true));
+			Assert.IsTrue(sceneComponent.SetBool("Test Bool", true));
 
-			if (sceneComponent.GetBool("TestBool", ref value))
+			if (sceneComponent.GetBool("Test Bool", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
@@ -105,9 +105,9 @@ namespace UnrealEngine.Tests {
 		private static void TestSceneComponentByteProperty() {
 			byte value = 0;
 
-			Assert.IsTrue(sceneComponent.SetByte("TestByte", 128));
+			Assert.IsTrue(sceneComponent.SetByte("Test Byte", 128));
 
-			if (sceneComponent.GetByte("TestByte", ref value))
+			if (sceneComponent.GetByte("Test Byte", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
@@ -116,9 +116,9 @@ namespace UnrealEngine.Tests {
 		private static void TestSceneComponentIntProperty() {
 			int value = 0;
 
-			Assert.IsTrue(sceneComponent.SetInt("TestInt", 500));
+			Assert.IsTrue(sceneComponent.SetInt("Test Int", 500));
 
-			if (sceneComponent.GetInt("TestInt", ref value))
+			if (sceneComponent.GetInt("Test Int", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
@@ -127,9 +127,9 @@ namespace UnrealEngine.Tests {
 		private static void TestSceneComponentFloatProperty() {
 			float value = 0;
 
-			Assert.IsTrue(sceneComponent.SetFloat("TestFloat", 250.5f));
+			Assert.IsTrue(sceneComponent.SetFloat("Test Float", 250.5f));
 
-			if (sceneComponent.GetFloat("TestFloat", ref value))
+			if (sceneComponent.GetFloat("Test Float", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
@@ -138,9 +138,9 @@ namespace UnrealEngine.Tests {
 		private static void TestSceneComponentTextProperty() {
 			string value = String.Empty;
 
-			Assert.IsTrue(sceneComponent.SetText("TestText", "Test message from managed code"));
+			Assert.IsTrue(sceneComponent.SetText("Test Text", "Test message from managed code"));
 
-			if (sceneComponent.GetText("TestText", ref value))
+			if (sceneComponent.GetText("Test Text", ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
