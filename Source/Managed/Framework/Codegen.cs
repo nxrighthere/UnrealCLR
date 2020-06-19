@@ -469,6 +469,11 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setCastShadow = GenerateOptimizedFunction<PrimitiveComponent.SetCastShadowFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.SetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.SetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
@@ -1411,6 +1416,11 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetAngularDampingFunction(IntPtr primitiveComponent);
 		internal delegate float GetLinearDampingFunction(IntPtr primitiveComponent);
 		internal delegate void SetMassFunction(IntPtr primitiveComponent, float mass, string boneName);
+		internal delegate void SetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, in Vector3 velocity, Bool addToCurrent, string boneName);
+		internal delegate void SetPhysicsAngularVelocityInDegreesFunction(IntPtr primitiveComponent, in Vector3 angularVelocity, Bool addToCurrent, string boneName);
+		internal delegate void SetPhysicsAngularVelocityInRadiansFunction(IntPtr primitiveComponent, in Vector3 angularVelocity, Bool addToCurrent, string boneName);
+		internal delegate void SetPhysicsMaxAngularVelocityInDegreesFunction(IntPtr primitiveComponent, float maxAngularVelocity, Bool addToCurrent, string boneName);
+		internal delegate void SetPhysicsMaxAngularVelocityInRadiansFunction(IntPtr primitiveComponent, float maxAngularVelocity, Bool addToCurrent, string boneName);
 		internal delegate void SetCastShadowFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetOnlyOwnerSeeFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetOwnerNoSeeFunction(IntPtr primitiveComponent, Bool value);
@@ -1444,6 +1454,11 @@ namespace UnrealEngine.Framework {
 		internal static GetAngularDampingFunction getAngularDamping;
 		internal static GetLinearDampingFunction getLinearDamping;
 		internal static SetMassFunction setMass;
+		internal static SetPhysicsLinearVelocityFunction setPhysicsLinearVelocity;
+		internal static SetPhysicsAngularVelocityInDegreesFunction setPhysicsAngularVelocityInDegrees;
+		internal static SetPhysicsAngularVelocityInRadiansFunction setPhysicsAngularVelocityInRadians;
+		internal static SetPhysicsMaxAngularVelocityInDegreesFunction setPhysicsMaxAngularVelocityInDegrees;
+		internal static SetPhysicsMaxAngularVelocityInRadiansFunction setPhysicsMaxAngularVelocityInRadians;
 		internal static SetCastShadowFunction setCastShadow;
 		internal static SetOnlyOwnerSeeFunction setOnlyOwnerSee;
 		internal static SetOwnerNoSeeFunction setOwnerNoSee;

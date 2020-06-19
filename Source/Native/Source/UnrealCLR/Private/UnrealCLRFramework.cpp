@@ -1741,6 +1741,36 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->SetMassOverrideInKg(boneName, Mass);
 		}
 
+		void SetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, const Vector3* Velocity, bool AddToCurrent, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->SetPhysicsLinearVelocity(*Velocity, AddToCurrent, boneName);
+		}
+
+		static void SetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->SetPhysicsAngularVelocityInDegrees(*AngularVelocity, AddToCurrent, boneName);
+		}
+
+		static void SetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->SetPhysicsAngularVelocityInRadians(*AngularVelocity, AddToCurrent, boneName);
+		}
+
+		static void SetPhysicsMaxAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->SetPhysicsMaxAngularVelocityInDegrees(MaxAngularVelocity, AddToCurrent, boneName);
+		}
+
+		static void SetPhysicsMaxAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->SetPhysicsMaxAngularVelocityInRadians(MaxAngularVelocity, AddToCurrent, boneName);
+		}
+
 		void SetCastShadow(UPrimitiveComponent* PrimitiveComponent, bool Value) {
 			PrimitiveComponent->CastShadow = Value;
 		}

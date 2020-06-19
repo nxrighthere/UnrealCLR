@@ -5483,6 +5483,31 @@ namespace UnrealEngine.Framework {
 		public void SetMass(float mass, string boneName = null) => setMass(Pointer, mass, boneName);
 
 		/// <summary>
+		/// Sets the linear velocity of a single body
+		/// </summary>
+		public void SetPhysicsLinearVelocity(in Vector3 velocity, bool addToCurrent = false, string boneName = null) => setPhysicsLinearVelocity(Pointer, velocity, addToCurrent, boneName);
+
+		/// <summary>
+		/// Sets the angular velocity in degrees of a single body
+		/// </summary>
+		public void SetPhysicsAngularVelocityInDegrees(in Vector3 angularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsAngularVelocityInDegrees(Pointer, angularVelocity, addToCurrent, boneName);
+
+		/// <summary>
+		/// Sets the angular velocity in radians of a single body
+		/// </summary>
+		public void SetPhysicsAngularVelocityInRadians(in Vector3 angularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsAngularVelocityInRadians(Pointer, angularVelocity, addToCurrent, boneName);
+
+		/// <summary>
+		/// Sets the maximum angular velocity in degrees of a single body
+		/// </summary>
+		public void SetPhysicsMaxAngularVelocityInDegrees(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInDegrees(Pointer, maxAngularVelocity, addToCurrent, boneName);
+
+		/// <summary>
+		/// Sets the maximum angular velocity in radians of a single body
+		/// </summary>
+		public void SetPhysicsMaxAngularVelocityInRadians(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInRadians(Pointer, maxAngularVelocity, addToCurrent, boneName);
+
+		/// <summary>
 		/// Sets whether or not a single body should use physics simulation, or should be kinematic, if the component is currently attached to something, beginning simulation will detach it
 		/// </summary>
 		public void SetSimulatePhysics(bool value) => setSimulatePhysics(Pointer, value);

@@ -636,6 +636,11 @@ namespace UnrealCLRFramework {
 		static float GetAngularDamping(UPrimitiveComponent* PrimitiveComponent);
 		static float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent);
 		static void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName);
+		static void SetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, const Vector3* Velocity, bool AddToCurrent, const char* BoneName);
+		static void SetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName);
+		static void SetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName);
+		static void SetPhysicsMaxAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName);
+		static void SetPhysicsMaxAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName);
 		static void SetCastShadow(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetOnlyOwnerSee(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetOwnerNoSee(UPrimitiveComponent* PrimitiveComponent, bool Value);
