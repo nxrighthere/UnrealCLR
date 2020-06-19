@@ -2998,6 +2998,9 @@ namespace UnrealEngine.Framework {
 			if (name?.Length == 0)
 				name = null;
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
@@ -3463,6 +3466,9 @@ namespace UnrealEngine.Framework {
 			if (name?.Length == 0)
 				name = null;
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
@@ -3485,6 +3491,9 @@ namespace UnrealEngine.Framework {
 		public Pawn(string name = null, Blueprint blueprint = null) {
 			if (name?.Length == 0)
 				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -3621,6 +3630,9 @@ namespace UnrealEngine.Framework {
 			if (name?.Length == 0)
 				name = null;
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
@@ -3688,6 +3700,9 @@ namespace UnrealEngine.Framework {
 		public PlayerController(string name = null, Blueprint blueprint = null) {
 			if (name?.Length == 0)
 				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -3807,6 +3822,9 @@ namespace UnrealEngine.Framework {
 			if (name?.Length == 0)
 				name = null;
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
@@ -3841,6 +3859,9 @@ namespace UnrealEngine.Framework {
 		public AmbientSound(string name = null, Blueprint blueprint = null) {
 			if (name?.Length == 0)
 				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -4307,6 +4328,10 @@ namespace UnrealEngine.Framework {
 		private protected Blueprint() { }
 
 		internal Blueprint(IntPtr pointer) => Pointer = pointer;
+
+		internal bool IsValidClass(ActorType type) => isValidActorClass(Pointer, type);
+
+		internal bool IsValidClass(ComponentType type) => isValidComponentClass(Pointer, type);
 
 		/// <summary>
 		/// Returns <c>true</c> if the object is created
@@ -4963,6 +4988,9 @@ namespace UnrealEngine.Framework {
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
@@ -5142,6 +5170,9 @@ namespace UnrealEngine.Framework {
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
@@ -5197,6 +5228,9 @@ namespace UnrealEngine.Framework {
 
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -5525,6 +5559,9 @@ namespace UnrealEngine.Framework {
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
@@ -5572,6 +5609,9 @@ namespace UnrealEngine.Framework {
 
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -5625,6 +5665,9 @@ namespace UnrealEngine.Framework {
 
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -5758,6 +5801,9 @@ namespace UnrealEngine.Framework {
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
 
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
@@ -5790,6 +5836,9 @@ namespace UnrealEngine.Framework {
 
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -5845,6 +5894,9 @@ namespace UnrealEngine.Framework {
 
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
@@ -5916,6 +5968,9 @@ namespace UnrealEngine.Framework {
 
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
 
 			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}

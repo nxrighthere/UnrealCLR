@@ -277,6 +277,14 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::BlueprintFunctions;
+
+				Shared::BlueprintFunctions[head++] = &UnrealCLRFramework::Blueprint::IsValidActorClass;
+				Shared::BlueprintFunctions[head++] = &UnrealCLRFramework::Blueprint::IsValidComponentClass;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::ConsoleObjectFunctions;
 
 				Shared::ConsoleObjectFunctions[head++] = &UnrealCLRFramework::ConsoleObject::IsBool;

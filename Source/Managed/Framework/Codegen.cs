@@ -180,6 +180,14 @@ namespace UnrealEngine.Framework {
 
 					unchecked {
 						int head = 0;
+						IntPtr* blueprintFunctions = (IntPtr*)buffer[position++];
+
+						Blueprint.isValidActorClass = GenerateOptimizedFunction<Blueprint.IsValidActorClassFunction>(blueprintFunctions[head++]);
+						Blueprint.isValidComponentClass = GenerateOptimizedFunction<Blueprint.IsValidComponentClassFunction>(blueprintFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
 						IntPtr* consoleObjectFunctions = (IntPtr*)buffer[position++];
 
 						ConsoleObject.isBool = GenerateOptimizedFunction<ConsoleObject.IsBoolFunction>(consoleObjectFunctions[head++]);
@@ -932,6 +940,14 @@ namespace UnrealEngine.Framework {
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
 		internal static SetWorldOriginFunction setWorldOrigin;
+	}
+
+	partial class Blueprint {
+		internal delegate Bool IsValidActorClassFunction(IntPtr blueprint, ActorType type);
+		internal delegate Bool IsValidComponentClassFunction(IntPtr blueprint, ComponentType type);
+
+		internal static IsValidActorClassFunction isValidActorClass;
+		internal static IsValidComponentClassFunction isValidComponentClass;
 	}
 
 	partial class ConsoleObject {

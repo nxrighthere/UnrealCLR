@@ -119,6 +119,8 @@ namespace UnrealCLR {
 	namespace Shared {
 		constexpr int32 storageSize = 64;
 
+		// Non-instantiable
+
 		void* AssertFunctions[storageSize];
 		void* CommandLineFunctions[storageSize];
 		void* DebugFunctions[storageSize];
@@ -127,6 +129,10 @@ namespace UnrealCLR {
 		void* ConsoleManagerFunctions[storageSize];
 		void* EngineFunctions[storageSize];
 		void* WorldFunctions[storageSize];
+
+		// Instantiable
+
+		void* BlueprintFunctions[storageSize];
 		void* ConsoleObjectFunctions[storageSize];
 		void* ConsoleVariableFunctions[storageSize];
 		void* ActorFunctions[storageSize];

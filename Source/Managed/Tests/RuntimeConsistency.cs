@@ -9,6 +9,8 @@ namespace UnrealEngine.Tests {
 		public static void OnBeginPlay() {
 			ActorMemoryManagementTest();
 			ComponentMemoryManagementTest();
+			ActorBlueprintClassesMatchingTest();
+			ComponentBlueprintClassesMatchingTest();
 			DuplicateActorMemoryManagementTest();
 			DuplicateComponentMemoryManagementTest();
 			ConsoleVariablesMemoryManagementTest();
@@ -51,6 +53,47 @@ namespace UnrealEngine.Tests {
 				Debug.Log(LogLevel.Display, "Triggering invalid action after the destruction");
 
 				sceneComponent.AddLocalOffset(default(Vector3));
+			}
+
+			catch (Exception exception) {
+				Debug.Log(LogLevel.Display, "The exception has successfully reached: " + exception.Message);
+
+				return;
+			}
+
+			Debug.Log(LogLevel.Error, "Test failed!");
+		}
+
+		private static void ActorBlueprintClassesMatchingTest() {
+			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
+		
+			try {
+				Blueprint blueprintActor = Blueprint.Load("/Game/Tests/BlueprintCameraActor");
+
+				Debug.Log(LogLevel.Display, "Triggering invalid action after the blueprint loading");
+
+				Actor actor = new Actor(blueprint: blueprintActor);
+			}
+
+			catch (Exception exception) {
+				Debug.Log(LogLevel.Display, "The exception has successfully reached: " + exception.Message);
+
+				return;
+			}
+
+			Debug.Log(LogLevel.Error, "Test failed!");
+		}
+
+		private static void ComponentBlueprintClassesMatchingTest() {
+			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
+
+			try {
+				Blueprint blueprintComponent = Blueprint.Load("/Game/Tests/BlueprintStaticMeshComponent");
+				Actor actor = new Actor();
+
+				Debug.Log(LogLevel.Display, "Triggering invalid action after the blueprint loading");
+
+				SceneComponent sceneComponent = new SceneComponent(actor, blueprint: blueprintComponent);
 			}
 
 			catch (Exception exception) {

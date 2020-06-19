@@ -337,6 +337,11 @@ namespace UnrealCLRFramework {
 
 	// Instantiable
 
+	namespace Blueprint {
+		static bool IsValidActorClass(UBlueprint* Blueprint, ActorType Type);
+		static bool IsValidComponentClass(UBlueprint* Blueprint, ComponentType Type);
+	}
+
 	namespace ConsoleObject {
 		static bool IsBool(IConsoleObject* ConsoleObject);
 		static bool IsInt(IConsoleObject* ConsoleObject);

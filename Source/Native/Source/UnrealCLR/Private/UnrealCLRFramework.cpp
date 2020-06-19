@@ -490,6 +490,32 @@ namespace UnrealCLRFramework {
 		}
 	}
 
+	namespace Blueprint {
+		bool IsValidActorClass(UBlueprint* Blueprint, ActorType Type) {
+			#if WITH_EDITOR
+				TSubclassOf<AActor> type;
+
+				UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+
+				return Blueprint->ParentClass == type;
+			#else
+				return true;
+			#endif
+		}
+
+		bool IsValidComponentClass(UBlueprint* Blueprint, ComponentType Type) {
+			#if WITH_EDITOR
+				TSubclassOf<USceneComponent> type;
+
+				UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+
+				return Blueprint->ParentClass == type;
+			#else
+				return true;
+			#endif
+		}
+	}
+
 	namespace Application {
 		bool IsCanEverRender() {
 			return FApp::CanEverRender();
