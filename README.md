@@ -72,9 +72,6 @@ Overview
 ### Design and architecture
 UnrealCLR is designed to be flexible and extensible. The plugin is transparently managing core functionality of the runtime, binding and caching the engine API for managed environment. The programmer has full control over execution flow through blueprint pipelines that allow to dynamically weave native events of the engine and its objects with managed logic. There's no hidden states or obscured order of execution behind the lifecycle of scripts.
 
-### Hot reload
-The plugin is independent of the compilation routine of user assemblies. It's loading assemblies in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
-
 ### Assemblies management
 At runtime, UnrealCLR loading managed assemblies into a cached isolated context. It allows dynamically replace assemblies after unloading them from memory, therefore the programmer can work with code without restarting the editor for continuous development. The compilation pipeline is entirely up to a developer, it can be organized in any desirable way without any limitations and with full support of [NuGet](https://www.nuget.org) packages.
 
@@ -91,6 +88,9 @@ The runtime redirects all unhandled exceptions to log files and on-screen messag
 
 ### Memory management
 Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, or blueprints.
+
+### Hot reload
+The plugin is independent of the compilation routine of user assemblies. It's loading assemblies in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
 
 ### Ecosystem compatibility
 The framework replicates the classes hierarchy of the engine with full interoperability support. Any external C++ code, blueprints, and plugins are compatible and extensible with UnrealCLR by design through the engine API.
