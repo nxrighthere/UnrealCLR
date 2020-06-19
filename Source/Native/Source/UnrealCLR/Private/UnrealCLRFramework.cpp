@@ -1356,6 +1356,14 @@ namespace UnrealCLRFramework {
 			return false;
 		}
 
+		bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName) {
+			return SceneComponent->DoesSocketExist(FName(ANSI_TO_TCHAR(SocketName)));
+		}
+
+		bool HasAnySockets(USceneComponent* SceneComponent) {
+			return SceneComponent->HasAnySockets();
+		}
+
 		USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint) {
 			USceneComponent* component = nullptr;
 
@@ -1452,6 +1460,20 @@ namespace UnrealCLRFramework {
 
 		void AddWorldTransform(USceneComponent* SceneComponent, const Transform* DeltaTransform) {
 			SceneComponent->AddWorldTransform(*DeltaTransform);
+		}
+
+		void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName) {
+			const char* socketName = TCHAR_TO_ANSI(*SceneComponent->GetAttachSocketName().ToString());
+
+			UnrealCLR::Utility::Strcpy(SocketName, socketName, UnrealCLR::Utility::Strlen(socketName));
+		}
+
+		void GetSocketLocation(USceneComponent* SceneComponent, const char* SocketName, Vector3* Value) {
+			*Value = SceneComponent->GetSocketLocation(FName(ANSI_TO_TCHAR(SocketName)));
+		}
+
+		void GetSocketRotation(USceneComponent* SceneComponent, const char* SocketName, Quaternion* Value) {
+			*Value = SceneComponent->GetSocketQuaternion(FName(ANSI_TO_TCHAR(SocketName)));
 		}
 
 		void GetComponentVelocity(USceneComponent* SceneComponent, Vector3* Value) {

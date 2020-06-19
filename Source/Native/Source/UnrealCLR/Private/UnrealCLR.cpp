@@ -480,6 +480,8 @@ void UnrealCLR::Module::StartupModule() {
 
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::IsAttachedToComponent;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::IsAttachedToActor;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::IsSocketExists;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::HasAnySockets;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Create;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AttachToComponent;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::UpdateToWorld;
@@ -491,6 +493,9 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldOffset;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldRotation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldTransform;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetAttachedSocketName;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetSocketLocation;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetSocketRotation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentVelocity;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentLocation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentRotation;

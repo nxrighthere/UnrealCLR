@@ -6,7 +6,7 @@ using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
 	public static class StaticMeshes {
-		private const int maxActors = 1000;
+		private const int maxActors = 200;
 		private static Actor[] actors = new Actor[maxActors];
 		private static StaticMeshComponent[] staticMeshComponents = new StaticMeshComponent[maxActors];
 		private static Material material = Material.Load("/Game/Tests/BasicMaterial");

@@ -559,6 +559,8 @@ namespace UnrealCLRFramework {
 	namespace SceneComponent {
 		static bool IsAttachedToComponent(USceneComponent* SceneComponent, USceneComponent* Component);
 		static bool IsAttachedToActor(USceneComponent* SceneComponent, AActor* Actor);
+		static bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName);
+		static bool HasAnySockets(USceneComponent* SceneComponent);
 		static USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint);
 		static bool AttachToComponent(USceneComponent* SceneComponent, USceneComponent* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName);
 		static void UpdateToWorld(USceneComponent* SceneComponent, TeleportType Type, UpdateTransformFlags Flags);
@@ -570,6 +572,9 @@ namespace UnrealCLRFramework {
 		static void AddWorldOffset(USceneComponent* SceneComponent, const Vector3* DeltaLocation);
 		static void AddWorldRotation(USceneComponent* SceneComponent, const Quaternion* DeltaRotation);
 		static void AddWorldTransform(USceneComponent* SceneComponent, const Transform* DeltaTransform);
+		static void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName);
+		static void GetSocketLocation(USceneComponent* SceneComponent, const char* SocketName, Vector3* Value);
+		static void GetSocketRotation(USceneComponent* SceneComponent, const char* SocketName, Quaternion* Value);
 		static void GetComponentVelocity(USceneComponent* SceneComponent, Vector3* Value);
 		static void GetComponentLocation(USceneComponent* SceneComponent, Vector3* Value);
 		static void GetComponentRotation(USceneComponent* SceneComponent, Quaternion* Value);

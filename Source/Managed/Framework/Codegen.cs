@@ -383,6 +383,8 @@ namespace UnrealEngine.Framework {
 
 						SceneComponent.isAttachedToComponent = GenerateOptimizedFunction<SceneComponent.IsAttachedToComponentFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.isAttachedToActor = GenerateOptimizedFunction<SceneComponent.IsAttachedToActorFunction>(sceneComponentFunctions[head++]);
+						SceneComponent.isSocketExists = GenerateOptimizedFunction<SceneComponent.IsSocketExistsFunction>(sceneComponentFunctions[head++]);
+						SceneComponent.hasAnySockets = GenerateOptimizedFunction<SceneComponent.HasAnySocketsFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.create = GenerateOptimizedFunction<SceneComponent.CreateFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.attachToComponent = GenerateOptimizedFunction<SceneComponent.AttachToComponentFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.updateToWorld = GenerateOptimizedFunction<SceneComponent.UpdateToWorldFunction>(sceneComponentFunctions[head++]);
@@ -394,6 +396,9 @@ namespace UnrealEngine.Framework {
 						SceneComponent.addWorldOffset = GenerateOptimizedFunction<SceneComponent.AddWorldOffsetFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.addWorldRotation = GenerateOptimizedFunction<SceneComponent.AddWorldRotationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.addWorldTransform = GenerateOptimizedFunction<SceneComponent.AddWorldTransformFunction>(sceneComponentFunctions[head++]);
+						SceneComponent.getAttachedSocketName = GenerateOptimizedFunction<SceneComponent.GetAttachedSocketNameFunction>(sceneComponentFunctions[head++]);
+						SceneComponent.getSocketLocation = GenerateOptimizedFunction<SceneComponent.GetSocketLocationFunction>(sceneComponentFunctions[head++]);
+						SceneComponent.getSocketRotation = GenerateOptimizedFunction<SceneComponent.GetSocketRotationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getComponentVelocity = GenerateOptimizedFunction<SceneComponent.GetComponentVelocityFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getComponentLocation = GenerateOptimizedFunction<SceneComponent.GetComponentLocationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getComponentRotation = GenerateOptimizedFunction<SceneComponent.GetComponentRotationFunction>(sceneComponentFunctions[head++]);
@@ -1289,6 +1294,8 @@ namespace UnrealEngine.Framework {
 	partial class SceneComponent {
 		internal delegate Bool IsAttachedToComponentFunction(IntPtr sceneComponent, IntPtr component);
 		internal delegate Bool IsAttachedToActorFunction(IntPtr sceneComponent, IntPtr actor);
+		internal delegate Bool IsSocketExistsFunction(IntPtr sceneComponent, string socketName);
+		internal delegate Bool HasAnySocketsFunction(IntPtr sceneComponent);
 		internal delegate IntPtr CreateFunction(IntPtr actor, ComponentType type, string name, Bool setAsRoot, IntPtr blueprint);
 		internal delegate Bool AttachToComponentFunction(IntPtr sceneComponent, IntPtr parent, AttachmentTransformRule attachmentRule, string socketName);
 		internal delegate void UpdateToWorldFunction(IntPtr sceneComponent, TeleportType type, UpdateTransformFlags flags);
@@ -1300,6 +1307,9 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddWorldOffsetFunction(IntPtr sceneComponent, in Vector3 deltaLocation);
 		internal delegate void AddWorldRotationFunction(IntPtr sceneComponent, in Quaternion deltaRotation);
 		internal delegate void AddWorldTransformFunction(IntPtr sceneComponent, in Transform deltaTransform);
+		internal delegate void GetAttachedSocketNameFunction(IntPtr sceneComponent, StringBuilder socketName);
+		internal delegate void GetSocketLocationFunction(IntPtr sceneComponent, string socketName, ref Vector3 value);
+		internal delegate void GetSocketRotationFunction(IntPtr sceneComponent, string socketName, ref Quaternion value);
 		internal delegate void GetComponentVelocityFunction(IntPtr sceneComponent, ref Vector3 value);
 		internal delegate void GetComponentLocationFunction(IntPtr sceneComponent, ref Vector3 value);
 		internal delegate void GetComponentRotationFunction(IntPtr sceneComponent, ref Quaternion value);
@@ -1318,6 +1328,8 @@ namespace UnrealEngine.Framework {
 
 		internal static IsAttachedToComponentFunction isAttachedToComponent;
 		internal static IsAttachedToActorFunction isAttachedToActor;
+		internal static IsSocketExistsFunction isSocketExists;
+		internal static HasAnySocketsFunction hasAnySockets;
 		internal static CreateFunction create;
 		internal static AttachToComponentFunction attachToComponent;
 		internal static UpdateToWorldFunction updateToWorld;
@@ -1329,6 +1341,9 @@ namespace UnrealEngine.Framework {
 		internal static AddWorldOffsetFunction addWorldOffset;
 		internal static AddWorldRotationFunction addWorldRotation;
 		internal static AddWorldTransformFunction addWorldTransform;
+		internal static GetAttachedSocketNameFunction getAttachedSocketName;
+		internal static GetSocketLocationFunction getSocketLocation;
+		internal static GetSocketRotationFunction getSocketRotation;
 		internal static GetComponentVelocityFunction getComponentVelocity;
 		internal static GetComponentLocationFunction getComponentLocation;
 		internal static GetComponentRotationFunction getComponentRotation;

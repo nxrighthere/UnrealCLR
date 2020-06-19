@@ -4968,6 +4968,9 @@ namespace UnrealEngine.Framework {
 	/// The base class of components that can be transformed or attached, but has no rendering or collision capabilities
 	/// </summary>
 	public partial class SceneComponent : ActorComponent {
+		[ThreadStatic]
+		private static StringBuilder stringBuffer = new StringBuilder(8192);
+
 		internal override ComponentType Type => ComponentType.Scene;
 
 		private protected SceneComponent() { }
@@ -5013,6 +5016,21 @@ namespace UnrealEngine.Framework {
 
 			return isAttachedToActor(Pointer, actor.Pointer);
 		}
+
+		/// <summary>
+		/// Returns <c>true</c> if the a socket with given name exists
+		/// </summary>
+		public bool IsSocketExists(string socketName) {
+			if (socketName == null)
+				throw new ArgumentNullException(nameof(socketName));
+
+			return isSocketExists(Pointer, socketName);	
+		}
+
+		/// <summary>
+		/// Returns <c>true</c> if the component has any sockets
+		/// </summary>
+		public bool HasAnySockets => hasAnySockets(Pointer);
 
 		/// <summary>
 		/// Attaches the component to another component, optionally at a named socket
@@ -5071,22 +5089,43 @@ namespace UnrealEngine.Framework {
 		public void AddWorldTransform(in Transform deltaTransform) => addWorldTransform(Pointer, deltaTransform);
 
 		/// <summary>
+		/// Returns the name of a socket the component is attached to
+		/// </summary>
+		public string GetAttachedSocketName() {
+			stringBuffer.Clear();
+
+			getAttachedSocketName(Pointer, stringBuffer);
+
+			return stringBuffer.ToString();
+		}
+
+		/// <summary>
+		/// Retrieves location of a socket in world space
+		/// </summary>
+		public void GetSocketLocation(string socketName, ref Vector3 value) => getSocketLocation(Pointer, socketName, ref value);
+
+		/// <summary>
+		/// Retrieves rotation of a socket in world space
+		/// </summary>
+		public void GetSocketRotation(string socketName, ref Quaternion value) => getSocketRotation(Pointer, socketName, ref value);
+
+		/// <summary>
 		/// Retrieves velocity of the component, or the velocity of the physics body if simulating physics
 		/// </summary>
 		public void GetVelocity(ref Vector3 value) => getComponentVelocity(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves location of the component, in world space
+		/// Retrieves location of the component in world space
 		/// </summary>
 		public void GetLocation(ref Vector3 value) => getComponentLocation(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves rotation of the component, in world space
+		/// Retrieves rotation of the component in world space
 		/// </summary>
 		public void GetRotation(ref Quaternion value) => getComponentRotation(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves scale of the component, in world space
+		/// Retrieves scale of the component in world space
 		/// </summary>
 		public void GetScale(ref Vector3 value) => getComponentScale(Pointer, ref value);
 

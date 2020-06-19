@@ -6,7 +6,7 @@ using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
 	public static class InstancedStaticMeshes {
-		private const int maxCubes = 1000;
+		private const int maxCubes = 200;
 		private static Actor actor = new Actor("InstancedCubes");
 		private static SceneComponent[] sceneComponent = new SceneComponent[maxCubes];
 		private static InstancedStaticMeshComponent instancedStaticMeshComponent = new InstancedStaticMeshComponent(actor, setAsRoot: true);
