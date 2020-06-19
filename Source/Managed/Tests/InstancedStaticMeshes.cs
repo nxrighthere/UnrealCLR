@@ -26,7 +26,7 @@ namespace UnrealEngine.Tests {
 
 			for (int i = 0; i < maxCubes; i++) {
 				sceneComponent[i] = new SceneComponent(actor);
-				sceneComponent[i].SetRelativeLocation(new Vector3(50.0f * i, 100.0f * i, 150.0f * i));
+				sceneComponent[i].SetRelativeLocation(new Vector3(150.0f * i, 100.0f * i, 50.0f * i));
 				sceneComponent[i].SetRelativeRotation(Quaternion.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
 				sceneComponent[i].AddLocalOffset(new Vector3(15.0f * i, 20.0f * i, 25.0f * i));
 				sceneComponent[i].GetTransform(ref transform);
