@@ -114,7 +114,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		load_assembly_and_get_function_pointer_fn HostfxrLoadAssemblyAndGetFunctionPointer = (load_assembly_and_get_function_pointer_fn)hostfxrLoadAssemblyAndGetFunctionPointer;
 
-		int32 (*Initialize)(void* ManagedFunctions, void* NativeFunctions, void* SharedFunctions) = nullptr;
+		int32 (*Initialize)(void* Functions) = nullptr;
 
 		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(*runtimeAssemblyPath, *runtimeTypeName, *runtimeMethodName, *runtimeMethodDelegateName, nullptr, (void**)&Initialize) == 0) {
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -721,7 +721,13 @@ void UnrealCLR::Module::StartupModule() {
 			Shared::ManagedFunctions[1] = &UnrealCLR::Module::Exception;
 			Shared::ManagedFunctions[2] = &UnrealCLR::Module::Log;
 
-			if (Initialize(Shared::ManagedFunctions, Shared::NativeFunctions, Shared::Functions) == 0xF) {
+			void* Functions[3] = {
+				Shared::ManagedFunctions,
+				Shared::NativeFunctions,
+				Shared::Functions
+			};
+
+			if (Initialize(Functions) == 0xF) {
 				UnrealCLR::ExecuteAssemblyFunction = (UnrealCLR::ExecuteAssemblyFunctionDelegate)Shared::NativeFunctions[0];
 				UnrealCLR::LoadAssemblyFunction = (UnrealCLR::LoadAssemblyFunctionDelegate)Shared::NativeFunctions[1];
 				UnrealCLR::UnloadAssemblies = (UnrealCLR::UnloadAssembliesDelegate)Shared::NativeFunctions[2];

@@ -29,7 +29,7 @@ namespace UnrealEngine.Runtime {
 		Error
 	}
 
-	internal delegate int InitializeDelegate(IntPtr managedFunctionsBuffer, IntPtr nativeFunctionsBuffer, IntPtr sharedFunctionsBuffer);
+	internal delegate int InitializeDelegate(IntPtr functions);
 
 	internal sealed class AssembliesContextManager  {
 		internal AssemblyLoadContext assembliesContext;
@@ -173,15 +173,18 @@ namespace UnrealEngine.Runtime {
 		internal static LogDelegate Log;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static unsafe int Initialize(IntPtr managedFunctionsBuffer, IntPtr nativeFunctionsBuffer, IntPtr sharedFunctionsBuffer) {
+		internal static unsafe int Initialize(IntPtr functions) {
 			assembliesContextManager = new AssembliesContextManager();
 			assembliesContextManager.CreateAssembliesContext();
 
 			pluginLoaders = new Dictionary<int, PluginLoader>();
 
+			int position = 0;
+			IntPtr* buffer = (IntPtr*)functions;
+
 			unchecked {
 				int head = 0;
-				IntPtr* managedFunctions = (IntPtr*)managedFunctionsBuffer;
+				IntPtr* managedFunctions = (IntPtr*)buffer[position++];
 
 				Invoke = GenerateOptimizedFunction<InvokeDelegate>(managedFunctions[head++]);
 				Exception = GenerateOptimizedFunction<ExceptionDelegate>(managedFunctions[head++]);
@@ -190,14 +193,14 @@ namespace UnrealEngine.Runtime {
 
 			unchecked {
 				int head = 0;
-				IntPtr* nativeFunctions = (IntPtr*)nativeFunctionsBuffer;
+				IntPtr* nativeFunctions = (IntPtr*)buffer[position++];
 
 				nativeFunctions[head++] = typeof(Core).GetMethod("ExecuteAssemblyFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 				nativeFunctions[head++] = typeof(Core).GetMethod("LoadAssemblyFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 				nativeFunctions[head++] = typeof(Core).GetMethod("UnloadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 			}
 
-			sharedFunctions = sharedFunctionsBuffer;
+			sharedFunctions = buffer[position++];
 
 			return 0xF;
 		}
