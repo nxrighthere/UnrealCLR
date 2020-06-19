@@ -552,6 +552,7 @@ namespace UnrealEngine.Framework {
 						IntPtr* lightComponentFunctions = (IntPtr*)buffer[position++];
 
 						LightComponent.setIntensity = GenerateOptimizedFunction<LightComponent.SetIntensityFunction>(lightComponentFunctions[head++]);
+						LightComponent.setLightColor = GenerateOptimizedFunction<LightComponent.SetLightColorFunction>(lightComponentFunctions[head++]);
 					}
 
 					unchecked {
@@ -1547,8 +1548,10 @@ namespace UnrealEngine.Framework {
 
 	partial class LightComponent {
 		internal delegate void SetIntensityFunction(IntPtr lightComponent, float value);
+		internal delegate void SetLightColorFunction(IntPtr lightComponent, in LinearColor value);
 
 		internal static SetIntensityFunction setIntensity;
+		internal static SetLightColorFunction setLightColor;
 	}
 
 	partial class DirectionalLightComponent {

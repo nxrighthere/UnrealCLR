@@ -649,6 +649,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::LightComponentFunctions;
 
 				Shared::LightComponentFunctions[head++] = &UnrealCLRFramework::LightComponent::SetIntensity;
+				Shared::LightComponentFunctions[head++] = &UnrealCLRFramework::LightComponent::SetLightColor;
 			}
 
 			{

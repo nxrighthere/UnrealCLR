@@ -698,6 +698,7 @@ namespace UnrealCLRFramework {
 
 	namespace LightComponent {
 		static void SetIntensity(ULightComponent* LightComponent, float Value);
+		static void SetLightColor(ULightComponent* LightComponent, const LinearColor* Value);
 	}
 
 	namespace DirectionalLightComponent {

@@ -10,3 +10,4 @@ Derived
 &#8627; [DirectionalLightComponent](./UnrealEngine-Framework-DirectionalLightComponent.md 'UnrealEngine.Framework.DirectionalLightComponent')  
 ### Methods
 - [SetIntensity(float)](./UnrealEngine-Framework-LightComponent-SetIntensity(float).md 'UnrealEngine.Framework.LightComponent.SetIntensity(float)')
+- [SetLightColor(UnrealEngine.Framework.LinearColor)](./UnrealEngine-Framework-LightComponent-SetLightColor(UnrealEngine-Framework-LinearColor).md 'UnrealEngine.Framework.LightComponent.SetLightColor(UnrealEngine.Framework.LinearColor)')

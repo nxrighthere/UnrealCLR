@@ -5789,6 +5789,11 @@ namespace UnrealEngine.Framework {
 		/// Sets the intensity of the light
 		/// </summary>
 		public void SetIntensity(float value) => setIntensity(Pointer, value);
+
+		/// <summary>
+		/// Sets the light color
+		/// </summary>
+		public void SetLightColor(in LinearColor value) => setLightColor(Pointer, value);
 	}
 
 	/// <summary>
