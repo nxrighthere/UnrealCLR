@@ -420,11 +420,14 @@ namespace UnrealEngine.Framework {
 						int head = 0;
 						IntPtr* audioComponentFunctions = (IntPtr*)buffer[position++];
 
+						AudioComponent.isPlaying = GenerateOptimizedFunction<AudioComponent.IsPlayingFunction>(audioComponentFunctions[head++]);
 						AudioComponent.getPaused = GenerateOptimizedFunction<AudioComponent.GetPausedFunction>(audioComponentFunctions[head++]);
 						AudioComponent.setSound = GenerateOptimizedFunction<AudioComponent.SetSoundFunction>(audioComponentFunctions[head++]);
 						AudioComponent.setPaused = GenerateOptimizedFunction<AudioComponent.SetPausedFunction>(audioComponentFunctions[head++]);
 						AudioComponent.play = GenerateOptimizedFunction<AudioComponent.PlayFunction>(audioComponentFunctions[head++]);
 						AudioComponent.stop = GenerateOptimizedFunction<AudioComponent.StopFunction>(audioComponentFunctions[head++]);
+						AudioComponent.fadeIn = GenerateOptimizedFunction<AudioComponent.FadeInFunction>(audioComponentFunctions[head++]);
+						AudioComponent.fadeOut = GenerateOptimizedFunction<AudioComponent.FadeOutFunction>(audioComponentFunctions[head++]);
 					}
 
 					unchecked {
@@ -1362,17 +1365,23 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class AudioComponent {
+		internal delegate Bool IsPlayingFunction(IntPtr audioComponent);
 		internal delegate Bool GetPausedFunction(IntPtr audioComponent);
 		internal delegate void SetSoundFunction(IntPtr audioComponent, IntPtr sound);
 		internal delegate void SetPausedFunction(IntPtr audioComponent, Bool value);
 		internal delegate void PlayFunction(IntPtr audioComponent);
 		internal delegate void StopFunction(IntPtr audioComponent);
+		internal delegate void FadeInFunction(IntPtr audioComponent, float duration, float volumeLevel, float startTime, AudioFadeCurve fadeCurve);
+		internal delegate void FadeOutFunction(IntPtr audioComponent, float duration, float volumeLevel, AudioFadeCurve fadeCurve);
 
+		internal static IsPlayingFunction isPlaying;
 		internal static GetPausedFunction getPaused;
 		internal static SetSoundFunction setSound;
 		internal static SetPausedFunction setPaused;
 		internal static PlayFunction play;
 		internal static StopFunction stop;
+		internal static FadeInFunction fadeIn;
+		internal static FadeOutFunction fadeOut;
 	}
 
 	partial class CameraComponent {

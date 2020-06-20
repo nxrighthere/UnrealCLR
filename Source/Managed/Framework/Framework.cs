@@ -295,6 +295,20 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Specifies the type of fade to adjust audio volume
+	/// </summary>
+	public enum AudioFadeCurve : byte {
+		/// <summary/>
+		Linear,
+		/// <summary/>
+		Logarithmic,
+		/// <summary/>
+		SCurve,
+		/// <summary/>
+		Sin
+	}
+
+	/// <summary>
 	/// A linear 32-bit floating-point RGBA color
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -5216,6 +5230,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if the sound playing any audio
+		/// </summary>
+		public bool IsPlaying => isPlaying(Pointer);
+
+		/// <summary>
 		/// Gets or sets whether the audio is paused
 		/// </summary>
 		public bool Paused {
@@ -5242,6 +5261,23 @@ namespace UnrealEngine.Framework {
 		/// Stops the audio
 		/// </summary>
 		public void Stop() => stop(Pointer);
+
+		/// <summary>
+		/// Smoothly starts the audio, can be used instead of <see cref="Play"/>
+		/// </summary>
+		/// <param name="duration"></param>
+		/// <param name="volumeLevel"></param>
+		/// <param name="startTime"></param>
+		/// <param name="fadeCurve"></param>
+		public void FadeIn(float duration, float volumeLevel = 1.0f, float startTime = 0.0f, AudioFadeCurve fadeCurve = AudioFadeCurve.Linear) => fadeIn(Pointer, duration, volumeLevel, startTime, fadeCurve);
+
+		/// <summary>
+		/// Smoothly stops the audio, can be used instead of <see cref="Stop"/>
+		/// </summary>
+		/// <param name="duration"></param>
+		/// <param name="volumeLevel"></param>
+		/// <param name="fadeCurve"></param>
+		public void FadeOut(float duration, float volumeLevel = 0.0f, AudioFadeCurve fadeCurve = AudioFadeCurve.Linear) => fadeOut(Pointer, duration, volumeLevel, fadeCurve);
 	}
 
 	/// <summary>

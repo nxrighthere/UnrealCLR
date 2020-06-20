@@ -75,6 +75,7 @@
 - [AIFocusPriority](./UnrealEngine-Framework-AIFocusPriority.md 'UnrealEngine.Framework.AIFocusPriority')
 - [AnimationMode](./UnrealEngine-Framework-AnimationMode.md 'UnrealEngine.Framework.AnimationMode')
 - [AttachmentTransformRule](./UnrealEngine-Framework-AttachmentTransformRule.md 'UnrealEngine.Framework.AttachmentTransformRule')
+- [AudioFadeCurve](./UnrealEngine-Framework-AudioFadeCurve.md 'UnrealEngine.Framework.AudioFadeCurve')
 - [BlendType](./UnrealEngine-Framework-BlendType.md 'UnrealEngine.Framework.BlendType')
 - [CameraProjectionMode](./UnrealEngine-Framework-CameraProjectionMode.md 'UnrealEngine.Framework.CameraProjectionMode')
 - [CollisionMode](./UnrealEngine-Framework-CollisionMode.md 'UnrealEngine.Framework.CollisionMode')

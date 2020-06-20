@@ -19,6 +19,8 @@ namespace UnrealEngine.Tests {
 			alarmSoundWave.Loop = true;
 			alarmAudioComponent.SetSound(alarmSoundWave);
 			alarmAudioComponent.Play();
+
+			Assert.IsTrue(alarmAudioComponent.IsPlaying);
 		}
 
 		public static void OnEndPlay() {

@@ -22,6 +22,7 @@ namespace UnrealCLRFramework {
 	using CameraProjectionMode = ECameraProjectionMode::Type;
 	using CollisionMode = ECollisionEnabled::Type;
 	using WindowMode = EWindowMode::Type;
+	using AudioFadeCurve = EAudioFaderCurve;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
 
@@ -593,11 +594,14 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace AudioComponent {
+		static bool IsPlaying(UAudioComponent* AudioComponent);
 		static bool GetPaused(UAudioComponent* AudioComponent);
 		static void SetSound(UAudioComponent* AudioComponent, USoundBase* Sound);
 		static void SetPaused(UAudioComponent* AudioComponent, bool Value);
 		static void Play(UAudioComponent* AudioComponent);
 		static void Stop(UAudioComponent* AudioComponent);
+		static void FadeIn(UAudioComponent* AudioComponent, float Duration, float VolumeLevel, float StartTime, AudioFadeCurve FadeCurve);
+		static void FadeOut(UAudioComponent* AudioComponent, float Duration, float VolumeLevel, AudioFadeCurve FadeCurve);
 	}
 
 	namespace CameraComponent {

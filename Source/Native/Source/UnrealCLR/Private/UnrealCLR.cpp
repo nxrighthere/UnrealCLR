@@ -517,11 +517,14 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::AudioComponentFunctions;
 
+				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::IsPlaying;
 				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::GetPaused;
 				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::SetSound;
 				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::SetPaused;
 				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::Play;
 				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::Stop;
+				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::FadeIn;
+				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::FadeOut;
 			}
 
 			{

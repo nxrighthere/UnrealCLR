@@ -1556,6 +1556,10 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace AudioComponent {
+		bool IsPlaying(UAudioComponent* AudioComponent) {
+			return AudioComponent->IsPlaying();
+		}
+
 		bool GetPaused(UAudioComponent* AudioComponent) {
 			return AudioComponent->bIsPaused;
 		}
@@ -1574,6 +1578,14 @@ namespace UnrealCLRFramework {
 
 		void Stop(UAudioComponent* AudioComponent) {
 			AudioComponent->Stop();
+		}
+
+		void FadeIn(UAudioComponent* AudioComponent, float Duration, float VolumeLevel, float StartTime, AudioFadeCurve FadeCurve) {
+			AudioComponent->FadeIn(Duration, VolumeLevel, StartTime, FadeCurve);
+		}
+
+		void FadeOut(UAudioComponent* AudioComponent, float Duration, float VolumeLevel, AudioFadeCurve FadeCurve) {
+			AudioComponent->FadeOut(Duration, VolumeLevel, FadeCurve);
 		}
 	}
 
