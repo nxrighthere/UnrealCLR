@@ -51,11 +51,11 @@ namespace UnrealEngine.Runtime {
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		internal static void ExecuteAssemblyFunction(IntPtr managedFunction) {
 			try {
-				Core.Invoke(managedFunction);
+				Invoke(managedFunction);
 			}
 
 			catch (Exception exception) {
-				Core.Exception(exception.ToString());
+				Exception(exception.ToString());
 			}
 		}
 
@@ -67,11 +67,14 @@ namespace UnrealEngine.Runtime {
 			string assemblyPath = Marshal.PtrToStringAuto(assemblyPathPointer);
 			string typeName = Marshal.PtrToStringAuto(typeNamePointer);
 			string methodName = Marshal.PtrToStringAuto(methodNamePointer);
+			bool loaded = false;
 
 			try {
 				int assemblyHash = assemblyPath.GetHashCode();
 
-				if (!pluginLoaders.TryGetValue(assemblyHash, out pluginLoader)) {
+				if (pluginLoaders.TryGetValue(assemblyHash, out pluginLoader)) {
+					loaded = true;
+				} else {
 					pluginLoader = PluginLoader.CreateFromAssemblyFile(assemblyPath, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
 					pluginLoaders.Add(assemblyHash, pluginLoader);
 				}
@@ -83,12 +86,12 @@ namespace UnrealEngine.Runtime {
 			catch (Exception exception) {
 				if (!optional) {
 					if (typeName.Length == 0 || methodName.Length == 0) {
-						Core.Exception("Type or method names can not be empty to load assembly function from \"" + assemblyPath + "\"\r\n" + exception.ToString());
+						Exception("Type or method names can not be empty to load assembly function from \"" + assemblyPath + "\"\r\n" + exception.ToString());
 
 						return IntPtr.Zero;
 					}
 
-					Core.Exception("Unable to load assembly function in \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"\r\n" + exception.ToString());
+					Exception("Unable to load assembly function in \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"\r\n" + exception.ToString());
 				}
 
 				return IntPtr.Zero;
@@ -96,23 +99,25 @@ namespace UnrealEngine.Runtime {
 
 			if (method == null) {
 				if (!optional)
-					Core.Log(LogLevel.Error, "Unable to find assembly function in \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"");
+					Log(LogLevel.Error, "Unable to find assembly function in \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"");
 
 				return IntPtr.Zero;
 			}
 
-			foreach (AssemblyName referencedAssembly in Assembly.GetAssembly(type).GetReferencedAssemblies()) {
-				if (referencedAssembly.Name == "UnrealEngine.Framework") {
-					Assembly frameworkAssembly = pluginLoader.LoadAssembly(referencedAssembly);
+			if (!loaded) {
+				foreach (AssemblyName referencedAssembly in Assembly.GetAssembly(type).GetReferencedAssemblies()) {
+					if (referencedAssembly.Name == "UnrealEngine.Framework") {
+						Assembly frameworkAssembly = pluginLoader.LoadAssembly(referencedAssembly);
 
-					using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
-						Type sharedClass = frameworkAssembly.GetType("UnrealEngine.Framework.Shared");
+						using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
+							Type sharedClass = frameworkAssembly.GetType("UnrealEngine.Framework.Shared");
 
-						if ((bool)sharedClass.GetField("loaded", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == false)
-							sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions });
+							if ((bool)sharedClass.GetField("loaded", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == false)
+								sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions });
+						}
+
+						break;
 					}
-
-					break;
 				}
 			}
 
@@ -140,9 +145,9 @@ namespace UnrealEngine.Runtime {
 					unloadAttempts++;
 
 					if (unloadAttempts == 5000) {
-						Core.Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
+						Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
 					} else if (unloadAttempts == 10000) {
-						Core.Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
+						Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
 
 						break;
 					}
@@ -153,7 +158,7 @@ namespace UnrealEngine.Runtime {
 			}
 
 			catch (Exception exception) {
-				Core.Exception("Unloading of assemblies was finished incorrectly\r\n" + exception.ToString());
+				Exception("Unloading of assemblies was finished incorrectly\r\n" + exception.ToString());
 			}
 		}
 

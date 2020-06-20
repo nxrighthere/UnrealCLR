@@ -40,7 +40,7 @@ Building
 Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run` command. Follow the installation instructions. Open the project after the installation process is complete.
 
 #### Upgrading
-To upgrade the plugin, re-run the installation process.
+To upgrade the plugin, re-run the installation process. Recompile custom code with an updated framework.
 
 ### Manual
 
@@ -57,7 +57,7 @@ dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Proj
 ```
 
 #### Upgrading
-To upgrade, delete the plugin folder from a project, and repeat all steps from the compilation section.
+To upgrade, delete the plugin folder from a project, and repeat all steps from the compilation section. Recompile custom code with an updated framework.
 
 Running
 --------
@@ -79,7 +79,7 @@ At runtime, UnrealCLR loading managed assemblies into a cached isolated context.
 The plugin and framework are evolving all the time to utilize as much power of the Unreal Engine as possible. It's crucial to have a feature-rich API. The system is created with high-performance in mind but without trading safety. The vast majority of code is written and verified by hand to prevent any unexpected behaviors at runtime and to ensure stability.
 
 ### Powerful tooling
-Use your favorite .NET Core IDE and tools that can be attached to the process of the engine just as to a regular .NET application for profiling and debugging. It's very convenient and works out of the box without any external effort. Analyze performance, monitor CPU usage and memory consumption, debug execution, take full control over the code. Explore new possibilities and extend your toolset in no time.
+Use your favorite IDE and .NET Core tools that can be attached to the process of the engine just as to a regular .NET application for profiling and debugging. It's very convenient and works out of the box without any external effort. Analyze performance, monitor CPU usage and memory consumption, debug execution, take full control over the code. Explore new possibilities and extend your toolset in no time.
 
 Essentials
 --------
@@ -90,7 +90,7 @@ The runtime redirects all unhandled exceptions to log files and on-screen messag
 Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, or blueprints.
 
 ### Hot reload
-The plugin is independent of the compilation routine of user assemblies. It's loading assemblies in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
+The plugin is independent of the compilation routine of user assemblies. It's loading assemblies from `%Project%/Managed` folder in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
 
 ### Ecosystem compatibility
 The framework replicates the classes hierarchy of the engine with full interoperability support. Any external C++ code, blueprints, and plugins are compatible and extensible with UnrealCLR by design through the engine API.
