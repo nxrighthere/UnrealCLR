@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[MeshComponent](./UnrealEngine-Framework-MeshComponent.md 'UnrealEngine.Framework.MeshComponent')
 ## MeshComponent.IsValidMaterialSlotName(string) Method
-Returns `true` if the  
+Returns `true` if given slot name is valid  
 ```csharp
 public bool IsValidMaterialSlotName(string materialSlotName);
 ```

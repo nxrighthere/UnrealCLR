@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AudioFadeCurve Enum
-Specifies the type of fade to adjust audio volume  
+Defines the type of fade to adjust audio volume  
 ```csharp
 public enum AudioFadeCurve : System.Byte
 ```

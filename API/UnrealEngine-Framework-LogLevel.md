@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## LogLevel Enum
-Specifies the log level for an output log message  
+Defines the log level for an output log message  
 ```csharp
 public enum LogLevel
 ```

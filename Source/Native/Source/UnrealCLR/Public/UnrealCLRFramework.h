@@ -25,6 +25,7 @@ namespace UnrealCLRFramework {
 	using WindowMode = EWindowMode::Type;
 	using AudioFadeCurve = EAudioFaderCurve;
 	using BlendType = EViewTargetBlendFunction;
+	using ControllerHand = EControllerHand;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
 
@@ -705,6 +706,11 @@ namespace UnrealCLRFramework {
 
 	namespace MotionControllerComponent {
 		static bool IsTracked(UMotionControllerComponent* MotionControllerComponent);
+		static bool GetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent);
+		static ControllerHand GetTrackingSource(UMotionControllerComponent* MotionControllerComponent);
+		static void SetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent, bool Value);
+		static void SetTrackingSource(UMotionControllerComponent* MotionControllerComponent, ControllerHand Value);
+		static void SetTrackingMotionSource(UMotionControllerComponent* MotionControllerComponent, const char* Source);
 	}
 
 	namespace StaticMeshComponent {

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## BlendType Enum
-Specifies how to blend when changing view targets  
+Defines how to blend when changing view targets  
 ```csharp
 public enum BlendType
 ```

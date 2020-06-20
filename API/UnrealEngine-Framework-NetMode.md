@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## NetMode Enum
-Specifies the networking mode  
+Defines the networking mode  
 ```csharp
 public enum NetMode : System.Byte
 ```

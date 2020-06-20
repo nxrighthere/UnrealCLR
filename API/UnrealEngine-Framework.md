@@ -80,6 +80,7 @@
 - [CameraProjectionMode](./UnrealEngine-Framework-CameraProjectionMode.md 'UnrealEngine.Framework.CameraProjectionMode')
 - [CollisionMode](./UnrealEngine-Framework-CollisionMode.md 'UnrealEngine.Framework.CollisionMode')
 - [ComponentMobility](./UnrealEngine-Framework-ComponentMobility.md 'UnrealEngine.Framework.ComponentMobility')
+- [ControllerHand](./UnrealEngine-Framework-ControllerHand.md 'UnrealEngine.Framework.ControllerHand')
 - [InputEvent](./UnrealEngine-Framework-InputEvent.md 'UnrealEngine.Framework.InputEvent')
 - [LogLevel](./UnrealEngine-Framework-LogLevel.md 'UnrealEngine.Framework.LogLevel')
 - [NetMode](./UnrealEngine-Framework-NetMode.md 'UnrealEngine.Framework.NetMode')

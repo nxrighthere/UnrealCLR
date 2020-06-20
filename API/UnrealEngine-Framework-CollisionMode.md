@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## CollisionMode Enum
-Specifies the collision mode  
+Defines the collision mode  
 ```csharp
 public enum CollisionMode
 ```

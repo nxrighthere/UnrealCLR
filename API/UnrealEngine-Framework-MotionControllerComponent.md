@@ -8,4 +8,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Constructors
 - [MotionControllerComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./UnrealEngine-Framework-MotionControllerComponent-MotionControllerComponent(UnrealEngine-Framework-Actor_string_bool_UnrealEngine-Framework-Blueprint).md 'UnrealEngine.Framework.MotionControllerComponent.MotionControllerComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
+- [DisableLowLatencyUpdate](./UnrealEngine-Framework-MotionControllerComponent-DisableLowLatencyUpdate.md 'UnrealEngine.Framework.MotionControllerComponent.DisableLowLatencyUpdate')
 - [IsTracked](./UnrealEngine-Framework-MotionControllerComponent-IsTracked.md 'UnrealEngine.Framework.MotionControllerComponent.IsTracked')
+- [TrackingSource](./UnrealEngine-Framework-MotionControllerComponent-TrackingSource.md 'UnrealEngine.Framework.MotionControllerComponent.TrackingSource')
+### Methods
+- [SetTrackingMotionSource(string)](./UnrealEngine-Framework-MotionControllerComponent-SetTrackingMotionSource(string).md 'UnrealEngine.Framework.MotionControllerComponent.SetTrackingMotionSource(string)')

@@ -569,6 +569,11 @@ namespace UnrealEngine.Framework {
 						IntPtr* motionControllerComponentFunctions = (IntPtr*)buffer[position++];
 
 						MotionControllerComponent.isTracked = GenerateOptimizedFunction<MotionControllerComponent.IsTrackedFunction>(motionControllerComponentFunctions[head++]);
+						MotionControllerComponent.getDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.GetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
+						MotionControllerComponent.getTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.GetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
+						MotionControllerComponent.setDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.SetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
+						MotionControllerComponent.setTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
+						MotionControllerComponent.setTrackingMotionSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingMotionSourceFunction>(motionControllerComponentFunctions[head++]);
 					}
 
 					unchecked {
@@ -1587,8 +1592,18 @@ namespace UnrealEngine.Framework {
 
 	partial class MotionControllerComponent {
 		internal delegate Bool IsTrackedFunction(IntPtr motionControllerComponent);
+		internal delegate Bool GetDisableLowLatencyUpdateFunction(IntPtr motionControllerComponent);
+		internal delegate ControllerHand GetTrackingSourceFunction(IntPtr motionControllerComponent);
+		internal delegate void SetDisableLowLatencyUpdateFunction(IntPtr motionControllerComponent, Bool value);
+		internal delegate void SetTrackingSourceFunction(IntPtr motionControllerComponent, ControllerHand value);
+		internal delegate void SetTrackingMotionSourceFunction(IntPtr motionControllerComponent, string source);
 
 		internal static IsTrackedFunction isTracked;
+		internal static GetDisableLowLatencyUpdateFunction getDisableLowLatencyUpdate;
+		internal static GetTrackingSourceFunction getTrackingSource;
+		internal static SetDisableLowLatencyUpdateFunction setDisableLowLatencyUpdate;
+		internal static SetTrackingSourceFunction setTrackingSource;
+		internal static SetTrackingMotionSourceFunction setTrackingMotionSource;
 	}
 
 	partial class StaticMeshComponent {

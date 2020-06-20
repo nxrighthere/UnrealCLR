@@ -46,7 +46,7 @@ namespace UnrealEngine.Framework {
 	// Public
 
 	/// <summary>
-	/// Specifies the log level for an output log message
+	/// Defines the log level for an output log message
 	/// </summary>
 	public enum LogLevel : int {
 		/// <summary>
@@ -68,7 +68,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Rules for attaching components
+	/// Defines rules for attaching components
 	/// </summary>
 	public enum AttachmentTransformRule : int {
 		/// <summary>
@@ -90,7 +90,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies whether to teleport physics body or not
+	/// Defines whether to teleport physics body or not
 	/// </summary>
 	public enum TeleportType : int {
 		/// <summary>
@@ -108,7 +108,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies how to update transform during movement
+	/// Defines how to update transform during movement
 	/// </summary>
 	[Flags]
 	public enum UpdateTransformFlags : int {
@@ -131,7 +131,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies focus priority for AI
+	/// Defines focus priority for AI
 	/// </summary>
 	public enum AIFocusPriority : int {
 		/// <summary/>
@@ -145,7 +145,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies the animation mode
+	/// Defines the animation mode
 	/// </summary>
 	public enum AnimationMode : int {
 		/// <summary/>
@@ -157,7 +157,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies the projection mode for a camera
+	/// Defines the projection mode for a camera
 	/// </summary>
 	public enum CameraProjectionMode : int {
 		/// <summary/>
@@ -167,7 +167,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies the collision mode
+	/// Defines the collision mode
 	/// </summary>
 	public enum CollisionMode : int {
 		/// <summary>
@@ -189,7 +189,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies how often a component is allowed to move
+	/// Defines how often a component is allowed to move
 	/// </summary>
 	public enum ComponentMobility : int {
 		/// <summary>
@@ -209,7 +209,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies the window mode
+	/// Defines the window mode
 	/// </summary>
 	public enum WindowMode : int {
 		/// <summary/>
@@ -221,7 +221,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies the type of fade to adjust audio volume
+	/// Defines the type of fade to adjust audio volume
 	/// </summary>
 	public enum AudioFadeCurve : byte {
 		/// <summary/>
@@ -235,7 +235,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies how to blend when changing view targets
+	/// Defines how to blend when changing view targets
 	/// </summary>
 	public enum BlendType : int {
 		/// <summary>
@@ -261,7 +261,47 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies input behavior type
+	/// Defines the controller hands for tracking
+	/// </summary>
+	public enum ControllerHand : byte {
+		/// <summary/>
+		Left,
+		/// <summary/>
+		Right,
+		/// <summary/>
+		AnyHand,
+		/// <summary/>
+		Pad,
+		/// <summary/>
+		ExternalCamera,
+		/// <summary/>
+		Gun,
+		/// <summary/>
+		Special1,
+		/// <summary/>
+		Special2,
+		/// <summary/>
+		Special3,
+		/// <summary/>
+		Special4,
+		/// <summary/>
+		Special5,
+		/// <summary/>
+		Special6,
+		/// <summary/>
+		Special7,
+		/// <summary/>
+		Special8,
+		/// <summary/>
+		Special9,
+		/// <summary/>
+		Special10,
+		/// <summary/>
+		Special11
+	}
+
+	/// <summary>
+	/// Defines input behavior type
 	/// </summary>
 	public enum InputEvent : int {
 		/// <summary>
@@ -287,7 +327,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies the networking mode
+	/// Defines the networking mode
 	/// </summary>
 	public enum NetMode : byte {
 		/// <summary>
@@ -5926,6 +5966,27 @@ namespace UnrealEngine.Framework {
 		/// Returns <c>true</c> if the component has a valid tracked device this frame
 		/// </summary>
 		public bool IsTracked => isTracked(Pointer);
+
+		/// <summary>
+		/// Gets or sets whether render transforms within the motion controller hierarchy will be updated a second time immediately before rendering
+		/// </summary>
+		public bool DisableLowLatencyUpdate {
+			get => getDisableLowLatencyUpdate(Pointer);
+			set => setDisableLowLatencyUpdate(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the current tracking source
+		/// </summary>
+		public ControllerHand TrackingSource {
+			get => getTrackingSource(Pointer);
+			set => setTrackingSource(Pointer, value);
+		}
+
+		/// <summary>
+		/// Sets the tracking motion source
+		/// </summary>
+		public void SetTrackingMotionSource(string source) => setTrackingMotionSource(Pointer, source);
 	}
 
 	/// <summary>

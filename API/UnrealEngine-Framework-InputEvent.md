@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## InputEvent Enum
-Specifies input behavior type  
+Defines input behavior type  
 ```csharp
 public enum InputEvent
 ```

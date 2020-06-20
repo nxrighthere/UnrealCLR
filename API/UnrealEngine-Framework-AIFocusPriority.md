@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AIFocusPriority Enum
-Specifies focus priority for AI  
+Defines focus priority for AI  
 ```csharp
 public enum AIFocusPriority
 ```

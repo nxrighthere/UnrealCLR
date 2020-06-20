@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AnimationMode Enum
-Specifies the animation mode  
+Defines the animation mode  
 ```csharp
 public enum AnimationMode
 ```

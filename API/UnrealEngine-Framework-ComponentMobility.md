@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## ComponentMobility Enum
-Specifies how often a component is allowed to move  
+Defines how often a component is allowed to move  
 ```csharp
 public enum ComponentMobility
 ```

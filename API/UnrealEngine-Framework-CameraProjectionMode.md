@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## CameraProjectionMode Enum
-Specifies the projection mode for a camera  
+Defines the projection mode for a camera  
 ```csharp
 public enum CameraProjectionMode
 ```

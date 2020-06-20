@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## UpdateTransformFlags Enum
-Specifies how to update transform during movement  
+Defines how to update transform during movement  
 ```csharp
 public enum UpdateTransformFlags
 ```

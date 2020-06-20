@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AttachmentTransformRule Enum
-Rules for attaching components  
+Defines rules for attaching components  
 ```csharp
 public enum AttachmentTransformRule
 ```

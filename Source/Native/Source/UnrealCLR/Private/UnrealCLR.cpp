@@ -666,6 +666,11 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::MotionControllerComponentFunctions;
 
 				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::IsTracked;
+				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::GetDisableLowLatencyUpdate;
+				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::GetTrackingSource;
+				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::SetDisableLowLatencyUpdate;
+				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::SetTrackingSource;
+				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::SetTrackingMotionSource;
 			}
 
 			{

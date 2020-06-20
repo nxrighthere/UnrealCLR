@@ -205,6 +205,7 @@ namespace UnrealCLRFramework {
 
 	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
 	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the BlendType enumeration");
+	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the ControllerHand enumeration");
 	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the InputEvent enumeration");
 	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the NetMode enumeration");
 
@@ -1940,6 +1941,26 @@ namespace UnrealCLRFramework {
 	namespace MotionControllerComponent {
 		bool IsTracked(UMotionControllerComponent* MotionControllerComponent) {
 			return MotionControllerComponent->IsTracked();
+		}
+
+		bool GetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent) {
+			return MotionControllerComponent->bDisableLowLatencyUpdate;
+		}
+
+		ControllerHand GetTrackingSource(UMotionControllerComponent* MotionControllerComponent) {
+			return MotionControllerComponent->GetTrackingSource();
+		}
+
+		void SetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent, bool Value) {
+			MotionControllerComponent->bDisableLowLatencyUpdate = Value;
+		}
+
+		void SetTrackingSource(UMotionControllerComponent* MotionControllerComponent, ControllerHand Value) {
+			MotionControllerComponent->SetTrackingSource(Value);
+		}
+
+		void SetTrackingMotionSource(UMotionControllerComponent* MotionControllerComponent, const char* Source) {
+			MotionControllerComponent->SetTrackingMotionSource(FName(ANSI_TO_TCHAR(Source)));
 		}
 	}
 
