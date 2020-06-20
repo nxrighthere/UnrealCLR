@@ -11,3 +11,4 @@ Derived
 &#8627; [StaticMeshComponent](./UnrealEngine-Framework-StaticMeshComponent.md 'UnrealEngine.Framework.StaticMeshComponent')  
 ### Methods
 - [GetMaterialIndex(string)](./UnrealEngine-Framework-MeshComponent-GetMaterialIndex(string).md 'UnrealEngine.Framework.MeshComponent.GetMaterialIndex(string)')
+- [IsValidMaterialSlotName(string)](./UnrealEngine-Framework-MeshComponent-IsValidMaterialSlotName(string).md 'UnrealEngine.Framework.MeshComponent.IsValidMaterialSlotName(string)')

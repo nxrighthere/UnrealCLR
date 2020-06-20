@@ -684,6 +684,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace MeshComponent {
+		static bool IsValidMaterialSlotName(UMeshComponent* MeshComponent, const char* MaterialSlotName);
 		static int32 GetMaterialIndex(UMeshComponent* MeshComponent, const char* MaterialSlotName);
 	}
 

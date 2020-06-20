@@ -68,13 +68,13 @@
 UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealCLR, Log, All);
 
 namespace UnrealCLR {
-	enum class StatusType : int32 {
+	enum struct StatusType : int32 {
 		Stopped,
 		Idle,
 		Running
 	};
 
-	enum class LogLevel : int32 {
+	enum struct LogLevel : int32 {
 		Display,
 		Warning,
 		Error

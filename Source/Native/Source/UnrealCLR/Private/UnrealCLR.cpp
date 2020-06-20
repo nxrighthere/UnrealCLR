@@ -640,6 +640,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MeshComponentFunctions;
 
+				Shared::MeshComponentFunctions[head++] = &UnrealCLRFramework::MeshComponent::IsValidMaterialSlotName;
 				Shared::MeshComponentFunctions[head++] = &UnrealCLRFramework::MeshComponent::GetMaterialIndex;
 			}
 

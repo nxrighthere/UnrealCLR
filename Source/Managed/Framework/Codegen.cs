@@ -543,6 +543,7 @@ namespace UnrealEngine.Framework {
 						int head = 0;
 						IntPtr* meshComponentFunctions = (IntPtr*)buffer[position++];
 
+						MeshComponent.isValidMaterialSlotName = GenerateOptimizedFunction<MeshComponent.IsValidMaterialSlotNameFunction>(meshComponentFunctions[head++]);
 						MeshComponent.getMaterialIndex = GenerateOptimizedFunction<MeshComponent.GetMaterialIndexFunction>(meshComponentFunctions[head++]);
 					}
 
@@ -1555,8 +1556,10 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class MeshComponent {
+		internal delegate Bool IsValidMaterialSlotNameFunction(IntPtr meshComponent, string materialSlotName);
 		internal delegate int GetMaterialIndexFunction(IntPtr meshComponent, string materialSlotName);
 
+		internal static IsValidMaterialSlotNameFunction isValidMaterialSlotName;
 		internal static GetMaterialIndexFunction getMaterialIndex;
 	}
 

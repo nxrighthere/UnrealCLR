@@ -1900,6 +1900,10 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace MeshComponent {
+		bool IsValidMaterialSlotName(UMeshComponent* MeshComponent, const char* MaterialSlotName) {
+			return MeshComponent->IsMaterialSlotNameValid(FName(ANSI_TO_TCHAR(MaterialSlotName)));
+		}
+
 		int32 GetMaterialIndex(UMeshComponent* MeshComponent, const char* MaterialSlotName) {
 			return MeshComponent->GetMaterialIndex(FName(ANSI_TO_TCHAR(MaterialSlotName)));
 		}

@@ -5820,6 +5820,16 @@ namespace UnrealEngine.Framework {
 		private protected MeshComponent() { }
 
 		/// <summary>
+		/// Returns <c>true</c> if given slot name is valid
+		/// </summary>
+		public bool IsValidMaterialSlotName(string materialSlotName) {
+			if (materialSlotName == null)
+				throw new ArgumentNullException(nameof(materialSlotName));
+
+			return isValidMaterialSlotName(Pointer, materialSlotName);
+		}
+
+		/// <summary>
 		/// Returns a material index given a slot name
 		/// </summary>
 		public int GetMaterialIndex(string materialSlotName) {
