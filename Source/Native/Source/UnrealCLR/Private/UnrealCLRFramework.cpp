@@ -203,6 +203,11 @@ namespace UnrealCLRFramework {
 
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
+	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
+	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the BlendType enumeration");
+	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the InputEvent enumeration");
+	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the NetMode enumeration");
+
 	namespace Assert {
 		void OutputMessage(const char* Message) {
 			FString message(ANSI_TO_TCHAR(Message));
@@ -1148,33 +1153,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetViewTargetWithBlend(APlayerController* PlayerController, AActor* NewViewTarget, float Time, float Exponent, BlendType Type, bool LockOutgoing) {
-			EViewTargetBlendFunction type = EViewTargetBlendFunction::VTBlend_Linear;
-
-			switch (Type) {
-				case BlendType::Linear:
-					break;
-
-				case BlendType::Cubic:
-					type = EViewTargetBlendFunction::VTBlend_Cubic;
-					break;
-
-				case BlendType::EaseIn:
-					type = EViewTargetBlendFunction::VTBlend_EaseIn;
-					break;
-
-				case BlendType::EaseOut:
-					type = EViewTargetBlendFunction::VTBlend_EaseOut;
-					break;
-
-				case BlendType::EaseInOut:
-					type = EViewTargetBlendFunction::VTBlend_EaseInOut;
-					break;
-
-				default:
-					break;
-			}
-
-			PlayerController->SetViewTargetWithBlend(NewViewTarget, Time, type, Exponent, LockOutgoing);
+			PlayerController->SetViewTargetWithBlend(NewViewTarget, Time, Type, Exponent, LockOutgoing);
 		}
 
 		void AddYawInput(APlayerController* PlayerController, float Value) {

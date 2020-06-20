@@ -128,32 +128,6 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies input behavior type
-	/// </summary>
-	public enum InputEvent : int {
-		/// <summary>
-		/// Key pressed
-		/// </summary>
-		Pressed = 0,
-		/// <summary>
-		/// Key released
-		/// </summary>
-		Released = 1,
-		/// <summary>
-		/// Key repeating
-		/// </summary>
-		Repeat = 2,
-		/// <summary>
-		/// Key double clicked
-		/// </summary>
-		DoubleClick = 3,
-		/// <summary>
-		/// Axis activated
-		/// </summary>
-		Axis = 4
-	}
-
-	/// <summary>
 	/// Specifies how to update transform during movement
 	/// </summary>
 	[Flags]
@@ -188,54 +162,6 @@ namespace UnrealEngine.Framework {
 		High = 2,
 		/// <summary/>
 		VeryHigh = 3
-	}
-
-	/// <summary>
-	/// Specifies how to blend when changing view targets
-	/// </summary>
-	public enum BlendType : int {
-		/// <summary>
-		/// A simple linear interpolation
-		/// </summary>
-		Linear,
-		/// <summary>
-		/// A slight ease in and ease out, but amount of ease cannot be tweaked
-		/// </summary>
-		Cubic,
-		/// <summary>
-		/// Immediately accelerates, but smoothly decelerates into the target, ease amount can be controlled
-		/// </summary>
-		EaseIn,
-		/// <summary>
-		/// Smoothly accelerates, but does not decelerate into the target, ease amount can be controlled
-		/// </summary>
-		EaseOut,
-		/// <summary>
-		/// Smoothly accelerates and decelerates, ease amount can be controlled
-		/// </summary>
-		EaseInOut
-	}
-
-	/// <summary>
-	/// Specifies the networking mode
-	/// </summary>
-	public enum NetMode : byte {
-		/// <summary>
-		/// A game without networking, with one or more local players
-		/// </summary>
-		Standalone,
-		/// <summary>
-		/// A server with no local players
-		/// </summary>
-		DedicatedServer,
-		/// <summary>
-		/// A server that also has a local player who is hosting the game, available to other players on the network
-		/// </summary>
-		ListenServer,
-		/// <summary>
-		/// A client connected to a server
-		/// </summary>
-		Client
 	}
 
 	/// <summary>
@@ -306,6 +232,80 @@ namespace UnrealEngine.Framework {
 		SCurve,
 		/// <summary/>
 		Sin
+	}
+
+	/// <summary>
+	/// Specifies how to blend when changing view targets
+	/// </summary>
+	public enum BlendType : int {
+		/// <summary>
+		/// A simple linear interpolation
+		/// </summary>
+		Linear,
+		/// <summary>
+		/// A slight ease in and ease out, but amount of ease cannot be tweaked
+		/// </summary>
+		Cubic,
+		/// <summary>
+		/// Immediately accelerates, but smoothly decelerates into the target, ease amount can be controlled
+		/// </summary>
+		EaseIn,
+		/// <summary>
+		/// Smoothly accelerates, but does not decelerate into the target, ease amount can be controlled
+		/// </summary>
+		EaseOut,
+		/// <summary>
+		/// Smoothly accelerates and decelerates, ease amount can be controlled
+		/// </summary>
+		EaseInOut
+	}
+
+	/// <summary>
+	/// Specifies input behavior type
+	/// </summary>
+	public enum InputEvent : int {
+		/// <summary>
+		/// Key pressed
+		/// </summary>
+		Pressed = 0,
+		/// <summary>
+		/// Key released
+		/// </summary>
+		Released = 1,
+		/// <summary>
+		/// Key repeating
+		/// </summary>
+		Repeat = 2,
+		/// <summary>
+		/// Key double clicked
+		/// </summary>
+		DoubleClick = 3,
+		/// <summary>
+		/// Axis activated
+		/// </summary>
+		Axis = 4
+	}
+
+	/// <summary>
+	/// Specifies the networking mode
+	/// </summary>
+	public enum NetMode : byte {
+		/// <summary>
+		/// A game without networking, with one or more local players
+		/// </summary>
+		Standalone,
+		/// <summary>
+		/// A server with no local players
+		/// </summary>
+		DedicatedServer,
+		/// <summary>
+		/// A server that also has a local player who is hosting the game, available to other players on the network
+		/// </summary>
+		ListenServer,
+		/// <summary>
+		/// A client connected to a server
+		/// </summary>
+		Client
 	}
 
 	/// <summary>
@@ -5038,7 +5038,7 @@ namespace UnrealEngine.Framework {
 			if (socketName == null)
 				throw new ArgumentNullException(nameof(socketName));
 
-			return isSocketExists(Pointer, socketName);	
+			return isSocketExists(Pointer, socketName);
 		}
 
 		/// <summary>

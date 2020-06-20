@@ -23,6 +23,7 @@ namespace UnrealCLRFramework {
 	using CollisionMode = ECollisionEnabled::Type;
 	using WindowMode = EWindowMode::Type;
 	using AudioFadeCurve = EAudioFaderCurve;
+	using BlendType = EViewTargetBlendFunction;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
 
@@ -63,14 +64,6 @@ namespace UnrealCLRFramework {
 		Default = 0,
 		Move = 1,
 		Gameplay = 2
-	};
-
-	enum struct BlendType : int32 {
-		Linear,
-		Cubic,
-		EaseIn,
-		EaseOut,
-		EaseInOut
 	};
 
 	struct Color {
