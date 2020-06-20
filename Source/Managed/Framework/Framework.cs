@@ -68,26 +68,6 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Specifies how often a component is allowed to move
-	/// </summary>
-	public enum ComponentMobility : int {
-		/// <summary>
-		/// Movable objects can be moved and changed
-		/// </summary>
-		Movable,
-		/// <summary>
-		/// Static objects cannot be moved or changed
-		/// - Allows baked lighting
-		/// - Fastest rendering
-		/// </summary>
-		Static,
-		/// <summary>
-		/// A stationary light will only have its shadowing and bounced lighting from static geometry baked by <a href="https://docs.unrealengine.com/en-US/Engine/Rendering/LightingAndShadows/Lightmass/index.html">Lightmass</a>, all other lighting will be dynamic
-		/// </summary>
-		Stationary
-	}
-
-	/// <summary>
 	/// Rules for attaching components
 	/// </summary>
 	public enum AttachmentTransformRule : int {
@@ -206,6 +186,26 @@ namespace UnrealEngine.Framework {
 		/// Can be used for both spatial queries and physics simulation
 		/// </summary>
 		QueryAndPhysics
+	}
+
+	/// <summary>
+	/// Specifies how often a component is allowed to move
+	/// </summary>
+	public enum ComponentMobility : int {
+		/// <summary>
+		/// Movable objects can be moved and changed
+		/// </summary>
+		Movable,
+		/// <summary>
+		/// Static objects cannot be moved or changed
+		/// - Allows baked lighting
+		/// - Fastest rendering
+		/// </summary>
+		Static,
+		/// <summary>
+		/// A stationary light will only have its shadowing and bounced lighting from static geometry baked by <a href="https://docs.unrealengine.com/en-US/Engine/Rendering/LightingAndShadows/Lightmass/index.html">Lightmass</a>, all other lighting will be dynamic
+		/// </summary>
+		Stationary
 	}
 
 	/// <summary>

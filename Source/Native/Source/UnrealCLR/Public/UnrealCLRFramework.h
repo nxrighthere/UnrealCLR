@@ -21,6 +21,7 @@ namespace UnrealCLRFramework {
 	using AnimationMode = EAnimationMode::Type;
 	using CameraProjectionMode = ECameraProjectionMode::Type;
 	using CollisionMode = ECollisionEnabled::Type;
+	using ComponentMobility = EComponentMobility::Type;
 	using WindowMode = EWindowMode::Type;
 	using AudioFadeCurve = EAudioFaderCurve;
 	using BlendType = EViewTargetBlendFunction;
@@ -32,12 +33,6 @@ namespace UnrealCLRFramework {
 		Warning,
 		Error,
 		Fatal
-	};
-
-	enum struct ComponentMobility : int32 {
-		Movable,
-		Static,
-		Stationary
 	};
 
 	enum struct AttachmentTransformRule : int32 {

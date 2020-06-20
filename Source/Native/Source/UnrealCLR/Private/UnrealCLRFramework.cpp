@@ -1488,25 +1488,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetMobility(USceneComponent* SceneComponent, ComponentMobility Mobility) {
-			EComponentMobility::Type mobility = EComponentMobility::Type::Movable;
-
-			switch (Mobility) {
-				case ComponentMobility::Movable:
-					break;
-
-				case ComponentMobility::Static:
-					mobility = EComponentMobility::Type::Static;
-					break;
-
-				case ComponentMobility::Stationary:
-					mobility = EComponentMobility::Type::Stationary;
-					break;
-
-				default:
-					break;
-			}
-
-			SceneComponent->SetMobility(mobility);
+			SceneComponent->SetMobility(Mobility);
 		}
 
 		void SetRelativeLocation(USceneComponent* SceneComponent, const Vector3* Location) {
