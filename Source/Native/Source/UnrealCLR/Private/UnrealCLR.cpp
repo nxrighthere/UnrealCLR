@@ -253,8 +253,12 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::HeadMountedDisplayFunctions;
 
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::IsEnabled;
+				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::IsConnected;
+				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::GetEnabled;
+				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::GetLowPersistenceMode;
 				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::GetDeviceName;
+				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::SetEnable;
+				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::SetLowPersistenceMode;
 			}
 
 			{

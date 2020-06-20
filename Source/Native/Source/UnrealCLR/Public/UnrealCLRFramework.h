@@ -306,8 +306,12 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace HeadMountedDisplay {
-		static bool IsEnabled();
+		static bool IsConnected();
+		static bool GetEnabled();
+		static bool GetLowPersistenceMode();
 		static void GetDeviceName(char* Name);
+		static void SetEnable(bool Value);
+		static void SetLowPersistenceMode(bool Value);
 	}
 
 	namespace World {

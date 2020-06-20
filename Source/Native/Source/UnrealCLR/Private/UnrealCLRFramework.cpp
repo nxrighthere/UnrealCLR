@@ -699,8 +699,16 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace HeadMountedDisplay {
-		bool IsEnabled() {
+		bool IsConnected() {
+			return UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayConnected();
+		}
+
+		bool GetEnabled() {
 			return UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled();
+		}
+
+		bool GetLowPersistenceMode() {
+			return UHeadMountedDisplayFunctionLibrary::IsInLowPersistenceMode();
 		}
 
 		void GetDeviceName(char* Name) {
@@ -709,6 +717,14 @@ namespace UnrealCLRFramework {
 			const char* name = TCHAR_TO_ANSI(*deviceName.ToString());
 
 			UnrealCLR::Utility::Strcpy(Name, name, UnrealCLR::Utility::Strlen(name));
+		}
+
+		void SetEnable(bool Value) {
+			UHeadMountedDisplayFunctionLibrary::EnableHMD(Value);
+		}
+
+		void SetLowPersistenceMode(bool Value) {
+			UHeadMountedDisplayFunctionLibrary::EnableLowPersistenceMode(Value);
 		}
 	}
 

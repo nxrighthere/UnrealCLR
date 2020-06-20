@@ -2685,9 +2685,25 @@ namespace UnrealEngine.Framework {
 		private static byte[] stringBuffer = new byte[8192];
 
 		/// <summary>
-		/// Returns <c>true</c> if the head mounted display is enabled
+		/// Returns <c>true</c> if the head mounted display is connected and ready to use
 		/// </summary>
-		public static bool IsEnabled => isEnabled();
+		public static bool IsConnected => isConnected();
+
+		/// <summary>
+		/// Gets or sets whether the head mounted display is enabled
+		/// </summary>
+		public static bool Enabled {
+			get => getEnabled();
+			set => setEnable(value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the head mounted display is in low or full persistence mode
+		/// </summary>
+		public static bool LowPersistenceMode {
+			get => getLowPersistenceMode();
+			set => setLowPersistenceMode(value);
+		}
 
 		/// <summary>
 		/// Retrieves the name of the device
@@ -2699,8 +2715,6 @@ namespace UnrealEngine.Framework {
 				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
 			}
 		}
-
-
 	}
 
 	/// <summary>

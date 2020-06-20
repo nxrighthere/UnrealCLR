@@ -7,4 +7,6 @@ public static class HeadMountedDisplay
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; HeadMountedDisplay  
 ### Properties
 - [DeviceName](./UnrealEngine-Framework-HeadMountedDisplay-DeviceName.md 'UnrealEngine.Framework.HeadMountedDisplay.DeviceName')
-- [IsEnabled](./UnrealEngine-Framework-HeadMountedDisplay-IsEnabled.md 'UnrealEngine.Framework.HeadMountedDisplay.IsEnabled')
+- [Enabled](./UnrealEngine-Framework-HeadMountedDisplay-Enabled.md 'UnrealEngine.Framework.HeadMountedDisplay.Enabled')
+- [IsConnected](./UnrealEngine-Framework-HeadMountedDisplay-IsConnected.md 'UnrealEngine.Framework.HeadMountedDisplay.IsConnected')
+- [LowPersistenceMode](./UnrealEngine-Framework-HeadMountedDisplay-LowPersistenceMode.md 'UnrealEngine.Framework.HeadMountedDisplay.LowPersistenceMode')

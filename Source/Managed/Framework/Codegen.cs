@@ -156,8 +156,12 @@ namespace UnrealEngine.Framework {
 						int head = 0;
 						IntPtr* headMountedDisplayFunctions = (IntPtr*)buffer[position++];
 
-						HeadMountedDisplay.isEnabled = GenerateOptimizedFunction<HeadMountedDisplay.IsEnabledFunction>(headMountedDisplayFunctions[head++]);
+						HeadMountedDisplay.isConnected = GenerateOptimizedFunction<HeadMountedDisplay.IsConnectedFunction>(headMountedDisplayFunctions[head++]);
+						HeadMountedDisplay.getEnabled = GenerateOptimizedFunction<HeadMountedDisplay.GetEnabledFunction>(headMountedDisplayFunctions[head++]);
+						HeadMountedDisplay.getLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.GetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
 						HeadMountedDisplay.getDeviceName = GenerateOptimizedFunction<HeadMountedDisplay.GetDeviceNameFunction>(headMountedDisplayFunctions[head++]);
+						HeadMountedDisplay.setEnable = GenerateOptimizedFunction<HeadMountedDisplay.SetEnableFunction>(headMountedDisplayFunctions[head++]);
+						HeadMountedDisplay.setLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.SetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
 					}
 
 					unchecked {
@@ -927,11 +931,19 @@ namespace UnrealEngine.Framework {
 	}
 
 	static partial class HeadMountedDisplay {
-		internal delegate Bool IsEnabledFunction();
+		internal delegate Bool IsConnectedFunction();
+		internal delegate Bool GetEnabledFunction();
+		internal delegate Bool GetLowPersistenceModeFunction();
 		internal delegate void GetDeviceNameFunction(byte[] name);
+		internal delegate void SetEnableFunction(Bool value);
+		internal delegate void SetLowPersistenceModeFunction(Bool value);
 
-		internal static IsEnabledFunction isEnabled;
+		internal static IsConnectedFunction isConnected;
+		internal static GetEnabledFunction getEnabled;
+		internal static GetLowPersistenceModeFunction getLowPersistenceMode;
 		internal static GetDeviceNameFunction getDeviceName;
+		internal static SetEnableFunction setEnable;
+		internal static SetLowPersistenceModeFunction setLowPersistenceMode;
 	}
 
 	static partial class World {
