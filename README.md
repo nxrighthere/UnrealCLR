@@ -79,7 +79,7 @@ At runtime, UnrealCLR loading managed assemblies into a cached isolated context.
 The plugin and framework are evolving all the time to utilize as much power of the Unreal Engine as possible. It's crucial to have a feature-rich API. The system is created with high-performance in mind but without trading safety. The vast majority of code is written and verified by hand to prevent any unexpected behaviors at runtime and to ensure stability.
 
 ### Powerful tooling
-Use your favorite .NET Core tools that can be attached to the process of the engine just as to a regular .NET application for profiling and debugging. It's very convenient and works out of the box without any external effort. Analyze performance, monitor CPU usage and memory consumption, debug execution, take full control over the code. Explore new possibilities and extend your toolset in no time.
+Use your favorite .NET Core IDE and tools that can be attached to the process of the engine just as to a regular .NET application for profiling and debugging. It's very convenient and works out of the box without any external effort. Analyze performance, monitor CPU usage and memory consumption, debug execution, take full control over the code. Explore new possibilities and extend your toolset in no time.
 
 Essentials
 --------
