@@ -5265,18 +5265,18 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Smoothly starts the audio, can be used instead of <see cref="Play"/>
 		/// </summary>
-		/// <param name="duration"></param>
-		/// <param name="volumeLevel"></param>
-		/// <param name="startTime"></param>
-		/// <param name="fadeCurve"></param>
+		/// <param name="duration">Duration to reach the <paramref name="volumeLevel"/></param>
+		/// <param name="volumeLevel">The percentage of calculated volume to fade to</param>
+		/// <param name="startTime">Fading start time</param>
+		/// <param name="fadeCurve">Curve to adjust audio volume</param>
 		public void FadeIn(float duration, float volumeLevel = 1.0f, float startTime = 0.0f, AudioFadeCurve fadeCurve = AudioFadeCurve.Linear) => fadeIn(Pointer, duration, volumeLevel, startTime, fadeCurve);
 
 		/// <summary>
 		/// Smoothly stops the audio, can be used instead of <see cref="Stop"/>
 		/// </summary>
-		/// <param name="duration"></param>
-		/// <param name="volumeLevel"></param>
-		/// <param name="fadeCurve"></param>
+		/// <param name="duration">Duration to reach the <paramref name="volumeLevel"/></param>
+		/// <param name="volumeLevel">he percentage of calculated volume to fade to</param>
+		/// <param name="fadeCurve">Curve to adjust audio volume</param>
 		public void FadeOut(float duration, float volumeLevel = 0.0f, AudioFadeCurve fadeCurve = AudioFadeCurve.Linear) => fadeOut(Pointer, duration, volumeLevel, fadeCurve);
 	}
 
