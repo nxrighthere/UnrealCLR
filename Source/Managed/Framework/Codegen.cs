@@ -749,7 +749,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	static partial class CommandLine {
-		internal delegate void GetFunction(StringBuilder arguments);
+		internal delegate void GetFunction(byte[] arguments);
 		internal delegate void SetFunction(string arguments);
 		internal delegate void AppendFunction(string arguments);
 
@@ -791,7 +791,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsValidFunction(IntPtr @object);
 		internal delegate IntPtr LoadFunction(ObjectType type, string name);
 		internal delegate void RenameFunction(IntPtr @object, string name);
-		internal delegate void GetNameFunction(IntPtr @object, StringBuilder name);
+		internal delegate void GetNameFunction(IntPtr @object, byte[] name);
 		internal delegate Bool GetBoolFunction(IntPtr @object, string name, ref bool value);
 		internal delegate Bool GetByteFunction(IntPtr @object, string name, ref byte value);
 		internal delegate Bool GetShortFunction(IntPtr @object, string name, ref short value);
@@ -802,7 +802,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool GetULongFunction(IntPtr @object, string name, ref ulong value);
 		internal delegate Bool GetFloatFunction(IntPtr @object, string name, ref float value);
 		internal delegate Bool GetDoubleFunction(IntPtr @object, string name, ref double value);
-		internal delegate Bool GetTextFunction(IntPtr @object, string name, StringBuilder value);
+		internal delegate Bool GetTextFunction(IntPtr @object, string name, byte[] value);
 		internal delegate Bool SetBoolFunction(IntPtr @object, string name, Bool value);
 		internal delegate Bool SetByteFunction(IntPtr @object, string name, byte value);
 		internal delegate Bool SetShortFunction(IntPtr @object, string name, short value);
@@ -848,9 +848,9 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsCanEverRenderFunction();
 		internal delegate Bool IsPackagedForDistributionFunction();
 		internal delegate Bool IsPackagedForShippingFunction();
-		internal delegate void GetProjectDirectoryFunction(StringBuilder directory);
-		internal delegate void GetDefaultLanguageFunction(StringBuilder language);
-		internal delegate void GetProjectNameFunction(StringBuilder projectName);
+		internal delegate void GetProjectDirectoryFunction(byte[] directory);
+		internal delegate void GetDefaultLanguageFunction(byte[] language);
+		internal delegate void GetProjectNameFunction(byte[] projectName);
 		internal delegate float GetVolumeMultiplierFunction();
 		internal delegate void SetProjectNameFunction(string projectName);
 		internal delegate void SetVolumeMultiplierFunction(float value);
@@ -896,7 +896,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void GetViewportSizeFunction(ref Vector2 value);
 		internal delegate void GetScreenResolutionFunction(ref Vector2 value);
 		internal delegate WindowMode GetWindowModeFunction();
-		internal delegate void GetVersionFunction(StringBuilder version);
+		internal delegate void GetVersionFunction(byte[] version);
 		internal delegate float GetMaxFPSFunction();
 		internal delegate void SetMaxFPSFunction(float maxFPS);
 		internal delegate void SetTitleFunction(string title);
@@ -928,7 +928,7 @@ namespace UnrealEngine.Framework {
 
 	static partial class HeadMountedDisplay {
 		internal delegate Bool IsEnabledFunction();
-		internal delegate void GetDeviceNameFunction(StringBuilder name);
+		internal delegate void GetDeviceNameFunction(byte[] name);
 
 		internal static IsEnabledFunction isEnabled;
 		internal static GetDeviceNameFunction getDeviceName;
@@ -986,7 +986,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool GetBoolFunction(IntPtr consoleVariable);
 		internal delegate int GetIntFunction(IntPtr consoleVariable);
 		internal delegate float GetFloatFunction(IntPtr consoleVariable);
-		internal delegate void GetStringFunction(IntPtr consoleVariable, StringBuilder value);
+		internal delegate void GetStringFunction(IntPtr consoleVariable, byte[] value);
 		internal delegate void SetBoolFunction(IntPtr consoleVariable, Bool value);
 		internal delegate void SetIntFunction(IntPtr consoleVariable, int value);
 		internal delegate void SetFloatFunction(IntPtr consoleVariable, float value);
@@ -1316,7 +1316,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddWorldOffsetFunction(IntPtr sceneComponent, in Vector3 deltaLocation);
 		internal delegate void AddWorldRotationFunction(IntPtr sceneComponent, in Quaternion deltaRotation);
 		internal delegate void AddWorldTransformFunction(IntPtr sceneComponent, in Transform deltaTransform);
-		internal delegate void GetAttachedSocketNameFunction(IntPtr sceneComponent, StringBuilder socketName);
+		internal delegate void GetAttachedSocketNameFunction(IntPtr sceneComponent, byte[] socketName);
 		internal delegate void GetSocketLocationFunction(IntPtr sceneComponent, string socketName, ref Vector3 value);
 		internal delegate void GetSocketRotationFunction(IntPtr sceneComponent, string socketName, ref Quaternion value);
 		internal delegate void GetComponentVelocityFunction(IntPtr sceneComponent, ref Vector3 value);
