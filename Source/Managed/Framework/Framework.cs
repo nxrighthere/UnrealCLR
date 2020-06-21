@@ -3945,7 +3945,7 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <param name="command">A command to execute, string of commands optionally separated by a <c>|</c> symbol</param>
 		/// <param name="writeToLog"></param>
-		public void ConsoleCommand(string command, bool writeToLog) => consoleCommand(Pointer, command, writeToLog);
+		public void ConsoleCommand(string command, bool writeToLog = false) => consoleCommand(Pointer, command, writeToLog);
 
 		/// <summary>
 		/// Attempts to pause a local game

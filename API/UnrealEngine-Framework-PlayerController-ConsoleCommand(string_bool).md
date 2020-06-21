@@ -2,7 +2,7 @@
 ## PlayerController.ConsoleCommand(string, bool) Method
 Executes the command on the [Player](./UnrealEngine-Framework-Player.md 'UnrealEngine.Framework.Player') object, `DumpConsoleCommands` command can be used to list all available variables and commands  
 ```csharp
-public void ConsoleCommand(string command, bool writeToLog);
+public void ConsoleCommand(string command, bool writeToLog=false);
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-PlayerController-ConsoleCommand(string_bool)-command'></a>

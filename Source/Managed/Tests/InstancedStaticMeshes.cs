@@ -8,10 +8,10 @@ namespace UnrealEngine.Tests {
 	public static class InstancedStaticMeshes {
 		private const int maxCubes = 200;
 		private static Actor actor = new Actor("InstancedCubes");
-		private static SceneComponent[] sceneComponent = new SceneComponent[maxCubes];
+		private static SceneComponent sceneComponent = new SceneComponent(actor);
+		private static Transform[] transforms = new Transform[maxCubes];
 		private static InstancedStaticMeshComponent instancedStaticMeshComponent = new InstancedStaticMeshComponent(actor, setAsRoot: true);
 		private static Material material = Material.Load("/Game/Tests/BasicMaterial");
-		private static Transform transform = default(Transform);
 		private static float rotationSpeed = 2.5f;
 
 		public static void OnBeginPlay() {
@@ -25,12 +25,11 @@ namespace UnrealEngine.Tests {
 			instancedStaticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.White);
 
 			for (int i = 0; i < maxCubes; i++) {
-				sceneComponent[i] = new SceneComponent(actor);
-				sceneComponent[i].SetRelativeLocation(new Vector3(150.0f * i, 50.0f * i, 100.0f * i));
-				sceneComponent[i].SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
-				sceneComponent[i].AddLocalOffset(new Vector3(15.0f * i, 20.0f * i, 25.0f * i));
-				sceneComponent[i].GetTransform(ref transform);
-				instancedStaticMeshComponent.AddInstance(transform);
+				sceneComponent.SetRelativeLocation(new Vector3(150.0f * i, 50.0f * i, 100.0f * i));
+				sceneComponent.SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
+				sceneComponent.AddLocalOffset(new Vector3(15.0f * i, 20.0f * i, 25.0f * i));
+				sceneComponent.GetTransform(ref transforms[i]);
+				instancedStaticMeshComponent.AddInstance(transforms[i]);
 			}
 
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, "Instances are created! Number of instances: " + instancedStaticMeshComponent.InstanceCount);
@@ -48,9 +47,11 @@ namespace UnrealEngine.Tests {
 			Quaternion deltaRotation = Maths.CreateFromYawPitchRoll(rotationSpeed * deltaTime, rotationSpeed * deltaTime, rotationSpeed * deltaTime);
 
 			for (int i = 0; i < maxCubes; i++) {
-				sceneComponent[i].AddLocalRotation(deltaRotation);
-				sceneComponent[i].GetTransform(ref transform);
-				instancedStaticMeshComponent.UpdateInstanceTransform(i, transform, markRenderStateDirty: i == maxCubes - 1);
+				sceneComponent.SetWorldTransform(transforms[i]);
+				sceneComponent.AddLocalRotation(deltaRotation);
+				sceneComponent.GetTransform(ref transforms[i]);
+
+				instancedStaticMeshComponent.UpdateInstanceTransform(i, transforms[i], markRenderStateDirty: i == maxCubes - 1);
 			}
 		}
 	}
