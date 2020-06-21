@@ -1825,6 +1825,22 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->SetCollisionEnabled(Mode);
 		}
 
+		void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value) {
+			PrimitiveComponent->IgnoreActorWhenMoving(Actor, Value);
+		}
+
+		void SetIgnoreComponentWhenMoving(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Component, bool Value) {
+			PrimitiveComponent->IgnoreComponentWhenMoving(Component, Value);
+		}
+
+		void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent) {
+			PrimitiveComponent->ClearMoveIgnoreActors();
+		}
+
+		void ClearMoveIgnoreComponents(UPrimitiveComponent* PrimitiveComponent) {
+			PrimitiveComponent->ClearMoveIgnoreComponents();
+		}
+
 		UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex) {
 			return PrimitiveComponent->CreateAndSetMaterialInstanceDynamic(ElementIndex);
 		}

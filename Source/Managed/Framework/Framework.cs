@@ -114,7 +114,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Defines whether to teleport physics body or not
+	/// Defines teleportation types of physics body
 	/// </summary>
 	public enum TeleportType : int {
 		/// <summary>
@@ -1295,7 +1295,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		///	Returns a rotation which rotates angle degrees around axis
+		/// Returns a rotation which rotates angle degrees around axis
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Quaternion AngleAxis(float angle, Vector3 axis) {
@@ -1319,7 +1319,7 @@ namespace UnrealEngine.Framework {
 		public static Quaternion Damp(Quaternion from, Quaternion to, float lambda, float deltaTime) => Quaternion.Slerp(from, to, 1.0f - MathF.Exp(-lambda * deltaTime));
 
 		/// <summary>
-		///	Returns a rotation which rotated towards a target
+		/// Returns a rotation which rotated towards a target
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Quaternion RotateTowards(Quaternion from, Quaternion to, float maxDegreesDelta) {
@@ -1332,7 +1332,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		///	Returns a rotation from the given yaw, pitch, and roll, in radians
+		/// Returns a rotation from the given yaw, pitch, and roll, in radians
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Quaternion CreateFromYawPitchRoll(float yaw, float pitch, float roll) {
@@ -5675,12 +5675,12 @@ namespace UnrealEngine.Framework {
 		public void SetPhysicsMaxAngularVelocityInRadians(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInRadians(Pointer, maxAngularVelocity, addToCurrent, boneName);
 
 		/// <summary>
-		/// Sets whether or not a single body should use physics simulation, or should be kinematic, if the component is currently attached to something, beginning simulation will detach it
+		/// Sets whether a single body should use physics simulation, or should be kinematic, if the component is currently attached to something, beginning simulation will detach it
 		/// </summary>
 		public void SetSimulatePhysics(bool value) => setSimulatePhysics(Pointer, value);
 
 		/// <summary>
-		/// Sets whether or not the component is affected by gravity, applies only to components with enabled physics simulation
+		/// Sets whether the component is affected by gravity, applies only to components with enabled physics simulation
 		/// </summary>
 		public void SetEnableGravity(bool value) => setEnableGravity(Pointer, value);
 
@@ -5688,6 +5688,36 @@ namespace UnrealEngine.Framework {
 		/// Sets the collision mode of the component
 		/// </summary>
 		public void SetCollisionMode(CollisionMode mode) => setCollisionMode(Pointer, mode);
+
+		/// <summary>
+		/// Sets whether to ignore collision of all components of a specified actor during the movement
+		/// </summary>
+		public void SetIgnoreActorWhenMoving(Actor actor, bool value) {
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			setIgnoreActorWhenMoving(Pointer, actor.Pointer, value);
+		}
+
+		/// <summary>
+		/// Sets whether to ignore collision of a specified component during the movement
+		/// </summary>
+		public void SetIgnoreComponentWhenMoving(PrimitiveComponent component, bool value) {
+			if (component == null)
+				throw new ArgumentNullException(nameof(component));
+
+			setIgnoreComponentWhenMoving(Pointer, component.Pointer, value);
+		}
+
+		/// <summary>
+		/// Clears the list of actors that ignored during the movement
+		/// </summary>
+		public void ClearMoveIgnoreActors() => clearMoveIgnoreActors(Pointer);
+
+		/// <summary>
+		/// Clears the list of components that ignored during the movement
+		/// </summary>
+		public void ClearMoveIgnoreComponents() => clearMoveIgnoreComponents(Pointer);
 
 		/// <summary>
 		/// Creates a dynamic material instance for the specified element index, the parent of the instance is set to the material being replaced
@@ -6146,7 +6176,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="instanceTransform">The new transform to apply</param>
 		/// <param name="worldSpace">If <c>true</c>, the new transform is interpreted as a world space transform, otherwise it is interpreted as local space</param>
 		/// <param name="markRenderStateDirty">If the render state is marked as dirty the change should be visible immediately, consider setting it to <c>true</c> only during the update of the last instance in a batch</param>
-		/// <param name="teleport">Whether or not the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity)</param>
+		/// <param name="teleport">Whether the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity)</param>
 		/// <returns><c>true</c> if successful</returns>
 		public bool UpdateInstanceTransform(int instanceIndex, in Transform instanceTransform, bool worldSpace = false, bool markRenderStateDirty = false, bool teleport = false) => updateInstanceTransform(Pointer, instanceIndex, instanceTransform, worldSpace, markRenderStateDirty, teleport);
 

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./UnrealEngine-Framework-PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 ## PrimitiveComponent.SetEnableGravity(bool) Method
-Sets whether or not the component is affected by gravity, applies only to components with enabled physics simulation  
+Sets whether the component is affected by gravity, applies only to components with enabled physics simulation  
 ```csharp
 public void SetEnableGravity(bool value);
 ```

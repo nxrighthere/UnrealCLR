@@ -23,7 +23,7 @@ If the render state is marked as dirty the change should be visible immediately,
   
 <a name='UnrealEngine-Framework-InstancedStaticMeshComponent-UpdateInstanceTransform(int_UnrealEngine-Framework-Transform_bool_bool_bool)-teleport'></a>
 `teleport` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
-Whether or not the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity)  
+Whether the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity)  
   
 #### Returns
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  

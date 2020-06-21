@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## TeleportType Enum
-Defines whether to teleport physics body or not  
+Defines teleportation types of physics body  
 ```csharp
 public enum TeleportType
 ```

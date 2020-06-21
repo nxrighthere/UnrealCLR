@@ -496,6 +496,10 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.clearMoveIgnoreComponents = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreComponentsFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
 					}
 
@@ -1475,6 +1479,10 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetLinearDampingFunction(IntPtr primitiveComponent, float value);
 		internal delegate void SetEnableGravityFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetCollisionModeFunction(IntPtr primitiveComponent, CollisionMode mode);
+		internal delegate void SetIgnoreActorWhenMovingFunction(IntPtr primitiveComponent, IntPtr actor, Bool value);
+		internal delegate void SetIgnoreComponentWhenMovingFunction(IntPtr primitiveComponent, IntPtr component, Bool value);
+		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
+		internal delegate void ClearMoveIgnoreComponentsFunction(IntPtr primitiveComponent);
 		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
 
 		internal static IsGravityEnabledFunction isGravityEnabled;
@@ -1514,6 +1522,10 @@ namespace UnrealEngine.Framework {
 		internal static SetLinearDampingFunction setLinearDamping;
 		internal static SetEnableGravityFunction setEnableGravity;
 		internal static SetCollisionModeFunction setCollisionMode;
+		internal static SetIgnoreActorWhenMovingFunction setIgnoreActorWhenMoving;
+		internal static SetIgnoreComponentWhenMovingFunction setIgnoreComponentWhenMoving;
+		internal static ClearMoveIgnoreActorsFunction clearMoveIgnoreActors;
+		internal static ClearMoveIgnoreComponentsFunction clearMoveIgnoreComponents;
 		internal static CreateAndSetMaterialInstanceDynamicFunction createAndSetMaterialInstanceDynamic;
 	}
 

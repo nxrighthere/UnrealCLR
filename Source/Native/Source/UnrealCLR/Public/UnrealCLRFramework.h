@@ -653,6 +653,10 @@ namespace UnrealCLRFramework {
 		static void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
 		static void SetEnableGravity(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetCollisionMode(UPrimitiveComponent* PrimitiveComponent, CollisionMode Mode);
+		static void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value);
+		static void SetIgnoreComponentWhenMoving(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Component, bool Value);
+		static void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent);
+		static void ClearMoveIgnoreComponents(UPrimitiveComponent* PrimitiveComponent);
 		static UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
 	}
 
