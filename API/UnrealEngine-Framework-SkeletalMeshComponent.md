@@ -7,6 +7,8 @@ public class SkeletalMeshComponent : SkinnedMeshComponent
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./UnrealEngine-Framework-ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./UnrealEngine-Framework-SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./UnrealEngine-Framework-PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; [MeshComponent](./UnrealEngine-Framework-MeshComponent.md 'UnrealEngine.Framework.MeshComponent') &#129106; [SkinnedMeshComponent](./UnrealEngine-Framework-SkinnedMeshComponent.md 'UnrealEngine.Framework.SkinnedMeshComponent') &#129106; SkeletalMeshComponent  
 ### Constructors
 - [SkeletalMeshComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./UnrealEngine-Framework-SkeletalMeshComponent-SkeletalMeshComponent(UnrealEngine-Framework-Actor_string_bool_UnrealEngine-Framework-Blueprint).md 'UnrealEngine.Framework.SkeletalMeshComponent.SkeletalMeshComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
+### Properties
+- [IsPlaying](./UnrealEngine-Framework-SkeletalMeshComponent-IsPlaying.md 'UnrealEngine.Framework.SkeletalMeshComponent.IsPlaying')
 ### Methods
 - [GetAnimationInstance()](./UnrealEngine-Framework-SkeletalMeshComponent-GetAnimationInstance().md 'UnrealEngine.Framework.SkeletalMeshComponent.GetAnimationInstance()')
 - [Play(bool)](./UnrealEngine-Framework-SkeletalMeshComponent-Play(bool).md 'UnrealEngine.Framework.SkeletalMeshComponent.Play(bool)')

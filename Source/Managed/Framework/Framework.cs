@@ -6304,6 +6304,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if playing animation
+		/// </summary>
+		public bool IsPlaying => isPlaying(Pointer);
+
+		/// <summary>
 		/// Returns the animation instance that is driving the class or <c>null</c> on failure
 		/// </summary>
 		public AnimationInstance GetAnimationInstance() {

@@ -746,6 +746,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace SkeletalMeshComponent {
+		static bool IsPlaying(USkeletalMeshComponent* SkeletalMeshComponent);
 		static UAnimInstance* GetAnimationInstance(USkeletalMeshComponent* SkeletalMeshComponent);
 		static void SetAnimation(USkeletalMeshComponent* SkeletalMeshComponent, UAnimationAsset* Asset);
 		static void SetAnimationMode(USkeletalMeshComponent* SkeletalMeshComponent, AnimationMode Mode);

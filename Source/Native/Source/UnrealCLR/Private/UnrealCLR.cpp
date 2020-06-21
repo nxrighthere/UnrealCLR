@@ -718,6 +718,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SkeletalMeshComponentFunctions;
 
+				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::IsPlaying;
 				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::GetAnimationInstance;
 				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::SetAnimation;
 				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::SetAnimationMode;

@@ -621,6 +621,7 @@ namespace UnrealEngine.Framework {
 						int head = 0;
 						IntPtr* skeletalMeshComponentFunctions = (IntPtr*)buffer[position++];
 
+						SkeletalMeshComponent.isPlaying = GenerateOptimizedFunction<SkeletalMeshComponent.IsPlayingFunction>(skeletalMeshComponentFunctions[head++]);
 						SkeletalMeshComponent.getAnimationInstance = GenerateOptimizedFunction<SkeletalMeshComponent.GetAnimationInstanceFunction>(skeletalMeshComponentFunctions[head++]);
 						SkeletalMeshComponent.setAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationFunction>(skeletalMeshComponentFunctions[head++]);
 						SkeletalMeshComponent.setAnimationMode = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationModeFunction>(skeletalMeshComponentFunctions[head++]);
@@ -1680,6 +1681,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class SkeletalMeshComponent {
+		internal delegate Bool IsPlayingFunction(IntPtr skeletalMeshComponent);
 		internal delegate IntPtr GetAnimationInstanceFunction(IntPtr skeletalMeshComponent);
 		internal delegate void SetAnimationFunction(IntPtr skeletalMeshComponent, IntPtr asset);
 		internal delegate void SetAnimationModeFunction(IntPtr skeletalMeshComponent, AnimationMode mode);
@@ -1688,6 +1690,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void PlayAnimationFunction(IntPtr skeletalMeshComponent, IntPtr asset, Bool loop);
 		internal delegate void StopFunction(IntPtr skeletalMeshComponent);
 
+		internal static IsPlayingFunction isPlaying;
 		internal static GetAnimationInstanceFunction getAnimationInstance;
 		internal static SetAnimationFunction setAnimation;
 		internal static SetAnimationModeFunction setAnimationMode;

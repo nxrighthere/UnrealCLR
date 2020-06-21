@@ -22,6 +22,8 @@ namespace UnrealEngine.Tests {
 			kachujinSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
 			kachujinSkeletalMeshComponent.PlayAnimation(AnimationSequence.Load("/Game/Tests/Characters/Kachujin/AnimationSequenceSwordSwing"), true);
 
+			Assert.IsTrue(kachujinSkeletalMeshComponent.IsPlaying);
+
 			Actor ganfault = new Actor("Ganfault");
 			SkeletalMeshComponent ganfaultSkeletalMeshComponent = new SkeletalMeshComponent(ganfault);
 			SkeletalMesh ganfaultSkeletalMesh = SkeletalMesh.Load("/Game/Tests/Characters/Ganfault/SkeletalMesh");
@@ -31,13 +33,13 @@ namespace UnrealEngine.Tests {
 			ganfaultSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
 			ganfaultSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
 
-			AnimationMontage animationMontage = AnimationMontage.Load("/Game/Tests/Characters/Ganfault/AnimationMontage");
+			AnimationMontage ganfaultAnimationMontage = AnimationMontage.Load("/Game/Tests/Characters/Ganfault/AnimationMontage");
 
-			ganfaultSkeletalMeshComponent.PlayAnimation(animationMontage, true);
+			ganfaultSkeletalMeshComponent.PlayAnimation(ganfaultAnimationMontage, true);
 
-			AnimationInstance animationInstance = ganfaultSkeletalMeshComponent.GetAnimationInstance();
+			AnimationInstance ganfaultAnimationInstance = ganfaultSkeletalMeshComponent.GetAnimationInstance();
 
-			Assert.IsTrue(animationInstance.MontageIsPlaying(animationMontage));
+			Assert.IsTrue(ganfaultAnimationInstance.MontageIsPlaying(ganfaultAnimationMontage));
 		}
 
 		public static void OnEndPlay() {

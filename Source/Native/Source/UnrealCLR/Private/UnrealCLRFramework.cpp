@@ -2072,6 +2072,10 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace SkeletalMeshComponent {
+		bool IsPlaying(USkeletalMeshComponent* SkeletalMeshComponent) {
+			return SkeletalMeshComponent->IsPlaying();
+		}
+
 		UAnimInstance* GetAnimationInstance(USkeletalMeshComponent* SkeletalMeshComponent) {
 			return SkeletalMeshComponent->GetAnimInstance();
 		}
