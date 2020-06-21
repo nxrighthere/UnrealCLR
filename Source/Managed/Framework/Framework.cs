@@ -1275,7 +1275,7 @@ namespace UnrealEngine.Framework {
 			y *= DegToRadF;
 			z *= DegToRadF;
 
-			return Quaternion.CreateFromYawPitchRoll(y, x, z);
+			return CreateFromYawPitchRoll(z, -y, -x);
 		}
 
 		/// <summary>
@@ -1329,6 +1329,37 @@ namespace UnrealEngine.Framework {
 				return to;
 
 			return Quaternion.Slerp(from, to, MathF.Min(1.0f, maxDegreesDelta / angle));
+		}
+
+		/// <summary>
+		///	Returns a rotation from the given yaw, pitch, and roll, in radians
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Quaternion CreateFromYawPitchRoll(float yaw, float pitch, float roll) {
+			float sr, cr, sp, cp, sy, cy;
+			float halfRoll = roll * 0.5f;
+
+			sr = MathF.Sin(halfRoll);
+			cr = MathF.Cos(halfRoll);
+
+			float halfPitch = pitch * 0.5f;
+
+			sp = MathF.Sin(halfPitch);
+			cp = MathF.Cos(halfPitch);
+
+			float halfYaw = yaw * 0.5f;
+
+			sy = MathF.Sin(halfYaw);
+			cy = MathF.Cos(halfYaw);
+
+			Quaternion result;
+
+			result.X = cy * cp * sr - sy * sp * cr;
+			result.Y = cy * sp * cr + sy * cp * sr;
+			result.Z = sy * cp * cr - cy * sp * sr;
+			result.W = cy * cp * cr + sy * sp * sr;
+
+			return result;
 		}
 	}
 

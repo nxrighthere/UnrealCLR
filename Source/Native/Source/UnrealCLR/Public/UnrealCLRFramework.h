@@ -101,7 +101,7 @@ namespace UnrealCLRFramework {
 			Z = Value.Z;
 		}
 
-		FORCEINLINE operator FVector() const { return FVector(Z, X, Y); }
+		FORCEINLINE operator FVector() const { return FVector(X, Y, Z); }
 	};
 
 	struct Quaternion {
@@ -117,7 +117,7 @@ namespace UnrealCLRFramework {
 			W = Value.W;
 		}
 
-		FORCEINLINE operator FQuat() const { return FQuat(Z, X, Y, W); }
+		FORCEINLINE operator FQuat() const { return FQuat(X, Y, Z, W); }
 	};
 
 	struct LinearColor {

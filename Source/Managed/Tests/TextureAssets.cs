@@ -19,8 +19,8 @@ namespace UnrealEngine.Tests {
 			staticMeshComponent.SetStaticMesh(StaticMesh.Plane);
 			staticMeshComponent.SetMaterial(0, Material.Load("/Game/Tests/TextureMaterial"));
 			staticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetTextureParameterValue("Texture", texture);
-			staticMeshComponent.SetWorldLocation(new Vector3(0.0f, 0.0f, -800.0f));
-			staticMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 90.0f, -90.0f));
+			staticMeshComponent.SetWorldLocation(new Vector3(-800.0f, 0.0f, 0.0f));
+			staticMeshComponent.SetWorldRotation(Maths.Euler(90.0f, 0.0f, 90.0f));
 
 			Vector2 textureSize = default(Vector2);
 

@@ -29,9 +29,9 @@ namespace UnrealEngine.Tests {
 				staticMeshComponents[i].CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Yellow);
 
 				if (i < halfActors)
-					staticMeshComponents[i].SetRelativeLocation(new Vector3(-400.0f, 250.0f * i, 0.0f));
+					staticMeshComponents[i].SetRelativeLocation(new Vector3(0.0f, -400.0f, 250.0f * i));
 				else
-					staticMeshComponents[i].SetRelativeLocation(new Vector3(400.0f, 250.0f * (i - halfActors), 0.0f));
+					staticMeshComponents[i].SetRelativeLocation(new Vector3(0.0f, 400.0f, 250.0f * (i - halfActors)));
 
 				staticMeshComponents[i].UpdateToWorld(TeleportType.ResetPhysics);
 				staticMeshComponents[i].SetSimulatePhysics(true);
@@ -48,7 +48,7 @@ namespace UnrealEngine.Tests {
 		public static void OnTick() {
 			Debug.AddOnScreenMessage(1, 1.0f, Color.SkyBlue, "Frame number: " + Engine.FrameNumber);
 
-			Quaternion deltaRotation = Quaternion.CreateFromYawPitchRoll(rotationSpeed * World.DeltaTime, 0.0f, 0.0f);
+			Quaternion deltaRotation = Maths.CreateFromYawPitchRoll(rotationSpeed * World.DeltaTime, 0.0f, 0.0f);
 
 			for (int i = 0; i < maxActors; i++) {
 				staticMeshComponents[i].AddLocalRotation(deltaRotation);

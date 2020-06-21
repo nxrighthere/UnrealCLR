@@ -44,25 +44,25 @@ namespace UnrealEngine.Tests {
 
 				entities[i] = new Entity(entityName);
 				entities[i].CreateMesh(1.0f, "StateComponent", true);
-				entities[i].StateComponent.SetRelativeRotation(Quaternion.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
+				entities[i].StateComponent.SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
 				entities[i].StateComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", new LinearColor((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
 
 				if (i < eighthEntities)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? -100.0f : -100.0f * (i + i + 1), 100.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? -100.0f : -100.0f * (i + i + 1), 100.0f));
 				else if (i < eighthEntities * 2)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 2), 100.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 2), 100.0f));
 				else if (i < eighthEntities * 3)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? -100.0f : -100.0f * (i + i + 1 - eighthEntities * 4), -100.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? -100.0f : -100.0f * (i + i + 1 - eighthEntities * 4), -100.0f));
 				else if (i < eighthEntities * 4)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 6), -100.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 6), -100.0f));
 				else if (i < eighthEntities * 5)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? -100.0f : -100.0f * (i + i + 1 - eighthEntities * 8), 300.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? -100.0f : -100.0f * (i + i + 1 - eighthEntities * 8), 300.0f));
 				else if (i < eighthEntities * 6)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 10), 300.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 10), 300.0f));
 				else if (i < eighthEntities * 7)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? -100.0f : -100.0f * (i + i + 1 - eighthEntities * 12), -300.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? -100.0f : -100.0f * (i + i + 1 - eighthEntities * 12), -300.0f));
 				else if (i < eighthEntities * 8)
-					entities[i].StateComponent.SetRelativeLocation(new Vector3(i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 14), -300.0f, 0.0f));
+					entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, i == 0 ? 100.0f : 100.0f * (i + i + 1 - eighthEntities * 14), -300.0f));
 
 				Entity entity = World.GetActor<Entity>(entityName);
 				StateComponent component = entity.GetComponent<StateComponent>();
@@ -83,7 +83,7 @@ namespace UnrealEngine.Tests {
 			float deltaTime = World.DeltaTime;
 
 			for (int i = 0; i < maxEntities; i++) {
-				entities[i].StateComponent.AddLocalRotation(new Quaternion(Vector3.UnitY * entities[i].StateComponent.RotationSpeed * deltaTime, -1.0f));
+				entities[i].StateComponent.AddLocalRotation(new Quaternion(Vector3.UnitZ * entities[i].StateComponent.RotationSpeed * deltaTime, -1.0f));
 			}
 		}
 	}
