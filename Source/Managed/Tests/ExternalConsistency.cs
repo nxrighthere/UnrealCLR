@@ -139,7 +139,9 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			const string actorName = "TestActorName";
+			const string actorShortName = "TestActor";
 			const string componentName = "TestComponentName";
+			const string componentShortName = "TestComponent";
 			const string renamedSuffix = "Renamed";
 
 			Actor actor = new Actor(actorName);
@@ -163,7 +165,16 @@ namespace UnrealEngine.Tests {
 			sceneComponent.Rename(componentName + renamedSuffix);
 
 			if (actor.Name != actorName + renamedSuffix || sceneComponent.Name != componentName + renamedSuffix) {
-				Debug.Log(LogLevel.Error, "Renaming check failed!");
+				Debug.Log(LogLevel.Error, "Renaming to more characters check failed!");
+
+				return;
+			}
+
+			actor.Rename(actorShortName);
+			sceneComponent.Rename(componentShortName);
+
+			if (actor.Name != actorShortName || sceneComponent.Name != componentShortName) {
+				Debug.Log(LogLevel.Error, "Renaming to less characters check failed!");
 
 				return;
 			}

@@ -43,6 +43,30 @@ namespace UnrealEngine.Framework {
 		}
 	}
 
+	internal static class ArrayPool {
+		[ThreadStatic]
+		private static byte[] stringBuffer;
+
+		public static byte[] GetStringBuffer() {
+			if (stringBuffer == null)
+				stringBuffer = new byte[8192];
+
+			return stringBuffer;
+		}
+	}
+
+	internal static class Extensions {
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static string TrimFromZero(this string input) {
+			int index = input.IndexOf('\0', StringComparison.CurrentCulture);
+
+			if (index < 0)
+				return input;
+
+			return input.Substring(0, index);
+		}
+	}
+
 	// Public
 
 	/// <summary>
@@ -2205,16 +2229,15 @@ namespace UnrealEngine.Framework {
 	/// Functionality to work with the command-line of the engine executable
 	/// </summary>
 	public static partial class CommandLine {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		/// <summary>
 		/// Returns the user arguments
 		/// </summary>
 		public static string Get() {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 			get(stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 		}
 
 		/// <summary>
@@ -2337,9 +2360,6 @@ namespace UnrealEngine.Framework {
 	/// Provides information about the application
 	/// </summary>
 	public static partial class Application {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		/// <summary>
 		/// Returns <c>true</c> if the application can render anything
 		/// </summary>
@@ -2360,9 +2380,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static string ProjectDirectory {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				getProjectDirectory(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 		}
 
@@ -2371,9 +2393,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static string DefaultLanguage {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				getDefaultLanguage(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 		}
 
@@ -2382,9 +2406,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static string ProjectName {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				getProjectName(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 
 			set {
@@ -2552,9 +2578,6 @@ namespace UnrealEngine.Framework {
 	/// Functionality for management of engine systems
 	/// </summary>
 	public static partial class Engine {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		/// <summary>
 		/// Returns <c>true</c> if the game is running in split screen mode
 		/// </summary>
@@ -2617,9 +2640,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static string Version {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				getVersion(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 		}
 
@@ -2681,9 +2706,6 @@ namespace UnrealEngine.Framework {
 	/// Functionality for access to the head mounted display
 	/// </summary>
 	public static partial class HeadMountedDisplay {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		/// <summary>
 		/// Returns <c>true</c> if the head mounted display is connected and ready to use
 		/// </summary>
@@ -2710,9 +2732,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static string DeviceName {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				getDeviceName(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 		}
 	}
@@ -2942,9 +2966,6 @@ namespace UnrealEngine.Framework {
 	/// Interface for console variables
 	/// </summary>
 	public partial class ConsoleVariable : ConsoleObject {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		private protected ConsoleVariable() { }
 
 		internal ConsoleVariable(string name) => Name = name;
@@ -2968,9 +2989,11 @@ namespace UnrealEngine.Framework {
 		/// Returns the value as a string, works on all types
 		/// </summary>
 		public string GetString() {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 			getString(Pointer, stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 		}
 
 		/// <summary>
@@ -3018,9 +3041,6 @@ namespace UnrealEngine.Framework {
 	/// The base class of an object that can be placed or spawned in a level
 	/// </summary>
 	public partial class Actor : IObject, IEquatable<Actor> {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -3085,9 +3105,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public string Name {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				Object.getName(Pointer, stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 		}
 
@@ -3208,8 +3230,10 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 			if (Object.getText(Pointer, name, stringBuffer)) {
-				value = Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				value = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 
 				return true;
 			}
@@ -4573,9 +4597,6 @@ namespace UnrealEngine.Framework {
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
 	public partial class ActorComponent : IObject, IEquatable<ActorComponent> {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -4610,9 +4631,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public string Name {
 			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 				Object.getName(Pointer, stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 			}
 		}
 
@@ -4733,8 +4756,10 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 			if (Object.getText(Pointer, name, stringBuffer)) {
-				value = Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+				value = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 
 				return true;
 			}
@@ -5016,9 +5041,6 @@ namespace UnrealEngine.Framework {
 	/// The base class of components that can be transformed or attached, but has no rendering or collision capabilities
 	/// </summary>
 	public partial class SceneComponent : ActorComponent {
-		[ThreadStatic]
-		private static byte[] stringBuffer = new byte[8192];
-
 		internal override ComponentType Type => ComponentType.Scene;
 
 		private protected SceneComponent() { }
@@ -5140,9 +5162,11 @@ namespace UnrealEngine.Framework {
 		/// Returns the name of a socket the component is attached to
 		/// </summary>
 		public string GetAttachedSocketName() {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
 			getAttachedSocketName(Pointer, stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimEnd((char)0);
+			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 		}
 
 		/// <summary>
