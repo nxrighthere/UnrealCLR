@@ -25,15 +25,14 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal static int checksum = 405;
+		internal const int checksum = 405;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
 				try {
 					int position = 0;
 					IntPtr* buffer = (IntPtr*)functions;
-					int checksum = 0;
-
+					
 					unchecked {
 						int head = 0;
 						IntPtr* assertFunctions = (IntPtr*)buffer[position++];
@@ -664,8 +663,6 @@ namespace UnrealEngine.Framework {
 						MaterialInstanceDynamic.setScalarParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetScalarParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
 					}
 
-			checksum += position;
-
 					loaded = true;
 				}
 
@@ -731,6 +728,9 @@ namespace UnrealEngine.Framework {
 	internal enum ActorType : int {
 		Base,
 		Camera,
+		TriggerBox,
+		TriggerSphere,
+		TriggerCapsule,
 		Pawn,
 		Character,
 		AIController,
@@ -1080,6 +1080,22 @@ namespace UnrealEngine.Framework {
 		internal static AddTagFunction addTag;
 		internal static RemoveTagFunction removeTag;
 		internal static HasTagFunction hasTag;
+	}
+
+	partial class TriggerBase {
+
+	}
+
+	partial class TriggerBox {
+
+	}
+
+	partial class TriggerCapsule {
+
+	}
+
+	partial class TriggerSphere {
+
 	}
 
 	partial class Pawn {

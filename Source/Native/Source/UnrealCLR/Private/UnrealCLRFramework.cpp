@@ -45,6 +45,15 @@ namespace UnrealCLRFramework {
 			case ActorType::Camera:\
 				Result = Head ACameraActor Tail;\
 				break;\
+			case ActorType::TriggerBox:\
+				Result = Head ATriggerBox Tail;\
+				break;\
+			case ActorType::TriggerSphere:\
+				Result = Head ATriggerSphere Tail;\
+				break;\
+			case ActorType::TriggerCapsule:\
+				Result = Head ATriggerCapsule Tail;\
+				break;\
 			case ActorType::Pawn:\
 				Result = Head APawn Tail;\
 				break;\

@@ -15,6 +15,7 @@ Derived
 &#8627; [Controller](./UnrealEngine-Framework-Controller.md 'UnrealEngine.Framework.Controller')  
 &#8627; [Light](./UnrealEngine-Framework-Light.md 'UnrealEngine.Framework.Light')  
 &#8627; [Pawn](./UnrealEngine-Framework-Pawn.md 'UnrealEngine.Framework.Pawn')  
+&#8627; [TriggerBase](./UnrealEngine-Framework-TriggerBase.md 'UnrealEngine.Framework.TriggerBase')  
 
 Implements [IObject](./UnrealEngine-Framework-IObject.md 'UnrealEngine.Framework.IObject'), [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Actor](./UnrealEngine-Framework-Actor.md 'UnrealEngine.Framework.Actor')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Constructors

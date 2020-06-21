@@ -3581,6 +3581,91 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// The base class of actors that used to generate collision events
+	/// </summary>
+	public abstract partial class TriggerBase : Actor {
+		private protected TriggerBase() { }
+	}
+
+	/// <summary>
+	/// A box shaped trigger used to generate overlap events
+	/// </summary>
+	public partial class TriggerBox : TriggerBase {
+		internal override ActorType Type => ActorType.TriggerBox;
+
+		private protected TriggerBox() { }
+
+		internal TriggerBox(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public TriggerBox(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+	}
+
+	/// <summary>
+	/// A sphere shaped trigger used to generate overlap events
+	/// </summary>
+	public partial class TriggerSphere : TriggerBase {
+		internal override ActorType Type => ActorType.TriggerSphere;
+
+		private protected TriggerSphere() { }
+
+		internal TriggerSphere(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public TriggerSphere(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+	}
+
+	/// <summary>
+	/// A capsule shaped trigger used to generate overlap events
+	/// </summary>
+	public partial class TriggerCapsule : TriggerBase {
+		internal override ActorType Type => ActorType.TriggerCapsule;
+
+		private protected TriggerCapsule() { }
+
+		internal TriggerCapsule(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public TriggerCapsule(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+	}
+
+	/// <summary>
 	/// The base class of actors that can be possessed by players or AI
 	/// </summary>
 	public partial class Pawn : Actor {

@@ -173,6 +173,9 @@ namespace UnrealCLRFramework {
 	enum struct ActorType : int32 {
 		Base,
 		Camera,
+		TriggerBox,
+		TriggerSphere,
+		TriggerCapsule,
 		Pawn,
 		Character,
 		AIController,
@@ -379,6 +382,22 @@ namespace UnrealCLRFramework {
 		static void AddTag(AActor* Actor, const char* Tag);
 		static void RemoveTag(AActor* Actor, const char* Tag);
 		static bool HasTag(AActor* Actor, const char* Tag);
+	}
+
+	namespace TriggerBase {
+
+	}
+
+	namespace TriggerBox {
+
+	}
+
+	namespace TriggerCapsule {
+
+	}
+
+	namespace TriggerSphere {
+
 	}
 
 	namespace Pawn {
