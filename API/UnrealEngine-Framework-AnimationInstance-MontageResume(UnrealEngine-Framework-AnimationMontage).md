@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AnimationInstance](./UnrealEngine-Framework-AnimationInstance.md 'UnrealEngine.Framework.AnimationInstance')
 ## AnimationInstance.MontageResume(UnrealEngine.Framework.AnimationMontage) Method
-Resumes a paused animation montage  
+Resumes the paused animation montage  
 ```csharp
 public void MontageResume(UnrealEngine.Framework.AnimationMontage montage);
 ```

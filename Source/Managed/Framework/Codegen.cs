@@ -331,9 +331,15 @@ namespace UnrealEngine.Framework {
 						IntPtr* animationInstanceFunctions = (IntPtr*)buffer[position++];
 
 						AnimationInstance.getCurrentActiveMontage = GenerateOptimizedFunction<AnimationInstance.GetCurrentActiveMontageFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageIsPlaying = GenerateOptimizedFunction<AnimationInstance.MontageIsPlayingFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageGetPosition = GenerateOptimizedFunction<AnimationInstance.MontageGetPositionFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageGetBlendTime = GenerateOptimizedFunction<AnimationInstance.MontageGetBlendTimeFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageGetCurrentSection = GenerateOptimizedFunction<AnimationInstance.MontageGetCurrentSectionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montagePlay = GenerateOptimizedFunction<AnimationInstance.MontagePlayFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montagePause = GenerateOptimizedFunction<AnimationInstance.MontagePauseFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageResume = GenerateOptimizedFunction<AnimationInstance.MontageResumeFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageJumpToSection = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageJumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
 					}
 
 					unchecked {
@@ -1229,14 +1235,26 @@ namespace UnrealEngine.Framework {
 
 	partial class AnimationInstance {
 		internal delegate IntPtr GetCurrentActiveMontageFunction(IntPtr animationInstance);
+		internal delegate Bool MontageIsPlayingFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate float MontageGetPositionFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate float MontageGetBlendTimeFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate void MontageGetCurrentSectionFunction(IntPtr animationInstance, IntPtr montage, byte[] sectionName);
 		internal delegate float MontagePlayFunction(IntPtr animationInstance, IntPtr montage, float playRate, float timeToStartMontageAt, Bool stopAllMontages);
 		internal delegate void MontagePauseFunction(IntPtr animationInstance, IntPtr montage);
 		internal delegate void MontageResumeFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate void MontageJumpToSectionFunction(IntPtr animationInstance, IntPtr montage, string sectionName);
+		internal delegate void MontageJumpToSectionsEndFunction(IntPtr animationInstance, IntPtr montage, string sectionName);
 
 		internal static GetCurrentActiveMontageFunction getCurrentActiveMontage;
+		internal static MontageIsPlayingFunction montageIsPlaying;
+		internal static MontageGetPositionFunction montageGetPosition;
+		internal static MontageGetBlendTimeFunction montageGetBlendTime;
+		internal static MontageGetCurrentSectionFunction montageGetCurrentSection;
 		internal static MontagePlayFunction montagePlay;
 		internal static MontagePauseFunction montagePause;
 		internal static MontageResumeFunction montageResume;
+		internal static MontageJumpToSectionFunction montageJumpToSection;
+		internal static MontageJumpToSectionsEndFunction montageJumpToSectionsEnd;
 	}
 
 	partial class Player {

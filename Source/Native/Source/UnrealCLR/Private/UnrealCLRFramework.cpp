@@ -1213,6 +1213,24 @@ namespace UnrealCLRFramework {
 			return AnimationInstance->GetCurrentActiveMontage();
 		}
 
+		bool MontageIsPlaying(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+			return AnimationInstance->Montage_IsPlaying(Montage);
+		}
+
+		float MontageGetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+			return AnimationInstance->Montage_GetPosition(Montage);
+		}
+
+		float MontageGetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+			return AnimationInstance->Montage_GetBlendTime(Montage);
+		}
+
+		void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName) {
+			const char* sectionName = TCHAR_TO_ANSI(*AnimationInstance->Montage_GetCurrentSection(Montage).ToString());
+
+			UnrealCLR::Utility::Strcpy(SectionName, sectionName, UnrealCLR::Utility::Strlen(sectionName));
+		}
+
 		float MontagePlay(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages) {
 			return AnimationInstance->Montage_Play(Montage, PlayRate, EMontagePlayReturnType::MontageLength, TimeToStartMontageAt, StopAllMontages);
 		}
@@ -1223,6 +1241,14 @@ namespace UnrealCLRFramework {
 
 		void MontageResume(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			AnimationInstance->Montage_Resume(Montage);
+		}
+
+		void MontageJumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
+			AnimationInstance->Montage_JumpToSection(FName(ANSI_TO_TCHAR(SectionName)), Montage);
+		}
+
+		void MontageJumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
+			AnimationInstance->Montage_JumpToSectionsEnd(FName(ANSI_TO_TCHAR(SectionName)), Montage);
 		}
 	}
 

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AnimationInstance](./UnrealEngine-Framework-AnimationInstance.md 'UnrealEngine.Framework.AnimationInstance')
 ## AnimationInstance.MontagePlay(UnrealEngine.Framework.AnimationMontage, float, float, bool) Method
-Plays an animation montage  
+Plays the animation montage  
 ```csharp
 public float MontagePlay(UnrealEngine.Framework.AnimationMontage montage, float playRate=1f, float timeToStartMontageAt=0f, bool stopAllMontages=true);
 ```

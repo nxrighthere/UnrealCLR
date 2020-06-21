@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AnimationInstance](./UnrealEngine-Framework-AnimationInstance.md 'UnrealEngine.Framework.AnimationInstance')
 ## AnimationInstance.MontagePause(UnrealEngine.Framework.AnimationMontage) Method
-Pauses an animation montage  
+Pauses the animation montage  
 ```csharp
 public void MontagePause(UnrealEngine.Framework.AnimationMontage montage);
 ```

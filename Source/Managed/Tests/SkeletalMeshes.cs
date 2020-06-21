@@ -30,7 +30,14 @@ namespace UnrealEngine.Tests {
 			ganfaultSkeletalMeshComponent.SetWorldLocation(new Vector3(-700.0f, 70.0f, -100.0f));
 			ganfaultSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
 			ganfaultSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
-			ganfaultSkeletalMeshComponent.PlayAnimation(AnimationMontage.Load("/Game/Tests/Characters/Ganfault/AnimationMontage"), true);
+
+			AnimationMontage animationMontage = AnimationMontage.Load("/Game/Tests/Characters/Ganfault/AnimationMontage");
+
+			ganfaultSkeletalMeshComponent.PlayAnimation(animationMontage, true);
+
+			AnimationInstance animationInstance = ganfaultSkeletalMeshComponent.GetAnimationInstance();
+
+			Assert.IsTrue(animationInstance.MontageIsPlaying(animationMontage));
 		}
 
 		public static void OnEndPlay() {

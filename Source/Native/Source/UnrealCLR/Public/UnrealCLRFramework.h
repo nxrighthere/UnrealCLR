@@ -492,9 +492,15 @@ namespace UnrealCLRFramework {
 
 	namespace AnimationInstance {
 		static UAnimMontage* GetCurrentActiveMontage(UAnimInstance* AnimationInstance);
+		static bool MontageIsPlaying(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static float MontageGetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static float MontageGetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName);
 		static float MontagePlay(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages);
 		static void MontagePause(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
 		static void MontageResume(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static void MontageJumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName);
+		static void MontageJumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName);
 	}
 
 	namespace Player {

@@ -4212,7 +4212,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// An animation representation
+	/// An animation montage representation
 	/// </summary>
 	public partial class AnimationInstance : IEquatable<AnimationInstance> {
 		private IntPtr pointer;
@@ -4265,7 +4265,51 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Plays an animation montage
+		/// Returns <c>true</c> if the animation montage is active and playing
+		/// </summary>
+		public bool MontageIsPlaying(AnimationMontage montage) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			return montageIsPlaying(Pointer, montage.Pointer);
+		}
+
+		/// <summary>
+		/// Gets the current position of the animation montage
+		/// </summary>
+		public float MontageGetPosition(AnimationMontage montage) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			return montageGetPosition(Pointer, montage.Pointer);
+		}
+
+		/// <summary>
+		/// Gets the current blend time of the animation montage
+		/// </summary>
+		public float MontageGetBlendTime(AnimationMontage montage) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			return montageGetBlendTime(Pointer, montage.Pointer);
+		}
+
+		/// <summary>
+		/// Returns the name of the current animation montage section
+		/// </summary>
+		public string MontageGetCurrentSection(AnimationMontage montage) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			montageGetCurrentSection(Pointer, montage.Pointer, stringBuffer);
+
+			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+		}
+
+		/// <summary>
+		/// Plays the animation montage
 		/// </summary>
 		/// <returns>The length of the animation montage in seconds, or 0.0f if failed to play</returns>
 		public float MontagePlay(AnimationMontage montage, float playRate = 1.0f, float timeToStartMontageAt = 0.0f, bool stopAllMontages = true) {
@@ -4276,7 +4320,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Pauses an animation montage
+		/// Pauses the animation montage
 		/// </summary>
 		public void MontagePause(AnimationMontage montage) {
 			if (montage == null)
@@ -4286,13 +4330,39 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Resumes a paused animation montage
+		/// Resumes the paused animation montage
 		/// </summary>
 		public void MontageResume(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
 			montageResume(Pointer, montage.Pointer);
+		}
+
+		/// <summary>
+		/// Makes the animation montage jump to a named section
+		/// </summary>
+		public void MontageJumpToSection(AnimationMontage montage, string sectionName) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			if (sectionName == null)
+				throw new ArgumentNullException(nameof(sectionName));
+
+			montageJumpToSection(Pointer, montage.Pointer, sectionName);
+		}
+
+		/// <summary>
+		/// Makes the animation montage jump to the end of a named section
+		/// </summary>
+		public void MontageJumpToSectionsEnd(AnimationMontage montage, string sectionName) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			if (sectionName == null)
+				throw new ArgumentNullException(nameof(sectionName));
+
+			montageJumpToSectionsEnd(Pointer, montage.Pointer, sectionName);
 		}
 	}
 

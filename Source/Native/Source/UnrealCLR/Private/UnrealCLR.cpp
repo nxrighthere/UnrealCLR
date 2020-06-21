@@ -428,9 +428,15 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::AnimationInstanceFunctions;
 
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetCurrentActiveMontage;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageIsPlaying;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetPosition;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetBlendTime;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetCurrentSection;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontagePlay;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontagePause;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageResume;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageJumpToSection;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageJumpToSectionsEnd;
 			}
 
 			{
