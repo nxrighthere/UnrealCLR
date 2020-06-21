@@ -24,19 +24,23 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		private static bool loaded;
+		private static bool loaded = false;
+		private static int checksum = 405;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
 				try {
 					int position = 0;
 					IntPtr* buffer = (IntPtr*)functions;
+					int checksum = 0;
 
 					unchecked {
 						int head = 0;
 						IntPtr* assertFunctions = (IntPtr*)buffer[position++];
 
 						Assert.outputMessage = GenerateOptimizedFunction<Assert.OutputMessageFunction>(assertFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -46,6 +50,8 @@ namespace UnrealEngine.Framework {
 						CommandLine.get = GenerateOptimizedFunction<CommandLine.GetFunction>(commandLineFunctions[head++]);
 						CommandLine.set = GenerateOptimizedFunction<CommandLine.SetFunction>(commandLineFunctions[head++]);
 						CommandLine.append = GenerateOptimizedFunction<CommandLine.AppendFunction>(commandLineFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -64,6 +70,8 @@ namespace UnrealEngine.Framework {
 						Debug.drawLine = GenerateOptimizedFunction<Debug.DrawLineFunction>(debugFunctions[head++]);
 						Debug.drawPoint = GenerateOptimizedFunction<Debug.DrawPointFunction>(debugFunctions[head++]);
 						Debug.flushPersistentLines = GenerateOptimizedFunction<Debug.FlushPersistentLinesFunction>(debugFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -97,6 +105,8 @@ namespace UnrealEngine.Framework {
 						Object.setFloat = GenerateOptimizedFunction<Object.SetFloatFunction>(objectFunctions[head++]);
 						Object.setDouble = GenerateOptimizedFunction<Object.SetDoubleFunction>(objectFunctions[head++]);
 						Object.setText = GenerateOptimizedFunction<Object.SetTextFunction>(objectFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -112,6 +122,8 @@ namespace UnrealEngine.Framework {
 						Application.getVolumeMultiplier = GenerateOptimizedFunction<Application.GetVolumeMultiplierFunction>(applicationFunctions[head++]);
 						Application.setProjectName = GenerateOptimizedFunction<Application.SetProjectNameFunction>(applicationFunctions[head++]);
 						Application.setVolumeMultiplier = GenerateOptimizedFunction<Application.SetVolumeMultiplierFunction>(applicationFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -126,6 +138,8 @@ namespace UnrealEngine.Framework {
 						ConsoleManager.registerVariableString = GenerateOptimizedFunction<ConsoleManager.RegisterVariableStringFunction>(consoleManagerFunctions[head++]);
 						ConsoleManager.registerCommand = GenerateOptimizedFunction<ConsoleManager.RegisterCommandFunction>(consoleManagerFunctions[head++]);
 						ConsoleManager.unregisterObject = GenerateOptimizedFunction<ConsoleManager.UnregisterObjectFunction>(consoleManagerFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -150,6 +164,8 @@ namespace UnrealEngine.Framework {
 						Engine.forceGarbageCollection = GenerateOptimizedFunction<Engine.ForceGarbageCollectionFunction>(engineFunctions[head++]);
 						Engine.delayGarbageCollection = GenerateOptimizedFunction<Engine.DelayGarbageCollectionFunction>(engineFunctions[head++]);
 						Engine.requestExit = GenerateOptimizedFunction<Engine.RequestExitFunction>(engineFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -162,6 +178,8 @@ namespace UnrealEngine.Framework {
 						HeadMountedDisplay.getDeviceName = GenerateOptimizedFunction<HeadMountedDisplay.GetDeviceNameFunction>(headMountedDisplayFunctions[head++]);
 						HeadMountedDisplay.setEnable = GenerateOptimizedFunction<HeadMountedDisplay.SetEnableFunction>(headMountedDisplayFunctions[head++]);
 						HeadMountedDisplay.setLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.SetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -180,6 +198,8 @@ namespace UnrealEngine.Framework {
 						World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 						World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
 						World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -188,6 +208,8 @@ namespace UnrealEngine.Framework {
 
 						Blueprint.isValidActorClass = GenerateOptimizedFunction<Blueprint.IsValidActorClassFunction>(blueprintFunctions[head++]);
 						Blueprint.isValidComponentClass = GenerateOptimizedFunction<Blueprint.IsValidComponentClassFunction>(blueprintFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -198,6 +220,8 @@ namespace UnrealEngine.Framework {
 						ConsoleObject.isInt = GenerateOptimizedFunction<ConsoleObject.IsIntFunction>(consoleObjectFunctions[head++]);
 						ConsoleObject.isFloat = GenerateOptimizedFunction<ConsoleObject.IsFloatFunction>(consoleObjectFunctions[head++]);
 						ConsoleObject.isString = GenerateOptimizedFunction<ConsoleObject.IsStringFunction>(consoleObjectFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -214,6 +238,8 @@ namespace UnrealEngine.Framework {
 						ConsoleVariable.setString = GenerateOptimizedFunction<ConsoleVariable.SetStringFunction>(consoleVariableFunctions[head++]);
 						ConsoleVariable.setOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.SetOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
 						ConsoleVariable.clearOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.ClearOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -242,6 +268,8 @@ namespace UnrealEngine.Framework {
 						Actor.addTag = GenerateOptimizedFunction<Actor.AddTagFunction>(actorFunctions[head++]);
 						Actor.removeTag = GenerateOptimizedFunction<Actor.RemoveTagFunction>(actorFunctions[head++]);
 						Actor.hasTag = GenerateOptimizedFunction<Actor.HasTagFunction>(actorFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -253,6 +281,8 @@ namespace UnrealEngine.Framework {
 						Pawn.addControllerRollInput = GenerateOptimizedFunction<Pawn.AddControllerRollInputFunction>(pawnFunctions[head++]);
 						Pawn.addMovementInput = GenerateOptimizedFunction<Pawn.AddMovementInputFunction>(pawnFunctions[head++]);
 						Pawn.getGravityDirection = GenerateOptimizedFunction<Pawn.GetGravityDirectionFunction>(pawnFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -269,6 +299,8 @@ namespace UnrealEngine.Framework {
 						Controller.setIgnoreMoveInput = GenerateOptimizedFunction<Controller.SetIgnoreMoveInputFunction>(controllerFunctions[head++]);
 						Controller.resetIgnoreLookInput = GenerateOptimizedFunction<Controller.ResetIgnoreLookInputFunction>(controllerFunctions[head++]);
 						Controller.resetIgnoreMoveInput = GenerateOptimizedFunction<Controller.ResetIgnoreMoveInputFunction>(controllerFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -282,6 +314,8 @@ namespace UnrealEngine.Framework {
 						AIController.getAllowStrafe = GenerateOptimizedFunction<AIController.GetAllowStrafeFunction>(aIControllerFunctions[head++]);
 						AIController.setAllowStrafe = GenerateOptimizedFunction<AIController.SetAllowStrafeFunction>(aIControllerFunctions[head++]);
 						AIController.setFocus = GenerateOptimizedFunction<AIController.SetFocusFunction>(aIControllerFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -302,6 +336,8 @@ namespace UnrealEngine.Framework {
 						PlayerController.addYawInput = GenerateOptimizedFunction<PlayerController.AddYawInputFunction>(playerControllerFunctions[head++]);
 						PlayerController.addPitchInput = GenerateOptimizedFunction<PlayerController.AddPitchInputFunction>(playerControllerFunctions[head++]);
 						PlayerController.addRollInput = GenerateOptimizedFunction<PlayerController.AddRollInputFunction>(playerControllerFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -309,6 +345,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* volumeFunctions = (IntPtr*)buffer[position++];
 
 						Volume.encompassesPoint = GenerateOptimizedFunction<Volume.EncompassesPointFunction>(volumeFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -316,6 +354,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* soundBaseFunctions = (IntPtr*)buffer[position++];
 
 						SoundBase.getDuration = GenerateOptimizedFunction<SoundBase.GetDurationFunction>(soundBaseFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -324,6 +364,8 @@ namespace UnrealEngine.Framework {
 
 						SoundWave.getLoop = GenerateOptimizedFunction<SoundWave.GetLoopFunction>(soundWaveFunctions[head++]);
 						SoundWave.setLoop = GenerateOptimizedFunction<SoundWave.SetLoopFunction>(soundWaveFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -340,6 +382,8 @@ namespace UnrealEngine.Framework {
 						AnimationInstance.montageResume = GenerateOptimizedFunction<AnimationInstance.MontageResumeFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageJumpToSection = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageJumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -350,6 +394,8 @@ namespace UnrealEngine.Framework {
 						PlayerInput.getTimeKeyPressed = GenerateOptimizedFunction<PlayerInput.GetTimeKeyPressedFunction>(playerInputFunctions[head++]);
 						PlayerInput.getMouseSensitivity = GenerateOptimizedFunction<PlayerInput.GetMouseSensitivityFunction>(playerInputFunctions[head++]);
 						PlayerInput.setMouseSensitivity = GenerateOptimizedFunction<PlayerInput.SetMouseSensitivityFunction>(playerInputFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -357,6 +403,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
 
 						Texture2D.getSize = GenerateOptimizedFunction<Texture2D.GetSizeFunction>(texture2DFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -369,6 +417,8 @@ namespace UnrealEngine.Framework {
 						ActorComponent.addTag = GenerateOptimizedFunction<ActorComponent.AddTagFunction>(actorComponentFunctions[head++]);
 						ActorComponent.removeTag = GenerateOptimizedFunction<ActorComponent.RemoveTagFunction>(actorComponentFunctions[head++]);
 						ActorComponent.hasTag = GenerateOptimizedFunction<ActorComponent.HasTagFunction>(actorComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -385,6 +435,8 @@ namespace UnrealEngine.Framework {
 						InputComponent.setBlockInput = GenerateOptimizedFunction<InputComponent.SetBlockInputFunction>(inputComponentFunctions[head++]);
 						InputComponent.getPriority = GenerateOptimizedFunction<InputComponent.GetPriorityFunction>(inputComponentFunctions[head++]);
 						InputComponent.setPriority = GenerateOptimizedFunction<InputComponent.SetPriorityFunction>(inputComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -424,6 +476,8 @@ namespace UnrealEngine.Framework {
 						SceneComponent.setWorldLocation = GenerateOptimizedFunction<SceneComponent.SetWorldLocationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.setWorldRotation = GenerateOptimizedFunction<SceneComponent.SetWorldRotationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.setWorldTransform = GenerateOptimizedFunction<SceneComponent.SetWorldTransformFunction>(sceneComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -438,6 +492,8 @@ namespace UnrealEngine.Framework {
 						AudioComponent.stop = GenerateOptimizedFunction<AudioComponent.StopFunction>(audioComponentFunctions[head++]);
 						AudioComponent.fadeIn = GenerateOptimizedFunction<AudioComponent.FadeInFunction>(audioComponentFunctions[head++]);
 						AudioComponent.fadeOut = GenerateOptimizedFunction<AudioComponent.FadeOutFunction>(audioComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -459,6 +515,8 @@ namespace UnrealEngine.Framework {
 						CameraComponent.setOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
 						CameraComponent.setOrthoWidth = GenerateOptimizedFunction<CameraComponent.SetOrthoWidthFunction>(cameraComponentFunctions[head++]);
 						CameraComponent.setLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.SetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -507,6 +565,8 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.clearMoveIgnoreComponents = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreComponentsFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -517,6 +577,8 @@ namespace UnrealEngine.Framework {
 						ShapeComponent.getShapeColor = GenerateOptimizedFunction<ShapeComponent.GetShapeColorFunction>(shapeComponentFunctions[head++]);
 						ShapeComponent.setDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.SetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
 						ShapeComponent.setShapeColor = GenerateOptimizedFunction<ShapeComponent.SetShapeColorFunction>(shapeComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -527,6 +589,8 @@ namespace UnrealEngine.Framework {
 						BoxComponent.getUnscaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetUnscaledBoxExtentFunction>(boxComponentFunctions[head++]);
 						BoxComponent.setBoxExtent = GenerateOptimizedFunction<BoxComponent.SetBoxExtentFunction>(boxComponentFunctions[head++]);
 						BoxComponent.initBoxExtent = GenerateOptimizedFunction<BoxComponent.InitBoxExtentFunction>(boxComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -538,6 +602,8 @@ namespace UnrealEngine.Framework {
 						SphereComponent.getShapeScale = GenerateOptimizedFunction<SphereComponent.GetShapeScaleFunction>(sphereComponentFunctions[head++]);
 						SphereComponent.setSphereRadius = GenerateOptimizedFunction<SphereComponent.SetSphereRadiusFunction>(sphereComponentFunctions[head++]);
 						SphereComponent.initSphereRadius = GenerateOptimizedFunction<SphereComponent.InitSphereRadiusFunction>(sphereComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -552,6 +618,8 @@ namespace UnrealEngine.Framework {
 						CapsuleComponent.setCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
 						CapsuleComponent.setCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
 						CapsuleComponent.initCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.InitCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -560,6 +628,8 @@ namespace UnrealEngine.Framework {
 
 						MeshComponent.isValidMaterialSlotName = GenerateOptimizedFunction<MeshComponent.IsValidMaterialSlotNameFunction>(meshComponentFunctions[head++]);
 						MeshComponent.getMaterialIndex = GenerateOptimizedFunction<MeshComponent.GetMaterialIndexFunction>(meshComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -569,6 +639,8 @@ namespace UnrealEngine.Framework {
 						LightComponentBase.getIntensity = GenerateOptimizedFunction<LightComponentBase.GetIntensityFunction>(lightComponentBaseFunctions[head++]);
 						LightComponentBase.getCastShadows = GenerateOptimizedFunction<LightComponentBase.GetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
 						LightComponentBase.setCastShadows = GenerateOptimizedFunction<LightComponentBase.SetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -577,6 +649,8 @@ namespace UnrealEngine.Framework {
 
 						LightComponent.setIntensity = GenerateOptimizedFunction<LightComponent.SetIntensityFunction>(lightComponentFunctions[head++]);
 						LightComponent.setLightColor = GenerateOptimizedFunction<LightComponent.SetLightColorFunction>(lightComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -589,6 +663,8 @@ namespace UnrealEngine.Framework {
 						MotionControllerComponent.setDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.SetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
 						MotionControllerComponent.setTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
 						MotionControllerComponent.setTrackingMotionSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingMotionSourceFunction>(motionControllerComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -598,6 +674,8 @@ namespace UnrealEngine.Framework {
 						StaticMeshComponent.getLocalBounds = GenerateOptimizedFunction<StaticMeshComponent.GetLocalBoundsFunction>(staticMeshComponentFunctions[head++]);
 						StaticMeshComponent.getStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.GetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
 						StaticMeshComponent.setStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.SetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -608,6 +686,8 @@ namespace UnrealEngine.Framework {
 						InstancedStaticMeshComponent.addInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.AddInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
 						InstancedStaticMeshComponent.updateInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.UpdateInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
 						InstancedStaticMeshComponent.clearInstances = GenerateOptimizedFunction<InstancedStaticMeshComponent.ClearInstancesFunction>(instancedStaticMeshComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -615,6 +695,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
 
 						SkinnedMeshComponent.setSkeletalMesh = GenerateOptimizedFunction<SkinnedMeshComponent.SetSkeletalMeshFunction>(skinnedMeshComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -629,6 +711,8 @@ namespace UnrealEngine.Framework {
 						SkeletalMeshComponent.play = GenerateOptimizedFunction<SkeletalMeshComponent.PlayFunction>(skeletalMeshComponentFunctions[head++]);
 						SkeletalMeshComponent.playAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.PlayAnimationFunction>(skeletalMeshComponentFunctions[head++]);
 						SkeletalMeshComponent.stop = GenerateOptimizedFunction<SkeletalMeshComponent.StopFunction>(skeletalMeshComponentFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -636,6 +720,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* materialInterfaceFunctions = (IntPtr*)buffer[position++];
 
 						MaterialInterface.isTwoSided = GenerateOptimizedFunction<MaterialInterface.IsTwoSidedFunction>(materialInterfaceFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -643,6 +729,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* materialFunctions = (IntPtr*)buffer[position++];
 
 						Material.isDefaultMaterial = GenerateOptimizedFunction<Material.IsDefaultMaterialFunction>(materialFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -650,6 +738,8 @@ namespace UnrealEngine.Framework {
 						IntPtr* materialInstanceFunctions = (IntPtr*)buffer[position++];
 
 						MaterialInstance.isChildOf = GenerateOptimizedFunction<MaterialInstance.IsChildOfFunction>(materialInstanceFunctions[head++]);
+
+				checksum += head;
 					}
 
 					unchecked {
@@ -660,7 +750,11 @@ namespace UnrealEngine.Framework {
 						MaterialInstanceDynamic.setTextureParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetTextureParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
 						MaterialInstanceDynamic.setVectorParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetVectorParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
 						MaterialInstanceDynamic.setScalarParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetScalarParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
+
+				checksum += head;
 					}
+
+			checksum += position;
 
 					loaded = true;
 				}

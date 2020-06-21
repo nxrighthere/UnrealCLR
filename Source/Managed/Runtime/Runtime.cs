@@ -29,7 +29,7 @@ namespace UnrealEngine.Runtime {
 		Error
 	}
 
-	internal delegate int InitializeDelegate(IntPtr functions);
+	internal delegate int InitializeDelegate(IntPtr functions, int checksum);
 
 	internal sealed class AssembliesContextManager  {
 		internal AssemblyLoadContext assembliesContext;
@@ -105,15 +105,21 @@ namespace UnrealEngine.Runtime {
 			}
 
 			if (!loaded) {
-				foreach (AssemblyName referencedAssembly in Assembly.GetAssembly(type).GetReferencedAssemblies()) {
+				AssemblyName[] referencedAssemblies = Assembly.GetAssembly(type).GetReferencedAssemblies();
+
+				foreach (AssemblyName referencedAssembly in referencedAssemblies) {
 					if (referencedAssembly.Name == "UnrealEngine.Framework") {
 						Assembly frameworkAssembly = pluginLoader.LoadAssembly(referencedAssembly);
 
 						using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
 							Type sharedClass = frameworkAssembly.GetType("UnrealEngine.Framework.Shared");
 
-							if ((bool)sharedClass.GetField("loaded", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == false)
-								sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions });
+							if ((bool)sharedClass.GetField("loaded", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == false) {
+								if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum)
+									sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions });
+								else
+									Log(LogLevel.Error, "Unable to load framework from \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"\r\nFramework version is incompatible with the runtime, recompile the project with an updated version");
+							}
 						}
 
 						break;
@@ -172,13 +178,14 @@ namespace UnrealEngine.Runtime {
 		internal static WeakReference assembliesContextWeakReference;
 		internal static Dictionary<int, PluginLoader> pluginLoaders;
 		internal static IntPtr sharedFunctions;
+		internal static int sharedChecksum;
 
 		internal static InvokeDelegate Invoke;
 		internal static ExceptionDelegate Exception;
 		internal static LogDelegate Log;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static unsafe int Initialize(IntPtr functions) {
+		internal static unsafe int Initialize(IntPtr functions, int checksum) {
 			assembliesContextManager = new AssembliesContextManager();
 			assembliesContextManager.CreateAssembliesContext();
 
@@ -206,6 +213,7 @@ namespace UnrealEngine.Runtime {
 			}
 
 			sharedFunctions = buffer[position++];
+			sharedChecksum = checksum;
 
 			return 0xF;
 		}
