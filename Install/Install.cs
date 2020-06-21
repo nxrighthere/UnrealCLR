@@ -98,7 +98,7 @@ public static class Install {
 						Error("Compilation of the tests was finished with an error!");
 				}
 
-				Console.WriteLine("Done!");
+				Console.WriteLine("Done! Please, don't forget to recompile custom code with an updated framework!");
 			} else {
 				Console.WriteLine(Environment.NewLine + "Installation canceled");
 			}
