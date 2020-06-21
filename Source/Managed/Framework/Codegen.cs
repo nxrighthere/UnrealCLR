@@ -481,6 +481,7 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setCenterOfMass = GenerateOptimizedFunction<PrimitiveComponent.SetCenterOfMassFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
@@ -1459,6 +1460,7 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetAngularDampingFunction(IntPtr primitiveComponent);
 		internal delegate float GetLinearDampingFunction(IntPtr primitiveComponent);
 		internal delegate void SetMassFunction(IntPtr primitiveComponent, float mass, string boneName);
+		internal delegate void SetCenterOfMassFunction(IntPtr primitiveComponent, in Vector3 offset, string boneName);
 		internal delegate void SetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, in Vector3 velocity, Bool addToCurrent, string boneName);
 		internal delegate void SetPhysicsAngularVelocityInDegreesFunction(IntPtr primitiveComponent, in Vector3 angularVelocity, Bool addToCurrent, string boneName);
 		internal delegate void SetPhysicsAngularVelocityInRadiansFunction(IntPtr primitiveComponent, in Vector3 angularVelocity, Bool addToCurrent, string boneName);
@@ -1497,6 +1499,7 @@ namespace UnrealEngine.Framework {
 		internal static GetAngularDampingFunction getAngularDamping;
 		internal static GetLinearDampingFunction getLinearDamping;
 		internal static SetMassFunction setMass;
+		internal static SetCenterOfMassFunction setCenterOfMass;
 		internal static SetPhysicsLinearVelocityFunction setPhysicsLinearVelocity;
 		internal static SetPhysicsAngularVelocityInDegreesFunction setPhysicsAngularVelocityInDegrees;
 		internal static SetPhysicsAngularVelocityInRadiansFunction setPhysicsAngularVelocityInRadians;

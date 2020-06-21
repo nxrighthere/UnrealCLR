@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AIController](./UnrealEngine-Framework-AIController.md 'UnrealEngine.Framework.AIController')
 ## AIController.ClearFocus(UnrealEngine.Framework.AIFocusPriority) Method
-Clears focus for given priority, will clear focal point as a result  
+Clears focus for the given priority, will clear focal point as a result  
 ```csharp
 public void ClearFocus(UnrealEngine.Framework.AIFocusPriority priority=UnrealEngine.Framework.AIFocusPriority.High);
 ```

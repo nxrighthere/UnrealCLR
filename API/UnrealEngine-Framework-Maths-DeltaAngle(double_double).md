@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Maths](./UnrealEngine-Framework-Maths.md 'UnrealEngine.Framework.Maths')
 ## Maths.DeltaAngle(double, double) Method
-Calculates the shortest difference between two given angles given in degrees  
+Calculates the shortest difference between the two given angles given in degrees  
 ```csharp
 public static double DeltaAngle(double current, double target);
 ```

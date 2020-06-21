@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./UnrealEngine-Framework-SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.IsSocketExists(string) Method
-Returns `true` if the a socket with given name exists  
+Returns `true` if the a socket with the given name exists  
 ```csharp
 public bool IsSocketExists(string socketName);
 ```

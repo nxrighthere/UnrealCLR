@@ -781,7 +781,7 @@ namespace UnrealEngine.Framework {
 		public static double Fraction(double value) => value - Math.Floor(value);
 
 		/// <summary>
-		/// Calculates the shortest difference between two given angles given in degrees
+		/// Calculates the shortest difference between the two given angles given in degrees
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static double DeltaAngle(double current, double target) {
@@ -917,7 +917,7 @@ namespace UnrealEngine.Framework {
 		public static float Fraction(float value) => value - MathF.Floor(value);
 
 		/// <summary>
-		/// Calculates the shortest difference between two given angles given in degrees
+		/// Calculates the shortest difference between the two given angles given in degrees
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float DeltaAngle(float current, float target) {
@@ -3752,7 +3752,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Clears focus for given priority, will clear focal point as a result
+		/// Clears focus for the given priority, will clear focal point as a result
 		/// </summary>
 		public void ClearFocus(AIFocusPriority priority = AIFocusPriority.High) => clearFocus(Pointer, priority);
 
@@ -3762,7 +3762,7 @@ namespace UnrealEngine.Framework {
 		public void GetFocalPoint(ref Vector3 value) => getFocalPoint(Pointer, ref value);
 
 		/// <summary>
-		/// Sets focal point for given priority as absolute position or offset from base
+		/// Sets focal point for the given priority as absolute position or offset from base
 		/// </summary>
 		public void SetFocalPoint(in Vector3 newFocus, AIFocusPriority priority) => setFocalPoint(Pointer, newFocus, priority);
 
@@ -3779,7 +3779,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets focus actor for given priority, will set focal point as a result
+		/// Sets focus actor for the given priority, will set focal point as a result
 		/// </summary>
 		public void SetFocus(Actor newFocus, AIFocusPriority priority = AIFocusPriority.High) {
 			if (newFocus == null)
@@ -5119,7 +5119,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Returns <c>true</c> if the a socket with given name exists
+		/// Returns <c>true</c> if the a socket with the given name exists
 		/// </summary>
 		public bool IsSocketExists(string socketName) {
 			if (socketName == null)
@@ -5645,6 +5645,11 @@ namespace UnrealEngine.Framework {
 		public void SetMass(float mass, string boneName = null) => setMass(Pointer, mass, boneName);
 
 		/// <summary>
+		/// Sets the center of mass of a single body
+		/// </summary>
+		public void SetCenterOfMass(in Vector3 offset, string boneName = null) => setCenterOfMass(Pointer, offset, boneName);
+
+		/// <summary>
 		/// Sets the linear velocity of a single body
 		/// </summary>
 		public void SetPhysicsLinearVelocity(in Vector3 velocity, bool addToCurrent = false, string boneName = null) => setPhysicsLinearVelocity(Pointer, velocity, addToCurrent, boneName);
@@ -5907,7 +5912,7 @@ namespace UnrealEngine.Framework {
 		private protected MeshComponent() { }
 
 		/// <summary>
-		/// Returns <c>true</c> if given slot name is valid
+		/// Returns <c>true</c> if the given slot name is valid
 		/// </summary>
 		public bool IsValidMaterialSlotName(string materialSlotName) {
 			if (materialSlotName == null)
@@ -5917,7 +5922,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Returns a material index given a slot name
+		/// Returns a material index the given a slot name
 		/// </summary>
 		public int GetMaterialIndex(string materialSlotName) {
 			if (materialSlotName == null)

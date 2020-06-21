@@ -1753,6 +1753,12 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->SetMassOverrideInKg(boneName, Mass);
 		}
 
+		void SetCenterOfMass(UPrimitiveComponent* PrimitiveComponent, const Vector3* Offset, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->SetCenterOfMass(*Offset, boneName);
+		}
+
 		void SetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, const Vector3* Velocity, bool AddToCurrent, const char* BoneName) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[MeshComponent](./UnrealEngine-Framework-MeshComponent.md 'UnrealEngine.Framework.MeshComponent')
 ## MeshComponent.GetMaterialIndex(string) Method
-Returns a material index given a slot name  
+Returns a material index the given a slot name  
 ```csharp
 public int GetMaterialIndex(string materialSlotName);
 ```

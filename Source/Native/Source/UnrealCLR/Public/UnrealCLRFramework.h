@@ -638,6 +638,7 @@ namespace UnrealCLRFramework {
 		static float GetAngularDamping(UPrimitiveComponent* PrimitiveComponent);
 		static float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent);
 		static void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName);
+		static void SetCenterOfMass(UPrimitiveComponent* PrimitiveComponent, const Vector3* Offset, const char* BoneName);
 		static void SetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, const Vector3* Velocity, bool AddToCurrent, const char* BoneName);
 		static void SetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName);
 		static void SetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName);

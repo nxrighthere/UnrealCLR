@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AIController](./UnrealEngine-Framework-AIController.md 'UnrealEngine.Framework.AIController')
 ## AIController.SetFocalPoint(System.Numerics.Vector3, UnrealEngine.Framework.AIFocusPriority) Method
-Sets focal point for given priority as absolute position or offset from base  
+Sets focal point for the given priority as absolute position or offset from base  
 ```csharp
 public void SetFocalPoint(in System.Numerics.Vector3 newFocus, UnrealEngine.Framework.AIFocusPriority priority);
 ```
