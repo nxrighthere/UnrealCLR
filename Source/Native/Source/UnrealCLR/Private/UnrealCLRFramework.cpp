@@ -1226,6 +1226,10 @@ namespace UnrealCLRFramework {
 			return AnimationInstance->Montage_IsPlaying(Montage);
 		}
 
+		float MontageGetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+			return AnimationInstance->Montage_GetPlayRate(Montage);
+		}
+
 		float MontageGetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			return AnimationInstance->Montage_GetPosition(Montage);
 		}
@@ -1234,10 +1238,22 @@ namespace UnrealCLRFramework {
 			return AnimationInstance->Montage_GetBlendTime(Montage);
 		}
 
+		void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value) {
+			AnimationInstance->Montage_SetPlayRate(Montage, Value);
+		}
+
 		void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName) {
 			const char* sectionName = TCHAR_TO_ANSI(*AnimationInstance->Montage_GetCurrentSection(Montage).ToString());
 
 			UnrealCLR::Utility::Strcpy(SectionName, sectionName, UnrealCLR::Utility::Strlen(sectionName));
+		}
+
+		void MontageSetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position) {
+			AnimationInstance->Montage_SetPosition(Montage, Position);
+		}
+
+		void MontageSetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection) {
+			AnimationInstance->Montage_SetNextSection(FName(ANSI_TO_TCHAR(SectionToChange)), FName(ANSI_TO_TCHAR(NextSection)), Montage);
 		}
 
 		float MontagePlay(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages) {
@@ -1250,6 +1266,10 @@ namespace UnrealCLRFramework {
 
 		void MontageResume(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			AnimationInstance->Montage_Resume(Montage);
+		}
+
+		void MontageStop(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float BlendOutTime) {
+			AnimationInstance->Montage_Stop(BlendOutTime, Montage);
 		}
 
 		void MontageJumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {

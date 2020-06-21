@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 405;
+		internal const int checksum = 410;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -333,12 +333,17 @@ namespace UnrealEngine.Framework {
 
 						AnimationInstance.getCurrentActiveMontage = GenerateOptimizedFunction<AnimationInstance.GetCurrentActiveMontageFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageIsPlaying = GenerateOptimizedFunction<AnimationInstance.MontageIsPlayingFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageGetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageGetPlayRateFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageGetPosition = GenerateOptimizedFunction<AnimationInstance.MontageGetPositionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageGetBlendTime = GenerateOptimizedFunction<AnimationInstance.MontageGetBlendTimeFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageSetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageSetPlayRateFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageGetCurrentSection = GenerateOptimizedFunction<AnimationInstance.MontageGetCurrentSectionFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageSetPosition = GenerateOptimizedFunction<AnimationInstance.MontageSetPositionFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageSetNextSection = GenerateOptimizedFunction<AnimationInstance.MontageSetNextSectionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montagePlay = GenerateOptimizedFunction<AnimationInstance.MontagePlayFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montagePause = GenerateOptimizedFunction<AnimationInstance.MontagePauseFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageResume = GenerateOptimizedFunction<AnimationInstance.MontageResumeFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageStop = GenerateOptimizedFunction<AnimationInstance.MontageStopFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageJumpToSection = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageJumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
 					}
@@ -1257,23 +1262,33 @@ namespace UnrealEngine.Framework {
 	partial class AnimationInstance {
 		internal delegate IntPtr GetCurrentActiveMontageFunction(IntPtr animationInstance);
 		internal delegate Bool MontageIsPlayingFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate float MontageGetPlayRateFunction(IntPtr animationInstance, IntPtr montage);
 		internal delegate float MontageGetPositionFunction(IntPtr animationInstance, IntPtr montage);
 		internal delegate float MontageGetBlendTimeFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate void MontageSetPlayRateFunction(IntPtr animationInstance, IntPtr montage, float value);
 		internal delegate void MontageGetCurrentSectionFunction(IntPtr animationInstance, IntPtr montage, byte[] sectionName);
+		internal delegate void MontageSetPositionFunction(IntPtr animationInstance, IntPtr montage, float position);
+		internal delegate void MontageSetNextSectionFunction(IntPtr animationInstance, IntPtr montage, string sectionToChange, string nextSection);
 		internal delegate float MontagePlayFunction(IntPtr animationInstance, IntPtr montage, float playRate, float timeToStartMontageAt, Bool stopAllMontages);
 		internal delegate void MontagePauseFunction(IntPtr animationInstance, IntPtr montage);
 		internal delegate void MontageResumeFunction(IntPtr animationInstance, IntPtr montage);
+		internal delegate void MontageStopFunction(IntPtr animationInstance, IntPtr montage, float blendOutTime);
 		internal delegate void MontageJumpToSectionFunction(IntPtr animationInstance, IntPtr montage, string sectionName);
 		internal delegate void MontageJumpToSectionsEndFunction(IntPtr animationInstance, IntPtr montage, string sectionName);
 
 		internal static GetCurrentActiveMontageFunction getCurrentActiveMontage;
 		internal static MontageIsPlayingFunction montageIsPlaying;
+		internal static MontageGetPlayRateFunction montageGetPlayRate;
 		internal static MontageGetPositionFunction montageGetPosition;
 		internal static MontageGetBlendTimeFunction montageGetBlendTime;
+		internal static MontageSetPlayRateFunction montageSetPlayRate;
 		internal static MontageGetCurrentSectionFunction montageGetCurrentSection;
+		internal static MontageSetPositionFunction montageSetPosition;
+		internal static MontageSetNextSectionFunction montageSetNextSection;
 		internal static MontagePlayFunction montagePlay;
 		internal static MontagePauseFunction montagePause;
 		internal static MontageResumeFunction montageResume;
+		internal static MontageStopFunction montageStop;
 		internal static MontageJumpToSectionFunction montageJumpToSection;
 		internal static MontageJumpToSectionsEndFunction montageJumpToSectionsEnd;
 	}

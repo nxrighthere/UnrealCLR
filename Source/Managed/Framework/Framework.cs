@@ -4360,6 +4360,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Gets the current play rate of the animation montage
+		/// </summary>
+		public float MontageGetPlayRate(AnimationMontage montage) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			return montageGetPlayRate(Pointer, montage.Pointer);
+		}
+
+		/// <summary>
 		/// Gets the current position of the animation montage
 		/// </summary>
 		public float MontageGetPosition(AnimationMontage montage) {
@@ -4380,6 +4390,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Sets the current play rate of the animation montage
+		/// </summary>
+		public void MontageSetPlayRate(AnimationMontage montage, float value) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			montageSetPlayRate(Pointer, montage.Pointer, value);
+		}
+
+		/// <summary>
 		/// Returns the name of the current animation montage section
 		/// </summary>
 		public string MontageGetCurrentSection(AnimationMontage montage) {
@@ -4391,6 +4411,26 @@ namespace UnrealEngine.Framework {
 			montageGetCurrentSection(Pointer, montage.Pointer, stringBuffer);
 
 			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+		}
+
+		/// <summary>
+		/// Sets the current position of the animation montage
+		/// </summary>
+		public void MontageSetPosition(AnimationMontage montage, float position) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			montageSetPosition(Pointer, montage.Pointer, position);
+		}
+
+		/// <summary>
+		/// Sets the next section after <paramref name="sectionToChange"/>
+		/// </summary>
+		public void MontageSetNextSection(AnimationMontage montage, string sectionToChange, string nextSection) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			montageSetNextSection(Pointer, montage.Pointer, sectionToChange, nextSection);
 		}
 
 		/// <summary>
@@ -4423,6 +4463,11 @@ namespace UnrealEngine.Framework {
 
 			montageResume(Pointer, montage.Pointer);
 		}
+
+		/// <summary>
+		/// Stops the animation montage, if <paramref name="montage"/> is <c>null</c> stops all active montages
+		/// </summary>
+		public void MontageStop(AnimationMontage montage, float blendOutTime) => montageStop(Pointer, montage != null ? montage.Pointer : IntPtr.Zero, blendOutTime);
 
 		/// <summary>
 		/// Makes the animation montage jump to a named section
@@ -5507,7 +5552,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Smoothly starts the audio, can be used instead of <see cref="Play"/>
 		/// </summary>
-		/// <param name="duration">Duration to reach the <paramref name="volumeLevel"/></param>
+		/// <param name="duration">Duration to reach <paramref name="volumeLevel"/></param>
 		/// <param name="volumeLevel">The percentage of calculated volume to fade to</param>
 		/// <param name="startTime">Fading start time</param>
 		/// <param name="fadeCurve">Curve to adjust audio volume</param>
@@ -5516,7 +5561,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Smoothly stops the audio, can be used instead of <see cref="Stop"/>
 		/// </summary>
-		/// <param name="duration">Duration to reach the <paramref name="volumeLevel"/></param>
+		/// <param name="duration">Duration to reach <paramref name="volumeLevel"/></param>
 		/// <param name="volumeLevel">he percentage of calculated volume to fade to</param>
 		/// <param name="fadeCurve">Curve to adjust audio volume</param>
 		public void FadeOut(float duration, float volumeLevel = 0.0f, AudioFadeCurve fadeCurve = AudioFadeCurve.Linear) => fadeOut(Pointer, duration, volumeLevel, fadeCurve);
