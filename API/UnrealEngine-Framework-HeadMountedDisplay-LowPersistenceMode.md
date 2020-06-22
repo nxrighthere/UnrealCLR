@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[HeadMountedDisplay](./UnrealEngine-Framework-HeadMountedDisplay.md 'UnrealEngine.Framework.HeadMountedDisplay')
 ## HeadMountedDisplay.LowPersistenceMode Property
-Gets or sets whether the head mounted display is in low or full persistence mode  
+Gets or sets whether the head-mounted display is in low or full persistence mode  
 ```csharp
 public static bool LowPersistenceMode { get; set; }
 ```

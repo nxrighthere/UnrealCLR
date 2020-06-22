@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
@@ -115,10 +116,13 @@ namespace UnrealEngine.Runtime {
 							Type sharedClass = frameworkAssembly.GetType("UnrealEngine.Framework.Shared");
 
 							if ((bool)sharedClass.GetField("loaded", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == false) {
-								if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum)
+								if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
 									sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions });
-								else
+								} else {
 									Log(LogLevel.Error, "Unable to load framework from \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"\r\nFramework version is incompatible with the runtime, recompile the project with an updated version");
+
+									Debugger.Break();
+								}
 							}
 						}
 

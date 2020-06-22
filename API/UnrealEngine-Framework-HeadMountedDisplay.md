@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## HeadMountedDisplay Class
-Functionality for access to the head mounted display  
+Functionality for access to the head-mounted display  
 ```csharp
 public static class HeadMountedDisplay
 ```

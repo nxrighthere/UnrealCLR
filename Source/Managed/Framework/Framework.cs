@@ -2734,16 +2734,16 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Functionality for access to the head mounted display
+	/// Functionality for access to the head-mounted display
 	/// </summary>
 	public static partial class HeadMountedDisplay {
 		/// <summary>
-		/// Returns <c>true</c> if the head mounted display is connected and ready to use
+		/// Returns <c>true</c> if the head-mounted display is connected and ready to use
 		/// </summary>
 		public static bool IsConnected => isConnected();
 
 		/// <summary>
-		/// Gets or sets whether the head mounted display is enabled
+		/// Gets or sets whether the head-mounted display is enabled
 		/// </summary>
 		public static bool Enabled {
 			get => getEnabled();
@@ -2751,7 +2751,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Gets or sets whether the head mounted display is in low or full persistence mode
+		/// Gets or sets whether the head-mounted display is in low or full persistence mode
 		/// </summary>
 		public static bool LowPersistenceMode {
 			get => getLowPersistenceMode();
