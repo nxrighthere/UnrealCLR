@@ -22,7 +22,7 @@ public static class Install {
 			if (Console.ReadKey(false).Key == ConsoleKey.Y)
 				compileTests = true;
 
-			Console.Write(Environment.NewLine + "Installation will delete all previous files of the plugin, do you want to continue? [y/n] ");
+			Console.Write(Environment.NewLine + "Installation will delete all previous files of the plugin" + (compileTests ? " and content of tests." : String.Empty) + ". Do you want to continue? [y/n] ");
 
 			if (Console.ReadKey(false).Key == ConsoleKey.Y) {
 				string nativeSource = sourcePath + "/Source/Native";
@@ -58,6 +58,11 @@ public static class Install {
 
 				if (compileTests) {
 					string contentPath = sourcePath + "/Content";
+
+					Console.WriteLine("Removing the previous content of the tests...");
+
+					if (Directory.Exists(projectPath + "/Content/Tests"))
+						Directory.Delete(projectPath + "/Content/Tests", true);
 
 					Console.WriteLine("Copying the content of the tests...");
 
