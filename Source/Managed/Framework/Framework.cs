@@ -4390,16 +4390,6 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the current play rate of the animation montage
-		/// </summary>
-		public void MontageSetPlayRate(AnimationMontage montage, float value) {
-			if (montage == null)
-				throw new ArgumentNullException(nameof(montage));
-
-			montageSetPlayRate(Pointer, montage.Pointer, value);
-		}
-
-		/// <summary>
 		/// Returns the name of the current animation montage section
 		/// </summary>
 		public string MontageGetCurrentSection(AnimationMontage montage) {
@@ -4411,6 +4401,16 @@ namespace UnrealEngine.Framework {
 			montageGetCurrentSection(Pointer, montage.Pointer, stringBuffer);
 
 			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+		}
+
+		/// <summary>
+		/// Sets the current play rate of the animation montage
+		/// </summary>
+		public void MontageSetPlayRate(AnimationMontage montage, float value) {
+			if (montage == null)
+				throw new ArgumentNullException(nameof(montage));
+
+			montageSetPlayRate(Pointer, montage.Pointer, value);
 		}
 
 		/// <summary>

@@ -336,8 +336,8 @@ namespace UnrealEngine.Framework {
 						AnimationInstance.montageGetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageGetPlayRateFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageGetPosition = GenerateOptimizedFunction<AnimationInstance.MontageGetPositionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageGetBlendTime = GenerateOptimizedFunction<AnimationInstance.MontageGetBlendTimeFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageSetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageSetPlayRateFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageGetCurrentSection = GenerateOptimizedFunction<AnimationInstance.MontageGetCurrentSectionFunction>(animationInstanceFunctions[head++]);
+						AnimationInstance.montageSetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageSetPlayRateFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageSetPosition = GenerateOptimizedFunction<AnimationInstance.MontageSetPositionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montageSetNextSection = GenerateOptimizedFunction<AnimationInstance.MontageSetNextSectionFunction>(animationInstanceFunctions[head++]);
 						AnimationInstance.montagePlay = GenerateOptimizedFunction<AnimationInstance.MontagePlayFunction>(animationInstanceFunctions[head++]);
@@ -1265,8 +1265,8 @@ namespace UnrealEngine.Framework {
 		internal delegate float MontageGetPlayRateFunction(IntPtr animationInstance, IntPtr montage);
 		internal delegate float MontageGetPositionFunction(IntPtr animationInstance, IntPtr montage);
 		internal delegate float MontageGetBlendTimeFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate void MontageSetPlayRateFunction(IntPtr animationInstance, IntPtr montage, float value);
 		internal delegate void MontageGetCurrentSectionFunction(IntPtr animationInstance, IntPtr montage, byte[] sectionName);
+		internal delegate void MontageSetPlayRateFunction(IntPtr animationInstance, IntPtr montage, float value);
 		internal delegate void MontageSetPositionFunction(IntPtr animationInstance, IntPtr montage, float position);
 		internal delegate void MontageSetNextSectionFunction(IntPtr animationInstance, IntPtr montage, string sectionToChange, string nextSection);
 		internal delegate float MontagePlayFunction(IntPtr animationInstance, IntPtr montage, float playRate, float timeToStartMontageAt, Bool stopAllMontages);
@@ -1281,8 +1281,8 @@ namespace UnrealEngine.Framework {
 		internal static MontageGetPlayRateFunction montageGetPlayRate;
 		internal static MontageGetPositionFunction montageGetPosition;
 		internal static MontageGetBlendTimeFunction montageGetBlendTime;
-		internal static MontageSetPlayRateFunction montageSetPlayRate;
 		internal static MontageGetCurrentSectionFunction montageGetCurrentSection;
+		internal static MontageSetPlayRateFunction montageSetPlayRate;
 		internal static MontageSetPositionFunction montageSetPosition;
 		internal static MontageSetNextSectionFunction montageSetNextSection;
 		internal static MontagePlayFunction montagePlay;

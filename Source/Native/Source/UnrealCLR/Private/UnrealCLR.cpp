@@ -473,8 +473,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetPlayRate;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetPosition;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetBlendTime;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetPlayRate;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetCurrentSection;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetPlayRate;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetPosition;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetNextSection;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontagePlay;

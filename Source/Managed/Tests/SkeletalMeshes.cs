@@ -12,34 +12,35 @@ namespace UnrealEngine.Tests {
 
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
-			Actor kachujin = new Actor("Kachujin");
-			SkeletalMeshComponent kachujinSkeletalMeshComponent = new SkeletalMeshComponent(kachujin);
-			SkeletalMesh kachujinSkeletalMesh = SkeletalMesh.Load("/Game/Tests/Characters/Kachujin/SkeletalMesh");
+			Actor prototypeLeft = new Actor("prototypeLeft");
+			SkeletalMeshComponent prototypeLeftMeshComponent = new SkeletalMeshComponent(prototypeLeft);
+			SkeletalMesh prototypeLeftMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
 
-			kachujinSkeletalMeshComponent.SetSkeletalMesh(kachujinSkeletalMesh);
-			kachujinSkeletalMeshComponent.SetWorldLocation(new Vector3(-700.0f, -70.0f, -100.0f));
-			kachujinSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
-			kachujinSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
-			kachujinSkeletalMeshComponent.PlayAnimation(AnimationSequence.Load("/Game/Tests/Characters/Kachujin/AnimationSequenceSwordSwing"), true);
+			prototypeLeftMeshComponent.SetSkeletalMesh(prototypeLeftMesh);
+			prototypeLeftMeshComponent.SetWorldLocation(new Vector3(-700.0f, -70.0f, -100.0f));
+			prototypeLeftMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
+			prototypeLeftMeshComponent.SetAnimationMode(AnimationMode.Asset);
+			prototypeLeftMeshComponent.PlayAnimation(AnimationSequence.Load("/Game/Tests/Characters/Animations/IdleAnimationSequence"), true);
 
-			Assert.IsTrue(kachujinSkeletalMeshComponent.IsPlaying);
+			Assert.IsTrue(prototypeLeftMeshComponent.IsPlaying);
 
-			Actor ganfault = new Actor("Ganfault");
-			SkeletalMeshComponent ganfaultSkeletalMeshComponent = new SkeletalMeshComponent(ganfault);
-			SkeletalMesh ganfaultSkeletalMesh = SkeletalMesh.Load("/Game/Tests/Characters/Ganfault/SkeletalMesh");
+			Actor prototypeRight = new Actor("prototypeRight");
+			SkeletalMeshComponent prototypeRightSkeletalMeshComponent = new SkeletalMeshComponent(prototypeRight);
+			SkeletalMesh prototypeRightSkeletalMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
 
-			ganfaultSkeletalMeshComponent.SetSkeletalMesh(ganfaultSkeletalMesh);
-			ganfaultSkeletalMeshComponent.SetWorldLocation(new Vector3(-700.0f, 70.0f, -100.0f));
-			ganfaultSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
-			ganfaultSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
+			prototypeRightSkeletalMeshComponent.SetSkeletalMesh(prototypeRightSkeletalMesh);
+			prototypeRightSkeletalMeshComponent.SetWorldLocation(new Vector3(-700.0f, 70.0f, -100.0f));
+			prototypeRightSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
+			prototypeRightSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
+			prototypeRightSkeletalMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("AccentColor", new LinearColor(0.0f, 0.5f, 1.0f));
 
-			AnimationMontage ganfaultAnimationMontage = AnimationMontage.Load("/Game/Tests/Characters/Ganfault/AnimationMontage");
+			AnimationMontage prototypeRightAnimationMontage = AnimationMontage.Load("/Game/Tests/Characters/Animations/RunAnimationMontage");
 
-			ganfaultSkeletalMeshComponent.PlayAnimation(ganfaultAnimationMontage, true);
+			prototypeRightSkeletalMeshComponent.PlayAnimation(prototypeRightAnimationMontage, true);
 
-			AnimationInstance ganfaultAnimationInstance = ganfaultSkeletalMeshComponent.GetAnimationInstance();
+			AnimationInstance prototypeRightAnimationInstance = prototypeRightSkeletalMeshComponent.GetAnimationInstance();
 
-			Assert.IsTrue(ganfaultAnimationInstance.MontageIsPlaying(ganfaultAnimationMontage));
+			Assert.IsTrue(prototypeRightAnimationInstance.MontageIsPlaying(prototypeRightAnimationMontage));
 		}
 
 		public static void OnEndPlay() {

@@ -515,8 +515,8 @@ namespace UnrealCLRFramework {
 		static float MontageGetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
 		static float MontageGetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
 		static float MontageGetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value);
 		static void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName);
+		static void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value);
 		static void MontageSetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position);
 		static void MontageSetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection);
 		static float MontagePlay(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages);

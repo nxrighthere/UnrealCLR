@@ -1238,14 +1238,14 @@ namespace UnrealCLRFramework {
 			return AnimationInstance->Montage_GetBlendTime(Montage);
 		}
 
-		void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value) {
-			AnimationInstance->Montage_SetPlayRate(Montage, Value);
-		}
-
 		void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName) {
 			const char* sectionName = TCHAR_TO_ANSI(*AnimationInstance->Montage_GetCurrentSection(Montage).ToString());
 
 			UnrealCLR::Utility::Strcpy(SectionName, sectionName, UnrealCLR::Utility::Strlen(sectionName));
+		}
+
+		void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value) {
+			AnimationInstance->Montage_SetPlayRate(Montage, Value);
 		}
 
 		void MontageSetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position) {
