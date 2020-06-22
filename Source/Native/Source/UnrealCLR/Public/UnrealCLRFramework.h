@@ -274,6 +274,7 @@ namespace UnrealCLRFramework {
 		static float GetVolumeMultiplier();
 		static void SetProjectName(const char* ProjectName);
 		static void SetVolumeMultiplier(float Value);
+		static void RequestExit(bool Force);
 	}
 
 	namespace ConsoleManager {
@@ -305,7 +306,6 @@ namespace UnrealCLRFramework {
 		static void AddAxisMapping(const char* AxisName, const char* Key, float Scale);
 		static void ForceGarbageCollection(bool FullPurge);
 		static void DelayGarbageCollection();
-		static void RequestExit(bool Force);
 	}
 
 	namespace HeadMountedDisplay {

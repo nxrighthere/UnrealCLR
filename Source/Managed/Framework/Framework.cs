@@ -2456,6 +2456,11 @@ namespace UnrealEngine.Framework {
 			get => getVolumeMultiplier();
 			set => setVolumeMultiplier(value);
 		}
+
+		/// <summary>
+		/// Requests application exit
+		/// </summary>
+		public static void RequestExit(bool force = false) => requestExit(force);
 	}
 
 	/// <summary>
@@ -2726,11 +2731,6 @@ namespace UnrealEngine.Framework {
 		/// Sets the window title
 		/// </summary>
 		public static void SetTitle(string title) => setTitle(title);
-
-		/// <summary>
-		/// Requests application exit
-		/// </summary>
-		public static void RequestExit(bool force = false) => requestExit(force);
 	}
 
 	/// <summary>

@@ -13,3 +13,5 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [ProjectDirectory](./UnrealEngine-Framework-Application-ProjectDirectory.md 'UnrealEngine.Framework.Application.ProjectDirectory')
 - [ProjectName](./UnrealEngine-Framework-Application-ProjectName.md 'UnrealEngine.Framework.Application.ProjectName')
 - [VolumeMultiplier](./UnrealEngine-Framework-Application-VolumeMultiplier.md 'UnrealEngine.Framework.Application.VolumeMultiplier')
+### Methods
+- [RequestExit(bool)](./UnrealEngine-Framework-Application-RequestExit(bool).md 'UnrealEngine.Framework.Application.RequestExit(bool)')

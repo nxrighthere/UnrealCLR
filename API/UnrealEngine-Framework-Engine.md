@@ -22,5 +22,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [ForceGarbageCollection(bool)](./UnrealEngine-Framework-Engine-ForceGarbageCollection(bool).md 'UnrealEngine.Framework.Engine.ForceGarbageCollection(bool)')
 - [GetScreenResolution(System.Numerics.Vector2)](./UnrealEngine-Framework-Engine-GetScreenResolution(System-Numerics-Vector2).md 'UnrealEngine.Framework.Engine.GetScreenResolution(System.Numerics.Vector2)')
 - [GetViewportSize(System.Numerics.Vector2)](./UnrealEngine-Framework-Engine-GetViewportSize(System-Numerics-Vector2).md 'UnrealEngine.Framework.Engine.GetViewportSize(System.Numerics.Vector2)')
-- [RequestExit(bool)](./UnrealEngine-Framework-Engine-RequestExit(bool).md 'UnrealEngine.Framework.Engine.RequestExit(bool)')
 - [SetTitle(string)](./UnrealEngine-Framework-Engine-SetTitle(string).md 'UnrealEngine.Framework.Engine.SetTitle(string)')

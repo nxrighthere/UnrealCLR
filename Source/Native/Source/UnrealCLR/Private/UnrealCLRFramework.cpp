@@ -577,6 +577,10 @@ namespace UnrealCLRFramework {
 		void SetVolumeMultiplier(float Value) {
 			FApp::SetVolumeMultiplier(Value);
 		}
+
+		void RequestExit(bool Force) {
+			FGenericPlatformMisc::RequestExit(Force);
+		}
 	}
 
 	namespace ConsoleManager {
@@ -700,10 +704,6 @@ namespace UnrealCLRFramework {
 
 		void DelayGarbageCollection() {
 			GEngine->DelayGarbageCollection();
-		}
-
-		void RequestExit(bool Force) {
-			FGenericPlatformMisc::RequestExit(Force);
 		}
 	}
 

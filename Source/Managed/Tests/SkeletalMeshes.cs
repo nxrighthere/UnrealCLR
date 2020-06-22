@@ -12,11 +12,12 @@ namespace UnrealEngine.Tests {
 
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
+			SkeletalMesh prototypeMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
+
 			Actor prototypeLeft = new Actor("prototypeLeft");
 			SkeletalMeshComponent prototypeLeftMeshComponent = new SkeletalMeshComponent(prototypeLeft);
-			SkeletalMesh prototypeLeftMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
 
-			prototypeLeftMeshComponent.SetSkeletalMesh(prototypeLeftMesh);
+			prototypeLeftMeshComponent.SetSkeletalMesh(prototypeMesh);
 			prototypeLeftMeshComponent.SetWorldLocation(new Vector3(-700.0f, -70.0f, -100.0f));
 			prototypeLeftMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
 			prototypeLeftMeshComponent.SetAnimationMode(AnimationMode.Asset);
@@ -26,9 +27,8 @@ namespace UnrealEngine.Tests {
 
 			Actor prototypeRight = new Actor("prototypeRight");
 			SkeletalMeshComponent prototypeRightSkeletalMeshComponent = new SkeletalMeshComponent(prototypeRight);
-			SkeletalMesh prototypeRightSkeletalMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
 
-			prototypeRightSkeletalMeshComponent.SetSkeletalMesh(prototypeRightSkeletalMesh);
+			prototypeRightSkeletalMeshComponent.SetSkeletalMesh(prototypeMesh);
 			prototypeRightSkeletalMeshComponent.SetWorldLocation(new Vector3(-700.0f, 70.0f, -100.0f));
 			prototypeRightSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
 			prototypeRightSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);

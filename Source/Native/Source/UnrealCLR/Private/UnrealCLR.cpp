@@ -218,6 +218,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::GetVolumeMultiplier;
 				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::SetProjectName;
 				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::SetVolumeMultiplier;
+				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::RequestExit;
 
 				checksum += head;
 			}
@@ -259,7 +260,6 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::AddAxisMapping;
 				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::ForceGarbageCollection;
 				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::DelayGarbageCollection;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::RequestExit;
 
 				checksum += head;
 			}

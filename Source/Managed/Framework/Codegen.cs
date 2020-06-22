@@ -113,6 +113,7 @@ namespace UnrealEngine.Framework {
 						Application.getVolumeMultiplier = GenerateOptimizedFunction<Application.GetVolumeMultiplierFunction>(applicationFunctions[head++]);
 						Application.setProjectName = GenerateOptimizedFunction<Application.SetProjectNameFunction>(applicationFunctions[head++]);
 						Application.setVolumeMultiplier = GenerateOptimizedFunction<Application.SetVolumeMultiplierFunction>(applicationFunctions[head++]);
+						Application.requestExit = GenerateOptimizedFunction<Application.RequestExitFunction>(applicationFunctions[head++]);
 					}
 
 					unchecked {
@@ -150,7 +151,6 @@ namespace UnrealEngine.Framework {
 						Engine.addAxisMapping = GenerateOptimizedFunction<Engine.AddAxisMappingFunction>(engineFunctions[head++]);
 						Engine.forceGarbageCollection = GenerateOptimizedFunction<Engine.ForceGarbageCollectionFunction>(engineFunctions[head++]);
 						Engine.delayGarbageCollection = GenerateOptimizedFunction<Engine.DelayGarbageCollectionFunction>(engineFunctions[head++]);
-						Engine.requestExit = GenerateOptimizedFunction<Engine.RequestExitFunction>(engineFunctions[head++]);
 					}
 
 					unchecked {
@@ -879,6 +879,7 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetVolumeMultiplierFunction();
 		internal delegate void SetProjectNameFunction(string projectName);
 		internal delegate void SetVolumeMultiplierFunction(float value);
+		internal delegate void RequestExitFunction(Bool force);
 
 		internal static IsCanEverRenderFunction isCanEverRender;
 		internal static IsPackagedForDistributionFunction isPackagedForDistribution;
@@ -889,6 +890,7 @@ namespace UnrealEngine.Framework {
 		internal static GetVolumeMultiplierFunction getVolumeMultiplier;
 		internal static SetProjectNameFunction setProjectName;
 		internal static SetVolumeMultiplierFunction setVolumeMultiplier;
+		internal static RequestExitFunction requestExit;
 	}
 
 	static partial class ConsoleManager {
@@ -929,7 +931,6 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddAxisMappingFunction(string axisName, string key, float scale);
 		internal delegate void ForceGarbageCollectionFunction(Bool fullPurge);
 		internal delegate void DelayGarbageCollectionFunction();
-		internal delegate void RequestExitFunction(Bool force);
 
 		internal static IsSplitScreenFunction isSplitScreen;
 		internal static IsEditorFunction isEditor;
@@ -948,7 +949,6 @@ namespace UnrealEngine.Framework {
 		internal static AddAxisMappingFunction addAxisMapping;
 		internal static ForceGarbageCollectionFunction forceGarbageCollection;
 		internal static DelayGarbageCollectionFunction delayGarbageCollection;
-		internal static RequestExitFunction requestExit;
 	}
 
 	static partial class HeadMountedDisplay {
