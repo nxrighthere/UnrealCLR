@@ -2868,7 +2868,8 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets <a href="https://docs.unrealengine.com/en-US/Engine/LevelStreaming/WorldBrowser/index.html">world origin</a> to the specified location
 		/// </summary>
-		public static void SetWorldOrigin(in Vector3 value) => setWorldOrigin(value);
+		/// <returns><c>true</c> if the world origin was succesfuly shifted, or <c>false</c> if of the levels are pending visibility update</returns>
+		public static bool SetWorldOrigin(in Vector3 value) => setWorldOrigin(value);
 	}
 
 	/// <summary>

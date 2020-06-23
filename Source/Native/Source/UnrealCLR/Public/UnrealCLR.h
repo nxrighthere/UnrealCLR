@@ -84,7 +84,7 @@ namespace UnrealCLR {
 	};
 
 	typedef void (*ExecuteAssemblyFunctionDelegate)(void*);
-	typedef void* (*LoadAssemblyFunctionDelegate)(const char_t* AssemblyPath, const char_t* TypeName, const char_t* MethodName, int8_t Optional);
+	typedef void* (*LoadAssemblyFunctionDelegate)(const char_t* AssemblyPath, const char_t* TypeName, const char_t* MethodName, int32_t Optional);
 	typedef void (*UnloadAssembliesDelegate)();
 
 	static ExecuteAssemblyFunctionDelegate ExecuteAssemblyFunction;

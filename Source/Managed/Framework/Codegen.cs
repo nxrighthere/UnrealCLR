@@ -979,7 +979,7 @@ namespace UnrealEngine.Framework {
 		internal delegate IntPtr GetFirstPlayerControllerFunction();
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
-		internal delegate void SetWorldOriginFunction(in Vector3 value);
+		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
 
 		internal static GetSimulatePhysicsFunction getSimulatePhysics;
 		internal static GetActorCountFunction getActorCount;

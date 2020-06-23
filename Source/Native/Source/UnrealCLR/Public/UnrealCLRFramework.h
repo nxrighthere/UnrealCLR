@@ -329,7 +329,7 @@ namespace UnrealCLRFramework {
 		static APlayerController* GetFirstPlayerController();
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
-		static void SetWorldOrigin(const Vector3* Value);
+		static bool SetWorldOrigin(const Vector3* Value);
 	}
 
 	// Instantiable

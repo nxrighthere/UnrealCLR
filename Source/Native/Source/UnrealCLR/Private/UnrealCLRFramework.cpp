@@ -814,8 +814,8 @@ namespace UnrealCLRFramework {
 			worldSettings->GlobalGravityZ = Value;
 		}
 
-		void SetWorldOrigin(const Vector3* Value) {
-			UnrealCLR::Engine::World->SetNewWorldOrigin(FIntVector(*Value));
+		bool SetWorldOrigin(const Vector3* Value) {
+			return UnrealCLR::Engine::World->SetNewWorldOrigin(FIntVector(*Value));
 		}
 	}
 
