@@ -100,3 +100,10 @@ Acknowledgments
 Thanks to [@natemcmaster](https://github.com/natemcmaster) for a great .NET library that simplifies dynamic loading of assemblies.
 
 Special thanks to [@Doraku](https://github.com/Doraku) for an amazing documentation generator and rapid improvement of it.
+
+Supporters
+--------
+These wonderful people make open-source better:
+<p align="left"> 
+  <img src="https://github.com/Rageware/Supporters/blob/master/unrealclr-supporters.png.png" alt="supporters">
+</p>
