@@ -80,7 +80,7 @@ namespace UnrealEngine.Runtime {
 					pluginLoaders.Add(assemblyHash, pluginLoader);
 				}
 
-				type = pluginLoader.LoadDefaultAssembly().GetType(typeName);
+				type = pluginLoader.LoadAssemblyFromPath(assemblyPath).GetType(typeName);
 				method = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Static);
 			}
 
