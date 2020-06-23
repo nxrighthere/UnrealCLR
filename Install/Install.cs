@@ -108,7 +108,7 @@ public static class Install {
 				Console.WriteLine(Environment.NewLine + "Installation canceled");
 			}
 		} else {
-			Console.WriteLine("Project file not found in \"" + projectPath + "\" folder!");
+			Error("Project file not found in \"" + projectPath + "\" folder!");
 		}
 	}
 
