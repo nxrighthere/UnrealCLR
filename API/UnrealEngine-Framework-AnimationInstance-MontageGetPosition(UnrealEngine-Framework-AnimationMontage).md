@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AnimationInstance](./UnrealEngine-Framework-AnimationInstance.md 'UnrealEngine.Framework.AnimationInstance')
 ## AnimationInstance.MontageGetPosition(UnrealEngine.Framework.AnimationMontage) Method
-Gets the current position of the animation montage  
+Returns the current position of the animation montage  
 ```csharp
 public float MontageGetPosition(UnrealEngine.Framework.AnimationMontage montage);
 ```

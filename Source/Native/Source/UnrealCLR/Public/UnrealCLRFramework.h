@@ -760,8 +760,10 @@ namespace UnrealCLRFramework {
 
 	namespace InstancedStaticMeshComponent {
 		static int32 GetInstanceCount(UInstancedStaticMeshComponent* InstancedStaticMeshComponent);
+		static bool GetInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, Transform* Value, bool WorldSpace);
 		static int32 AddInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform);
 		static bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
+		static bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex);
 		static void ClearInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent);
 	}
 

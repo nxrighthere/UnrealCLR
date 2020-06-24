@@ -10,4 +10,4 @@ public static bool SetWorldOrigin(in System.Numerics.Vector3 value);
   
 #### Returns
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
-`true` if the world origin was succesfuly shifted, or `false` if of the levels are pending visibility update  
+`true` if the world origin was succesfuly shifted, or `false` if one of the levels are pending visibility update  

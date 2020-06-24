@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 410;
+		internal const int checksum = 412;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -611,8 +611,10 @@ namespace UnrealEngine.Framework {
 						IntPtr* instancedStaticMeshComponentFunctions = (IntPtr*)buffer[position++];
 
 						InstancedStaticMeshComponent.getInstanceCount = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceCountFunction>(instancedStaticMeshComponentFunctions[head++]);
+						InstancedStaticMeshComponent.getInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
 						InstancedStaticMeshComponent.addInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.AddInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
 						InstancedStaticMeshComponent.updateInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.UpdateInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
+						InstancedStaticMeshComponent.removeInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.RemoveInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
 						InstancedStaticMeshComponent.clearInstances = GenerateOptimizedFunction<InstancedStaticMeshComponent.ClearInstancesFunction>(instancedStaticMeshComponentFunctions[head++]);
 					}
 
@@ -1699,13 +1701,17 @@ namespace UnrealEngine.Framework {
 
 	partial class InstancedStaticMeshComponent {
 		internal delegate int GetInstanceCountFunction(IntPtr instancedStaticMeshComponent);
+		internal delegate Bool GetInstanceTransformFunction(IntPtr instancedStaticMeshComponent, int instanceIndex, ref Transform value, Bool worldSpace);
 		internal delegate int AddInstanceFunction(IntPtr instancedStaticMeshComponent, in Transform instanceTransform);
 		internal delegate Bool UpdateInstanceTransformFunction(IntPtr instancedStaticMeshComponent, int instanceIndex, in Transform instanceTransform, Bool worldSpace, Bool markRenderStateDirty, Bool teleport);
+		internal delegate Bool RemoveInstanceFunction(IntPtr instancedStaticMeshComponent, int instanceIndex);
 		internal delegate void ClearInstancesFunction(IntPtr instancedStaticMeshComponent);
 
 		internal static GetInstanceCountFunction getInstanceCount;
+		internal static GetInstanceTransformFunction getInstanceTransform;
 		internal static AddInstanceFunction addInstance;
 		internal static UpdateInstanceTransformFunction updateInstanceTransform;
+		internal static RemoveInstanceFunction removeInstance;
 		internal static ClearInstancesFunction clearInstances;
 	}
 

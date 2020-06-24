@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[InstancedStaticMeshComponent](./UnrealEngine-Framework-InstancedStaticMeshComponent.md 'UnrealEngine.Framework.InstancedStaticMeshComponent')
 ## InstancedStaticMeshComponent.InstanceCount Property
-Gets the number of instances in the component  
+Returns the number of instances in the component  
 ```csharp
 public int InstanceCount { get; }
 ```

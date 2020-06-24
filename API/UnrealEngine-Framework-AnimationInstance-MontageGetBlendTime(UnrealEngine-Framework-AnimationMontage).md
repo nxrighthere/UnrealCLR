@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AnimationInstance](./UnrealEngine-Framework-AnimationInstance.md 'UnrealEngine.Framework.AnimationInstance')
 ## AnimationInstance.MontageGetBlendTime(UnrealEngine.Framework.AnimationMontage) Method
-Gets the current blend time of the animation montage  
+Returns the current blend time of the animation montage  
 ```csharp
 public float MontageGetBlendTime(UnrealEngine.Framework.AnimationMontage montage);
 ```

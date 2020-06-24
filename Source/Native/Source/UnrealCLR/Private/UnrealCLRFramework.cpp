@@ -2081,12 +2081,27 @@ namespace UnrealCLRFramework {
 			return InstancedStaticMeshComponent->GetInstanceCount();
 		}
 
+		bool GetInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, Transform* Value, bool WorldSpace) {
+			FTransform transform;
+
+			bool result = InstancedStaticMeshComponent->GetInstanceTransform(InstanceIndex, transform, WorldSpace);
+
+			if (result)
+				*Value = transform;
+
+			return result;
+		}
+
 		int32 AddInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform) {
 			return InstancedStaticMeshComponent->AddInstance(*InstanceTransform);
 		}
 
 		bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
 			return InstancedStaticMeshComponent->UpdateInstanceTransform(InstanceIndex, *InstanceTransform, WorldSpace, MarkRenderStateDirty, Teleport);
+		}
+
+		bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex) {
+			return InstancedStaticMeshComponent->RemoveInstance(InstanceIndex);
 		}
 
 		void ClearInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent) {

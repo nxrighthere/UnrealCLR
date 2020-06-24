@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[InputComponent](./UnrealEngine-Framework-InputComponent.md 'UnrealEngine.Framework.InputComponent')
 ## InputComponent.ActionBindingsNumber Property
-Gets the number of action bindings  
+Returns the number of action bindings  
 ```csharp
 public int ActionBindingsNumber { get; }
 ```

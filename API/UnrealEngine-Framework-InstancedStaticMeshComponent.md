@@ -12,4 +12,6 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Methods
 - [AddInstance(UnrealEngine.Framework.Transform)](./UnrealEngine-Framework-InstancedStaticMeshComponent-AddInstance(UnrealEngine-Framework-Transform).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.AddInstance(UnrealEngine.Framework.Transform)')
 - [ClearInstances()](./UnrealEngine-Framework-InstancedStaticMeshComponent-ClearInstances().md 'UnrealEngine.Framework.InstancedStaticMeshComponent.ClearInstances()')
+- [GetInstanceTransform(int, UnrealEngine.Framework.Transform, bool)](./UnrealEngine-Framework-InstancedStaticMeshComponent-GetInstanceTransform(int_UnrealEngine-Framework-Transform_bool).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.GetInstanceTransform(int, UnrealEngine.Framework.Transform, bool)')
+- [RemoveInstance(int)](./UnrealEngine-Framework-InstancedStaticMeshComponent-RemoveInstance(int).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.RemoveInstance(int)')
 - [UpdateInstanceTransform(int, UnrealEngine.Framework.Transform, bool, bool, bool)](./UnrealEngine-Framework-InstancedStaticMeshComponent-UpdateInstanceTransform(int_UnrealEngine-Framework-Transform_bool_bool_bool).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.UpdateInstanceTransform(int, UnrealEngine.Framework.Transform, bool, bool, bool)')

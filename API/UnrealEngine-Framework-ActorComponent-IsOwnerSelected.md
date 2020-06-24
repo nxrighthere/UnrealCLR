@@ -6,3 +6,5 @@ public bool IsOwnerSelected { get; }
 ```
 #### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
+### Remarks
+Editor functionality  

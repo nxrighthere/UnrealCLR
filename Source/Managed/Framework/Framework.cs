@@ -2868,7 +2868,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets <a href="https://docs.unrealengine.com/en-US/Engine/LevelStreaming/WorldBrowser/index.html">world origin</a> to the specified location
 		/// </summary>
-		/// <returns><c>true</c> if the world origin was succesfuly shifted, or <c>false</c> if of the levels are pending visibility update</returns>
+		/// <returns><c>true</c> if the world origin was succesfuly shifted, or <c>false</c> if one of the levels are pending visibility update</returns>
 		public static bool SetWorldOrigin(in Vector3 value) => setWorldOrigin(value);
 	}
 
@@ -4361,7 +4361,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Gets the current play rate of the animation montage
+		/// Returns the current play rate of the animation montage
 		/// </summary>
 		public float MontageGetPlayRate(AnimationMontage montage) {
 			if (montage == null)
@@ -4371,7 +4371,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Gets the current position of the animation montage
+		/// Returns the current position of the animation montage
 		/// </summary>
 		public float MontageGetPosition(AnimationMontage montage) {
 			if (montage == null)
@@ -4381,7 +4381,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Gets the current blend time of the animation montage
+		/// Returns the current blend time of the animation montage
 		/// </summary>
 		public float MontageGetBlendTime(AnimationMontage montage) {
 			if (montage == null)
@@ -5151,6 +5151,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns <c>true</c> if the component's owner is selected in the editor
 		/// </summary>
+		/// <remarks>Editor functionality</remarks>
 		public bool IsOwnerSelected => isOwnerSelected(Pointer);
 
 		/// <summary>
@@ -5197,7 +5198,7 @@ namespace UnrealEngine.Framework {
 		public bool HasBindings => hasBindings(Pointer);
 
 		/// <summary>
-		/// Gets the number of action bindings
+		/// Returns the number of action bindings
 		/// </summary>
 		public int ActionBindingsNumber => getActionBindingsNumber(Pointer);
 
@@ -5437,17 +5438,17 @@ namespace UnrealEngine.Framework {
 		public void GetTransform(ref Transform value) => SceneComponent.getComponentTransform(Pointer, ref value);
 
 		/// <summary>
-		/// Gets the forward (X) unit direction vector from the component in world space
+		/// Retrieves the forward X unit direction vector from the component in world space
 		/// </summary>
 		public void GetForwardVector(ref Vector3 value) => getForwardVector(Pointer, ref value);
 
 		/// <summary>
-		/// Gets the right (Y) unit direction vector from the component in world space
+		/// Retrieves the right Y unit direction vector from the component in world space
 		/// </summary>
 		public void GetRightVector(ref Vector3 value) => getRightVector(Pointer, ref value);
 
 		/// <summary>
-		/// Gets the up (Z) unit direction vector from the component in world space
+		/// Retrieves the up Z unit direction vector from the component in world space
 		/// </summary>
 		public void GetUpVector(ref Vector3 value) => getUpVector(Pointer, ref value);
 
@@ -6361,9 +6362,14 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Gets the number of instances in the component
+		/// Returns the number of instances in the component
 		/// </summary>
 		public int InstanceCount => getInstanceCount(Pointer);
+
+		/// <summary>
+		/// Retrieves the transform of the specified instance
+		/// </summary>
+		public bool GetInstanceTransform(int instanceIndex, ref Transform value, bool worldSpace = false) => getInstanceTransform(Pointer, instanceIndex, ref value, worldSpace);
 
 		/// <summary>
 		/// Adds an instance to the component using the transform that will be applied at instantiation
@@ -6380,6 +6386,11 @@ namespace UnrealEngine.Framework {
 		/// <param name="teleport">Whether the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity)</param>
 		/// <returns><c>true</c> if successful</returns>
 		public bool UpdateInstanceTransform(int instanceIndex, in Transform instanceTransform, bool worldSpace = false, bool markRenderStateDirty = false, bool teleport = false) => updateInstanceTransform(Pointer, instanceIndex, instanceTransform, worldSpace, markRenderStateDirty, teleport);
+
+		/// <summary>
+		/// Removes the specified instance
+		/// </summary>
+		public bool RemoveInstance(int instanceIndex) => removeInstance(Pointer, instanceIndex);
 
 		/// <summary>
 		/// Clears all instances being rendered by the component
