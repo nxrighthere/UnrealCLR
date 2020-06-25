@@ -12,7 +12,7 @@ namespace UnrealEngine.Tests {
 
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
-			const int maxActors = 1;
+			const int maxActors = 100;
 
 			Actor[] actors = new Actor[maxActors];
 			StaticMeshComponent[] staticMeshComponents = new StaticMeshComponent[maxActors];
@@ -23,7 +23,7 @@ namespace UnrealEngine.Tests {
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);
 				staticMeshComponents[i].SetMaterial(0, Material.Load("/Game/Tests/BasicMaterial"));
 				staticMeshComponents[i].CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Red);
-				staticMeshComponents[i].SetRelativeLocation(new Vector3(1000.0f, 0.0f, 0.0f));
+				staticMeshComponents[i].SetRelativeLocation(new Vector3(10000.0f, 0.0f, 0.0f));
 				staticMeshComponents[i].UpdateToWorld(TeleportType.ResetPhysics);
 				staticMeshComponents[i].SetSimulatePhysics(true);
 				staticMeshComponents[i].SetCollisionChannel(CollisionChannel.PhysicsBody);
@@ -34,12 +34,9 @@ namespace UnrealEngine.Tests {
 			radialForceComponent.IgnoreOwningActor = true;
 			radialForceComponent.ImpulseVelocityChange = true;
 			radialForceComponent.LinearFalloff = true;
-			radialForceComponent.ForceStrength = 10000.0f;
-			radialForceComponent.ImpulseStrength = 10000.0f;
+			radialForceComponent.ForceStrength = 10000000.0f;
 			radialForceComponent.Radius = 1000;
-			radialForceComponent.SetRelativeLocation(new Vector3(1000.0f, 0.0f, -100.0f));
-			radialForceComponent.AttachToComponent(staticMeshComponents[0], AttachmentTransformRule.KeepRelativeTransform);
-			radialForceComponent.FireImpulse();
+			radialForceComponent.SetRelativeLocation(new Vector3(10000.0f, 0.0f, -100.0f));
 
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, "Actors are spawned! Number of actors in the world: " + World.ActorCount);
 		}
