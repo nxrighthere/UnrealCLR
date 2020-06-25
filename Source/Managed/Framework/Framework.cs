@@ -5406,14 +5406,6 @@ namespace UnrealEngine.Framework {
 		public bool HasAnySockets => hasAnySockets(Pointer);
 
 		/// <summary>
-		/// Gets or sets whether the component should be auto-activated
-		/// </summary>
-		public bool AutoActivate {
-			get => getAutoActivate(Pointer);
-			set => setAutoActivate(Pointer, value);
-		}
-
-		/// <summary>
 		/// Attaches the component to another component, optionally at a named socket
 		/// </summary>
 		/// <returns><c>true</c> if successful</returns>

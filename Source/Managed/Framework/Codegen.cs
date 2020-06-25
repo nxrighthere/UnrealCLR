@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 432;
+		internal const int checksum = 430;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -414,7 +414,6 @@ namespace UnrealEngine.Framework {
 						SceneComponent.addWorldOffset = GenerateOptimizedFunction<SceneComponent.AddWorldOffsetFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.addWorldRotation = GenerateOptimizedFunction<SceneComponent.AddWorldRotationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.addWorldTransform = GenerateOptimizedFunction<SceneComponent.AddWorldTransformFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getAutoActivate = GenerateOptimizedFunction<SceneComponent.GetAutoActivateFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getAttachedSocketName = GenerateOptimizedFunction<SceneComponent.GetAttachedSocketNameFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getSocketLocation = GenerateOptimizedFunction<SceneComponent.GetSocketLocationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getSocketRotation = GenerateOptimizedFunction<SceneComponent.GetSocketRotationFunction>(sceneComponentFunctions[head++]);
@@ -426,7 +425,6 @@ namespace UnrealEngine.Framework {
 						SceneComponent.getForwardVector = GenerateOptimizedFunction<SceneComponent.GetForwardVectorFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getRightVector = GenerateOptimizedFunction<SceneComponent.GetRightVectorFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.getUpVector = GenerateOptimizedFunction<SceneComponent.GetUpVectorFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setAutoActivate = GenerateOptimizedFunction<SceneComponent.SetAutoActivateFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.setMobility = GenerateOptimizedFunction<SceneComponent.SetMobilityFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.setRelativeLocation = GenerateOptimizedFunction<SceneComponent.SetRelativeLocationFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.setRelativeRotation = GenerateOptimizedFunction<SceneComponent.SetRelativeRotationFunction>(sceneComponentFunctions[head++]);
@@ -1417,7 +1415,6 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddWorldOffsetFunction(IntPtr sceneComponent, in Vector3 deltaLocation);
 		internal delegate void AddWorldRotationFunction(IntPtr sceneComponent, in Quaternion deltaRotation);
 		internal delegate void AddWorldTransformFunction(IntPtr sceneComponent, in Transform deltaTransform);
-		internal delegate Bool GetAutoActivateFunction(IntPtr sceneComponent);
 		internal delegate void GetAttachedSocketNameFunction(IntPtr sceneComponent, byte[] socketName);
 		internal delegate void GetSocketLocationFunction(IntPtr sceneComponent, string socketName, ref Vector3 value);
 		internal delegate void GetSocketRotationFunction(IntPtr sceneComponent, string socketName, ref Quaternion value);
@@ -1429,7 +1426,6 @@ namespace UnrealEngine.Framework {
 		internal delegate void GetForwardVectorFunction(IntPtr sceneComponent, ref Vector3 value);
 		internal delegate void GetRightVectorFunction(IntPtr sceneComponent, ref Vector3 value);
 		internal delegate void GetUpVectorFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void SetAutoActivateFunction(IntPtr sceneComponent, Bool value);
 		internal delegate void SetMobilityFunction(IntPtr sceneComponent, ComponentMobility mobility);
 		internal delegate void SetRelativeLocationFunction(IntPtr sceneComponent, in Vector3 location);
 		internal delegate void SetRelativeRotationFunction(IntPtr sceneComponent, in Quaternion rotation);
@@ -1455,7 +1451,6 @@ namespace UnrealEngine.Framework {
 		internal static AddWorldOffsetFunction addWorldOffset;
 		internal static AddWorldRotationFunction addWorldRotation;
 		internal static AddWorldTransformFunction addWorldTransform;
-		internal static GetAutoActivateFunction getAutoActivate;
 		internal static GetAttachedSocketNameFunction getAttachedSocketName;
 		internal static GetSocketLocationFunction getSocketLocation;
 		internal static GetSocketRotationFunction getSocketRotation;
@@ -1467,7 +1462,6 @@ namespace UnrealEngine.Framework {
 		internal static GetForwardVectorFunction getForwardVector;
 		internal static GetRightVectorFunction getRightVector;
 		internal static GetUpVectorFunction getUpVector;
-		internal static SetAutoActivateFunction setAutoActivate;
 		internal static SetMobilityFunction setMobility;
 		internal static SetRelativeLocationFunction setRelativeLocation;
 		internal static SetRelativeRotationFunction setRelativeRotation;

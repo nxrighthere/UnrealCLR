@@ -14,7 +14,6 @@ Derived
 ### Constructors
 - [SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./UnrealEngine-Framework-SceneComponent-SceneComponent(UnrealEngine-Framework-Actor_string_bool_UnrealEngine-Framework-Blueprint).md 'UnrealEngine.Framework.SceneComponent.SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
-- [AutoActivate](./UnrealEngine-Framework-SceneComponent-AutoActivate.md 'UnrealEngine.Framework.SceneComponent.AutoActivate')
 - [HasAnySockets](./UnrealEngine-Framework-SceneComponent-HasAnySockets.md 'UnrealEngine.Framework.SceneComponent.HasAnySockets')
 ### Methods
 - [Activate()](./UnrealEngine-Framework-SceneComponent-Activate().md 'UnrealEngine.Framework.SceneComponent.Activate()')

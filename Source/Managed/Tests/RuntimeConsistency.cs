@@ -66,7 +66,7 @@ namespace UnrealEngine.Tests {
 
 		private static void ActorBlueprintClassesMatchingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
-		
+
 			try {
 				Blueprint blueprintActor = Blueprint.Load("/Game/Tests/BlueprintCameraActor");
 

@@ -1528,10 +1528,6 @@ namespace UnrealCLRFramework {
 			SceneComponent->AddWorldTransform(*DeltaTransform);
 		}
 
-		bool GetAutoActivate(USceneComponent* SceneComponent) {
-			return SceneComponent->bAutoActivate;
-		}
-
 		void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName) {
 			const char* socketName = TCHAR_TO_ANSI(*SceneComponent->GetAttachSocketName().ToString());
 
@@ -1576,10 +1572,6 @@ namespace UnrealCLRFramework {
 
 		void GetUpVector(USceneComponent* SceneComponent, Vector3* Value) {
 			*Value = SceneComponent->GetUpVector();
-		}
-
-		void SetAutoActivate(USceneComponent* SceneComponent, bool Value) {
-			SceneComponent->SetAutoActivate(Value);
 		}
 
 		void SetMobility(USceneComponent* SceneComponent, ComponentMobility Mobility) {
