@@ -133,6 +133,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::SkeletalMesh:\
 				Result = Head USkeletalMeshComponent Tail;\
 				break;\
+			case ComponentType::RadialForce:\
+				Result = Head URadialForceComponent Tail;\
+				break;\
 			default:\
 				break;\
 		}\
@@ -176,6 +179,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::SkeletalMesh:\
 				Result = Head USkeletalMeshComponent Tail;\
 				break;\
+			case ComponentType::RadialForce:\
+				Result = Head URadialForceComponent Tail;\
+				break;\
 			default:\
 				break;\
 		}\
@@ -214,6 +220,7 @@ namespace UnrealCLRFramework {
 
 	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
 	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the BlendType enumeration");
+	static_assert(CollisionChannel::ECC_MAX != CollisionChannel(34), "Invalid elements count of the CollisionChannel enumeration");
 	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the ControllerHand enumeration");
 	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the InputEvent enumeration");
 	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the NetMode enumeration");
@@ -1880,6 +1887,10 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->SetCollisionEnabled(Mode);
 		}
 
+		void SetCollisionChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel) {
+			PrimitiveComponent->SetCollisionObjectType(Channel);
+		}
+
 		void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value) {
 			PrimitiveComponent->IgnoreActorWhenMoving(Actor, Value);
 		}
@@ -2150,6 +2161,64 @@ namespace UnrealCLRFramework {
 
 		void Stop(USkeletalMeshComponent* SkeletalMeshComponent) {
 			SkeletalMeshComponent->Stop();
+		}
+	}
+
+	namespace RadialForceComponent {
+		bool GetIgnoreOwningActor(URadialForceComponent* RadialForceComponent) {
+			return RadialForceComponent->bIgnoreOwningActor;
+		}
+
+		bool GetImpulseVelocityChange(URadialForceComponent* RadialForceComponent) {
+			return RadialForceComponent->bImpulseVelChange;
+		}
+
+		bool GetLinearFalloff(URadialForceComponent* RadialForceComponent) {
+			return RadialForceComponent->Falloff == ERadialImpulseFalloff::RIF_Linear;
+		}
+
+		float GetForceStrength(URadialForceComponent* RadialForceComponent) {
+			return RadialForceComponent->ForceStrength;
+		}
+
+		float GetImpulseStrength(URadialForceComponent* RadialForceComponent) {
+			return RadialForceComponent->ImpulseStrength;
+		}
+
+		float GetRadius(URadialForceComponent* RadialForceComponent) {
+			return RadialForceComponent->Radius;
+		}
+
+		void SetIgnoreOwningActor(URadialForceComponent* RadialForceComponent, bool Value) {
+			RadialForceComponent->bIgnoreOwningActor = Value;
+		}
+
+		void SetImpulseVelocityChange(URadialForceComponent* RadialForceComponent, bool Value) {
+			RadialForceComponent->bImpulseVelChange = Value;
+		}
+
+		void SetLinearFalloff(URadialForceComponent* RadialForceComponent, bool Value) {
+			RadialForceComponent->Falloff = Value ? ERadialImpulseFalloff::RIF_Linear : ERadialImpulseFalloff::RIF_Constant;
+		}
+
+		void SetForceStrength(URadialForceComponent* RadialForceComponent, float Value) {
+			RadialForceComponent->ForceStrength = Value;
+		}
+
+		void SetImpulseStrength(URadialForceComponent* RadialForceComponent, float Value) {
+			RadialForceComponent->ImpulseStrength = Value;
+		}
+
+		void SetRadius(URadialForceComponent* RadialForceComponent, float Value) {
+			RadialForceComponent->Radius = Value;
+		}
+
+		void AddCollisionChannelToAffect(URadialForceComponent* RadialForceComponent, CollisionChannel Channel) {
+			RadialForceComponent->AddCollisionChannelToAffect(Channel);
+		}
+
+		void FireImpulse(URadialForceComponent* RadialForceComponent) {
+			RadialForceComponent->FireImpulse();
 		}
 	}
 

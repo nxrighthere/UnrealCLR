@@ -23,8 +23,10 @@ namespace UnrealCLRFramework {
 	using CollisionMode = ECollisionEnabled::Type;
 	using ComponentMobility = EComponentMobility::Type;
 	using WindowMode = EWindowMode::Type;
+
 	using AudioFadeCurve = EAudioFaderCurve;
 	using BlendType = EViewTargetBlendFunction;
+	using CollisionChannel = ECollisionChannel;
 	using ControllerHand = EControllerHand;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
@@ -204,7 +206,8 @@ namespace UnrealCLRFramework {
 		Box,
 		Sphere,
 		Capsule,
-		SkeletalMesh
+		SkeletalMesh,
+		RadialForce
 	};
 
 	// Non-instantiable
@@ -683,6 +686,7 @@ namespace UnrealCLRFramework {
 		static void SetLinearDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
 		static void SetEnableGravity(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetCollisionMode(UPrimitiveComponent* PrimitiveComponent, CollisionMode Mode);
+		static void SetCollisionChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel);
 		static void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value);
 		static void SetIgnoreComponentWhenMoving(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Component, bool Value);
 		static void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent);
@@ -780,6 +784,23 @@ namespace UnrealCLRFramework {
 		static void Play(USkeletalMeshComponent* SkeletalMeshComponent, bool Loop);
 		static void PlayAnimation(USkeletalMeshComponent* SkeletalMeshComponent, UAnimationAsset* Asset, bool Loop);
 		static void Stop(USkeletalMeshComponent* SkeletalMeshComponent);
+	}
+
+	namespace RadialForceComponent {
+		static bool GetIgnoreOwningActor(URadialForceComponent* RadialForceComponent);
+		static bool GetImpulseVelocityChange(URadialForceComponent* RadialForceComponent);
+		static bool GetLinearFalloff(URadialForceComponent* RadialForceComponent);
+		static float GetForceStrength(URadialForceComponent* RadialForceComponent);
+		static float GetImpulseStrength(URadialForceComponent* RadialForceComponent);
+		static float GetRadius(URadialForceComponent* RadialForceComponent);
+		static void SetIgnoreOwningActor(URadialForceComponent* RadialForceComponent, bool Value);
+		static void SetImpulseVelocityChange(URadialForceComponent* RadialForceComponent, bool Value);
+		static void SetLinearFalloff(URadialForceComponent* RadialForceComponent, bool Value);
+		static void SetForceStrength(URadialForceComponent* RadialForceComponent, float Value);
+		static void SetImpulseStrength(URadialForceComponent* RadialForceComponent, float Value);
+		static void SetRadius(URadialForceComponent* RadialForceComponent, float Value);
+		static void AddCollisionChannelToAffect(URadialForceComponent* RadialForceComponent, CollisionChannel Channel);
+		static void FireImpulse(URadialForceComponent* RadialForceComponent);
 	}
 
 	namespace MaterialInterface {

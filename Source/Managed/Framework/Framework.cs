@@ -285,6 +285,76 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines collision channels
+	/// </summary>
+	public enum CollisionChannel : int {
+		/// <summary/>
+		WorldStatic,
+		/// <summary/>
+		WorldDynamic,
+		/// <summary/>
+		Pawn,
+		/// <summary/>
+		Visibility,
+		/// <summary/>
+		Camera,
+		/// <summary/>
+		PhysicsBody,
+		/// <summary/>
+		Vehicle,
+		/// <summary/>
+		Destructible,
+		/// <summary/>
+		EngineTraceChannel1,
+		/// <summary/>
+		EngineTraceChannel2,
+		/// <summary/>
+		EngineTraceChannel3,
+		/// <summary/>
+		EngineTraceChannel4,
+		/// <summary/>
+		EngineTraceChannel5,
+		/// <summary/>
+		EngineTraceChannel6,
+		/// <summary/>
+		GameTraceChannel1,
+		/// <summary/>
+		GameTraceChannel2,
+		/// <summary/>
+		GameTraceChannel3,
+		/// <summary/>
+		GameTraceChannel4,
+		/// <summary/>
+		GameTraceChannel5,
+		/// <summary/>
+		GameTraceChannel6,
+		/// <summary/>
+		GameTraceChannel7,
+		/// <summary/>
+		GameTraceChannel8,
+		/// <summary/>
+		GameTraceChannel9,
+		/// <summary/>
+		GameTraceChannel10,
+		/// <summary/>
+		GameTraceChannel11,
+		/// <summary/>
+		GameTraceChannel12,
+		/// <summary/>
+		GameTraceChannel13,
+		/// <summary/>
+		GameTraceChannel14,
+		/// <summary/>
+		GameTraceChannel15,
+		/// <summary/>
+		GameTraceChannel16,
+		/// <summary/>
+		GameTraceChannel17,
+		/// <summary/>
+		GameTraceChannel18
+	}
+
+	/// <summary>
 	/// Defines the controller hands for tracking
 	/// </summary>
 	public enum ControllerHand : byte {
@@ -5892,6 +5962,11 @@ namespace UnrealEngine.Framework {
 		public void SetCollisionMode(CollisionMode mode) => setCollisionMode(Pointer, mode);
 
 		/// <summary>
+		/// Sets the collision channel of the component
+		/// </summary>
+		public void SetCollisionChannel(CollisionChannel channel) => setCollisionChannel(Pointer, channel);
+
+		/// <summary>
 		/// Sets whether to ignore collision of all components of a specified actor during the movement
 		/// </summary>
 		public void SetIgnoreActorWhenMoving(Actor actor, bool value) {
@@ -6506,6 +6581,95 @@ namespace UnrealEngine.Framework {
 		/// Stops the animation
 		/// </summary>
 		public void Stop() => stop(Pointer);
+	}
+
+	/// <summary>
+	/// A component that emits a radial force or impulse that can affect physics objects and destructible objects
+	/// </summary>
+	public partial class RadialForceComponent : SceneComponent {
+		internal override ComponentType Type => ComponentType.RadialForce;
+
+		private protected RadialForceComponent() { }
+
+		internal RadialForceComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates the component attached to an actor and optionally sets it as the root, first component will be set as the root automatically
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		/// <param name="setAsRoot">If <c>true</c>, sets the component as the root</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the component</param>
+		public RadialForceComponent(Actor actor, string name = null, bool setAsRoot = false, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+
+		/// <summary>
+		/// Gets or sets whether to apply the force or impulse to any physics objects that are part of the actor which owns the component
+		/// </summary>
+		public bool IgnoreOwningActor {
+			get => getIgnoreOwningActor(Pointer);
+			set => setIgnoreOwningActor(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the impulse will ignore the mass of objects and will always result in a fixed velocity change
+		/// </summary>
+		public bool ImpulseVelocityChange {
+			get => getImpulseVelocityChange(Pointer);
+			set => setImpulseVelocityChange(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the force or impulse should lose its strength linearly
+		/// </summary>
+		public bool LinearFalloff {
+			get => getLinearFalloff(Pointer);
+			set => setLinearFalloff(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the force strength
+		/// </summary>
+		public float ForceStrength {
+			get => getForceStrength(Pointer);
+			set => setForceStrength(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the impulse strength
+		/// </summary>
+		public float ImpulseStrength {
+			get => getImpulseStrength(Pointer);
+			set => setImpulseStrength(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the radius within the force or impulse will be applied
+		/// </summary>
+		public float Radius {
+			get => getRadius(Pointer);
+			set => setRadius(Pointer, value);
+		}
+
+		/// <summary>
+		/// Adds a collision channel that will be affected by the radial force
+		/// </summary>
+		public void AddCollisionChannelToAffect(CollisionChannel channel) => addCollisionChannelToAffect(Pointer, channel);
+
+		/// <summary>
+		/// Fires a single impulse
+		/// </summary>
+		public void FireImpulse() => fireImpulse(Pointer);
 	}
 
 	/// <summary>

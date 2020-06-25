@@ -52,6 +52,7 @@
 #include "Misc/DefaultValueHelper.h"
 #include "Modules/ModuleManager.h"
 #include "MotionControllerComponent.h"
+#include "PhysicsEngine/RadialForceComponent.h"
 #include "Sound/AmbientSound.h"
 #include "UnrealEngine.h"
 
@@ -167,6 +168,7 @@ namespace UnrealCLR {
 		void* InstancedStaticMeshComponentFunctions[storageSize];
 		void* SkinnedMeshComponentFunctions[storageSize];
 		void* SkeletalMeshComponentFunctions[storageSize];
+		void* RadialForceComponentFunctions[storageSize];
 		void* MaterialInterfaceFunctions[storageSize];
 		void* MaterialFunctions[storageSize];
 		void* MaterialInstanceFunctions[storageSize];

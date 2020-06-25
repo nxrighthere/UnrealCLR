@@ -10,6 +10,7 @@ Derived
 &#8627; [AudioComponent](./UnrealEngine-Framework-AudioComponent.md 'UnrealEngine.Framework.AudioComponent')  
 &#8627; [LightComponentBase](./UnrealEngine-Framework-LightComponentBase.md 'UnrealEngine.Framework.LightComponentBase')  
 &#8627; [PrimitiveComponent](./UnrealEngine-Framework-PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')  
+&#8627; [RadialForceComponent](./UnrealEngine-Framework-RadialForceComponent.md 'UnrealEngine.Framework.RadialForceComponent')  
 ### Constructors
 - [SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./UnrealEngine-Framework-SceneComponent-SceneComponent(UnrealEngine-Framework-Actor_string_bool_UnrealEngine-Framework-Blueprint).md 'UnrealEngine.Framework.SceneComponent.SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties

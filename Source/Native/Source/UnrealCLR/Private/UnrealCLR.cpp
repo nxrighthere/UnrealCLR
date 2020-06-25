@@ -661,6 +661,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetLinearDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetEnableGravity;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionMode;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionChannel;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetIgnoreActorWhenMoving;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetIgnoreComponentWhenMoving;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::ClearMoveIgnoreActors;
@@ -814,6 +815,28 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::Play;
 				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::PlayAnimation;
 				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::Stop;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::RadialForceComponentFunctions;
+
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetIgnoreOwningActor;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetImpulseVelocityChange;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetLinearFalloff;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetForceStrength;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetImpulseStrength;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetRadius;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetIgnoreOwningActor;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetImpulseVelocityChange;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetLinearFalloff;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetForceStrength;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetImpulseStrength;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetRadius;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::AddCollisionChannelToAffect;
+				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::FireImpulse;
 
 				checksum += head;
 			}

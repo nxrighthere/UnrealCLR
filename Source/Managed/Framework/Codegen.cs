@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 412;
+		internal const int checksum = 428;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -508,6 +508,7 @@ namespace UnrealEngine.Framework {
 						PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
+						PrimitiveComponent.setCollisionChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionChannelFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
 						PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
@@ -641,6 +642,26 @@ namespace UnrealEngine.Framework {
 
 					unchecked {
 						int head = 0;
+						IntPtr* radialForceComponentFunctions = (IntPtr*)buffer[position++];
+
+						RadialForceComponent.getIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.GetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.getImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.GetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.getLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.GetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.getForceStrength = GenerateOptimizedFunction<RadialForceComponent.GetForceStrengthFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.getImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.GetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.getRadius = GenerateOptimizedFunction<RadialForceComponent.GetRadiusFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.setIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.SetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.setImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.SetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.setLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.SetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.setForceStrength = GenerateOptimizedFunction<RadialForceComponent.SetForceStrengthFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.setImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.SetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.setRadius = GenerateOptimizedFunction<RadialForceComponent.SetRadiusFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.addCollisionChannelToAffect = GenerateOptimizedFunction<RadialForceComponent.AddCollisionChannelToAffectFunction>(radialForceComponentFunctions[head++]);
+						RadialForceComponent.fireImpulse = GenerateOptimizedFunction<RadialForceComponent.FireImpulseFunction>(radialForceComponentFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
 						IntPtr* materialInterfaceFunctions = (IntPtr*)buffer[position++];
 
 						MaterialInterface.isTwoSided = GenerateOptimizedFunction<MaterialInterface.IsTwoSidedFunction>(materialInterfaceFunctions[head++]);
@@ -766,7 +787,8 @@ namespace UnrealEngine.Framework {
 		Box,
 		Sphere,
 		Capsule,
-		SkeletalMesh
+		SkeletalMesh,
+		RadialForce
 	}
 
 	static partial class Assert {
@@ -1535,6 +1557,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetLinearDampingFunction(IntPtr primitiveComponent, float value);
 		internal delegate void SetEnableGravityFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetCollisionModeFunction(IntPtr primitiveComponent, CollisionMode mode);
+		internal delegate void SetCollisionChannelFunction(IntPtr primitiveComponent, CollisionChannel channel);
 		internal delegate void SetIgnoreActorWhenMovingFunction(IntPtr primitiveComponent, IntPtr actor, Bool value);
 		internal delegate void SetIgnoreComponentWhenMovingFunction(IntPtr primitiveComponent, IntPtr component, Bool value);
 		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
@@ -1578,6 +1601,7 @@ namespace UnrealEngine.Framework {
 		internal static SetLinearDampingFunction setLinearDamping;
 		internal static SetEnableGravityFunction setEnableGravity;
 		internal static SetCollisionModeFunction setCollisionMode;
+		internal static SetCollisionChannelFunction setCollisionChannel;
 		internal static SetIgnoreActorWhenMovingFunction setIgnoreActorWhenMoving;
 		internal static SetIgnoreComponentWhenMovingFunction setIgnoreComponentWhenMoving;
 		internal static ClearMoveIgnoreActorsFunction clearMoveIgnoreActors;
@@ -1739,6 +1763,38 @@ namespace UnrealEngine.Framework {
 		internal static PlayFunction play;
 		internal static PlayAnimationFunction playAnimation;
 		internal static StopFunction stop;
+	}
+
+	partial class RadialForceComponent {
+		internal delegate Bool GetIgnoreOwningActorFunction(IntPtr radialForceComponent);
+		internal delegate Bool GetImpulseVelocityChangeFunction(IntPtr radialForceComponent);
+		internal delegate Bool GetLinearFalloffFunction(IntPtr radialForceComponent);
+		internal delegate float GetForceStrengthFunction(IntPtr radialForceComponent);
+		internal delegate float GetImpulseStrengthFunction(IntPtr radialForceComponent);
+		internal delegate float GetRadiusFunction(IntPtr radialForceComponent);
+		internal delegate void SetIgnoreOwningActorFunction(IntPtr radialForceComponent, Bool value);
+		internal delegate void SetImpulseVelocityChangeFunction(IntPtr radialForceComponent, Bool value);
+		internal delegate void SetLinearFalloffFunction(IntPtr radialForceComponent, Bool value);
+		internal delegate void SetForceStrengthFunction(IntPtr radialForceComponent, float value);
+		internal delegate void SetImpulseStrengthFunction(IntPtr radialForceComponent, float value);
+		internal delegate void SetRadiusFunction(IntPtr radialForceComponent, float value);
+		internal delegate void AddCollisionChannelToAffectFunction(IntPtr radialForceComponent, CollisionChannel channel);
+		internal delegate void FireImpulseFunction(IntPtr radialForceComponent);
+
+		internal static GetIgnoreOwningActorFunction getIgnoreOwningActor;
+		internal static GetImpulseVelocityChangeFunction getImpulseVelocityChange;
+		internal static GetLinearFalloffFunction getLinearFalloff;
+		internal static GetForceStrengthFunction getForceStrength;
+		internal static GetImpulseStrengthFunction getImpulseStrength;
+		internal static GetRadiusFunction getRadius;
+		internal static SetIgnoreOwningActorFunction setIgnoreOwningActor;
+		internal static SetImpulseVelocityChangeFunction setImpulseVelocityChange;
+		internal static SetLinearFalloffFunction setLinearFalloff;
+		internal static SetForceStrengthFunction setForceStrength;
+		internal static SetImpulseStrengthFunction setImpulseStrength;
+		internal static SetRadiusFunction setRadius;
+		internal static AddCollisionChannelToAffectFunction addCollisionChannelToAffect;
+		internal static FireImpulseFunction fireImpulse;
 	}
 
 	partial class MaterialInterface {
