@@ -5406,6 +5406,14 @@ namespace UnrealEngine.Framework {
 		public bool HasAnySockets => hasAnySockets(Pointer);
 
 		/// <summary>
+		/// Gets or sets whether the component should be auto-activated
+		/// </summary>
+		public bool AutoActivate {
+			get => getAutoActivate(Pointer);
+			set => setAutoActivate(Pointer, value);
+		}
+
+		/// <summary>
 		/// Attaches the component to another component, optionally at a named socket
 		/// </summary>
 		/// <returns><c>true</c> if successful</returns>
@@ -5415,6 +5423,16 @@ namespace UnrealEngine.Framework {
 
 			return attachToComponent(Pointer, parent.Pointer, attachmentRule, socketName);
 		}
+
+		/// <summary>
+		/// Activates the component
+		/// </summary>
+		public void Activate() => activate(Pointer);
+
+		/// <summary>
+		/// Deactivates the component
+		/// </summary>
+		public void Deactivate() => deactivate(Pointer);
 
 		/// <summary>
 		/// Recalculates the value of the component to world transform

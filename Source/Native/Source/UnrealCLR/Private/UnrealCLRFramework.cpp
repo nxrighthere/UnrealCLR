@@ -1466,6 +1466,14 @@ namespace UnrealCLRFramework {
 			return SceneComponent->AttachToComponent(Parent, attachmentRules, socketName);
 		}
 
+		void Activate(USceneComponent* SceneComponent) {
+			SceneComponent->Activate();
+		}
+
+		void Deactivate(USceneComponent* SceneComponent) {
+			SceneComponent->Deactivate();
+		}
+
 		void UpdateToWorld(USceneComponent* SceneComponent, TeleportType Type, UpdateTransformFlags Flags) {
 			ETeleportType type = ETeleportType::None;
 
@@ -1520,6 +1528,10 @@ namespace UnrealCLRFramework {
 			SceneComponent->AddWorldTransform(*DeltaTransform);
 		}
 
+		bool GetAutoActivate(USceneComponent* SceneComponent) {
+			return SceneComponent->bAutoActivate;
+		}
+
 		void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName) {
 			const char* socketName = TCHAR_TO_ANSI(*SceneComponent->GetAttachSocketName().ToString());
 
@@ -1564,6 +1576,10 @@ namespace UnrealCLRFramework {
 
 		void GetUpVector(USceneComponent* SceneComponent, Vector3* Value) {
 			*Value = SceneComponent->GetUpVector();
+		}
+
+		void SetAutoActivate(USceneComponent* SceneComponent, bool Value) {
+			SceneComponent->SetAutoActivate(Value);
 		}
 
 		void SetMobility(USceneComponent* SceneComponent, ComponentMobility Mobility) {

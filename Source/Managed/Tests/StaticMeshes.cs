@@ -12,7 +12,7 @@ namespace UnrealEngine.Tests {
 		private static Material material = Material.Load("/Game/Tests/BasicMaterial");
 		private static float rotationSpeed = 2.5f;
 		private static Random random = new Random();
-	
+
 		public static void OnBeginPlay() {
 			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");

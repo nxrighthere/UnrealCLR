@@ -14,8 +14,10 @@ Derived
 ### Constructors
 - [SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./UnrealEngine-Framework-SceneComponent-SceneComponent(UnrealEngine-Framework-Actor_string_bool_UnrealEngine-Framework-Blueprint).md 'UnrealEngine.Framework.SceneComponent.SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
+- [AutoActivate](./UnrealEngine-Framework-SceneComponent-AutoActivate.md 'UnrealEngine.Framework.SceneComponent.AutoActivate')
 - [HasAnySockets](./UnrealEngine-Framework-SceneComponent-HasAnySockets.md 'UnrealEngine.Framework.SceneComponent.HasAnySockets')
 ### Methods
+- [Activate()](./UnrealEngine-Framework-SceneComponent-Activate().md 'UnrealEngine.Framework.SceneComponent.Activate()')
 - [AddLocalOffset(System.Numerics.Vector3)](./UnrealEngine-Framework-SceneComponent-AddLocalOffset(System-Numerics-Vector3).md 'UnrealEngine.Framework.SceneComponent.AddLocalOffset(System.Numerics.Vector3)')
 - [AddLocalRotation(System.Numerics.Quaternion)](./UnrealEngine-Framework-SceneComponent-AddLocalRotation(System-Numerics-Quaternion).md 'UnrealEngine.Framework.SceneComponent.AddLocalRotation(System.Numerics.Quaternion)')
 - [AddLocalTransform(UnrealEngine.Framework.Transform)](./UnrealEngine-Framework-SceneComponent-AddLocalTransform(UnrealEngine-Framework-Transform).md 'UnrealEngine.Framework.SceneComponent.AddLocalTransform(UnrealEngine.Framework.Transform)')
@@ -25,6 +27,7 @@ Derived
 - [AddWorldRotation(System.Numerics.Quaternion)](./UnrealEngine-Framework-SceneComponent-AddWorldRotation(System-Numerics-Quaternion).md 'UnrealEngine.Framework.SceneComponent.AddWorldRotation(System.Numerics.Quaternion)')
 - [AddWorldTransform(UnrealEngine.Framework.Transform)](./UnrealEngine-Framework-SceneComponent-AddWorldTransform(UnrealEngine-Framework-Transform).md 'UnrealEngine.Framework.SceneComponent.AddWorldTransform(UnrealEngine.Framework.Transform)')
 - [AttachToComponent(UnrealEngine.Framework.SceneComponent, UnrealEngine.Framework.AttachmentTransformRule, string)](./UnrealEngine-Framework-SceneComponent-AttachToComponent(UnrealEngine-Framework-SceneComponent_UnrealEngine-Framework-AttachmentTransformRule_string).md 'UnrealEngine.Framework.SceneComponent.AttachToComponent(UnrealEngine.Framework.SceneComponent, UnrealEngine.Framework.AttachmentTransformRule, string)')
+- [Deactivate()](./UnrealEngine-Framework-SceneComponent-Deactivate().md 'UnrealEngine.Framework.SceneComponent.Deactivate()')
 - [GetAttachedSocketName()](./UnrealEngine-Framework-SceneComponent-GetAttachedSocketName().md 'UnrealEngine.Framework.SceneComponent.GetAttachedSocketName()')
 - [GetForwardVector(System.Numerics.Vector3)](./UnrealEngine-Framework-SceneComponent-GetForwardVector(System-Numerics-Vector3).md 'UnrealEngine.Framework.SceneComponent.GetForwardVector(System.Numerics.Vector3)')
 - [GetLocation(System.Numerics.Vector3)](./UnrealEngine-Framework-SceneComponent-GetLocation(System-Numerics-Vector3).md 'UnrealEngine.Framework.SceneComponent.GetLocation(System.Numerics.Vector3)')

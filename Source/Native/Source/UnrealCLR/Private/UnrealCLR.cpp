@@ -550,6 +550,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::HasAnySockets;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Create;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AttachToComponent;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Activate;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Deactivate;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::UpdateToWorld;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddLocalOffset;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddLocalRotation;
@@ -559,6 +561,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldOffset;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldRotation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldTransform;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetAutoActivate;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetAttachedSocketName;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetSocketLocation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetSocketRotation;
@@ -570,6 +573,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetForwardVector;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetRightVector;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetUpVector;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetAutoActivate;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetMobility;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetRelativeLocation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetRelativeRotation;

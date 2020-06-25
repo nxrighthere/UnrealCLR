@@ -590,6 +590,8 @@ namespace UnrealCLRFramework {
 		static bool HasAnySockets(USceneComponent* SceneComponent);
 		static USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint);
 		static bool AttachToComponent(USceneComponent* SceneComponent, USceneComponent* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName);
+		static void Activate(USceneComponent* SceneComponent);
+		static void Deactivate(USceneComponent* SceneComponent);
 		static void UpdateToWorld(USceneComponent* SceneComponent, TeleportType Type, UpdateTransformFlags Flags);
 		static void AddLocalOffset(USceneComponent* SceneComponent, const Vector3* DeltaLocation);
 		static void AddLocalRotation(USceneComponent* SceneComponent, const Quaternion* DeltaRotation);
@@ -599,6 +601,7 @@ namespace UnrealCLRFramework {
 		static void AddWorldOffset(USceneComponent* SceneComponent, const Vector3* DeltaLocation);
 		static void AddWorldRotation(USceneComponent* SceneComponent, const Quaternion* DeltaRotation);
 		static void AddWorldTransform(USceneComponent* SceneComponent, const Transform* DeltaTransform);
+		static bool GetAutoActivate(USceneComponent* SceneComponent);
 		static void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName);
 		static void GetSocketLocation(USceneComponent* SceneComponent, const char* SocketName, Vector3* Value);
 		static void GetSocketRotation(USceneComponent* SceneComponent, const char* SocketName, Quaternion* Value);
@@ -610,6 +613,7 @@ namespace UnrealCLRFramework {
 		static void GetForwardVector(USceneComponent* SceneComponent, Vector3* Value);
 		static void GetRightVector(USceneComponent* SceneComponent, Vector3* Value);
 		static void GetUpVector(USceneComponent* SceneComponent, Vector3* Value);
+		static void SetAutoActivate(USceneComponent* SceneComponent, bool Value);
 		static void SetMobility(USceneComponent* SceneComponent, ComponentMobility Mobility);
 		static void SetRelativeLocation(USceneComponent* SceneComponent, const Vector3* Location);
 		static void SetRelativeRotation(USceneComponent* SceneComponent, const Quaternion* Rotation);
