@@ -20,6 +20,7 @@
 - [CameraComponent](./UnrealEngine-Framework-CameraComponent.md 'UnrealEngine.Framework.CameraComponent')
 - [CapsuleComponent](./UnrealEngine-Framework-CapsuleComponent.md 'UnrealEngine.Framework.CapsuleComponent')
 - [Character](./UnrealEngine-Framework-Character.md 'UnrealEngine.Framework.Character')
+- [ChildActorComponent](./UnrealEngine-Framework-ChildActorComponent.md 'UnrealEngine.Framework.ChildActorComponent')
 - [CommandLine](./UnrealEngine-Framework-CommandLine.md 'UnrealEngine.Framework.CommandLine')
 - [ConsoleManager](./UnrealEngine-Framework-ConsoleManager.md 'UnrealEngine.Framework.ConsoleManager')
 - [ConsoleObject](./UnrealEngine-Framework-ConsoleObject.md 'UnrealEngine.Framework.ConsoleObject')

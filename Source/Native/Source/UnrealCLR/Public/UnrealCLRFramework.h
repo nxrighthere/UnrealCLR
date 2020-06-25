@@ -203,6 +203,7 @@ namespace UnrealCLRFramework {
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
+		ChildActor,
 		Box,
 		Sphere,
 		Capsule,
@@ -648,6 +649,10 @@ namespace UnrealCLRFramework {
 		static void SetOrthoNearClipPlane(UCameraComponent* CameraComponent, float Value);
 		static void SetOrthoWidth(UCameraComponent* CameraComponent, float Value);
 		static void SetLockToHeadMountedDisplay(UCameraComponent* CameraComponent, bool Value);
+	}
+
+	namespace ChildActorComponent {
+		static AActor* SetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type);
 	}
 
 	namespace PrimitiveComponent {

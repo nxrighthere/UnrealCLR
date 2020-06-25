@@ -155,6 +155,7 @@ namespace UnrealCLR {
 		void* SceneComponentFunctions[storageSize];
 		void* AudioComponentFunctions[storageSize];
 		void* CameraComponentFunctions[storageSize];
+		void* ChildActorComponentFunctions[storageSize];
 		void* PrimitiveComponentFunctions[storageSize];
 		void* ShapeComponentFunctions[storageSize];
 		void* BoxComponentFunctions[storageSize];

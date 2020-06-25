@@ -8,6 +8,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 Derived  
 &#8627; [AudioComponent](./UnrealEngine-Framework-AudioComponent.md 'UnrealEngine.Framework.AudioComponent')  
+&#8627; [ChildActorComponent](./UnrealEngine-Framework-ChildActorComponent.md 'UnrealEngine.Framework.ChildActorComponent')  
 &#8627; [LightComponentBase](./UnrealEngine-Framework-LightComponentBase.md 'UnrealEngine.Framework.LightComponentBase')  
 &#8627; [PrimitiveComponent](./UnrealEngine-Framework-PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')  
 &#8627; [RadialForceComponent](./UnrealEngine-Framework-RadialForceComponent.md 'UnrealEngine.Framework.RadialForceComponent')  

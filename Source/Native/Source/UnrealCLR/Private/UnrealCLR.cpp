@@ -624,6 +624,15 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::ChildActorComponentFunctions;
+
+				Shared::ChildActorComponentFunctions[head++] = &UnrealCLRFramework::ChildActorComponent::SetChildActor;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::PrimitiveComponentFunctions;
 
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;

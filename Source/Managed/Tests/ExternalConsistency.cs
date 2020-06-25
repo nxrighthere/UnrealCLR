@@ -12,6 +12,7 @@ namespace UnrealEngine.Tests {
 			NamingTest();
 			HashCodesTest();
 			ActorsHierarchyTest();
+			ChildActorsTest();
 			ComponentsAttachmentTest();
 			ComponentsMatchingTest();
 			MaxFramesPerSecondTest();
@@ -240,6 +241,35 @@ namespace UnrealEngine.Tests {
 
 			if (ambientSound != null || brush != null) {
 				Debug.Log(LogLevel.Error, "Actor invalid references check failed!");
+
+				return;
+			}
+
+			Debug.Log(LogLevel.Display, "Test passed successfully");
+		}
+
+		private static void ChildActorsTest() {
+			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
+
+			Actor actor = new Actor();
+			ChildActorComponent childActorComponent = new ChildActorComponent(actor, setAsRoot: true);
+			TriggerBox childActor = childActorComponent.SetChildActor<TriggerBox>();
+
+			if (childActor == null) {
+				Debug.Log(LogLevel.Error, "Child actor obtainment check failed!");
+
+				return;
+			}
+
+			BoxComponent boxComponent = childActor.GetComponent<BoxComponent>();
+			Vector3 initialExtent = new Vector3(100.0f, 100.0f, 100.0f);
+			Vector3 unscaledExtent = default(Vector3);
+
+			boxComponent.InitBoxExtent(initialExtent);
+			boxComponent.GetUnscaledBoxExtent(ref unscaledExtent);
+
+			if (initialExtent != unscaledExtent) {
+				Debug.Log(LogLevel.Error, "Child actor box extent check failed!");
 
 				return;
 			}

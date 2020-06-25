@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 430;
+		internal const int checksum = 432;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -471,6 +471,13 @@ namespace UnrealEngine.Framework {
 
 					unchecked {
 						int head = 0;
+						IntPtr* childActorComponentFunctions = (IntPtr*)buffer[position++];
+
+						ChildActorComponent.setChildActor = GenerateOptimizedFunction<ChildActorComponent.SetChildActorFunction>(childActorComponentFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
 						IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
 
 						PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
@@ -786,6 +793,7 @@ namespace UnrealEngine.Framework {
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
+		ChildActor,
 		Box,
 		Sphere,
 		Capsule,
@@ -1523,6 +1531,12 @@ namespace UnrealEngine.Framework {
 		internal static SetOrthoNearClipPlaneFunction setOrthoNearClipPlane;
 		internal static SetOrthoWidthFunction setOrthoWidth;
 		internal static SetLockToHeadMountedDisplayFunction setLockToHeadMountedDisplay;
+	}
+
+	partial class ChildActorComponent {
+		internal delegate IntPtr SetChildActorFunction(IntPtr childActorComponent, ActorType type);
+
+		internal static SetChildActorFunction setChildActor;
 	}
 
 	partial class PrimitiveComponent {

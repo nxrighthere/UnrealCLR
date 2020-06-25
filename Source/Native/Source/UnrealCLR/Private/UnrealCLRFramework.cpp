@@ -121,6 +121,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::InstancedStaticMesh:\
 				Result = Head UInstancedStaticMeshComponent Tail;\
 				break;\
+			case ComponentType::ChildActor:\
+				Result = Head UChildActorComponent Tail;\
+				break;\
 			case ComponentType::Box:\
 				Result = Head UBoxComponent Tail;\
 				break;\
@@ -166,6 +169,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::InstancedStaticMesh:\
 				Result = Head UInstancedStaticMeshComponent Tail;\
+				break;\
+			case ComponentType::ChildActor:\
+				Result = Head UChildActorComponent Tail;\
 				break;\
 			case ComponentType::Box:\
 				Result = Head UBoxComponent Tail;\
@@ -1696,6 +1702,18 @@ namespace UnrealCLRFramework {
 
 		void SetLockToHeadMountedDisplay(UCameraComponent* CameraComponent, bool Value) {
 			CameraComponent->bLockToHmd = Value;
+		}
+	}
+
+	namespace ChildActorComponent {
+		AActor* SetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type) {
+			TSubclassOf<AActor> type;
+
+			UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+
+			ChildActorComponent->SetChildActorClass(type);
+
+			return ChildActorComponent->GetChildActor();
 		}
 	}
 
