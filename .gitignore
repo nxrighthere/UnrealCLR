@@ -6,3 +6,6 @@ Source/Managed/Runtime/bin
 Source/Managed/Runtime/obj
 Source/Managed/Tests/bin
 Source/Managed/Tests/obj
+Source/Native/Binaries
+Source/Native/Intermediate
+Source/Native/Managed
