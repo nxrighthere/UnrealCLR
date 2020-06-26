@@ -114,6 +114,20 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines rules for detaching components
+	/// </summary>
+	public enum DetachmentTransformRule : int {
+		/// <summary>
+		/// Keeps current relative transform as the relative transform to the previous parent
+		/// </summary>
+		KeepRelativeTransform,
+		/// <summary>
+		/// Automatically calculates the relative transform such that the detached component maintains the same world transform
+		/// </summary>
+		KeepWorldTransform
+	}
+
+	/// <summary>
 	/// Defines teleportation types of physics body
 	/// </summary>
 	public enum TeleportType : int {
@@ -5415,6 +5429,11 @@ namespace UnrealEngine.Framework {
 
 			return attachToComponent(Pointer, parent.Pointer, attachmentRule, socketName);
 		}
+
+		/// <summary>
+		/// Detaches the component from a parent
+		/// </summary>
+		public void DetachFromComponent(DetachmentTransformRule detachmentRule) => detachFromComponent(Pointer, detachmentRule);
 
 		/// <summary>
 		/// Activates the component

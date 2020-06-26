@@ -37,6 +37,19 @@ namespace UnrealCLRFramework {
 		}\
 	}
 
+	#define UNREALCLR_GET_DETACHMENT_RULE(Rule, Result) {\
+		switch (Rule) {\
+			case DetachmentTransformRule::KeepRelativeTransform:\
+				Result = FDetachmentTransformRules::KeepRelativeTransform;\
+				break;\
+			case DetachmentTransformRule::KeepWorldTransform:\
+				Result = FDetachmentTransformRules::KeepWorldTransform;\
+				break;\
+			default:\
+				break;\
+		}\
+	}
+
 	#define UNREALCLR_GET_ACTOR_TYPE(Type, Head, Tail, Result) {\
 		switch (Type) {\
 			case ActorType::Base:\
@@ -1016,8 +1029,6 @@ namespace UnrealCLRFramework {
 		}
 
 		bool SetRootComponent(AActor* Actor, USceneComponent* RootComponent) {
-			RootComponent->DetachFromComponent(FDetachmentTransformRules::KeepRelativeTransform);
-
 			return Actor->SetRootComponent(RootComponent);
 		}
 
@@ -1470,6 +1481,14 @@ namespace UnrealCLRFramework {
 				socketName = FName(ANSI_TO_TCHAR(SocketName));
 
 			return SceneComponent->AttachToComponent(Parent, attachmentRules, socketName);
+		}
+
+		void DetachFromComponent(USceneComponent* SceneComponent, DetachmentTransformRule DetachmentRule) {
+			FDetachmentTransformRules detachmentRules = FDetachmentTransformRules::KeepRelativeTransform;
+
+			UNREALCLR_GET_DETACHMENT_RULE(DetachmentRule, detachmentRules);
+
+			SceneComponent->DetachFromComponent(detachmentRules);
 		}
 
 		void Activate(USceneComponent* SceneComponent) {

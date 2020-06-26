@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 432;
+		internal const int checksum = 433;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -403,6 +403,7 @@ namespace UnrealEngine.Framework {
 						SceneComponent.hasAnySockets = GenerateOptimizedFunction<SceneComponent.HasAnySocketsFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.create = GenerateOptimizedFunction<SceneComponent.CreateFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.attachToComponent = GenerateOptimizedFunction<SceneComponent.AttachToComponentFunction>(sceneComponentFunctions[head++]);
+						SceneComponent.detachFromComponent = GenerateOptimizedFunction<SceneComponent.DetachFromComponentFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.activate = GenerateOptimizedFunction<SceneComponent.ActivateFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.deactivate = GenerateOptimizedFunction<SceneComponent.DeactivateFunction>(sceneComponentFunctions[head++]);
 						SceneComponent.updateToWorld = GenerateOptimizedFunction<SceneComponent.UpdateToWorldFunction>(sceneComponentFunctions[head++]);
@@ -1412,6 +1413,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool HasAnySocketsFunction(IntPtr sceneComponent);
 		internal delegate IntPtr CreateFunction(IntPtr actor, ComponentType type, string name, Bool setAsRoot, IntPtr blueprint);
 		internal delegate Bool AttachToComponentFunction(IntPtr sceneComponent, IntPtr parent, AttachmentTransformRule attachmentRule, string socketName);
+		internal delegate void DetachFromComponentFunction(IntPtr sceneComponent, DetachmentTransformRule detachmentRule);
 		internal delegate void ActivateFunction(IntPtr sceneComponent);
 		internal delegate void DeactivateFunction(IntPtr sceneComponent);
 		internal delegate void UpdateToWorldFunction(IntPtr sceneComponent, TeleportType type, UpdateTransformFlags flags);
@@ -1448,6 +1450,7 @@ namespace UnrealEngine.Framework {
 		internal static HasAnySocketsFunction hasAnySockets;
 		internal static CreateFunction create;
 		internal static AttachToComponentFunction attachToComponent;
+		internal static DetachFromComponentFunction detachFromComponent;
 		internal static ActivateFunction activate;
 		internal static DeactivateFunction deactivate;
 		internal static UpdateToWorldFunction updateToWorld;

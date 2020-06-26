@@ -550,6 +550,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::HasAnySockets;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Create;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AttachToComponent;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::DetachFromComponent;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Activate;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Deactivate;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::UpdateToWorld;

@@ -45,6 +45,11 @@ namespace UnrealCLRFramework {
 		SnapToTargetNotIncludingScale
 	};
 
+	enum struct DetachmentTransformRule : int32 {
+		KeepRelativeTransform,
+		KeepWorldTransform
+	};
+
 	enum struct TeleportType : int32 {
 		None,
 		TeleportPhysics,
@@ -591,6 +596,7 @@ namespace UnrealCLRFramework {
 		static bool HasAnySockets(USceneComponent* SceneComponent);
 		static USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint);
 		static bool AttachToComponent(USceneComponent* SceneComponent, USceneComponent* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName);
+		static void DetachFromComponent(USceneComponent* SceneComponent, DetachmentTransformRule DetachmentRule);
 		static void Activate(USceneComponent* SceneComponent);
 		static void Deactivate(USceneComponent* SceneComponent);
 		static void UpdateToWorld(USceneComponent* SceneComponent, TeleportType Type, UpdateTransformFlags Flags);
