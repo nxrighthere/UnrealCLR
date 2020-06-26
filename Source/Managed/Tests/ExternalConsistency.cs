@@ -225,10 +225,10 @@ namespace UnrealEngine.Tests {
 		private static void ActorsHierarchyTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			const string name = "TestPawn";
+			const string actorName = "TestPawn";
 
-			PlayerController playerController = new PlayerController(name);
-			Actor actor = World.GetActor<Actor>(name);
+			PlayerController playerController = new PlayerController(actorName);
+			Actor actor = World.GetActor<Actor>(actorName);
 
 			if (playerController == null || actor == null) {
 				Debug.Log(LogLevel.Error, "Actor valid references check failed!");
@@ -236,8 +236,8 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			AmbientSound ambientSound = World.GetActor<AmbientSound>(name);
-			Brush brush = World.GetActor<Brush>(name);
+			AmbientSound ambientSound = World.GetActor<AmbientSound>(actorName);
+			Brush brush = World.GetActor<Brush>(actorName);
 
 			if (ambientSound != null || brush != null) {
 				Debug.Log(LogLevel.Error, "Actor invalid references check failed!");

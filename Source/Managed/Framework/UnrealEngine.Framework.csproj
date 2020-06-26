@@ -26,6 +26,11 @@
     <DefaultDocumentationNestedTypeVisibility>DeclaringType</DefaultDocumentationNestedTypeVisibility>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Copyright>Copyright (c) 2020 Stanislav Denisov (nxrighthere@gmail.com)</Copyright>
+    <PackageLicenseExpression>LGPLv3 with a static linking exception</PackageLicenseExpression>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="DefaultDocumentation" Version="0.6.7" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0" PrivateAssets="all" />

@@ -108,10 +108,12 @@ namespace UnrealEngine.Tests {
 		private static void DuplicateActorMemoryManagementTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
+			const string actorName = "Player";
+
 			try {
 				Pawn pawn = new Pawn();
-				Pawn namedPawn = new Pawn("Player");
-				Pawn duplicateActor = World.GetActor<Pawn>("Player");
+				Pawn namedPawn = new Pawn(actorName);
+				Pawn duplicateActor = World.GetActor<Pawn>(actorName);
 
 				if (!namedPawn.Equals(duplicateActor)) {
 					Debug.Log(LogLevel.Error, "Actor reference equality check failed!");

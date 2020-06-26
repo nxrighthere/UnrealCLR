@@ -21,6 +21,11 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Copyright>Copyright (c) 2020 Stanislav Denisov (nxrighthere@gmail.com)</Copyright>
+    <PackageLicenseExpression>LGPLv3 with a static linking exception</PackageLicenseExpression>
+  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="UnrealEngine.Plugins">
       <HintPath>libs/UnrealEngine.Plugins.dll</HintPath>

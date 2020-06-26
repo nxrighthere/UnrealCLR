@@ -37,110 +37,120 @@ namespace UnrealEngine.Tests {
 		}
 
 		private static void TestActorBoolProperty() {
+			const string propertyName = "Test Bool";
 			bool value = false;
 
-			Assert.IsTrue(actor.SetBool("Test Bool", true));
+			Assert.IsTrue(actor.SetBool(propertyName, true));
 
-			if (actor.GetBool("Test Bool", ref value))
+			if (actor.GetBool(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
 		}
 
 		private static void TestActorByteProperty() {
+			const string propertyName = "Test Byte";
 			byte value = 0;
 
-			Assert.IsTrue(actor.SetByte("Test Byte", 128));
+			Assert.IsTrue(actor.SetByte(propertyName, 128));
 
-			if (actor.GetByte("Test Byte", ref value))
+			if (actor.GetByte(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
 		}
 
 		private static void TestActorIntProperty() {
+			const string propertyName = "Test Int";
 			int value = 0;
 
-			Assert.IsTrue(actor.SetInt("Test Int", 500));
+			Assert.IsTrue(actor.SetInt(propertyName, 500));
 
-			if (actor.GetInt("Test Int", ref value))
+			if (actor.GetInt(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
 		}
 
 		private static void TestActorFloatProperty() {
+			const string propertyName = "Test Float";
 			float value = 0;
 
-			Assert.IsTrue(actor.SetFloat("Test Float", 250.5f));
+			Assert.IsTrue(actor.SetFloat(propertyName, 250.5f));
 
-			if (actor.GetFloat("Test Float", ref value))
+			if (actor.GetFloat(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
 		}
 
 		private static void TestActorTextProperty() {
+			const string propertyName = "Test Text";
 			string value = String.Empty;
 
-			Assert.IsTrue(actor.SetText("Test Text", "Test message from managed code"));
+			Assert.IsTrue(actor.SetText(propertyName, "Test message from managed code"));
 
-			if (actor.GetText("Test Text", ref value))
+			if (actor.GetText(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
 		}
 
 		private static void TestSceneComponentBoolProperty() {
+			const string propertyName = "Test Bool";
 			bool value = false;
 
-			Assert.IsTrue(sceneComponent.SetBool("Test Bool", true));
+			Assert.IsTrue(sceneComponent.SetBool(propertyName, true));
 
-			if (sceneComponent.GetBool("Test Bool", ref value))
+			if (sceneComponent.GetBool(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
 		}
 
 		private static void TestSceneComponentByteProperty() {
+			const string propertyName = "Test Byte";
 			byte value = 0;
 
-			Assert.IsTrue(sceneComponent.SetByte("Test Byte", 128));
+			Assert.IsTrue(sceneComponent.SetByte(propertyName, 128));
 
-			if (sceneComponent.GetByte("Test Byte", ref value))
+			if (sceneComponent.GetByte(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
 		}
 
 		private static void TestSceneComponentIntProperty() {
+			const string propertyName = "Test Int";
 			int value = 0;
 
-			Assert.IsTrue(sceneComponent.SetInt("Test Int", 500));
+			Assert.IsTrue(sceneComponent.SetInt(propertyName, 500));
 
-			if (sceneComponent.GetInt("Test Int", ref value))
+			if (sceneComponent.GetInt(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
 		}
 
 		private static void TestSceneComponentFloatProperty() {
+			const string propertyName = "Test Float";
 			float value = 0;
 
-			Assert.IsTrue(sceneComponent.SetFloat("Test Float", 250.5f));
+			Assert.IsTrue(sceneComponent.SetFloat(propertyName, 250.5f));
 
-			if (sceneComponent.GetFloat("Test Float", ref value))
+			if (sceneComponent.GetFloat(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
 		}
 
 		private static void TestSceneComponentTextProperty() {
+			const string propertyName = "Test Text";
 			string value = String.Empty;
 
-			Assert.IsTrue(sceneComponent.SetText("Test Text", "Test message from managed code"));
+			Assert.IsTrue(sceneComponent.SetText(propertyName, "Test message from managed code"));
 
-			if (sceneComponent.GetText("Test Text", ref value))
+			if (sceneComponent.GetText(propertyName, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
