@@ -32,6 +32,11 @@ namespace UnrealEngine.Runtime {
 
 	internal delegate int InitializeDelegate(IntPtr functions, int checksum);
 
+	internal sealed class Plugin {
+		internal PluginLoader loader;
+		internal Assembly assembly;
+	}
+
 	internal sealed class AssembliesContextManager  {
 		internal AssemblyLoadContext assembliesContext;
 
@@ -64,7 +69,7 @@ namespace UnrealEngine.Runtime {
 		internal static IntPtr LoadAssemblyFunction(IntPtr assemblyPathPointer, IntPtr typeNamePointer, IntPtr methodNamePointer, bool optional) {
 			Type type = null;
 			MethodInfo method = null;
-			PluginLoader pluginLoader = null;
+			Plugin plugin = null;
 			string assemblyPath = Marshal.PtrToStringAuto(assemblyPathPointer);
 			string typeName = Marshal.PtrToStringAuto(typeNamePointer);
 			string methodName = Marshal.PtrToStringAuto(methodNamePointer);
@@ -73,14 +78,16 @@ namespace UnrealEngine.Runtime {
 			try {
 				int assemblyHash = assemblyPath.GetHashCode();
 
-				if (pluginLoaders.TryGetValue(assemblyHash, out pluginLoader)) {
+				if (plugins.TryGetValue(assemblyHash, out plugin)) {
 					loaded = true;
 				} else {
-					pluginLoader = PluginLoader.CreateFromAssemblyFile(assemblyPath, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
-					pluginLoaders.Add(assemblyHash, pluginLoader);
+					plugin = new Plugin();
+					plugin.loader = PluginLoader.CreateFromAssemblyFile(assemblyPath, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
+					plugin.assembly = plugin.loader.LoadAssemblyFromPath(assemblyPath);
+					plugins.Add(assemblyHash, plugin);
 				}
 
-				type = pluginLoader.LoadAssemblyFromPath(assemblyPath).GetType(typeName);
+				type = plugin.assembly.GetType(typeName);
 				method = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Static);
 			}
 
@@ -110,7 +117,7 @@ namespace UnrealEngine.Runtime {
 
 				foreach (AssemblyName referencedAssembly in referencedAssemblies) {
 					if (referencedAssembly.Name == "UnrealEngine.Framework") {
-						Assembly frameworkAssembly = pluginLoader.LoadAssembly(referencedAssembly);
+						Assembly frameworkAssembly = plugin.loader.LoadAssembly(referencedAssembly);
 
 						using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
 							Type sharedClass = frameworkAssembly.GetType("UnrealEngine.Framework.Shared");
@@ -137,11 +144,11 @@ namespace UnrealEngine.Runtime {
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		internal static void UnloadAssemblies() {
 			try {
-				foreach (KeyValuePair<int, PluginLoader> pluginLoader in pluginLoaders) {
-					pluginLoader.Value.Dispose();
+				foreach (KeyValuePair<int, Plugin> plugin in plugins) {
+					plugin.Value.loader.Dispose();
 				}
 
-				pluginLoaders.Clear();
+				plugins.Clear();
 
 				assembliesContextManager.UnloadAssembliesContext();
 				assembliesContextManager = null;
@@ -180,7 +187,7 @@ namespace UnrealEngine.Runtime {
 
 		internal static AssembliesContextManager assembliesContextManager;
 		internal static WeakReference assembliesContextWeakReference;
-		internal static Dictionary<int, PluginLoader> pluginLoaders;
+		internal static Dictionary<int, Plugin> plugins;
 		internal static IntPtr sharedFunctions;
 		internal static int sharedChecksum;
 
@@ -193,7 +200,7 @@ namespace UnrealEngine.Runtime {
 			assembliesContextManager = new AssembliesContextManager();
 			assembliesContextManager.CreateAssembliesContext();
 
-			pluginLoaders = new Dictionary<int, PluginLoader>();
+			plugins = new Dictionary<int, Plugin>();
 
 			int position = 0;
 			IntPtr* buffer = (IntPtr*)functions;

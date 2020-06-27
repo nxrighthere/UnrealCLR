@@ -1122,21 +1122,13 @@ namespace UnrealEngine.Framework {
 		internal static HasTagFunction hasTag;
 	}
 
-	partial class TriggerBase {
+	partial class TriggerBase { }
 
-	}
+	partial class TriggerBox { }
 
-	partial class TriggerBox {
+	partial class TriggerCapsule { }
 
-	}
-
-	partial class TriggerCapsule {
-
-	}
-
-	partial class TriggerSphere {
-
-	}
+	partial class TriggerSphere { }
 
 	partial class Pawn {
 		internal delegate void AddControllerYawInputFunction(IntPtr pawn, float value);
@@ -1152,9 +1144,7 @@ namespace UnrealEngine.Framework {
 		internal static GetGravityDirectionFunction getGravityDirection;
 	}
 
-	partial class Character {
-
-	}
+	partial class Character { }
 
 	partial class Controller {
 		internal delegate Bool IsLookInputIgnoredFunction(IntPtr controller);
@@ -1236,29 +1226,17 @@ namespace UnrealEngine.Framework {
 		internal static EncompassesPointFunction encompassesPoint;
 	}
 
-	partial class AmbientSound {
+	partial class AmbientSound { }
 
-	}
+	partial class Light { }
 
-	partial class Light {
+	partial class DirectionalLight { }
 
-	}
+	partial class PointLight { }
 
-	partial class DirectionalLight {
+	partial class RectLight { }
 
-	}
-
-	partial class PointLight {
-
-	}
-
-	partial class RectLight {
-
-	}
-
-	partial class SpotLight {
-
-	}
+	partial class SpotLight { }
 
 	partial class SoundBase {
 		internal delegate float GetDurationFunction(IntPtr soundBase);
@@ -1274,25 +1252,15 @@ namespace UnrealEngine.Framework {
 		internal static SetLoopFunction setLoop;
 	}
 
-	partial class AnimationAsset {
+	partial class AnimationAsset { }
 
-	}
+	partial class AnimationSequenceBase { }
 
-	partial class AnimationSequenceBase {
+	partial class AnimationSequence { }
 
-	}
+	partial class AnimationCompositeBase { }
 
-	partial class AnimationSequence {
-
-	}
-
-	partial class AnimationCompositeBase {
-
-	}
-
-	partial class AnimationMontage {
-
-	}
+	partial class AnimationMontage { }
 
 	partial class AnimationInstance {
 		internal delegate IntPtr GetCurrentActiveMontageFunction(IntPtr animationInstance);
@@ -1328,9 +1296,7 @@ namespace UnrealEngine.Framework {
 		internal static MontageJumpToSectionsEndFunction montageJumpToSectionsEnd;
 	}
 
-	partial class Player {
-
-	}
+	partial class Player { }
 
 	partial class PlayerInput {
 		internal delegate Bool IsKeyPressedFunction(IntPtr playerInput, string key);
@@ -1344,21 +1310,13 @@ namespace UnrealEngine.Framework {
 		internal static SetMouseSensitivityFunction setMouseSensitivity;
 	}
 
-	partial class StreamableRenderAsset {
+	partial class StreamableRenderAsset { }
 
-	}
+	partial class StaticMesh { }
 
-	partial class StaticMesh {
+	partial class SkeletalMesh { }
 
-	}
-
-	partial class SkeletalMesh {
-
-	}
-
-	partial class Texture {
-
-	}
+	partial class Texture { }
 
 	partial class Texture2D {
 		internal delegate void GetSizeFunction(IntPtr texture2D, ref Vector2 value);
@@ -1716,9 +1674,7 @@ namespace UnrealEngine.Framework {
 		internal static SetLightColorFunction setLightColor;
 	}
 
-	partial class DirectionalLightComponent {
-
-	}
+	partial class DirectionalLightComponent { }
 
 	partial class MotionControllerComponent {
 		internal delegate Bool IsTrackedFunction(IntPtr motionControllerComponent);

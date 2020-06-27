@@ -5761,7 +5761,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A component that automatically spawns a child actor when registered, and destroys it when unregistered
+	/// A component that automatically spawns and destroys a child actor
 	/// </summary>
 	public partial class ChildActorComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.ChildActor;

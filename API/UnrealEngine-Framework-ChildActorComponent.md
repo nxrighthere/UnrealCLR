@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## ChildActorComponent Class
-A component that automatically spawns a child actor when registered, and destroys it when unregistered  
+A component that automatically spawns and destroys a child actor  
 ```csharp
 public class ChildActorComponent : SceneComponent
 ```

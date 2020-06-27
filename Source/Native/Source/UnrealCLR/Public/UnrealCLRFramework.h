@@ -393,21 +393,13 @@ namespace UnrealCLRFramework {
 		static bool HasTag(AActor* Actor, const char* Tag);
 	}
 
-	namespace TriggerBase {
+	namespace TriggerBase { }
 
-	}
+	namespace TriggerBox { }
 
-	namespace TriggerBox {
+	namespace TriggerCapsule { }
 
-	}
-
-	namespace TriggerCapsule {
-
-	}
-
-	namespace TriggerSphere {
-
-	}
+	namespace TriggerSphere { }
 
 	namespace Pawn {
 		static void AddControllerYawInput(APawn* Pawn, float Value);
@@ -465,29 +457,17 @@ namespace UnrealCLRFramework {
 		static bool EncompassesPoint(AVolume* Volume, const Vector3* Point, float SphereRadius, float* OutDistanceToPoint);
 	}
 
-	namespace AmbientSound {
+	namespace AmbientSound { }
 
-	}
+	namespace Light { }
 
-	namespace Light {
+	namespace DirectionalLight { }
 
-	}
+	namespace PointLight { }
 
-	namespace DirectionalLight {
+	namespace RectLight { }
 
-	}
-
-	namespace PointLight {
-
-	}
-
-	namespace RectLight {
-
-	}
-
-	namespace SpotLight {
-
-	}
+	namespace SpotLight { }
 
 	namespace SoundBase {
 		static float GetDuration(USoundBase* SoundBase);
