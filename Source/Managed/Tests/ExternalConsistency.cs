@@ -15,6 +15,7 @@ namespace UnrealEngine.Tests {
 			ChildActorsTest();
 			ComponentsAttachmentTest();
 			ComponentsMatchingTest();
+			ObjectIDsTest();
 			MaxFramesPerSecondTest();
 			TagsTest();
 
@@ -225,7 +226,7 @@ namespace UnrealEngine.Tests {
 		private static void ActorsHierarchyTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			const string actorName = "TestPawn";
+			const string actorName = "TestPlayerController";
 
 			PlayerController playerController = new PlayerController(actorName);
 			Actor actor = World.GetActor<Actor>(actorName);
@@ -337,6 +338,31 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
+		private static void ObjectIDsTest() {
+			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
+
+			Actor actor = new Actor();
+			SceneComponent sceneComponent = new SceneComponent(actor, setAsRoot: true);
+
+			Actor actorByID = World.GetActorByID<Actor>(actor.ID);
+
+			if (actorByID == null) {
+				Debug.Log(LogLevel.Error, "Actor with a valid ID was not found!");
+
+				return;
+			}
+
+			SceneComponent sceneComponentByID = actorByID.GetComponent<SceneComponent>();
+
+			if (sceneComponentByID == null) {
+				Debug.Log(LogLevel.Error, "Component with a valid ID was not found!");
+
+				return;
+			}
+
+			Debug.Log(LogLevel.Display, "Test passed successfully");
+		}
+
 		private static void MaxFramesPerSecondTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
@@ -377,7 +403,7 @@ namespace UnrealEngine.Tests {
 			Actor taggedActor = World.GetActorByTag<Actor>(tag);
 
 			if (!actor.Equals(taggedActor)) {
-				Debug.Log(LogLevel.Error, "Actor from world with a tag check after removing failed!");
+				Debug.Log(LogLevel.Error, "Actor from world with a tag check failed!");
 
 				return;
 			}
@@ -394,6 +420,14 @@ namespace UnrealEngine.Tests {
 
 			if (!sceneComponent.HasTag(tag)) {
 				Debug.Log(LogLevel.Error, "Component tag check failed!");
+
+				return;
+			}
+
+			SceneComponent taggedSceneComponent = taggedActor.GetComponentByTag<SceneComponent>(tag);
+
+			if (!sceneComponent.Equals(taggedSceneComponent)) {
+				Debug.Log(LogLevel.Error, "Component from actor with a tag check failed!");
 
 				return;
 			}

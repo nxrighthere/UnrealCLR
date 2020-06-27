@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 433;
+		internal const int checksum = 0x1B5;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -75,6 +75,7 @@ namespace UnrealEngine.Framework {
 						Object.isValid = GenerateOptimizedFunction<Object.IsValidFunction>(objectFunctions[head++]);
 						Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
 						Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
+						Object.getID = GenerateOptimizedFunction<Object.GetIDFunction>(objectFunctions[head++]);
 						Object.getName = GenerateOptimizedFunction<Object.GetNameFunction>(objectFunctions[head++]);
 						Object.getBool = GenerateOptimizedFunction<Object.GetBoolFunction>(objectFunctions[head++]);
 						Object.getByte = GenerateOptimizedFunction<Object.GetByteFunction>(objectFunctions[head++]);
@@ -177,6 +178,7 @@ namespace UnrealEngine.Framework {
 						World.getWorldOrigin = GenerateOptimizedFunction<World.GetWorldOriginFunction>(worldFunctions[head++]);
 						World.getActor = GenerateOptimizedFunction<World.GetActorFunction>(worldFunctions[head++]);
 						World.getActorByTag = GenerateOptimizedFunction<World.GetActorByTagFunction>(worldFunctions[head++]);
+						World.getActorByID = GenerateOptimizedFunction<World.GetActorByIDFunction>(worldFunctions[head++]);
 						World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
 						World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 						World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
@@ -230,6 +232,8 @@ namespace UnrealEngine.Framework {
 						Actor.hide = GenerateOptimizedFunction<Actor.HideFunction>(actorFunctions[head++]);
 						Actor.teleportTo = GenerateOptimizedFunction<Actor.TeleportToFunction>(actorFunctions[head++]);
 						Actor.getComponent = GenerateOptimizedFunction<Actor.GetComponentFunction>(actorFunctions[head++]);
+						Actor.getComponentByTag = GenerateOptimizedFunction<Actor.GetComponentByTagFunction>(actorFunctions[head++]);
+						Actor.getComponentByID = GenerateOptimizedFunction<Actor.GetComponentByIDFunction>(actorFunctions[head++]);
 						Actor.getRootComponent = GenerateOptimizedFunction<Actor.GetRootComponentFunction>(actorFunctions[head++]);
 						Actor.getInputComponent = GenerateOptimizedFunction<Actor.GetInputComponentFunction>(actorFunctions[head++]);
 						Actor.getBlockInput = GenerateOptimizedFunction<Actor.GetBlockInputFunction>(actorFunctions[head++]);
@@ -851,6 +855,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsValidFunction(IntPtr @object);
 		internal delegate IntPtr LoadFunction(ObjectType type, string name);
 		internal delegate void RenameFunction(IntPtr @object, string name);
+		internal delegate uint GetIDFunction(IntPtr @object);
 		internal delegate void GetNameFunction(IntPtr @object, byte[] name);
 		internal delegate Bool GetBoolFunction(IntPtr @object, string name, ref bool value);
 		internal delegate Bool GetByteFunction(IntPtr @object, string name, ref byte value);
@@ -879,6 +884,7 @@ namespace UnrealEngine.Framework {
 		internal static IsValidFunction isValid;
 		internal static LoadFunction load;
 		internal static RenameFunction rename;
+		internal static GetIDFunction getID;
 		internal static GetNameFunction getName;
 		internal static GetBoolFunction getBool;
 		internal static GetByteFunction getByte;
@@ -1011,6 +1017,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void GetWorldOriginFunction(ref Vector3 value);
 		internal delegate IntPtr GetActorFunction(string name, ActorType type);
 		internal delegate IntPtr GetActorByTagFunction(string tag, ActorType type);
+		internal delegate IntPtr GetActorByIDFunction(uint iD, ActorType type);
 		internal delegate IntPtr GetFirstPlayerControllerFunction();
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
@@ -1024,6 +1031,7 @@ namespace UnrealEngine.Framework {
 		internal static GetWorldOriginFunction getWorldOrigin;
 		internal static GetActorFunction getActor;
 		internal static GetActorByTagFunction getActorByTag;
+		internal static GetActorByIDFunction getActorByID;
 		internal static GetFirstPlayerControllerFunction getFirstPlayerController;
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
@@ -1084,6 +1092,8 @@ namespace UnrealEngine.Framework {
 		internal delegate void HideFunction(IntPtr actor, Bool value);
 		internal delegate Bool TeleportToFunction(IntPtr actor, in Vector3 destinationLocation, in Quaternion destinationRotation, Bool isATest, Bool noCheck);
 		internal delegate IntPtr GetComponentFunction(IntPtr actor, string name, ComponentType type);
+		internal delegate IntPtr GetComponentByTagFunction(IntPtr actor, string tag, ComponentType type);
+		internal delegate IntPtr GetComponentByIDFunction(IntPtr actor, uint iD, ComponentType type);
 		internal delegate IntPtr GetRootComponentFunction(IntPtr actor, ComponentType type);
 		internal delegate IntPtr GetInputComponentFunction(IntPtr actor);
 		internal delegate Bool GetBlockInputFunction(IntPtr actor);
@@ -1107,6 +1117,8 @@ namespace UnrealEngine.Framework {
 		internal static HideFunction hide;
 		internal static TeleportToFunction teleportTo;
 		internal static GetComponentFunction getComponent;
+		internal static GetComponentByTagFunction getComponentByTag;
+		internal static GetComponentByIDFunction getComponentByID;
 		internal static GetRootComponentFunction getRootComponent;
 		internal static GetInputComponentFunction getInputComponent;
 		internal static GetBlockInputFunction getBlockInput;

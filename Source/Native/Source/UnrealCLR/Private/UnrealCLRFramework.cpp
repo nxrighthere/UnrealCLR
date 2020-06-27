@@ -410,6 +410,10 @@ namespace UnrealCLRFramework {
 			Object->Rename(*name);
 		}
 
+		uint32 GetID(UObject* Object) {
+			return Object->GetUniqueID();
+		}
+
 		void GetName(UObject* Object, char* Name) {
 			const char* name = TCHAR_TO_ANSI(*Object->GetName());
 
@@ -825,6 +829,22 @@ namespace UnrealCLRFramework {
 			return actor;
 		}
 
+		AActor* GetActorByID(uint32 ID, ActorType Type) {
+			AActor* actor = nullptr;
+			TSubclassOf<AActor> type;
+
+			UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+
+			for (TActorIterator<AActor> currentActor(UnrealCLR::Engine::World, type); currentActor; ++currentActor) {
+				if (currentActor->GetUniqueID() == ID) {
+					actor = *currentActor;
+					break;
+				}
+			}
+
+			return actor;
+		}
+
 		APlayerController* GetFirstPlayerController() {
 			return UnrealCLR::Engine::World->GetFirstPlayerController();
 		}
@@ -986,6 +1006,39 @@ namespace UnrealCLRFramework {
 
 			for (UActorComponent* currentComponent : Actor->GetComponents()) {
 				if (currentComponent && currentComponent->IsA(type) && (!Name || Name && *currentComponent->GetName() == name)) {
+					component = currentComponent;
+					break;
+				}
+			}
+
+			return component;
+		}
+
+		UActorComponent* GetComponentByTag(AActor* Actor, const char* Tag, ComponentType Type) {
+			FName tag(ANSI_TO_TCHAR(Tag));
+			UActorComponent* component = nullptr;
+			TSubclassOf<UActorComponent> type;
+
+			UNREALCLR_GET_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+
+			for (UActorComponent* currentComponent : Actor->GetComponents()) {
+				if (currentComponent->ComponentHasTag(tag)) {
+					component = currentComponent;
+					break;
+				}
+			}
+
+			return component;
+		}
+
+		UActorComponent* GetComponentByID(AActor* Actor, uint32 ID, ComponentType Type) {
+			UActorComponent* component = nullptr;
+			TSubclassOf<UActorComponent> type;
+
+			UNREALCLR_GET_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+
+			for (UActorComponent* currentComponent : Actor->GetComponents()) {
+				if (currentComponent->GetUniqueID() == ID) {
 					component = currentComponent;
 					break;
 				}

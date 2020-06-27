@@ -2927,6 +2927,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns the first actor in the world of the specified class and ID, this operation is slow and should be used with caution
+		/// </summary>
+		/// <param name="id">The ID of the actor</param>
+		/// <typeparam name="T">The type of the actor</typeparam>
+		/// <returns>An actor or <c>null</c> on failure</returns>
+		public static T GetActorByID<T>(uint id) where T : Actor {
+			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = getActorByID(id, actor.Type);
+
+			if (pointer != IntPtr.Zero) {
+				actor.Pointer = pointer;
+
+				return actor;
+			}
+
+			return null;
+		}
+
+		/// <summary>
 		/// Returns the first player controller
 		/// </summary>
 		/// <returns>A player controller or <c>null</c> if there is none</returns>
@@ -2960,6 +2979,8 @@ namespace UnrealEngine.Framework {
 	/// Interface for engine objects
 	/// </summary>
 	public interface IObject {
+		/// <summary/>
+		uint ID { get; }
 		/// <summary/>
 		string Name { get; }
 		/// <summary/>
@@ -3215,6 +3236,11 @@ namespace UnrealEngine.Framework {
 
 			return isOverlappingActor(Pointer, other.Pointer);
 		}
+
+		/// <summary>
+		/// Returns the unique ID of the actor, reused by the engine, only unique while the actor is alive
+		/// </summary>
+		public uint ID => Object.getID(Pointer);
 
 		/// <summary>
 		/// Returns the name of the actor
@@ -3570,10 +3596,50 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns the component of the actor if matches the specified type, optionally with the specified name
 		/// </summary>
+		/// <param name="name">The name of the component</param>
+		/// <typeparam name="T">The type of the component</typeparam>
 		/// <returns>A component or <c>null</c> on failure</returns>
 		public T GetComponent<T>(string name = null) where T : ActorComponent {
 			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
 			IntPtr pointer = getComponent(Pointer, name, component.Type);
+
+			if (pointer != IntPtr.Zero) {
+				component.Pointer = pointer;
+
+				return component;
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Returns the component of the actor if matches the specified type and tag
+		/// </summary>
+		/// <param name="tag">The tag of the component</param>
+		/// <typeparam name="T">The type of the component</typeparam>
+		/// <returns>A component or <c>null</c> on failure</returns>
+		public T GetComponentByTag<T>(string tag) where T : ActorComponent {
+			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = getComponentByTag(Pointer, tag, component.Type);
+
+			if (pointer != IntPtr.Zero) {
+				component.Pointer = pointer;
+
+				return component;
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Returns the component of the actor if matches the specified type and ID
+		/// </summary>
+		/// <param name="id">The ID of the component</param>
+		/// <typeparam name="T">The type of the component</typeparam>
+		/// <returns>A component or <c>null</c> on failure</returns>
+		public T GetComponentByTag<T>(uint id) where T : ActorComponent {
+			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = getComponentByID(Pointer, id, component.Type);
 
 			if (pointer != IntPtr.Zero) {
 				component.Pointer = pointer;
@@ -4941,6 +5007,11 @@ namespace UnrealEngine.Framework {
 		/// Returns <c>true</c> if the object is created
 		/// </summary>
 		public bool IsCreated => pointer != IntPtr.Zero && !Object.isPendingKill(pointer);
+
+		/// <summary>
+		/// Returns the unique ID of the component, reused by the engine, only unique while the component is alive
+		/// </summary>
+		public uint ID => Object.getID(Pointer);
 
 		/// <summary>
 		/// Returns the name of the component

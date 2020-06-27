@@ -7,10 +7,12 @@ public T GetComponent<T>(string name=null);
 #### Type parameters
 <a name='UnrealEngine-Framework-Actor-GetComponent-T-(string)-T'></a>
 `T`  
+The type of the component  
   
 #### Parameters
 <a name='UnrealEngine-Framework-Actor-GetComponent-T-(string)-name'></a>
 `name` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+The name of the component  
   
 #### Returns
 [T](#UnrealEngine-Framework-Actor-GetComponent-T-(string)-T 'UnrealEngine.Framework.Actor.GetComponent&lt;T&gt;(string).T')  

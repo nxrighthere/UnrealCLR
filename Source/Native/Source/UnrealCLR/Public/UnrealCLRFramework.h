@@ -248,6 +248,7 @@ namespace UnrealCLRFramework {
 		static bool IsValid(UObject* Object);
 		static UObject* Load(ObjectType Type, const char* Name);
 		static void Rename(UObject* Object, const char* Name);
+		static uint32 GetID(UObject* Object);
 		static void GetName(UObject* Object, char* Name);
 		static bool GetBool(UObject* Object, const char* Name, bool* value);
 		static bool GetByte(UObject* Object, const char* Name, int8* Value);
@@ -335,6 +336,7 @@ namespace UnrealCLRFramework {
 		static void GetWorldOrigin(Vector3* Value);
 		static AActor* GetActor(const char* Name, ActorType Type);
 		static AActor* GetActorByTag(const char* Tag, ActorType Type);
+		static AActor* GetActorByID(uint32 ID, ActorType Type);
 		static APlayerController* GetFirstPlayerController();
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
@@ -378,6 +380,8 @@ namespace UnrealCLRFramework {
 		static void Hide(AActor* Actor, bool Value);
 		static bool TeleportTo(AActor* Actor, const Vector3* DestinationLocation, const Quaternion* DestinationRotation, bool IsATest, bool NoCheck);
 		static UActorComponent* GetComponent(AActor* Actor, const char* Name, ComponentType Type);
+		static UActorComponent* GetComponentByTag(AActor* Actor, const char* Tag, ComponentType Type);
+		static UActorComponent* GetComponentByID(AActor* Actor, uint32 ID, ComponentType Type);
 		static USceneComponent* GetRootComponent(AActor* Actor, ComponentType Type);
 		static UInputComponent* GetInputComponent(AActor* Actor);
 		static bool GetBlockInput(AActor* Actor);

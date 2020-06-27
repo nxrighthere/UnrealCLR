@@ -8,6 +8,7 @@ Derived
 &#8627; [Actor](./UnrealEngine-Framework-Actor.md 'UnrealEngine.Framework.Actor')  
 &#8627; [ActorComponent](./UnrealEngine-Framework-ActorComponent.md 'UnrealEngine.Framework.ActorComponent')  
 ### Properties
+- [ID](./UnrealEngine-Framework-IObject-ID.md 'UnrealEngine.Framework.IObject.ID')
 - [Name](./UnrealEngine-Framework-IObject-Name.md 'UnrealEngine.Framework.IObject.Name')
 ### Methods
 - [GetBool(string, bool)](./UnrealEngine-Framework-IObject-GetBool(string_bool).md 'UnrealEngine.Framework.IObject.GetBool(string, bool)')

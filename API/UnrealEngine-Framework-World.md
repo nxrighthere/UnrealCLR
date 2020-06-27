@@ -13,6 +13,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [Time](./UnrealEngine-Framework-World-Time.md 'UnrealEngine.Framework.World.Time')
 ### Methods
 - [GetActor&lt;T&gt;(string)](./UnrealEngine-Framework-World-GetActor-T-(string).md 'UnrealEngine.Framework.World.GetActor&lt;T&gt;(string)')
+- [GetActorByID&lt;T&gt;(uint)](./UnrealEngine-Framework-World-GetActorByID-T-(uint).md 'UnrealEngine.Framework.World.GetActorByID&lt;T&gt;(uint)')
 - [GetActorByTag&lt;T&gt;(string)](./UnrealEngine-Framework-World-GetActorByTag-T-(string).md 'UnrealEngine.Framework.World.GetActorByTag&lt;T&gt;(string)')
 - [GetFirstPlayerController()](./UnrealEngine-Framework-World-GetFirstPlayerController().md 'UnrealEngine.Framework.World.GetFirstPlayerController()')
 - [GetWorldOrigin(System.Numerics.Vector3)](./UnrealEngine-Framework-World-GetWorldOrigin(System-Numerics-Vector3).md 'UnrealEngine.Framework.World.GetWorldOrigin(System.Numerics.Vector3)')

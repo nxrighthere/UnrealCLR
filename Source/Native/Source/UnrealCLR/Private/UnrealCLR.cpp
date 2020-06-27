@@ -178,6 +178,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::IsValid;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Load;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Rename;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetID;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetName;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetBool;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetByte;
@@ -290,6 +291,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetWorldOrigin;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActor;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorByTag;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorByID;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetFirstPlayerController;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetSimulatePhysics;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetGravity;
@@ -351,6 +353,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Hide;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::TeleportTo;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponent;
+				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponentByTag;
+				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponentByID;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetRootComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetInputComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetBlockInput;

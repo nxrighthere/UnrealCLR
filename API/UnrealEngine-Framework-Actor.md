@@ -22,6 +22,7 @@ Implements [IObject](./UnrealEngine-Framework-IObject.md 'UnrealEngine.Framework
 - [Actor(string, UnrealEngine.Framework.Blueprint)](./UnrealEngine-Framework-Actor-Actor(string_UnrealEngine-Framework-Blueprint).md 'UnrealEngine.Framework.Actor.Actor(string, UnrealEngine.Framework.Blueprint)')
 ### Properties
 - [BlockInput](./UnrealEngine-Framework-Actor-BlockInput.md 'UnrealEngine.Framework.Actor.BlockInput')
+- [ID](./UnrealEngine-Framework-Actor-ID.md 'UnrealEngine.Framework.Actor.ID')
 - [InputComponent](./UnrealEngine-Framework-Actor-InputComponent.md 'UnrealEngine.Framework.Actor.InputComponent')
 - [IsRootComponentMovable](./UnrealEngine-Framework-Actor-IsRootComponentMovable.md 'UnrealEngine.Framework.Actor.IsRootComponentMovable')
 - [IsSpawned](./UnrealEngine-Framework-Actor-IsSpawned.md 'UnrealEngine.Framework.Actor.IsSpawned')
@@ -34,6 +35,8 @@ Implements [IObject](./UnrealEngine-Framework-IObject.md 'UnrealEngine.Framework
 - [GetBounds(bool, System.Numerics.Vector3, System.Numerics.Vector3)](./UnrealEngine-Framework-Actor-GetBounds(bool_System-Numerics-Vector3_System-Numerics-Vector3).md 'UnrealEngine.Framework.Actor.GetBounds(bool, System.Numerics.Vector3, System.Numerics.Vector3)')
 - [GetByte(string, byte)](./UnrealEngine-Framework-Actor-GetByte(string_byte).md 'UnrealEngine.Framework.Actor.GetByte(string, byte)')
 - [GetComponent&lt;T&gt;(string)](./UnrealEngine-Framework-Actor-GetComponent-T-(string).md 'UnrealEngine.Framework.Actor.GetComponent&lt;T&gt;(string)')
+- [GetComponentByTag&lt;T&gt;(string)](./UnrealEngine-Framework-Actor-GetComponentByTag-T-(string).md 'UnrealEngine.Framework.Actor.GetComponentByTag&lt;T&gt;(string)')
+- [GetComponentByTag&lt;T&gt;(uint)](./UnrealEngine-Framework-Actor-GetComponentByTag-T-(uint).md 'UnrealEngine.Framework.Actor.GetComponentByTag&lt;T&gt;(uint)')
 - [GetDistanceTo(UnrealEngine.Framework.Actor)](./UnrealEngine-Framework-Actor-GetDistanceTo(UnrealEngine-Framework-Actor).md 'UnrealEngine.Framework.Actor.GetDistanceTo(UnrealEngine.Framework.Actor)')
 - [GetDouble(string, double)](./UnrealEngine-Framework-Actor-GetDouble(string_double).md 'UnrealEngine.Framework.Actor.GetDouble(string, double)')
 - [GetFloat(string, float)](./UnrealEngine-Framework-Actor-GetFloat(string_float).md 'UnrealEngine.Framework.Actor.GetFloat(string, float)')

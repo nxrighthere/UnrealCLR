@@ -14,6 +14,7 @@ Derived
 
 Implements [IObject](./UnrealEngine-Framework-IObject.md 'UnrealEngine.Framework.IObject'), [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[ActorComponent](./UnrealEngine-Framework-ActorComponent.md 'UnrealEngine.Framework.ActorComponent')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties
+- [ID](./UnrealEngine-Framework-ActorComponent-ID.md 'UnrealEngine.Framework.ActorComponent.ID')
 - [IsCreated](./UnrealEngine-Framework-ActorComponent-IsCreated.md 'UnrealEngine.Framework.ActorComponent.IsCreated')
 - [IsOwnerSelected](./UnrealEngine-Framework-ActorComponent-IsOwnerSelected.md 'UnrealEngine.Framework.ActorComponent.IsOwnerSelected')
 - [Name](./UnrealEngine-Framework-ActorComponent-Name.md 'UnrealEngine.Framework.ActorComponent.Name')
