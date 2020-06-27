@@ -1003,6 +1003,12 @@ void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
 		UNREALCLR_LOG(Error);
 
 		GEngine->AddOnScreenDebugMessage((uint64)-1, 30.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+	} else if (Level == UnrealCLR::LogLevel::Fatal) {
+		UNREALCLR_LOG(Error);
+
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 30.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+
+		UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 	}
 }
 

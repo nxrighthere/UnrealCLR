@@ -27,7 +27,8 @@ namespace UnrealEngine.Runtime {
 	internal enum LogLevel : int {
 		Display,
 		Warning,
-		Error
+		Error,
+		Fatal
 	}
 
 	internal delegate int InitializeDelegate(IntPtr functions, int checksum);
@@ -126,7 +127,7 @@ namespace UnrealEngine.Runtime {
 								if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
 									sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions });
 								} else {
-									Log(LogLevel.Error, "Unable to load framework from \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"\r\nFramework version is incompatible with the runtime, recompile the project with an updated version");
+									Log(LogLevel.Fatal, "Unable to load framework from \"" + assemblyPath + "\" of type name \"" + typeName + "\" with method name \"" + methodName + "\"\r\nFramework version is incompatible with the runtime, recompile the project with an updated version");
 
 									Debugger.Break();
 								}

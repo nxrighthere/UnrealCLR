@@ -81,7 +81,8 @@ namespace UnrealCLR {
 	enum struct LogLevel : int32 {
 		Display,
 		Warning,
-		Error
+		Error,
+		Fatal
 	};
 
 	typedef void (*ExecuteAssemblyFunctionDelegate)(void*);
