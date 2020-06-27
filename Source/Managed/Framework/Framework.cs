@@ -3637,7 +3637,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="id">The ID of the component</param>
 		/// <typeparam name="T">The type of the component</typeparam>
 		/// <returns>A component or <c>null</c> on failure</returns>
-		public T GetComponentByTag<T>(uint id) where T : ActorComponent {
+		public T GetComponentByID<T>(uint id) where T : ActorComponent {
 			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
 			IntPtr pointer = getComponentByID(Pointer, id, component.Type);
 
