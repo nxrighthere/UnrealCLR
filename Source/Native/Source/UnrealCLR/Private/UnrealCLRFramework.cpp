@@ -816,9 +816,9 @@ namespace UnrealCLRFramework {
 		}
 
 		AActor* GetActorByTag(const char* Tag, ActorType Type) {
-			FName tag(ANSI_TO_TCHAR(Tag));
 			AActor* actor = nullptr;
 			TSubclassOf<AActor> type;
+			FName tag(ANSI_TO_TCHAR(Tag));
 
 			UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
@@ -1018,9 +1018,9 @@ namespace UnrealCLRFramework {
 		}
 
 		UActorComponent* GetComponentByTag(AActor* Actor, const char* Tag, ComponentType Type) {
-			FName tag(ANSI_TO_TCHAR(Tag));
 			UActorComponent* component = nullptr;
 			TSubclassOf<UActorComponent> type;
+			FName tag(ANSI_TO_TCHAR(Tag));
 
 			UNREALCLR_GET_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 

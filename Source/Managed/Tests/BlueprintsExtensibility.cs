@@ -155,13 +155,9 @@ namespace UnrealEngine.Tests {
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
 		}
-	}
 
-	public static class BlueprintActor {
-		public static void OnBeginPlay() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint actor!");
-	}
+		public static void TestBlueprintActorFunction() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint actor!");
 
-	public static class BlueprintSceneComponent {
-		public static void OnBeginPlay() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint scene component!");
+		public static void TestBlueprintComponentFunction() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint scene component!");
 	}
 }

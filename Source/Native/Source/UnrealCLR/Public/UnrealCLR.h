@@ -93,8 +93,10 @@ namespace UnrealCLR {
 	static ExecuteAssemblyFunctionDelegate ExecuteAssemblyFunction;
 	static LoadAssemblyFunctionDelegate LoadAssemblyFunction;
 	static UnloadAssembliesDelegate UnloadAssemblies;
+
 	static FString ProjectPath;
 	static FString UserAssembliesPath;
+
 	static StatusType Status = StatusType::Stopped;
 
 	class Module : public IModuleInterface {
@@ -105,7 +107,7 @@ namespace UnrealCLR {
 
 		private:
 
-		void OnPreWorldInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues);
+		void OnWorldPreInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues);
 		void OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources);
 
 		static void HostError(const char_t* Message);
@@ -113,9 +115,10 @@ namespace UnrealCLR {
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
 
-		void* HostfxrLibrary;
-		FDelegateHandle OnPreWorldInitializationHandle;
+		FDelegateHandle OnWorldPreInitializationHandle;
 		FDelegateHandle OnWorldCleanupHandle;
+
+		void* HostfxrLibrary;
 	};
 
 	namespace Engine {

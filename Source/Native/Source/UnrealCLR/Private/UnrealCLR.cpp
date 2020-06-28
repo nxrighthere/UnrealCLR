@@ -44,7 +44,7 @@ void UnrealCLR::Module::StartupModule() {
 	FString runtimeMethodName = TEXT("Initialize");
 	FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.InitializeDelegate, UnrealEngine.Runtime");
 
-	OnPreWorldInitializationHandle = FWorldDelegates::OnPreWorldInitialization.AddRaw(this, &UnrealCLR::Module::OnPreWorldInitialization);
+	OnWorldPreInitializationHandle = FWorldDelegates::OnPreWorldInitialization.AddRaw(this, &UnrealCLR::Module::OnWorldPreInitialization);
 	OnWorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddRaw(this, &UnrealCLR::Module::OnWorldCleanup);
 
 	UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host path set to \"%s\""), ANSI_TO_TCHAR(__FUNCTION__), *hostfxrPath);
@@ -945,13 +945,13 @@ void UnrealCLR::Module::StartupModule() {
 }
 
 void UnrealCLR::Module::ShutdownModule() {
-	FWorldDelegates::OnPreWorldInitialization.Remove(OnPreWorldInitializationHandle);
+	FWorldDelegates::OnPreWorldInitialization.Remove(OnWorldPreInitializationHandle);
 	FWorldDelegates::OnWorldCleanup.Remove(OnWorldCleanupHandle);
 
 	FPlatformProcess::FreeDllHandle(HostfxrLibrary);
 }
 
-void UnrealCLR::Module::OnPreWorldInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues) {
+void UnrealCLR::Module::OnWorldPreInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues) {
 	if (World->IsGameWorld() && !UnrealCLR::Engine::World) {
 		UnrealCLR::Engine::World = World;
 
@@ -970,7 +970,7 @@ void UnrealCLR::Module::OnPreWorldInitialization(UWorld* World, const UWorld::In
 }
 
 void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources) {
-	if (World->IsGameWorld() && World->GetFullName() == UnrealCLR::Engine::World->GetFullName()) {
+	if (World->IsGameWorld() && World == UnrealCLR::Engine::World) {
 		UnrealCLR::Engine::World = nullptr;
 
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
