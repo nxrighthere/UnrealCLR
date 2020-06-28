@@ -37,6 +37,7 @@
 #include "Engine/GameEngine.h"
 #include "Engine/Light.h"
 #include "Engine/PointLight.h"
+#include "Engine/PostProcessVolume.h"
 #include "Engine/RectLight.h"
 #include "Engine/SpotLight.h"
 #include "Engine/TriggerBox.h"
@@ -150,6 +151,7 @@ namespace UnrealCLR {
 		void* AIControllerFunctions[storageSize];
 		void* PlayerControllerFunctions[storageSize];
 		void* VolumeFunctions[storageSize];
+		void* PostProcessVolumeFunctions[storageSize];
 		void* SoundBaseFunctions[storageSize];
 		void* SoundWaveFunctions[storageSize];
 		void* AnimationInstanceFunctions[storageSize];

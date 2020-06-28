@@ -451,6 +451,24 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::PostProcessVolumeFunctions;
+
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetEnabled;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetBlendRadius;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetBlendWeight;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetUnbound;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetPriority;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetEnabled;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetBlendRadius;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetBlendWeight;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetUnbound;
+				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetPriority;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::SoundBaseFunctions;
 
 				Shared::SoundBaseFunctions[head++] = &UnrealCLRFramework::SoundBase::GetDuration;

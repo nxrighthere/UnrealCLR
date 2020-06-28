@@ -100,6 +100,9 @@ namespace UnrealCLRFramework {
 			case ActorType::TriggerVolume:\
 				Result = Head ATriggerVolume Tail;\
 				break;\
+			case ActorType::PostProcessVolume:\
+				Result = Head APostProcessVolume Tail;\
+				break;\
 			default:\
 				break;\
 		}\
@@ -1278,6 +1281,48 @@ namespace UnrealCLRFramework {
 	namespace Volume {
 		bool EncompassesPoint(AVolume* Volume, const Vector3* Point, float SphereRadius, float* DistanceToPoint) {
 			return Volume->EncompassesPoint(*Point, SphereRadius, DistanceToPoint);
+		}
+	}
+
+	namespace PostProcessVolume {
+		bool GetEnabled(APostProcessVolume* PostProcessVolume) {
+			return PostProcessVolume->bEnabled;
+		}
+
+		float GetBlendRadius(APostProcessVolume* PostProcessVolume) {
+			return PostProcessVolume->BlendRadius;
+		}
+
+		float GetBlendWeight(APostProcessVolume* PostProcessVolume) {
+			return PostProcessVolume->BlendWeight;
+		}
+
+		bool GetUnbound(APostProcessVolume* PostProcessVolume) {
+			return PostProcessVolume->bUnbound;
+		}
+
+		float GetPriority(APostProcessVolume* PostProcessVolume) {
+			return PostProcessVolume->Priority;
+		}
+
+		void SetEnabled(APostProcessVolume* PostProcessVolume, bool Value) {
+			PostProcessVolume->bEnabled = Value;
+		}
+
+		void SetBlendRadius(APostProcessVolume* PostProcessVolume, float Value) {
+			PostProcessVolume->BlendRadius = Value;
+		}
+
+		void SetBlendWeight(APostProcessVolume* PostProcessVolume, float Value) {
+			PostProcessVolume->BlendWeight = Value;
+		}
+
+		void SetUnbound(APostProcessVolume* PostProcessVolume, bool Value) {
+			PostProcessVolume->bUnbound = Value;
+		}
+
+		void SetPriority(APostProcessVolume* PostProcessVolume, float Priority) {
+			PostProcessVolume->Priority = Priority;
 		}
 	}
 

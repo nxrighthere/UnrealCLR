@@ -4211,6 +4211,72 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// An actor that is used for post-processing manipulations
+	/// </summary>
+	public partial class PostProcessVolume : Volume {
+		internal override ActorType Type => ActorType.PostProcessVolume;
+
+		private protected PostProcessVolume() { }
+
+		internal PostProcessVolume(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public PostProcessVolume(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the volume is enabled
+		/// </summary>
+		public bool Enabled {
+			get => getEnabled(Pointer);
+			set => setEnabled(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the world space radius around the volume that is used for blending if not unbound
+		/// </summary>
+		public float BlendRadius {
+			get => getBlendRadius(Pointer);
+			set => setBlendRadius(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the blend weight, 0.0f indicates no effect, 1.0f indicates full effect
+		/// </summary>
+		public float BlendWeight {
+			get => getBlendWeight(Pointer);
+			set => setBlendWeight(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the volume covers the whole world or only the area inside its bounds
+		/// </summary>
+		public bool Unbound {
+			get => getUnbound(Pointer);
+			set => setUnbound(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the priority of the volume
+		/// </summary>
+		public float Priority {
+			get => getPriority(Pointer);
+			set => setPriority(Pointer, value);
+		}
+	}
+
+	/// <summary>
 	/// A sound actor that can be placed in a level
 	/// </summary>
 	public partial class AmbientSound : Actor {
@@ -5922,7 +5988,7 @@ namespace UnrealEngine.Framework {
 		public float Mass => getMass(Pointer);
 
 		/// <summary>
-		/// Gets or sets whether the component should cast a shadow or not
+		/// Gets or sets whether the component should cast a shadow
 		/// </summary>
 		public bool CastShadow {
 			get => getCastShadow(Pointer);

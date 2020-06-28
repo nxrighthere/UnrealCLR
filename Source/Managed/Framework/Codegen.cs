@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal static bool loaded = false;
-		internal const int checksum = 0x1B5;
+		internal const int checksum = 0x1C0;
 
 		internal static unsafe void Load(IntPtr functions) {
 			if (!loaded) {
@@ -314,6 +314,22 @@ namespace UnrealEngine.Framework {
 						IntPtr* volumeFunctions = (IntPtr*)buffer[position++];
 
 						Volume.encompassesPoint = GenerateOptimizedFunction<Volume.EncompassesPointFunction>(volumeFunctions[head++]);
+					}
+
+					unchecked {
+						int head = 0;
+						IntPtr* postProcessVolumeFunctions = (IntPtr*)buffer[position++];
+
+						PostProcessVolume.getEnabled = GenerateOptimizedFunction<PostProcessVolume.GetEnabledFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.getBlendRadius = GenerateOptimizedFunction<PostProcessVolume.GetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.getBlendWeight = GenerateOptimizedFunction<PostProcessVolume.GetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.getUnbound = GenerateOptimizedFunction<PostProcessVolume.GetUnboundFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.getPriority = GenerateOptimizedFunction<PostProcessVolume.GetPriorityFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.setEnabled = GenerateOptimizedFunction<PostProcessVolume.SetEnabledFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.setBlendRadius = GenerateOptimizedFunction<PostProcessVolume.SetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.setBlendWeight = GenerateOptimizedFunction<PostProcessVolume.SetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.setUnbound = GenerateOptimizedFunction<PostProcessVolume.SetUnboundFunction>(postProcessVolumeFunctions[head++]);
+						PostProcessVolume.setPriority = GenerateOptimizedFunction<PostProcessVolume.SetPriorityFunction>(postProcessVolumeFunctions[head++]);
 					}
 
 					unchecked {
@@ -783,7 +799,8 @@ namespace UnrealEngine.Framework {
 		PointLight,
 		RectLight,
 		SpotLight,
-		TriggerVolume
+		TriggerVolume,
+		PostProcessVolume
 	}
 
 	internal enum ComponentType : int {
@@ -1240,6 +1257,30 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class TriggerVolume { }
+
+	partial class PostProcessVolume {
+		internal delegate Bool GetEnabledFunction(IntPtr postProcessVolume);
+		internal delegate float GetBlendRadiusFunction(IntPtr postProcessVolume);
+		internal delegate float GetBlendWeightFunction(IntPtr postProcessVolume);
+		internal delegate Bool GetUnboundFunction(IntPtr postProcessVolume);
+		internal delegate float GetPriorityFunction(IntPtr postProcessVolume);
+		internal delegate void SetEnabledFunction(IntPtr postProcessVolume, Bool value);
+		internal delegate void SetBlendRadiusFunction(IntPtr postProcessVolume, float value);
+		internal delegate void SetBlendWeightFunction(IntPtr postProcessVolume, float value);
+		internal delegate void SetUnboundFunction(IntPtr postProcessVolume, Bool value);
+		internal delegate void SetPriorityFunction(IntPtr postProcessVolume, float priority);
+
+		internal static GetEnabledFunction getEnabled;
+		internal static GetBlendRadiusFunction getBlendRadius;
+		internal static GetBlendWeightFunction getBlendWeight;
+		internal static GetUnboundFunction getUnbound;
+		internal static GetPriorityFunction getPriority;
+		internal static SetEnabledFunction setEnabled;
+		internal static SetBlendRadiusFunction setBlendRadius;
+		internal static SetBlendWeightFunction setBlendWeight;
+		internal static SetUnboundFunction setUnbound;
+		internal static SetPriorityFunction setPriority;
+	}
 
 	partial class AmbientSound { }
 

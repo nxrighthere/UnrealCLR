@@ -193,7 +193,8 @@ namespace UnrealCLRFramework {
 		PointLight,
 		RectLight,
 		SpotLight,
-		TriggerVolume
+		TriggerVolume,
+		PostProcessVolume
 	};
 
 	enum struct ComponentType : int32 {
@@ -463,6 +464,19 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace TriggerVolume { }
+
+	namespace PostProcessVolume {
+		static bool GetEnabled(APostProcessVolume* PostProcessVolume);
+		static float GetBlendRadius(APostProcessVolume* PostProcessVolume);
+		static float GetBlendWeight(APostProcessVolume* PostProcessVolume);
+		static bool GetUnbound(APostProcessVolume* PostProcessVolume);
+		static float GetPriority(APostProcessVolume* PostProcessVolume);
+		static void SetEnabled(APostProcessVolume* PostProcessVolume, bool Value);
+		static void SetBlendRadius(APostProcessVolume* PostProcessVolume, float Value);
+		static void SetBlendWeight(APostProcessVolume* PostProcessVolume, float Value);
+		static void SetUnbound(APostProcessVolume* PostProcessVolume, bool Value);
+		static void SetPriority(APostProcessVolume* PostProcessVolume, float Priority);
+	}
 
 	namespace AmbientSound { }
 

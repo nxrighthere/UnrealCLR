@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./UnrealEngine-Framework-PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 ## PrimitiveComponent.CastShadow Property
-Gets or sets whether the component should cast a shadow or not  
+Gets or sets whether the component should cast a shadow  
 ```csharp
 public bool CastShadow { get; set; }
 ```
