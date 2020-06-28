@@ -782,7 +782,8 @@ namespace UnrealEngine.Framework {
 		DirectionalLight,
 		PointLight,
 		RectLight,
-		SpotLight
+		SpotLight,
+		TriggerVolume
 	}
 
 	internal enum ComponentType : int {
@@ -1237,6 +1238,8 @@ namespace UnrealEngine.Framework {
 
 		internal static EncompassesPointFunction encompassesPoint;
 	}
+
+	partial class TriggerVolume { }
 
 	partial class AmbientSound { }
 

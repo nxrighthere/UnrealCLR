@@ -70,6 +70,7 @@
 - [TriggerBox](./UnrealEngine-Framework-TriggerBox.md 'UnrealEngine.Framework.TriggerBox')
 - [TriggerCapsule](./UnrealEngine-Framework-TriggerCapsule.md 'UnrealEngine.Framework.TriggerCapsule')
 - [TriggerSphere](./UnrealEngine-Framework-TriggerSphere.md 'UnrealEngine.Framework.TriggerSphere')
+- [TriggerVolume](./UnrealEngine-Framework-TriggerVolume.md 'UnrealEngine.Framework.TriggerVolume')
 - [Volume](./UnrealEngine-Framework-Volume.md 'UnrealEngine.Framework.Volume')
 - [World](./UnrealEngine-Framework-World.md 'UnrealEngine.Framework.World')
 ### Structs

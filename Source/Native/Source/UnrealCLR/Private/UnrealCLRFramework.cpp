@@ -97,6 +97,9 @@ namespace UnrealCLRFramework {
 			case ActorType::SpotLight:\
 				Result = Head ASpotLight Tail;\
 				break;\
+			case ActorType::TriggerVolume:\
+				Result = Head ATriggerVolume Tail;\
+				break;\
 			default:\
 				break;\
 		}\

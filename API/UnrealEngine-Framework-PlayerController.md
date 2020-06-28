@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## PlayerController Class
-A component that is used by human players to control a [Pawn](./UnrealEngine-Framework-Pawn.md 'UnrealEngine.Framework.Pawn')  
+An actor that is used by human players to control a [Pawn](./UnrealEngine-Framework-Pawn.md 'UnrealEngine.Framework.Pawn')  
 ```csharp
 public class PlayerController : Controller
 ```

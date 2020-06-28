@@ -192,7 +192,8 @@ namespace UnrealCLRFramework {
 		DirectionalLight,
 		PointLight,
 		RectLight,
-		SpotLight
+		SpotLight,
+		TriggerVolume
 	};
 
 	enum struct ComponentType : int32 {
@@ -460,6 +461,8 @@ namespace UnrealCLRFramework {
 	namespace Volume {
 		static bool EncompassesPoint(AVolume* Volume, const Vector3* Point, float SphereRadius, float* OutDistanceToPoint);
 	}
+
+	namespace TriggerVolume { }
 
 	namespace AmbientSound { }
 

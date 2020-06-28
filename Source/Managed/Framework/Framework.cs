@@ -4026,7 +4026,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A component that is used by human players to control a <see cref="Pawn"/>
+	/// An actor that is used by human players to control a <see cref="Pawn"/>
 	/// </summary>
 	public partial class PlayerController : Controller {
 		internal override ActorType Type => ActorType.PlayerController;
@@ -4182,6 +4182,32 @@ namespace UnrealEngine.Framework {
 		/// Returns <c>true</c> if a point or sphere overlaps the volume
 		/// </summary>
 		public bool EncompassesPoint(in Vector3 point, float sphereRadius, ref float distanceToPoint) => encompassesPoint(Pointer, point, sphereRadius, ref distanceToPoint);
+	}
+
+	/// <summary>
+	/// An actor that is used to trigger events
+	/// </summary>
+	public partial class TriggerVolume : Volume {
+		internal override ActorType Type => ActorType.TriggerVolume;
+
+		private protected TriggerVolume() { }
+
+		internal TriggerVolume(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public TriggerVolume(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>
