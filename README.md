@@ -105,5 +105,5 @@ Supporters
 --------
 These wonderful people make open-source better:
 <p align="left"> 
-  <img src="https://github.com/Rageware/Supporters/blob/master/unrealclr-supporters.png.png" alt="supporters">
+  <img src="https://github.com/Rageware/Supporters/blob/master/unrealclr-supporters.png" alt="supporters">
 </p>
