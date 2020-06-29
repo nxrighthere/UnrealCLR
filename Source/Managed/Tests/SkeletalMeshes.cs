@@ -15,15 +15,15 @@ namespace UnrealEngine.Tests {
 			SkeletalMesh prototypeMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
 
 			Actor prototypeLeft = new Actor("prototypeLeft");
-			SkeletalMeshComponent prototypeLeftMeshComponent = new SkeletalMeshComponent(prototypeLeft);
+			SkeletalMeshComponent prototypeLeftSkeletalMeshComponent = new SkeletalMeshComponent(prototypeLeft);
 
-			prototypeLeftMeshComponent.SetSkeletalMesh(prototypeMesh);
-			prototypeLeftMeshComponent.SetWorldLocation(new Vector3(-700.0f, -70.0f, -100.0f));
-			prototypeLeftMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
-			prototypeLeftMeshComponent.SetAnimationMode(AnimationMode.Asset);
-			prototypeLeftMeshComponent.PlayAnimation(AnimationSequence.Load("/Game/Tests/Characters/Animations/IdleAnimationSequence"), true);
+			prototypeLeftSkeletalMeshComponent.SetSkeletalMesh(prototypeMesh);
+			prototypeLeftSkeletalMeshComponent.SetWorldLocation(new Vector3(-700.0f, -70.0f, -100.0f));
+			prototypeLeftSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
+			prototypeLeftSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
+			prototypeLeftSkeletalMeshComponent.PlayAnimation(AnimationSequence.Load("/Game/Tests/Characters/Animations/IdleAnimationSequence"), true);
 
-			Assert.IsTrue(prototypeLeftMeshComponent.IsPlaying);
+			Assert.IsTrue(prototypeLeftSkeletalMeshComponent.IsPlaying);
 
 			Actor prototypeRight = new Actor("prototypeRight");
 			SkeletalMeshComponent prototypeRightSkeletalMeshComponent = new SkeletalMeshComponent(prototypeRight);

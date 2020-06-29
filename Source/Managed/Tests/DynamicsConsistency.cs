@@ -14,6 +14,7 @@ namespace UnrealEngine.Tests {
 		private const string consoleCommand = "TestCommand";
 		private const string pauseResumeAction = "Pause/Resume";
 		private const string pauseResumeKey = Keys.Q;
+		private const string messageKey = Keys.E;
 		private const string mouseXAction = "Mouse X Message";
 		private const string mouseYAction = "Mouse Y Message";
 		private const string mouseXKey = Keys.MouseX;
@@ -58,9 +59,8 @@ namespace UnrealEngine.Tests {
 			MousePositionTest();
 			WindowTest();
 			ActionBindingsTest();
-
-			if (playerInput.IsKeyPressed(Keys.E))
-				Debug.AddOnScreenMessage(-1, 0.1f, Color.LightSalmon, "[E] key pressed!");
+			KeyPressTest();
+			ConsoleTest();
 		}
 
 		private static void VariableEvent() => Debug.AddOnScreenMessage(-1, 5.0f, Color.LightBlue, "Variable has changed: " + variable.GetInt());
@@ -103,6 +103,18 @@ namespace UnrealEngine.Tests {
 		private static void ActionBindingsTest() {
 			Debug.AddOnScreenMessage(13, 3.0f, Color.Orange, "Action bindings: " + playerController.InputComponent.ActionBindingsNumber);
 			Debug.AddOnScreenMessage(14, 3.0f, Color.Orange, "Press [" + pauseResumeKey + "] key to pause/resume");
+		}
+
+		private static void KeyPressTest() {
+			Debug.AddOnScreenMessage(15, 3.0f, Color.Khaki, "Press [" + messageKey + "] key for a message");
+
+			if (playerInput.IsKeyPressed(Keys.E))
+				Debug.AddOnScreenMessage(-1, 0.1f, Color.LightSalmon, "[" + messageKey + "] key pressed!");
+		}
+
+		private static void ConsoleTest() {
+			Debug.AddOnScreenMessage(16, 3.0f, Color.YellowGreen, "Enter " + consoleVariable + " (value) to the console to change a variable");
+			Debug.AddOnScreenMessage(17, 3.0f, Color.YellowGreen, "Enter " + consoleCommand + " (value) to the console to execute a command");
 		}
 	}
 }
