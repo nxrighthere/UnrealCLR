@@ -70,10 +70,10 @@ namespace UnrealEngine.Runtime {
 			Type type = null;
 			MethodInfo method = null;
 			Plugin plugin = null;
+			bool loaded = false;
 			string assemblyPath = Marshal.PtrToStringAuto(assemblyPathPointer);
 			string typeName = Marshal.PtrToStringAuto(typeNamePointer);
 			string methodName = Marshal.PtrToStringAuto(methodNamePointer);
-			bool loaded = false;
 
 			try {
 				int assemblyHash = assemblyPath.GetHashCode();
@@ -194,34 +194,40 @@ namespace UnrealEngine.Runtime {
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		internal static unsafe int Initialize(IntPtr functions, int checksum) {
-			assembliesContextManager = new AssembliesContextManager();
-			assembliesContextManager.CreateAssembliesContext();
+			try {
+				assembliesContextManager = new AssembliesContextManager();
+				assembliesContextManager.CreateAssembliesContext();
 
-			plugins = new Dictionary<int, Plugin>();
+				plugins = new Dictionary<int, Plugin>();
 
-			int position = 0;
-			IntPtr* buffer = (IntPtr*)functions;
+				int position = 0;
+				IntPtr* buffer = (IntPtr*)functions;
 
-			unchecked {
-				int head = 0;
-				IntPtr* managedFunctions = (IntPtr*)buffer[position++];
+				unchecked {
+					int head = 0;
+					IntPtr* managedFunctions = (IntPtr*)buffer[position++];
 
-				Invoke = GenerateOptimizedFunction<InvokeDelegate>(managedFunctions[head++]);
-				Exception = GenerateOptimizedFunction<ExceptionDelegate>(managedFunctions[head++]);
-				Log = GenerateOptimizedFunction<LogDelegate>(managedFunctions[head++]);
+					Invoke = GenerateOptimizedFunction<InvokeDelegate>(managedFunctions[head++]);
+					Exception = GenerateOptimizedFunction<ExceptionDelegate>(managedFunctions[head++]);
+					Log = GenerateOptimizedFunction<LogDelegate>(managedFunctions[head++]);
+				}
+
+				unchecked {
+					int head = 0;
+					IntPtr* nativeFunctions = (IntPtr*)buffer[position++];
+
+					nativeFunctions[head++] = typeof(Core).GetMethod("ExecuteAssemblyFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
+					nativeFunctions[head++] = typeof(Core).GetMethod("LoadAssemblyFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
+					nativeFunctions[head++] = typeof(Core).GetMethod("UnloadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
+				}
+
+				sharedFunctions = buffer[position++];
+				sharedChecksum = checksum;
 			}
 
-			unchecked {
-				int head = 0;
-				IntPtr* nativeFunctions = (IntPtr*)buffer[position++];
-
-				nativeFunctions[head++] = typeof(Core).GetMethod("ExecuteAssemblyFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
-				nativeFunctions[head++] = typeof(Core).GetMethod("LoadAssemblyFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
-				nativeFunctions[head++] = typeof(Core).GetMethod("UnloadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
+			catch (Exception exception) {
+				Exception(exception.ToString());
 			}
-
-			sharedFunctions = buffer[position++];
-			sharedChecksum = checksum;
 
 			return 0xF;
 		}

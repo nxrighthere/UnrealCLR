@@ -14,8 +14,8 @@
 
 #include "UnrealCLRFramework.h"
 
-DEFINE_LOG_CATEGORY(LogUnrealManaged);
 DEFINE_LOG_CATEGORY(LogUnrealAssert);
+DEFINE_LOG_CATEGORY(LogUnrealManaged);
 
 namespace UnrealCLRFramework {
 	#define UNREALCLR_GET_ATTACHMENT_RULE(Rule, Result) {\

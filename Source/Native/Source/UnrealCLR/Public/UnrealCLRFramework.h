@@ -14,8 +14,8 @@
 
 #pragma once
 
-UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealManaged, Log, All);
 UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealAssert, Log, All);
+UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealManaged, Log, All);
 
 namespace UnrealCLRFramework {
 	using AnimationMode = EAnimationMode::Type;
@@ -144,13 +144,13 @@ namespace UnrealCLRFramework {
 	};
 
 	struct Transform {
-		Vector3 Location;
 		Quaternion Rotation;
+		Vector3 Location;
 		Vector3 Scale;
 
 		FORCEINLINE Transform(const FTransform& Value) :
-			Location(Value.GetTranslation()),
 			Rotation(Value.GetRotation()),
+			Location(Value.GetTranslation()),
 			Scale(Value.GetScale3D()) { }
 
 		FORCEINLINE operator FTransform() const { return FTransform(Rotation, Location, Scale); }

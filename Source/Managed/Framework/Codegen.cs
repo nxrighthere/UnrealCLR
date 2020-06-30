@@ -762,6 +762,19 @@ namespace UnrealEngine.Framework {
 		}
 	}
 
+	partial struct LinearColor {
+		private float r;
+		private float g;
+		private float b;
+		private float a;
+	}
+
+	partial struct Transform {
+		private Quaternion rotation;
+		private Vector3 location;
+		private Vector3 scale;
+	}
+
 	internal struct Bool {
 		private byte value;
 

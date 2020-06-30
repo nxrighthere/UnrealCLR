@@ -1020,15 +1020,15 @@ void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
 	} else if (Level == UnrealCLR::LogLevel::Warning) {
 		UNREALCLR_LOG(Warning);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 30.0f, FColor::Yellow, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Orange, *FString(ANSI_TO_TCHAR(Message)));
 	} else if (Level == UnrealCLR::LogLevel::Error) {
 		UNREALCLR_LOG(Error);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 30.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
 	} else if (Level == UnrealCLR::LogLevel::Fatal) {
 		UNREALCLR_LOG(Error);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 30.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
 
 		UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 	}

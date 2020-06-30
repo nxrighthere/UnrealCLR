@@ -460,12 +460,7 @@ namespace UnrealEngine.Framework {
 	/// A linear 32-bit floating-point RGBA color
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public struct LinearColor : IEquatable<LinearColor> {
-		private float r;
-		private float g;
-		private float b;
-		private float a;
-
+	public partial struct LinearColor : IEquatable<LinearColor> {
 		/// <summary>
 		/// Initializes a new instance the linear color
 		/// </summary>
@@ -723,11 +718,7 @@ namespace UnrealEngine.Framework {
 	/// Transform composed of location, rotation, and scale
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public struct Transform : IEquatable<Transform> {
-		private Vector3 location;
-		private Quaternion rotation;
-		private Vector3 scale;
-
+	public partial struct Transform : IEquatable<Transform> {
 		/// <summary>
 		/// Initializes a new instance the transform
 		/// </summary>
