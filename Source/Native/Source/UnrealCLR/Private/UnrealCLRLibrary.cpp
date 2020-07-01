@@ -18,19 +18,18 @@ FManagedFunction::FManagedFunction() : Pointer() { }
 
 UUnrealCLRLibrary::UUnrealCLRLibrary(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) { }
 
-void UUnrealCLRLibrary::ExecuteAssemblyFunction(FManagedFunction ManagedFunction) {
+void UUnrealCLRLibrary::ExecuteManagedFunction(FManagedFunction ManagedFunction) {
 	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && ManagedFunction.Pointer != NULL)
-		UnrealCLR::ExecuteAssemblyFunction(ManagedFunction.Pointer);
+		UnrealCLR::ExecuteManagedFunction(ManagedFunction.Pointer);
 }
 
-FManagedFunction UUnrealCLRLibrary::LoadAssemblyFunction(FString AssemblyPath, FString TypeName, FString MethodName, bool Optional) {
+FManagedFunction UUnrealCLRLibrary::FindManagedFunction(FString Method, bool Optional, bool& Result) {
 	FManagedFunction managedFunction;
 
-	if (UnrealCLR::Status == UnrealCLR::StatusType::Running) {
-		FString assemblyPath = UnrealCLR::UserAssembliesPath + AssemblyPath;
+	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && !Method.IsEmpty())
+		managedFunction.Pointer = UnrealCLR::FindManagedFunction(*Method, Optional);
 
-		managedFunction.Pointer = UnrealCLR::LoadAssemblyFunction(*assemblyPath, *TypeName, *MethodName, Optional);
-	}
+	Result = managedFunction.Pointer != NULL;
 
 	return managedFunction;
 }

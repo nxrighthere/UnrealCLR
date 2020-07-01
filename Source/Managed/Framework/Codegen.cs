@@ -13,6 +13,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -24,715 +25,724 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal static bool loaded = false;
 		internal const int checksum = 0x1C0;
+		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
-		internal static unsafe void Load(IntPtr functions) {
-			if (!loaded) {
-				try {
-					int position = 0;
-					IntPtr* buffer = (IntPtr*)functions;
-					
-					unchecked {
-						int head = 0;
-						IntPtr* assertFunctions = (IntPtr*)buffer[position++];
+		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
+			int position = 0;
+			IntPtr* buffer = (IntPtr*)functions;
 
-						Assert.outputMessage = GenerateOptimizedFunction<Assert.OutputMessageFunction>(assertFunctions[head++]);
+			unchecked {
+				int head = 0;
+				IntPtr* assertFunctions = (IntPtr*)buffer[position++];
+
+				Assert.outputMessage = GenerateOptimizedFunction<Assert.OutputMessageFunction>(assertFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* commandLineFunctions = (IntPtr*)buffer[position++];
+
+				CommandLine.get = GenerateOptimizedFunction<CommandLine.GetFunction>(commandLineFunctions[head++]);
+				CommandLine.set = GenerateOptimizedFunction<CommandLine.SetFunction>(commandLineFunctions[head++]);
+				CommandLine.append = GenerateOptimizedFunction<CommandLine.AppendFunction>(commandLineFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* debugFunctions = (IntPtr*)buffer[position++];
+
+				Debug.log = GenerateOptimizedFunction<Debug.LogFunction>(debugFunctions[head++]);
+				Debug.handleException = GenerateOptimizedFunction<Debug.HandleExceptionFunction>(debugFunctions[head++]);
+				Debug.addOnScreenMessage = GenerateOptimizedFunction<Debug.AddOnScreenMessageFunction>(debugFunctions[head++]);
+				Debug.clearOnScreenMessages = GenerateOptimizedFunction<Debug.ClearOnScreenMessagesFunction>(debugFunctions[head++]);
+				Debug.drawBox = GenerateOptimizedFunction<Debug.DrawBoxFunction>(debugFunctions[head++]);
+				Debug.drawCapsule = GenerateOptimizedFunction<Debug.DrawCapsuleFunction>(debugFunctions[head++]);
+				Debug.drawCone = GenerateOptimizedFunction<Debug.DrawConeFunction>(debugFunctions[head++]);
+				Debug.drawCylinder = GenerateOptimizedFunction<Debug.DrawCylinderFunction>(debugFunctions[head++]);
+				Debug.drawSphere = GenerateOptimizedFunction<Debug.DrawSphereFunction>(debugFunctions[head++]);
+				Debug.drawLine = GenerateOptimizedFunction<Debug.DrawLineFunction>(debugFunctions[head++]);
+				Debug.drawPoint = GenerateOptimizedFunction<Debug.DrawPointFunction>(debugFunctions[head++]);
+				Debug.flushPersistentLines = GenerateOptimizedFunction<Debug.FlushPersistentLinesFunction>(debugFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* objectFunctions = (IntPtr*)buffer[position++];
+
+				Object.isPendingKill = GenerateOptimizedFunction<Object.IsPendingKillFunction>(objectFunctions[head++]);
+				Object.isValid = GenerateOptimizedFunction<Object.IsValidFunction>(objectFunctions[head++]);
+				Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
+				Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
+				Object.getID = GenerateOptimizedFunction<Object.GetIDFunction>(objectFunctions[head++]);
+				Object.getName = GenerateOptimizedFunction<Object.GetNameFunction>(objectFunctions[head++]);
+				Object.getBool = GenerateOptimizedFunction<Object.GetBoolFunction>(objectFunctions[head++]);
+				Object.getByte = GenerateOptimizedFunction<Object.GetByteFunction>(objectFunctions[head++]);
+				Object.getShort = GenerateOptimizedFunction<Object.GetShortFunction>(objectFunctions[head++]);
+				Object.getInt = GenerateOptimizedFunction<Object.GetIntFunction>(objectFunctions[head++]);
+				Object.getLong = GenerateOptimizedFunction<Object.GetLongFunction>(objectFunctions[head++]);
+				Object.getUShort = GenerateOptimizedFunction<Object.GetUShortFunction>(objectFunctions[head++]);
+				Object.getUInt = GenerateOptimizedFunction<Object.GetUIntFunction>(objectFunctions[head++]);
+				Object.getULong = GenerateOptimizedFunction<Object.GetULongFunction>(objectFunctions[head++]);
+				Object.getFloat = GenerateOptimizedFunction<Object.GetFloatFunction>(objectFunctions[head++]);
+				Object.getDouble = GenerateOptimizedFunction<Object.GetDoubleFunction>(objectFunctions[head++]);
+				Object.getText = GenerateOptimizedFunction<Object.GetTextFunction>(objectFunctions[head++]);
+				Object.setBool = GenerateOptimizedFunction<Object.SetBoolFunction>(objectFunctions[head++]);
+				Object.setByte = GenerateOptimizedFunction<Object.SetByteFunction>(objectFunctions[head++]);
+				Object.setShort = GenerateOptimizedFunction<Object.SetShortFunction>(objectFunctions[head++]);
+				Object.setInt = GenerateOptimizedFunction<Object.SetIntFunction>(objectFunctions[head++]);
+				Object.setLong = GenerateOptimizedFunction<Object.SetLongFunction>(objectFunctions[head++]);
+				Object.setUShort = GenerateOptimizedFunction<Object.SetUShortFunction>(objectFunctions[head++]);
+				Object.setUInt = GenerateOptimizedFunction<Object.SetUIntFunction>(objectFunctions[head++]);
+				Object.setULong = GenerateOptimizedFunction<Object.SetULongFunction>(objectFunctions[head++]);
+				Object.setFloat = GenerateOptimizedFunction<Object.SetFloatFunction>(objectFunctions[head++]);
+				Object.setDouble = GenerateOptimizedFunction<Object.SetDoubleFunction>(objectFunctions[head++]);
+				Object.setText = GenerateOptimizedFunction<Object.SetTextFunction>(objectFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* applicationFunctions = (IntPtr*)buffer[position++];
+
+				Application.isCanEverRender = GenerateOptimizedFunction<Application.IsCanEverRenderFunction>(applicationFunctions[head++]);
+				Application.isPackagedForDistribution = GenerateOptimizedFunction<Application.IsPackagedForDistributionFunction>(applicationFunctions[head++]);
+				Application.isPackagedForShipping = GenerateOptimizedFunction<Application.IsPackagedForShippingFunction>(applicationFunctions[head++]);
+				Application.getProjectDirectory = GenerateOptimizedFunction<Application.GetProjectDirectoryFunction>(applicationFunctions[head++]);
+				Application.getDefaultLanguage = GenerateOptimizedFunction<Application.GetDefaultLanguageFunction>(applicationFunctions[head++]);
+				Application.getProjectName = GenerateOptimizedFunction<Application.GetProjectNameFunction>(applicationFunctions[head++]);
+				Application.getVolumeMultiplier = GenerateOptimizedFunction<Application.GetVolumeMultiplierFunction>(applicationFunctions[head++]);
+				Application.setProjectName = GenerateOptimizedFunction<Application.SetProjectNameFunction>(applicationFunctions[head++]);
+				Application.setVolumeMultiplier = GenerateOptimizedFunction<Application.SetVolumeMultiplierFunction>(applicationFunctions[head++]);
+				Application.requestExit = GenerateOptimizedFunction<Application.RequestExitFunction>(applicationFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* consoleManagerFunctions = (IntPtr*)buffer[position++];
+
+				ConsoleManager.isRegisteredVariable = GenerateOptimizedFunction<ConsoleManager.IsRegisteredVariableFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.findVariable = GenerateOptimizedFunction<ConsoleManager.FindVariableFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.registerVariableBool = GenerateOptimizedFunction<ConsoleManager.RegisterVariableBoolFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.registerVariableInt = GenerateOptimizedFunction<ConsoleManager.RegisterVariableIntFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.registerVariableFloat = GenerateOptimizedFunction<ConsoleManager.RegisterVariableFloatFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.registerVariableString = GenerateOptimizedFunction<ConsoleManager.RegisterVariableStringFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.registerCommand = GenerateOptimizedFunction<ConsoleManager.RegisterCommandFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.unregisterObject = GenerateOptimizedFunction<ConsoleManager.UnregisterObjectFunction>(consoleManagerFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* engineFunctions = (IntPtr*)buffer[position++];
+
+				Engine.isSplitScreen = GenerateOptimizedFunction<Engine.IsSplitScreenFunction>(engineFunctions[head++]);
+				Engine.isEditor = GenerateOptimizedFunction<Engine.IsEditorFunction>(engineFunctions[head++]);
+				Engine.isForegroundWindow = GenerateOptimizedFunction<Engine.IsForegroundWindowFunction>(engineFunctions[head++]);
+				Engine.isExitRequested = GenerateOptimizedFunction<Engine.IsExitRequestedFunction>(engineFunctions[head++]);
+				Engine.getNetMode = GenerateOptimizedFunction<Engine.GetNetModeFunction>(engineFunctions[head++]);
+				Engine.getFrameNumber = GenerateOptimizedFunction<Engine.GetFrameNumberFunction>(engineFunctions[head++]);
+				Engine.getViewportSize = GenerateOptimizedFunction<Engine.GetViewportSizeFunction>(engineFunctions[head++]);
+				Engine.getScreenResolution = GenerateOptimizedFunction<Engine.GetScreenResolutionFunction>(engineFunctions[head++]);
+				Engine.getWindowMode = GenerateOptimizedFunction<Engine.GetWindowModeFunction>(engineFunctions[head++]);
+				Engine.getVersion = GenerateOptimizedFunction<Engine.GetVersionFunction>(engineFunctions[head++]);
+				Engine.getMaxFPS = GenerateOptimizedFunction<Engine.GetMaxFPSFunction>(engineFunctions[head++]);
+				Engine.setMaxFPS = GenerateOptimizedFunction<Engine.SetMaxFPSFunction>(engineFunctions[head++]);
+				Engine.setTitle = GenerateOptimizedFunction<Engine.SetTitleFunction>(engineFunctions[head++]);
+				Engine.addActionMapping = GenerateOptimizedFunction<Engine.AddActionMappingFunction>(engineFunctions[head++]);
+				Engine.addAxisMapping = GenerateOptimizedFunction<Engine.AddAxisMappingFunction>(engineFunctions[head++]);
+				Engine.forceGarbageCollection = GenerateOptimizedFunction<Engine.ForceGarbageCollectionFunction>(engineFunctions[head++]);
+				Engine.delayGarbageCollection = GenerateOptimizedFunction<Engine.DelayGarbageCollectionFunction>(engineFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* headMountedDisplayFunctions = (IntPtr*)buffer[position++];
+
+				HeadMountedDisplay.isConnected = GenerateOptimizedFunction<HeadMountedDisplay.IsConnectedFunction>(headMountedDisplayFunctions[head++]);
+				HeadMountedDisplay.getEnabled = GenerateOptimizedFunction<HeadMountedDisplay.GetEnabledFunction>(headMountedDisplayFunctions[head++]);
+				HeadMountedDisplay.getLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.GetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
+				HeadMountedDisplay.getDeviceName = GenerateOptimizedFunction<HeadMountedDisplay.GetDeviceNameFunction>(headMountedDisplayFunctions[head++]);
+				HeadMountedDisplay.setEnable = GenerateOptimizedFunction<HeadMountedDisplay.SetEnableFunction>(headMountedDisplayFunctions[head++]);
+				HeadMountedDisplay.setLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.SetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* worldFunctions = (IntPtr*)buffer[position++];
+
+				World.getSimulatePhysics = GenerateOptimizedFunction<World.GetSimulatePhysicsFunction>(worldFunctions[head++]);
+				World.getActorCount = GenerateOptimizedFunction<World.GetActorCountFunction>(worldFunctions[head++]);
+				World.getDeltaSeconds = GenerateOptimizedFunction<World.GetDeltaSecondsFunction>(worldFunctions[head++]);
+				World.getRealTimeSeconds = GenerateOptimizedFunction<World.GetRealTimeSecondsFunction>(worldFunctions[head++]);
+				World.getTimeSeconds = GenerateOptimizedFunction<World.GetTimeSecondsFunction>(worldFunctions[head++]);
+				World.getWorldOrigin = GenerateOptimizedFunction<World.GetWorldOriginFunction>(worldFunctions[head++]);
+				World.getActor = GenerateOptimizedFunction<World.GetActorFunction>(worldFunctions[head++]);
+				World.getActorByTag = GenerateOptimizedFunction<World.GetActorByTagFunction>(worldFunctions[head++]);
+				World.getActorByID = GenerateOptimizedFunction<World.GetActorByIDFunction>(worldFunctions[head++]);
+				World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
+				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
+				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
+				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* blueprintFunctions = (IntPtr*)buffer[position++];
+
+				Blueprint.isValidActorClass = GenerateOptimizedFunction<Blueprint.IsValidActorClassFunction>(blueprintFunctions[head++]);
+				Blueprint.isValidComponentClass = GenerateOptimizedFunction<Blueprint.IsValidComponentClassFunction>(blueprintFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* consoleObjectFunctions = (IntPtr*)buffer[position++];
+
+				ConsoleObject.isBool = GenerateOptimizedFunction<ConsoleObject.IsBoolFunction>(consoleObjectFunctions[head++]);
+				ConsoleObject.isInt = GenerateOptimizedFunction<ConsoleObject.IsIntFunction>(consoleObjectFunctions[head++]);
+				ConsoleObject.isFloat = GenerateOptimizedFunction<ConsoleObject.IsFloatFunction>(consoleObjectFunctions[head++]);
+				ConsoleObject.isString = GenerateOptimizedFunction<ConsoleObject.IsStringFunction>(consoleObjectFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* consoleVariableFunctions = (IntPtr*)buffer[position++];
+
+				ConsoleVariable.getBool = GenerateOptimizedFunction<ConsoleVariable.GetBoolFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.getInt = GenerateOptimizedFunction<ConsoleVariable.GetIntFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.getFloat = GenerateOptimizedFunction<ConsoleVariable.GetFloatFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.getString = GenerateOptimizedFunction<ConsoleVariable.GetStringFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.setBool = GenerateOptimizedFunction<ConsoleVariable.SetBoolFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.setInt = GenerateOptimizedFunction<ConsoleVariable.SetIntFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.setFloat = GenerateOptimizedFunction<ConsoleVariable.SetFloatFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.setString = GenerateOptimizedFunction<ConsoleVariable.SetStringFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.setOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.SetOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.clearOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.ClearOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* actorFunctions = (IntPtr*)buffer[position++];
+
+				Actor.isPendingKill = GenerateOptimizedFunction<Actor.IsPendingKillFunction>(actorFunctions[head++]);
+				Actor.isRootComponentMovable = GenerateOptimizedFunction<Actor.IsRootComponentMovableFunction>(actorFunctions[head++]);
+				Actor.isOverlappingActor = GenerateOptimizedFunction<Actor.IsOverlappingActorFunction>(actorFunctions[head++]);
+				Actor.spawn = GenerateOptimizedFunction<Actor.SpawnFunction>(actorFunctions[head++]);
+				Actor.destroy = GenerateOptimizedFunction<Actor.DestroyFunction>(actorFunctions[head++]);
+				Actor.rename = GenerateOptimizedFunction<Actor.RenameFunction>(actorFunctions[head++]);
+				Actor.hide = GenerateOptimizedFunction<Actor.HideFunction>(actorFunctions[head++]);
+				Actor.teleportTo = GenerateOptimizedFunction<Actor.TeleportToFunction>(actorFunctions[head++]);
+				Actor.getComponent = GenerateOptimizedFunction<Actor.GetComponentFunction>(actorFunctions[head++]);
+				Actor.getComponentByTag = GenerateOptimizedFunction<Actor.GetComponentByTagFunction>(actorFunctions[head++]);
+				Actor.getComponentByID = GenerateOptimizedFunction<Actor.GetComponentByIDFunction>(actorFunctions[head++]);
+				Actor.getRootComponent = GenerateOptimizedFunction<Actor.GetRootComponentFunction>(actorFunctions[head++]);
+				Actor.getInputComponent = GenerateOptimizedFunction<Actor.GetInputComponentFunction>(actorFunctions[head++]);
+				Actor.getBlockInput = GenerateOptimizedFunction<Actor.GetBlockInputFunction>(actorFunctions[head++]);
+				Actor.getDistanceTo = GenerateOptimizedFunction<Actor.GetDistanceToFunction>(actorFunctions[head++]);
+				Actor.getBounds = GenerateOptimizedFunction<Actor.GetBoundsFunction>(actorFunctions[head++]);
+				Actor.setRootComponent = GenerateOptimizedFunction<Actor.SetRootComponentFunction>(actorFunctions[head++]);
+				Actor.setInputComponent = GenerateOptimizedFunction<Actor.SetInputComponentFunction>(actorFunctions[head++]);
+				Actor.setBlockInput = GenerateOptimizedFunction<Actor.SetBlockInputFunction>(actorFunctions[head++]);
+				Actor.setLifeSpan = GenerateOptimizedFunction<Actor.SetLifeSpanFunction>(actorFunctions[head++]);
+				Actor.setEnableCollision = GenerateOptimizedFunction<Actor.SetEnableCollisionFunction>(actorFunctions[head++]);
+				Actor.addTag = GenerateOptimizedFunction<Actor.AddTagFunction>(actorFunctions[head++]);
+				Actor.removeTag = GenerateOptimizedFunction<Actor.RemoveTagFunction>(actorFunctions[head++]);
+				Actor.hasTag = GenerateOptimizedFunction<Actor.HasTagFunction>(actorFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* pawnFunctions = (IntPtr*)buffer[position++];
+
+				Pawn.addControllerYawInput = GenerateOptimizedFunction<Pawn.AddControllerYawInputFunction>(pawnFunctions[head++]);
+				Pawn.addControllerPitchInput = GenerateOptimizedFunction<Pawn.AddControllerPitchInputFunction>(pawnFunctions[head++]);
+				Pawn.addControllerRollInput = GenerateOptimizedFunction<Pawn.AddControllerRollInputFunction>(pawnFunctions[head++]);
+				Pawn.addMovementInput = GenerateOptimizedFunction<Pawn.AddMovementInputFunction>(pawnFunctions[head++]);
+				Pawn.getGravityDirection = GenerateOptimizedFunction<Pawn.GetGravityDirectionFunction>(pawnFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* controllerFunctions = (IntPtr*)buffer[position++];
+
+				Controller.isLookInputIgnored = GenerateOptimizedFunction<Controller.IsLookInputIgnoredFunction>(controllerFunctions[head++]);
+				Controller.isMoveInputIgnored = GenerateOptimizedFunction<Controller.IsMoveInputIgnoredFunction>(controllerFunctions[head++]);
+				Controller.isPlayerController = GenerateOptimizedFunction<Controller.IsPlayerControllerFunction>(controllerFunctions[head++]);
+				Controller.getPawn = GenerateOptimizedFunction<Controller.GetPawnFunction>(controllerFunctions[head++]);
+				Controller.lineOfSightTo = GenerateOptimizedFunction<Controller.LineOfSightToFunction>(controllerFunctions[head++]);
+				Controller.setInitialLocationAndRotation = GenerateOptimizedFunction<Controller.SetInitialLocationAndRotationFunction>(controllerFunctions[head++]);
+				Controller.setIgnoreLookInput = GenerateOptimizedFunction<Controller.SetIgnoreLookInputFunction>(controllerFunctions[head++]);
+				Controller.setIgnoreMoveInput = GenerateOptimizedFunction<Controller.SetIgnoreMoveInputFunction>(controllerFunctions[head++]);
+				Controller.resetIgnoreLookInput = GenerateOptimizedFunction<Controller.ResetIgnoreLookInputFunction>(controllerFunctions[head++]);
+				Controller.resetIgnoreMoveInput = GenerateOptimizedFunction<Controller.ResetIgnoreMoveInputFunction>(controllerFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* aIControllerFunctions = (IntPtr*)buffer[position++];
+
+				AIController.clearFocus = GenerateOptimizedFunction<AIController.ClearFocusFunction>(aIControllerFunctions[head++]);
+				AIController.getFocalPoint = GenerateOptimizedFunction<AIController.GetFocalPointFunction>(aIControllerFunctions[head++]);
+				AIController.setFocalPoint = GenerateOptimizedFunction<AIController.SetFocalPointFunction>(aIControllerFunctions[head++]);
+				AIController.getFocusActor = GenerateOptimizedFunction<AIController.GetFocusActorFunction>(aIControllerFunctions[head++]);
+				AIController.getAllowStrafe = GenerateOptimizedFunction<AIController.GetAllowStrafeFunction>(aIControllerFunctions[head++]);
+				AIController.setAllowStrafe = GenerateOptimizedFunction<AIController.SetAllowStrafeFunction>(aIControllerFunctions[head++]);
+				AIController.setFocus = GenerateOptimizedFunction<AIController.SetFocusFunction>(aIControllerFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* playerControllerFunctions = (IntPtr*)buffer[position++];
+
+				PlayerController.isPaused = GenerateOptimizedFunction<PlayerController.IsPausedFunction>(playerControllerFunctions[head++]);
+				PlayerController.getShowMouseCursor = GenerateOptimizedFunction<PlayerController.GetShowMouseCursorFunction>(playerControllerFunctions[head++]);
+				PlayerController.getMousePosition = GenerateOptimizedFunction<PlayerController.GetMousePositionFunction>(playerControllerFunctions[head++]);
+				PlayerController.getPlayerViewPoint = GenerateOptimizedFunction<PlayerController.GetPlayerViewPointFunction>(playerControllerFunctions[head++]);
+				PlayerController.getPlayerInput = GenerateOptimizedFunction<PlayerController.GetPlayerInputFunction>(playerControllerFunctions[head++]);
+				PlayerController.setShowMouseCursor = GenerateOptimizedFunction<PlayerController.SetShowMouseCursorFunction>(playerControllerFunctions[head++]);
+				PlayerController.setMousePosition = GenerateOptimizedFunction<PlayerController.SetMousePositionFunction>(playerControllerFunctions[head++]);
+				PlayerController.consoleCommand = GenerateOptimizedFunction<PlayerController.ConsoleCommandFunction>(playerControllerFunctions[head++]);
+				PlayerController.setPause = GenerateOptimizedFunction<PlayerController.SetPauseFunction>(playerControllerFunctions[head++]);
+				PlayerController.setViewTarget = GenerateOptimizedFunction<PlayerController.SetViewTargetFunction>(playerControllerFunctions[head++]);
+				PlayerController.setViewTargetWithBlend = GenerateOptimizedFunction<PlayerController.SetViewTargetWithBlendFunction>(playerControllerFunctions[head++]);
+				PlayerController.addYawInput = GenerateOptimizedFunction<PlayerController.AddYawInputFunction>(playerControllerFunctions[head++]);
+				PlayerController.addPitchInput = GenerateOptimizedFunction<PlayerController.AddPitchInputFunction>(playerControllerFunctions[head++]);
+				PlayerController.addRollInput = GenerateOptimizedFunction<PlayerController.AddRollInputFunction>(playerControllerFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* volumeFunctions = (IntPtr*)buffer[position++];
+
+				Volume.encompassesPoint = GenerateOptimizedFunction<Volume.EncompassesPointFunction>(volumeFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* postProcessVolumeFunctions = (IntPtr*)buffer[position++];
+
+				PostProcessVolume.getEnabled = GenerateOptimizedFunction<PostProcessVolume.GetEnabledFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.getBlendRadius = GenerateOptimizedFunction<PostProcessVolume.GetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.getBlendWeight = GenerateOptimizedFunction<PostProcessVolume.GetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.getUnbound = GenerateOptimizedFunction<PostProcessVolume.GetUnboundFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.getPriority = GenerateOptimizedFunction<PostProcessVolume.GetPriorityFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.setEnabled = GenerateOptimizedFunction<PostProcessVolume.SetEnabledFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.setBlendRadius = GenerateOptimizedFunction<PostProcessVolume.SetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.setBlendWeight = GenerateOptimizedFunction<PostProcessVolume.SetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.setUnbound = GenerateOptimizedFunction<PostProcessVolume.SetUnboundFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.setPriority = GenerateOptimizedFunction<PostProcessVolume.SetPriorityFunction>(postProcessVolumeFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* soundBaseFunctions = (IntPtr*)buffer[position++];
+
+				SoundBase.getDuration = GenerateOptimizedFunction<SoundBase.GetDurationFunction>(soundBaseFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* soundWaveFunctions = (IntPtr*)buffer[position++];
+
+				SoundWave.getLoop = GenerateOptimizedFunction<SoundWave.GetLoopFunction>(soundWaveFunctions[head++]);
+				SoundWave.setLoop = GenerateOptimizedFunction<SoundWave.SetLoopFunction>(soundWaveFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* animationInstanceFunctions = (IntPtr*)buffer[position++];
+
+				AnimationInstance.getCurrentActiveMontage = GenerateOptimizedFunction<AnimationInstance.GetCurrentActiveMontageFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageIsPlaying = GenerateOptimizedFunction<AnimationInstance.MontageIsPlayingFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageGetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageGetPlayRateFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageGetPosition = GenerateOptimizedFunction<AnimationInstance.MontageGetPositionFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageGetBlendTime = GenerateOptimizedFunction<AnimationInstance.MontageGetBlendTimeFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageGetCurrentSection = GenerateOptimizedFunction<AnimationInstance.MontageGetCurrentSectionFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageSetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageSetPlayRateFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageSetPosition = GenerateOptimizedFunction<AnimationInstance.MontageSetPositionFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageSetNextSection = GenerateOptimizedFunction<AnimationInstance.MontageSetNextSectionFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montagePlay = GenerateOptimizedFunction<AnimationInstance.MontagePlayFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montagePause = GenerateOptimizedFunction<AnimationInstance.MontagePauseFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageResume = GenerateOptimizedFunction<AnimationInstance.MontageResumeFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageStop = GenerateOptimizedFunction<AnimationInstance.MontageStopFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageJumpToSection = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.montageJumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* playerInputFunctions = (IntPtr*)buffer[position++];
+
+				PlayerInput.isKeyPressed = GenerateOptimizedFunction<PlayerInput.IsKeyPressedFunction>(playerInputFunctions[head++]);
+				PlayerInput.getTimeKeyPressed = GenerateOptimizedFunction<PlayerInput.GetTimeKeyPressedFunction>(playerInputFunctions[head++]);
+				PlayerInput.getMouseSensitivity = GenerateOptimizedFunction<PlayerInput.GetMouseSensitivityFunction>(playerInputFunctions[head++]);
+				PlayerInput.setMouseSensitivity = GenerateOptimizedFunction<PlayerInput.SetMouseSensitivityFunction>(playerInputFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
+
+				Texture2D.getSize = GenerateOptimizedFunction<Texture2D.GetSizeFunction>(texture2DFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* actorComponentFunctions = (IntPtr*)buffer[position++];
+
+				ActorComponent.isOwnerSelected = GenerateOptimizedFunction<ActorComponent.IsOwnerSelectedFunction>(actorComponentFunctions[head++]);
+				ActorComponent.getOwner = GenerateOptimizedFunction<ActorComponent.GetOwnerFunction>(actorComponentFunctions[head++]);
+				ActorComponent.destroy = GenerateOptimizedFunction<ActorComponent.DestroyFunction>(actorComponentFunctions[head++]);
+				ActorComponent.addTag = GenerateOptimizedFunction<ActorComponent.AddTagFunction>(actorComponentFunctions[head++]);
+				ActorComponent.removeTag = GenerateOptimizedFunction<ActorComponent.RemoveTagFunction>(actorComponentFunctions[head++]);
+				ActorComponent.hasTag = GenerateOptimizedFunction<ActorComponent.HasTagFunction>(actorComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* inputComponentFunctions = (IntPtr*)buffer[position++];
+
+				InputComponent.hasBindings = GenerateOptimizedFunction<InputComponent.HasBindingsFunction>(inputComponentFunctions[head++]);
+				InputComponent.getActionBindingsNumber = GenerateOptimizedFunction<InputComponent.GetActionBindingsNumberFunction>(inputComponentFunctions[head++]);
+				InputComponent.clearActionBindings = GenerateOptimizedFunction<InputComponent.ClearActionBindingsFunction>(inputComponentFunctions[head++]);
+				InputComponent.bindAction = GenerateOptimizedFunction<InputComponent.BindActionFunction>(inputComponentFunctions[head++]);
+				InputComponent.bindAxis = GenerateOptimizedFunction<InputComponent.BindAxisFunction>(inputComponentFunctions[head++]);
+				InputComponent.removeActionBinding = GenerateOptimizedFunction<InputComponent.RemoveActionBindingFunction>(inputComponentFunctions[head++]);
+				InputComponent.getBlockInput = GenerateOptimizedFunction<InputComponent.GetBlockInputFunction>(inputComponentFunctions[head++]);
+				InputComponent.setBlockInput = GenerateOptimizedFunction<InputComponent.SetBlockInputFunction>(inputComponentFunctions[head++]);
+				InputComponent.getPriority = GenerateOptimizedFunction<InputComponent.GetPriorityFunction>(inputComponentFunctions[head++]);
+				InputComponent.setPriority = GenerateOptimizedFunction<InputComponent.SetPriorityFunction>(inputComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* sceneComponentFunctions = (IntPtr*)buffer[position++];
+
+				SceneComponent.isAttachedToComponent = GenerateOptimizedFunction<SceneComponent.IsAttachedToComponentFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.isAttachedToActor = GenerateOptimizedFunction<SceneComponent.IsAttachedToActorFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.isSocketExists = GenerateOptimizedFunction<SceneComponent.IsSocketExistsFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.hasAnySockets = GenerateOptimizedFunction<SceneComponent.HasAnySocketsFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.create = GenerateOptimizedFunction<SceneComponent.CreateFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.attachToComponent = GenerateOptimizedFunction<SceneComponent.AttachToComponentFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.detachFromComponent = GenerateOptimizedFunction<SceneComponent.DetachFromComponentFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.activate = GenerateOptimizedFunction<SceneComponent.ActivateFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.deactivate = GenerateOptimizedFunction<SceneComponent.DeactivateFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.updateToWorld = GenerateOptimizedFunction<SceneComponent.UpdateToWorldFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addLocalOffset = GenerateOptimizedFunction<SceneComponent.AddLocalOffsetFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addLocalRotation = GenerateOptimizedFunction<SceneComponent.AddLocalRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addRelativeLocation = GenerateOptimizedFunction<SceneComponent.AddRelativeLocationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addRelativeRotation = GenerateOptimizedFunction<SceneComponent.AddRelativeRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addLocalTransform = GenerateOptimizedFunction<SceneComponent.AddLocalTransformFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addWorldOffset = GenerateOptimizedFunction<SceneComponent.AddWorldOffsetFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addWorldRotation = GenerateOptimizedFunction<SceneComponent.AddWorldRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.addWorldTransform = GenerateOptimizedFunction<SceneComponent.AddWorldTransformFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getAttachedSocketName = GenerateOptimizedFunction<SceneComponent.GetAttachedSocketNameFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getSocketLocation = GenerateOptimizedFunction<SceneComponent.GetSocketLocationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getSocketRotation = GenerateOptimizedFunction<SceneComponent.GetSocketRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getComponentVelocity = GenerateOptimizedFunction<SceneComponent.GetComponentVelocityFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getComponentLocation = GenerateOptimizedFunction<SceneComponent.GetComponentLocationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getComponentRotation = GenerateOptimizedFunction<SceneComponent.GetComponentRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getComponentScale = GenerateOptimizedFunction<SceneComponent.GetComponentScaleFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getComponentTransform = GenerateOptimizedFunction<SceneComponent.GetComponentTransformFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getForwardVector = GenerateOptimizedFunction<SceneComponent.GetForwardVectorFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getRightVector = GenerateOptimizedFunction<SceneComponent.GetRightVectorFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.getUpVector = GenerateOptimizedFunction<SceneComponent.GetUpVectorFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setMobility = GenerateOptimizedFunction<SceneComponent.SetMobilityFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setRelativeLocation = GenerateOptimizedFunction<SceneComponent.SetRelativeLocationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setRelativeRotation = GenerateOptimizedFunction<SceneComponent.SetRelativeRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setRelativeTransform = GenerateOptimizedFunction<SceneComponent.SetRelativeTransformFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setWorldLocation = GenerateOptimizedFunction<SceneComponent.SetWorldLocationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setWorldRotation = GenerateOptimizedFunction<SceneComponent.SetWorldRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setWorldTransform = GenerateOptimizedFunction<SceneComponent.SetWorldTransformFunction>(sceneComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* audioComponentFunctions = (IntPtr*)buffer[position++];
+
+				AudioComponent.isPlaying = GenerateOptimizedFunction<AudioComponent.IsPlayingFunction>(audioComponentFunctions[head++]);
+				AudioComponent.getPaused = GenerateOptimizedFunction<AudioComponent.GetPausedFunction>(audioComponentFunctions[head++]);
+				AudioComponent.setSound = GenerateOptimizedFunction<AudioComponent.SetSoundFunction>(audioComponentFunctions[head++]);
+				AudioComponent.setPaused = GenerateOptimizedFunction<AudioComponent.SetPausedFunction>(audioComponentFunctions[head++]);
+				AudioComponent.play = GenerateOptimizedFunction<AudioComponent.PlayFunction>(audioComponentFunctions[head++]);
+				AudioComponent.stop = GenerateOptimizedFunction<AudioComponent.StopFunction>(audioComponentFunctions[head++]);
+				AudioComponent.fadeIn = GenerateOptimizedFunction<AudioComponent.FadeInFunction>(audioComponentFunctions[head++]);
+				AudioComponent.fadeOut = GenerateOptimizedFunction<AudioComponent.FadeOutFunction>(audioComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* cameraComponentFunctions = (IntPtr*)buffer[position++];
+
+				CameraComponent.getConstrainAspectRatio = GenerateOptimizedFunction<CameraComponent.GetConstrainAspectRatioFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getAspectRatio = GenerateOptimizedFunction<CameraComponent.GetAspectRatioFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getFieldOfView = GenerateOptimizedFunction<CameraComponent.GetFieldOfViewFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getOrthoFarClipPlane = GenerateOptimizedFunction<CameraComponent.GetOrthoFarClipPlaneFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.GetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getOrthoWidth = GenerateOptimizedFunction<CameraComponent.GetOrthoWidthFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.GetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setProjectionMode = GenerateOptimizedFunction<CameraComponent.SetProjectionModeFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setConstrainAspectRatio = GenerateOptimizedFunction<CameraComponent.SetConstrainAspectRatioFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setAspectRatio = GenerateOptimizedFunction<CameraComponent.SetAspectRatioFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setFieldOfView = GenerateOptimizedFunction<CameraComponent.SetFieldOfViewFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setOrthoFarClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoFarClipPlaneFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setOrthoWidth = GenerateOptimizedFunction<CameraComponent.SetOrthoWidthFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.setLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.SetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* childActorComponentFunctions = (IntPtr*)buffer[position++];
+
+				ChildActorComponent.setChildActor = GenerateOptimizedFunction<ChildActorComponent.SetChildActorFunction>(childActorComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
+
+				PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addAngularImpulseInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInDegreesFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addAngularImpulseInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInRadiansFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addForce = GenerateOptimizedFunction<PrimitiveComponent.AddForceFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addForceAtLocation = GenerateOptimizedFunction<PrimitiveComponent.AddForceAtLocationFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddImpulseFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addImpulseAtLocation = GenerateOptimizedFunction<PrimitiveComponent.AddImpulseAtLocationFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addRadialForce = GenerateOptimizedFunction<PrimitiveComponent.AddRadialForceFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddRadialImpulseFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addTorqueInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInDegreesFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.addTorqueInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInRadiansFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getMass = GenerateOptimizedFunction<PrimitiveComponent.GetMassFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getCastShadow = GenerateOptimizedFunction<PrimitiveComponent.GetCastShadowFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.GetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.GetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getMaterial = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getMaterialsNumber = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialsNumberFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getSquaredDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetSquaredDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCenterOfMass = GenerateOptimizedFunction<PrimitiveComponent.SetCenterOfMassFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCastShadow = GenerateOptimizedFunction<PrimitiveComponent.SetCastShadowFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.SetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.SetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setMaterial = GenerateOptimizedFunction<PrimitiveComponent.SetMaterialFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setSimulatePhysics = GenerateOptimizedFunction<PrimitiveComponent.SetSimulatePhysicsFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCollisionChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionChannelFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.clearMoveIgnoreComponents = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreComponentsFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* shapeComponentFunctions = (IntPtr*)buffer[position++];
+
+				ShapeComponent.getDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.GetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
+				ShapeComponent.getShapeColor = GenerateOptimizedFunction<ShapeComponent.GetShapeColorFunction>(shapeComponentFunctions[head++]);
+				ShapeComponent.setDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.SetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
+				ShapeComponent.setShapeColor = GenerateOptimizedFunction<ShapeComponent.SetShapeColorFunction>(shapeComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* boxComponentFunctions = (IntPtr*)buffer[position++];
+
+				BoxComponent.getScaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetScaledBoxExtentFunction>(boxComponentFunctions[head++]);
+				BoxComponent.getUnscaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetUnscaledBoxExtentFunction>(boxComponentFunctions[head++]);
+				BoxComponent.setBoxExtent = GenerateOptimizedFunction<BoxComponent.SetBoxExtentFunction>(boxComponentFunctions[head++]);
+				BoxComponent.initBoxExtent = GenerateOptimizedFunction<BoxComponent.InitBoxExtentFunction>(boxComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* sphereComponentFunctions = (IntPtr*)buffer[position++];
+
+				SphereComponent.getScaledSphereRadius = GenerateOptimizedFunction<SphereComponent.GetScaledSphereRadiusFunction>(sphereComponentFunctions[head++]);
+				SphereComponent.getUnscaledSphereRadius = GenerateOptimizedFunction<SphereComponent.GetUnscaledSphereRadiusFunction>(sphereComponentFunctions[head++]);
+				SphereComponent.getShapeScale = GenerateOptimizedFunction<SphereComponent.GetShapeScaleFunction>(sphereComponentFunctions[head++]);
+				SphereComponent.setSphereRadius = GenerateOptimizedFunction<SphereComponent.SetSphereRadiusFunction>(sphereComponentFunctions[head++]);
+				SphereComponent.initSphereRadius = GenerateOptimizedFunction<SphereComponent.InitSphereRadiusFunction>(sphereComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* capsuleComponentFunctions = (IntPtr*)buffer[position++];
+
+				CapsuleComponent.getScaledCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.GetScaledCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.getUnscaledCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.GetUnscaledCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.getShapeScale = GenerateOptimizedFunction<CapsuleComponent.GetShapeScaleFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.getScaledCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.GetScaledCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.getUnscaledCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.GetUnscaledCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.setCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.setCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.initCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.InitCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* meshComponentFunctions = (IntPtr*)buffer[position++];
+
+				MeshComponent.isValidMaterialSlotName = GenerateOptimizedFunction<MeshComponent.IsValidMaterialSlotNameFunction>(meshComponentFunctions[head++]);
+				MeshComponent.getMaterialIndex = GenerateOptimizedFunction<MeshComponent.GetMaterialIndexFunction>(meshComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* lightComponentBaseFunctions = (IntPtr*)buffer[position++];
+
+				LightComponentBase.getIntensity = GenerateOptimizedFunction<LightComponentBase.GetIntensityFunction>(lightComponentBaseFunctions[head++]);
+				LightComponentBase.getCastShadows = GenerateOptimizedFunction<LightComponentBase.GetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
+				LightComponentBase.setCastShadows = GenerateOptimizedFunction<LightComponentBase.SetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* lightComponentFunctions = (IntPtr*)buffer[position++];
+
+				LightComponent.setIntensity = GenerateOptimizedFunction<LightComponent.SetIntensityFunction>(lightComponentFunctions[head++]);
+				LightComponent.setLightColor = GenerateOptimizedFunction<LightComponent.SetLightColorFunction>(lightComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* motionControllerComponentFunctions = (IntPtr*)buffer[position++];
+
+				MotionControllerComponent.isTracked = GenerateOptimizedFunction<MotionControllerComponent.IsTrackedFunction>(motionControllerComponentFunctions[head++]);
+				MotionControllerComponent.getDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.GetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
+				MotionControllerComponent.getTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.GetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
+				MotionControllerComponent.setDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.SetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
+				MotionControllerComponent.setTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
+				MotionControllerComponent.setTrackingMotionSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingMotionSourceFunction>(motionControllerComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* staticMeshComponentFunctions = (IntPtr*)buffer[position++];
+
+				StaticMeshComponent.getLocalBounds = GenerateOptimizedFunction<StaticMeshComponent.GetLocalBoundsFunction>(staticMeshComponentFunctions[head++]);
+				StaticMeshComponent.getStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.GetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
+				StaticMeshComponent.setStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.SetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* instancedStaticMeshComponentFunctions = (IntPtr*)buffer[position++];
+
+				InstancedStaticMeshComponent.getInstanceCount = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceCountFunction>(instancedStaticMeshComponentFunctions[head++]);
+				InstancedStaticMeshComponent.getInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
+				InstancedStaticMeshComponent.addInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.AddInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
+				InstancedStaticMeshComponent.updateInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.UpdateInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
+				InstancedStaticMeshComponent.removeInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.RemoveInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
+				InstancedStaticMeshComponent.clearInstances = GenerateOptimizedFunction<InstancedStaticMeshComponent.ClearInstancesFunction>(instancedStaticMeshComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
+
+				SkinnedMeshComponent.setSkeletalMesh = GenerateOptimizedFunction<SkinnedMeshComponent.SetSkeletalMeshFunction>(skinnedMeshComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* skeletalMeshComponentFunctions = (IntPtr*)buffer[position++];
+
+				SkeletalMeshComponent.isPlaying = GenerateOptimizedFunction<SkeletalMeshComponent.IsPlayingFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.getAnimationInstance = GenerateOptimizedFunction<SkeletalMeshComponent.GetAnimationInstanceFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.setAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.setAnimationMode = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationModeFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.setAnimationBlueprint = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationBlueprintFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.play = GenerateOptimizedFunction<SkeletalMeshComponent.PlayFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.playAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.PlayAnimationFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.stop = GenerateOptimizedFunction<SkeletalMeshComponent.StopFunction>(skeletalMeshComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* radialForceComponentFunctions = (IntPtr*)buffer[position++];
+
+				RadialForceComponent.getIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.GetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.getImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.GetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.getLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.GetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.getForceStrength = GenerateOptimizedFunction<RadialForceComponent.GetForceStrengthFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.getImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.GetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.getRadius = GenerateOptimizedFunction<RadialForceComponent.GetRadiusFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.setIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.SetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.setImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.SetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.setLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.SetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.setForceStrength = GenerateOptimizedFunction<RadialForceComponent.SetForceStrengthFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.setImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.SetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.setRadius = GenerateOptimizedFunction<RadialForceComponent.SetRadiusFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.addCollisionChannelToAffect = GenerateOptimizedFunction<RadialForceComponent.AddCollisionChannelToAffectFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.fireImpulse = GenerateOptimizedFunction<RadialForceComponent.FireImpulseFunction>(radialForceComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* materialInterfaceFunctions = (IntPtr*)buffer[position++];
+
+				MaterialInterface.isTwoSided = GenerateOptimizedFunction<MaterialInterface.IsTwoSidedFunction>(materialInterfaceFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* materialFunctions = (IntPtr*)buffer[position++];
+
+				Material.isDefaultMaterial = GenerateOptimizedFunction<Material.IsDefaultMaterialFunction>(materialFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* materialInstanceFunctions = (IntPtr*)buffer[position++];
+
+				MaterialInstance.isChildOf = GenerateOptimizedFunction<MaterialInstance.IsChildOfFunction>(materialInstanceFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* materialInstanceDynamicFunctions = (IntPtr*)buffer[position++];
+
+				MaterialInstanceDynamic.clearParameterValues = GenerateOptimizedFunction<MaterialInstanceDynamic.ClearParameterValuesFunction>(materialInstanceDynamicFunctions[head++]);
+				MaterialInstanceDynamic.setTextureParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetTextureParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
+				MaterialInstanceDynamic.setVectorParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetVectorParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
+				MaterialInstanceDynamic.setScalarParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetScalarParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
+			}
+
+			unchecked {
+				foreach (Assembly userAssembly in userAssemblies) {
+					Type[] types = userAssembly.GetTypes();
+
+					foreach (Type type in types) {
+						MethodInfo[] methods = type.GetMethods();
+
+						foreach (MethodInfo method in methods) {
+							if (method.IsPublic && method.IsStatic) {
+								string name = type.FullName + "." + method.Name;
+
+								if (!name.StartsWith("System.", StringComparison.CurrentCulture))
+									userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
+							}
+						}
 					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* commandLineFunctions = (IntPtr*)buffer[position++];
-
-						CommandLine.get = GenerateOptimizedFunction<CommandLine.GetFunction>(commandLineFunctions[head++]);
-						CommandLine.set = GenerateOptimizedFunction<CommandLine.SetFunction>(commandLineFunctions[head++]);
-						CommandLine.append = GenerateOptimizedFunction<CommandLine.AppendFunction>(commandLineFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* debugFunctions = (IntPtr*)buffer[position++];
-
-						Debug.log = GenerateOptimizedFunction<Debug.LogFunction>(debugFunctions[head++]);
-						Debug.handleException = GenerateOptimizedFunction<Debug.HandleExceptionFunction>(debugFunctions[head++]);
-						Debug.addOnScreenMessage = GenerateOptimizedFunction<Debug.AddOnScreenMessageFunction>(debugFunctions[head++]);
-						Debug.clearOnScreenMessages = GenerateOptimizedFunction<Debug.ClearOnScreenMessagesFunction>(debugFunctions[head++]);
-						Debug.drawBox = GenerateOptimizedFunction<Debug.DrawBoxFunction>(debugFunctions[head++]);
-						Debug.drawCapsule = GenerateOptimizedFunction<Debug.DrawCapsuleFunction>(debugFunctions[head++]);
-						Debug.drawCone = GenerateOptimizedFunction<Debug.DrawConeFunction>(debugFunctions[head++]);
-						Debug.drawCylinder = GenerateOptimizedFunction<Debug.DrawCylinderFunction>(debugFunctions[head++]);
-						Debug.drawSphere = GenerateOptimizedFunction<Debug.DrawSphereFunction>(debugFunctions[head++]);
-						Debug.drawLine = GenerateOptimizedFunction<Debug.DrawLineFunction>(debugFunctions[head++]);
-						Debug.drawPoint = GenerateOptimizedFunction<Debug.DrawPointFunction>(debugFunctions[head++]);
-						Debug.flushPersistentLines = GenerateOptimizedFunction<Debug.FlushPersistentLinesFunction>(debugFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* objectFunctions = (IntPtr*)buffer[position++];
-
-						Object.isPendingKill = GenerateOptimizedFunction<Object.IsPendingKillFunction>(objectFunctions[head++]);
-						Object.isValid = GenerateOptimizedFunction<Object.IsValidFunction>(objectFunctions[head++]);
-						Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
-						Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
-						Object.getID = GenerateOptimizedFunction<Object.GetIDFunction>(objectFunctions[head++]);
-						Object.getName = GenerateOptimizedFunction<Object.GetNameFunction>(objectFunctions[head++]);
-						Object.getBool = GenerateOptimizedFunction<Object.GetBoolFunction>(objectFunctions[head++]);
-						Object.getByte = GenerateOptimizedFunction<Object.GetByteFunction>(objectFunctions[head++]);
-						Object.getShort = GenerateOptimizedFunction<Object.GetShortFunction>(objectFunctions[head++]);
-						Object.getInt = GenerateOptimizedFunction<Object.GetIntFunction>(objectFunctions[head++]);
-						Object.getLong = GenerateOptimizedFunction<Object.GetLongFunction>(objectFunctions[head++]);
-						Object.getUShort = GenerateOptimizedFunction<Object.GetUShortFunction>(objectFunctions[head++]);
-						Object.getUInt = GenerateOptimizedFunction<Object.GetUIntFunction>(objectFunctions[head++]);
-						Object.getULong = GenerateOptimizedFunction<Object.GetULongFunction>(objectFunctions[head++]);
-						Object.getFloat = GenerateOptimizedFunction<Object.GetFloatFunction>(objectFunctions[head++]);
-						Object.getDouble = GenerateOptimizedFunction<Object.GetDoubleFunction>(objectFunctions[head++]);
-						Object.getText = GenerateOptimizedFunction<Object.GetTextFunction>(objectFunctions[head++]);
-						Object.setBool = GenerateOptimizedFunction<Object.SetBoolFunction>(objectFunctions[head++]);
-						Object.setByte = GenerateOptimizedFunction<Object.SetByteFunction>(objectFunctions[head++]);
-						Object.setShort = GenerateOptimizedFunction<Object.SetShortFunction>(objectFunctions[head++]);
-						Object.setInt = GenerateOptimizedFunction<Object.SetIntFunction>(objectFunctions[head++]);
-						Object.setLong = GenerateOptimizedFunction<Object.SetLongFunction>(objectFunctions[head++]);
-						Object.setUShort = GenerateOptimizedFunction<Object.SetUShortFunction>(objectFunctions[head++]);
-						Object.setUInt = GenerateOptimizedFunction<Object.SetUIntFunction>(objectFunctions[head++]);
-						Object.setULong = GenerateOptimizedFunction<Object.SetULongFunction>(objectFunctions[head++]);
-						Object.setFloat = GenerateOptimizedFunction<Object.SetFloatFunction>(objectFunctions[head++]);
-						Object.setDouble = GenerateOptimizedFunction<Object.SetDoubleFunction>(objectFunctions[head++]);
-						Object.setText = GenerateOptimizedFunction<Object.SetTextFunction>(objectFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* applicationFunctions = (IntPtr*)buffer[position++];
-
-						Application.isCanEverRender = GenerateOptimizedFunction<Application.IsCanEverRenderFunction>(applicationFunctions[head++]);
-						Application.isPackagedForDistribution = GenerateOptimizedFunction<Application.IsPackagedForDistributionFunction>(applicationFunctions[head++]);
-						Application.isPackagedForShipping = GenerateOptimizedFunction<Application.IsPackagedForShippingFunction>(applicationFunctions[head++]);
-						Application.getProjectDirectory = GenerateOptimizedFunction<Application.GetProjectDirectoryFunction>(applicationFunctions[head++]);
-						Application.getDefaultLanguage = GenerateOptimizedFunction<Application.GetDefaultLanguageFunction>(applicationFunctions[head++]);
-						Application.getProjectName = GenerateOptimizedFunction<Application.GetProjectNameFunction>(applicationFunctions[head++]);
-						Application.getVolumeMultiplier = GenerateOptimizedFunction<Application.GetVolumeMultiplierFunction>(applicationFunctions[head++]);
-						Application.setProjectName = GenerateOptimizedFunction<Application.SetProjectNameFunction>(applicationFunctions[head++]);
-						Application.setVolumeMultiplier = GenerateOptimizedFunction<Application.SetVolumeMultiplierFunction>(applicationFunctions[head++]);
-						Application.requestExit = GenerateOptimizedFunction<Application.RequestExitFunction>(applicationFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* consoleManagerFunctions = (IntPtr*)buffer[position++];
-
-						ConsoleManager.isRegisteredVariable = GenerateOptimizedFunction<ConsoleManager.IsRegisteredVariableFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.findVariable = GenerateOptimizedFunction<ConsoleManager.FindVariableFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.registerVariableBool = GenerateOptimizedFunction<ConsoleManager.RegisterVariableBoolFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.registerVariableInt = GenerateOptimizedFunction<ConsoleManager.RegisterVariableIntFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.registerVariableFloat = GenerateOptimizedFunction<ConsoleManager.RegisterVariableFloatFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.registerVariableString = GenerateOptimizedFunction<ConsoleManager.RegisterVariableStringFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.registerCommand = GenerateOptimizedFunction<ConsoleManager.RegisterCommandFunction>(consoleManagerFunctions[head++]);
-						ConsoleManager.unregisterObject = GenerateOptimizedFunction<ConsoleManager.UnregisterObjectFunction>(consoleManagerFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* engineFunctions = (IntPtr*)buffer[position++];
-
-						Engine.isSplitScreen = GenerateOptimizedFunction<Engine.IsSplitScreenFunction>(engineFunctions[head++]);
-						Engine.isEditor = GenerateOptimizedFunction<Engine.IsEditorFunction>(engineFunctions[head++]);
-						Engine.isForegroundWindow = GenerateOptimizedFunction<Engine.IsForegroundWindowFunction>(engineFunctions[head++]);
-						Engine.isExitRequested = GenerateOptimizedFunction<Engine.IsExitRequestedFunction>(engineFunctions[head++]);
-						Engine.getNetMode = GenerateOptimizedFunction<Engine.GetNetModeFunction>(engineFunctions[head++]);
-						Engine.getFrameNumber = GenerateOptimizedFunction<Engine.GetFrameNumberFunction>(engineFunctions[head++]);
-						Engine.getViewportSize = GenerateOptimizedFunction<Engine.GetViewportSizeFunction>(engineFunctions[head++]);
-						Engine.getScreenResolution = GenerateOptimizedFunction<Engine.GetScreenResolutionFunction>(engineFunctions[head++]);
-						Engine.getWindowMode = GenerateOptimizedFunction<Engine.GetWindowModeFunction>(engineFunctions[head++]);
-						Engine.getVersion = GenerateOptimizedFunction<Engine.GetVersionFunction>(engineFunctions[head++]);
-						Engine.getMaxFPS = GenerateOptimizedFunction<Engine.GetMaxFPSFunction>(engineFunctions[head++]);
-						Engine.setMaxFPS = GenerateOptimizedFunction<Engine.SetMaxFPSFunction>(engineFunctions[head++]);
-						Engine.setTitle = GenerateOptimizedFunction<Engine.SetTitleFunction>(engineFunctions[head++]);
-						Engine.addActionMapping = GenerateOptimizedFunction<Engine.AddActionMappingFunction>(engineFunctions[head++]);
-						Engine.addAxisMapping = GenerateOptimizedFunction<Engine.AddAxisMappingFunction>(engineFunctions[head++]);
-						Engine.forceGarbageCollection = GenerateOptimizedFunction<Engine.ForceGarbageCollectionFunction>(engineFunctions[head++]);
-						Engine.delayGarbageCollection = GenerateOptimizedFunction<Engine.DelayGarbageCollectionFunction>(engineFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* headMountedDisplayFunctions = (IntPtr*)buffer[position++];
-
-						HeadMountedDisplay.isConnected = GenerateOptimizedFunction<HeadMountedDisplay.IsConnectedFunction>(headMountedDisplayFunctions[head++]);
-						HeadMountedDisplay.getEnabled = GenerateOptimizedFunction<HeadMountedDisplay.GetEnabledFunction>(headMountedDisplayFunctions[head++]);
-						HeadMountedDisplay.getLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.GetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
-						HeadMountedDisplay.getDeviceName = GenerateOptimizedFunction<HeadMountedDisplay.GetDeviceNameFunction>(headMountedDisplayFunctions[head++]);
-						HeadMountedDisplay.setEnable = GenerateOptimizedFunction<HeadMountedDisplay.SetEnableFunction>(headMountedDisplayFunctions[head++]);
-						HeadMountedDisplay.setLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.SetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* worldFunctions = (IntPtr*)buffer[position++];
-
-						World.getSimulatePhysics = GenerateOptimizedFunction<World.GetSimulatePhysicsFunction>(worldFunctions[head++]);
-						World.getActorCount = GenerateOptimizedFunction<World.GetActorCountFunction>(worldFunctions[head++]);
-						World.getDeltaSeconds = GenerateOptimizedFunction<World.GetDeltaSecondsFunction>(worldFunctions[head++]);
-						World.getRealTimeSeconds = GenerateOptimizedFunction<World.GetRealTimeSecondsFunction>(worldFunctions[head++]);
-						World.getTimeSeconds = GenerateOptimizedFunction<World.GetTimeSecondsFunction>(worldFunctions[head++]);
-						World.getWorldOrigin = GenerateOptimizedFunction<World.GetWorldOriginFunction>(worldFunctions[head++]);
-						World.getActor = GenerateOptimizedFunction<World.GetActorFunction>(worldFunctions[head++]);
-						World.getActorByTag = GenerateOptimizedFunction<World.GetActorByTagFunction>(worldFunctions[head++]);
-						World.getActorByID = GenerateOptimizedFunction<World.GetActorByIDFunction>(worldFunctions[head++]);
-						World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
-						World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
-						World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
-						World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* blueprintFunctions = (IntPtr*)buffer[position++];
-
-						Blueprint.isValidActorClass = GenerateOptimizedFunction<Blueprint.IsValidActorClassFunction>(blueprintFunctions[head++]);
-						Blueprint.isValidComponentClass = GenerateOptimizedFunction<Blueprint.IsValidComponentClassFunction>(blueprintFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* consoleObjectFunctions = (IntPtr*)buffer[position++];
-
-						ConsoleObject.isBool = GenerateOptimizedFunction<ConsoleObject.IsBoolFunction>(consoleObjectFunctions[head++]);
-						ConsoleObject.isInt = GenerateOptimizedFunction<ConsoleObject.IsIntFunction>(consoleObjectFunctions[head++]);
-						ConsoleObject.isFloat = GenerateOptimizedFunction<ConsoleObject.IsFloatFunction>(consoleObjectFunctions[head++]);
-						ConsoleObject.isString = GenerateOptimizedFunction<ConsoleObject.IsStringFunction>(consoleObjectFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* consoleVariableFunctions = (IntPtr*)buffer[position++];
-
-						ConsoleVariable.getBool = GenerateOptimizedFunction<ConsoleVariable.GetBoolFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.getInt = GenerateOptimizedFunction<ConsoleVariable.GetIntFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.getFloat = GenerateOptimizedFunction<ConsoleVariable.GetFloatFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.getString = GenerateOptimizedFunction<ConsoleVariable.GetStringFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.setBool = GenerateOptimizedFunction<ConsoleVariable.SetBoolFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.setInt = GenerateOptimizedFunction<ConsoleVariable.SetIntFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.setFloat = GenerateOptimizedFunction<ConsoleVariable.SetFloatFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.setString = GenerateOptimizedFunction<ConsoleVariable.SetStringFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.setOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.SetOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
-						ConsoleVariable.clearOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.ClearOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* actorFunctions = (IntPtr*)buffer[position++];
-
-						Actor.isPendingKill = GenerateOptimizedFunction<Actor.IsPendingKillFunction>(actorFunctions[head++]);
-						Actor.isRootComponentMovable = GenerateOptimizedFunction<Actor.IsRootComponentMovableFunction>(actorFunctions[head++]);
-						Actor.isOverlappingActor = GenerateOptimizedFunction<Actor.IsOverlappingActorFunction>(actorFunctions[head++]);
-						Actor.spawn = GenerateOptimizedFunction<Actor.SpawnFunction>(actorFunctions[head++]);
-						Actor.destroy = GenerateOptimizedFunction<Actor.DestroyFunction>(actorFunctions[head++]);
-						Actor.rename = GenerateOptimizedFunction<Actor.RenameFunction>(actorFunctions[head++]);
-						Actor.hide = GenerateOptimizedFunction<Actor.HideFunction>(actorFunctions[head++]);
-						Actor.teleportTo = GenerateOptimizedFunction<Actor.TeleportToFunction>(actorFunctions[head++]);
-						Actor.getComponent = GenerateOptimizedFunction<Actor.GetComponentFunction>(actorFunctions[head++]);
-						Actor.getComponentByTag = GenerateOptimizedFunction<Actor.GetComponentByTagFunction>(actorFunctions[head++]);
-						Actor.getComponentByID = GenerateOptimizedFunction<Actor.GetComponentByIDFunction>(actorFunctions[head++]);
-						Actor.getRootComponent = GenerateOptimizedFunction<Actor.GetRootComponentFunction>(actorFunctions[head++]);
-						Actor.getInputComponent = GenerateOptimizedFunction<Actor.GetInputComponentFunction>(actorFunctions[head++]);
-						Actor.getBlockInput = GenerateOptimizedFunction<Actor.GetBlockInputFunction>(actorFunctions[head++]);
-						Actor.getDistanceTo = GenerateOptimizedFunction<Actor.GetDistanceToFunction>(actorFunctions[head++]);
-						Actor.getBounds = GenerateOptimizedFunction<Actor.GetBoundsFunction>(actorFunctions[head++]);
-						Actor.setRootComponent = GenerateOptimizedFunction<Actor.SetRootComponentFunction>(actorFunctions[head++]);
-						Actor.setInputComponent = GenerateOptimizedFunction<Actor.SetInputComponentFunction>(actorFunctions[head++]);
-						Actor.setBlockInput = GenerateOptimizedFunction<Actor.SetBlockInputFunction>(actorFunctions[head++]);
-						Actor.setLifeSpan = GenerateOptimizedFunction<Actor.SetLifeSpanFunction>(actorFunctions[head++]);
-						Actor.setEnableCollision = GenerateOptimizedFunction<Actor.SetEnableCollisionFunction>(actorFunctions[head++]);
-						Actor.addTag = GenerateOptimizedFunction<Actor.AddTagFunction>(actorFunctions[head++]);
-						Actor.removeTag = GenerateOptimizedFunction<Actor.RemoveTagFunction>(actorFunctions[head++]);
-						Actor.hasTag = GenerateOptimizedFunction<Actor.HasTagFunction>(actorFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* pawnFunctions = (IntPtr*)buffer[position++];
-
-						Pawn.addControllerYawInput = GenerateOptimizedFunction<Pawn.AddControllerYawInputFunction>(pawnFunctions[head++]);
-						Pawn.addControllerPitchInput = GenerateOptimizedFunction<Pawn.AddControllerPitchInputFunction>(pawnFunctions[head++]);
-						Pawn.addControllerRollInput = GenerateOptimizedFunction<Pawn.AddControllerRollInputFunction>(pawnFunctions[head++]);
-						Pawn.addMovementInput = GenerateOptimizedFunction<Pawn.AddMovementInputFunction>(pawnFunctions[head++]);
-						Pawn.getGravityDirection = GenerateOptimizedFunction<Pawn.GetGravityDirectionFunction>(pawnFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* controllerFunctions = (IntPtr*)buffer[position++];
-
-						Controller.isLookInputIgnored = GenerateOptimizedFunction<Controller.IsLookInputIgnoredFunction>(controllerFunctions[head++]);
-						Controller.isMoveInputIgnored = GenerateOptimizedFunction<Controller.IsMoveInputIgnoredFunction>(controllerFunctions[head++]);
-						Controller.isPlayerController = GenerateOptimizedFunction<Controller.IsPlayerControllerFunction>(controllerFunctions[head++]);
-						Controller.getPawn = GenerateOptimizedFunction<Controller.GetPawnFunction>(controllerFunctions[head++]);
-						Controller.lineOfSightTo = GenerateOptimizedFunction<Controller.LineOfSightToFunction>(controllerFunctions[head++]);
-						Controller.setInitialLocationAndRotation = GenerateOptimizedFunction<Controller.SetInitialLocationAndRotationFunction>(controllerFunctions[head++]);
-						Controller.setIgnoreLookInput = GenerateOptimizedFunction<Controller.SetIgnoreLookInputFunction>(controllerFunctions[head++]);
-						Controller.setIgnoreMoveInput = GenerateOptimizedFunction<Controller.SetIgnoreMoveInputFunction>(controllerFunctions[head++]);
-						Controller.resetIgnoreLookInput = GenerateOptimizedFunction<Controller.ResetIgnoreLookInputFunction>(controllerFunctions[head++]);
-						Controller.resetIgnoreMoveInput = GenerateOptimizedFunction<Controller.ResetIgnoreMoveInputFunction>(controllerFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* aIControllerFunctions = (IntPtr*)buffer[position++];
-
-						AIController.clearFocus = GenerateOptimizedFunction<AIController.ClearFocusFunction>(aIControllerFunctions[head++]);
-						AIController.getFocalPoint = GenerateOptimizedFunction<AIController.GetFocalPointFunction>(aIControllerFunctions[head++]);
-						AIController.setFocalPoint = GenerateOptimizedFunction<AIController.SetFocalPointFunction>(aIControllerFunctions[head++]);
-						AIController.getFocusActor = GenerateOptimizedFunction<AIController.GetFocusActorFunction>(aIControllerFunctions[head++]);
-						AIController.getAllowStrafe = GenerateOptimizedFunction<AIController.GetAllowStrafeFunction>(aIControllerFunctions[head++]);
-						AIController.setAllowStrafe = GenerateOptimizedFunction<AIController.SetAllowStrafeFunction>(aIControllerFunctions[head++]);
-						AIController.setFocus = GenerateOptimizedFunction<AIController.SetFocusFunction>(aIControllerFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* playerControllerFunctions = (IntPtr*)buffer[position++];
-
-						PlayerController.isPaused = GenerateOptimizedFunction<PlayerController.IsPausedFunction>(playerControllerFunctions[head++]);
-						PlayerController.getShowMouseCursor = GenerateOptimizedFunction<PlayerController.GetShowMouseCursorFunction>(playerControllerFunctions[head++]);
-						PlayerController.getMousePosition = GenerateOptimizedFunction<PlayerController.GetMousePositionFunction>(playerControllerFunctions[head++]);
-						PlayerController.getPlayerViewPoint = GenerateOptimizedFunction<PlayerController.GetPlayerViewPointFunction>(playerControllerFunctions[head++]);
-						PlayerController.getPlayerInput = GenerateOptimizedFunction<PlayerController.GetPlayerInputFunction>(playerControllerFunctions[head++]);
-						PlayerController.setShowMouseCursor = GenerateOptimizedFunction<PlayerController.SetShowMouseCursorFunction>(playerControllerFunctions[head++]);
-						PlayerController.setMousePosition = GenerateOptimizedFunction<PlayerController.SetMousePositionFunction>(playerControllerFunctions[head++]);
-						PlayerController.consoleCommand = GenerateOptimizedFunction<PlayerController.ConsoleCommandFunction>(playerControllerFunctions[head++]);
-						PlayerController.setPause = GenerateOptimizedFunction<PlayerController.SetPauseFunction>(playerControllerFunctions[head++]);
-						PlayerController.setViewTarget = GenerateOptimizedFunction<PlayerController.SetViewTargetFunction>(playerControllerFunctions[head++]);
-						PlayerController.setViewTargetWithBlend = GenerateOptimizedFunction<PlayerController.SetViewTargetWithBlendFunction>(playerControllerFunctions[head++]);
-						PlayerController.addYawInput = GenerateOptimizedFunction<PlayerController.AddYawInputFunction>(playerControllerFunctions[head++]);
-						PlayerController.addPitchInput = GenerateOptimizedFunction<PlayerController.AddPitchInputFunction>(playerControllerFunctions[head++]);
-						PlayerController.addRollInput = GenerateOptimizedFunction<PlayerController.AddRollInputFunction>(playerControllerFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* volumeFunctions = (IntPtr*)buffer[position++];
-
-						Volume.encompassesPoint = GenerateOptimizedFunction<Volume.EncompassesPointFunction>(volumeFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* postProcessVolumeFunctions = (IntPtr*)buffer[position++];
-
-						PostProcessVolume.getEnabled = GenerateOptimizedFunction<PostProcessVolume.GetEnabledFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.getBlendRadius = GenerateOptimizedFunction<PostProcessVolume.GetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.getBlendWeight = GenerateOptimizedFunction<PostProcessVolume.GetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.getUnbound = GenerateOptimizedFunction<PostProcessVolume.GetUnboundFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.getPriority = GenerateOptimizedFunction<PostProcessVolume.GetPriorityFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.setEnabled = GenerateOptimizedFunction<PostProcessVolume.SetEnabledFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.setBlendRadius = GenerateOptimizedFunction<PostProcessVolume.SetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.setBlendWeight = GenerateOptimizedFunction<PostProcessVolume.SetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.setUnbound = GenerateOptimizedFunction<PostProcessVolume.SetUnboundFunction>(postProcessVolumeFunctions[head++]);
-						PostProcessVolume.setPriority = GenerateOptimizedFunction<PostProcessVolume.SetPriorityFunction>(postProcessVolumeFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* soundBaseFunctions = (IntPtr*)buffer[position++];
-
-						SoundBase.getDuration = GenerateOptimizedFunction<SoundBase.GetDurationFunction>(soundBaseFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* soundWaveFunctions = (IntPtr*)buffer[position++];
-
-						SoundWave.getLoop = GenerateOptimizedFunction<SoundWave.GetLoopFunction>(soundWaveFunctions[head++]);
-						SoundWave.setLoop = GenerateOptimizedFunction<SoundWave.SetLoopFunction>(soundWaveFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* animationInstanceFunctions = (IntPtr*)buffer[position++];
-
-						AnimationInstance.getCurrentActiveMontage = GenerateOptimizedFunction<AnimationInstance.GetCurrentActiveMontageFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageIsPlaying = GenerateOptimizedFunction<AnimationInstance.MontageIsPlayingFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageGetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageGetPlayRateFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageGetPosition = GenerateOptimizedFunction<AnimationInstance.MontageGetPositionFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageGetBlendTime = GenerateOptimizedFunction<AnimationInstance.MontageGetBlendTimeFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageGetCurrentSection = GenerateOptimizedFunction<AnimationInstance.MontageGetCurrentSectionFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageSetPlayRate = GenerateOptimizedFunction<AnimationInstance.MontageSetPlayRateFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageSetPosition = GenerateOptimizedFunction<AnimationInstance.MontageSetPositionFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageSetNextSection = GenerateOptimizedFunction<AnimationInstance.MontageSetNextSectionFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montagePlay = GenerateOptimizedFunction<AnimationInstance.MontagePlayFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montagePause = GenerateOptimizedFunction<AnimationInstance.MontagePauseFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageResume = GenerateOptimizedFunction<AnimationInstance.MontageResumeFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageStop = GenerateOptimizedFunction<AnimationInstance.MontageStopFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageJumpToSection = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionFunction>(animationInstanceFunctions[head++]);
-						AnimationInstance.montageJumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.MontageJumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* playerInputFunctions = (IntPtr*)buffer[position++];
-
-						PlayerInput.isKeyPressed = GenerateOptimizedFunction<PlayerInput.IsKeyPressedFunction>(playerInputFunctions[head++]);
-						PlayerInput.getTimeKeyPressed = GenerateOptimizedFunction<PlayerInput.GetTimeKeyPressedFunction>(playerInputFunctions[head++]);
-						PlayerInput.getMouseSensitivity = GenerateOptimizedFunction<PlayerInput.GetMouseSensitivityFunction>(playerInputFunctions[head++]);
-						PlayerInput.setMouseSensitivity = GenerateOptimizedFunction<PlayerInput.SetMouseSensitivityFunction>(playerInputFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
-
-						Texture2D.getSize = GenerateOptimizedFunction<Texture2D.GetSizeFunction>(texture2DFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* actorComponentFunctions = (IntPtr*)buffer[position++];
-
-						ActorComponent.isOwnerSelected = GenerateOptimizedFunction<ActorComponent.IsOwnerSelectedFunction>(actorComponentFunctions[head++]);
-						ActorComponent.getOwner = GenerateOptimizedFunction<ActorComponent.GetOwnerFunction>(actorComponentFunctions[head++]);
-						ActorComponent.destroy = GenerateOptimizedFunction<ActorComponent.DestroyFunction>(actorComponentFunctions[head++]);
-						ActorComponent.addTag = GenerateOptimizedFunction<ActorComponent.AddTagFunction>(actorComponentFunctions[head++]);
-						ActorComponent.removeTag = GenerateOptimizedFunction<ActorComponent.RemoveTagFunction>(actorComponentFunctions[head++]);
-						ActorComponent.hasTag = GenerateOptimizedFunction<ActorComponent.HasTagFunction>(actorComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* inputComponentFunctions = (IntPtr*)buffer[position++];
-
-						InputComponent.hasBindings = GenerateOptimizedFunction<InputComponent.HasBindingsFunction>(inputComponentFunctions[head++]);
-						InputComponent.getActionBindingsNumber = GenerateOptimizedFunction<InputComponent.GetActionBindingsNumberFunction>(inputComponentFunctions[head++]);
-						InputComponent.clearActionBindings = GenerateOptimizedFunction<InputComponent.ClearActionBindingsFunction>(inputComponentFunctions[head++]);
-						InputComponent.bindAction = GenerateOptimizedFunction<InputComponent.BindActionFunction>(inputComponentFunctions[head++]);
-						InputComponent.bindAxis = GenerateOptimizedFunction<InputComponent.BindAxisFunction>(inputComponentFunctions[head++]);
-						InputComponent.removeActionBinding = GenerateOptimizedFunction<InputComponent.RemoveActionBindingFunction>(inputComponentFunctions[head++]);
-						InputComponent.getBlockInput = GenerateOptimizedFunction<InputComponent.GetBlockInputFunction>(inputComponentFunctions[head++]);
-						InputComponent.setBlockInput = GenerateOptimizedFunction<InputComponent.SetBlockInputFunction>(inputComponentFunctions[head++]);
-						InputComponent.getPriority = GenerateOptimizedFunction<InputComponent.GetPriorityFunction>(inputComponentFunctions[head++]);
-						InputComponent.setPriority = GenerateOptimizedFunction<InputComponent.SetPriorityFunction>(inputComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* sceneComponentFunctions = (IntPtr*)buffer[position++];
-
-						SceneComponent.isAttachedToComponent = GenerateOptimizedFunction<SceneComponent.IsAttachedToComponentFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.isAttachedToActor = GenerateOptimizedFunction<SceneComponent.IsAttachedToActorFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.isSocketExists = GenerateOptimizedFunction<SceneComponent.IsSocketExistsFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.hasAnySockets = GenerateOptimizedFunction<SceneComponent.HasAnySocketsFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.create = GenerateOptimizedFunction<SceneComponent.CreateFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.attachToComponent = GenerateOptimizedFunction<SceneComponent.AttachToComponentFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.detachFromComponent = GenerateOptimizedFunction<SceneComponent.DetachFromComponentFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.activate = GenerateOptimizedFunction<SceneComponent.ActivateFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.deactivate = GenerateOptimizedFunction<SceneComponent.DeactivateFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.updateToWorld = GenerateOptimizedFunction<SceneComponent.UpdateToWorldFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addLocalOffset = GenerateOptimizedFunction<SceneComponent.AddLocalOffsetFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addLocalRotation = GenerateOptimizedFunction<SceneComponent.AddLocalRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addRelativeLocation = GenerateOptimizedFunction<SceneComponent.AddRelativeLocationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addRelativeRotation = GenerateOptimizedFunction<SceneComponent.AddRelativeRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addLocalTransform = GenerateOptimizedFunction<SceneComponent.AddLocalTransformFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addWorldOffset = GenerateOptimizedFunction<SceneComponent.AddWorldOffsetFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addWorldRotation = GenerateOptimizedFunction<SceneComponent.AddWorldRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.addWorldTransform = GenerateOptimizedFunction<SceneComponent.AddWorldTransformFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getAttachedSocketName = GenerateOptimizedFunction<SceneComponent.GetAttachedSocketNameFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getSocketLocation = GenerateOptimizedFunction<SceneComponent.GetSocketLocationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getSocketRotation = GenerateOptimizedFunction<SceneComponent.GetSocketRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getComponentVelocity = GenerateOptimizedFunction<SceneComponent.GetComponentVelocityFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getComponentLocation = GenerateOptimizedFunction<SceneComponent.GetComponentLocationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getComponentRotation = GenerateOptimizedFunction<SceneComponent.GetComponentRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getComponentScale = GenerateOptimizedFunction<SceneComponent.GetComponentScaleFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getComponentTransform = GenerateOptimizedFunction<SceneComponent.GetComponentTransformFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getForwardVector = GenerateOptimizedFunction<SceneComponent.GetForwardVectorFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getRightVector = GenerateOptimizedFunction<SceneComponent.GetRightVectorFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.getUpVector = GenerateOptimizedFunction<SceneComponent.GetUpVectorFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setMobility = GenerateOptimizedFunction<SceneComponent.SetMobilityFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setRelativeLocation = GenerateOptimizedFunction<SceneComponent.SetRelativeLocationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setRelativeRotation = GenerateOptimizedFunction<SceneComponent.SetRelativeRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setRelativeTransform = GenerateOptimizedFunction<SceneComponent.SetRelativeTransformFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setWorldLocation = GenerateOptimizedFunction<SceneComponent.SetWorldLocationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setWorldRotation = GenerateOptimizedFunction<SceneComponent.SetWorldRotationFunction>(sceneComponentFunctions[head++]);
-						SceneComponent.setWorldTransform = GenerateOptimizedFunction<SceneComponent.SetWorldTransformFunction>(sceneComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* audioComponentFunctions = (IntPtr*)buffer[position++];
-
-						AudioComponent.isPlaying = GenerateOptimizedFunction<AudioComponent.IsPlayingFunction>(audioComponentFunctions[head++]);
-						AudioComponent.getPaused = GenerateOptimizedFunction<AudioComponent.GetPausedFunction>(audioComponentFunctions[head++]);
-						AudioComponent.setSound = GenerateOptimizedFunction<AudioComponent.SetSoundFunction>(audioComponentFunctions[head++]);
-						AudioComponent.setPaused = GenerateOptimizedFunction<AudioComponent.SetPausedFunction>(audioComponentFunctions[head++]);
-						AudioComponent.play = GenerateOptimizedFunction<AudioComponent.PlayFunction>(audioComponentFunctions[head++]);
-						AudioComponent.stop = GenerateOptimizedFunction<AudioComponent.StopFunction>(audioComponentFunctions[head++]);
-						AudioComponent.fadeIn = GenerateOptimizedFunction<AudioComponent.FadeInFunction>(audioComponentFunctions[head++]);
-						AudioComponent.fadeOut = GenerateOptimizedFunction<AudioComponent.FadeOutFunction>(audioComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* cameraComponentFunctions = (IntPtr*)buffer[position++];
-
-						CameraComponent.getConstrainAspectRatio = GenerateOptimizedFunction<CameraComponent.GetConstrainAspectRatioFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.getAspectRatio = GenerateOptimizedFunction<CameraComponent.GetAspectRatioFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.getFieldOfView = GenerateOptimizedFunction<CameraComponent.GetFieldOfViewFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.getOrthoFarClipPlane = GenerateOptimizedFunction<CameraComponent.GetOrthoFarClipPlaneFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.getOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.GetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.getOrthoWidth = GenerateOptimizedFunction<CameraComponent.GetOrthoWidthFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.getLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.GetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setProjectionMode = GenerateOptimizedFunction<CameraComponent.SetProjectionModeFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setConstrainAspectRatio = GenerateOptimizedFunction<CameraComponent.SetConstrainAspectRatioFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setAspectRatio = GenerateOptimizedFunction<CameraComponent.SetAspectRatioFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setFieldOfView = GenerateOptimizedFunction<CameraComponent.SetFieldOfViewFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setOrthoFarClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoFarClipPlaneFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setOrthoWidth = GenerateOptimizedFunction<CameraComponent.SetOrthoWidthFunction>(cameraComponentFunctions[head++]);
-						CameraComponent.setLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.SetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* childActorComponentFunctions = (IntPtr*)buffer[position++];
-
-						ChildActorComponent.setChildActor = GenerateOptimizedFunction<ChildActorComponent.SetChildActorFunction>(childActorComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
-
-						PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addAngularImpulseInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInDegreesFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addAngularImpulseInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInRadiansFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addForce = GenerateOptimizedFunction<PrimitiveComponent.AddForceFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addForceAtLocation = GenerateOptimizedFunction<PrimitiveComponent.AddForceAtLocationFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddImpulseFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addImpulseAtLocation = GenerateOptimizedFunction<PrimitiveComponent.AddImpulseAtLocationFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addRadialForce = GenerateOptimizedFunction<PrimitiveComponent.AddRadialForceFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddRadialImpulseFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addTorqueInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInDegreesFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.addTorqueInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInRadiansFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getMass = GenerateOptimizedFunction<PrimitiveComponent.GetMassFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getCastShadow = GenerateOptimizedFunction<PrimitiveComponent.GetCastShadowFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.GetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.GetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getMaterial = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getMaterialsNumber = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialsNumberFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getSquaredDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetSquaredDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setCenterOfMass = GenerateOptimizedFunction<PrimitiveComponent.SetCenterOfMassFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setCastShadow = GenerateOptimizedFunction<PrimitiveComponent.SetCastShadowFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.SetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.SetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setMaterial = GenerateOptimizedFunction<PrimitiveComponent.SetMaterialFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setSimulatePhysics = GenerateOptimizedFunction<PrimitiveComponent.SetSimulatePhysicsFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setCollisionChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionChannelFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.clearMoveIgnoreComponents = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreComponentsFunction>(primitiveComponentFunctions[head++]);
-						PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* shapeComponentFunctions = (IntPtr*)buffer[position++];
-
-						ShapeComponent.getDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.GetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
-						ShapeComponent.getShapeColor = GenerateOptimizedFunction<ShapeComponent.GetShapeColorFunction>(shapeComponentFunctions[head++]);
-						ShapeComponent.setDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.SetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
-						ShapeComponent.setShapeColor = GenerateOptimizedFunction<ShapeComponent.SetShapeColorFunction>(shapeComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* boxComponentFunctions = (IntPtr*)buffer[position++];
-
-						BoxComponent.getScaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetScaledBoxExtentFunction>(boxComponentFunctions[head++]);
-						BoxComponent.getUnscaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetUnscaledBoxExtentFunction>(boxComponentFunctions[head++]);
-						BoxComponent.setBoxExtent = GenerateOptimizedFunction<BoxComponent.SetBoxExtentFunction>(boxComponentFunctions[head++]);
-						BoxComponent.initBoxExtent = GenerateOptimizedFunction<BoxComponent.InitBoxExtentFunction>(boxComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* sphereComponentFunctions = (IntPtr*)buffer[position++];
-
-						SphereComponent.getScaledSphereRadius = GenerateOptimizedFunction<SphereComponent.GetScaledSphereRadiusFunction>(sphereComponentFunctions[head++]);
-						SphereComponent.getUnscaledSphereRadius = GenerateOptimizedFunction<SphereComponent.GetUnscaledSphereRadiusFunction>(sphereComponentFunctions[head++]);
-						SphereComponent.getShapeScale = GenerateOptimizedFunction<SphereComponent.GetShapeScaleFunction>(sphereComponentFunctions[head++]);
-						SphereComponent.setSphereRadius = GenerateOptimizedFunction<SphereComponent.SetSphereRadiusFunction>(sphereComponentFunctions[head++]);
-						SphereComponent.initSphereRadius = GenerateOptimizedFunction<SphereComponent.InitSphereRadiusFunction>(sphereComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* capsuleComponentFunctions = (IntPtr*)buffer[position++];
-
-						CapsuleComponent.getScaledCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.GetScaledCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.getUnscaledCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.GetUnscaledCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.getShapeScale = GenerateOptimizedFunction<CapsuleComponent.GetShapeScaleFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.getScaledCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.GetScaledCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.getUnscaledCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.GetUnscaledCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.setCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.setCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-						CapsuleComponent.initCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.InitCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* meshComponentFunctions = (IntPtr*)buffer[position++];
-
-						MeshComponent.isValidMaterialSlotName = GenerateOptimizedFunction<MeshComponent.IsValidMaterialSlotNameFunction>(meshComponentFunctions[head++]);
-						MeshComponent.getMaterialIndex = GenerateOptimizedFunction<MeshComponent.GetMaterialIndexFunction>(meshComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* lightComponentBaseFunctions = (IntPtr*)buffer[position++];
-
-						LightComponentBase.getIntensity = GenerateOptimizedFunction<LightComponentBase.GetIntensityFunction>(lightComponentBaseFunctions[head++]);
-						LightComponentBase.getCastShadows = GenerateOptimizedFunction<LightComponentBase.GetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
-						LightComponentBase.setCastShadows = GenerateOptimizedFunction<LightComponentBase.SetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* lightComponentFunctions = (IntPtr*)buffer[position++];
-
-						LightComponent.setIntensity = GenerateOptimizedFunction<LightComponent.SetIntensityFunction>(lightComponentFunctions[head++]);
-						LightComponent.setLightColor = GenerateOptimizedFunction<LightComponent.SetLightColorFunction>(lightComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* motionControllerComponentFunctions = (IntPtr*)buffer[position++];
-
-						MotionControllerComponent.isTracked = GenerateOptimizedFunction<MotionControllerComponent.IsTrackedFunction>(motionControllerComponentFunctions[head++]);
-						MotionControllerComponent.getDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.GetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
-						MotionControllerComponent.getTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.GetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
-						MotionControllerComponent.setDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.SetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
-						MotionControllerComponent.setTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
-						MotionControllerComponent.setTrackingMotionSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingMotionSourceFunction>(motionControllerComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* staticMeshComponentFunctions = (IntPtr*)buffer[position++];
-
-						StaticMeshComponent.getLocalBounds = GenerateOptimizedFunction<StaticMeshComponent.GetLocalBoundsFunction>(staticMeshComponentFunctions[head++]);
-						StaticMeshComponent.getStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.GetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
-						StaticMeshComponent.setStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.SetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* instancedStaticMeshComponentFunctions = (IntPtr*)buffer[position++];
-
-						InstancedStaticMeshComponent.getInstanceCount = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceCountFunction>(instancedStaticMeshComponentFunctions[head++]);
-						InstancedStaticMeshComponent.getInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
-						InstancedStaticMeshComponent.addInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.AddInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
-						InstancedStaticMeshComponent.updateInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.UpdateInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
-						InstancedStaticMeshComponent.removeInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.RemoveInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
-						InstancedStaticMeshComponent.clearInstances = GenerateOptimizedFunction<InstancedStaticMeshComponent.ClearInstancesFunction>(instancedStaticMeshComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
-
-						SkinnedMeshComponent.setSkeletalMesh = GenerateOptimizedFunction<SkinnedMeshComponent.SetSkeletalMeshFunction>(skinnedMeshComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* skeletalMeshComponentFunctions = (IntPtr*)buffer[position++];
-
-						SkeletalMeshComponent.isPlaying = GenerateOptimizedFunction<SkeletalMeshComponent.IsPlayingFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.getAnimationInstance = GenerateOptimizedFunction<SkeletalMeshComponent.GetAnimationInstanceFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.setAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.setAnimationMode = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationModeFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.setAnimationBlueprint = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationBlueprintFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.play = GenerateOptimizedFunction<SkeletalMeshComponent.PlayFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.playAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.PlayAnimationFunction>(skeletalMeshComponentFunctions[head++]);
-						SkeletalMeshComponent.stop = GenerateOptimizedFunction<SkeletalMeshComponent.StopFunction>(skeletalMeshComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* radialForceComponentFunctions = (IntPtr*)buffer[position++];
-
-						RadialForceComponent.getIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.GetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.getImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.GetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.getLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.GetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.getForceStrength = GenerateOptimizedFunction<RadialForceComponent.GetForceStrengthFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.getImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.GetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.getRadius = GenerateOptimizedFunction<RadialForceComponent.GetRadiusFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.setIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.SetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.setImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.SetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.setLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.SetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.setForceStrength = GenerateOptimizedFunction<RadialForceComponent.SetForceStrengthFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.setImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.SetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.setRadius = GenerateOptimizedFunction<RadialForceComponent.SetRadiusFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.addCollisionChannelToAffect = GenerateOptimizedFunction<RadialForceComponent.AddCollisionChannelToAffectFunction>(radialForceComponentFunctions[head++]);
-						RadialForceComponent.fireImpulse = GenerateOptimizedFunction<RadialForceComponent.FireImpulseFunction>(radialForceComponentFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* materialInterfaceFunctions = (IntPtr*)buffer[position++];
-
-						MaterialInterface.isTwoSided = GenerateOptimizedFunction<MaterialInterface.IsTwoSidedFunction>(materialInterfaceFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* materialFunctions = (IntPtr*)buffer[position++];
-
-						Material.isDefaultMaterial = GenerateOptimizedFunction<Material.IsDefaultMaterialFunction>(materialFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* materialInstanceFunctions = (IntPtr*)buffer[position++];
-
-						MaterialInstance.isChildOf = GenerateOptimizedFunction<MaterialInstance.IsChildOfFunction>(materialInstanceFunctions[head++]);
-					}
-
-					unchecked {
-						int head = 0;
-						IntPtr* materialInstanceDynamicFunctions = (IntPtr*)buffer[position++];
-
-						MaterialInstanceDynamic.clearParameterValues = GenerateOptimizedFunction<MaterialInstanceDynamic.ClearParameterValuesFunction>(materialInstanceDynamicFunctions[head++]);
-						MaterialInstanceDynamic.setTextureParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetTextureParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
-						MaterialInstanceDynamic.setVectorParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetVectorParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
-						MaterialInstanceDynamic.setScalarParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetScalarParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
-					}
-
-					loaded = true;
-				}
-
-				catch {
-					throw new Exception("Functions loading failed");
-				}
-
-				finally {
-					GC.Collect();
-					GC.WaitForPendingFinalizers();
 				}
 			}
+
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+
+			return userFunctions;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

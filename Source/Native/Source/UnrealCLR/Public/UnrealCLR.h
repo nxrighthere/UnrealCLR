@@ -87,12 +87,14 @@ namespace UnrealCLR {
 		Fatal
 	};
 
-	typedef void (*ExecuteAssemblyFunctionDelegate)(void*);
-	typedef void* (*LoadAssemblyFunctionDelegate)(const char_t* AssemblyPath, const char_t* TypeName, const char_t* MethodName, int32_t Optional);
+	typedef void (*ExecuteManagedFunctionDelegate)(void*);
+	typedef void* (*FindManagedFunctionDelegate)(const char_t* Method, int32_t Optional);
+	typedef void (*LoadAssembliesDelegate)();
 	typedef void (*UnloadAssembliesDelegate)();
 
-	static ExecuteAssemblyFunctionDelegate ExecuteAssemblyFunction;
-	static LoadAssemblyFunctionDelegate LoadAssemblyFunction;
+	static ExecuteManagedFunctionDelegate ExecuteManagedFunction;
+	static FindManagedFunctionDelegate FindManagedFunction;
+	static LoadAssembliesDelegate LoadAssemblies;
 	static UnloadAssembliesDelegate UnloadAssemblies;
 
 	static FString ProjectPath;
@@ -184,7 +186,7 @@ namespace UnrealCLR {
 		void* HeadMountedDisplayFunctions[storageSize];
 
 		void* ManagedFunctions[3];
-		void* NativeFunctions[3];
+		void* NativeFunctions[4];
 		void* Functions[128];
 	}
 

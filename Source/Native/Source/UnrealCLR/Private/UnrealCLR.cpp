@@ -929,9 +929,10 @@ void UnrealCLR::Module::StartupModule() {
 			};
 
 			if (Initialize(functions, checksum) == 0xF) {
-				UnrealCLR::ExecuteAssemblyFunction = (UnrealCLR::ExecuteAssemblyFunctionDelegate)Shared::NativeFunctions[0];
-				UnrealCLR::LoadAssemblyFunction = (UnrealCLR::LoadAssemblyFunctionDelegate)Shared::NativeFunctions[1];
-				UnrealCLR::UnloadAssemblies = (UnrealCLR::UnloadAssembliesDelegate)Shared::NativeFunctions[2];
+				UnrealCLR::ExecuteManagedFunction = (UnrealCLR::ExecuteManagedFunctionDelegate)Shared::NativeFunctions[0];
+				UnrealCLR::FindManagedFunction = (UnrealCLR::FindManagedFunctionDelegate)Shared::NativeFunctions[1];
+				UnrealCLR::LoadAssemblies = (UnrealCLR::LoadAssembliesDelegate)Shared::NativeFunctions[2];
+				UnrealCLR::UnloadAssemblies = (UnrealCLR::UnloadAssembliesDelegate)Shared::NativeFunctions[3];
 
 				UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly initialized succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 			} else {
@@ -974,6 +975,7 @@ void UnrealCLR::Module::OnWorldPreInitialization(UWorld* World, const UWorld::In
 		UnrealCLR::Engine::World = World;
 
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
+			UnrealCLR::LoadAssemblies();
 			UnrealCLR::Status = UnrealCLR::StatusType::Running;
 		} else {
 			#if WITH_EDITOR
@@ -1020,7 +1022,7 @@ void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
 	} else if (Level == UnrealCLR::LogLevel::Warning) {
 		UNREALCLR_LOG(Warning);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Orange, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Yellow, *FString(ANSI_TO_TCHAR(Message)));
 	} else if (Level == UnrealCLR::LogLevel::Error) {
 		UNREALCLR_LOG(Error);
 

@@ -33,8 +33,8 @@ class UUnrealCLRLibrary : public UBlueprintFunctionLibrary {
 	GENERATED_UCLASS_BODY()
 
 	UFUNCTION(BlueprintCallable, Category = ".NET", meta = (ToolTip = "Executes the managed function"))
-	static void ExecuteAssemblyFunction(FManagedFunction ManagedFunction);
+	static void ExecuteManagedFunction(FManagedFunction ManagedFunction);
 
-	UFUNCTION(BlueprintCallable, Category = ".NET", meta = (ToolTip = "Loads the managed function from assembly, optional parameter suppresses errors if the function was not found"))
-	static FManagedFunction LoadAssemblyFunction(FString AssemblyPath, FString TypeName, FString MethodName, bool Optional);
+	UFUNCTION(BlueprintCallable, Category = ".NET", meta = (ToolTip = "Finds the managed function from loaded assembly, optional parameter suppresses errors if the function was not found"))
+	static FManagedFunction FindManagedFunction(FString Method, bool Optional, bool& Result);
 };
