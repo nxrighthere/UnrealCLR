@@ -1347,61 +1347,61 @@ namespace UnrealCLRFramework {
 			return AnimationInstance->GetCurrentActiveMontage();
 		}
 
-		bool MontageIsPlaying(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+		bool IsPlaying(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			return AnimationInstance->Montage_IsPlaying(Montage);
 		}
 
-		float MontageGetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+		float GetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			return AnimationInstance->Montage_GetPlayRate(Montage);
 		}
 
-		float MontageGetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+		float GetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			return AnimationInstance->Montage_GetPosition(Montage);
 		}
 
-		float MontageGetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+		float GetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			return AnimationInstance->Montage_GetBlendTime(Montage);
 		}
 
-		void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName) {
+		void GetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName) {
 			const char* sectionName = TCHAR_TO_ANSI(*AnimationInstance->Montage_GetCurrentSection(Montage).ToString());
 
 			UnrealCLR::Utility::Strcpy(SectionName, sectionName, UnrealCLR::Utility::Strlen(sectionName));
 		}
 
-		void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value) {
+		void SetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value) {
 			AnimationInstance->Montage_SetPlayRate(Montage, Value);
 		}
 
-		void MontageSetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position) {
+		void SetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position) {
 			AnimationInstance->Montage_SetPosition(Montage, Position);
 		}
 
-		void MontageSetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection) {
+		void SetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection) {
 			AnimationInstance->Montage_SetNextSection(FName(ANSI_TO_TCHAR(SectionToChange)), FName(ANSI_TO_TCHAR(NextSection)), Montage);
 		}
 
-		float MontagePlay(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages) {
+		float PlayMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages) {
 			return AnimationInstance->Montage_Play(Montage, PlayRate, EMontagePlayReturnType::MontageLength, TimeToStartMontageAt, StopAllMontages);
 		}
 
-		void MontagePause(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+		void PauseMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			AnimationInstance->Montage_Pause(Montage);
 		}
 
-		void MontageResume(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
+		void ResumeMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage) {
 			AnimationInstance->Montage_Resume(Montage);
 		}
 
-		void MontageStop(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float BlendOutTime) {
+		void StopMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float BlendOutTime) {
 			AnimationInstance->Montage_Stop(BlendOutTime, Montage);
 		}
 
-		void MontageJumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
+		void JumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
 			AnimationInstance->Montage_JumpToSection(FName(ANSI_TO_TCHAR(SectionName)), Montage);
 		}
 
-		void MontageJumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
+		void JumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
 			AnimationInstance->Montage_JumpToSectionsEnd(FName(ANSI_TO_TCHAR(SectionName)), Montage);
 		}
 	}

@@ -1,11 +1,11 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AnimationInstance](./UnrealEngine-Framework-AnimationInstance.md 'UnrealEngine.Framework.AnimationInstance')
-## AnimationInstance.MontageGetPlayRate(UnrealEngine.Framework.AnimationMontage) Method
+## AnimationInstance.GetPlayRate(UnrealEngine.Framework.AnimationMontage) Method
 Returns the current play rate of the animation montage  
 ```csharp
-public float MontageGetPlayRate(UnrealEngine.Framework.AnimationMontage montage);
+public float GetPlayRate(UnrealEngine.Framework.AnimationMontage montage);
 ```
 #### Parameters
-<a name='UnrealEngine-Framework-AnimationInstance-MontageGetPlayRate(UnrealEngine-Framework-AnimationMontage)-montage'></a>
+<a name='UnrealEngine-Framework-AnimationInstance-GetPlayRate(UnrealEngine-Framework-AnimationMontage)-montage'></a>
 `montage` [AnimationMontage](./UnrealEngine-Framework-AnimationMontage.md 'UnrealEngine.Framework.AnimationMontage')  
   
 #### Returns

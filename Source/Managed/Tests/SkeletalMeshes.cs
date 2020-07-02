@@ -40,7 +40,7 @@ namespace UnrealEngine.Tests {
 
 			AnimationInstance prototypeRightAnimationInstance = prototypeRightSkeletalMeshComponent.GetAnimationInstance();
 
-			Assert.IsTrue(prototypeRightAnimationInstance.MontageIsPlaying(prototypeRightAnimationMontage));
+			Assert.IsTrue(prototypeRightAnimationInstance.IsPlaying(prototypeRightAnimationMontage));
 		}
 
 		public static void OnEndPlay() {

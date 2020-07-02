@@ -491,20 +491,20 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::AnimationInstanceFunctions;
 
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetCurrentActiveMontage;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageIsPlaying;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetPlayRate;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetPosition;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetBlendTime;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageGetCurrentSection;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetPlayRate;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetPosition;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageSetNextSection;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontagePlay;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontagePause;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageResume;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageStop;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageJumpToSection;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::MontageJumpToSectionsEnd;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::IsPlaying;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetPlayRate;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetPosition;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetBlendTime;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetCurrentSection;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::SetPlayRate;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::SetPosition;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::SetNextSection;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::PlayMontage;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::PauseMontage;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::ResumeMontage;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::StopMontage;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::JumpToSection;
+				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::JumpToSectionsEnd;
 
 				checksum += head;
 			}

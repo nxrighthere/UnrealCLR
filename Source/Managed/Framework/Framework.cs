@@ -2658,6 +2658,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="action">The static function to call when the command is executed</param>
 		/// <param name="readOnly">If <c>true</c>, cannot be changed by the user from console</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
+		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public static void RegisterCommand(string name, string help, ConsoleCommandDelegate action, bool readOnly = false) {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
@@ -3149,6 +3150,7 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <param name="action">The static function to call when the value of variable is changed</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
+		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public void SetOnChangedCallback(ConsoleVariableDelegate action) {
 			if (action == null)
 				throw new ArgumentNullException(nameof(action));
@@ -4586,53 +4588,53 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns <c>true</c> if the animation montage is active and playing
 		/// </summary>
-		public bool MontageIsPlaying(AnimationMontage montage) {
+		public bool IsPlaying(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			return montageIsPlaying(Pointer, montage.Pointer);
+			return isPlaying(Pointer, montage.Pointer);
 		}
 
 		/// <summary>
 		/// Returns the current play rate of the animation montage
 		/// </summary>
-		public float MontageGetPlayRate(AnimationMontage montage) {
+		public float GetPlayRate(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			return montageGetPlayRate(Pointer, montage.Pointer);
+			return getPlayRate(Pointer, montage.Pointer);
 		}
 
 		/// <summary>
 		/// Returns the current position of the animation montage
 		/// </summary>
-		public float MontageGetPosition(AnimationMontage montage) {
+		public float GetPosition(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			return montageGetPosition(Pointer, montage.Pointer);
+			return getPosition(Pointer, montage.Pointer);
 		}
 
 		/// <summary>
 		/// Returns the current blend time of the animation montage
 		/// </summary>
-		public float MontageGetBlendTime(AnimationMontage montage) {
+		public float GetBlendTime(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			return montageGetBlendTime(Pointer, montage.Pointer);
+			return getBlendTime(Pointer, montage.Pointer);
 		}
 
 		/// <summary>
 		/// Returns the name of the current animation montage section
 		/// </summary>
-		public string MontageGetCurrentSection(AnimationMontage montage) {
+		public string GetCurrentSection(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			montageGetCurrentSection(Pointer, montage.Pointer, stringBuffer);
+			getCurrentSection(Pointer, montage.Pointer, stringBuffer);
 
 			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 		}
@@ -4640,93 +4642,93 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the current play rate of the animation montage
 		/// </summary>
-		public void MontageSetPlayRate(AnimationMontage montage, float value) {
+		public void SetPlayRate(AnimationMontage montage, float value) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			montageSetPlayRate(Pointer, montage.Pointer, value);
+			setPlayRate(Pointer, montage.Pointer, value);
 		}
 
 		/// <summary>
 		/// Sets the current position of the animation montage
 		/// </summary>
-		public void MontageSetPosition(AnimationMontage montage, float position) {
+		public void SetPosition(AnimationMontage montage, float position) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			montageSetPosition(Pointer, montage.Pointer, position);
+			setPosition(Pointer, montage.Pointer, position);
 		}
 
 		/// <summary>
 		/// Sets the next section after <paramref name="sectionToChange"/>
 		/// </summary>
-		public void MontageSetNextSection(AnimationMontage montage, string sectionToChange, string nextSection) {
+		public void SetNextSection(AnimationMontage montage, string sectionToChange, string nextSection) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			montageSetNextSection(Pointer, montage.Pointer, sectionToChange, nextSection);
+			setNextSection(Pointer, montage.Pointer, sectionToChange, nextSection);
 		}
 
 		/// <summary>
 		/// Plays the animation montage
 		/// </summary>
 		/// <returns>The length of the animation montage in seconds, or 0.0f if failed to play</returns>
-		public float MontagePlay(AnimationMontage montage, float playRate = 1.0f, float timeToStartMontageAt = 0.0f, bool stopAllMontages = true) {
+		public float PlayMontage(AnimationMontage montage, float playRate = 1.0f, float timeToStartMontageAt = 0.0f, bool stopAllMontages = true) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			return montagePlay(Pointer, montage.Pointer, playRate, timeToStartMontageAt, stopAllMontages);
+			return playMontage(Pointer, montage.Pointer, playRate, timeToStartMontageAt, stopAllMontages);
 		}
 
 		/// <summary>
 		/// Pauses the animation montage
 		/// </summary>
-		public void MontagePause(AnimationMontage montage) {
+		public void PauseMontage(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			montagePause(Pointer, montage.Pointer);
+			pauseMontage(Pointer, montage.Pointer);
 		}
 
 		/// <summary>
 		/// Resumes the paused animation montage
 		/// </summary>
-		public void MontageResume(AnimationMontage montage) {
+		public void ResumeMontage(AnimationMontage montage) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			montageResume(Pointer, montage.Pointer);
+			resumeMontage(Pointer, montage.Pointer);
 		}
 
 		/// <summary>
 		/// Stops the animation montage, if <paramref name="montage"/> is <c>null</c> stops all active montages
 		/// </summary>
-		public void MontageStop(AnimationMontage montage, float blendOutTime) => montageStop(Pointer, montage != null ? montage.Pointer : IntPtr.Zero, blendOutTime);
+		public void StopMontage(AnimationMontage montage, float blendOutTime) => stopMontage(Pointer, montage != null ? montage.Pointer : IntPtr.Zero, blendOutTime);
 
 		/// <summary>
 		/// Makes the animation montage jump to a named section
 		/// </summary>
-		public void MontageJumpToSection(AnimationMontage montage, string sectionName) {
+		public void JumpToSection(AnimationMontage montage, string sectionName) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
 			if (sectionName == null)
 				throw new ArgumentNullException(nameof(sectionName));
 
-			montageJumpToSection(Pointer, montage.Pointer, sectionName);
+			jumpToSection(Pointer, montage.Pointer, sectionName);
 		}
 
 		/// <summary>
 		/// Makes the animation montage jump to the end of a named section
 		/// </summary>
-		public void MontageJumpToSectionsEnd(AnimationMontage montage, string sectionName) {
+		public void JumpToSectionsEnd(AnimationMontage montage, string sectionName) {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
 			if (sectionName == null)
 				throw new ArgumentNullException(nameof(sectionName));
 
-			montageJumpToSectionsEnd(Pointer, montage.Pointer, sectionName);
+			jumpToSectionsEnd(Pointer, montage.Pointer, sectionName);
 		}
 	}
 
@@ -5469,6 +5471,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="action">The static function to call when the input is triggered</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
+		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public void BindAction(string actionName, InputEvent keyEvent, InputDelegate action, bool executedWhenPaused = false) {
 			if (actionName == null)
 				throw new ArgumentNullException(nameof(actionName));
@@ -5489,6 +5492,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="action">The static function to call while tracking axis</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
+		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public void BindAxis(string axisName, InputAxisDelegate action, bool executedWhenPaused = false) {
 			if (axisName == null)
 				throw new ArgumentNullException(nameof(axisName));

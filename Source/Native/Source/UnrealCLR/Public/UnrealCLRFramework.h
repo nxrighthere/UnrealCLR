@@ -521,20 +521,20 @@ namespace UnrealCLRFramework {
 
 	namespace AnimationInstance {
 		static UAnimMontage* GetCurrentActiveMontage(UAnimInstance* AnimationInstance);
-		static bool MontageIsPlaying(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static float MontageGetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static float MontageGetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static float MontageGetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static void MontageGetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName);
-		static void MontageSetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value);
-		static void MontageSetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position);
-		static void MontageSetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection);
-		static float MontagePlay(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages);
-		static void MontagePause(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static void MontageResume(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
-		static void MontageStop(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float BlendOutTime);
-		static void MontageJumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName);
-		static void MontageJumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName);
+		static bool IsPlaying(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static float GetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static float GetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static float GetBlendTime(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static void GetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName);
+		static void SetPlayRate(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Value);
+		static void SetPosition(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float Position);
+		static void SetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection);
+		static float PlayMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages);
+		static void PauseMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static void ResumeMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage);
+		static void StopMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float BlendOutTime);
+		static void JumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName);
+		static void JumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName);
 	}
 
 	namespace Player {

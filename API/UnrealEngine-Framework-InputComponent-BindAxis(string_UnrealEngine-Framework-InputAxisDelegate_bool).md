@@ -20,3 +20,5 @@ If `true`, executes even if the game is paused
 #### Exceptions
 [System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
 Thrown if [action](#UnrealEngine-Framework-InputComponent-BindAxis(string_UnrealEngine-Framework-InputAxisDelegate_bool)-action 'UnrealEngine.Framework.InputComponent.BindAxis(string, UnrealEngine.Framework.InputAxisDelegate, bool).action') is not static  
+### Remarks
+Implementation of [action](#UnrealEngine-Framework-InputComponent-BindAxis(string_UnrealEngine-Framework-InputAxisDelegate_bool)-action 'UnrealEngine.Framework.InputComponent.BindAxis(string, UnrealEngine.Framework.InputAxisDelegate, bool).action') should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions  
