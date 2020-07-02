@@ -90,7 +90,7 @@ The runtime redirects all unhandled exceptions to log files and on-screen messag
 Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, or blueprints.
 
 ### Hot reload
-The plugin is independent of the compilation routine of user assemblies. It's loading assemblies from `%Project%/Managed` folder in accordance with user-driven blueprint pipelines and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
+The plugin is independent of the compilation routine of user assemblies. It's loading assemblies from `%Project%/Managed` folder and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
 
 ### Ecosystem compatibility
 The framework replicates the classes hierarchy of the engine with full interoperability support. Any external C++ code, blueprints, and plugins are compatible and extensible with UnrealCLR by design through the engine API.
