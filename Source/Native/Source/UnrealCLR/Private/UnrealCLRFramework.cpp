@@ -254,6 +254,7 @@ namespace UnrealCLRFramework {
 	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
 	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the BlendType enumeration");
 	static_assert(CollisionChannel::ECC_MAX != CollisionChannel(34), "Invalid elements count of the CollisionChannel enumeration");
+	static_assert(CollisionResponse::ECR_MAX != CollisionChannel(2), "Invalid elements count of the CollisionResponse enumeration");
 	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the ControllerHand enumeration");
 	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the InputEvent enumeration");
 	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the NetMode enumeration");
@@ -2099,6 +2100,14 @@ namespace UnrealCLRFramework {
 
 		void SetCollisionProfileName(UPrimitiveComponent* PrimitiveComponent, const char* ProfileName, bool UpdateOverlaps) {
 			PrimitiveComponent->SetCollisionProfileName(FName(ANSI_TO_TCHAR(ProfileName)), UpdateOverlaps);
+		}
+
+		void SetCollisionResponseToChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel, CollisionResponse Response) {
+			PrimitiveComponent->SetCollisionResponseToChannel(Channel, Response);
+		}
+
+		void SetCollisionResponseToAllChannels(UPrimitiveComponent* PrimitiveComponent, CollisionResponse Response) {
+			PrimitiveComponent->SetCollisionResponseToAllChannels(Response);
 		}
 
 		void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value) {

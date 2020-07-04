@@ -369,6 +369,18 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines collision response types
+	/// </summary>
+	public enum CollisionResponse : int {
+		/// <summary/>
+		Ignore,
+		/// <summary/>
+		Overlap,
+		/// <summary/>
+		Block
+	}
+
+	/// <summary>
 	/// Defines the controller hands for tracking
 	/// </summary>
 	public enum ControllerHand : byte {
@@ -6381,6 +6393,16 @@ namespace UnrealEngine.Framework {
 		/// Sets the collision profile name of the component
 		/// </summary>
 		public void SetCollisionProfileName(string profileName, bool updateOverlaps = true) => setCollisionProfileName(Pointer, profileName, updateOverlaps);
+
+		/// <summary>
+		/// Sets the collision response to channel of the component
+		/// </summary>
+		public void SetCollisionResponseToChannel(CollisionChannel channel, CollisionResponse response) => setCollisionResponseToChannel(Pointer, channel, response);
+
+		/// <summary>
+		/// Sets the collision response to all channels of the component
+		/// </summary>
+		public void SetCollisionResponseToAllChannels(CollisionResponse response) => setCollisionResponseToAllChannels(Pointer, response);
 
 		/// <summary>
 		/// Sets whether to ignore collision of all components of a specified actor during the movement

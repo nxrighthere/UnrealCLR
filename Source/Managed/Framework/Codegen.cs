@@ -25,13 +25,13 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1C6;
+		internal const int checksum = 0x1C8;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
 			int position = 0;
 			IntPtr* buffer = (IntPtr*)functions;
-					
+
 			unchecked {
 				int head = 0;
 				IntPtr* assertFunctions = (IntPtr*)buffer[position++];
@@ -544,6 +544,8 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setCollisionChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionChannelFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setCollisionProfileName = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionProfileNameFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCollisionResponseToChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionResponseToChannelFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCollisionResponseToAllChannels = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionResponseToAllChannelsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
@@ -1652,6 +1654,8 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetCollisionModeFunction(IntPtr primitiveComponent, CollisionMode mode);
 		internal delegate void SetCollisionChannelFunction(IntPtr primitiveComponent, CollisionChannel channel);
 		internal delegate void SetCollisionProfileNameFunction(IntPtr primitiveComponent, string profileName, Bool updateOverlaps);
+		internal delegate void SetCollisionResponseToChannelFunction(IntPtr primitiveComponent, CollisionChannel channel, CollisionResponse response);
+		internal delegate void SetCollisionResponseToAllChannelsFunction(IntPtr primitiveComponent, CollisionResponse response);
 		internal delegate void SetIgnoreActorWhenMovingFunction(IntPtr primitiveComponent, IntPtr actor, Bool value);
 		internal delegate void SetIgnoreComponentWhenMovingFunction(IntPtr primitiveComponent, IntPtr component, Bool value);
 		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
@@ -1697,6 +1701,8 @@ namespace UnrealEngine.Framework {
 		internal static SetCollisionModeFunction setCollisionMode;
 		internal static SetCollisionChannelFunction setCollisionChannel;
 		internal static SetCollisionProfileNameFunction setCollisionProfileName;
+		internal static SetCollisionResponseToChannelFunction setCollisionResponseToChannel;
+		internal static SetCollisionResponseToAllChannelsFunction setCollisionResponseToAllChannels;
 		internal static SetIgnoreActorWhenMovingFunction setIgnoreActorWhenMoving;
 		internal static SetIgnoreComponentWhenMovingFunction setIgnoreComponentWhenMoving;
 		internal static ClearMoveIgnoreActorsFunction clearMoveIgnoreActors;

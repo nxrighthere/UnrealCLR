@@ -27,6 +27,7 @@ namespace UnrealCLRFramework {
 	using AudioFadeCurve = EAudioFaderCurve;
 	using BlendType = EViewTargetBlendFunction;
 	using CollisionChannel = ECollisionChannel;
+	using CollisionResponse = ECollisionResponse;
 	using ControllerHand = EControllerHand;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
@@ -736,6 +737,8 @@ namespace UnrealCLRFramework {
 		static void SetCollisionMode(UPrimitiveComponent* PrimitiveComponent, CollisionMode Mode);
 		static void SetCollisionChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel);
 		static void SetCollisionProfileName(UPrimitiveComponent* PrimitiveComponent, const char* ProfileName, bool UpdateOverlaps);
+		static void SetCollisionResponseToChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel, CollisionResponse Response);
+		static void SetCollisionResponseToAllChannels(UPrimitiveComponent* PrimitiveComponent, CollisionResponse Response);
 		static void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value);
 		static void SetIgnoreComponentWhenMoving(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Component, bool Value);
 		static void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent);
