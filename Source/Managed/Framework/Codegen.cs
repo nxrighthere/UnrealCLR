@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1C0;
+		internal const int checksum = 0x1C6;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
@@ -182,6 +182,10 @@ namespace UnrealEngine.Framework {
 				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
 				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
+				World.lineTraceTestByChannel = GenerateOptimizedFunction<World.LineTraceTestByChannelFunction>(worldFunctions[head++]);
+				World.lineTraceTestByProfile = GenerateOptimizedFunction<World.LineTraceTestByProfileFunction>(worldFunctions[head++]);
+				World.lineTraceSingleByChannel = GenerateOptimizedFunction<World.LineTraceSingleByChannelFunction>(worldFunctions[head++]);
+				World.lineTraceSingleByProfile = GenerateOptimizedFunction<World.LineTraceSingleByProfileFunction>(worldFunctions[head++]);
 			}
 
 			unchecked {
@@ -451,6 +455,7 @@ namespace UnrealEngine.Framework {
 				SceneComponent.setRelativeTransform = GenerateOptimizedFunction<SceneComponent.SetRelativeTransformFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setWorldLocation = GenerateOptimizedFunction<SceneComponent.SetWorldLocationFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setWorldRotation = GenerateOptimizedFunction<SceneComponent.SetWorldRotationFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setWorldScale = GenerateOptimizedFunction<SceneComponent.SetWorldScaleFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setWorldTransform = GenerateOptimizedFunction<SceneComponent.SetWorldTransformFunction>(sceneComponentFunctions[head++]);
 			}
 
@@ -538,6 +543,7 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setCollisionChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionChannelFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setCollisionProfileName = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionProfileNameFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
@@ -785,6 +791,21 @@ namespace UnrealEngine.Framework {
 		private Vector3 scale;
 	}
 
+	partial struct Hit {
+		private Vector3 location;
+		private Vector3 impactLocation;
+		private Vector3 normal;
+		private Vector3 impactNormal;
+		private Vector3 traceStart;
+		private Vector3 traceEnd;
+		private IntPtr actor;
+		private float time;
+		private float distance;
+		private float penetrationDepth;
+		private Bool blockingHit;
+		private Bool startPenetrating;
+	}
+
 	internal struct Bool {
 		private byte value;
 
@@ -793,6 +814,8 @@ namespace UnrealEngine.Framework {
 		public static implicit operator bool(Bool value) => value.value != 0;
 
 		public static implicit operator Bool(bool value) => !value ? new Bool(0) : new Bool(1);
+
+		public override int GetHashCode() => value.GetHashCode();
 	}
 
 	internal enum ObjectType : int {
@@ -1063,6 +1086,10 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
 		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
+		internal delegate Bool LineTraceTestByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool LineTraceTestByProfileFunction(in Vector3 start, in Vector3 end, string profileName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool LineTraceSingleByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool LineTraceSingleByProfileFunction(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 
 		internal static GetSimulatePhysicsFunction getSimulatePhysics;
 		internal static GetActorCountFunction getActorCount;
@@ -1077,6 +1104,10 @@ namespace UnrealEngine.Framework {
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
 		internal static SetWorldOriginFunction setWorldOrigin;
+		internal static LineTraceTestByChannelFunction lineTraceTestByChannel;
+		internal static LineTraceTestByProfileFunction lineTraceTestByProfile;
+		internal static LineTraceSingleByChannelFunction lineTraceSingleByChannel;
+		internal static LineTraceSingleByProfileFunction lineTraceSingleByProfile;
 	}
 
 	partial class Blueprint {
@@ -1479,6 +1510,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetRelativeTransformFunction(IntPtr sceneComponent, in Transform transform);
 		internal delegate void SetWorldLocationFunction(IntPtr sceneComponent, in Vector3 location);
 		internal delegate void SetWorldRotationFunction(IntPtr sceneComponent, in Quaternion rotation);
+		internal delegate void SetWorldScaleFunction(IntPtr sceneComponent, in Vector3 scale);
 		internal delegate void SetWorldTransformFunction(IntPtr sceneComponent, in Transform transform);
 
 		internal static IsAttachedToComponentFunction isAttachedToComponent;
@@ -1516,6 +1548,7 @@ namespace UnrealEngine.Framework {
 		internal static SetRelativeTransformFunction setRelativeTransform;
 		internal static SetWorldLocationFunction setWorldLocation;
 		internal static SetWorldRotationFunction setWorldRotation;
+		internal static SetWorldScaleFunction setWorldScale;
 		internal static SetWorldTransformFunction setWorldTransform;
 	}
 
@@ -1618,6 +1651,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetEnableGravityFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetCollisionModeFunction(IntPtr primitiveComponent, CollisionMode mode);
 		internal delegate void SetCollisionChannelFunction(IntPtr primitiveComponent, CollisionChannel channel);
+		internal delegate void SetCollisionProfileNameFunction(IntPtr primitiveComponent, string profileName, Bool updateOverlaps);
 		internal delegate void SetIgnoreActorWhenMovingFunction(IntPtr primitiveComponent, IntPtr actor, Bool value);
 		internal delegate void SetIgnoreComponentWhenMovingFunction(IntPtr primitiveComponent, IntPtr component, Bool value);
 		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
@@ -1662,6 +1696,7 @@ namespace UnrealEngine.Framework {
 		internal static SetEnableGravityFunction setEnableGravity;
 		internal static SetCollisionModeFunction setCollisionMode;
 		internal static SetCollisionChannelFunction setCollisionChannel;
+		internal static SetCollisionProfileNameFunction setCollisionProfileName;
 		internal static SetIgnoreActorWhenMovingFunction setIgnoreActorWhenMoving;
 		internal static SetIgnoreComponentWhenMovingFunction setIgnoreComponentWhenMoving;
 		internal static ClearMoveIgnoreActorsFunction clearMoveIgnoreActors;

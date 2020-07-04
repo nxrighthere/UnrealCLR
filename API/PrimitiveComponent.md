@@ -1,0 +1,54 @@
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
+## PrimitiveComponent Class
+An abstract component that contains or generates some sort of geometry, generally to be rendered or used as collision data  
+```csharp
+public abstract class PrimitiveComponent : SceneComponent
+```
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; PrimitiveComponent  
+
+Derived  
+&#8627; [CameraComponent](./CameraComponent.md 'UnrealEngine.Framework.CameraComponent')  
+&#8627; [MeshComponent](./MeshComponent.md 'UnrealEngine.Framework.MeshComponent')  
+&#8627; [MotionControllerComponent](./MotionControllerComponent.md 'UnrealEngine.Framework.MotionControllerComponent')  
+&#8627; [ShapeComponent](./ShapeComponent.md 'UnrealEngine.Framework.ShapeComponent')  
+### Properties
+- [AngularDamping](./PrimitiveComponent-AngularDamping.md 'UnrealEngine.Framework.PrimitiveComponent.AngularDamping')
+- [CastShadow](./PrimitiveComponent-CastShadow.md 'UnrealEngine.Framework.PrimitiveComponent.CastShadow')
+- [IsGravityEnabled](./PrimitiveComponent-IsGravityEnabled.md 'UnrealEngine.Framework.PrimitiveComponent.IsGravityEnabled')
+- [LinearDamping](./PrimitiveComponent-LinearDamping.md 'UnrealEngine.Framework.PrimitiveComponent.LinearDamping')
+- [Mass](./PrimitiveComponent-Mass.md 'UnrealEngine.Framework.PrimitiveComponent.Mass')
+- [MaterialsNumber](./PrimitiveComponent-MaterialsNumber.md 'UnrealEngine.Framework.PrimitiveComponent.MaterialsNumber')
+- [OnlyOwnerSee](./PrimitiveComponent-OnlyOwnerSee.md 'UnrealEngine.Framework.PrimitiveComponent.OnlyOwnerSee')
+- [OwnerNoSee](./PrimitiveComponent-OwnerNoSee.md 'UnrealEngine.Framework.PrimitiveComponent.OwnerNoSee')
+### Methods
+- [AddAngularImpulseInDegrees(System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddAngularImpulseInDegrees(Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddAngularImpulseInDegrees(System.Numerics.Vector3, string, bool)')
+- [AddAngularImpulseInRadians(System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddAngularImpulseInRadians(Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddAngularImpulseInRadians(System.Numerics.Vector3, string, bool)')
+- [AddForce(System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddForce(Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddForce(System.Numerics.Vector3, string, bool)')
+- [AddForceAtLocation(System.Numerics.Vector3, System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddForceAtLocation(Vector3_Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddForceAtLocation(System.Numerics.Vector3, System.Numerics.Vector3, string, bool)')
+- [AddImpulse(System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddImpulse(Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddImpulse(System.Numerics.Vector3, string, bool)')
+- [AddImpulseAtLocation(System.Numerics.Vector3, System.Numerics.Vector3, string)](./PrimitiveComponent-AddImpulseAtLocation(Vector3_Vector3_string).md 'UnrealEngine.Framework.PrimitiveComponent.AddImpulseAtLocation(System.Numerics.Vector3, System.Numerics.Vector3, string)')
+- [AddRadialForce(System.Numerics.Vector3, float, float, bool, bool)](./PrimitiveComponent-AddRadialForce(Vector3_float_float_bool_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddRadialForce(System.Numerics.Vector3, float, float, bool, bool)')
+- [AddRadialImpulse(System.Numerics.Vector3, float, float, bool, bool)](./PrimitiveComponent-AddRadialImpulse(Vector3_float_float_bool_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddRadialImpulse(System.Numerics.Vector3, float, float, bool, bool)')
+- [AddTorqueInDegrees(System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddTorqueInDegrees(Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddTorqueInDegrees(System.Numerics.Vector3, string, bool)')
+- [AddTorqueInRadians(System.Numerics.Vector3, string, bool)](./PrimitiveComponent-AddTorqueInRadians(Vector3_string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.AddTorqueInRadians(System.Numerics.Vector3, string, bool)')
+- [ClearMoveIgnoreActors()](./PrimitiveComponent-ClearMoveIgnoreActors().md 'UnrealEngine.Framework.PrimitiveComponent.ClearMoveIgnoreActors()')
+- [ClearMoveIgnoreComponents()](./PrimitiveComponent-ClearMoveIgnoreComponents().md 'UnrealEngine.Framework.PrimitiveComponent.ClearMoveIgnoreComponents()')
+- [CreateAndSetMaterialInstanceDynamic(int)](./PrimitiveComponent-CreateAndSetMaterialInstanceDynamic(int).md 'UnrealEngine.Framework.PrimitiveComponent.CreateAndSetMaterialInstanceDynamic(int)')
+- [GetDistanceToCollision(System.Numerics.Vector3, System.Numerics.Vector3)](./PrimitiveComponent-GetDistanceToCollision(Vector3_Vector3).md 'UnrealEngine.Framework.PrimitiveComponent.GetDistanceToCollision(System.Numerics.Vector3, System.Numerics.Vector3)')
+- [GetMaterial(int)](./PrimitiveComponent-GetMaterial(int).md 'UnrealEngine.Framework.PrimitiveComponent.GetMaterial(int)')
+- [GetSquaredDistanceToCollision(System.Numerics.Vector3, float, System.Numerics.Vector3)](./PrimitiveComponent-GetSquaredDistanceToCollision(Vector3_float_Vector3).md 'UnrealEngine.Framework.PrimitiveComponent.GetSquaredDistanceToCollision(System.Numerics.Vector3, float, System.Numerics.Vector3)')
+- [SetCenterOfMass(System.Numerics.Vector3, string)](./PrimitiveComponent-SetCenterOfMass(Vector3_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetCenterOfMass(System.Numerics.Vector3, string)')
+- [SetCollisionChannel(UnrealEngine.Framework.CollisionChannel)](./PrimitiveComponent-SetCollisionChannel(CollisionChannel).md 'UnrealEngine.Framework.PrimitiveComponent.SetCollisionChannel(UnrealEngine.Framework.CollisionChannel)')
+- [SetCollisionMode(UnrealEngine.Framework.CollisionMode)](./PrimitiveComponent-SetCollisionMode(CollisionMode).md 'UnrealEngine.Framework.PrimitiveComponent.SetCollisionMode(UnrealEngine.Framework.CollisionMode)')
+- [SetCollisionProfileName(string, bool)](./PrimitiveComponent-SetCollisionProfileName(string_bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetCollisionProfileName(string, bool)')
+- [SetEnableGravity(bool)](./PrimitiveComponent-SetEnableGravity(bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetEnableGravity(bool)')
+- [SetIgnoreActorWhenMoving(UnrealEngine.Framework.Actor, bool)](./PrimitiveComponent-SetIgnoreActorWhenMoving(Actor_bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetIgnoreActorWhenMoving(UnrealEngine.Framework.Actor, bool)')
+- [SetIgnoreComponentWhenMoving(UnrealEngine.Framework.PrimitiveComponent, bool)](./PrimitiveComponent-SetIgnoreComponentWhenMoving(PrimitiveComponent_bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetIgnoreComponentWhenMoving(UnrealEngine.Framework.PrimitiveComponent, bool)')
+- [SetMass(float, string)](./PrimitiveComponent-SetMass(float_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetMass(float, string)')
+- [SetMaterial(int, UnrealEngine.Framework.MaterialInterface)](./PrimitiveComponent-SetMaterial(int_MaterialInterface).md 'UnrealEngine.Framework.PrimitiveComponent.SetMaterial(int, UnrealEngine.Framework.MaterialInterface)')
+- [SetPhysicsAngularVelocityInDegrees(System.Numerics.Vector3, bool, string)](./PrimitiveComponent-SetPhysicsAngularVelocityInDegrees(Vector3_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsAngularVelocityInDegrees(System.Numerics.Vector3, bool, string)')
+- [SetPhysicsAngularVelocityInRadians(System.Numerics.Vector3, bool, string)](./PrimitiveComponent-SetPhysicsAngularVelocityInRadians(Vector3_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsAngularVelocityInRadians(System.Numerics.Vector3, bool, string)')
+- [SetPhysicsLinearVelocity(System.Numerics.Vector3, bool, string)](./PrimitiveComponent-SetPhysicsLinearVelocity(Vector3_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsLinearVelocity(System.Numerics.Vector3, bool, string)')
+- [SetPhysicsMaxAngularVelocityInDegrees(float, bool, string)](./PrimitiveComponent-SetPhysicsMaxAngularVelocityInDegrees(float_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsMaxAngularVelocityInDegrees(float, bool, string)')
+- [SetPhysicsMaxAngularVelocityInRadians(float, bool, string)](./PrimitiveComponent-SetPhysicsMaxAngularVelocityInRadians(float_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsMaxAngularVelocityInRadians(float, bool, string)')
+- [SetSimulatePhysics(bool)](./PrimitiveComponent-SetSimulatePhysics(bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetSimulatePhysics(bool)')

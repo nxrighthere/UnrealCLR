@@ -156,6 +156,35 @@ namespace UnrealCLRFramework {
 		FORCEINLINE operator FTransform() const { return FTransform(Rotation, Location, Scale); }
 	};
 
+	struct Hit {
+		Vector3 Location;
+		Vector3 ImpactLocation;
+		Vector3 Normal;
+		Vector3 ImpactNormal;
+		Vector3 TraceStart;
+		Vector3 TraceEnd;
+		AActor* Actor;
+		float Time;
+		float Distance;
+		float PenetrationDepth;
+		bool BlockingHit;
+		bool StartPenetrating;
+
+		FORCEINLINE Hit(const FHitResult& Value) :
+			Location(FVector(Value.Location.X, Value.Location.Y, Value.Location.Z)),
+			ImpactLocation(FVector(Value.ImpactPoint.X, Value.ImpactPoint.Y, Value.ImpactPoint.Z)),
+			Normal(FVector(Value.Normal.X, Value.Normal.Y, Value.Normal.Z)),
+			ImpactNormal(FVector(Value.ImpactNormal.X, Value.ImpactNormal.Y, Value.ImpactNormal.Z)),
+			TraceStart(FVector(Value.TraceStart.X, Value.TraceStart.Y, Value.TraceStart.Z)),
+			TraceEnd(FVector(Value.TraceEnd.X, Value.TraceEnd.Y, Value.TraceEnd.Z)),
+			Actor(Value.GetActor()),
+			Time(Value.Time),
+			Distance(Value.Distance),
+			PenetrationDepth(Value.PenetrationDepth),
+			BlockingHit(Value.bBlockingHit),
+			StartPenetrating(Value.bStartPenetrating) { }
+	};
+
 	typedef void (*InputDelegate)();
 
 	typedef void (*InputAxisDelegate)(float);
@@ -343,6 +372,10 @@ namespace UnrealCLRFramework {
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
 		static bool SetWorldOrigin(const Vector3* Value);
+		static bool LineTraceTestByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool LineTraceTestByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool LineTraceSingleByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool LineTraceSingleByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 	}
 
 	// Instantiable
@@ -626,6 +659,7 @@ namespace UnrealCLRFramework {
 		static void SetRelativeTransform(USceneComponent* SceneComponent, const Transform* Transform);
 		static void SetWorldLocation(USceneComponent* SceneComponent, const Vector3* Location);
 		static void SetWorldRotation(USceneComponent* SceneComponent, const Quaternion* Rotation);
+		static void SetWorldScale(USceneComponent* SceneComponent, const Vector3* Scale);
 		static void SetWorldTransform(USceneComponent* SceneComponent, const Transform* Transform);
 	}
 
@@ -701,6 +735,7 @@ namespace UnrealCLRFramework {
 		static void SetEnableGravity(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetCollisionMode(UPrimitiveComponent* PrimitiveComponent, CollisionMode Mode);
 		static void SetCollisionChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel);
+		static void SetCollisionProfileName(UPrimitiveComponent* PrimitiveComponent, const char* ProfileName, bool UpdateOverlaps);
 		static void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value);
 		static void SetIgnoreComponentWhenMoving(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Component, bool Value);
 		static void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent);

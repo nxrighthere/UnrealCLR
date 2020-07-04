@@ -241,6 +241,14 @@ namespace UnrealCLRFramework {
 		else\
 			boneName = FName(ANSI_TO_TCHAR(Name));
 
+	#define UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent)\
+		FCollisionQueryParams queryParams;\
+		queryParams.bTraceComplex = TraceComplex;\
+		if (IgnoredActor)\
+			queryParams.AddIgnoredActor(IgnoredActor);\
+		if (IgnoredComponent)\
+			queryParams.AddIgnoredComponent(IgnoredComponent);
+
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
 	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
@@ -868,6 +876,54 @@ namespace UnrealCLRFramework {
 
 		bool SetWorldOrigin(const Vector3* Value) {
 			return UnrealCLR::Engine::World->SetNewWorldOrigin(FIntVector(*Value));
+		}
+
+		bool LineTraceTestByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+
+			return UnrealCLR::Engine::World->LineTraceTestByChannel(*Start, *End, Channel, queryParams);
+		}
+
+		bool LineTraceTestByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+
+			return UnrealCLR::Engine::World->LineTraceTestByProfile(*Start, *End, FName(ANSI_TO_TCHAR(ProfileName)), queryParams);
+		}
+
+		bool LineTraceSingleByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			FHitResult hit;
+
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+
+			bool result = UnrealCLR::Engine::World->LineTraceSingleByChannel(hit, *Start, *End, Channel, queryParams);
+
+			if (BoneName && hit.BoneName.GetStringLength() > 0) {
+				const char* boneName = TCHAR_TO_ANSI(*hit.BoneName.ToString());
+
+				UnrealCLR::Utility::Strcpy(BoneName, boneName, UnrealCLR::Utility::Strlen(boneName));
+			}
+
+			*Hit = hit;
+
+			return result;
+		}
+
+		bool LineTraceSingleByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			FHitResult hit;
+
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+
+			bool result = UnrealCLR::Engine::World->LineTraceSingleByProfile(hit, *Start, *End, FName(ANSI_TO_TCHAR(ProfileName)), queryParams);
+
+			if (BoneName && hit.BoneName.GetStringLength() > 0) {
+				const char* boneName = TCHAR_TO_ANSI(*hit.BoneName.ToString());
+
+				UnrealCLR::Utility::Strcpy(BoneName, boneName, UnrealCLR::Utility::Strlen(boneName));
+			}
+
+			*Hit = hit;
+
+			return result;
 		}
 	}
 
@@ -1724,6 +1780,10 @@ namespace UnrealCLRFramework {
 			SceneComponent->SetWorldRotation(*Rotation);
 		}
 
+		void SetWorldScale(USceneComponent* SceneComponent, const Vector3* Scale) {
+			SceneComponent->SetWorldScale3D(*Scale);
+		}
+
 		void SetWorldTransform(USceneComponent* SceneComponent, const Transform* Transform) {
 			SceneComponent->SetWorldTransform(*Transform);
 		}
@@ -2035,6 +2095,10 @@ namespace UnrealCLRFramework {
 
 		void SetCollisionChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel) {
 			PrimitiveComponent->SetCollisionObjectType(Channel);
+		}
+
+		void SetCollisionProfileName(UPrimitiveComponent* PrimitiveComponent, const char* ProfileName, bool UpdateOverlaps) {
+			PrimitiveComponent->SetCollisionProfileName(FName(ANSI_TO_TCHAR(ProfileName)), UpdateOverlaps);
 		}
 
 		void SetIgnoreActorWhenMoving(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, bool Value) {

@@ -24,6 +24,7 @@
   <PropertyGroup Label="DefaultDocumentation">
     <DefaultDocumentationFolder>../../../API</DefaultDocumentationFolder>
     <DefaultDocumentationNestedTypeVisibility>DeclaringType</DefaultDocumentationNestedTypeVisibility>
+    <DefaultDocumentationFileNameMode>Name</DefaultDocumentationFileNameMode>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -32,7 +33,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DefaultDocumentation" Version="0.6.7" PrivateAssets="all" />
+    <PackageReference Include="DefaultDocumentation" Version="0.6.9" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.0.0" PrivateAssets="all" />
   </ItemGroup>

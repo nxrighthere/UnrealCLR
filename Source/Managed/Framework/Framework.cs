@@ -601,12 +601,12 @@ namespace UnrealEngine.Framework {
 		public static LinearColor Yellow => new LinearColor(1.0f, 1.0f, 0.0f, 1.0f);
 
 		/// <summary>
-		/// Tests for equality between two linear color objects
+		/// Tests for equality between two objects
 		/// </summary>
 		public static bool operator ==(LinearColor left, LinearColor right) => left.Equals(right);
 
 		/// <summary>
-		/// Tests for inequality between two linear color objects
+		/// Tests for inequality between two objects
 		/// </summary>
 		public static bool operator !=(LinearColor left, LinearColor right) => !left.Equals(right);
 
@@ -753,12 +753,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Tests for equality between two transform objects
+		/// Tests for equality between two objects
 		/// </summary>
 		public static bool operator ==(Transform left, Transform right) => left.Equals(right);
 
 		/// <summary>
-		/// Tests for inequality between two transform objects
+		/// Tests for inequality between two objects
 		/// </summary>
 		public static bool operator !=(Transform left, Transform right) => !left.Equals(right);
 
@@ -799,6 +799,125 @@ namespace UnrealEngine.Framework {
 		/// Returns a hash code for the object
 		/// </summary>
 		public override int GetHashCode() => HashCode.Combine(location, rotation, scale);
+	}
+
+	/// <summary>
+	/// A trace hit
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct Hit : IEquatable<Hit> {
+		/// <summary>
+		/// Gets the location in world space where the moving shape would end up against the impacted object if there was a hit
+		/// </summary>
+		public Vector3 Location => location;
+
+		/// <summary>
+		/// Gets the location in world space of the actual contact of the trace shape with the impacted object
+		/// </summary>
+		public Vector3 ImpactLocation => impactLocation;
+
+		/// <summary>
+		/// Gets the normal of the hit in world space for the object that was swept
+		/// </summary>
+		public Vector3 Normal => normal;
+
+		/// <summary>
+		/// Gets the normal of the hit in world space for the object that was hit by the sweep
+		/// </summary>
+		public Vector3 ImpactNormal => impactNormal;
+
+		/// <summary>
+		/// Gets the start location of the trace
+		/// </summary>
+		public Vector3 TraceStart => traceStart;
+
+		/// <summary>
+		/// Gets the end location of the trace
+		/// </summary>
+		public Vector3 TraceEnd => traceEnd;
+
+		/// <summary>
+		/// Gets the impact along trace direction between 0.0f and 1.0f if there was a hit, indicating time between <see cref="TraceStart"/> and <see cref="TraceEnd"/>
+		/// </summary>
+		public float Time => time;
+
+		/// <summary>
+		/// Gets the distance from <see cref="TraceStart"/> to <see cref="Location"/> in world space
+		/// </summary>
+		public float Distance => distance;
+
+		/// <summary>
+		/// Gets the distance along with <see cref="Normal"/> that will result in moving out of penetration if <see cref="StartPenetrating"/> is <c>true</c> and a penetration vector can be computed
+		/// </summary>
+		public float PenetrationDepth => penetrationDepth;
+
+		/// <summary>
+		/// Returns <c>true</c> if the hit was a result of blocking collision
+		/// </summary>
+		public bool BlockingHit => blockingHit;
+
+		/// <summary>
+		/// Returns <c>true</c> if the trace started penetration
+		/// </summary>
+		public bool StartPenetrating => startPenetrating;
+
+		/// <summary>
+		/// Returns the owner of the component that was hit or <c>null</c> on failure
+		/// </summary>
+		public Actor GetActor() {
+			if (actor != IntPtr.Zero)
+				return new Actor(actor);
+
+			return null;
+		}
+
+		/// <summary>
+		/// Implicitly casts this instance to a string
+		/// </summary>
+		public static implicit operator string(Hit value) => value.ToString();
+
+		/// <summary>
+		/// Returns a string that represents this instance
+		/// </summary>
+		public override string ToString() => ToString(CultureInfo.CurrentCulture);
+
+		/// <summary>
+		/// Returns a string that represents this instance
+		/// </summary>
+		public string ToString(IFormatProvider formatProvider) => string.Format(formatProvider, "Location:{0} ImpactLocation:{1} Normal:{2} ImpactNormal:{3}, TraceStart:{4}, TraceEnd:{5}, Time:{6}, Distance:{7}, PenetrationDepth:{8}, BlockingHit:{9}, StartPenetrating:{10}, Actor:{11}", Location, ImpactLocation, Normal, ImpactNormal, TraceStart, TraceEnd, Time, Distance, PenetrationDepth, BlockingHit, StartPenetrating, actor != IntPtr.Zero);
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(Hit left, Hit right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(Hit left, Hit right) => !left.Equals(right);
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(Hit other) => location == other.location && impactLocation == other.impactLocation && normal == other.normal && impactNormal == other.impactNormal && traceStart == other.traceStart && traceEnd == other.traceEnd && actor == other.actor && time == other.time && distance == other.distance && penetrationDepth == other.penetrationDepth && blockingHit == other.blockingHit && startPenetrating == other.startPenetrating;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(Hit)))
+				return false;
+
+			return Equals((Hit)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => HashCode.Combine(location, impactLocation, normal, impactNormal, traceStart, traceEnd, actor) ^ HashCode.Combine(time, distance, penetrationDepth, blockingHit, startPenetrating);
 	}
 
 	/// <summary>
@@ -2965,6 +3084,58 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <returns><c>true</c> if the world origin was succesfuly shifted, or <c>false</c> if one of the levels are pending visibility update</returns>
 		public static bool SetWorldOrigin(in Vector3 value) => setWorldOrigin(value);
+
+		/// <summary>
+		/// Traces a ray against the world using a specific channel
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool LineTraceTestByChannel(in Vector3 start, in Vector3 end, CollisionChannel channel, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceTestByChannel(start, end, channel, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Traces a ray against the world using a specific profile
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool LineTraceTestByProfile(in Vector3 start, in Vector3 end, string profileName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceTestByProfile(start, end, profileName, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Traces a ray against the world using a specific channel and retrieves the first blocking hit
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool LineTraceSingleByChannel(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceSingleByChannel(start, end, channel, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Traces a ray against the world using a specific channel and retrieves the first blocking hit
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool LineTraceSingleByChannel(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			bool result = lineTraceSingleByChannel(start, end, channel, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+
+			return result;
+		}
+
+		/// <summary>
+		/// Traces a ray against the world using a specific profile and retrieves the first blocking hit
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceSingleByProfile(start, end, profileName, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Traces a ray against the world using a specific profile and retrieves the first blocking hit
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			bool result = lineTraceSingleByProfile(start, end, profileName, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+
+			return result;
+		}
 	}
 
 	/// <summary>
@@ -5740,6 +5911,11 @@ namespace UnrealEngine.Framework {
 		public void SetWorldRotation(in Quaternion rotation) => setWorldRotation(Pointer, rotation);
 
 		/// <summary>
+		/// Sets the scale of the component world space
+		/// </summary>
+		public void SetWorldScale(in Vector3 scale) => setWorldScale(Pointer, scale);
+
+		/// <summary>
 		/// Sets the transform of the component in world space
 		/// </summary>
 		public void SetWorldTransform(in Transform transform) => setWorldTransform(Pointer, transform);
@@ -6200,6 +6376,11 @@ namespace UnrealEngine.Framework {
 		/// Sets the collision channel of the component
 		/// </summary>
 		public void SetCollisionChannel(CollisionChannel channel) => setCollisionChannel(Pointer, channel);
+
+		/// <summary>
+		/// Sets the collision profile name of the component
+		/// </summary>
+		public void SetCollisionProfileName(string profileName, bool updateOverlaps = true) => setCollisionProfileName(Pointer, profileName, updateOverlaps);
 
 		/// <summary>
 		/// Sets whether to ignore collision of all components of a specified actor during the movement

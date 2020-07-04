@@ -296,6 +296,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetSimulatePhysics;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetGravity;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetWorldOrigin;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByChannel;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByProfile;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByChannel;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByProfile;
 
 				checksum += head;
 			}
@@ -601,6 +605,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetRelativeTransform;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldLocation;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldRotation;
+				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldScale;
 				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldTransform;
 
 				checksum += head;
@@ -696,6 +701,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetEnableGravity;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionMode;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionChannel;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionProfileName;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetIgnoreActorWhenMoving;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetIgnoreComponentWhenMoving;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::ClearMoveIgnoreActors;

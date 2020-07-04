@@ -22,8 +22,8 @@ namespace UnrealEngine.Tests {
 
 			Debug.DrawLine(new Vector3(0.0f, -350.0f, -100.0f), new Vector3(0.0f, 350.0f, -100.0f), Color.DarkViolet, true, thickness: linesThickness);
 
-			Debug.DrawPoint(new Vector3(0.0f, -350.0f, -150.0f), 10.0f, Color.MediumVioletRed, true);
-			Debug.DrawPoint(new Vector3(0.0f, 350.0f, -150.0f), 10.0f, Color.MediumVioletRed, true);
+			Debug.DrawPoint(new Vector3(0.0f, -350.0f, -150.0f), 8.0f, Color.MediumVioletRed, true);
+			Debug.DrawPoint(new Vector3(0.0f, 350.0f, -150.0f), 8.0f, Color.MediumVioletRed, true);
 		}
 
 		public static void OnEndPlay() {
