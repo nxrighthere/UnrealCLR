@@ -26,6 +26,6 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [ToString()](./Hit-ToString().md 'UnrealEngine.Framework.Hit.ToString()')
 - [ToString(System.IFormatProvider)](./Hit-ToString(IFormatProvider).md 'UnrealEngine.Framework.Hit.ToString(System.IFormatProvider)')
 ### Operators
-- [operator ==(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)](./Hit-op_EqualityHit).md 'UnrealEngine.Framework.Hit.op_Equality(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)')
+- [operator ==(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)](./Hit-op_Equality(Hit_Hit).md 'UnrealEngine.Framework.Hit.op_Equality(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)')
 - [implicit operator string(UnrealEngine.Framework.Hit)](./Hit-op_Implicitstring(Hit).md 'UnrealEngine.Framework.Hit.op_Implicit string(UnrealEngine.Framework.Hit)')
-- [operator !=(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)](./Hit-op_InequalityHit).md 'UnrealEngine.Framework.Hit.op_Inequality(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)')
+- [operator !=(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)](./Hit-op_Inequality(Hit_Hit).md 'UnrealEngine.Framework.Hit.op_Inequality(UnrealEngine.Framework.Hit, UnrealEngine.Framework.Hit)')

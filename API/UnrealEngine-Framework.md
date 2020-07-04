@@ -75,6 +75,7 @@
 - [Volume](./Volume.md 'UnrealEngine.Framework.Volume')
 - [World](./World.md 'UnrealEngine.Framework.World')
 ### Structs
+- [CollisionShape](./CollisionShape.md 'UnrealEngine.Framework.CollisionShape')
 - [Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 - [LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')
 - [Transform](./Transform.md 'UnrealEngine.Framework.Transform')
@@ -90,6 +91,7 @@
 - [CollisionChannel](./CollisionChannel.md 'UnrealEngine.Framework.CollisionChannel')
 - [CollisionMode](./CollisionMode.md 'UnrealEngine.Framework.CollisionMode')
 - [CollisionResponse](./CollisionResponse.md 'UnrealEngine.Framework.CollisionResponse')
+- [CollisionShapeType](./CollisionShapeType.md 'UnrealEngine.Framework.CollisionShapeType')
 - [ComponentMobility](./ComponentMobility.md 'UnrealEngine.Framework.ComponentMobility')
 - [ControllerHand](./ControllerHand.md 'UnrealEngine.Framework.ControllerHand')
 - [DetachmentTransformRule](./DetachmentTransformRule.md 'UnrealEngine.Framework.DetachmentTransformRule')

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[World](./World.md 'UnrealEngine.Framework.World')
 ## World.LineTraceSingleByChannel(System.Numerics.Vector3, System.Numerics.Vector3, UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, string, bool, UnrealEngine.Framework.Actor, UnrealEngine.Framework.PrimitiveComponent) Method
-Traces a ray against the world using a specific channel and retrieves the first blocking hit  
+Traces a ray against the world using a specific channel and retrieves the first blocking hit with a bone name  
 ```csharp
 public static bool LineTraceSingleByChannel(in System.Numerics.Vector3 start, in System.Numerics.Vector3 end, UnrealEngine.Framework.CollisionChannel channel, ref UnrealEngine.Framework.Hit hit, ref string boneName, bool traceComplex=false, UnrealEngine.Framework.Actor ignoredActor=null, UnrealEngine.Framework.PrimitiveComponent ignoredComponent=null);
 ```

@@ -19,6 +19,6 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [ToString()](./Transform-ToString().md 'UnrealEngine.Framework.Transform.ToString()')
 - [ToString(System.IFormatProvider)](./Transform-ToString(IFormatProvider).md 'UnrealEngine.Framework.Transform.ToString(System.IFormatProvider)')
 ### Operators
-- [operator ==(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)](./Transform-op_Equalityform_Transform).md 'UnrealEngine.Framework.Transform.op_Equality(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)')
+- [operator ==(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)](./Transform-op_Equality(Transform_Transform).md 'UnrealEngine.Framework.Transform.op_Equality(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)')
 - [implicit operator string(UnrealEngine.Framework.Transform)](./Transform-op_Implicitstring(Transform).md 'UnrealEngine.Framework.Transform.op_Implicit string(UnrealEngine.Framework.Transform)')
-- [operator !=(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)](./Transform-op_Inequalityform_Transform).md 'UnrealEngine.Framework.Transform.op_Inequality(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)')
+- [operator !=(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)](./Transform-op_Inequality(Transform_Transform).md 'UnrealEngine.Framework.Transform.op_Inequality(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Transform)')

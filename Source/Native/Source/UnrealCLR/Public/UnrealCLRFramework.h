@@ -21,6 +21,7 @@ namespace UnrealCLRFramework {
 	using AnimationMode = EAnimationMode::Type;
 	using CameraProjectionMode = ECameraProjectionMode::Type;
 	using CollisionMode = ECollisionEnabled::Type;
+	using CollisionShapeType = ECollisionShape::Type;
 	using ComponentMobility = EComponentMobility::Type;
 	using WindowMode = EWindowMode::Type;
 
@@ -31,6 +32,8 @@ namespace UnrealCLRFramework {
 	using ControllerHand = EControllerHand;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
+
+	using CollisionShape = FCollisionShape;
 
 	enum struct LogLevel : int32 {
 		Display,
@@ -377,6 +380,10 @@ namespace UnrealCLRFramework {
 		static bool LineTraceTestByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 		static bool LineTraceSingleByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 		static bool LineTraceSingleByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool SweepTestByChannel(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool SweepTestByProfile(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool SweepSingleByChannel(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool SweepSingleByProfile(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 	}
 
 	// Instantiable

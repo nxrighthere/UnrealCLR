@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1C8;
+		internal const int checksum = 0x1CC;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
@@ -186,6 +186,10 @@ namespace UnrealEngine.Framework {
 				World.lineTraceTestByProfile = GenerateOptimizedFunction<World.LineTraceTestByProfileFunction>(worldFunctions[head++]);
 				World.lineTraceSingleByChannel = GenerateOptimizedFunction<World.LineTraceSingleByChannelFunction>(worldFunctions[head++]);
 				World.lineTraceSingleByProfile = GenerateOptimizedFunction<World.LineTraceSingleByProfileFunction>(worldFunctions[head++]);
+				World.sweepTestByChannel = GenerateOptimizedFunction<World.SweepTestByChannelFunction>(worldFunctions[head++]);
+				World.sweepTestByProfile = GenerateOptimizedFunction<World.SweepTestByProfileFunction>(worldFunctions[head++]);
+				World.sweepSingleByChannel = GenerateOptimizedFunction<World.SweepSingleByChannelFunction>(worldFunctions[head++]);
+				World.sweepSingleByProfile = GenerateOptimizedFunction<World.SweepSingleByProfileFunction>(worldFunctions[head++]);
 			}
 
 			unchecked {
@@ -808,6 +812,33 @@ namespace UnrealEngine.Framework {
 		private Bool startPenetrating;
 	}
 
+	partial struct CollisionShape {
+		[FieldOffset(0)]
+		private CollisionShapeType shapeType;
+		[FieldOffset(4)]
+		private Box box;
+		[FieldOffset(4)]
+		private Sphere sphere;
+		[FieldOffset(4)]
+		private Capsule capsule;
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct Box {
+			internal Vector3 halfExtent;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct Sphere {
+			internal float radius;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct Capsule {
+			internal float radius;
+			internal float halfHeight;
+		}
+	}
+
 	internal struct Bool {
 		private byte value;
 
@@ -1092,6 +1123,10 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool LineTraceTestByProfileFunction(in Vector3 start, in Vector3 end, string profileName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool LineTraceSingleByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool LineTraceSingleByProfileFunction(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool SweepTestByChannelFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool SweepTestByProfileFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool SweepSingleByChannelFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool SweepSingleByProfileFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 
 		internal static GetSimulatePhysicsFunction getSimulatePhysics;
 		internal static GetActorCountFunction getActorCount;
@@ -1110,6 +1145,10 @@ namespace UnrealEngine.Framework {
 		internal static LineTraceTestByProfileFunction lineTraceTestByProfile;
 		internal static LineTraceSingleByChannelFunction lineTraceSingleByChannel;
 		internal static LineTraceSingleByProfileFunction lineTraceSingleByProfile;
+		internal static SweepTestByChannelFunction sweepTestByChannel;
+		internal static SweepTestByProfileFunction sweepTestByProfile;
+		internal static SweepSingleByChannelFunction sweepSingleByChannel;
+		internal static SweepSingleByProfileFunction sweepSingleByProfile;
 	}
 
 	partial class Blueprint {

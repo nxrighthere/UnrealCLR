@@ -234,6 +234,12 @@ namespace UnrealCLRFramework {
 		}\
 		return false;
 
+	#define UNREALCLR_GET_BONE_NAME(Hit, Name)\
+		if (Name && Hit.BoneName.GetStringLength() > 0) {\
+			const char* boneName = TCHAR_TO_ANSI(*Hit.BoneName.ToString());\
+			UnrealCLR::Utility::Strcpy(Name, boneName, UnrealCLR::Utility::Strlen(boneName));\
+		}
+
 	#define UNREALCLR_SET_BONE_NAME(Name)\
 		FName boneName;\
 		if (!Name)\
@@ -241,9 +247,8 @@ namespace UnrealCLRFramework {
 		else\
 			boneName = FName(ANSI_TO_TCHAR(Name));
 
-	#define UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent)\
+	#define UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent)\
 		FCollisionQueryParams queryParams;\
-		queryParams.bTraceComplex = TraceComplex;\
 		if (IgnoredActor)\
 			queryParams.AddIgnoredActor(IgnoredActor);\
 		if (IgnoredComponent)\
@@ -258,6 +263,8 @@ namespace UnrealCLRFramework {
 	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the ControllerHand enumeration");
 	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the InputEvent enumeration");
 	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the NetMode enumeration");
+
+	static_assert(sizeof(CollisionShape) != 20, "Invalid size of the CollisionShape structure");
 
 	namespace Assert {
 		void OutputMessage(const char* Message) {
@@ -880,13 +887,17 @@ namespace UnrealCLRFramework {
 		}
 
 		bool LineTraceTestByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
-			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
 
 			return UnrealCLR::Engine::World->LineTraceTestByChannel(*Start, *End, Channel, queryParams);
 		}
 
 		bool LineTraceTestByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
-			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
 
 			return UnrealCLR::Engine::World->LineTraceTestByProfile(*Start, *End, FName(ANSI_TO_TCHAR(ProfileName)), queryParams);
 		}
@@ -894,15 +905,13 @@ namespace UnrealCLRFramework {
 		bool LineTraceSingleByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
 			FHitResult hit;
 
-			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
 
 			bool result = UnrealCLR::Engine::World->LineTraceSingleByChannel(hit, *Start, *End, Channel, queryParams);
 
-			if (BoneName && hit.BoneName.GetStringLength() > 0) {
-				const char* boneName = TCHAR_TO_ANSI(*hit.BoneName.ToString());
-
-				UnrealCLR::Utility::Strcpy(BoneName, boneName, UnrealCLR::Utility::Strlen(boneName));
-			}
+			UNREALCLR_GET_BONE_NAME(hit, BoneName);
 
 			*Hit = hit;
 
@@ -912,15 +921,61 @@ namespace UnrealCLRFramework {
 		bool LineTraceSingleByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
 			FHitResult hit;
 
-			UNREALCLR_SET_COLLISION_QUERY_PARAMS(TraceComplex, IgnoredActor, IgnoredComponent);
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
 
 			bool result = UnrealCLR::Engine::World->LineTraceSingleByProfile(hit, *Start, *End, FName(ANSI_TO_TCHAR(ProfileName)), queryParams);
 
-			if (BoneName && hit.BoneName.GetStringLength() > 0) {
-				const char* boneName = TCHAR_TO_ANSI(*hit.BoneName.ToString());
+			UNREALCLR_GET_BONE_NAME(hit, BoneName);
 
-				UnrealCLR::Utility::Strcpy(BoneName, boneName, UnrealCLR::Utility::Strlen(boneName));
-			}
+			*Hit = hit;
+
+			return result;
+		}
+
+		bool SweepTestByChannel(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
+
+			return UnrealCLR::Engine::World->SweepTestByChannel(*Start, *End, *Rotation, Channel, *Shape, queryParams);
+		}
+
+		bool SweepTestByProfile(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
+
+			return UnrealCLR::Engine::World->SweepTestByProfile( *Start, *End, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+		}
+
+		bool SweepSingleByChannel(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			FHitResult hit;
+
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
+
+			bool result = UnrealCLR::Engine::World->SweepSingleByChannel(hit, *Start, *End, *Rotation, Channel, *Shape, queryParams);
+
+			UNREALCLR_GET_BONE_NAME(hit, BoneName);
+
+			*Hit = hit;
+
+			return result;
+		}
+
+		bool SweepSingleByProfile(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			FHitResult hit;
+
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			queryParams.bTraceComplex = TraceComplex;
+
+			bool result = UnrealCLR::Engine::World->SweepSingleByProfile(hit, *Start, *End, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+
+			UNREALCLR_GET_BONE_NAME(hit, BoneName);
 
 			*Hit = hit;
 

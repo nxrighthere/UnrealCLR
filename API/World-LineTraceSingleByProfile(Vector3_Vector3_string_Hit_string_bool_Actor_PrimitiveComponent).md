@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[World](./World.md 'UnrealEngine.Framework.World')
 ## World.LineTraceSingleByProfile(System.Numerics.Vector3, System.Numerics.Vector3, string, UnrealEngine.Framework.Hit, string, bool, UnrealEngine.Framework.Actor, UnrealEngine.Framework.PrimitiveComponent) Method
-Traces a ray against the world using a specific profile and retrieves the first blocking hit  
+Traces a ray against the world using a specific profile and retrieves the first blocking hit with a bone name  
 ```csharp
 public static bool LineTraceSingleByProfile(in System.Numerics.Vector3 start, in System.Numerics.Vector3 end, string profileName, ref UnrealEngine.Framework.Hit hit, ref string boneName, bool traceComplex=false, UnrealEngine.Framework.Actor ignoredActor=null, UnrealEngine.Framework.PrimitiveComponent ignoredComponent=null);
 ```

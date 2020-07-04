@@ -227,6 +227,18 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines the collision shape type
+	/// </summary>
+	public enum CollisionShapeType : int {
+		/// <summary/>
+		Box = 1,
+		/// <summary/>
+		Sphere = 2,
+		/// <summary/>
+		Capsule = 3
+	}
+
+	/// <summary>
 	/// Defines how often a component is allowed to move
 	/// </summary>
 	public enum ComponentMobility : int {
@@ -933,6 +945,87 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A representation of the collision shape
+	/// </summary>
+	[StructLayout(LayoutKind.Explicit)]
+	public partial struct CollisionShape : IEquatable<CollisionShape> {
+		/// <summary>
+		/// Gets the shape type
+		/// </summary>
+		public CollisionShapeType ShapeType => shapeType;
+
+		/// <summary>
+		/// Returns a box shape
+		/// </summary>
+		public static CollisionShape CreateBox(in Vector3 halfExtent) {
+			CollisionShape collisionShape = default(CollisionShape);
+
+			collisionShape.shapeType = CollisionShapeType.Box;
+			collisionShape.box.halfExtent = halfExtent;
+
+			return collisionShape;
+		}
+
+		/// <summary>
+		/// Returns a sphere shape
+		/// </summary>
+		public static CollisionShape CreateSphere(float radius) {
+			CollisionShape collisionShape = default(CollisionShape);
+
+			collisionShape.shapeType = CollisionShapeType.Sphere;
+			collisionShape.sphere.radius = radius;
+
+			return collisionShape;
+		}
+
+		/// <summary>
+		/// Returns a capsule shape
+		/// </summary>
+		public static CollisionShape CreateCapsule(float radius, float halfHeight) {
+			CollisionShape collisionShape = default(CollisionShape);
+
+			collisionShape.shapeType = CollisionShapeType.Capsule;
+			collisionShape.capsule.radius = radius;
+			collisionShape.capsule.halfHeight = halfHeight;
+
+			return collisionShape;
+		}
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(CollisionShape left, CollisionShape right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(CollisionShape left, CollisionShape right) => !left.Equals(right);
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(CollisionShape other) => shapeType == other.shapeType && box.halfExtent == other.box.halfExtent;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(CollisionShape)))
+				return false;
+
+			return Equals((CollisionShape)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => HashCode.Combine(shapeType, box.halfExtent);
+	}
+
+	/// <summary>
 	/// Delegate for action events
 	/// </summary>
 	public delegate void InputDelegate();
@@ -1558,7 +1651,7 @@ namespace UnrealEngine.Framework {
 			sy = MathF.Sin(halfYaw);
 			cy = MathF.Cos(halfYaw);
 
-			Quaternion result;
+			Quaternion result = default(Quaternion);
 
 			result.X = cy * cp * sr - sy * sp * cr;
 			result.Y = cy * sp * cr + sy * cp * sr;
@@ -3116,7 +3209,7 @@ namespace UnrealEngine.Framework {
 		public static bool LineTraceSingleByChannel(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceSingleByChannel(start, end, channel, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
-		/// Traces a ray against the world using a specific channel and retrieves the first blocking hit
+		/// Traces a ray against the world using a specific channel and retrieves the first blocking hit with a bone name
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
 		public static bool LineTraceSingleByChannel(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
@@ -3136,13 +3229,65 @@ namespace UnrealEngine.Framework {
 		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceSingleByProfile(start, end, profileName, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
-		/// Traces a ray against the world using a specific profile and retrieves the first blocking hit
+		/// Traces a ray against the world using a specific profile and retrieves the first blocking hit with a bone name
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
 		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
 			bool result = lineTraceSingleByProfile(start, end, profileName, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+
+			return result;
+		}
+
+		/// <summary>
+		/// Sweeps a shape against the world using a specific profile
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool SweepTestByChannel(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepTestByChannel(start, end, rotation, channel, shape, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Sweeps a shape against the world using a specific profile
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool SweepTestByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepTestByProfile(start, end, rotation, profileName, shape, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool SweepSingleByChannel(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepSingleByChannel(start, end, rotation, channel, shape, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit with a bone name
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool SweepSingleByChannel(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			bool result = sweepSingleByChannel(start, end, rotation, channel, shape, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+
+			return result;
+		}
+
+		/// <summary>
+		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool SweepSingleByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepSingleByProfile(start, end, rotation, profileName, shape, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit with a bone name
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool SweepSingleByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			bool result = sweepSingleByProfile(start, end, rotation, profileName, shape, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
 

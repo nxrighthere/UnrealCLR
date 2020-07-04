@@ -300,6 +300,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByProfile;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByChannel;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByProfile;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepTestByChannel;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepTestByProfile;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepSingleByChannel;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepSingleByProfile;
 
 				checksum += head;
 			}
