@@ -1,9 +1,9 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.08",
+	"VersionName": "1.09",
 	"FriendlyName": "UnrealCLR",
-	"Description": ".NET Common Language Runtime",
+	"Description": ".NET Core integration ",
 	"Category": "Scripting",
 	"CreatedBy": "nxrighthere",
 	"CreatedByURL": "https://github.com/nxrighthere",

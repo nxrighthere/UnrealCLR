@@ -2882,7 +2882,6 @@ namespace UnrealEngine.Framework {
 		/// <param name="action">The static function to call when the command is executed</param>
 		/// <param name="readOnly">If <c>true</c>, cannot be changed by the user from console</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public static void RegisterCommand(string name, string help, ConsoleCommandDelegate action, bool readOnly = false) {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
@@ -5842,7 +5841,6 @@ namespace UnrealEngine.Framework {
 		/// <param name="action">The static function to call while tracking axis</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public void BindAxis(string axisName, InputAxisDelegate action, bool executedWhenPaused = false) {
 			if (axisName == null)
 				throw new ArgumentNullException(nameof(axisName));

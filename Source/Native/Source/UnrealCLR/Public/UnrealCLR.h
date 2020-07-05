@@ -88,11 +88,13 @@ namespace UnrealCLR {
 	};
 
 	typedef void (*ExecuteManagedFunctionDelegate)(void*);
+	typedef void (*ExecuteManagedFunctionArgumentDelegate)(void*, float);
 	typedef void* (*FindManagedFunctionDelegate)(const char_t* Method, int32_t Optional);
 	typedef void (*LoadAssembliesDelegate)();
 	typedef void (*UnloadAssembliesDelegate)();
 
 	static ExecuteManagedFunctionDelegate ExecuteManagedFunction;
+	static ExecuteManagedFunctionArgumentDelegate ExecuteManagedFunctionArgument;
 	static FindManagedFunctionDelegate FindManagedFunction;
 	static LoadAssembliesDelegate LoadAssemblies;
 	static UnloadAssembliesDelegate UnloadAssemblies;
@@ -115,6 +117,7 @@ namespace UnrealCLR {
 
 		static void HostError(const char_t* Message);
 		static void Invoke(void(*)());
+		static void InvokeArgument(void(*)(float), float Value);
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
 
@@ -185,8 +188,8 @@ namespace UnrealCLR {
 		void* MaterialInstanceDynamicFunctions[storageSize];
 		void* HeadMountedDisplayFunctions[storageSize];
 
-		void* ManagedFunctions[3];
-		void* NativeFunctions[4];
+		void* ManagedFunctions[4];
+		void* NativeFunctions[5];
 		void* Functions[128];
 	}
 

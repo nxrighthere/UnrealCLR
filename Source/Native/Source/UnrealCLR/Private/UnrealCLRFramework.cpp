@@ -668,7 +668,7 @@ namespace UnrealCLRFramework {
 					if (Arguments.Num() > 0)
 						FDefaultValueHelper::ParseFloat(Arguments[0], value);
 
-					Function(value);
+					UnrealCLR::ExecuteManagedFunctionArgument(Function, value);
 				}
 			};
 
@@ -1623,7 +1623,7 @@ namespace UnrealCLRFramework {
 
 			axisBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Function](float AxisValue) {
-				Function(AxisValue);
+				UnrealCLR::ExecuteManagedFunctionArgument(Function, AxisValue);
 			});
 
 			InputComponent->AxisBindings.Emplace(axisBinding);

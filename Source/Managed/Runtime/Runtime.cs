@@ -55,6 +55,7 @@ namespace UnrealEngine.Runtime {
 		// Managed functionality
 
 		internal delegate void InvokeDelegate(IntPtr managedFunction);
+		internal delegate void InvokeArgumentDelegate(IntPtr managedFunction, float value);
 		internal delegate void ExceptionDelegate(string message);
 		internal delegate void LogDelegate(LogLevel level, string message);
 
@@ -66,6 +67,7 @@ namespace UnrealEngine.Runtime {
 		internal static Dictionary<int, IntPtr> userFunctions;
 
 		internal static InvokeDelegate Invoke;
+		internal static InvokeArgumentDelegate InvokeArgument;
 		internal static ExceptionDelegate Exception;
 		internal static LogDelegate Log;
 
@@ -83,6 +85,7 @@ namespace UnrealEngine.Runtime {
 					IntPtr* managedFunctions = (IntPtr*)buffer[position++];
 
 					Invoke = GenerateOptimizedFunction<InvokeDelegate>(managedFunctions[head++]);
+					InvokeArgument = GenerateOptimizedFunction<InvokeArgumentDelegate>(managedFunctions[head++]);
 					Exception = GenerateOptimizedFunction<ExceptionDelegate>(managedFunctions[head++]);
 					Log = GenerateOptimizedFunction<LogDelegate>(managedFunctions[head++]);
 				}
@@ -92,6 +95,7 @@ namespace UnrealEngine.Runtime {
 					IntPtr* nativeFunctions = (IntPtr*)buffer[position++];
 
 					nativeFunctions[head++] = typeof(Core).GetMethod("ExecuteManagedFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
+					nativeFunctions[head++] = typeof(Core).GetMethod("ExecuteManagedFunctionArgument", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 					nativeFunctions[head++] = typeof(Core).GetMethod("FindManagedFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 					nativeFunctions[head++] = typeof(Core).GetMethod("LoadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 					nativeFunctions[head++] = typeof(Core).GetMethod("UnloadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
@@ -114,6 +118,17 @@ namespace UnrealEngine.Runtime {
 		internal static void ExecuteManagedFunction(IntPtr managedFunction) {
 			try {
 				Invoke(managedFunction);
+			}
+
+			catch (Exception exception) {
+				Exception(exception.ToString());
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		internal static void ExecuteManagedFunctionArgument(IntPtr managedFunction, float value) {
+			try {
+				InvokeArgument(managedFunction, value);
 			}
 
 			catch (Exception exception) {
