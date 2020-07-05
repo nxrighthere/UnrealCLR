@@ -1038,7 +1038,7 @@ namespace UnrealCLRFramework {
 
 		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Function) {
 			auto function = [Function](IConsoleVariable* ConsoleVariable) {
-				Function();
+				UnrealCLR::ExecuteManagedFunction(Function);
 			};
 
 			ConsoleVariable->SetOnChangedCallback(FConsoleVariableDelegate::CreateLambda(function));
@@ -1588,7 +1588,7 @@ namespace UnrealCLRFramework {
 
 			actionBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Function]() {
-				Function();
+				UnrealCLR::ExecuteManagedFunction(Function);
 			});
 
 			InputComponent->AddActionBinding(actionBinding);

@@ -24,5 +24,3 @@ If `true`, executes even if the game is paused
 #### Exceptions
 [System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
 Thrown if [action](#UnrealEngine-Framework-InputComponent-BindAction(string_UnrealEngine-Framework-InputEvent_UnrealEngine-Framework-InputDelegate_bool)-action 'UnrealEngine.Framework.InputComponent.BindAction(string, UnrealEngine.Framework.InputEvent, UnrealEngine.Framework.InputDelegate, bool).action') is not static  
-### Remarks
-Implementation of [action](#UnrealEngine-Framework-InputComponent-BindAction(string_UnrealEngine-Framework-InputEvent_UnrealEngine-Framework-InputDelegate_bool)-action 'UnrealEngine.Framework.InputComponent.BindAction(string, UnrealEngine.Framework.InputEvent, UnrealEngine.Framework.InputDelegate, bool).action') should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions  

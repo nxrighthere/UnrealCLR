@@ -3478,7 +3478,6 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <param name="action">The static function to call when the value of variable is changed</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public void SetOnChangedCallback(ConsoleVariableDelegate action) {
 			if (action == null)
 				throw new ArgumentNullException(nameof(action));
@@ -5799,7 +5798,6 @@ namespace UnrealEngine.Framework {
 		/// <param name="action">The static function to call when the input is triggered</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		/// <remarks>Implementation of <paramref name="action"/> should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions</remarks>
 		public void BindAction(string actionName, InputEvent keyEvent, InputDelegate action, bool executedWhenPaused = false) {
 			if (actionName == null)
 				throw new ArgumentNullException(nameof(actionName));

@@ -12,5 +12,3 @@ The static function to call when the value of variable is changed
 #### Exceptions
 [System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
 Thrown if [action](#UnrealEngine-Framework-ConsoleVariable-SetOnChangedCallback(UnrealEngine-Framework-ConsoleVariableDelegate)-action 'UnrealEngine.Framework.ConsoleVariable.SetOnChangedCallback(UnrealEngine.Framework.ConsoleVariableDelegate).action') is not static  
-### Remarks
-Implementation of [action](#UnrealEngine-Framework-ConsoleVariable-SetOnChangedCallback(UnrealEngine-Framework-ConsoleVariableDelegate)-action 'UnrealEngine.Framework.ConsoleVariable.SetOnChangedCallback(UnrealEngine.Framework.ConsoleVariableDelegate).action') should be explicitly wrapped into try-catch blocks to avoid termination of the process due to unhandled exceptions  
