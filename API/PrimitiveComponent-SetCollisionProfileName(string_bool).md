@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 ## PrimitiveComponent.SetCollisionProfileName(string, bool) Method
-Sets the collision profile name of the component  
+Sets the collision <a href="https://docs.unrealengine.com/en-US/Engine/Physics/Collision/Reference/index.html">profile name</a> of the component  
 ```csharp
 public void SetCollisionProfileName(string profileName, bool updateOverlaps=true);
 ```

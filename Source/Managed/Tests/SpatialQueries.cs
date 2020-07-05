@@ -13,7 +13,7 @@ namespace UnrealEngine.Tests {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
 			const float linesThickness = 3.0f;
-			const string collisionProfile = "CollisionProfile";
+			const string collisionProfile = "TestCollisionProfile";
 
 			Actor box = new Actor("Box");
 			StaticMeshComponent staticMeshComponent = new StaticMeshComponent(box, setAsRoot: true);
@@ -75,7 +75,7 @@ namespace UnrealEngine.Tests {
 			if (hitSweepByProfile)
 				Debug.AddOnScreenMessage(-1, 15.0f, Color.Yellow, "Sphere sweep hit by profile!");
 
-			Vector3 overlapLocation = new Vector3(0.0f, 400.0f, 0.0f);
+			Vector3 overlapLocation = boxLocation - new Vector3(0.0f, 100.0f, 0.0f);
 			Vector3 boxExtent = boxScale * 60.0f;
 			CollisionShape boxShape = CollisionShape.CreateBox(boxExtent);
 
@@ -93,7 +93,7 @@ namespace UnrealEngine.Tests {
 			Assert.IsTrue(hitSweepByProfile);
 
 			if (overlapByProfile)
-				Debug.AddOnScreenMessage(-1, 15.0f, Color.MediumTurquoise, "Box overlap by channel!");
+				Debug.AddOnScreenMessage(-1, 15.0f, Color.MediumTurquoise, "Box overlap by profile!");
 		}
 
 		public static void OnEndPlay() {
