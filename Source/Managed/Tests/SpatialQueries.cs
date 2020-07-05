@@ -74,6 +74,26 @@ namespace UnrealEngine.Tests {
 
 			if (hitSweepByProfile)
 				Debug.AddOnScreenMessage(-1, 15.0f, Color.Yellow, "Sphere sweep hit by profile!");
+
+			Vector3 overlapLocation = new Vector3(0.0f, 400.0f, 0.0f);
+			Vector3 boxExtent = boxScale * 60.0f;
+			CollisionShape boxShape = CollisionShape.CreateBox(boxExtent);
+
+			bool overlapByChannel = World.OverlapAnyTestByChannel(overlapLocation, Quaternion.Identity, CollisionChannel.WorldStatic, boxShape);
+
+			Assert.IsTrue(hitSweepByProfile);
+
+			if (overlapByChannel) {
+				Debug.AddOnScreenMessage(-1, 15.0f, Color.MediumTurquoise, "Box overlap by channel!");
+				Debug.DrawBox(overlapLocation, boxExtent, Quaternion.Identity, Color.MediumTurquoise, true, thickness: linesThickness);
+			}
+
+			bool overlapByProfile = World.OverlapAnyTestByProfile(overlapLocation, Quaternion.Identity, collisionProfile, boxShape);
+
+			Assert.IsTrue(hitSweepByProfile);
+
+			if (overlapByProfile)
+				Debug.AddOnScreenMessage(-1, 15.0f, Color.MediumTurquoise, "Box overlap by channel!");
 		}
 
 		public static void OnEndPlay() {

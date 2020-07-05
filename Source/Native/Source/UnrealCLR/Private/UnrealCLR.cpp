@@ -304,6 +304,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepTestByProfile;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepSingleByChannel;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepSingleByProfile;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapAnyTestByChannel;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapAnyTestByProfile;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapBlockingTestByChannel;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapBlockingTestByProfile;
 
 				checksum += head;
 			}

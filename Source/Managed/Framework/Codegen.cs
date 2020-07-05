@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1CC;
+		internal const int checksum = 0x1D0;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
@@ -190,6 +190,10 @@ namespace UnrealEngine.Framework {
 				World.sweepTestByProfile = GenerateOptimizedFunction<World.SweepTestByProfileFunction>(worldFunctions[head++]);
 				World.sweepSingleByChannel = GenerateOptimizedFunction<World.SweepSingleByChannelFunction>(worldFunctions[head++]);
 				World.sweepSingleByProfile = GenerateOptimizedFunction<World.SweepSingleByProfileFunction>(worldFunctions[head++]);
+				World.overlapAnyTestByChannel = GenerateOptimizedFunction<World.OverlapAnyTestByChannelFunction>(worldFunctions[head++]);
+				World.overlapAnyTestByProfile = GenerateOptimizedFunction<World.OverlapAnyTestByProfileFunction>(worldFunctions[head++]);
+				World.overlapBlockingTestByChannel = GenerateOptimizedFunction<World.OverlapBlockingTestByChannelFunction>(worldFunctions[head++]);
+				World.overlapBlockingTestByProfile = GenerateOptimizedFunction<World.OverlapBlockingTestByProfileFunction>(worldFunctions[head++]);
 			}
 
 			unchecked {
@@ -1127,6 +1131,10 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool SweepTestByProfileFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool SweepSingleByChannelFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool SweepSingleByProfileFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool OverlapAnyTestByChannelFunction(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool OverlapAnyTestByProfileFunction(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool OverlapBlockingTestByChannelFunction(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
+		internal delegate Bool OverlapBlockingTestByProfileFunction(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
 
 		internal static GetSimulatePhysicsFunction getSimulatePhysics;
 		internal static GetActorCountFunction getActorCount;
@@ -1149,6 +1157,10 @@ namespace UnrealEngine.Framework {
 		internal static SweepTestByProfileFunction sweepTestByProfile;
 		internal static SweepSingleByChannelFunction sweepSingleByChannel;
 		internal static SweepSingleByProfileFunction sweepSingleByProfile;
+		internal static OverlapAnyTestByChannelFunction overlapAnyTestByChannel;
+		internal static OverlapAnyTestByProfileFunction overlapAnyTestByProfile;
+		internal static OverlapBlockingTestByChannelFunction overlapBlockingTestByChannel;
+		internal static OverlapBlockingTestByProfileFunction overlapBlockingTestByProfile;
 	}
 
 	partial class Blueprint {

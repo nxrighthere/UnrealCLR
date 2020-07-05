@@ -384,6 +384,10 @@ namespace UnrealCLRFramework {
 		static bool SweepTestByProfile(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 		static bool SweepSingleByChannel(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 		static bool SweepSingleByProfile(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool OverlapAnyTestByChannel(const Vector3* Location, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool OverlapAnyTestByProfile(const Vector3* Location, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool OverlapBlockingTestByChannel(const Vector3* Location, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
+		static bool OverlapBlockingTestByProfile(const Vector3* Location, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 	}
 
 	// Instantiable

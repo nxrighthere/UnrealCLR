@@ -981,6 +981,30 @@ namespace UnrealCLRFramework {
 
 			return result;
 		}
+
+		bool OverlapAnyTestByChannel(const Vector3* Location, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			return UnrealCLR::Engine::World->OverlapAnyTestByChannel(*Location, *Rotation, Channel, *Shape, queryParams);
+		}
+
+		bool OverlapAnyTestByProfile(const Vector3* Location, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			return UnrealCLR::Engine::World->OverlapAnyTestByProfile(*Location, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+		}
+
+		bool OverlapBlockingTestByChannel(const Vector3* Location, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			return UnrealCLR::Engine::World->OverlapBlockingTestByChannel(*Location, *Rotation, Channel, *Shape, queryParams);
+		}
+
+		bool OverlapBlockingTestByProfile(const Vector3* Location, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
+			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
+
+			return UnrealCLR::Engine::World->OverlapBlockingTestByProfile(*Location, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+		}
 	}
 
 	namespace ConsoleObject {

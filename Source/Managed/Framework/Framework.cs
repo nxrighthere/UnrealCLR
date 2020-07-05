@@ -3293,6 +3293,30 @@ namespace UnrealEngine.Framework {
 
 			return result;
 		}
+
+		/// <summary>
+		/// Tests the collision shape at the specified location using a specific channel to determine if any blocking or overlapping occurred
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool OverlapAnyTestByChannel(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapAnyTestByChannel(location, rotation, channel, shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Tests the collision shape at the specified location using a specific profile to determine if any blocking or overlapping occurred
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool OverlapAnyTestByProfile(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapAnyTestByProfile(location, rotation, profileName, shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Tests the collision shape at the specified location using a specific channel to determine if any blocking occurred
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool OverlapBlockingTestByChannel(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapBlockingTestByChannel(location, rotation, channel, shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+
+		/// <summary>
+		/// Tests the collision shape at the specified location using a specific profile to determine if any blocking occurred
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public static bool OverlapBlockingTestByProfile(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapBlockingTestByProfile(location, rotation, profileName, shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 	}
 
 	/// <summary>
