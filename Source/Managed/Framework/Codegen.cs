@@ -744,7 +744,7 @@ namespace UnrealEngine.Framework {
 						MethodInfo[] methods = type.GetMethods();
 
 						foreach (MethodInfo method in methods) {
-							if (method.IsPublic && method.IsStatic) {
+							if (method.IsPublic && method.IsStatic && method.GetParameters().Length == 0) {
 								string name = type.FullName + "." + method.Name;
 
 								if (!name.StartsWith("System.", StringComparison.CurrentCulture))

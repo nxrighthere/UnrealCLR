@@ -37,6 +37,7 @@ namespace UnrealEngine.Tests {
 
 			Assert.IsTrue(hitTraceByChannel);
 			Assert.IsTrue(hit.BlockingHit);
+			Assert.IsTrue(box.Equals(hit.GetActor()));
 
 			if (hitTraceByChannel) {
 				Debug.AddOnScreenMessage(-1, 15.0f, Color.DeepPink, "Box trace hit by channel!");
