@@ -7,7 +7,6 @@ public abstract class PrimitiveComponent : SceneComponent
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; PrimitiveComponent  
 
 Derived  
-&#8627; [CameraComponent](./CameraComponent.md 'UnrealEngine.Framework.CameraComponent')  
 &#8627; [MeshComponent](./MeshComponent.md 'UnrealEngine.Framework.MeshComponent')  
 &#8627; [MotionControllerComponent](./MotionControllerComponent.md 'UnrealEngine.Framework.MotionControllerComponent')  
 &#8627; [ShapeComponent](./ShapeComponent.md 'UnrealEngine.Framework.ShapeComponent')  

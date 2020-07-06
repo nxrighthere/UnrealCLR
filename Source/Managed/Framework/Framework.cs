@@ -6182,7 +6182,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Represents a camera viewpoint and settings, such as projection type, field of view, and post-process overrides
 	/// </summary>
-	public partial class CameraComponent : PrimitiveComponent {
+	public partial class CameraComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.Camera;
 
 		private protected CameraComponent() { }
