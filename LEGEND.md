@@ -22,6 +22,8 @@ https://www.linkedin.com/posts/stasdenisov_unrealengine4-dotnet-dotnetcore-activ
 https://www.reddit.com/r/csharp/comments/h9jdmx/unrealclr_a_cnet_core_plugin_for_unreal_engine_4/ </br>
 https://www.reddit.com/r/unrealengine/comments/h9je2j/unrealclr_a_cnet_core_plugin_for_unreal_engine_4/ </br>
 https://www.reddit.com/r/gamedev/comments/h9jetl/unrealclr_a_cnet_core_plugin_for_unreal_engine_4/ </br>
+https://www.reddit.com/r/programming/comments/hekajs/unrealclr_a_cnet_core_plugin_for_unreal_engine_4/ </br>
 https://news.ycombinator.com/item?id=23607684 </br>
+https://www.gamedev.net/news/unrealclr-released-a-cnet-core-plugin-for-ue4-r1374/ </br>
 https://twitter.com/nx_righthere/status/1272555274180706304 </br>
 https://twitter.com/nx_righthere/status/1277405597055561732 </br>
