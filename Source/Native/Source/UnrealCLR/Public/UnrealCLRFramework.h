@@ -431,6 +431,7 @@ namespace UnrealCLRFramework {
 		static UActorComponent* GetComponentByID(AActor* Actor, uint32 ID, ComponentType Type);
 		static USceneComponent* GetRootComponent(AActor* Actor, ComponentType Type);
 		static UInputComponent* GetInputComponent(AActor* Actor);
+		static float GetCreationTime(AActor* Actor);
 		static bool GetBlockInput(AActor* Actor);
 		static float GetDistanceTo(AActor* Actor, AActor* Other);
 		static void GetBounds(AActor* Actor, bool OnlyCollidingComponents, Vector3* Origin, Vector3* Extent);

@@ -22,6 +22,7 @@ Implements [IObject](./IObject.md 'UnrealEngine.Framework.IObject'), [System.IEq
 - [Actor(string, UnrealEngine.Framework.Blueprint)](./Actor-Actor(string_Blueprint).md 'UnrealEngine.Framework.Actor.Actor(string, UnrealEngine.Framework.Blueprint)')
 ### Properties
 - [BlockInput](./Actor-BlockInput.md 'UnrealEngine.Framework.Actor.BlockInput')
+- [CreationTime](./Actor-CreationTime.md 'UnrealEngine.Framework.Actor.CreationTime')
 - [ID](./Actor-ID.md 'UnrealEngine.Framework.Actor.ID')
 - [InputComponent](./Actor-InputComponent.md 'UnrealEngine.Framework.Actor.InputComponent')
 - [IsRootComponentMovable](./Actor-IsRootComponentMovable.md 'UnrealEngine.Framework.Actor.IsRootComponentMovable')

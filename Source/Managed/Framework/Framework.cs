@@ -3871,6 +3871,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Gets the time when the actor was created relative to <see cref="World.Time"/>
+		/// </summary>
+		public float CreationTime => getCreationTime(Pointer);
+
+		/// <summary>
 		/// Gets or sets whether the all input on the stack below this actor will not be considered
 		/// </summary>
 		public bool BlockInput {

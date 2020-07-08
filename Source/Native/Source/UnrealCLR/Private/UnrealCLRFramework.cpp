@@ -1206,6 +1206,10 @@ namespace UnrealCLRFramework {
 			return Actor->InputComponent;
 		}
 
+		float GetCreationTime(AActor* Actor) {
+			return Actor->CreationTime;
+		}
+
 		bool GetBlockInput(AActor* Actor) {
 			return Actor->bBlockInput;
 		}
