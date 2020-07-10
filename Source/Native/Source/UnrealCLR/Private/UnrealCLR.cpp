@@ -439,6 +439,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetShowMouseCursor;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetMousePosition;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayerViewPoint;
+				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayer;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayerInput;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetShowMouseCursor;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetMousePosition;
@@ -518,6 +519,15 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::StopMontage;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::JumpToSection;
 				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::JumpToSectionsEnd;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::PlayerFunctions;
+
+				Shared::PlayerFunctions[head++] = &UnrealCLRFramework::Player::GetPlayerController;
 
 				checksum += head;
 			}

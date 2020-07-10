@@ -1377,6 +1377,10 @@ namespace UnrealCLRFramework {
 			*Rotation = rotation.Quaternion();
 		}
 
+		UPlayer* GetPlayer(APlayerController* PlayerController) {
+			return PlayerController->Player;
+		}
+
 		UPlayerInput* GetPlayerInput(APlayerController* PlayerController) {
 			return PlayerController->PlayerInput;
 		}
@@ -1543,6 +1547,12 @@ namespace UnrealCLRFramework {
 
 		void JumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
 			AnimationInstance->Montage_JumpToSectionsEnd(FName(ANSI_TO_TCHAR(SectionName)), Montage);
+		}
+	}
+
+	namespace Player {
+		APlayerController* GetPlayerController(UPlayer* Player) {
+			return Player->GetPlayerController(UnrealCLR::Engine::World);
 		}
 	}
 

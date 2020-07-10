@@ -16,6 +16,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [AddYawInput(float)](./PlayerController-AddYawInput(float).md 'UnrealEngine.Framework.PlayerController.AddYawInput(float)')
 - [ConsoleCommand(string, bool)](./PlayerController-ConsoleCommand(string_bool).md 'UnrealEngine.Framework.PlayerController.ConsoleCommand(string, bool)')
 - [GetMousePosition(float, float)](./PlayerController-GetMousePosition(float_float).md 'UnrealEngine.Framework.PlayerController.GetMousePosition(float, float)')
+- [GetPlayer()](./PlayerController-GetPlayer().md 'UnrealEngine.Framework.PlayerController.GetPlayer()')
 - [GetPlayerInput()](./PlayerController-GetPlayerInput().md 'UnrealEngine.Framework.PlayerController.GetPlayerInput()')
 - [GetPlayerViewPoint(System.Numerics.Vector3, System.Numerics.Quaternion)](./PlayerController-GetPlayerViewPoint(Vector3_Quaternion).md 'UnrealEngine.Framework.PlayerController.GetPlayerViewPoint(System.Numerics.Vector3, System.Numerics.Quaternion)')
 - [SetMousePosition(float, float)](./PlayerController-SetMousePosition(float_float).md 'UnrealEngine.Framework.PlayerController.SetMousePosition(float, float)')

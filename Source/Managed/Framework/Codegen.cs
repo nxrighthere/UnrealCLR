@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1D1;
+		internal const int checksum = 0x1D4;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
@@ -309,6 +309,7 @@ namespace UnrealEngine.Framework {
 				PlayerController.getShowMouseCursor = GenerateOptimizedFunction<PlayerController.GetShowMouseCursorFunction>(playerControllerFunctions[head++]);
 				PlayerController.getMousePosition = GenerateOptimizedFunction<PlayerController.GetMousePositionFunction>(playerControllerFunctions[head++]);
 				PlayerController.getPlayerViewPoint = GenerateOptimizedFunction<PlayerController.GetPlayerViewPointFunction>(playerControllerFunctions[head++]);
+				PlayerController.getPlayer = GenerateOptimizedFunction<PlayerController.GetPlayerFunction>(playerControllerFunctions[head++]);
 				PlayerController.getPlayerInput = GenerateOptimizedFunction<PlayerController.GetPlayerInputFunction>(playerControllerFunctions[head++]);
 				PlayerController.setShowMouseCursor = GenerateOptimizedFunction<PlayerController.SetShowMouseCursorFunction>(playerControllerFunctions[head++]);
 				PlayerController.setMousePosition = GenerateOptimizedFunction<PlayerController.SetMousePositionFunction>(playerControllerFunctions[head++]);
@@ -378,6 +379,13 @@ namespace UnrealEngine.Framework {
 				AnimationInstance.stopMontage = GenerateOptimizedFunction<AnimationInstance.StopMontageFunction>(animationInstanceFunctions[head++]);
 				AnimationInstance.jumpToSection = GenerateOptimizedFunction<AnimationInstance.JumpToSectionFunction>(animationInstanceFunctions[head++]);
 				AnimationInstance.jumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.JumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* playerFunctions = (IntPtr*)buffer[position++];
+
+				Player.getPlayerController = GenerateOptimizedFunction<Player.GetPlayerControllerFunction>(playerFunctions[head++]);
 			}
 
 			unchecked {
@@ -1333,6 +1341,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool GetShowMouseCursorFunction(IntPtr playerController);
 		internal delegate Bool GetMousePositionFunction(IntPtr playerController, ref float x, ref float y);
 		internal delegate void GetPlayerViewPointFunction(IntPtr playerController, ref Vector3 location, ref Quaternion rotation);
+		internal delegate IntPtr GetPlayerFunction(IntPtr playerController);
 		internal delegate IntPtr GetPlayerInputFunction(IntPtr playerController);
 		internal delegate void SetShowMouseCursorFunction(IntPtr playerController, Bool value);
 		internal delegate void SetMousePositionFunction(IntPtr playerController, float x, float y);
@@ -1348,6 +1357,7 @@ namespace UnrealEngine.Framework {
 		internal static GetShowMouseCursorFunction getShowMouseCursor;
 		internal static GetMousePositionFunction getMousePosition;
 		internal static GetPlayerViewPointFunction getPlayerViewPoint;
+		internal static GetPlayerFunction getPlayer;
 		internal static GetPlayerInputFunction getPlayerInput;
 		internal static SetShowMouseCursorFunction setShowMouseCursor;
 		internal static SetMousePositionFunction setMousePosition;
@@ -1462,7 +1472,11 @@ namespace UnrealEngine.Framework {
 		internal static JumpToSectionsEndFunction jumpToSectionsEnd;
 	}
 
-	partial class Player { }
+	partial class Player {
+		internal delegate IntPtr GetPlayerControllerFunction(IntPtr player);
+
+		internal static GetPlayerControllerFunction getPlayerController;
+	}
 
 	partial class PlayerInput {
 		internal delegate Bool IsKeyPressedFunction(IntPtr playerInput, string key);

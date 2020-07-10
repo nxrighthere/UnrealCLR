@@ -4423,6 +4423,18 @@ namespace UnrealEngine.Framework {
 		public void GetPlayerViewPoint(ref Vector3 location, ref Quaternion rotation) => getPlayerViewPoint(Pointer, ref location, ref rotation);
 
 		/// <summary>
+		/// Returns the player representation or <c>null</c> on failure
+		/// </summary>
+		public Player GetPlayer() {
+			IntPtr pointer = getPlayer(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new Player(pointer);
+
+			return null;
+		}
+
+		/// <summary>
 		/// Returns the input manager or <c>null</c> on failure
 		/// </summary>
 		public PlayerInput GetPlayerInput() {
@@ -5127,6 +5139,18 @@ namespace UnrealEngine.Framework {
 		/// Returns a hash code for the object
 		/// </summary>
 		public override int GetHashCode() => pointer.GetHashCode();
+
+		/// <summary>
+		/// Returns the player controller or <c>null</c> on failure
+		/// </summary>
+		public PlayerController GetPlayerController() {
+			IntPtr pointer = getPlayerController(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new PlayerController(pointer);
+
+			return null;
+		}
 	}
 
 	/// <summary>

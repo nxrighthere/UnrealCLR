@@ -493,6 +493,7 @@ namespace UnrealCLRFramework {
 		static bool GetShowMouseCursor(APlayerController* PlayerController);
 		static bool GetMousePosition(APlayerController* PlayerController, float* X, float* Y);
 		static void GetPlayerViewPoint(APlayerController* PlayerController, Vector3* Location, Quaternion* Rotation);
+		static UPlayer* GetPlayer(APlayerController* PlayerController);
 		static UPlayerInput* GetPlayerInput(APlayerController* PlayerController);
 		static void SetShowMouseCursor(APlayerController* PlayerController, bool Value);
 		static void SetMousePosition(APlayerController* PlayerController, float X, float Y);
@@ -584,7 +585,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Player {
-
+		static APlayerController* GetPlayerController(UPlayer* Player);
 	}
 
 	namespace PlayerInput {

@@ -36,6 +36,7 @@
 #include "Engine/DirectionalLight.h"
 #include "Engine/GameEngine.h"
 #include "Engine/Light.h"
+#include "Engine/Player.h"
 #include "Engine/PointLight.h"
 #include "Engine/PostProcessVolume.h"
 #include "Engine/RectLight.h"
@@ -160,6 +161,7 @@ namespace UnrealCLR {
 		void* SoundBaseFunctions[storageSize];
 		void* SoundWaveFunctions[storageSize];
 		void* AnimationInstanceFunctions[storageSize];
+		void* PlayerFunctions[storageSize];
 		void* PlayerInputFunctions[storageSize];
 		void* Texture2DFunctions[storageSize];
 		void* ActorComponentFunctions[storageSize];

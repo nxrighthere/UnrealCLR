@@ -13,3 +13,4 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 ### Methods
 - [Equals(UnrealEngine.Framework.Player)](./Player-Equals(Player).md 'UnrealEngine.Framework.Player.Equals(UnrealEngine.Framework.Player)')
 - [GetHashCode()](./Player-GetHashCode().md 'UnrealEngine.Framework.Player.GetHashCode()')
+- [GetPlayerController()](./Player-GetPlayerController().md 'UnrealEngine.Framework.Player.GetPlayerController()')
