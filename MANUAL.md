@@ -30,7 +30,7 @@ namespace Game {
 	}
 }
 ```
-Build the .NET project assembly to `%Project%/Managed` folder of the engine's project.
+Build a .NET assembly to `%Project%/Managed` folder of the engine's project.
 
 #### Running
 Create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution pipeline:
