@@ -6,7 +6,7 @@
 
 UnrealCLR is a plugin which natively integrates .NET Core host into the Unreal Engine with the Common Language Runtime for direct execution of the managed code through user-driven blueprint pipelines to build a game logic using the full power of C# and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
 
-[API reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md) | [Roadmap](https://github.com/users/nxrighthere/projects/5?fullscreen=true) | [Legend](https://github.com/nxrighthere/UnrealCLR/blob/master/LEGEND.md) | [Support](https://gumroad.com/l/unrealclr) | [Contact](mailto:nxrighthere@gmail.com)
+[API reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md) | [Manual](https://github.com/nxrighthere/UnrealCLR/blob/master/MANUAL.md) | [Roadmap](https://github.com/users/nxrighthere/projects/5?fullscreen=true) | [Legend](https://github.com/nxrighthere/UnrealCLR/blob/master/LEGEND.md) | [Support](https://gumroad.com/l/unrealclr) | [Contact](mailto:nxrighthere@gmail.com)
 
 Features:
 
@@ -17,7 +17,7 @@ Features:
 - Continuously evolving framework for access to the engine API from the managed code written in idiomatic C#
 - High-performance interoperability through generated IL code and utilization of blittable data types
 - Support of .NET facilities including hardware-accelerated math with transparent re-mapping to vector types of the engine
-- Support of .NET tools for debugging and profiling such as [JetBrains](https://www.jetbrains.com/products.html#lang=csharp) product line, [dnSpy](https://github.com/0xd4d/dnSpy) debugger, and others
+- Support of .NET tools for debugging and profiling such as [JetBrains](https://www.jetbrains.com/products.html#lang=csharp) product line, [dnSpy](https://github.com/0xd4d/dnSpy) debugger, and [others](https://github.com/natemcmaster/dotnet-tools)
 - Full independence from the compilation pipeline of assemblies with support of [NuGet](https://www.nuget.org) packages, analyzers, and generators
 - Automatic project packaging for standalone distribution
 - Carefully handcrafted source code for best maintainability and performance
@@ -79,7 +79,7 @@ At runtime, UnrealCLR loading managed assemblies into a cached isolated context.
 The plugin and framework are evolving all the time to utilize as much power of the Unreal Engine as possible. It's crucial to have a feature-rich API. The system is created with high-performance in mind but without trading safety. The vast majority of code is written and verified by hand to prevent any unexpected behaviors at runtime and to ensure stability.
 
 ### Powerful tooling
-Use your favorite IDE and .NET Core tools that can be attached to the process of the engine just as to a regular .NET application for profiling and debugging. It's very convenient and works out of the box without any external effort. Analyze performance, monitor CPU usage and memory consumption, debug execution, take full control over the code. Explore new possibilities and extend your toolset in no time.
+Use your favorite IDE and [.NET tools](https://github.com/natemcmaster/dotnet-tools) that can be attached to the process of the engine just as to a regular .NET application for profiling and debugging. It's very convenient and works out of the box without any external effort. Analyze performance, monitor CPU usage and memory consumption, debug execution, take full control over the code. Explore new possibilities and extend your toolset in no time.
 
 Essentials
 --------

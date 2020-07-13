@@ -32,6 +32,8 @@ UCLASS()
 class UUnrealCLRLibrary : public UBlueprintFunctionLibrary {
 	GENERATED_UCLASS_BODY()
 
+	public:
+
 	UFUNCTION(BlueprintCallable, Category = ".NET", meta = (ToolTip = "Executes the managed function"))
 	static void ExecuteManagedFunction(FManagedFunction ManagedFunction);
 
