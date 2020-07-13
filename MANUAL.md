@@ -64,7 +64,7 @@ Two options are available to pass data between the managed runtime and the engin
 
 The engine provides a convenient way to [manage variables/properties](https://docs.unrealengine.com/en-US/Engine/Blueprints/UserGuide/Variables/index.html) per actor/component basis that are accessible from the world outliner.
 
-Instance-editable blueprints variables:
+Instance-editable blueprint variables:
 
 <p align="left">
 	<img src="https://github.com/Rageware/Images/raw/master/UnrealCLR/blueprint-variables.png" alt="blueprint-variables">
