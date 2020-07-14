@@ -35,6 +35,7 @@
 #include "DrawDebugHelpers.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/GameEngine.h"
+#include "Engine/LevelScriptActor.h"
 #include "Engine/Light.h"
 #include "Engine/Player.h"
 #include "Engine/PointLight.h"

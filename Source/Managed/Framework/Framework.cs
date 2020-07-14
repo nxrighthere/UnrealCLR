@@ -4637,6 +4637,17 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A representation of the level blueprint that executes level-wide logic
+	/// </summary>
+	public partial class LevelScript : Actor {
+		internal override ActorType Type => ActorType.LevelScript;
+
+		private protected LevelScript() { }
+
+		internal LevelScript(IntPtr pointer) => Pointer = pointer;
+	}
+
+	/// <summary>
 	/// A sound actor that can be placed in a level
 	/// </summary>
 	public partial class AmbientSound : Actor {

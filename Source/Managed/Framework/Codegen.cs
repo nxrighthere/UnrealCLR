@@ -892,7 +892,8 @@ namespace UnrealEngine.Framework {
 		RectLight,
 		SpotLight,
 		TriggerVolume,
-		PostProcessVolume
+		PostProcessVolume,
+		LevelScript
 	}
 
 	internal enum ComponentType : int {
@@ -1401,6 +1402,8 @@ namespace UnrealEngine.Framework {
 		internal static SetUnboundFunction setUnbound;
 		internal static SetPriorityFunction setPriority;
 	}
+
+	partial class LevelScript { }
 
 	partial class AmbientSound { }
 

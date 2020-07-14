@@ -227,7 +227,8 @@ namespace UnrealCLRFramework {
 		RectLight,
 		SpotLight,
 		TriggerVolume,
-		PostProcessVolume
+		PostProcessVolume,
+		LevelScript
 	};
 
 	enum struct ComponentType : int32 {
@@ -524,6 +525,8 @@ namespace UnrealCLRFramework {
 		static void SetUnbound(APostProcessVolume* PostProcessVolume, bool Value);
 		static void SetPriority(APostProcessVolume* PostProcessVolume, float Priority);
 	}
+
+	namespace LevelScript { }
 
 	namespace AmbientSound { }
 

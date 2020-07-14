@@ -103,6 +103,9 @@ namespace UnrealCLRFramework {
 			case ActorType::PostProcessVolume:\
 				Result = Head APostProcessVolume Tail;\
 				break;\
+			case ActorType::LevelScript:\
+				Result = Head ALevelScriptActor Tail;\
+				break;\
 			default:\
 				break;\
 		}\

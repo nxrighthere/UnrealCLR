@@ -34,6 +34,7 @@
 - [InputComponent](./InputComponent.md 'UnrealEngine.Framework.InputComponent')
 - [InstancedStaticMeshComponent](./InstancedStaticMeshComponent.md 'UnrealEngine.Framework.InstancedStaticMeshComponent')
 - [Keys](./Keys.md 'UnrealEngine.Framework.Keys')
+- [LevelScript](./LevelScript.md 'UnrealEngine.Framework.LevelScript')
 - [Light](./Light.md 'UnrealEngine.Framework.Light')
 - [LightComponent](./LightComponent.md 'UnrealEngine.Framework.LightComponent')
 - [LightComponentBase](./LightComponentBase.md 'UnrealEngine.Framework.LightComponentBase')

@@ -9,6 +9,7 @@ namespace UnrealEngine.Tests {
 		private static Blueprint blueprintSceneComponent = Blueprint.Load("/Game/Tests/BlueprintSceneComponent");
 		private static Actor actor = new Actor(blueprint: blueprintActor);
 		private static SceneComponent sceneComponent = new SceneComponent(actor, blueprint: blueprintSceneComponent);
+		private static LevelScript levelScript = World.GetActor<LevelScript>();
 
 		public static void OnBeginPlay() {
 			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
@@ -29,6 +30,11 @@ namespace UnrealEngine.Tests {
 			TestSceneComponentIntProperty();
 			TestSceneComponentFloatProperty();
 			TestSceneComponentTextProperty();
+			TestLevelScriptBoolProperty();
+			TestLevelScriptByteProperty();
+			TestLevelScriptIntProperty();
+			TestLevelScriptFloatProperty();
+			TestLevelScriptTextProperty();
 		}
 
 		public static void OnEndPlay() {
@@ -154,6 +160,66 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
 			else
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
+		}
+
+		private static void TestLevelScriptBoolProperty() {
+			const string propertyName = "Test Bool";
+			bool value = false;
+
+			Assert.IsTrue(levelScript.SetBool(propertyName, true));
+
+			if (levelScript.GetBool(propertyName, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
+		}
+
+		private static void TestLevelScriptByteProperty() {
+			const string propertyName = "Test Byte";
+			byte value = 0;
+
+			Assert.IsTrue(levelScript.SetByte(propertyName, 128));
+
+			if (levelScript.GetByte(propertyName, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
+		}
+
+		private static void TestLevelScriptIntProperty() {
+			const string propertyName = "Test Int";
+			int value = 0;
+
+			Assert.IsTrue(levelScript.SetInt(propertyName, 500));
+
+			if (levelScript.GetInt(propertyName, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
+		}
+
+		private static void TestLevelScriptFloatProperty() {
+			const string propertyName = "Test Float";
+			float value = 0;
+
+			Assert.IsTrue(levelScript.SetFloat(propertyName, 250.5f));
+
+			if (levelScript.GetFloat(propertyName, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
+		}
+
+		private static void TestLevelScriptTextProperty() {
+			const string propertyName = "Test Text";
+			string value = String.Empty;
+
+			Assert.IsTrue(levelScript.SetText(propertyName, "Test message from managed code"));
+
+			if (levelScript.GetText(propertyName, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
 		}
 
 		public static void TestBlueprintActorFunction() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint actor!");
