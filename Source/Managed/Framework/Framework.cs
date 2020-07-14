@@ -4637,7 +4637,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A representation of the level blueprint that executes level-wide logic
+	/// A representation of the level-wide logic defined in the level blueprint
 	/// </summary>
 	public partial class LevelScript : Actor {
 		internal override ActorType Type => ActorType.LevelScript;

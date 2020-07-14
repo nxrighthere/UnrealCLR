@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## LevelScript Class
-A representation of the level blueprint that executes level-wide logic  
+A representation of the level-wide logic defined in the level blueprint  
 ```csharp
 public class LevelScript : Actor
 ```
