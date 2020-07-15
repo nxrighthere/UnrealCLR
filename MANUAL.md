@@ -90,4 +90,4 @@ See [ConsoleVariable](https://github.com/nxrighthere/UnrealCLR/blob/master/API/C
 
 Tools
 --------
-The plugin is compatible with [.NET Tools](https://github.com/natemcmaster/dotnet-tools) and makes the engine's application instance visible as a regular .NET application for IDEs and external programs.
+The plugin is compatible with [.NET tools](https://github.com/natemcmaster/dotnet-tools) and makes the engine's application instance visible as a regular .NET application for IDEs and external programs.
