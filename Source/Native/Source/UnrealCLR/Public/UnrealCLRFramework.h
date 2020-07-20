@@ -364,11 +364,12 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace World {
-		static bool GetSimulatePhysics();
 		static int32 GetActorCount();
 		static float GetDeltaSeconds();
 		static float GetRealTimeSeconds();
 		static float GetTimeSeconds();
+		static void GetCurrentLevelName(char* LevelName);
+		static bool GetSimulatePhysics();
 		static void GetWorldOrigin(Vector3* Value);
 		static AActor* GetActor(const char* Name, ActorType Type);
 		static AActor* GetActorByTag(const char* Tag, ActorType Type);
@@ -377,6 +378,7 @@ namespace UnrealCLRFramework {
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
 		static bool SetWorldOrigin(const Vector3* Value);
+		static void OpenLevel(const char* LevelName);
 		static bool LineTraceTestByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 		static bool LineTraceTestByProfile(const Vector3* Start, const Vector3* End, const char* ProfileName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);
 		static bool LineTraceSingleByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent);

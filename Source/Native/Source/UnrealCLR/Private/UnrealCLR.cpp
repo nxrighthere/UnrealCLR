@@ -283,11 +283,12 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::WorldFunctions;
 
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetSimulatePhysics;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorCount;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetDeltaSeconds;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetRealTimeSeconds;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetTimeSeconds;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetCurrentLevelName;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetSimulatePhysics;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetWorldOrigin;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActor;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorByTag;
@@ -296,6 +297,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetSimulatePhysics;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetGravity;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetWorldOrigin;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OpenLevel;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByChannel;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByProfile;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByChannel;

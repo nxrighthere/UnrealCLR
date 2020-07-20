@@ -793,10 +793,6 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace World {
-		bool GetSimulatePhysics() {
-			return UnrealCLR::Engine::World->bShouldSimulatePhysics;
-		}
-
 		int32 GetActorCount() {
 			return UnrealCLR::Engine::World->GetActorCount();
 		}
@@ -811,6 +807,20 @@ namespace UnrealCLRFramework {
 
 		float GetTimeSeconds() {
 			return UnrealCLR::Engine::World->GetTimeSeconds();
+		}
+
+		void GetCurrentLevelName(char* LevelName) {
+			FString mapName = UnrealCLR::Engine::World->GetMapName();
+
+			mapName.RemoveFromStart(UnrealCLR::Engine::World->StreamingLevelsPrefix);
+
+			const char* levelName = TCHAR_TO_ANSI(*mapName);
+
+			UnrealCLR::Utility::Strcpy(LevelName, levelName, UnrealCLR::Utility::Strlen(levelName));
+		}
+
+		bool GetSimulatePhysics() {
+			return UnrealCLR::Engine::World->bShouldSimulatePhysics;
 		}
 
 		void GetWorldOrigin(Vector3* Value) {
@@ -887,6 +897,10 @@ namespace UnrealCLRFramework {
 
 		bool SetWorldOrigin(const Vector3* Value) {
 			return UnrealCLR::Engine::World->SetNewWorldOrigin(FIntVector(*Value));
+		}
+
+		void OpenLevel(const char* LevelName) {
+			GEngine->SetClientTravel(UnrealCLR::Engine::World, ANSI_TO_TCHAR(LevelName), TRAVEL_Absolute);
 		}
 
 		bool LineTraceTestByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {

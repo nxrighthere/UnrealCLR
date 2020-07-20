@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1D4;
+		internal const int checksum = 0x1D6;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
@@ -169,11 +169,12 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* worldFunctions = (IntPtr*)buffer[position++];
 
-				World.getSimulatePhysics = GenerateOptimizedFunction<World.GetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.getActorCount = GenerateOptimizedFunction<World.GetActorCountFunction>(worldFunctions[head++]);
 				World.getDeltaSeconds = GenerateOptimizedFunction<World.GetDeltaSecondsFunction>(worldFunctions[head++]);
 				World.getRealTimeSeconds = GenerateOptimizedFunction<World.GetRealTimeSecondsFunction>(worldFunctions[head++]);
 				World.getTimeSeconds = GenerateOptimizedFunction<World.GetTimeSecondsFunction>(worldFunctions[head++]);
+				World.getCurrentLevelName = GenerateOptimizedFunction<World.GetCurrentLevelNameFunction>(worldFunctions[head++]);
+				World.getSimulatePhysics = GenerateOptimizedFunction<World.GetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.getWorldOrigin = GenerateOptimizedFunction<World.GetWorldOriginFunction>(worldFunctions[head++]);
 				World.getActor = GenerateOptimizedFunction<World.GetActorFunction>(worldFunctions[head++]);
 				World.getActorByTag = GenerateOptimizedFunction<World.GetActorByTagFunction>(worldFunctions[head++]);
@@ -182,6 +183,7 @@ namespace UnrealEngine.Framework {
 				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
 				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
+				World.openLevel = GenerateOptimizedFunction<World.OpenLevelFunction>(worldFunctions[head++]);
 				World.lineTraceTestByChannel = GenerateOptimizedFunction<World.LineTraceTestByChannelFunction>(worldFunctions[head++]);
 				World.lineTraceTestByProfile = GenerateOptimizedFunction<World.LineTraceTestByProfileFunction>(worldFunctions[head++]);
 				World.lineTraceSingleByChannel = GenerateOptimizedFunction<World.LineTraceSingleByChannelFunction>(worldFunctions[head++]);
@@ -1120,11 +1122,12 @@ namespace UnrealEngine.Framework {
 	}
 
 	static partial class World {
-		internal delegate Bool GetSimulatePhysicsFunction();
 		internal delegate int GetActorCountFunction();
 		internal delegate float GetDeltaSecondsFunction();
 		internal delegate float GetRealTimeSecondsFunction();
 		internal delegate float GetTimeSecondsFunction();
+		internal delegate void GetCurrentLevelNameFunction(byte[] levelName);
+		internal delegate Bool GetSimulatePhysicsFunction();
 		internal delegate void GetWorldOriginFunction(ref Vector3 value);
 		internal delegate IntPtr GetActorFunction(string name, ActorType type);
 		internal delegate IntPtr GetActorByTagFunction(string tag, ActorType type);
@@ -1133,6 +1136,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
 		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
+		internal delegate void OpenLevelFunction(string levelName);
 		internal delegate Bool LineTraceTestByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool LineTraceTestByProfileFunction(in Vector3 start, in Vector3 end, string profileName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool LineTraceSingleByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
@@ -1146,11 +1150,12 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool OverlapBlockingTestByChannelFunction(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
 		internal delegate Bool OverlapBlockingTestByProfileFunction(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
 
-		internal static GetSimulatePhysicsFunction getSimulatePhysics;
 		internal static GetActorCountFunction getActorCount;
 		internal static GetDeltaSecondsFunction getDeltaSeconds;
 		internal static GetRealTimeSecondsFunction getRealTimeSeconds;
 		internal static GetTimeSecondsFunction getTimeSeconds;
+		internal static GetCurrentLevelNameFunction getCurrentLevelName;
+		internal static GetSimulatePhysicsFunction getSimulatePhysics;
 		internal static GetWorldOriginFunction getWorldOrigin;
 		internal static GetActorFunction getActor;
 		internal static GetActorByTagFunction getActorByTag;
@@ -1159,6 +1164,7 @@ namespace UnrealEngine.Framework {
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
 		internal static SetWorldOriginFunction setWorldOrigin;
+		internal static OpenLevelFunction openLevel;
 		internal static LineTraceTestByChannelFunction lineTraceTestByChannel;
 		internal static LineTraceTestByProfileFunction lineTraceTestByProfile;
 		internal static LineTraceSingleByChannelFunction lineTraceSingleByChannel;

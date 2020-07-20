@@ -3096,6 +3096,19 @@ namespace UnrealEngine.Framework {
 		public static float Time => getTimeSeconds();
 
 		/// <summary>
+		/// Returns the name of the current level
+		/// </summary>
+		public static string CurrentLevelName {
+			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+				getCurrentLevelName(stringBuffer);
+
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets physics simulation for the world
 		/// </summary>
 		public static bool SimulatePhysics {
@@ -3188,6 +3201,11 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <returns><c>true</c> if the world origin was succesfuly shifted, or <c>false</c> if one of the levels are pending visibility update</returns>
 		public static bool SetWorldOrigin(in Vector3 value) => setWorldOrigin(value);
+
+		/// <summary>
+		/// Travels to another level
+		/// </summary>
+		public static void OpenLevel(string levelName) => openLevel(levelName);
 
 		/// <summary>
 		/// Traces a ray against the world using a specific channel
