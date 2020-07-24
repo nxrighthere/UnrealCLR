@@ -79,8 +79,8 @@ namespace UnrealEngine.Tests {
 		private static void ReferencesEqualityTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actorLeft = new Actor();
-			Actor actorRight = new Actor();
+			TriggerBox actorLeft = new TriggerBox();
+			TriggerSphere actorRight = new TriggerSphere();
 			SceneComponent sceneComponentLeft = new SceneComponent(actorLeft);
 			SceneComponent sceneComponentRight = new SceneComponent(actorRight);
 
@@ -90,7 +90,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			if (actorLeft.Equals(sceneComponentRight.GetActor()) || !actorLeft.Equals(sceneComponentLeft.GetActor())) {
+			if (actorLeft.Equals(sceneComponentRight.GetActor<TriggerSphere>()) || !actorLeft.Equals(sceneComponentLeft.GetActor<TriggerBox>())) {
 				Debug.Log(LogLevel.Error, "Scene components owners equality check failed!");
 
 				return;

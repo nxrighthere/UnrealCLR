@@ -21,7 +21,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [AddTag(string)](./ActorComponent-AddTag(string).md 'UnrealEngine.Framework.ActorComponent.AddTag(string)')
 - [Destroy(bool)](./ActorComponent-Destroy(bool).md 'UnrealEngine.Framework.ActorComponent.Destroy(bool)')
 - [Equals(UnrealEngine.Framework.ActorComponent)](./ActorComponent-Equals(ActorComponent).md 'UnrealEngine.Framework.ActorComponent.Equals(UnrealEngine.Framework.ActorComponent)')
-- [GetActor()](./ActorComponent-GetActor().md 'UnrealEngine.Framework.ActorComponent.GetActor()')
+- [GetActor&lt;T&gt;()](./ActorComponent-GetActor-T-().md 'UnrealEngine.Framework.ActorComponent.GetActor&lt;T&gt;()')
 - [GetBool(string, bool)](./ActorComponent-GetBool(string_bool).md 'UnrealEngine.Framework.ActorComponent.GetBool(string, bool)')
 - [GetByte(string, byte)](./ActorComponent-GetByte(string_byte).md 'UnrealEngine.Framework.ActorComponent.GetByte(string, byte)')
 - [GetDouble(string, double)](./ActorComponent-GetDouble(string_double).md 'UnrealEngine.Framework.ActorComponent.GetDouble(string, double)')

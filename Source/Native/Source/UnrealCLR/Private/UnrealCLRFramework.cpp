@@ -1620,8 +1620,12 @@ namespace UnrealCLRFramework {
 			return ActorComponent->IsOwnerSelected();
 		}
 
-		AActor* GetOwner(UActorComponent* ActorComponent) {
-			return ActorComponent->GetOwner();
+		AActor* GetOwner(UActorComponent* ActorComponent, ActorType Type) {
+			AActor* actor = nullptr;
+
+			UNREALCLR_GET_ACTOR_TYPE(Type, Cast<, >(ActorComponent->GetOwner()), actor);
+
+			return actor;
 		}
 
 		void Destroy(UActorComponent* ActorComponent, bool PromoteChildren) {

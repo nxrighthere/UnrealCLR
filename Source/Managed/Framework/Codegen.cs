@@ -1537,7 +1537,7 @@ namespace UnrealEngine.Framework {
 
 	partial class ActorComponent {
 		internal delegate Bool IsOwnerSelectedFunction(IntPtr actorComponent);
-		internal delegate IntPtr GetOwnerFunction(IntPtr actorComponent);
+		internal delegate IntPtr GetOwnerFunction(IntPtr actorComponent, ActorType type);
 		internal delegate void DestroyFunction(IntPtr actorComponent, Bool promoteChildren);
 		internal delegate void AddTagFunction(IntPtr actorComponent, string tag);
 		internal delegate void RemoveTagFunction(IntPtr actorComponent, string tag);

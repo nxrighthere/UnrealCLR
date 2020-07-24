@@ -982,7 +982,7 @@ namespace UnrealEngine.Framework {
 		public bool StartPenetrating => startPenetrating;
 
 		/// <summary>
-		/// Returns the owner of the component that was hit or <c>null</c> on failure
+		/// Returns the owner actor of the component that was hit or <c>null</c> on failure
 		/// </summary>
 		public Actor GetActor() {
 			if (actor != IntPtr.Zero)
@@ -5845,13 +5845,18 @@ namespace UnrealEngine.Framework {
 		public bool IsOwnerSelected => isOwnerSelected(Pointer);
 
 		/// <summary>
-		/// Returns the owner of the component or <c>null</c> on failure
+		/// Returns the component's owner actor of the specified class
 		/// </summary>
-		public Actor GetActor() {
-			IntPtr pointer = getOwner(Pointer);
+		/// <returns>An actor or <c>null</c> on failure</returns>
+		public T GetActor<T>() where T : Actor {
+			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = getOwner(Pointer, actor.Type);
 
-			if (pointer != IntPtr.Zero)
-				return new Actor(pointer);
+			if (pointer != IntPtr.Zero) {
+				actor.Pointer = pointer;
+
+				return actor;
+			}
 
 			return null;
 		}

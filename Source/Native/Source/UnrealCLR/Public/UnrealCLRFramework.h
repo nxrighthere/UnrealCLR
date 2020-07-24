@@ -624,7 +624,7 @@ namespace UnrealCLRFramework {
 
 	namespace ActorComponent {
 		static bool IsOwnerSelected(UActorComponent* ActorComponent);
-		static AActor* GetOwner(UActorComponent* ActorComponent);
+		static AActor* GetOwner(UActorComponent* ActorComponent, ActorType Type);
 		static void Destroy(UActorComponent* ActorComponent, bool PromoteChildren);
 		static void AddTag(UActorComponent* ActorComponent, const char* Tag);
 		static void RemoveTag(UActorComponent* ActorComponent, const char* Tag);
