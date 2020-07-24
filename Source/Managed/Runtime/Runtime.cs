@@ -186,15 +186,7 @@ namespace UnrealEngine.Runtime {
 										Type sharedClass = framework.GetType(frameworkName + ".Shared");
 
 										if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
-											List<Assembly> userAssemblies = new List<Assembly>();
-
-											foreach (AssemblyName userAssembly in referencedAssemblies) {
-												if (userAssembly.Name != frameworkName)
-													userAssemblies.Add(plugin.loader.LoadAssembly(userAssembly));
-											}
-
-											userAssemblies.Add(plugin.assembly);
-											userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions, userAssemblies });
+											userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions, plugin.assembly });
 
 											Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
 										} else {

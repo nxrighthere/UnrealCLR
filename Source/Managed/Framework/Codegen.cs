@@ -28,7 +28,7 @@ namespace UnrealEngine.Framework {
 		internal const int checksum = 0x1D8;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
-		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
+		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, Assembly pluginAssembly) {
 			int position = 0;
 			IntPtr* buffer = (IntPtr*)functions;
 
@@ -750,39 +750,27 @@ namespace UnrealEngine.Framework {
 			}
 
 			unchecked {
-				foreach (Assembly userAssembly in userAssemblies) {
-					AssemblyName[] userReferencedAssemblies = userAssembly.GetReferencedAssemblies();
+				Type[] types = pluginAssembly.GetTypes();
 
-					foreach (AssemblyName userReferencedAssembly in userReferencedAssemblies) {
-						if (userReferencedAssembly.Name == "UnrealEngine.Framework") {
-							Type[] types = userAssembly.GetTypes();
+				foreach (Type type in types) {
+					MethodInfo[] methods = type.GetMethods();
 
-							foreach (Type type in types) {
-								MethodInfo[] methods = type.GetMethods();
+					foreach (MethodInfo method in methods) {
+						if (method.IsPublic && method.IsStatic) {
+							ParameterInfo[] parameterInfos = method.GetParameters();
 
-								foreach (MethodInfo method in methods) {
-									if (method.IsPublic && method.IsStatic) {
-										ParameterInfo[] parameterInfos = method.GetParameters();
+							if (parameterInfos.Length <= 1) {
+								if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType != typeof(ObjectReference))
+									continue;
 
-										if (parameterInfos.Length <= 1) {
-											if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType != typeof(ObjectReference))
-												continue;
+								string name = type.FullName + "." + method.Name;
 
-											string name = type.FullName + "." + method.Name;
-
-											userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
-										}
-									}
-								}
+								userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
 							}
-
-							goto Completion;
 						}
 					}
 				}
 			}
-
-			Completion:
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
