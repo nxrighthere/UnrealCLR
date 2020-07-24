@@ -26,5 +26,6 @@ https://www.reddit.com/r/programming/comments/hekajs/unrealclr_a_cnet_core_plugi
 https://www.reddit.com/r/dotnet/comments/he4waw/unreal_engine_4_net_core_integration/ </br>
 https://news.ycombinator.com/item?id=23607684 </br>
 https://www.gamedev.net/news/unrealclr-released-a-cnet-core-plugin-for-ue4-r1374/ </br>
+https://indiegamesjp.dev/?p=1931 </br>
 https://twitter.com/nx_righthere/status/1272555274180706304 </br>
 https://twitter.com/nx_righthere/status/1277405597055561732 </br>
