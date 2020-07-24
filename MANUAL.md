@@ -32,7 +32,7 @@ namespace Game {
 ```
 Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and make sure that no other assemblies of other .NET projects are stored there. 
 
-Assemblies that no longer referenced and unused in the project will persist in `%Project%/Managed` folder. Consider to maintain this folder through IDE or automation scripts.
+Assemblies that no longer referenced and unused in the project will persist in `%Project%/Managed` folder. Consider maintaining this folder through IDE or automation scripts.
 
 #### Running
 Create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution pipeline:
