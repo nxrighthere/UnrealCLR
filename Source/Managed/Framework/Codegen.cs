@@ -751,29 +751,38 @@ namespace UnrealEngine.Framework {
 
 			unchecked {
 				foreach (Assembly userAssembly in userAssemblies) {
-					Type[] types = userAssembly.GetTypes();
+					AssemblyName[] userReferencedAssemblies = userAssembly.GetReferencedAssemblies();
 
-					foreach (Type type in types) {
-						MethodInfo[] methods = type.GetMethods();
+					foreach (AssemblyName userReferencedAssembly in userReferencedAssemblies) {
+						if (userReferencedAssembly.Name == "UnrealEngine.Framework") {
+							Type[] types = userAssembly.GetTypes();
 
-						foreach (MethodInfo method in methods) {
-							if (method.IsPublic && method.IsStatic) {
-								ParameterInfo[] parameterInfos = method.GetParameters();
+							foreach (Type type in types) {
+								MethodInfo[] methods = type.GetMethods();
 
-								if (parameterInfos.Length <= 1) {
-									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType != typeof(ObjectReference))
-										continue;
+								foreach (MethodInfo method in methods) {
+									if (method.IsPublic && method.IsStatic) {
+										ParameterInfo[] parameterInfos = method.GetParameters();
 
-									string name = type.FullName + "." + method.Name;
+										if (parameterInfos.Length <= 1) {
+											if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType != typeof(ObjectReference))
+												continue;
 
-									if (!name.StartsWith("System.", StringComparison.CurrentCulture))
-										userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
+											string name = type.FullName + "." + method.Name;
+
+											userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
+										}
+									}
 								}
 							}
+
+							goto Completion;
 						}
 					}
 				}
 			}
+
+			Completion:
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
