@@ -42,7 +42,7 @@ namespace UnrealEngine.Runtime {
 		[FieldOffset(0)]
 		internal float Float;
 		[FieldOffset(0)]
-		internal int Integer;
+		internal uint Integer;
 		[FieldOffset(0)]
 		internal IntPtr Pointer;
 		[FieldOffset(8)]
