@@ -4,7 +4,7 @@
 
 [![PayPal](https://github.com/Rageware/Shields/blob/master/paypal.svg)](https://www.paypal.me/nxrighthere) [![Bountysource](https://github.com/Rageware/Shields/blob/master/bountysource.svg)](https://salt.bountysource.com/checkout/amount?team=nxrighthere) [![Coinbase](https://github.com/Rageware/Shields/blob/master/coinbase.svg)](https://commerce.coinbase.com/checkout/03e11816-b6fc-4e14-b974-29a1d0886697)
 
-UnrealCLR is a plugin which natively integrates .NET Core host into the Unreal Engine with the Common Language Runtime for direct execution of the managed code through user-driven blueprint pipelines to build a game logic using the full power of C# and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
+UnrealCLR is a plugin which natively integrates .NET Core host into the Unreal Engine with the Common Language Runtime for direct execution of managed code through user-driven blueprint pipelines to build a game logic using the full power of C# and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
 
 [API reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md) | [Manual](https://github.com/nxrighthere/UnrealCLR/blob/master/MANUAL.md) | [Roadmap](https://github.com/users/nxrighthere/projects/5?fullscreen=true) | [Legend](https://github.com/nxrighthere/UnrealCLR/blob/master/LEGEND.md) | [Support](https://gumroad.com/l/unrealclr) | [Contact](mailto:nxrighthere@gmail.com)
 
@@ -12,9 +12,9 @@ Features:
 
 - Host loading, integration, and management during the lifetime of the engine
 - Dynamic loading, unloading, isolation, and dependency resolving of user assemblies at runtime
-- On-the-fly access and execution of the managed functionality through blueprints
+- On-the-fly access and execution of managed functionality through blueprints
 - Runtime exceptions handling and tracing
-- Continuously evolving framework for access to the engine API from the managed code written in idiomatic C#
+- Continuously evolving framework for access to the engine API from managed code written in idiomatic C#
 - High-performance interoperability through generated IL code and utilization of blittable data types
 - Support of .NET facilities including hardware-accelerated math with transparent re-mapping to vector types of the engine
 - Support of .NET tools for debugging and profiling such as [JetBrains](https://www.jetbrains.com/products.html#lang=csharp) product line, [dnSpy](https://github.com/0xd4d/dnSpy) debugger, and [others](https://github.com/natemcmaster/dotnet-tools)
