@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1D6;
+		internal const int checksum = 0x1D8;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, List<Assembly> userAssemblies) {
@@ -74,6 +74,8 @@ namespace UnrealEngine.Framework {
 				Object.isValid = GenerateOptimizedFunction<Object.IsValidFunction>(objectFunctions[head++]);
 				Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
 				Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
+				Object.toActor = GenerateOptimizedFunction<Object.ToActorFunction>(objectFunctions[head++]);
+				Object.toComponent = GenerateOptimizedFunction<Object.ToComponentFunction>(objectFunctions[head++]);
 				Object.getID = GenerateOptimizedFunction<Object.GetIDFunction>(objectFunctions[head++]);
 				Object.getName = GenerateOptimizedFunction<Object.GetNameFunction>(objectFunctions[head++]);
 				Object.getBool = GenerateOptimizedFunction<Object.GetBoolFunction>(objectFunctions[head++]);
@@ -755,11 +757,18 @@ namespace UnrealEngine.Framework {
 						MethodInfo[] methods = type.GetMethods();
 
 						foreach (MethodInfo method in methods) {
-							if (method.IsPublic && method.IsStatic && method.GetParameters().Length == 0) {
-								string name = type.FullName + "." + method.Name;
+							if (method.IsPublic && method.IsStatic) {
+								ParameterInfo[] parameterInfos = method.GetParameters();
 
-								if (!name.StartsWith("System.", StringComparison.CurrentCulture))
-									userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
+								if (parameterInfos.Length <= 1) {
+									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType != typeof(ObjectReference))
+										continue;
+
+									string name = type.FullName + "." + method.Name;
+
+									if (!name.StartsWith("System.", StringComparison.CurrentCulture))
+										userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
+								}
 							}
 						}
 					}
@@ -968,6 +977,8 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsValidFunction(IntPtr @object);
 		internal delegate IntPtr LoadFunction(ObjectType type, string name);
 		internal delegate void RenameFunction(IntPtr @object, string name);
+		internal delegate IntPtr ToActorFunction(IntPtr @object, ActorType type);
+		internal delegate IntPtr ToComponentFunction(IntPtr @object, ComponentType type);
 		internal delegate uint GetIDFunction(IntPtr @object);
 		internal delegate void GetNameFunction(IntPtr @object, byte[] name);
 		internal delegate Bool GetBoolFunction(IntPtr @object, string name, ref bool value);
@@ -997,6 +1008,8 @@ namespace UnrealEngine.Framework {
 		internal static IsValidFunction isValid;
 		internal static LoadFunction load;
 		internal static RenameFunction rename;
+		internal static ToActorFunction toActor;
+		internal static ToComponentFunction toComponent;
 		internal static GetIDFunction getID;
 		internal static GetNameFunction getName;
 		internal static GetBoolFunction getBool;

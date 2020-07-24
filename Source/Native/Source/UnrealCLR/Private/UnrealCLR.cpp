@@ -178,6 +178,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::IsValid;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Load;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Rename;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::ToActor;
+				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::ToComponent;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetID;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetName;
 				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetBool;
@@ -948,9 +950,8 @@ void UnrealCLR::Module::StartupModule() {
 			// Runtime pointers
 
 			Shared::ManagedFunctions[0] = &UnrealCLR::Module::Invoke;
-			Shared::ManagedFunctions[1] = &UnrealCLR::Module::InvokeArgument;
-			Shared::ManagedFunctions[2] = &UnrealCLR::Module::Exception;
-			Shared::ManagedFunctions[3] = &UnrealCLR::Module::Log;
+			Shared::ManagedFunctions[1] = &UnrealCLR::Module::Exception;
+			Shared::ManagedFunctions[2] = &UnrealCLR::Module::Log;
 
 			void* functions[3] = {
 				Shared::ManagedFunctions,
@@ -960,10 +961,9 @@ void UnrealCLR::Module::StartupModule() {
 
 			if (Initialize(functions, checksum) == 0xF) {
 				UnrealCLR::ExecuteManagedFunction = (UnrealCLR::ExecuteManagedFunctionDelegate)Shared::NativeFunctions[0];
-				UnrealCLR::ExecuteManagedFunctionArgument = (UnrealCLR::ExecuteManagedFunctionArgumentDelegate)Shared::NativeFunctions[1];
-				UnrealCLR::FindManagedFunction = (UnrealCLR::FindManagedFunctionDelegate)Shared::NativeFunctions[2];
-				UnrealCLR::LoadAssemblies = (UnrealCLR::LoadAssembliesDelegate)Shared::NativeFunctions[3];
-				UnrealCLR::UnloadAssemblies = (UnrealCLR::UnloadAssembliesDelegate)Shared::NativeFunctions[4];
+				UnrealCLR::FindManagedFunction = (UnrealCLR::FindManagedFunctionDelegate)Shared::NativeFunctions[1];
+				UnrealCLR::LoadAssemblies = (UnrealCLR::LoadAssembliesDelegate)Shared::NativeFunctions[2];
+				UnrealCLR::UnloadAssemblies = (UnrealCLR::UnloadAssembliesDelegate)Shared::NativeFunctions[3];
 
 				UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly initialized succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 			} else {
@@ -1035,12 +1035,15 @@ void UnrealCLR::Module::HostError(const char_t* Message) {
 	UE_LOG(LogUnrealCLR, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(Message));
 }
 
-void UnrealCLR::Module::Invoke(void(*ManagedFunction)()) {
-	ManagedFunction();
-}
-
-void UnrealCLR::Module::InvokeArgument(void(*ManagedFunction)(float), float Value) {
-	ManagedFunction(Value);
+void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
+	if (Value.Type == ArgumentType::None)
+		ManagedFunction();
+	else if (Value.Type == ArgumentType::Float)
+		reinterpret_cast<void(*)(float)>(ManagedFunction)(Value.Float);
+	else if (Value.Type == ArgumentType::Integer)
+		reinterpret_cast<void(*)(uint32_t)>(ManagedFunction)(Value.Integer);
+	else if (Value.Type == ArgumentType::Pointer)
+		reinterpret_cast<void(*)(void*)>(ManagedFunction)(Value.Pointer);
 }
 
 void UnrealCLR::Module::Exception(const char* Message) {

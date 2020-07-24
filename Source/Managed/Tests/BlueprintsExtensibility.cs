@@ -222,8 +222,16 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
 		}
 
-		public static void TestBlueprintActorFunction() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint actor!");
+		public static void TestBlueprintActorFunction(ObjectReference blueprintReference) {
+			Actor blueprintActor = blueprintReference.ToActor<Actor>();
 
-		public static void TestBlueprintComponentFunction() => Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the blueprint scene component!");
+			Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the " + blueprintActor.Name);
+		}
+
+		public static void TestBlueprintComponentFunction(ObjectReference blueprintReference) {
+			SceneComponent blueprintSceneComponent = blueprintReference.ToComponent<SceneComponent>();
+
+			Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the " + blueprintSceneComponent.Name);
+		}
 	}
 }

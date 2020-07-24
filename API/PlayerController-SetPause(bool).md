@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PlayerController](./PlayerController.md 'UnrealEngine.Framework.PlayerController')
 ## PlayerController.SetPause(bool) Method
-Attempts to pause a local game  
+Pauses a local game  
 ```csharp
 public bool SetPause(bool value);
 ```

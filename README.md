@@ -30,7 +30,7 @@ The plugin is available for Windows, Linux, and macOS (x64).
 Building
 --------
 ### Prerequisites
-- Unreal Engine 4.25.1
+- Unreal Engine 4.25.2 or higher
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html#runtheunrealenginepre-requisiteinstaller) with platform-specific dependencies
 - [.NET Core SDK 3.1.302](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 

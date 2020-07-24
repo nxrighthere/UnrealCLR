@@ -481,6 +481,102 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A representation of the engine's object reference
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct ObjectReference : IEquatable<ObjectReference> {
+		private IntPtr pointer;
+
+		internal IntPtr Pointer {
+			get {
+				if (!IsCreated)
+					throw new InvalidOperationException();
+
+				return pointer;
+			}
+
+			set {
+				if (value == IntPtr.Zero)
+					throw new InvalidOperationException();
+
+				pointer = value;
+			}
+		}
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(ObjectReference left, ObjectReference right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(ObjectReference left, ObjectReference right) => !left.Equals(right);
+
+		/// <summary>
+		/// Returns <c>true</c> if the object is created
+		/// </summary>
+		public bool IsCreated => pointer != IntPtr.Zero && Object.isValid(pointer);
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(ObjectReference other) => IsCreated && pointer == other.pointer;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(ObjectReference)))
+				return false;
+
+			return Equals((ObjectReference)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => pointer.GetHashCode();
+
+		/// <summary>
+		/// Converts the object reference to the actor of the specified class
+		/// </summary>
+		/// <returns>An actor or <c>null</c> on failure</returns>
+		public T ToActor<T>() where T : Actor {
+			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = Object.toActor(Pointer, actor.Type);
+
+			if (pointer != IntPtr.Zero) {
+				actor.Pointer = pointer;
+
+				return actor;
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Converts the object reference to the component of the specified class
+		/// </summary>
+		/// <returns>A component or <c>null</c> on failure</returns>
+		public T ToComponent<T>() where T : ActorComponent {
+			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = Object.toComponent(Pointer, component.Type);
+
+			if (pointer != IntPtr.Zero) {
+				component.Pointer = pointer;
+
+				return component;
+			}
+
+			return null;
+		}
+	}
+
+	/// <summary>
 	/// A linear 32-bit floating-point RGBA color
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -3337,60 +3433,6 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// Interface for engine objects
-	/// </summary>
-	public interface IObject {
-		/// <summary/>
-		uint ID { get; }
-		/// <summary/>
-		string Name { get; }
-		/// <summary/>
-		bool GetBool(string name, ref bool value);
-		/// <summary/>
-		bool GetByte(string name, ref byte value);
-		/// <summary/>
-		bool GetShort(string name, ref short value);
-		/// <summary/>
-		bool GetInt(string name, ref int value);
-		/// <summary/>
-		bool GetLong(string name, ref long value);
-		/// <summary/>
-		bool GetUShort(string name, ref ushort value);
-		/// <summary/>
-		bool GetUInt(string name, ref uint value);
-		/// <summary/>
-		bool GetULong(string name, ref ulong value);
-		/// <summary/>
-		bool GetFloat(string name, ref float value);
-		/// <summary/>
-		bool GetDouble(string name, ref double value);
-		/// <summary/>
-		bool GetText(string name, ref string value);
-		/// <summary/>
-		bool SetBool(string name, bool value);
-		/// <summary/>
-		bool SetByte(string name, byte value);
-		/// <summary/>
-		bool SetShort(string name, short value);
-		/// <summary/>
-		bool SetInt(string name, int value);
-		/// <summary/>
-		bool SetLong(string name, long value);
-		/// <summary/>
-		bool SetUShort(string name, ushort value);
-		/// <summary/>
-		bool SetUInt(string name, uint value);
-		/// <summary/>
-		bool SetULong(string name, ulong value);
-		/// <summary/>
-		bool SetFloat(string name, float value);
-		/// <summary/>
-		bool SetDouble(string name, double value);
-		/// <summary/>
-		bool SetText(string name, string value);
-	}
-
-	/// <summary>
 	/// Interface for console objects
 	/// </summary>
 	public partial class ConsoleObject : IEquatable<ConsoleObject> {
@@ -3538,7 +3580,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of an object that can be placed or spawned in a level
 	/// </summary>
-	public partial class Actor : IObject, IEquatable<Actor> {
+	public partial class Actor : IEquatable<Actor> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -4477,7 +4519,7 @@ namespace UnrealEngine.Framework {
 		public void ConsoleCommand(string command, bool writeToLog = false) => consoleCommand(Pointer, command, writeToLog);
 
 		/// <summary>
-		/// Attempts to pause a local game
+		/// Pauses a local game
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
 		public bool SetPause(bool value) => setPause(Pointer, value);
@@ -5471,7 +5513,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
-	public partial class ActorComponent : IObject, IEquatable<ActorComponent> {
+	public partial class ActorComponent : IEquatable<ActorComponent> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {

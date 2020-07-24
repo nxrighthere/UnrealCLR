@@ -3,7 +3,6 @@
 The base class of an object that can be placed or spawned in a level  
 ```csharp
 public class Actor :
-IObject,
 IEquatable<Actor>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Actor  
@@ -18,7 +17,7 @@ Derived
 &#8627; [Pawn](./Pawn.md 'UnrealEngine.Framework.Pawn')  
 &#8627; [TriggerBase](./TriggerBase.md 'UnrealEngine.Framework.TriggerBase')  
 
-Implements [IObject](./IObject.md 'UnrealEngine.Framework.IObject'), [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Actor](./Actor.md 'UnrealEngine.Framework.Actor')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
+Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Actor](./Actor.md 'UnrealEngine.Framework.Actor')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Constructors
 - [Actor(string, UnrealEngine.Framework.Blueprint)](./Actor-Actor(string_Blueprint).md 'UnrealEngine.Framework.Actor.Actor(string, UnrealEngine.Framework.Blueprint)')
 ### Properties

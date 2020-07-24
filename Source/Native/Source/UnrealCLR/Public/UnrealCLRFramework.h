@@ -284,6 +284,8 @@ namespace UnrealCLRFramework {
 		static bool IsValid(UObject* Object);
 		static UObject* Load(ObjectType Type, const char* Name);
 		static void Rename(UObject* Object, const char* Name);
+		static AActor* ToActor(UObject* Object, ActorType Type);
+		static UActorComponent* ToComponent(UObject* Object, ComponentType Type);
 		static uint32 GetID(UObject* Object);
 		static void GetName(UObject* Object, char* Name);
 		static bool GetBool(UObject* Object, const char* Name, bool* value);

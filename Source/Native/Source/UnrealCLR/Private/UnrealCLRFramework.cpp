@@ -435,6 +435,22 @@ namespace UnrealCLRFramework {
 			Object->Rename(*name);
 		}
 
+		AActor* ToActor(UObject* Object, ActorType Type) {
+			AActor* actor = nullptr;
+
+			UNREALCLR_GET_ACTOR_TYPE(Type, Cast<, >(Object), actor);
+
+			return actor;
+		}
+
+		UActorComponent* ToComponent(UObject* Object, ComponentType Type) {
+			UActorComponent* component = nullptr;
+
+			UNREALCLR_GET_COMPONENT_TYPE(Type, Cast<, >(Object), component);
+
+			return component;
+		}
+
 		uint32 GetID(UObject* Object) {
 			return Object->GetUniqueID();
 		}
@@ -671,7 +687,7 @@ namespace UnrealCLRFramework {
 					if (Arguments.Num() > 0)
 						FDefaultValueHelper::ParseFloat(Arguments[0], value);
 
-					UnrealCLR::ExecuteManagedFunctionArgument(Function, value);
+					UnrealCLR::ExecuteManagedFunction(Function, value);
 				}
 			};
 
@@ -1079,7 +1095,7 @@ namespace UnrealCLRFramework {
 
 		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Function) {
 			auto function = [Function](IConsoleVariable* ConsoleVariable) {
-				UnrealCLR::ExecuteManagedFunction(Function);
+				UnrealCLR::ExecuteManagedFunction(Function, nullptr);
 			};
 
 			ConsoleVariable->SetOnChangedCallback(FConsoleVariableDelegate::CreateLambda(function));
@@ -1643,7 +1659,7 @@ namespace UnrealCLRFramework {
 
 			actionBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Function]() {
-				UnrealCLR::ExecuteManagedFunction(Function);
+				UnrealCLR::ExecuteManagedFunction(Function, nullptr);
 			});
 
 			InputComponent->AddActionBinding(actionBinding);
@@ -1654,7 +1670,7 @@ namespace UnrealCLRFramework {
 
 			axisBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Function](float AxisValue) {
-				UnrealCLR::ExecuteManagedFunctionArgument(Function, AxisValue);
+				UnrealCLR::ExecuteManagedFunction(Function, AxisValue);
 			});
 
 			InputComponent->AxisBindings.Emplace(axisBinding);

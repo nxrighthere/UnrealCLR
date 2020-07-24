@@ -18,9 +18,9 @@ FManagedFunction::FManagedFunction() : Pointer() { }
 
 UUnrealCLRLibrary::UUnrealCLRLibrary(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) { }
 
-void UUnrealCLRLibrary::ExecuteManagedFunction(FManagedFunction ManagedFunction) {
-	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && ManagedFunction.Pointer != NULL)
-		UnrealCLR::ExecuteManagedFunction(ManagedFunction.Pointer);
+void UUnrealCLRLibrary::ExecuteManagedFunction(FManagedFunction ManagedFunction, UObject* Object = nullptr) {
+	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && ManagedFunction.Pointer)
+		UnrealCLR::ExecuteManagedFunction(ManagedFunction.Pointer, Object);
 }
 
 FManagedFunction UUnrealCLRLibrary::FindManagedFunction(FString Method, bool Optional, bool& Result) {
@@ -29,7 +29,7 @@ FManagedFunction UUnrealCLRLibrary::FindManagedFunction(FString Method, bool Opt
 	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && !Method.IsEmpty())
 		managedFunction.Pointer = UnrealCLR::FindManagedFunction(*Method, Optional);
 
-	Result = managedFunction.Pointer != NULL;
+	Result = managedFunction.Pointer != nullptr;
 
 	return managedFunction;
 }

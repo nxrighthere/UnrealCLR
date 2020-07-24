@@ -79,9 +79,8 @@
 - [CollisionShape](./CollisionShape.md 'UnrealEngine.Framework.CollisionShape')
 - [Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 - [LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')
+- [ObjectReference](./ObjectReference.md 'UnrealEngine.Framework.ObjectReference')
 - [Transform](./Transform.md 'UnrealEngine.Framework.Transform')
-### Interfaces
-- [IObject](./IObject.md 'UnrealEngine.Framework.IObject')
 ### Enums
 - [AIFocusPriority](./AIFocusPriority.md 'UnrealEngine.Framework.AIFocusPriority')
 - [AnimationMode](./AnimationMode.md 'UnrealEngine.Framework.AnimationMode')

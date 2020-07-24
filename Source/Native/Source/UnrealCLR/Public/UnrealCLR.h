@@ -89,14 +89,43 @@ namespace UnrealCLR {
 		Fatal
 	};
 
-	typedef void (*ExecuteManagedFunctionDelegate)(void*);
-	typedef void (*ExecuteManagedFunctionArgumentDelegate)(void*, float);
+	enum struct ArgumentType : int32 {
+		None,
+		Float,
+		Integer,
+		Pointer
+	};
+
+	struct Argument {
+		union {
+			float Float;
+			uint32_t Integer;
+			void* Pointer;
+		};
+		ArgumentType Type;
+
+		FORCEINLINE Argument(float Value) {
+			Float = Value;
+			Type = ArgumentType::Float;
+		}
+
+		FORCEINLINE Argument(uint32_t Value) {
+			Integer = Value;
+			Type = ArgumentType::Integer;
+		}
+
+		FORCEINLINE Argument(void* Value) {
+			Type = !Value ? ArgumentType::None : ArgumentType::Pointer;
+			Pointer = Value;
+		}
+	};
+
+	typedef void (*ExecuteManagedFunctionDelegate)(void*, Argument);
 	typedef void* (*FindManagedFunctionDelegate)(const char_t* Method, int32_t Optional);
 	typedef void (*LoadAssembliesDelegate)();
 	typedef void (*UnloadAssembliesDelegate)();
 
 	static ExecuteManagedFunctionDelegate ExecuteManagedFunction;
-	static ExecuteManagedFunctionArgumentDelegate ExecuteManagedFunctionArgument;
 	static FindManagedFunctionDelegate FindManagedFunction;
 	static LoadAssembliesDelegate LoadAssemblies;
 	static UnloadAssembliesDelegate UnloadAssemblies;
@@ -118,8 +147,7 @@ namespace UnrealCLR {
 		void OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources);
 
 		static void HostError(const char_t* Message);
-		static void Invoke(void(*)());
-		static void InvokeArgument(void(*)(float), float Value);
+		static void Invoke(void(*)(), Argument Value);
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
 
