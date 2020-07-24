@@ -51,7 +51,7 @@ The plugin provides two blueprints to manage the execution. They can be used in 
 
 **Find Managed Function**
 
-Attempts to find a managed function from loaded assemblies. This node performs a fast operation to retrieve function pointer from the cached dictionary once assemblies loaded after entering the play mode. Logs an error if the managed function was not found and sets `Result` parameter to `false`. `Optional` parameter indicates if the managed function is optional and the error should not be logged.
+Attempts to find a managed function from loaded assemblies. This node performs a fast operation to retrieve function pointer from the cached dictionary once assemblies loaded after entering the play mode. Logs an error if the managed function was not found and sets `Result` parameter to `false`. `Optional` checkbox indicates if the managed function is optional and the error should not be logged.
 
 **Execute Managed Function**
 
