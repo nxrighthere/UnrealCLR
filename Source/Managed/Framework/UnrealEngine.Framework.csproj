@@ -8,7 +8,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
-    <NoWarn>CA1028, CA1030, CA1034, CA1067, CA1303, CA1305, CA1720</NoWarn>
+    <NoWarn>CA1028, CA1030, CA1031, CA1034, CA1067, CA1303, CA1305, CA1720</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <PackageReference Include="DefaultDocumentation" Version="0.6.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.0.0" PrivateAssets="all" />
   </ItemGroup>
