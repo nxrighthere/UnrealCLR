@@ -141,13 +141,13 @@ namespace UnrealEngine.Runtime {
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static IntPtr FindManagedFunction(IntPtr methodPointer, bool optional) {
+		internal static IntPtr FindManagedFunction(IntPtr methodPointer, int optional) {
 			IntPtr function = IntPtr.Zero;
 
 			try {
 				string method = Marshal.PtrToStringAuto(methodPointer);
 
-				if (!userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && !optional)
+				if (!userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
 					Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
 			}
 
