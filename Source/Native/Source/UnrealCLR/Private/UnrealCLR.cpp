@@ -698,6 +698,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddTorqueInDegrees;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddTorqueInRadians;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetMass;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocity;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocityAtPoint;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsAngularVelocityInDegrees;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsAngularVelocityInRadians;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetCastShadow;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetOnlyOwnerSee;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetOwnerNoSee;

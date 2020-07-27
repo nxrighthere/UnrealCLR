@@ -2096,6 +2096,30 @@ namespace UnrealCLRFramework {
 			return PrimitiveComponent->GetMass();
 		}
 
+		void GetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->GetPhysicsLinearVelocity(boneName);
+		}
+
+		void GetPhysicsLinearVelocityAtPoint(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const Vector3* Point, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->GetPhysicsLinearVelocityAtPoint(*Point, boneName);
+		}
+
+		void GetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->GetPhysicsAngularVelocityInDegrees(boneName);
+		}
+
+		void GetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName) {
+			UNREALCLR_SET_BONE_NAME(BoneName);
+
+			PrimitiveComponent->GetPhysicsAngularVelocityInRadians(boneName);
+		}
+
 		bool GetCastShadow(UPrimitiveComponent* PrimitiveComponent) {
 			return PrimitiveComponent->CastShadow;
 		}

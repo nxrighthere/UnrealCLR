@@ -730,6 +730,10 @@ namespace UnrealCLRFramework {
 		static void AddTorqueInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Torque, const char* BoneName, bool AccelerationChange);
 		static void AddTorqueInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* Torque, const char* BoneName, bool AccelerationChange);
 		static float GetMass(UPrimitiveComponent* PrimitiveComponent);
+		static void GetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName);
+		static void GetPhysicsLinearVelocityAtPoint(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const Vector3* Point, const char* BoneName);
+		static void GetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName);
+		static void GetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName);
 		static bool GetCastShadow(UPrimitiveComponent* PrimitiveComponent);
 		static bool GetOnlyOwnerSee(UPrimitiveComponent* PrimitiveComponent);
 		static bool GetOwnerNoSee(UPrimitiveComponent* PrimitiveComponent);

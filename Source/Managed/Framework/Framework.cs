@@ -6571,6 +6571,26 @@ namespace UnrealEngine.Framework {
 		public void AddTorqueInRadians(in Vector3 torque, string boneName = null, bool accelerationChange = false) => addTorqueInRadians(Pointer, torque, boneName, accelerationChange);
 
 		/// <summary>
+		/// Retrieves the linear velocity of a single body
+		/// </summary>
+		public void GetPhysicsLinearVelocity(ref Vector3 value, string boneName = null) => getPhysicsLinearVelocity(Pointer, ref value, boneName);
+
+		/// <summary>
+		/// Retrieves the linear velocity of a point on a single body
+		/// </summary>
+		public void GetPhysicsLinearVelocityAtPoint(ref Vector3 value, in Vector3 point, string boneName = null) => getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName);
+
+		/// <summary>
+		/// Retrieves the angular velocity in degrees of a single body
+		/// </summary>
+		public void GetPhysicsAngularVelocityInDegrees(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName);
+
+		/// <summary>
+		/// Retrieves the angular velocity in radians of a single body
+		/// </summary>
+		public void GetPhysicsAngularVelocityInRadians(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName);
+
+		/// <summary>
 		/// Returns the material at the specified element index
 		/// </summary>
 		public MaterialInstanceDynamic GetMaterial(int elementIndex) => new MaterialInstanceDynamic(getMaterial(Pointer, elementIndex));

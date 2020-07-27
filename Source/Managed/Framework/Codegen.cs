@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1D8;
+		internal const int checksum = 0x1DC;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, Assembly pluginAssembly) {
@@ -538,6 +538,10 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.addTorqueInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInDegreesFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addTorqueInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInRadiansFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getMass = GenerateOptimizedFunction<PrimitiveComponent.GetMassFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityAtPointFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getCastShadow = GenerateOptimizedFunction<PrimitiveComponent.GetCastShadowFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.GetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.GetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
@@ -1714,6 +1718,10 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddTorqueInDegreesFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
 		internal delegate void AddTorqueInRadiansFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
 		internal delegate float GetMassFunction(IntPtr primitiveComponent);
+		internal delegate void GetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
+		internal delegate void GetPhysicsLinearVelocityAtPointFunction(IntPtr primitiveComponent, ref Vector3 value, in Vector3 point, string boneName);
+		internal delegate void GetPhysicsAngularVelocityInDegreesFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
+		internal delegate void GetPhysicsAngularVelocityInRadiansFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
 		internal delegate Bool GetCastShadowFunction(IntPtr primitiveComponent);
 		internal delegate Bool GetOnlyOwnerSeeFunction(IntPtr primitiveComponent);
 		internal delegate Bool GetOwnerNoSeeFunction(IntPtr primitiveComponent);
@@ -1761,6 +1769,10 @@ namespace UnrealEngine.Framework {
 		internal static AddTorqueInDegreesFunction addTorqueInDegrees;
 		internal static AddTorqueInRadiansFunction addTorqueInRadians;
 		internal static GetMassFunction getMass;
+		internal static GetPhysicsLinearVelocityFunction getPhysicsLinearVelocity;
+		internal static GetPhysicsLinearVelocityAtPointFunction getPhysicsLinearVelocityAtPoint;
+		internal static GetPhysicsAngularVelocityInDegreesFunction getPhysicsAngularVelocityInDegrees;
+		internal static GetPhysicsAngularVelocityInRadiansFunction getPhysicsAngularVelocityInRadians;
 		internal static GetCastShadowFunction getCastShadow;
 		internal static GetOnlyOwnerSeeFunction getOnlyOwnerSee;
 		internal static GetOwnerNoSeeFunction getOwnerNoSee;
