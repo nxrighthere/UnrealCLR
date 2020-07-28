@@ -42,6 +42,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [GetDouble(string, double)](./Actor-GetDouble(string_double).md 'UnrealEngine.Framework.Actor.GetDouble(string, double)')
 - [GetFloat(string, float)](./Actor-GetFloat(string_float).md 'UnrealEngine.Framework.Actor.GetFloat(string, float)')
 - [GetHashCode()](./Actor-GetHashCode().md 'UnrealEngine.Framework.Actor.GetHashCode()')
+- [GetHorizontalDistanceTo(UnrealEngine.Framework.Actor)](./Actor-GetHorizontalDistanceTo(Actor).md 'UnrealEngine.Framework.Actor.GetHorizontalDistanceTo(UnrealEngine.Framework.Actor)')
 - [GetInt(string, int)](./Actor-GetInt(string_int).md 'UnrealEngine.Framework.Actor.GetInt(string, int)')
 - [GetLong(string, long)](./Actor-GetLong(string_long).md 'UnrealEngine.Framework.Actor.GetLong(string, long)')
 - [GetRootComponent&lt;T&gt;()](./Actor-GetRootComponent-T-().md 'UnrealEngine.Framework.Actor.GetRootComponent&lt;T&gt;()')

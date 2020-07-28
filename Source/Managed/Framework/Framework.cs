@@ -3994,6 +3994,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns the distance from this actor to another one, ignoring Z axis
+		/// </summary>
+		public float GetHorizontalDistanceTo(Actor actor) {
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			return getHorizontalDistanceTo(Pointer, actor.Pointer);
+		}
+
+		/// <summary>
 		/// Retrieves the bounding box of all components of the actor
 		/// </summary>
 		/// <param name="onlyCollidingComponents">If <c>true</c>, will only return the bounding box for components with enabled collision</param>

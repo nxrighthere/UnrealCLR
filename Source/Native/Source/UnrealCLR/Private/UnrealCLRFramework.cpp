@@ -1251,6 +1251,10 @@ namespace UnrealCLRFramework {
 			return Actor->GetDistanceTo(Other);
 		}
 
+		float GetHorizontalDistanceTo(AActor* Actor, AActor* Other) {
+			return Actor->GetDistanceTo(Other);
+		}
+
 		void GetBounds(AActor* Actor, bool OnlyCollidingComponents, Vector3* Origin, Vector3* Extent) {
 			FVector origin, extent;
 

@@ -376,6 +376,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetCreationTime;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetBlockInput;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetDistanceTo;
+				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetHorizontalDistanceTo;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetBounds;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetRootComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetInputComponent;

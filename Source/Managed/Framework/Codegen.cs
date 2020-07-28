@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1DC;
+		internal const int checksum = 0x1DD;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, Assembly pluginAssembly) {
@@ -254,6 +254,7 @@ namespace UnrealEngine.Framework {
 				Actor.getCreationTime = GenerateOptimizedFunction<Actor.GetCreationTimeFunction>(actorFunctions[head++]);
 				Actor.getBlockInput = GenerateOptimizedFunction<Actor.GetBlockInputFunction>(actorFunctions[head++]);
 				Actor.getDistanceTo = GenerateOptimizedFunction<Actor.GetDistanceToFunction>(actorFunctions[head++]);
+				Actor.getHorizontalDistanceTo = GenerateOptimizedFunction<Actor.GetHorizontalDistanceToFunction>(actorFunctions[head++]);
 				Actor.getBounds = GenerateOptimizedFunction<Actor.GetBoundsFunction>(actorFunctions[head++]);
 				Actor.setRootComponent = GenerateOptimizedFunction<Actor.SetRootComponentFunction>(actorFunctions[head++]);
 				Actor.setInputComponent = GenerateOptimizedFunction<Actor.SetInputComponentFunction>(actorFunctions[head++]);
@@ -1254,6 +1255,7 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetCreationTimeFunction(IntPtr actor);
 		internal delegate Bool GetBlockInputFunction(IntPtr actor);
 		internal delegate float GetDistanceToFunction(IntPtr actor, IntPtr other);
+		internal delegate float GetHorizontalDistanceToFunction(IntPtr actor, IntPtr other);
 		internal delegate void GetBoundsFunction(IntPtr actor, Bool onlyCollidingComponents, ref Vector3 origin, ref Vector3 extent);
 		internal delegate Bool SetRootComponentFunction(IntPtr actor, IntPtr rootComponent);
 		internal delegate void SetInputComponentFunction(IntPtr actor, IntPtr inputComponent);
@@ -1280,6 +1282,7 @@ namespace UnrealEngine.Framework {
 		internal static GetCreationTimeFunction getCreationTime;
 		internal static GetBlockInputFunction getBlockInput;
 		internal static GetDistanceToFunction getDistanceTo;
+		internal static GetHorizontalDistanceToFunction getHorizontalDistanceTo;
 		internal static GetBoundsFunction getBounds;
 		internal static SetRootComponentFunction setRootComponent;
 		internal static SetInputComponentFunction setInputComponent;
