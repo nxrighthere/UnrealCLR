@@ -1018,6 +1018,7 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 			OnPrePhysicsTickFunction.bCanEverTick = true;
 			OnPrePhysicsTickFunction.bTickEvenWhenPaused = false;
 			OnPrePhysicsTickFunction.bStartWithTickEnabled = true;
+			OnPrePhysicsTickFunction.bHighPriority = true;
 			OnPrePhysicsTickFunction.bAllowTickOnDedicatedServer = true;
 			OnPrePhysicsTickFunction.TickGroup = TG_PrePhysics;
 			OnPrePhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
@@ -1025,6 +1026,7 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 			OnDuringPhysicsTickFunction.bCanEverTick = true;
 			OnDuringPhysicsTickFunction.bTickEvenWhenPaused = false;
 			OnDuringPhysicsTickFunction.bStartWithTickEnabled = true;
+			OnDuringPhysicsTickFunction.bHighPriority = true;
 			OnDuringPhysicsTickFunction.bAllowTickOnDedicatedServer = true;
 			OnDuringPhysicsTickFunction.TickGroup = TG_DuringPhysics;
 			OnDuringPhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
@@ -1032,6 +1034,7 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 			OnPostPhysicsTickFunction.bCanEverTick = true;
 			OnPostPhysicsTickFunction.bTickEvenWhenPaused = false;
 			OnPostPhysicsTickFunction.bStartWithTickEnabled = true;
+			OnPostPhysicsTickFunction.bHighPriority = true;
 			OnPostPhysicsTickFunction.bAllowTickOnDedicatedServer = true;
 			OnPostPhysicsTickFunction.TickGroup = TG_PostPhysics;
 			OnPostPhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
@@ -1039,6 +1042,7 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 			OnPostUpdateTickFunction.bCanEverTick = true;
 			OnPostUpdateTickFunction.bTickEvenWhenPaused = false;
 			OnPostUpdateTickFunction.bStartWithTickEnabled = true;
+			OnPostUpdateTickFunction.bHighPriority = true;
 			OnPostUpdateTickFunction.bAllowTickOnDedicatedServer = true;
 			OnPostUpdateTickFunction.TickGroup = TG_PostUpdateWork;
 			OnPostUpdateTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
@@ -1120,7 +1124,7 @@ void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
 }
 
 void UnrealCLR::PrePhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
-    if (!UnrealCLR::Engine::TickStarted && UnrealCLR::Shared::Events[OnBeginWorld]) {
+	if (!UnrealCLR::Engine::TickStarted && UnrealCLR::Shared::Events[OnBeginWorld]) {
 		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnBeginWorld], nullptr);
 		UnrealCLR::Engine::TickStarted = true;
 	}
@@ -1145,19 +1149,19 @@ void UnrealCLR::PostUpdateTickFunction::ExecuteTick(float DeltaTime, enum ELevel
 }
 
 FString UnrealCLR::PrePhysicsTickFunction::DiagnosticMessage() {
-    return TEXT("PrePhysicsTickFunction");
+	return TEXT("PrePhysicsTickFunction");
 }
 
 FString UnrealCLR::DuringPhysicsTickFunction::DiagnosticMessage() {
-    return TEXT("DuringPhysicsTickFunction");
+	return TEXT("DuringPhysicsTickFunction");
 }
 
 FString UnrealCLR::PostPhysicsTickFunction::DiagnosticMessage() {
-    return TEXT("PostPhysicsTickFunction");
+	return TEXT("PostPhysicsTickFunction");
 }
 
 FString UnrealCLR::PostUpdateTickFunction::DiagnosticMessage() {
-    return TEXT("PostUpdateTickFunction");
+	return TEXT("PostUpdateTickFunction");
 }
 
 size_t UnrealCLR::Utility::Strcpy(char* Destination, const char* Source, size_t Length) {

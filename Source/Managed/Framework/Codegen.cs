@@ -760,51 +760,53 @@ namespace UnrealEngine.Framework {
 				foreach (Type type in types) {
 					MethodInfo[] methods = type.GetMethods();
 
-					if (type.Name == "Main") {
+					if (type.Name == "Main" && type.IsPublic) {
 						foreach (MethodInfo method in methods) {
-							ParameterInfo[] parameterInfos = method.GetParameters();
+							if (method.IsPublic && method.IsStatic) {
+								ParameterInfo[] parameterInfos = method.GetParameters();
 
-							if (parameterInfos.Length <= 1) {
-								if (method.Name == "OnBeginWorld") {
-									if (parameterInfos.Length == 0)
-										events[0] = method.MethodHandle.GetFunctionPointer();
+								if (parameterInfos.Length <= 1) {
+									if (method.Name == "OnBeginWorld") {
+										if (parameterInfos.Length == 0)
+											events[0] = method.MethodHandle.GetFunctionPointer();
 
-									continue;
-								}
+										continue;
+									}
 
-								if (method.Name == "OnPrePhysicsTickWorld") {
-									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-										events[1] = method.MethodHandle.GetFunctionPointer();
+									if (method.Name == "OnPrePhysicsTickWorld") {
+										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+											events[1] = method.MethodHandle.GetFunctionPointer();
 
-									continue;
-								}
+										continue;
+									}
 
-								if (method.Name == "OnDuringPhysicsTickWorld") {
-									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-										events[2] = method.MethodHandle.GetFunctionPointer();
+									if (method.Name == "OnDuringPhysicsTickWorld") {
+										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+											events[2] = method.MethodHandle.GetFunctionPointer();
 
-									continue;
-								}
+										continue;
+									}
 
-								if (method.Name == "OnPostPhysicsTickWorld") {
-									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-										events[3] = method.MethodHandle.GetFunctionPointer();
+									if (method.Name == "OnPostPhysicsTickWorld") {
+										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+											events[3] = method.MethodHandle.GetFunctionPointer();
 
-									continue;
-								}
+										continue;
+									}
 
-								if (method.Name == "OnPostUpdateTickWorld") {
-									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-										events[4] = method.MethodHandle.GetFunctionPointer();
+									if (method.Name == "OnPostUpdateTickWorld") {
+										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+											events[4] = method.MethodHandle.GetFunctionPointer();
 
-									continue;
-								}
+										continue;
+									}
 
-								if (method.Name == "OnEndWorld") {
-									if (parameterInfos.Length == 0)
-										events[5] = method.MethodHandle.GetFunctionPointer();
+									if (method.Name == "OnEndWorld") {
+										if (parameterInfos.Length == 0)
+											events[5] = method.MethodHandle.GetFunctionPointer();
 
-									continue;
+										continue;
+									}
 								}
 							}
 						}
