@@ -1060,15 +1060,10 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 
 void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources) {
 	if (World->IsGameWorld() && World == UnrealCLR::Engine::World) {
-		if (UnrealCLR::Shared::Events[OnEndWorld])
-			UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnEndWorld], nullptr);
-
-		UnrealCLR::Engine::World = nullptr;
-		UnrealCLR::Engine::TickStarted = false;
-
-		FMemory::Memset(UnrealCLR::Shared::Events, 0, sizeof(UnrealCLR::Shared::Events));
-
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
+			if (UnrealCLR::Shared::Events[OnEndWorld])
+				UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnEndWorld], nullptr);
+
 			OnPrePhysicsTickFunction.UnRegisterTickFunction();
 			OnDuringPhysicsTickFunction.UnRegisterTickFunction();
 			OnPostPhysicsTickFunction.UnRegisterTickFunction();
@@ -1077,6 +1072,11 @@ void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool Cl
 			UnrealCLR::UnloadAssemblies();
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 		}
+
+		UnrealCLR::Engine::World = nullptr;
+		UnrealCLR::Engine::TickStarted = false;
+
+		FMemory::Memset(UnrealCLR::Shared::Events, 0, sizeof(UnrealCLR::Shared::Events));
 	}
 }
 
