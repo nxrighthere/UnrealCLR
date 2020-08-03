@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AnimationInstance Class
-An animation montage representation  
+An animation instance representation  
 ```csharp
 public class AnimationInstance :
 IEquatable<AnimationInstance>

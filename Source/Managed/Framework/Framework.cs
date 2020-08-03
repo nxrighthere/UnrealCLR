@@ -4981,7 +4981,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// An animation montage representation
+	/// An animation instance representation
 	/// </summary>
 	public partial class AnimationInstance : IEquatable<AnimationInstance> {
 		private IntPtr pointer;
