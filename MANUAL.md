@@ -78,7 +78,7 @@ Exposed as properties and accessible from the world outliner:
 	<img src="https://github.com/Rageware/Images/raw/master/UnrealCLR/editor-properties.png" alt="editor-properties">
 </p>
 
-See [Actor](https://github.com/nxrighthere/UnrealCLR/blob/master/API/Actor.md) and [ActorComponent](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ActorComponent.md) classes for appropriate methods to get and set data.
+See [Actor](https://github.com/nxrighthere/UnrealCLR/blob/master/API/Actor.md), [ActorComponent](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ActorComponent.md), and [AnimationInstance](https://github.com/nxrighthere/UnrealCLR/blob/master/API/AnimationInstance.md) classes for appropriate methods to get and set data.
 
 **Console variables**
 
