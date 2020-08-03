@@ -1,9 +1,9 @@
 - [Getting started](#getting-started)
   * [Development](#development)
   * [Project](#project)
-    + [Creating](#creating)
-    + [Running](#running)
-    + [Packaging](#packaging)
+    + [Entry point](#entry-point)
+    + [Blueprint functions](#blueprint-functions)
+  * [Packaging](#packaging)
 - [Engine](#engine)
   * [Blueprints](#blueprints)
   * [Data passing](#data-passing)
@@ -15,35 +15,62 @@ Getting started
 UnrealCLR not tied to how organized the development environment. Any IDE such as [Visual Studio](https://visualstudio.microsoft.com), [Visual Code](https://code.visualstudio.com), or [Rider](https://www.jetbrains.com/rider/), can be used to manage a project with C# code. A programmer has full freedom to set up the building pipeline in any desirable way just as for a regular .NET library.
 
 ### Project
-#### Creating
 After [building and installing](https://github.com/nxrighthere/UnrealCLR#building) the plugin, use IDE or [CLI tool](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new) to create a [.NET class library](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new#classlib) project which targets .NET Core in any preferable location. Don't store source code in `%Project%/Managed` folder of the engine's project, it's used exclusively for loading and packaging user assemblies by the plugin.
 
 Add a reference to `UnrealEngine.Framework.dll` assembly located in `Source/Managed/Framework/bin/Release` folder. Create a new or open a C# class file in the .NET project and replace its content with the following code:
+
+#### Entry point
 ```csharp
 using System;
 using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace Game {
-	public static class Main {
-		public static void OnBeginPlay() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
+	public static class Main { // Indicates the main entry point for automatic loading by the plugin
+		public static void OnBeginWorld() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
+
+		public static void OnEndWorld() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
+
+		public static void OnPrePhysicsTickWorld(float deltaTime) => Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
+
+		public static void OnDuringPhysicsTickWorld(float deltaTime) => Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
+
+		public static void OnPostPhysicsTickWorld(float deltaTime) => Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
+
+		public static void OnPostUpdateTickWorld(float deltaTime) => Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
 	}
 }
 ```
-Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and make sure that no other assemblies of other .NET projects are stored there. 
+All functions of the main entry point are optional, and it's not necessary to implement them for every [tick group](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/Actors/Ticking/index.html).
+
+Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and make sure that no other assemblies of other .NET projects are stored there.
 
 Assemblies that no longer referenced and unused in the project will persist in `%Project%/Managed` folder. Consider maintaining this folder through IDE or automation scripts.
 
-#### Running
-Create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution pipeline:
+Enter the [play mode](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/InEditorTesting/index.html) to execute managed code.
+
+#### Blueprint functions
+```csharp
+using System;
+using System.Drawing;
+using UnrealEngine.Framework;
+
+namespace Game {
+	public static class System { // Custom class for loading functions from blueprints
+		public static void Function() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Blueprint function invoked!");
+	}
+}
+```
+
+To run a blueprint function, create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution flow:
 
 <p align="left">
 	<img src="https://github.com/Rageware/Images/raw/master/UnrealCLR/level-graph.png" alt="graph">
 </p>
 
-Compile the blueprint and enter the [play mode](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/InEditorTesting/index.html).
+Compile the blueprint and enter the play mode.
 
-#### Packaging
+### Packaging
 The plugin is transparently integrated into the [packaging](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html) pipeline of the engine and ready for standalone distribution.
 
 Engine

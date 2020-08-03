@@ -28,7 +28,7 @@ namespace UnrealEngine.Framework {
 		internal const int checksum = 0x1DD;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
-		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr functions, Assembly pluginAssembly) {
+		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
 			int position = 0;
 			IntPtr* buffer = (IntPtr*)functions;
 
@@ -759,6 +759,56 @@ namespace UnrealEngine.Framework {
 
 				foreach (Type type in types) {
 					MethodInfo[] methods = type.GetMethods();
+
+					if (type.Name == "Main") {
+						foreach (MethodInfo method in methods) {
+							ParameterInfo[] parameterInfos = method.GetParameters();
+
+							if (parameterInfos.Length <= 1) {
+								if (method.Name == "OnBeginWorld") {
+									if (parameterInfos.Length == 0)
+										events[0] = method.MethodHandle.GetFunctionPointer();
+
+									continue;
+								}
+
+								if (method.Name == "OnPrePhysicsTickWorld") {
+									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+										events[1] = method.MethodHandle.GetFunctionPointer();
+
+									continue;
+								}
+
+								if (method.Name == "OnDuringPhysicsTickWorld") {
+									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+										events[2] = method.MethodHandle.GetFunctionPointer();
+
+									continue;
+								}
+
+								if (method.Name == "OnPostPhysicsTickWorld") {
+									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+										events[3] = method.MethodHandle.GetFunctionPointer();
+
+									continue;
+								}
+
+								if (method.Name == "OnPostUpdateTickWorld") {
+									if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
+										events[4] = method.MethodHandle.GetFunctionPointer();
+
+									continue;
+								}
+
+								if (method.Name == "OnEndWorld") {
+									if (parameterInfos.Length == 0)
+										events[5] = method.MethodHandle.GetFunctionPointer();
+
+									continue;
+								}
+							}
+						}
+					}
 
 					foreach (MethodInfo method in methods) {
 						if (method.IsPublic && method.IsStatic) {

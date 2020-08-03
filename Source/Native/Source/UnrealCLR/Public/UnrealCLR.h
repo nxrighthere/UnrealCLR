@@ -135,6 +135,33 @@ namespace UnrealCLR {
 
 	static StatusType Status = StatusType::Stopped;
 
+	constexpr static int32 OnBeginWorld = 0;
+	constexpr static int32 OnPrePhysicsTickWorld = 1;
+	constexpr static int32 OnDuringPhysicsTickWorld = 2;
+	constexpr static int32 OnPostPhysicsTickWorld = 3;
+	constexpr static int32 OnPostUpdateTickWorld = 4;
+	constexpr static int32 OnEndWorld = 5;
+
+	struct PrePhysicsTickFunction : public FTickFunction {
+		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
+		virtual FString DiagnosticMessage() override;
+	};
+
+	struct DuringPhysicsTickFunction : public FTickFunction {
+		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
+		virtual FString DiagnosticMessage() override;
+	};
+
+	struct PostPhysicsTickFunction : public FTickFunction {
+		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
+		virtual FString DiagnosticMessage() override;
+	};
+
+	struct PostUpdateTickFunction : public FTickFunction {
+		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
+		virtual FString DiagnosticMessage() override;
+	};
+
 	class Module : public IModuleInterface {
 		protected:
 
@@ -143,7 +170,7 @@ namespace UnrealCLR {
 
 		private:
 
-		void OnWorldPreInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues);
+		void OnWorldInitializedActors(const UWorld::FActorsInitializedParams& ActorsInitializedParams);
 		void OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources);
 
 		static void HostError(const char_t* Message);
@@ -151,18 +178,24 @@ namespace UnrealCLR {
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
 
-		FDelegateHandle OnWorldPreInitializationHandle;
+		FDelegateHandle OnWorldInitializedActorsHandle;
 		FDelegateHandle OnWorldCleanupHandle;
+
+		PrePhysicsTickFunction OnPrePhysicsTickFunction;
+		DuringPhysicsTickFunction OnDuringPhysicsTickFunction;
+		PostPhysicsTickFunction OnPostPhysicsTickFunction;
+		PostUpdateTickFunction OnPostUpdateTickFunction;
 
 		void* HostfxrLibrary;
 	};
 
 	namespace Engine {
 		static UWorld* World;
+		static bool TickStarted;
 	}
 
 	namespace Shared {
-		constexpr int32 storageSize = 64;
+		constexpr static int32 storageSize = 64;
 
 		// Non-instantiable
 
@@ -221,6 +254,7 @@ namespace UnrealCLR {
 
 		void* ManagedFunctions[4];
 		void* NativeFunctions[5];
+		void* Events[6];
 		void* Functions[128];
 	}
 

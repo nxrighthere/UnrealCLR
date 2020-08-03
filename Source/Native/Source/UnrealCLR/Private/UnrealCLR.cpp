@@ -44,7 +44,7 @@ void UnrealCLR::Module::StartupModule() {
 	FString runtimeMethodName = TEXT("Initialize");
 	FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.InitializeDelegate, UnrealEngine.Runtime");
 
-	OnWorldPreInitializationHandle = FWorldDelegates::OnPreWorldInitialization.AddRaw(this, &UnrealCLR::Module::OnWorldPreInitialization);
+	OnWorldInitializedActorsHandle = FWorldDelegates::OnWorldInitializedActors.AddRaw(this, &UnrealCLR::Module::OnWorldInitializedActors);
 	OnWorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddRaw(this, &UnrealCLR::Module::OnWorldCleanup);
 
 	UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host path set to \"%s\""), ANSI_TO_TCHAR(__FUNCTION__), *hostfxrPath);
@@ -958,9 +958,10 @@ void UnrealCLR::Module::StartupModule() {
 			Shared::ManagedFunctions[1] = &UnrealCLR::Module::Exception;
 			Shared::ManagedFunctions[2] = &UnrealCLR::Module::Log;
 
-			void* functions[3] = {
+			void* functions[4] = {
 				Shared::ManagedFunctions,
 				Shared::NativeFunctions,
+				Shared::Events,
 				Shared::Functions
 			};
 
@@ -1000,19 +1001,47 @@ void UnrealCLR::Module::StartupModule() {
 }
 
 void UnrealCLR::Module::ShutdownModule() {
-	FWorldDelegates::OnPreWorldInitialization.Remove(OnWorldPreInitializationHandle);
+	FWorldDelegates::OnWorldInitializedActors.Remove(OnWorldInitializedActorsHandle);
 	FWorldDelegates::OnWorldCleanup.Remove(OnWorldCleanupHandle);
 
 	FPlatformProcess::FreeDllHandle(HostfxrLibrary);
 }
 
-void UnrealCLR::Module::OnWorldPreInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues) {
-	if (World->IsGameWorld() && !UnrealCLR::Engine::World) {
-		UnrealCLR::Engine::World = World;
+void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitializedParams& ActorsInitializedParams) {
+	if (ActorsInitializedParams.World->IsGameWorld() && !UnrealCLR::Engine::World) {
+		UnrealCLR::Engine::World = ActorsInitializedParams.World;
 
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
 			UnrealCLR::LoadAssemblies();
 			UnrealCLR::Status = UnrealCLR::StatusType::Running;
+
+			OnPrePhysicsTickFunction.bCanEverTick = true;
+			OnPrePhysicsTickFunction.bTickEvenWhenPaused = false;
+			OnPrePhysicsTickFunction.bStartWithTickEnabled = true;
+			OnPrePhysicsTickFunction.bAllowTickOnDedicatedServer = true;
+			OnPrePhysicsTickFunction.TickGroup = TG_PrePhysics;
+			OnPrePhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
+
+			OnDuringPhysicsTickFunction.bCanEverTick = true;
+			OnDuringPhysicsTickFunction.bTickEvenWhenPaused = false;
+			OnDuringPhysicsTickFunction.bStartWithTickEnabled = true;
+			OnDuringPhysicsTickFunction.bAllowTickOnDedicatedServer = true;
+			OnDuringPhysicsTickFunction.TickGroup = TG_DuringPhysics;
+			OnDuringPhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
+
+			OnPostPhysicsTickFunction.bCanEverTick = true;
+			OnPostPhysicsTickFunction.bTickEvenWhenPaused = false;
+			OnPostPhysicsTickFunction.bStartWithTickEnabled = true;
+			OnPostPhysicsTickFunction.bAllowTickOnDedicatedServer = true;
+			OnPostPhysicsTickFunction.TickGroup = TG_PostPhysics;
+			OnPostPhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
+
+			OnPostUpdateTickFunction.bCanEverTick = true;
+			OnPostUpdateTickFunction.bTickEvenWhenPaused = false;
+			OnPostUpdateTickFunction.bStartWithTickEnabled = true;
+			OnPostUpdateTickFunction.bAllowTickOnDedicatedServer = true;
+			OnPostUpdateTickFunction.TickGroup = TG_PostUpdateWork;
+			OnPostUpdateTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
 		} else {
 			#if WITH_EDITOR
 				FNotificationInfo notificationInfo(FText::FromString(TEXT("UnrealCLR host is not initialized! Please, check logs and try to restart the engine.")));
@@ -1027,9 +1056,20 @@ void UnrealCLR::Module::OnWorldPreInitialization(UWorld* World, const UWorld::In
 
 void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources) {
 	if (World->IsGameWorld() && World == UnrealCLR::Engine::World) {
+		if (UnrealCLR::Shared::Events[OnEndWorld])
+			UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnEndWorld], nullptr);
+
 		UnrealCLR::Engine::World = nullptr;
+		UnrealCLR::Engine::TickStarted = false;
+
+		FMemory::Memset(UnrealCLR::Shared::Events, 0, sizeof(UnrealCLR::Shared::Events));
 
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
+			OnPrePhysicsTickFunction.UnRegisterTickFunction();
+			OnDuringPhysicsTickFunction.UnRegisterTickFunction();
+			OnPostPhysicsTickFunction.UnRegisterTickFunction();
+			OnPostUpdateTickFunction.UnRegisterTickFunction();
+
 			UnrealCLR::UnloadAssemblies();
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 		}
@@ -1077,6 +1117,47 @@ void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
 
 		UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 	}
+}
+
+void UnrealCLR::PrePhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
+    if (!UnrealCLR::Engine::TickStarted && UnrealCLR::Shared::Events[OnBeginWorld]) {
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnBeginWorld], nullptr);
+		UnrealCLR::Engine::TickStarted = true;
+	}
+
+	if (UnrealCLR::Shared::Events[OnPrePhysicsTickWorld])
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnPrePhysicsTickWorld], DeltaTime);
+}
+
+void UnrealCLR::DuringPhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
+	if (UnrealCLR::Shared::Events[OnDuringPhysicsTickWorld])
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnDuringPhysicsTickWorld], DeltaTime);
+}
+
+void UnrealCLR::PostPhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
+	if (UnrealCLR::Shared::Events[OnPostPhysicsTickWorld])
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnPostPhysicsTickWorld], DeltaTime);
+}
+
+void UnrealCLR::PostUpdateTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
+	if (UnrealCLR::Shared::Events[OnPostUpdateTickWorld])
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnPostUpdateTickWorld], DeltaTime);
+}
+
+FString UnrealCLR::PrePhysicsTickFunction::DiagnosticMessage() {
+    return TEXT("PrePhysicsTickFunction");
+}
+
+FString UnrealCLR::DuringPhysicsTickFunction::DiagnosticMessage() {
+    return TEXT("DuringPhysicsTickFunction");
+}
+
+FString UnrealCLR::PostPhysicsTickFunction::DiagnosticMessage() {
+    return TEXT("PostPhysicsTickFunction");
+}
+
+FString UnrealCLR::PostUpdateTickFunction::DiagnosticMessage() {
+    return TEXT("PostUpdateTickFunction");
 }
 
 size_t UnrealCLR::Utility::Strcpy(char* Destination, const char* Source, size_t Length) {

@@ -80,6 +80,7 @@ namespace UnrealEngine.Runtime {
 		internal static AssembliesContextManager assembliesContextManager;
 		internal static WeakReference assembliesContextWeakReference;
 		internal static Plugin plugin;
+		internal static IntPtr sharedEvents;
 		internal static IntPtr sharedFunctions;
 		internal static int sharedChecksum;
 		internal static Dictionary<int, IntPtr> userFunctions;
@@ -116,6 +117,7 @@ namespace UnrealEngine.Runtime {
 					nativeFunctions[head++] = typeof(Core).GetMethod("UnloadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
 				}
 
+				sharedEvents = buffer[position++];
 				sharedFunctions = buffer[position++];
 				sharedChecksum = checksum;
 			}
@@ -186,7 +188,7 @@ namespace UnrealEngine.Runtime {
 										Type sharedClass = framework.GetType(frameworkName + ".Shared");
 
 										if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
-											userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedFunctions, plugin.assembly });
+											userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
 
 											Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
 										} else {
