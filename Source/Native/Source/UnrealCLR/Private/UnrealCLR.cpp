@@ -18,13 +18,13 @@
 
 DEFINE_LOG_CATEGORY(LogUnrealCLR);
 
-#define UNREALCLR_REGISTER_TICK_FUNCTION(Function) {\
+#define UNREALCLR_REGISTER_TICK_FUNCTION(Function, Group) {\
 	Function.bCanEverTick = true;\
 	Function.bTickEvenWhenPaused = false;\
 	Function.bStartWithTickEnabled = true;\
 	Function.bHighPriority = true;\
 	Function.bAllowTickOnDedicatedServer = true;\
-	Function.TickGroup = TG_PrePhysics;\
+	Function.TickGroup = Group;\
 	Function.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);\
 }
 
@@ -1025,10 +1025,10 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 			UnrealCLR::LoadAssemblies();
 			UnrealCLR::Status = UnrealCLR::StatusType::Running;
 
-			UNREALCLR_REGISTER_TICK_FUNCTION(OnPrePhysicsTickFunction);
-			UNREALCLR_REGISTER_TICK_FUNCTION(OnDuringPhysicsTickFunction);
-			UNREALCLR_REGISTER_TICK_FUNCTION(OnPostPhysicsTickFunction);
-			UNREALCLR_REGISTER_TICK_FUNCTION(OnPostUpdateTickFunction);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnPrePhysicsTickFunction, TG_PrePhysics);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnDuringPhysicsTickFunction, TG_DuringPhysics);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnPostPhysicsTickFunction, TG_PostPhysics);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnPostUpdateTickFunction, TG_PostUpdateWork);
 		} else {
 			#if WITH_EDITOR
 				FNotificationInfo notificationInfo(FText::FromString(TEXT("UnrealCLR host is not initialized! Please, check logs and try to restart the engine.")));
