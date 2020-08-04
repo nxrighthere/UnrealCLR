@@ -7,7 +7,6 @@ using UnrealEngine.Framework;
 namespace UnrealEngine.Tests {
 	public static class SkeletalMeshes {
 		public static void OnBeginPlay() {
-			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
 
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
@@ -43,9 +42,6 @@ namespace UnrealEngine.Tests {
 			Assert.IsTrue(prototypeRightAnimationInstance.IsPlaying(prototypeRightAnimationMontage));
 		}
 
-		public static void OnEndPlay() {
-			Debug.Log(LogLevel.Display, "See you soon, Unreal Engine!");
-			Debug.ClearOnScreenMessages();
-		}
+		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

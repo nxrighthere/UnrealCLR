@@ -18,6 +18,16 @@
 
 DEFINE_LOG_CATEGORY(LogUnrealCLR);
 
+#define UNREALCLR_REGISTER_TICK_FUNCTION(Function) {\
+	Function.bCanEverTick = true;\
+	Function.bTickEvenWhenPaused = false;\
+	Function.bStartWithTickEnabled = true;\
+	Function.bHighPriority = true;\
+	Function.bAllowTickOnDedicatedServer = true;\
+	Function.TickGroup = TG_PrePhysics;\
+	Function.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);\
+}
+
 void UnrealCLR::Module::StartupModule() {
 	#define HOSTFXR_VERSION "3.1.6"
 	#define HOSTFXR_WINDOWS "/hostfxr.dll"
@@ -1015,37 +1025,10 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 			UnrealCLR::LoadAssemblies();
 			UnrealCLR::Status = UnrealCLR::StatusType::Running;
 
-			OnPrePhysicsTickFunction.bCanEverTick = true;
-			OnPrePhysicsTickFunction.bTickEvenWhenPaused = false;
-			OnPrePhysicsTickFunction.bStartWithTickEnabled = true;
-			OnPrePhysicsTickFunction.bHighPriority = true;
-			OnPrePhysicsTickFunction.bAllowTickOnDedicatedServer = true;
-			OnPrePhysicsTickFunction.TickGroup = TG_PrePhysics;
-			OnPrePhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
-
-			OnDuringPhysicsTickFunction.bCanEverTick = true;
-			OnDuringPhysicsTickFunction.bTickEvenWhenPaused = false;
-			OnDuringPhysicsTickFunction.bStartWithTickEnabled = true;
-			OnDuringPhysicsTickFunction.bHighPriority = true;
-			OnDuringPhysicsTickFunction.bAllowTickOnDedicatedServer = true;
-			OnDuringPhysicsTickFunction.TickGroup = TG_DuringPhysics;
-			OnDuringPhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
-
-			OnPostPhysicsTickFunction.bCanEverTick = true;
-			OnPostPhysicsTickFunction.bTickEvenWhenPaused = false;
-			OnPostPhysicsTickFunction.bStartWithTickEnabled = true;
-			OnPostPhysicsTickFunction.bHighPriority = true;
-			OnPostPhysicsTickFunction.bAllowTickOnDedicatedServer = true;
-			OnPostPhysicsTickFunction.TickGroup = TG_PostPhysics;
-			OnPostPhysicsTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
-
-			OnPostUpdateTickFunction.bCanEverTick = true;
-			OnPostUpdateTickFunction.bTickEvenWhenPaused = false;
-			OnPostUpdateTickFunction.bStartWithTickEnabled = true;
-			OnPostUpdateTickFunction.bHighPriority = true;
-			OnPostUpdateTickFunction.bAllowTickOnDedicatedServer = true;
-			OnPostUpdateTickFunction.TickGroup = TG_PostUpdateWork;
-			OnPostUpdateTickFunction.RegisterTickFunction(UnrealCLR::Engine::World->PersistentLevel);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnPrePhysicsTickFunction);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnDuringPhysicsTickFunction);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnPostPhysicsTickFunction);
+			UNREALCLR_REGISTER_TICK_FUNCTION(OnPostUpdateTickFunction);
 		} else {
 			#if WITH_EDITOR
 				FNotificationInfo notificationInfo(FText::FromString(TEXT("UnrealCLR host is not initialized! Please, check logs and try to restart the engine.")));

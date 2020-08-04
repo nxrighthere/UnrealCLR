@@ -7,7 +7,6 @@ using UnrealEngine.Framework;
 namespace UnrealEngine.Tests {
 	public static class DebugVisualization {
 		public static void OnBeginPlay() {
-			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
 
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
@@ -26,9 +25,6 @@ namespace UnrealEngine.Tests {
 			Debug.DrawPoint(new Vector3(0.0f, 350.0f, -150.0f), 8.0f, Color.MediumVioletRed, true);
 		}
 
-		public static void OnEndPlay() {
-			Debug.Log(LogLevel.Display, "See you soon, Unreal Engine!");
-			Debug.ClearOnScreenMessages();
-		}
+		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

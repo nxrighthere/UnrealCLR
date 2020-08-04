@@ -7,7 +7,6 @@ using UnrealEngine.Framework;
 namespace UnrealEngine.Tests {
 	public static class AudioPlayback {
 		public static void OnBeginPlay() {
-			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
 
 			Actor alarmSound = new Actor("AlarmSound");
@@ -23,9 +22,6 @@ namespace UnrealEngine.Tests {
 			Assert.IsTrue(alarmAudioComponent.IsPlaying);
 		}
 
-		public static void OnEndPlay() {
-			Debug.Log(LogLevel.Display, "See you soon, Unreal Engine!");
-			Debug.ClearOnScreenMessages();
-		}
+		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

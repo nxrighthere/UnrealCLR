@@ -19,8 +19,6 @@ namespace UnrealEngine.Tests {
 		private const string textProperty = "Test Text";
 
 		public static void OnBeginPlay() {
-			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
-
 			if (actor.IsSpawned)
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Tomato, "Blueprint actor is spawned!");
 
@@ -49,10 +47,7 @@ namespace UnrealEngine.Tests {
 			TestAnimationTextProperty();
 		}
 
-		public static void OnEndPlay() {
-			Debug.Log(LogLevel.Display, "See you soon, Unreal Engine!");
-			Debug.ClearOnScreenMessages();
-		}
+		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
 
 		private static void TestActorBoolProperty() {
 			bool value = false;
