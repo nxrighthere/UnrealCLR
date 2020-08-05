@@ -46,16 +46,16 @@ void UnrealCLR::Module::StartupModule() {
 	UnrealCLR::ProjectPath = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir());
 	UnrealCLR::UserAssembliesPath = UnrealCLR::ProjectPath + TEXT("Managed/");
 
-	FString hostfxrPath = UnrealCLR::ProjectPath + TEXT(HOSTFXR_PATH);
-	FString assembliesPath = UnrealCLR::ProjectPath + TEXT("Plugins/UnrealCLR/Managed/");
-	FString runtimeConfigPath = assembliesPath + TEXT("UnrealEngine.Runtime.runtimeconfig.json");
-	FString runtimeAssemblyPath = assembliesPath + TEXT("UnrealEngine.Runtime.dll");
-	FString runtimeTypeName = TEXT("UnrealEngine.Runtime.Core, UnrealEngine.Runtime");
-	FString runtimeMethodName = TEXT("Initialize");
-	FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.InitializeDelegate, UnrealEngine.Runtime");
-
 	OnWorldInitializedActorsHandle = FWorldDelegates::OnWorldInitializedActors.AddRaw(this, &UnrealCLR::Module::OnWorldInitializedActors);
 	OnWorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddRaw(this, &UnrealCLR::Module::OnWorldCleanup);
+
+	const FString hostfxrPath = UnrealCLR::ProjectPath + TEXT(HOSTFXR_PATH);
+	const FString assembliesPath = UnrealCLR::ProjectPath + TEXT("Plugins/UnrealCLR/Managed/");
+	const FString runtimeConfigPath = assembliesPath + TEXT("UnrealEngine.Runtime.runtimeconfig.json");
+	const FString runtimeAssemblyPath = assembliesPath + TEXT("UnrealEngine.Runtime.dll");
+	const FString runtimeTypeName = TEXT("UnrealEngine.Runtime.Core, UnrealEngine.Runtime");
+	const FString runtimeMethodName = TEXT("Initialize");
+	const FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.InitializeDelegate, UnrealEngine.Runtime");
 
 	UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host path set to \"%s\""), ANSI_TO_TCHAR(__FUNCTION__), *hostfxrPath);
 
@@ -124,7 +124,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		load_assembly_and_get_function_pointer_fn HostfxrLoadAssemblyAndGetFunctionPointer = (load_assembly_and_get_function_pointer_fn)hostfxrLoadAssemblyAndGetFunctionPointer;
 
-		int32 (*Initialize)(void* Functions, int32 Checksum) = nullptr;
+		int32 (*Initialize)(void* const Functions[4], int32 Checksum) = nullptr;
 
 		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(*runtimeAssemblyPath, *runtimeTypeName, *runtimeMethodName, *runtimeMethodDelegateName, nullptr, (void**)&Initialize) == 0) {
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -968,7 +968,7 @@ void UnrealCLR::Module::StartupModule() {
 			Shared::ManagedFunctions[1] = &UnrealCLR::Module::Exception;
 			Shared::ManagedFunctions[2] = &UnrealCLR::Module::Log;
 
-			void* functions[4] = {
+			constexpr void* functions[4] = {
 				Shared::ManagedFunctions,
 				Shared::NativeFunctions,
 				Shared::Events,
