@@ -199,63 +199,63 @@ namespace UnrealCLR {
 
 		// Non-instantiable
 
-		void* AssertFunctions[storageSize];
-		void* CommandLineFunctions[storageSize];
-		void* DebugFunctions[storageSize];
-		void* ObjectFunctions[storageSize];
-		void* ApplicationFunctions[storageSize];
-		void* ConsoleManagerFunctions[storageSize];
-		void* EngineFunctions[storageSize];
-		void* WorldFunctions[storageSize];
+		static void* AssertFunctions[storageSize];
+		static void* CommandLineFunctions[storageSize];
+		static void* DebugFunctions[storageSize];
+		static void* ObjectFunctions[storageSize];
+		static void* ApplicationFunctions[storageSize];
+		static void* ConsoleManagerFunctions[storageSize];
+		static void* EngineFunctions[storageSize];
+		static void* WorldFunctions[storageSize];
 
 		// Instantiable
 
-		void* BlueprintFunctions[storageSize];
-		void* ConsoleObjectFunctions[storageSize];
-		void* ConsoleVariableFunctions[storageSize];
-		void* ActorFunctions[storageSize];
-		void* PawnFunctions[storageSize];
-		void* ControllerFunctions[storageSize];
-		void* AIControllerFunctions[storageSize];
-		void* PlayerControllerFunctions[storageSize];
-		void* VolumeFunctions[storageSize];
-		void* PostProcessVolumeFunctions[storageSize];
-		void* SoundBaseFunctions[storageSize];
-		void* SoundWaveFunctions[storageSize];
-		void* AnimationInstanceFunctions[storageSize];
-		void* PlayerFunctions[storageSize];
-		void* PlayerInputFunctions[storageSize];
-		void* Texture2DFunctions[storageSize];
-		void* ActorComponentFunctions[storageSize];
-		void* InputComponentFunctions[storageSize];
-		void* SceneComponentFunctions[storageSize];
-		void* AudioComponentFunctions[storageSize];
-		void* CameraComponentFunctions[storageSize];
-		void* ChildActorComponentFunctions[storageSize];
-		void* PrimitiveComponentFunctions[storageSize];
-		void* ShapeComponentFunctions[storageSize];
-		void* BoxComponentFunctions[storageSize];
-		void* SphereComponentFunctions[storageSize];
-		void* CapsuleComponentFunctions[storageSize];
-		void* MeshComponentFunctions[storageSize];
-		void* LightComponentBaseFunctions[storageSize];
-		void* LightComponentFunctions[storageSize];
-		void* MotionControllerComponentFunctions[storageSize];
-		void* StaticMeshComponentFunctions[storageSize];
-		void* InstancedStaticMeshComponentFunctions[storageSize];
-		void* SkinnedMeshComponentFunctions[storageSize];
-		void* SkeletalMeshComponentFunctions[storageSize];
-		void* RadialForceComponentFunctions[storageSize];
-		void* MaterialInterfaceFunctions[storageSize];
-		void* MaterialFunctions[storageSize];
-		void* MaterialInstanceFunctions[storageSize];
-		void* MaterialInstanceDynamicFunctions[storageSize];
-		void* HeadMountedDisplayFunctions[storageSize];
+		static void* BlueprintFunctions[storageSize];
+		static void* ConsoleObjectFunctions[storageSize];
+		static void* ConsoleVariableFunctions[storageSize];
+		static void* ActorFunctions[storageSize];
+		static void* PawnFunctions[storageSize];
+		static void* ControllerFunctions[storageSize];
+		static void* AIControllerFunctions[storageSize];
+		static void* PlayerControllerFunctions[storageSize];
+		static void* VolumeFunctions[storageSize];
+		static void* PostProcessVolumeFunctions[storageSize];
+		static void* SoundBaseFunctions[storageSize];
+		static void* SoundWaveFunctions[storageSize];
+		static void* AnimationInstanceFunctions[storageSize];
+		static void* PlayerFunctions[storageSize];
+		static void* PlayerInputFunctions[storageSize];
+		static void* Texture2DFunctions[storageSize];
+		static void* ActorComponentFunctions[storageSize];
+		static void* InputComponentFunctions[storageSize];
+		static void* SceneComponentFunctions[storageSize];
+		static void* AudioComponentFunctions[storageSize];
+		static void* CameraComponentFunctions[storageSize];
+		static void* ChildActorComponentFunctions[storageSize];
+		static void* PrimitiveComponentFunctions[storageSize];
+		static void* ShapeComponentFunctions[storageSize];
+		static void* BoxComponentFunctions[storageSize];
+		static void* SphereComponentFunctions[storageSize];
+		static void* CapsuleComponentFunctions[storageSize];
+		static void* MeshComponentFunctions[storageSize];
+		static void* LightComponentBaseFunctions[storageSize];
+		static void* LightComponentFunctions[storageSize];
+		static void* MotionControllerComponentFunctions[storageSize];
+		static void* StaticMeshComponentFunctions[storageSize];
+		static void* InstancedStaticMeshComponentFunctions[storageSize];
+		static void* SkinnedMeshComponentFunctions[storageSize];
+		static void* SkeletalMeshComponentFunctions[storageSize];
+		static void* RadialForceComponentFunctions[storageSize];
+		static void* MaterialInterfaceFunctions[storageSize];
+		static void* MaterialFunctions[storageSize];
+		static void* MaterialInstanceFunctions[storageSize];
+		static void* MaterialInstanceDynamicFunctions[storageSize];
+		static void* HeadMountedDisplayFunctions[storageSize];
 
-		void* ManagedFunctions[4];
-		void* NativeFunctions[5];
-		void* Events[6];
-		void* Functions[128];
+		static void* ManagedFunctions[4];
+		static void* NativeFunctions[5];
+		static void* Events[6];
+		static void* Functions[128];
 	}
 
 	namespace Utility {
