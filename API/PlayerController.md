@@ -18,7 +18,6 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [GetMousePosition(float, float)](./PlayerController-GetMousePosition(float_float).md 'UnrealEngine.Framework.PlayerController.GetMousePosition(float, float)')
 - [GetPlayer()](./PlayerController-GetPlayer().md 'UnrealEngine.Framework.PlayerController.GetPlayer()')
 - [GetPlayerInput()](./PlayerController-GetPlayerInput().md 'UnrealEngine.Framework.PlayerController.GetPlayerInput()')
-- [GetPlayerViewPoint(System.Numerics.Vector3, System.Numerics.Quaternion)](./PlayerController-GetPlayerViewPoint(Vector3_Quaternion).md 'UnrealEngine.Framework.PlayerController.GetPlayerViewPoint(System.Numerics.Vector3, System.Numerics.Quaternion)')
 - [SetMousePosition(float, float)](./PlayerController-SetMousePosition(float_float).md 'UnrealEngine.Framework.PlayerController.SetMousePosition(float, float)')
 - [SetPause(bool)](./PlayerController-SetPause(bool).md 'UnrealEngine.Framework.PlayerController.SetPause(bool)')
 - [SetViewTarget(UnrealEngine.Framework.Actor)](./PlayerController-SetViewTarget(Actor).md 'UnrealEngine.Framework.PlayerController.SetViewTarget(UnrealEngine.Framework.Actor)')

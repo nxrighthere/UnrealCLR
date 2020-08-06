@@ -256,6 +256,7 @@ namespace UnrealEngine.Framework {
 				Actor.getDistanceTo = GenerateOptimizedFunction<Actor.GetDistanceToFunction>(actorFunctions[head++]);
 				Actor.getHorizontalDistanceTo = GenerateOptimizedFunction<Actor.GetHorizontalDistanceToFunction>(actorFunctions[head++]);
 				Actor.getBounds = GenerateOptimizedFunction<Actor.GetBoundsFunction>(actorFunctions[head++]);
+				Actor.getEyesViewPoint = GenerateOptimizedFunction<Actor.GetEyesViewPointFunction>(actorFunctions[head++]);
 				Actor.setRootComponent = GenerateOptimizedFunction<Actor.SetRootComponentFunction>(actorFunctions[head++]);
 				Actor.setInputComponent = GenerateOptimizedFunction<Actor.SetInputComponentFunction>(actorFunctions[head++]);
 				Actor.setBlockInput = GenerateOptimizedFunction<Actor.SetBlockInputFunction>(actorFunctions[head++]);
@@ -313,7 +314,6 @@ namespace UnrealEngine.Framework {
 				PlayerController.isPaused = GenerateOptimizedFunction<PlayerController.IsPausedFunction>(playerControllerFunctions[head++]);
 				PlayerController.getShowMouseCursor = GenerateOptimizedFunction<PlayerController.GetShowMouseCursorFunction>(playerControllerFunctions[head++]);
 				PlayerController.getMousePosition = GenerateOptimizedFunction<PlayerController.GetMousePositionFunction>(playerControllerFunctions[head++]);
-				PlayerController.getPlayerViewPoint = GenerateOptimizedFunction<PlayerController.GetPlayerViewPointFunction>(playerControllerFunctions[head++]);
 				PlayerController.getPlayer = GenerateOptimizedFunction<PlayerController.GetPlayerFunction>(playerControllerFunctions[head++]);
 				PlayerController.getPlayerInput = GenerateOptimizedFunction<PlayerController.GetPlayerInputFunction>(playerControllerFunctions[head++]);
 				PlayerController.setShowMouseCursor = GenerateOptimizedFunction<PlayerController.SetShowMouseCursorFunction>(playerControllerFunctions[head++]);
@@ -1309,6 +1309,7 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetDistanceToFunction(IntPtr actor, IntPtr other);
 		internal delegate float GetHorizontalDistanceToFunction(IntPtr actor, IntPtr other);
 		internal delegate void GetBoundsFunction(IntPtr actor, Bool onlyCollidingComponents, ref Vector3 origin, ref Vector3 extent);
+		internal delegate void GetEyesViewPointFunction(IntPtr actor, ref Vector3 location, ref Quaternion rotation);
 		internal delegate Bool SetRootComponentFunction(IntPtr actor, IntPtr rootComponent);
 		internal delegate void SetInputComponentFunction(IntPtr actor, IntPtr inputComponent);
 		internal delegate void SetBlockInputFunction(IntPtr actor, Bool value);
@@ -1336,6 +1337,7 @@ namespace UnrealEngine.Framework {
 		internal static GetDistanceToFunction getDistanceTo;
 		internal static GetHorizontalDistanceToFunction getHorizontalDistanceTo;
 		internal static GetBoundsFunction getBounds;
+		internal static GetEyesViewPointFunction getEyesViewPoint;
 		internal static SetRootComponentFunction setRootComponent;
 		internal static SetInputComponentFunction setInputComponent;
 		internal static SetBlockInputFunction setBlockInput;
@@ -1416,7 +1418,6 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsPausedFunction(IntPtr playerController);
 		internal delegate Bool GetShowMouseCursorFunction(IntPtr playerController);
 		internal delegate Bool GetMousePositionFunction(IntPtr playerController, ref float x, ref float y);
-		internal delegate void GetPlayerViewPointFunction(IntPtr playerController, ref Vector3 location, ref Quaternion rotation);
 		internal delegate IntPtr GetPlayerFunction(IntPtr playerController);
 		internal delegate IntPtr GetPlayerInputFunction(IntPtr playerController);
 		internal delegate void SetShowMouseCursorFunction(IntPtr playerController, Bool value);
@@ -1432,7 +1433,6 @@ namespace UnrealEngine.Framework {
 		internal static IsPausedFunction isPaused;
 		internal static GetShowMouseCursorFunction getShowMouseCursor;
 		internal static GetMousePositionFunction getMousePosition;
-		internal static GetPlayerViewPointFunction getPlayerViewPoint;
 		internal static GetPlayerFunction getPlayer;
 		internal static GetPlayerInputFunction getPlayerInput;
 		internal static SetShowMouseCursorFunction setShowMouseCursor;

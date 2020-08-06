@@ -40,6 +40,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [GetComponentByTag&lt;T&gt;(string)](./Actor-GetComponentByTag-T-(string).md 'UnrealEngine.Framework.Actor.GetComponentByTag&lt;T&gt;(string)')
 - [GetDistanceTo(UnrealEngine.Framework.Actor)](./Actor-GetDistanceTo(Actor).md 'UnrealEngine.Framework.Actor.GetDistanceTo(UnrealEngine.Framework.Actor)')
 - [GetDouble(string, double)](./Actor-GetDouble(string_double).md 'UnrealEngine.Framework.Actor.GetDouble(string, double)')
+- [GetEyesViewPoint(System.Numerics.Vector3, System.Numerics.Quaternion)](./Actor-GetEyesViewPoint(Vector3_Quaternion).md 'UnrealEngine.Framework.Actor.GetEyesViewPoint(System.Numerics.Vector3, System.Numerics.Quaternion)')
 - [GetFloat(string, float)](./Actor-GetFloat(string_float).md 'UnrealEngine.Framework.Actor.GetFloat(string, float)')
 - [GetHashCode()](./Actor-GetHashCode().md 'UnrealEngine.Framework.Actor.GetHashCode()')
 - [GetHorizontalDistanceTo(UnrealEngine.Framework.Actor)](./Actor-GetHorizontalDistanceTo(Actor).md 'UnrealEngine.Framework.Actor.GetHorizontalDistanceTo(UnrealEngine.Framework.Actor)')

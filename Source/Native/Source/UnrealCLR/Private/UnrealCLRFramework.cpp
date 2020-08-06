@@ -1264,6 +1264,16 @@ namespace UnrealCLRFramework {
 			*Extent = extent;
 		}
 
+		void GetEyesViewPoint(AActor* Actor, Vector3* Location, Quaternion* Rotation) {
+			FVector location;
+			FRotator rotation;
+
+			Actor->GetActorEyesViewPoint(location, rotation);
+
+			*Location = location;
+			*Rotation = rotation.Quaternion();
+		}
+
 		bool SetRootComponent(AActor* Actor, USceneComponent* RootComponent) {
 			return Actor->SetRootComponent(RootComponent);
 		}
@@ -1402,16 +1412,6 @@ namespace UnrealCLRFramework {
 
 		bool GetMousePosition(APlayerController* PlayerController, float* X, float* Y) {
 			return PlayerController->GetMousePosition(*X, *Y);
-		}
-
-		void GetPlayerViewPoint(APlayerController* PlayerController, Vector3* Location, Quaternion* Rotation) {
-			FVector location;
-			FRotator rotation;
-
-			PlayerController->GetPlayerViewPoint(location, rotation);
-
-			*Location = location;
-			*Rotation = rotation.Quaternion();
 		}
 
 		UPlayer* GetPlayer(APlayerController* PlayerController) {

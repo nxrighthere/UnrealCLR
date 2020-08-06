@@ -441,6 +441,7 @@ namespace UnrealCLRFramework {
 		static float GetDistanceTo(AActor* Actor, AActor* Other);
 		static float GetHorizontalDistanceTo(AActor* Actor, AActor* Other);
 		static void GetBounds(AActor* Actor, bool OnlyCollidingComponents, Vector3* Origin, Vector3* Extent);
+		static void GetEyesViewPoint(AActor* Actor, Vector3* Location, Quaternion* Rotation);
 		static bool SetRootComponent(AActor* Actor, USceneComponent* RootComponent);
 		static void SetInputComponent(AActor* Actor, UInputComponent* InputComponent);
 		static void SetBlockInput(AActor* Actor, bool Value);
@@ -498,7 +499,6 @@ namespace UnrealCLRFramework {
 		static bool IsPaused(APlayerController* PlayerController);
 		static bool GetShowMouseCursor(APlayerController* PlayerController);
 		static bool GetMousePosition(APlayerController* PlayerController, float* X, float* Y);
-		static void GetPlayerViewPoint(APlayerController* PlayerController, Vector3* Location, Quaternion* Rotation);
 		static UPlayer* GetPlayer(APlayerController* PlayerController);
 		static UPlayerInput* GetPlayerInput(APlayerController* PlayerController);
 		static void SetShowMouseCursor(APlayerController* PlayerController, bool Value);

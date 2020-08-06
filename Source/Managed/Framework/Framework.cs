@@ -4012,6 +4012,11 @@ namespace UnrealEngine.Framework {
 		public void GetBounds(bool onlyCollidingComponents, ref Vector3 origin, ref Vector3 extent) => getBounds(Pointer, onlyCollidingComponents, ref origin, ref extent);
 
 		/// <summary>
+		/// Retrieves the point of view of the actor
+		/// </summary>
+		public void GetEyesViewPoint(ref Vector3 location, ref Quaternion rotation) => getEyesViewPoint(Pointer, ref location, ref rotation);
+
+		/// <summary>
 		/// Returns the component of the actor if matches the specified type, optionally with the specified name
 		/// </summary>
 		/// <param name="name">The name of the component</param>
@@ -4486,11 +4491,6 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <returns><c>true</c> if successful</returns>
 		public bool GetMousePosition(ref float x, ref float y) => getMousePosition(Pointer, ref x, ref y);
-
-		/// <summary>
-		/// Retrieves player's point of view for the AI
-		/// </summary>
-		public void GetPlayerViewPoint(ref Vector3 location, ref Quaternion rotation) => getPlayerViewPoint(Pointer, ref location, ref rotation);
 
 		/// <summary>
 		/// Returns the player representation or <c>null</c> on failure

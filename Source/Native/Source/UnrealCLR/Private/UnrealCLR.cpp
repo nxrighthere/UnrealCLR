@@ -388,6 +388,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetDistanceTo;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetHorizontalDistanceTo;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetBounds;
+				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetEyesViewPoint;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetRootComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetInputComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetBlockInput;
@@ -453,7 +454,6 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::IsPaused;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetShowMouseCursor;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetMousePosition;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayerViewPoint;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayer;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayerInput;
 				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetShowMouseCursor;
