@@ -60,10 +60,10 @@ namespace UnrealEngine.Runtime {
 		internal AssemblyLoadContext assembliesContext;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal void CreateAssembliesContext() {
+		internal WeakReference CreateAssembliesContext() {
 			assembliesContext = new AssemblyLoadContext("UnrealEngine", true);
 
-			Core.assembliesContextWeakReference = new WeakReference(assembliesContext, trackResurrection: true);
+			return new WeakReference(assembliesContext, trackResurrection: true);
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
@@ -93,7 +93,7 @@ namespace UnrealEngine.Runtime {
 		internal static unsafe int Initialize(IntPtr functions, int checksum) {
 			try {
 				assembliesContextManager = new AssembliesContextManager();
-				assembliesContextManager.CreateAssembliesContext();
+				assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
 
 				int position = 0;
 				IntPtr* buffer = (IntPtr*)functions;
@@ -238,7 +238,7 @@ namespace UnrealEngine.Runtime {
 				}
 
 				assembliesContextManager = new AssembliesContextManager();
-				assembliesContextManager.CreateAssembliesContext();
+				assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
 			}
 
 			catch (Exception exception) {
