@@ -37,7 +37,7 @@ Building
 ### Auto
 
 #### Compilation
-Create a new or use an existing Unreal Engine C++ or blueprints project. If you are new to Unreal Engine or coming back, please, see video [crash course](https://www.youtube.com/watch?v=3QAHSByU74M). Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run` command. Follow the installation instructions. Open the project after the installation process is complete.
+Create a new or use an existing Unreal Engine C++ or blueprints project. If you are new to Unreal Engine or coming back, please, watch the [crash course](https://www.youtube.com/watch?v=3QAHSByU74M). Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run` command. Follow the installation instructions. Open the project after the installation process is complete.
 
 #### Upgrading
 To upgrade the plugin, re-run the installation process. Recompile custom code with an updated framework.
