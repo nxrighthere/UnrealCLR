@@ -4,7 +4,7 @@
 
 [![PayPal](https://github.com/Rageware/Shields/blob/master/paypal.svg)](https://www.paypal.me/nxrighthere) [![Bountysource](https://github.com/Rageware/Shields/blob/master/bountysource.svg)](https://salt.bountysource.com/checkout/amount?team=nxrighthere) [![Coinbase](https://github.com/Rageware/Shields/blob/master/coinbase.svg)](https://commerce.coinbase.com/checkout/03e11816-b6fc-4e14-b974-29a1d0886697)
 
-UnrealCLR is a plugin which natively integrates .NET Core host into the Unreal Engine with the Common Language Runtime for direct execution of managed code to build a game logic using the full power of C# and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
+UnrealCLR is a plugin which natively integrates .NET Core host into the Unreal Engine with the Common Language Runtime for direct execution of managed code to build a game logic using the full power of C#, F# and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
 
 [API reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md) | [Manual](https://github.com/nxrighthere/UnrealCLR/blob/master/MANUAL.md) | [Roadmap](https://github.com/users/nxrighthere/projects/5?fullscreen=true) | [Legend](https://github.com/nxrighthere/UnrealCLR/blob/master/LEGEND.md) | [Support](https://gumroad.com/l/unrealclr) | [Contact](mailto:nxrighthere@gmail.com)
 
@@ -37,7 +37,7 @@ Building
 ### Auto
 
 #### Compilation
-Create a new or use an existing Unreal Engine C++ or blueprints project. If you are new to Unreal Engine or coming back, please, watch the [crash course](https://www.youtube.com/watch?v=3QAHSByU74M). Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run` command. Follow the installation instructions. Open the project after the installation process is complete.
+Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run` command. Follow the installation instructions. Open the project after the installation process is complete.
 
 #### Upgrading
 To upgrade the plugin, re-run the installation process. Recompile custom code with an updated framework.
@@ -87,7 +87,7 @@ Essentials
 The runtime redirects all unhandled exceptions to log files and on-screen messages of the engine, however, it's highly recommended to use [try/catch](https://docs.microsoft.com/en-us/dotnet/standard/exceptions/how-to-use-the-try-catch-block-to-catch-exceptions) blocks to override redirections with custom handlers. It's necessary to have an attached debugger to properly trace exceptions in the editor or standalone.
 
 ### Memory management
-Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, or blueprints.
+Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, F#, or blueprints.
 
 ### Hot reload
 The plugin is independent of the compilation routine of user assemblies. It's loading assemblies from `%Project%/Managed` folder and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.

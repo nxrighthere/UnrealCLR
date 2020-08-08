@@ -17,7 +17,11 @@ UnrealCLR not tied to how organized the development environment. Any IDE such as
 ### Project
 After [building and installing](https://github.com/nxrighthere/UnrealCLR#building) the plugin, use IDE or [CLI tool](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new) to create a [.NET class library](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new#classlib) project which targets .NET Core in any preferable location. Don't store source code in `%Project%/Managed` folder of the engine's project, it's used exclusively for loading and packaging user assemblies by the plugin.
 
-Add a reference to `UnrealEngine.Framework.dll` assembly located in `Source/Managed/Framework/bin/Release` folder. Create a new or open a C# class file in the .NET project and replace its content with the following code:
+Add a reference to `UnrealEngine.Framework.dll` assembly located in `Source/Managed/Framework/bin/Release` folder.
+
+<details>
+<summary>C#</summary>
+Create a new or open a C# file in the .NET project and replace its content with the following code:
 
 #### Entry point
 ```csharp
@@ -41,6 +45,35 @@ namespace Game {
 	}
 }
 ```
+</details>
+
+<details>
+<summary>F#</summary>
+Create a new or open an F# file in the .NET project and replace its content with the following code:
+
+#### Entry point
+```fsharp
+namespace Game
+
+open System
+open System.Drawing
+open UnrealEngine.Framework
+
+module Main = // Indicates the main entry point for automatic loading by the plugin
+    let OnBeginWorld() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
+
+    let OnEndWorld() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
+
+    let OnPrePhysicsTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
+
+    let OnDuringPhysicsTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
+
+    let OnPostPhysicsTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
+
+    let OnPostUpdateTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
+```
+</details>
+
 All functions of the main entry point are optional, and it's not necessary to implement them for every [tick group](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/Actors/Ticking/index.html).
 
 Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and make sure that no other assemblies of other .NET projects are stored there.
@@ -50,6 +83,10 @@ Assemblies that no longer referenced and unused in the project will persist in `
 Enter the [play mode](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/InEditorTesting/index.html) to execute managed code.
 
 #### Blueprint functions
+
+<details>
+<summary>C#</summary>
+
 ```csharp
 using System;
 using System.Drawing;
@@ -61,6 +98,22 @@ namespace Game {
 	}
 }
 ```
+</details>
+
+<details>
+<summary>F#</summary>
+
+```fsharp
+namespace Game
+
+open System
+open System.Drawing
+open UnrealEngine.Framework
+
+module System = // Custom class for loading functions from blueprints
+    let Function() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Blueprint function invoked!");
+```
+</details>
 
 To run a blueprint function, create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution flow:
 
