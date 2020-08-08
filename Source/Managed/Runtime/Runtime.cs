@@ -54,6 +54,7 @@ namespace UnrealEngine.Runtime {
 	internal sealed class Plugin {
 		internal PluginLoader loader;
 		internal Assembly assembly;
+		internal Dictionary<int, IntPtr> userFunctions;
 	}
 
 	internal sealed class AssembliesContextManager  {
@@ -83,7 +84,6 @@ namespace UnrealEngine.Runtime {
 		internal static IntPtr sharedEvents;
 		internal static IntPtr sharedFunctions;
 		internal static int sharedChecksum;
-		internal static Dictionary<int, IntPtr> userFunctions;
 
 		internal static InvokeDelegate Invoke;
 		internal static ExceptionDelegate Exception;
@@ -149,7 +149,7 @@ namespace UnrealEngine.Runtime {
 			try {
 				string method = Marshal.PtrToStringAuto(methodPointer);
 
-				if (!userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
+				if (!plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
 					Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
 			}
 
@@ -188,7 +188,7 @@ namespace UnrealEngine.Runtime {
 										Type sharedClass = framework.GetType(frameworkName + ".Shared");
 
 										if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
-											userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
+											plugin.userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
 
 											Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
 										} else {
