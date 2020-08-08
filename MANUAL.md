@@ -108,7 +108,7 @@ open System
 open System.Drawing
 open UnrealEngine.Framework
 
-module System = // Custom class for loading functions from blueprints
+module System = // Custom module for loading functions from blueprints
     let Function() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Blueprint function invoked!");
 ```
 </details>
