@@ -93,7 +93,7 @@ Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory 
 The plugin is independent of the compilation routine of user assemblies. It's loading assemblies from `%Project%/Managed` folder and resolving dependencies at runtime after entering/leaving the play mode. The framework of the plugin with the engine API is automatically recognized and loaded as a dependency.
 
 ### Ecosystem compatibility
-The framework replicates the classes hierarchy of the engine with full interoperability support. Any external C++ code, blueprints, and plugins are compatible and extensible with UnrealCLR by design through the engine API.
+The framework replicates the class hierarchy of the engine with full interoperability support. Any external C++ code, blueprints, and plugins are compatible and extensible with UnrealCLR by design through the engine API. The plugin integrated into the engine's building pipeline and ready for packaging out of the box.
 
 Acknowledgments
 --------
