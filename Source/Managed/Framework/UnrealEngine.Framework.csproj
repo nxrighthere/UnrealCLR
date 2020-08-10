@@ -33,10 +33,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DefaultDocumentation" Version="0.6.10" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.0.0" PrivateAssets="all" />
+    <PackageReference Include="DefaultDocumentation" Version="0.6.11" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.3.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.3.0" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
