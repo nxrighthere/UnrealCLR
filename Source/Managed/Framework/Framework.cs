@@ -193,21 +193,29 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Called when actors stop overlapping
 		/// </summary>
-		OnActorEndOverlap
+		OnActorEndOverlap,
+		/// <summary>
+		/// Called when actors hit collisions
+		/// </summary>
+		OnActorHit
 	}
 
 	/// <summary>
-	/// Defines primitive component events
+	/// Defines component events
 	/// </summary>
-	public enum PrimitiveComponentEventType : int {
+	public enum ComponentEventType : int {
 		/// <summary>
-		/// Called when primitive components start overlapping
+		/// Called when components start overlapping
 		/// </summary>
 		OnComponentBeginOverlap,
 		/// <summary>
-		/// Called when primitive components stop overlapping
+		/// Called when components stop overlapping
 		/// </summary>
-		OnComponentEndOverlap
+		OnComponentEndOverlap,
+		/// <summary>
+		/// Called when components hit collisions
+		/// </summary>
+		OnComponentHit
 	}
 
 	/// <summary>
@@ -1190,12 +1198,22 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Delegate for actor overlap events
 	/// </summary>
-	public delegate void ActorOverlapDelegate(ObjectReference overlappedActor, ObjectReference otherActor);
+	public delegate void ActorOverlapDelegate(ObjectReference overlapActor, ObjectReference otherActor);
 
 	/// <summary>
-	/// Delegate for primitive component overlap events
+	/// Delegate for actor hit events
 	/// </summary>
-	public delegate void PrimitiveComponentOverlapDelegate(ObjectReference overlappedComponent, ObjectReference otherComponent);
+	public delegate void ActorHitDelegate(ObjectReference hitActor, ObjectReference otherActor, in Vector3 normalImpulse, in Hit hit);
+
+	/// <summary>
+	/// Delegate for component overlap events
+	/// </summary>
+	public delegate void ComponentOverlapDelegate(ObjectReference overlapComponent, ObjectReference otherComponent);
+
+	/// <summary>
+	/// Delegate for component hit events
+	/// </summary>
+	public delegate void ComponentHitDelegate(ObjectReference hitComponent, ObjectReference otherComponent, in Vector3 normalImpulse, in Hit hit);
 
 	/// <summary>
 	/// Provides additional static constants and methods for mathematical functions that are lack in <see cref="System.Math"/>, <see cref="System.MathF"/>, and <see cref="System.Numerics"/>
@@ -3368,11 +3386,26 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Sets the static callback function that is called when actors hit collisions
+		/// </summary>
+		/// <param name="callback">The static function to call when an actor hit another one</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void SetOnActorHitCallback(ActorHitDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
+
+			setOnActorHitCallback(callback.Method.MethodHandle.GetFunctionPointer());
+		}
+
+		/// <summary>
 		/// Sets the static callback function that is called when primitive components start overlapping
 		/// </summary>
 		/// <param name="callback">The static function to call when a primitive component start overlapping with another one</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
-		public static void SetOnComponentBeginOverlapCallback(PrimitiveComponentOverlapDelegate callback) {
+		public static void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
@@ -3387,7 +3420,7 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <param name="callback">The static function to call when a primitive component end overlapping with another one</param>
 		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
-		public static void SetOnComponentEndOverlapCallback(PrimitiveComponentOverlapDelegate callback) {
+		public static void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
@@ -3395,6 +3428,21 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentException(nameof(callback) + " should be static");
 
 			setOnComponentEndOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+		}
+
+		/// <summary>
+		/// Sets the static callback function that is called when components hit collisions
+		/// </summary>
+		/// <param name="callback">The static function to call when a primitive component hit another one</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void SetOnComponentHitCallback(ComponentHitDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
+
+			setOnComponentHitCallback(callback.Method.MethodHandle.GetFunctionPointer());
 		}
 
 		/// <summary>
@@ -6832,14 +6880,6 @@ namespace UnrealEngine.Framework {
 		public float Mass => getMass(Pointer);
 
 		/// <summary>
-		/// Gets or sets whether the component should generate overlap events when it's overlapping other components
-		/// </summary>
-		public bool GenerateOverlapEvents {
-			get => getGenerateOverlapEvents(Pointer);
-			set => setGenerateOverlapEvents(Pointer, value);
-		}
-
-		/// <summary>
 		/// Gets or sets whether the component should cast a shadow
 		/// </summary>
 		public bool CastShadow {
@@ -7024,6 +7064,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Sets whether the component should generate overlap events when it's overlaps other components
+		/// </summary>
+		public void SetGenerateOverlapEvents(bool value) => setGenerateOverlapEvents(Pointer, value);
+
+		/// <summary>
+		/// Sets whether the component should generate hit events when it's collides with other components
+		/// </summary>
+		public void SetGenerateHitEvents(bool value) => setGenerateHitEvents(Pointer, value);
+
+		/// <summary>
 		/// Sets the mass in kilograms of a rigid body
 		/// </summary>
 		public void SetMass(float mass, string boneName = null) => setMass(Pointer, mass, boneName);
@@ -7140,12 +7190,12 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Registers an event notification for the primitive component
 		/// </summary>
-		public void RegisterEvent(PrimitiveComponentEventType type) => registerEvent(Pointer, type);
+		public void RegisterEvent(ComponentEventType type) => registerEvent(Pointer, type);
 
 		/// <summary>
 		/// Unregisters an event notification for the primitive component
 		/// </summary>
-		public void UnregisterEvent(PrimitiveComponentEventType type) => unregisterEvent(Pointer, type);
+		public void UnregisterEvent(ComponentEventType type) => unregisterEvent(Pointer, type);
 	}
 
 	/// <summary>

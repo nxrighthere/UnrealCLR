@@ -13,3 +13,7 @@ Called when actors start overlapping
 `OnActorEndOverlap` 1  
 Called when actors stop overlapping  
   
+<a name='ActorEventType-OnActorHit'></a>
+`OnActorHit` 2  
+Called when actors hit collisions  
+  

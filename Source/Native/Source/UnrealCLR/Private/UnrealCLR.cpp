@@ -298,8 +298,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetFirstPlayerController;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnActorBeginOverlapCallback;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnActorEndOverlapCallback;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnActorHitCallback;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnComponentBeginOverlapCallback;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnComponentEndOverlapCallback;
+				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnComponentHitCallback;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetSimulatePhysics;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetGravity;
 				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetWorldOrigin;
@@ -705,7 +707,6 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddRadialImpulse;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddTorqueInDegrees;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddTorqueInRadians;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetGenerateOverlapEvents;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetMass;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocity;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocityAtPoint;
@@ -721,6 +722,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetAngularDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetLinearDamping;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetGenerateOverlapEvents;
+				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetGenerateHitEvents;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetMass;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCenterOfMass;
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetPhysicsLinearVelocity;
@@ -1099,9 +1101,13 @@ void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
 		reinterpret_cast<void(*)(void*)>(ManagedFunction)(Value.Pointer);
 	} else if (Value.Type == ArgumentType::Object) {
 		if (Value.Object.Type == ObjectType::ActorOverlapDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Data[0]), static_cast<AActor*>(Value.Object.Data[1]));
-		} else if (Value.Object.Type == ObjectType::PrimitiveComponentOverlapDelegate) {
-			reinterpret_cast<UnrealCLRFramework::PrimitiveComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Data[0]), static_cast<UPrimitiveComponent*>(Value.Object.Data[1]));
+			reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]), static_cast<AActor*>(Value.Object.Parameters[1]));
+		} else if (Value.Object.Type == ObjectType::ActorHitDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ActorHitDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]), static_cast<AActor*>(Value.Object.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Object.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Object.Parameters[3]));
+		} else if (Value.Object.Type == ObjectType::ComponentOverlapDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Object.Parameters[1]));
+		} else if (Value.Object.Type == ObjectType::ComponentHitDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ComponentHitDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Object.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Object.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Object.Parameters[3]));
 		}
 	}
 }

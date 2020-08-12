@@ -75,12 +75,14 @@ namespace UnrealCLRFramework {
 
 	enum struct ActorEventType : int32 {
 		OnActorBeginOverlap,
-		OnActorEndOverlap
+		OnActorEndOverlap,
+		OnActorHit
 	};
 
-	enum struct PrimitiveComponentEventType : int32 {
+	enum struct ComponentEventType : int32 {
 		OnComponentBeginOverlap,
-		OnComponentEndOverlap
+		OnComponentEndOverlap,
+		OnComponentHit
 	};
 
 	struct Color {
@@ -209,7 +211,11 @@ namespace UnrealCLRFramework {
 
 	typedef void (*ActorOverlapDelegate)(AActor*, AActor*);
 
-	typedef void (*PrimitiveComponentOverlapDelegate)(UPrimitiveComponent*, UPrimitiveComponent*);
+	typedef void (*ActorHitDelegate)(AActor* HitActor, AActor* OtherActor, Vector3* NormalImpulse, Hit* Hit);
+
+	typedef void (*ComponentOverlapDelegate)(UPrimitiveComponent*, UPrimitiveComponent*);
+
+	typedef void (*ComponentHitDelegate)(UPrimitiveComponent* HitComponent, UPrimitiveComponent* OtherComponent, Vector3* NormalImpulse, Hit* Hit);
 
 	// Enumerable
 
@@ -393,8 +399,10 @@ namespace UnrealCLRFramework {
 		static APlayerController* GetFirstPlayerController();
 		static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback);
 		static void SetOnActorEndOverlapCallback(ActorOverlapDelegate Callback);
-		static void SetOnComponentBeginOverlapCallback(PrimitiveComponentOverlapDelegate Callback);
-		static void SetOnComponentEndOverlapCallback(PrimitiveComponentOverlapDelegate Callback);
+		static void SetOnActorHitCallback(ActorHitDelegate Callback);
+		static void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate Callback);
+		static void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate Callback);
+		static void SetOnComponentHitCallback(ComponentHitDelegate Callback);
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
 		static bool SetWorldOrigin(const Vector3* Value);
@@ -751,7 +759,6 @@ namespace UnrealCLRFramework {
 		static void AddRadialImpulse(UPrimitiveComponent* PrimitiveComponent, const Vector3* Origin, float Radius, float Strength, bool LinearFalloff, bool AccelerationChange);
 		static void AddTorqueInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Torque, const char* BoneName, bool AccelerationChange);
 		static void AddTorqueInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* Torque, const char* BoneName, bool AccelerationChange);
-		static bool GetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent);
 		static float GetMass(UPrimitiveComponent* PrimitiveComponent);
 		static void GetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName);
 		static void GetPhysicsLinearVelocityAtPoint(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const Vector3* Point, const char* BoneName);
@@ -767,6 +774,7 @@ namespace UnrealCLRFramework {
 		static float GetAngularDamping(UPrimitiveComponent* PrimitiveComponent);
 		static float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent);
 		static void SetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent, bool Value);
+		static void SetGenerateHitEvents(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName);
 		static void SetCenterOfMass(UPrimitiveComponent* PrimitiveComponent, const Vector3* Offset, const char* BoneName);
 		static void SetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, const Vector3* Velocity, bool AddToCurrent, const char* BoneName);
@@ -792,8 +800,8 @@ namespace UnrealCLRFramework {
 		static void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent);
 		static void ClearMoveIgnoreComponents(UPrimitiveComponent* PrimitiveComponent);
 		static UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
-		static void RegisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type);
-		static void UnregisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type);
+		static void RegisterEvent(UPrimitiveComponent* PrimitiveComponent, ComponentEventType Type);
+		static void UnregisterEvent(UPrimitiveComponent* PrimitiveComponent, ComponentEventType Type);
 	}
 
 	namespace ShapeComponent {

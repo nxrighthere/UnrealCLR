@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1E8;
+		internal const int checksum = 0x1EA;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -184,8 +184,10 @@ namespace UnrealEngine.Framework {
 				World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
 				World.setOnActorBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnActorBeginOverlapCallbackFunction>(worldFunctions[head++]);
 				World.setOnActorEndOverlapCallback = GenerateOptimizedFunction<World.SetOnActorEndOverlapCallbackFunction>(worldFunctions[head++]);
+				World.setOnActorHitCallback = GenerateOptimizedFunction<World.SetOnActorHitCallbackFunction>(worldFunctions[head++]);
 				World.setOnComponentBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentBeginOverlapCallbackFunction>(worldFunctions[head++]);
 				World.setOnComponentEndOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentEndOverlapCallbackFunction>(worldFunctions[head++]);
+				World.setOnComponentHitCallback = GenerateOptimizedFunction<World.SetOnComponentHitCallbackFunction>(worldFunctions[head++]);
 				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
 				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
@@ -545,7 +547,6 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.addRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddRadialImpulseFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addTorqueInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInDegreesFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addTorqueInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInRadiansFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getGenerateOverlapEvents = GenerateOptimizedFunction<PrimitiveComponent.GetGenerateOverlapEventsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getMass = GenerateOptimizedFunction<PrimitiveComponent.GetMassFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityAtPointFunction>(primitiveComponentFunctions[head++]);
@@ -561,6 +562,7 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setGenerateOverlapEvents = GenerateOptimizedFunction<PrimitiveComponent.SetGenerateOverlapEventsFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setGenerateHitEvents = GenerateOptimizedFunction<PrimitiveComponent.SetGenerateHitEventsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setCenterOfMass = GenerateOptimizedFunction<PrimitiveComponent.SetCenterOfMassFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
@@ -1213,8 +1215,10 @@ namespace UnrealEngine.Framework {
 		internal delegate IntPtr GetFirstPlayerControllerFunction();
 		internal delegate void SetOnActorBeginOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetOnActorEndOverlapCallbackFunction(IntPtr callback);
+		internal delegate void SetOnActorHitCallbackFunction(IntPtr callback);
 		internal delegate void SetOnComponentBeginOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetOnComponentEndOverlapCallbackFunction(IntPtr callback);
+		internal delegate void SetOnComponentHitCallbackFunction(IntPtr callback);
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
 		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
@@ -1245,8 +1249,10 @@ namespace UnrealEngine.Framework {
 		internal static GetFirstPlayerControllerFunction getFirstPlayerController;
 		internal static SetOnActorBeginOverlapCallbackFunction setOnActorBeginOverlapCallback;
 		internal static SetOnActorEndOverlapCallbackFunction setOnActorEndOverlapCallback;
+		internal static SetOnActorHitCallbackFunction setOnActorHitCallback;
 		internal static SetOnComponentBeginOverlapCallbackFunction setOnComponentBeginOverlapCallback;
 		internal static SetOnComponentEndOverlapCallbackFunction setOnComponentEndOverlapCallback;
+		internal static SetOnComponentHitCallbackFunction setOnComponentHitCallback;
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
 		internal static SetWorldOriginFunction setWorldOrigin;
@@ -1796,7 +1802,6 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddRadialImpulseFunction(IntPtr primitiveComponent, in Vector3 origin, float radius, float strength, Bool linearFalloff, Bool accelerationChange);
 		internal delegate void AddTorqueInDegreesFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
 		internal delegate void AddTorqueInRadiansFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
-		internal delegate Bool GetGenerateOverlapEventsFunction(IntPtr primitiveComponent);
 		internal delegate float GetMassFunction(IntPtr primitiveComponent);
 		internal delegate void GetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
 		internal delegate void GetPhysicsLinearVelocityAtPointFunction(IntPtr primitiveComponent, ref Vector3 value, in Vector3 point, string boneName);
@@ -1812,6 +1817,7 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetAngularDampingFunction(IntPtr primitiveComponent);
 		internal delegate float GetLinearDampingFunction(IntPtr primitiveComponent);
 		internal delegate void SetGenerateOverlapEventsFunction(IntPtr primitiveComponent, Bool value);
+		internal delegate void SetGenerateHitEventsFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetMassFunction(IntPtr primitiveComponent, float mass, string boneName);
 		internal delegate void SetCenterOfMassFunction(IntPtr primitiveComponent, in Vector3 offset, string boneName);
 		internal delegate void SetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, in Vector3 velocity, Bool addToCurrent, string boneName);
@@ -1837,8 +1843,8 @@ namespace UnrealEngine.Framework {
 		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
 		internal delegate void ClearMoveIgnoreComponentsFunction(IntPtr primitiveComponent);
 		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
-		internal delegate void RegisterEventFunction(IntPtr primitiveComponent, PrimitiveComponentEventType type);
-		internal delegate void UnregisterEventFunction(IntPtr primitiveComponent, PrimitiveComponentEventType type);
+		internal delegate void RegisterEventFunction(IntPtr primitiveComponent, ComponentEventType type);
+		internal delegate void UnregisterEventFunction(IntPtr primitiveComponent, ComponentEventType type);
 
 		internal static IsGravityEnabledFunction isGravityEnabled;
 		internal static IsOverlappingComponentFunction isOverlappingComponent;
@@ -1852,7 +1858,6 @@ namespace UnrealEngine.Framework {
 		internal static AddRadialImpulseFunction addRadialImpulse;
 		internal static AddTorqueInDegreesFunction addTorqueInDegrees;
 		internal static AddTorqueInRadiansFunction addTorqueInRadians;
-		internal static GetGenerateOverlapEventsFunction getGenerateOverlapEvents;
 		internal static GetMassFunction getMass;
 		internal static GetPhysicsLinearVelocityFunction getPhysicsLinearVelocity;
 		internal static GetPhysicsLinearVelocityAtPointFunction getPhysicsLinearVelocityAtPoint;
@@ -1868,6 +1873,7 @@ namespace UnrealEngine.Framework {
 		internal static GetAngularDampingFunction getAngularDamping;
 		internal static GetLinearDampingFunction getLinearDamping;
 		internal static SetGenerateOverlapEventsFunction setGenerateOverlapEvents;
+		internal static SetGenerateHitEventsFunction setGenerateHitEvents;
 		internal static SetMassFunction setMass;
 		internal static SetCenterOfMassFunction setCenterOfMass;
 		internal static SetPhysicsLinearVelocityFunction setPhysicsLinearVelocity;

@@ -267,20 +267,28 @@ namespace UnrealCLRFramework {
 				if (Condition Actor->OnActorEndOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorEndOverlap))\
 					Actor->OnActorEndOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorEndOverlap);\
 				break;\
+			case ActorEventType::OnActorHit:\
+				if (Condition Actor->OnActorHit.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorHit))\
+					Actor->OnActorHit. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorHit);\
+				break;\
 			default:\
 				break;\
 		}\
 	}
 
-	#define UNREALCLR_SET_PRIMITIVE_COMPONENT_EVENT(Type, Condition, Method) {\
+	#define UNREALCLR_SET_COMPONENT_EVENT(Type, Condition, Method) {\
 		switch (Type) {\
-			case PrimitiveComponentEventType::OnComponentBeginOverlap:\
+			case ComponentEventType::OnComponentBeginOverlap:\
 				if (Condition PrimitiveComponent->OnComponentBeginOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentBeginOverlap))\
 					PrimitiveComponent->OnComponentBeginOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentBeginOverlap);\
 				break;\
-			case PrimitiveComponentEventType::OnComponentEndOverlap:\
+			case ComponentEventType::OnComponentEndOverlap:\
 				if (Condition PrimitiveComponent->OnComponentEndOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentEndOverlap))\
 					PrimitiveComponent->OnComponentEndOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentEndOverlap);\
+				break;\
+			case ComponentEventType::OnComponentHit:\
+				if (Condition PrimitiveComponent->OnComponentHit.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentHit))\
+					PrimitiveComponent->OnComponentHit. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentHit);\
 				break;\
 			default:\
 				break;\
@@ -938,12 +946,20 @@ namespace UnrealCLRFramework {
 			UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap] = Callback;
 		}
 
-		void SetOnComponentBeginOverlapCallback(PrimitiveComponentOverlapDelegate Callback) {
+		void SetOnActorHitCallback(ActorHitDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorHit] = Callback;
+		}
+
+		void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate Callback) {
 			UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap] = Callback;
 		}
 
-		void SetOnComponentEndOverlapCallback(PrimitiveComponentOverlapDelegate Callback) {
+		void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate Callback) {
 			UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap] = Callback;
+		}
+
+		void SetOnComponentHitCallback(ComponentHitDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit] = Callback;
 		}
 
 		void SetSimulatePhysics(bool Value) {
@@ -2154,10 +2170,6 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->AddTorqueInRadians(*Torque, boneName, AccelerationChange);
 		}
 
-		bool GetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent) {
-			return PrimitiveComponent->GetGenerateOverlapEvents();
-		}
-
 		float GetMass(UPrimitiveComponent* PrimitiveComponent) {
 			return PrimitiveComponent->GetMass();
 		}
@@ -2238,6 +2250,10 @@ namespace UnrealCLRFramework {
 
 		void SetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent, bool Value) {
 			PrimitiveComponent->SetGenerateOverlapEvents(Value);
+		}
+
+		void SetGenerateHitEvents(UPrimitiveComponent* PrimitiveComponent, bool Value) {
+			PrimitiveComponent->SetNotifyRigidBodyCollision(Value);
 		}
 
 		void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName) {
@@ -2354,12 +2370,12 @@ namespace UnrealCLRFramework {
 			return PrimitiveComponent->CreateAndSetMaterialInstanceDynamic(ElementIndex);
 		}
 
-		void RegisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type) {
-			UNREALCLR_SET_PRIMITIVE_COMPONENT_EVENT(Type, !, AddDynamic);
+		void RegisterEvent(UPrimitiveComponent* PrimitiveComponent, ComponentEventType Type) {
+			UNREALCLR_SET_COMPONENT_EVENT(Type, !, AddDynamic);
 		}
 
-		void UnregisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type) {
-			UNREALCLR_SET_PRIMITIVE_COMPONENT_EVENT(Type, UNREALCLR_NONE, RemoveDynamic);
+		void UnregisterEvent(UPrimitiveComponent* PrimitiveComponent, ComponentEventType Type) {
+			UNREALCLR_SET_COMPONENT_EVENT(Type, UNREALCLR_NONE, RemoveDynamic);
 		}
 	}
 

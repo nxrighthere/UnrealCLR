@@ -14,46 +14,78 @@
 
 #include "UnrealCLRManager.h"
 
-void UUnrealCLRManager::ActorBeginOverlap(AActor* OverlappedActor, AActor* OtherActor) {
+void UUnrealCLRManager::ActorBeginOverlap(AActor* OverlapActor, AActor* OtherActor) {
 	if (UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap]) {
-		void* actors[2] = {
-			OverlappedActor,
+		void* parameters[2] = {
+			OverlapActor,
 			OtherActor
 		};
 
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap], UnrealCLR::Object(actors, UnrealCLR::ObjectType::ActorOverlapDelegate));
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorOverlapDelegate));
 	}
 }
 
-void UUnrealCLRManager::ActorEndOverlap(AActor* OverlappedActor, AActor* OtherActor) {
+void UUnrealCLRManager::ActorEndOverlap(AActor* OverlapActor, AActor* OtherActor) {
 	if (UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap]) {
-		void* actors[2] = {
-			OverlappedActor,
+		void* parameters[2] = {
+			OverlapActor,
 			OtherActor
 		};
 
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap], UnrealCLR::Object(actors, UnrealCLR::ObjectType::ActorOverlapDelegate));
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorOverlapDelegate));
 	}
 }
 
-void UUnrealCLRManager::ComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult) {
+void UUnrealCLRManager::ActorHit(AActor* HitActor, AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit) {
+	if (UnrealCLR::Shared::Events[UnrealCLR::OnActorHit]) {
+		UnrealCLRFramework::Vector3 normalImpulse(NormalImpulse);
+		UnrealCLRFramework::Hit hit(Hit);
+
+		void* parameters[4] = {
+			HitActor,
+			OtherActor,
+			&normalImpulse,
+			&hit
+		};
+
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnActorHit], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorHitDelegate));
+	}
+}
+
+void UUnrealCLRManager::ComponentBeginOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult) {
 	if (UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap]) {
-		void* primitiveComponents[2] = {
-			OverlappedComponent,
+		void* parameters[2] = {
+			OverlapComponent,
 			OtherComponent
 		};
 
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap], UnrealCLR::Object(primitiveComponents, UnrealCLR::ObjectType::PrimitiveComponentOverlapDelegate));
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentOverlapDelegate));
 	}
 }
 
-void UUnrealCLRManager::ComponentEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex) {
+void UUnrealCLRManager::ComponentEndOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex) {
 	if (UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap]) {
-		void* primitiveComponents[2] = {
-			OverlappedComponent,
+		void* parameters[2] = {
+			OverlapComponent,
 			OtherComponent
 		};
 
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap], UnrealCLR::Object(primitiveComponents, UnrealCLR::ObjectType::PrimitiveComponentOverlapDelegate));
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentOverlapDelegate));
+	}
+}
+
+void UUnrealCLRManager::ComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit) {
+	if (UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit]) {
+		UnrealCLRFramework::Vector3 normalImpulse(NormalImpulse);
+		UnrealCLRFramework::Hit hit(Hit);
+
+		void* parameters[4] = {
+			HitComponent,
+			OtherComponent,
+			&normalImpulse,
+			&hit
+		};
+
+		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentHitDelegate));
 	}
 }

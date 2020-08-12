@@ -92,7 +92,9 @@ namespace UnrealCLR {
 
 	enum struct ObjectType : int32 {
 		ActorOverlapDelegate,
-		PrimitiveComponentOverlapDelegate
+		ActorHitDelegate,
+		ComponentOverlapDelegate,
+		ComponentHitDelegate
 	};
 
 	enum struct ArgumentType : int32 {
@@ -103,12 +105,27 @@ namespace UnrealCLR {
 		Object
 	};
 
+	enum {
+		OnWorldBegin,
+		OnWorldPrePhysicsTick,
+		OnWorldDuringPhysicsTick,
+		OnWorldPostPhysicsTick,
+		OnWorldPostUpdateTick,
+		OnWorldEnd,
+		OnActorBeginOverlap,
+		OnActorEndOverlap,
+		OnActorHit,
+		OnComponentBeginOverlap,
+		OnComponentEndOverlap,
+		OnComponentHit
+	};
+
 	struct Object {
-		void** Data;
+		void** Parameters;
 		ObjectType Type;
 
-		FORCEINLINE Object(void** Value, ObjectType Type) {
-			this->Data = Value;
+		FORCEINLINE Object(void** Parameters, ObjectType Type) {
+			this->Parameters = Parameters;
 			this->Type = Type;
 		}
 	};
@@ -157,17 +174,6 @@ namespace UnrealCLR {
 	static FString UserAssembliesPath;
 
 	static StatusType Status = StatusType::Stopped;
-
-	constexpr static int32 OnWorldBegin = 0;
-	constexpr static int32 OnWorldPrePhysicsTick = 1;
-	constexpr static int32 OnWorldDuringPhysicsTick = 2;
-	constexpr static int32 OnWorldPostPhysicsTick = 3;
-	constexpr static int32 OnWorldPostUpdateTick = 4;
-	constexpr static int32 OnWorldEnd = 5;
-	constexpr static int32 OnActorBeginOverlap = 6;
-	constexpr static int32 OnActorEndOverlap = 7;
-	constexpr static int32 OnComponentBeginOverlap = 8;
-	constexpr static int32 OnComponentEndOverlap = 9;
 
 	struct PrePhysicsTickFunction : public FTickFunction {
 		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
