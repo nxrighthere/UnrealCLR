@@ -90,10 +90,10 @@ namespace UnrealCLRFramework {
 		uint8 A;
 
 		FORCEINLINE Color(FColor Value) {
-			R = Value.R;
-			G = Value.G;
-			B = Value.B;
-			A = Value.A;
+			this->R = Value.R;
+			this->G = Value.G;
+			this->B = Value.B;
+			this->A = Value.A;
 		}
 
 		FORCEINLINE operator FColor() const { return FColor(R, G, B, A); }
@@ -104,8 +104,8 @@ namespace UnrealCLRFramework {
 		float Y;
 
 		FORCEINLINE Vector2(FVector2D Value) {
-			X = Value.X;
-			Y = Value.Y;
+			this->X = Value.X;
+			this->Y = Value.Y;
 		}
 
 		FORCEINLINE operator FVector2D() const { return FVector2D(X, Y); }
@@ -117,9 +117,9 @@ namespace UnrealCLRFramework {
 		float Z;
 
 		FORCEINLINE Vector3(FVector Value) {
-			X = Value.X;
-			Y = Value.Y;
-			Z = Value.Z;
+			this->X = Value.X;
+			this->Y = Value.Y;
+			this->Z = Value.Z;
 		}
 
 		FORCEINLINE operator FVector() const { return FVector(X, Y, Z); }
@@ -132,10 +132,10 @@ namespace UnrealCLRFramework {
 		float W;
 
 		FORCEINLINE Quaternion(FQuat Value) {
-			X = Value.X;
-			Y = Value.Y;
-			Z = Value.Z;
-			W = Value.W;
+			this->X = Value.X;
+			this->Y = Value.Y;
+			this->Z = Value.Z;
+			this->W = Value.W;
 		}
 
 		FORCEINLINE operator FQuat() const { return FQuat(X, Y, Z, W); }
@@ -148,10 +148,10 @@ namespace UnrealCLRFramework {
 		float A;
 
 		FORCEINLINE LinearColor(FLinearColor Value) {
-			R = Value.R;
-			G = Value.G;
-			B = Value.B;
-			A = Value.A;
+			this->R = Value.R;
+			this->G = Value.G;
+			this->B = Value.B;
+			this->A = Value.A;
 		}
 
 		FORCEINLINE operator FLinearColor() const { return FLinearColor(R, G, B, A); }

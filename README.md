@@ -32,7 +32,7 @@ Building
 ### Prerequisites
 - Unreal Engine 4.25.3 or higher
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html#runtheunrealenginepre-requisiteinstaller) with platform-specific dependencies
-- [.NET Core SDK 3.1.302](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [.NET Core SDK 3.1.401](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 ### Auto
 
