@@ -1087,16 +1087,23 @@ void UnrealCLR::Module::HostError(const char_t* Message) {
 }
 
 void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
-	if (Value.Type == ArgumentType::None)
+	static_assert(sizeof(Argument) != 16, "Invalid size of the [Argument] structure");
+
+	if (Value.Type == ArgumentType::None) {
 		ManagedFunction();
-	else if (Value.Type == ArgumentType::Single)
+	} else if (Value.Type == ArgumentType::Single) {
 		reinterpret_cast<void(*)(float)>(ManagedFunction)(Value.Single);
-	else if (Value.Type == ArgumentType::Integer)
+	} else if (Value.Type == ArgumentType::Integer) {
 		reinterpret_cast<void(*)(uint32_t)>(ManagedFunction)(Value.Integer);
-	else if (Value.Type == ArgumentType::Pointer)
+	} else if (Value.Type == ArgumentType::Pointer) {
 		reinterpret_cast<void(*)(void*)>(ManagedFunction)(Value.Pointer);
-	else if (Value.Type == ArgumentType::Array)
-		reinterpret_cast<void(*)(void*, void*)>(ManagedFunction)(Value.Array[0], Value.Array[1]);
+	} else if (Value.Type == ArgumentType::Object) {
+		if (Value.Object.Type == ObjectType::ActorOverlapDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Data[0]), static_cast<AActor*>(Value.Object.Data[1]));
+		} else if (Value.Object.Type == ObjectType::PrimitiveComponentOverlapDelegate) {
+			reinterpret_cast<UnrealCLRFramework::PrimitiveComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Data[0]), static_cast<UPrimitiveComponent*>(Value.Object.Data[1]));
+		}
+	}
 }
 
 void UnrealCLR::Module::Exception(const char* Message) {

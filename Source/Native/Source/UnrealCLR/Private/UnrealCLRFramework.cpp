@@ -289,15 +289,15 @@ namespace UnrealCLRFramework {
 
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
-	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
-	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the BlendType enumeration");
-	static_assert(CollisionChannel::ECC_MAX != CollisionChannel(34), "Invalid elements count of the CollisionChannel enumeration");
-	static_assert(CollisionResponse::ECR_MAX != CollisionChannel(2), "Invalid elements count of the CollisionResponse enumeration");
-	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the ControllerHand enumeration");
-	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the InputEvent enumeration");
-	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the NetMode enumeration");
+	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the [AudioFadeCurve] enumeration");
+	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the [BlendType] enumeration");
+	static_assert(CollisionChannel::ECC_MAX != CollisionChannel(34), "Invalid elements count of the [CollisionChannel] enumeration");
+	static_assert(CollisionResponse::ECR_MAX != CollisionChannel(2), "Invalid elements count of the [CollisionResponse] enumeration");
+	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the [ControllerHand] enumeration");
+	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the [InputEvent] enumeration");
+	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the [NetMode] enumeration");
 
-	static_assert(sizeof(CollisionShape) != 20, "Invalid size of the CollisionShape structure");
+	static_assert(sizeof(CollisionShape) != 20, "Invalid size of the [CollisionShape] structure");
 
 	namespace Assert {
 		void OutputMessage(const char* Message) {

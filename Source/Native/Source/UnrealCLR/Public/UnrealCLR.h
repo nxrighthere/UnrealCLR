@@ -90,12 +90,27 @@ namespace UnrealCLR {
 		Fatal
 	};
 
+	enum struct ObjectType : int32 {
+		ActorOverlapDelegate,
+		PrimitiveComponentOverlapDelegate
+	};
+
 	enum struct ArgumentType : int32 {
 		None,
 		Single,
 		Integer,
 		Pointer,
-		Array
+		Object
+	};
+
+	struct Object {
+		void** Data;
+		ObjectType Type;
+
+		FORCEINLINE Object(void** Value, ObjectType Type) {
+			this->Data = Value;
+			this->Type = Type;
+		}
 	};
 
 	struct Argument {
@@ -103,28 +118,28 @@ namespace UnrealCLR {
 			float Single;
 			uint32_t Integer;
 			void* Pointer;
-			void** Array;
+			Object Object;
 		};
 		ArgumentType Type;
 
 		FORCEINLINE Argument(float Value) {
-			Single = Value;
-			Type = ArgumentType::Single;
+			this->Single = Value;
+			this->Type = ArgumentType::Single;
 		}
 
 		FORCEINLINE Argument(uint32_t Value) {
-			Integer = Value;
-			Type = ArgumentType::Integer;
+			this->Integer = Value;
+			this->Type = ArgumentType::Integer;
 		}
 
 		FORCEINLINE Argument(void* Value) {
-			Type = !Value ? ArgumentType::None : ArgumentType::Pointer;
-			Pointer = Value;
+			this->Pointer = Value;
+			this->Type = !Value ? ArgumentType::None : ArgumentType::Pointer;
 		}
 
-		FORCEINLINE Argument(void** Value, bool IsArray) {
-			Type = !Value ? ArgumentType::None : (IsArray ? ArgumentType::Array : ArgumentType::Pointer);
-			Array = Value;
+		FORCEINLINE Argument(UnrealCLR::Object Value) {
+			this->Object = Value;
+			this->Type = ArgumentType::Object;
 		}
 	};
 

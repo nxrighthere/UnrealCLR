@@ -38,18 +38,8 @@ namespace UnrealEngine.Runtime {
 		Array
 	}
 
-	[StructLayout(LayoutKind.Explicit)]
 	internal unsafe struct Argument {
-		[FieldOffset(0)]
-		internal float single;
-		[FieldOffset(0)]
-		internal uint integer;
-		[FieldOffset(0)]
-		internal IntPtr pointer;
-		[FieldOffset(0)]
-		internal IntPtr* array;
-		[FieldOffset(8)]
-		internal ArgumentType type;
+		internal fixed byte data[16];
 	}
 
 	internal delegate int InitializeDelegate(IntPtr functions, int checksum);
