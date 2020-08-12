@@ -289,7 +289,7 @@ namespace UnrealCLR {
 
 		static void* ManagedFunctions[4];
 		static void* NativeFunctions[5];
-		static void* Events[10];
+		static void* Events[128];
 		static void* Functions[128];
 	}
 
