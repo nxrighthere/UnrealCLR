@@ -31,17 +31,17 @@ using UnrealEngine.Framework;
 
 namespace Game {
 	public static class Main { // Indicates the main entry point for automatic loading by the plugin
-		public static void OnBeginWorld() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
+		public static void OnWorldBegin() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
 
-		public static void OnEndWorld() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
+		public static void OnWorldEnd() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
 
-		public static void OnPrePhysicsTickWorld(float deltaTime) => Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
+		public static void OnWorldPrePhysicsTick(float deltaTime) => Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
 
-		public static void OnDuringPhysicsTickWorld(float deltaTime) => Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
+		public static void OnWorldDuringPhysicsTick(float deltaTime) => Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
 
-		public static void OnPostPhysicsTickWorld(float deltaTime) => Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
+		public static void OnWorldPostPhysicsTick(float deltaTime) => Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
 
-		public static void OnPostUpdateTickWorld(float deltaTime) => Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
+		public static void OnWorldPostUpdateTick(float deltaTime) => Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
 	}
 }
 ```
@@ -58,17 +58,17 @@ open System.Drawing
 open UnrealEngine.Framework
 
 module Main = // Indicates the main entry point for automatic loading by the plugin
-    let OnBeginWorld() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
+    let OnWorldBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
 
-    let OnEndWorld() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
+    let OnWorldEnd() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
 
-    let OnPrePhysicsTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
+    let OnWorldPrePhysicsTick(deltaTime:single) = Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
 
-    let OnDuringPhysicsTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
+    let OnWorldDuringPhysicsTick(deltaTime:single) = Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
 
-    let OnPostPhysicsTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
+    let OnWorldPostPhysicsTick(deltaTime:single) = Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
 
-    let OnPostUpdateTickWorld(deltaTime:single) = Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
+    let OnWorldPostUpdateTick(deltaTime:single) = Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
 ```
 </details>
 

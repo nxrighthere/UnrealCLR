@@ -13,6 +13,7 @@ Derived
 ### Properties
 - [AngularDamping](./PrimitiveComponent-AngularDamping.md 'UnrealEngine.Framework.PrimitiveComponent.AngularDamping')
 - [CastShadow](./PrimitiveComponent-CastShadow.md 'UnrealEngine.Framework.PrimitiveComponent.CastShadow')
+- [GenerateOverlapEvents](./PrimitiveComponent-GenerateOverlapEvents.md 'UnrealEngine.Framework.PrimitiveComponent.GenerateOverlapEvents')
 - [IsGravityEnabled](./PrimitiveComponent-IsGravityEnabled.md 'UnrealEngine.Framework.PrimitiveComponent.IsGravityEnabled')
 - [LinearDamping](./PrimitiveComponent-LinearDamping.md 'UnrealEngine.Framework.PrimitiveComponent.LinearDamping')
 - [Mass](./PrimitiveComponent-Mass.md 'UnrealEngine.Framework.PrimitiveComponent.Mass')
@@ -40,6 +41,8 @@ Derived
 - [GetPhysicsLinearVelocity(System.Numerics.Vector3, string)](./PrimitiveComponent-GetPhysicsLinearVelocity(Vector3_string).md 'UnrealEngine.Framework.PrimitiveComponent.GetPhysicsLinearVelocity(System.Numerics.Vector3, string)')
 - [GetPhysicsLinearVelocityAtPoint(System.Numerics.Vector3, System.Numerics.Vector3, string)](./PrimitiveComponent-GetPhysicsLinearVelocityAtPoint(Vector3_Vector3_string).md 'UnrealEngine.Framework.PrimitiveComponent.GetPhysicsLinearVelocityAtPoint(System.Numerics.Vector3, System.Numerics.Vector3, string)')
 - [GetSquaredDistanceToCollision(System.Numerics.Vector3, float, System.Numerics.Vector3)](./PrimitiveComponent-GetSquaredDistanceToCollision(Vector3_float_Vector3).md 'UnrealEngine.Framework.PrimitiveComponent.GetSquaredDistanceToCollision(System.Numerics.Vector3, float, System.Numerics.Vector3)')
+- [IsOverlappingComponent(UnrealEngine.Framework.PrimitiveComponent)](./PrimitiveComponent-IsOverlappingComponent(PrimitiveComponent).md 'UnrealEngine.Framework.PrimitiveComponent.IsOverlappingComponent(UnrealEngine.Framework.PrimitiveComponent)')
+- [RegisterEvent(UnrealEngine.Framework.PrimitiveComponentEventType)](./PrimitiveComponent-RegisterEvent(PrimitiveComponentEventType).md 'UnrealEngine.Framework.PrimitiveComponent.RegisterEvent(UnrealEngine.Framework.PrimitiveComponentEventType)')
 - [SetCenterOfMass(System.Numerics.Vector3, string)](./PrimitiveComponent-SetCenterOfMass(Vector3_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetCenterOfMass(System.Numerics.Vector3, string)')
 - [SetCollisionChannel(UnrealEngine.Framework.CollisionChannel)](./PrimitiveComponent-SetCollisionChannel(CollisionChannel).md 'UnrealEngine.Framework.PrimitiveComponent.SetCollisionChannel(UnrealEngine.Framework.CollisionChannel)')
 - [SetCollisionMode(UnrealEngine.Framework.CollisionMode)](./PrimitiveComponent-SetCollisionMode(CollisionMode).md 'UnrealEngine.Framework.PrimitiveComponent.SetCollisionMode(UnrealEngine.Framework.CollisionMode)')
@@ -57,3 +60,4 @@ Derived
 - [SetPhysicsMaxAngularVelocityInDegrees(float, bool, string)](./PrimitiveComponent-SetPhysicsMaxAngularVelocityInDegrees(float_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsMaxAngularVelocityInDegrees(float, bool, string)')
 - [SetPhysicsMaxAngularVelocityInRadians(float, bool, string)](./PrimitiveComponent-SetPhysicsMaxAngularVelocityInRadians(float_bool_string).md 'UnrealEngine.Framework.PrimitiveComponent.SetPhysicsMaxAngularVelocityInRadians(float, bool, string)')
 - [SetSimulatePhysics(bool)](./PrimitiveComponent-SetSimulatePhysics(bool).md 'UnrealEngine.Framework.PrimitiveComponent.SetSimulatePhysics(bool)')
+- [UnregisterEvent(UnrealEngine.Framework.PrimitiveComponentEventType)](./PrimitiveComponent-UnregisterEvent(PrimitiveComponentEventType).md 'UnrealEngine.Framework.PrimitiveComponent.UnregisterEvent(UnrealEngine.Framework.PrimitiveComponentEventType)')

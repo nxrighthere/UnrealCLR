@@ -183,6 +183,34 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines actor events
+	/// </summary>
+	public enum ActorEventType : int {
+		/// <summary>
+		/// Called when actors start overlapping
+		/// </summary>
+		OnActorBeginOverlap,
+		/// <summary>
+		/// Called when actors stop overlapping
+		/// </summary>
+		OnActorEndOverlap
+	}
+
+	/// <summary>
+	/// Defines primitive component events
+	/// </summary>
+	public enum PrimitiveComponentEventType : int {
+		/// <summary>
+		/// Called when primitive components start overlapping
+		/// </summary>
+		OnComponentBeginOverlap,
+		/// <summary>
+		/// Called when primitive components stop overlapping
+		/// </summary>
+		OnComponentEndOverlap
+	}
+
+	/// <summary>
 	/// Defines the animation mode
 	/// </summary>
 	public enum AnimationMode : int {
@@ -517,6 +545,24 @@ namespace UnrealEngine.Framework {
 		/// Returns <c>true</c> if the object is created
 		/// </summary>
 		public bool IsCreated => pointer != IntPtr.Zero && Object.isValid(pointer);
+
+		/// <summary>
+		/// Returns the unique ID of the object, reused by the engine, only unique while the object is alive
+		/// </summary>
+		public uint ID => Object.getID(Pointer);
+
+		/// <summary>
+		/// Returns the name of the object
+		/// </summary>
+		public string Name {
+			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+				Object.getName(Pointer, stringBuffer);
+
+				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			}
+		}
 
 		/// <summary>
 		/// Indicates equality of objects
@@ -1142,6 +1188,16 @@ namespace UnrealEngine.Framework {
 	public delegate void ConsoleCommandDelegate(float value);
 
 	/// <summary>
+	/// Delegate for actor overlap events
+	/// </summary>
+	public delegate void ActorOverlapDelegate(ObjectReference overlappedActor, ObjectReference otherActor);
+
+	/// <summary>
+	/// Delegate for primitive component overlap events
+	/// </summary>
+	public delegate void PrimitiveComponentOverlapDelegate(ObjectReference overlappedComponent, ObjectReference otherComponent);
+
+	/// <summary>
 	/// Provides additional static constants and methods for mathematical functions that are lack in <see cref="System.Math"/>, <see cref="System.MathF"/>, and <see cref="System.Numerics"/>
 	/// </summary>
 	public static class Maths {
@@ -1288,12 +1344,6 @@ namespace UnrealEngine.Framework {
 		// Single-precision
 
 		/// <summary>
-		/// Clamps the specified value
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static float Clamp(float value, float min, float max) => value < min ? min : value > max ? max : value;
-
-		/// <summary>
 		/// Returns the dot product of two float values
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1354,7 +1404,7 @@ namespace UnrealEngine.Framework {
 		/// Loops the value so that it is never larger than length and never smaller than 0.0f
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static float Repeat(float value, float length) => Clamp(value - MathF.Floor(value / length) * length, 0.0f, length);
+		public static float Repeat(float value, float length) => Math.Clamp(value - MathF.Floor(value / length) * length, 0.0f, length);
 
 		/// <summary>
 		/// Interpolates between two values linearly
@@ -2971,31 +3021,31 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Creates and registers a static callback function to a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered
+		/// Creates and registers a static callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered
 		/// </summary>
 		/// <param name="name">The name of the command</param>
 		/// <param name="help">Help text for the command</param>
-		/// <param name="action">The static function to call when the command is executed</param>
+		/// <param name="callback">The static function to call when the command is executed</param>
 		/// <param name="readOnly">If <c>true</c>, cannot be changed by the user from console</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		public static void RegisterCommand(string name, string help, ConsoleCommandDelegate action, bool readOnly = false) {
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void RegisterCommand(string name, string help, ConsoleCommandDelegate callback, bool readOnly = false) {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
 			if (help == null)
 				throw new ArgumentNullException(nameof(help));
 
-			if (action == null)
-				throw new ArgumentNullException(nameof(action));
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
 
-			if (!action.Method.IsStatic)
-				throw new ArgumentException(nameof(action) + " should be static");
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
 
-			registerCommand(name, help, action.Method.MethodHandle.GetFunctionPointer(), readOnly);
+			registerCommand(name, help, callback.Method.MethodHandle.GetFunctionPointer(), readOnly);
 		}
 
 		/// <summary>
-		/// Deletes and unregister a console command or variable
+		/// Deletes and unregisters a console command or variable
 		/// </summary>
 		public static void UnregisterObject(string name) {
 			if (name == null)
@@ -3168,7 +3218,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// The top level representation of a map or a sandbox in which actors and components will exist and be rendered
+	/// The top-level representation of a map or a sandbox in which actors and components will exist and rendered
 	/// </summary>
 	public static partial class World {
 		/// <summary>
@@ -3286,6 +3336,66 @@ namespace UnrealEngine.Framework {
 		/// Retrieves the current location of the <a href="https://docs.unrealengine.com/en-US/Engine/LevelStreaming/WorldBrowser/index.html">world origin</a>
 		/// </summary>
 		public static void GetWorldOrigin(ref Vector3 value) => getWorldOrigin(ref value);
+
+		/// <summary>
+		/// Sets the static callback function that is called when actors start overlapping
+		/// </summary>
+		/// <param name="callback">The static function to call when an actor start overlapping with another one</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
+
+			setOnActorBeginOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+		}
+
+		/// <summary>
+		/// Sets the static callback function that is called when actors end overlapping
+		/// </summary>
+		/// <param name="callback">The static function to call when an actor end overlapping with another one</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void SetOnActorEndOverlapCallback(ActorOverlapDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
+
+			setOnActorEndOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+		}
+
+		/// <summary>
+		/// Sets the static callback function that is called when primitive components start overlapping
+		/// </summary>
+		/// <param name="callback">The static function to call when a primitive component start overlapping with another one</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void SetOnComponentBeginOverlapCallback(PrimitiveComponentOverlapDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
+
+			setOnComponentBeginOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+		}
+
+		/// <summary>
+		/// Sets the static callback function that is called when primitive components end overlapping
+		/// </summary>
+		/// <param name="callback">The static function to call when a primitive component end overlapping with another one</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public static void SetOnComponentEndOverlapCallback(PrimitiveComponentOverlapDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
+
+			setOnComponentEndOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+		}
 
 		/// <summary>
 		/// Sets the gravity applied to all objects in the world
@@ -3559,16 +3669,16 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the static callback function that is called when the console variable value changes
 		/// </summary>
-		/// <param name="action">The static function to call when the value of variable is changed</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		public void SetOnChangedCallback(ConsoleVariableDelegate action) {
-			if (action == null)
-				throw new ArgumentNullException(nameof(action));
+		/// <param name="callback">The static function to call when the value of variable is changed</param>
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public void SetOnChangedCallback(ConsoleVariableDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
 
-			if (!action.Method.IsStatic)
-				throw new ArgumentException(nameof(action) + " should be static");
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
 
-			setOnChangedCallback(Pointer, action.Method.MethodHandle.GetFunctionPointer());
+			setOnChangedCallback(Pointer, callback.Method.MethodHandle.GetFunctionPointer());
 		}
 
 		/// <summary>
@@ -4126,6 +4236,16 @@ namespace UnrealEngine.Framework {
 		/// Indicates whether the actor has a tag
 		/// </summary>
 		public bool HasTag(string tag) => hasTag(Pointer, tag);
+
+		/// <summary>
+		/// Registers an event notification for the actor
+		/// </summary>
+		public void RegisterEvent(ActorEventType type) => registerEvent(Pointer, type);
+
+		/// <summary>
+		/// Unregisters an event notification for the actor
+		/// </summary>
+		public void UnregisterEvent(ActorEventType type) => unregisterEvent(Pointer, type);
 	}
 
 	/// <summary>
@@ -4162,7 +4282,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A box shaped trigger used to generate overlap events
+	/// A box shaped trigger with <see cref="BoxComponent"/> used to generate overlap events
 	/// </summary>
 	public partial class TriggerBox : TriggerBase {
 		internal override ActorType Type => ActorType.TriggerBox;
@@ -4188,7 +4308,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A sphere shaped trigger used to generate overlap events
+	/// A sphere shaped trigger with <see cref="SphereComponent"/> used to generate overlap events
 	/// </summary>
 	public partial class TriggerSphere : TriggerBase {
 		internal override ActorType Type => ActorType.TriggerSphere;
@@ -4214,7 +4334,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A capsule shaped trigger used to generate overlap events
+	/// A capsule shaped trigger with <see cref="CapsuleComponent"/> used to generate overlap events
 	/// </summary>
 	public partial class TriggerCapsule : TriggerBase {
 		internal override ActorType Type => ActorType.TriggerCapsule;
@@ -6094,7 +6214,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Unregister the component, removes it from its outer actor's components array and marks for pending kill
+		/// Unregisters the component, removes it from its outer actor's components array and marks for pending kill
 		/// </summary>
 		/// <param name="promoteChildren">Promotes the children component in the hierarchy during the destruction</param>
 		public void Destroy(bool promoteChildren = false) => destroy(Pointer, promoteChildren);
@@ -6184,40 +6304,40 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <param name="actionName">The name of the action</param>
 		/// <param name="keyEvent">The type of input behavior</param>
-		/// <param name="action">The static function to call when the input is triggered</param>
+		/// <param name="callback">The static function to call when the input is triggered</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		public void BindAction(string actionName, InputEvent keyEvent, InputDelegate action, bool executedWhenPaused = false) {
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public void BindAction(string actionName, InputEvent keyEvent, InputDelegate callback, bool executedWhenPaused = false) {
 			if (actionName == null)
 				throw new ArgumentNullException(nameof(actionName));
 
-			if (action == null)
-				throw new ArgumentNullException(nameof(action));
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
 
-			if (!action.Method.IsStatic)
-				throw new ArgumentException(nameof(action) + " should be static");
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
 
-			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, action.Method.MethodHandle.GetFunctionPointer());
+			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, callback.Method.MethodHandle.GetFunctionPointer());
 		}
 
 		/// <summary>
 		/// Binds a static callback function an axis defined in the project settings or by using <see cref="Engine.AddAxisMapping"/>
 		/// </summary>
 		/// <param name="axisName">The name of the axis</param>
-		/// <param name="action">The static function to call while tracking axis</param>
+		/// <param name="callback">The static function to call while tracking axis</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="action"/> is not static</exception>
-		public void BindAxis(string axisName, InputAxisDelegate action, bool executedWhenPaused = false) {
+		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
+		public void BindAxis(string axisName, InputAxisDelegate callback, bool executedWhenPaused = false) {
 			if (axisName == null)
 				throw new ArgumentNullException(nameof(axisName));
 
-			if (action == null)
-				throw new ArgumentNullException(nameof(action));
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
 
-			if (!action.Method.IsStatic)
-				throw new ArgumentException(nameof(action) + " should be static");
+			if (!callback.Method.IsStatic)
+				throw new ArgumentException(nameof(callback) + " should be static");
 
-			bindAxis(Pointer, axisName, executedWhenPaused, action.Method.MethodHandle.GetFunctionPointer());
+			bindAxis(Pointer, axisName, executedWhenPaused, callback.Method.MethodHandle.GetFunctionPointer());
 		}
 
 		/// <summary>
@@ -6697,9 +6817,27 @@ namespace UnrealEngine.Framework {
 		public bool IsGravityEnabled => isGravityEnabled(Pointer);
 
 		/// <summary>
+		/// Returns <c>true</c> if the component is overlapping another component
+		/// </summary>
+		public bool IsOverlappingComponent(PrimitiveComponent other) {
+			if (other == null)
+				throw new ArgumentNullException(nameof(other));
+
+			return isOverlappingComponent(Pointer, other.Pointer);
+		}
+
+		/// <summary>
 		/// Returns approximate mass in kilograms
 		/// </summary>
 		public float Mass => getMass(Pointer);
+
+		/// <summary>
+		/// Gets or sets whether the component should generate overlap events when it's overlapping other components
+		/// </summary>
+		public bool GenerateOverlapEvents {
+			get => getGenerateOverlapEvents(Pointer);
+			set => setGenerateOverlapEvents(Pointer, value);
+		}
 
 		/// <summary>
 		/// Gets or sets whether the component should cast a shadow
@@ -6998,6 +7136,16 @@ namespace UnrealEngine.Framework {
 
 			return null;
 		}
+
+		/// <summary>
+		/// Registers an event notification for the primitive component
+		/// </summary>
+		public void RegisterEvent(PrimitiveComponentEventType type) => registerEvent(Pointer, type);
+
+		/// <summary>
+		/// Unregisters an event notification for the primitive component
+		/// </summary>
+		public void UnregisterEvent(PrimitiveComponentEventType type) => unregisterEvent(Pointer, type);
 	}
 
 	/// <summary>

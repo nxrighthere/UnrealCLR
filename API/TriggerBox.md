@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## TriggerBox Class
-A box shaped trigger used to generate overlap events  
+A box shaped trigger with [BoxComponent](./BoxComponent.md 'UnrealEngine.Framework.BoxComponent') used to generate overlap events  
 ```csharp
 public class TriggerBox : TriggerBase
 ```

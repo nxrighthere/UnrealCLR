@@ -32,19 +32,22 @@ namespace UnrealEngine.Runtime {
 
 	internal enum ArgumentType : int {
 		None,
-		Float,
+		Single,
 		Integer,
-		Pointer
+		Pointer,
+		Array
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
-	internal struct Argument {
+	internal unsafe struct Argument {
 		[FieldOffset(0)]
-		internal float Float;
+		internal float single;
 		[FieldOffset(0)]
-		internal uint Integer;
+		internal uint integer;
 		[FieldOffset(0)]
-		internal IntPtr Pointer;
+		internal IntPtr pointer;
+		[FieldOffset(0)]
+		internal IntPtr* array;
 		[FieldOffset(8)]
 		internal ArgumentType type;
 	}

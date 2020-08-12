@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1DD;
+		internal const int checksum = 0x1E8;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -182,6 +182,10 @@ namespace UnrealEngine.Framework {
 				World.getActorByTag = GenerateOptimizedFunction<World.GetActorByTagFunction>(worldFunctions[head++]);
 				World.getActorByID = GenerateOptimizedFunction<World.GetActorByIDFunction>(worldFunctions[head++]);
 				World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
+				World.setOnActorBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnActorBeginOverlapCallbackFunction>(worldFunctions[head++]);
+				World.setOnActorEndOverlapCallback = GenerateOptimizedFunction<World.SetOnActorEndOverlapCallbackFunction>(worldFunctions[head++]);
+				World.setOnComponentBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentBeginOverlapCallbackFunction>(worldFunctions[head++]);
+				World.setOnComponentEndOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentEndOverlapCallbackFunction>(worldFunctions[head++]);
 				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
 				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
@@ -265,6 +269,8 @@ namespace UnrealEngine.Framework {
 				Actor.addTag = GenerateOptimizedFunction<Actor.AddTagFunction>(actorFunctions[head++]);
 				Actor.removeTag = GenerateOptimizedFunction<Actor.RemoveTagFunction>(actorFunctions[head++]);
 				Actor.hasTag = GenerateOptimizedFunction<Actor.HasTagFunction>(actorFunctions[head++]);
+				Actor.registerEvent = GenerateOptimizedFunction<Actor.RegisterEventFunction>(actorFunctions[head++]);
+				Actor.unregisterEvent = GenerateOptimizedFunction<Actor.UnregisterEventFunction>(actorFunctions[head++]);
 			}
 
 			unchecked {
@@ -528,6 +534,7 @@ namespace UnrealEngine.Framework {
 				IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
 
 				PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.isOverlappingComponent = GenerateOptimizedFunction<PrimitiveComponent.IsOverlappingComponentFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addAngularImpulseInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInDegreesFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addAngularImpulseInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInRadiansFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addForce = GenerateOptimizedFunction<PrimitiveComponent.AddForceFunction>(primitiveComponentFunctions[head++]);
@@ -538,6 +545,7 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.addRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddRadialImpulseFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addTorqueInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInDegreesFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.addTorqueInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInRadiansFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getGenerateOverlapEvents = GenerateOptimizedFunction<PrimitiveComponent.GetGenerateOverlapEventsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getMass = GenerateOptimizedFunction<PrimitiveComponent.GetMassFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityAtPointFunction>(primitiveComponentFunctions[head++]);
@@ -552,6 +560,7 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.getSquaredDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetSquaredDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setGenerateOverlapEvents = GenerateOptimizedFunction<PrimitiveComponent.SetGenerateOverlapEventsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setCenterOfMass = GenerateOptimizedFunction<PrimitiveComponent.SetCenterOfMassFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
@@ -577,6 +586,8 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.clearMoveIgnoreComponents = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreComponentsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.registerEvent = GenerateOptimizedFunction<PrimitiveComponent.RegisterEventFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.unregisterEvent = GenerateOptimizedFunction<PrimitiveComponent.UnregisterEventFunction>(primitiveComponentFunctions[head++]);
 			}
 
 			unchecked {
@@ -766,42 +777,42 @@ namespace UnrealEngine.Framework {
 								ParameterInfo[] parameterInfos = method.GetParameters();
 
 								if (parameterInfos.Length <= 1) {
-									if (method.Name == "OnBeginWorld") {
+									if (method.Name == "OnWorldBegin") {
 										if (parameterInfos.Length == 0)
 											events[0] = method.MethodHandle.GetFunctionPointer();
 
 										continue;
 									}
 
-									if (method.Name == "OnPrePhysicsTickWorld") {
+									if (method.Name == "OnWorldPrePhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
 											events[1] = method.MethodHandle.GetFunctionPointer();
 
 										continue;
 									}
 
-									if (method.Name == "OnDuringPhysicsTickWorld") {
+									if (method.Name == "OnWorldDuringPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
 											events[2] = method.MethodHandle.GetFunctionPointer();
 
 										continue;
 									}
 
-									if (method.Name == "OnPostPhysicsTickWorld") {
+									if (method.Name == "OnWorldPostPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
 											events[3] = method.MethodHandle.GetFunctionPointer();
 
 										continue;
 									}
 
-									if (method.Name == "OnPostUpdateTickWorld") {
+									if (method.Name == "OnWorldPostUpdateTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
 											events[4] = method.MethodHandle.GetFunctionPointer();
 
 										continue;
 									}
 
-									if (method.Name == "OnEndWorld") {
+									if (method.Name == "OnWorldEnd") {
 										if (parameterInfos.Length == 0)
 											events[5] = method.MethodHandle.GetFunctionPointer();
 
@@ -1121,7 +1132,7 @@ namespace UnrealEngine.Framework {
 		internal delegate IntPtr RegisterVariableIntFunction(string name, string help, int defaultValue, Bool readOnly);
 		internal delegate IntPtr RegisterVariableFloatFunction(string name, string help, float defaultValue, Bool readOnly);
 		internal delegate IntPtr RegisterVariableStringFunction(string name, string help, string defaultValue, Bool readOnly);
-		internal delegate void RegisterCommandFunction(string name, string help, IntPtr function, Bool readOnly);
+		internal delegate void RegisterCommandFunction(string name, string help, IntPtr callback, Bool readOnly);
 		internal delegate void UnregisterObjectFunction(string name);
 
 		internal static IsRegisteredVariableFunction isRegisteredVariable;
@@ -1200,6 +1211,10 @@ namespace UnrealEngine.Framework {
 		internal delegate IntPtr GetActorByTagFunction(string tag, ActorType type);
 		internal delegate IntPtr GetActorByIDFunction(uint iD, ActorType type);
 		internal delegate IntPtr GetFirstPlayerControllerFunction();
+		internal delegate void SetOnActorBeginOverlapCallbackFunction(IntPtr callback);
+		internal delegate void SetOnActorEndOverlapCallbackFunction(IntPtr callback);
+		internal delegate void SetOnComponentBeginOverlapCallbackFunction(IntPtr callback);
+		internal delegate void SetOnComponentEndOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
 		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
@@ -1228,6 +1243,10 @@ namespace UnrealEngine.Framework {
 		internal static GetActorByTagFunction getActorByTag;
 		internal static GetActorByIDFunction getActorByID;
 		internal static GetFirstPlayerControllerFunction getFirstPlayerController;
+		internal static SetOnActorBeginOverlapCallbackFunction setOnActorBeginOverlapCallback;
+		internal static SetOnActorEndOverlapCallbackFunction setOnActorEndOverlapCallback;
+		internal static SetOnComponentBeginOverlapCallbackFunction setOnComponentBeginOverlapCallback;
+		internal static SetOnComponentEndOverlapCallbackFunction setOnComponentEndOverlapCallback;
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
 		internal static SetWorldOriginFunction setWorldOrigin;
@@ -1275,7 +1294,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetIntFunction(IntPtr consoleVariable, int value);
 		internal delegate void SetFloatFunction(IntPtr consoleVariable, float value);
 		internal delegate void SetStringFunction(IntPtr consoleVariable, string value);
-		internal delegate void SetOnChangedCallbackFunction(IntPtr consoleVariable, IntPtr function);
+		internal delegate void SetOnChangedCallbackFunction(IntPtr consoleVariable, IntPtr callback);
 		internal delegate void ClearOnChangedCallbackFunction(IntPtr consoleVariable);
 
 		internal static GetBoolFunction getBool;
@@ -1318,6 +1337,8 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddTagFunction(IntPtr actor, string tag);
 		internal delegate void RemoveTagFunction(IntPtr actor, string tag);
 		internal delegate Bool HasTagFunction(IntPtr actor, string tag);
+		internal delegate void RegisterEventFunction(IntPtr actor, ActorEventType type);
+		internal delegate void UnregisterEventFunction(IntPtr actor, ActorEventType type);
 
 		internal static IsPendingKillFunction isPendingKill;
 		internal static IsRootComponentMovableFunction isRootComponentMovable;
@@ -1346,6 +1367,8 @@ namespace UnrealEngine.Framework {
 		internal static AddTagFunction addTag;
 		internal static RemoveTagFunction removeTag;
 		internal static HasTagFunction hasTag;
+		internal static RegisterEventFunction registerEvent;
+		internal static UnregisterEventFunction unregisterEvent;
 	}
 
 	partial class TriggerBase { }
@@ -1602,8 +1625,8 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool HasBindingsFunction(IntPtr inputComponent);
 		internal delegate int GetActionBindingsNumberFunction(IntPtr inputComponent);
 		internal delegate void ClearActionBindingsFunction(IntPtr inputComponent);
-		internal delegate void BindActionFunction(IntPtr inputComponent, string actionName, InputEvent keyEvent, Bool executedWhenPaused, IntPtr function);
-		internal delegate void BindAxisFunction(IntPtr inputComponent, string axisName, Bool executedWhenPaused, IntPtr function);
+		internal delegate void BindActionFunction(IntPtr inputComponent, string actionName, InputEvent keyEvent, Bool executedWhenPaused, IntPtr callback);
+		internal delegate void BindAxisFunction(IntPtr inputComponent, string axisName, Bool executedWhenPaused, IntPtr callback);
 		internal delegate void RemoveActionBindingFunction(IntPtr inputComponent, string actionName, InputEvent keyEvent);
 		internal delegate Bool GetBlockInputFunction(IntPtr inputComponent);
 		internal delegate void SetBlockInputFunction(IntPtr inputComponent, Bool value);
@@ -1762,6 +1785,7 @@ namespace UnrealEngine.Framework {
 
 	partial class PrimitiveComponent {
 		internal delegate Bool IsGravityEnabledFunction(IntPtr primitiveComponent);
+		internal delegate Bool IsOverlappingComponentFunction(IntPtr primitiveComponent, IntPtr other);
 		internal delegate void AddAngularImpulseInDegreesFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
 		internal delegate void AddAngularImpulseInRadiansFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
 		internal delegate void AddForceFunction(IntPtr primitiveComponent, in Vector3 force, string boneName, Bool accelerationChange);
@@ -1772,6 +1796,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddRadialImpulseFunction(IntPtr primitiveComponent, in Vector3 origin, float radius, float strength, Bool linearFalloff, Bool accelerationChange);
 		internal delegate void AddTorqueInDegreesFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
 		internal delegate void AddTorqueInRadiansFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
+		internal delegate Bool GetGenerateOverlapEventsFunction(IntPtr primitiveComponent);
 		internal delegate float GetMassFunction(IntPtr primitiveComponent);
 		internal delegate void GetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
 		internal delegate void GetPhysicsLinearVelocityAtPointFunction(IntPtr primitiveComponent, ref Vector3 value, in Vector3 point, string boneName);
@@ -1786,6 +1811,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool GetSquaredDistanceToCollisionFunction(IntPtr primitiveComponent, in Vector3 point, ref float squaredDistance, ref Vector3 closestPointOnCollision);
 		internal delegate float GetAngularDampingFunction(IntPtr primitiveComponent);
 		internal delegate float GetLinearDampingFunction(IntPtr primitiveComponent);
+		internal delegate void SetGenerateOverlapEventsFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetMassFunction(IntPtr primitiveComponent, float mass, string boneName);
 		internal delegate void SetCenterOfMassFunction(IntPtr primitiveComponent, in Vector3 offset, string boneName);
 		internal delegate void SetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, in Vector3 velocity, Bool addToCurrent, string boneName);
@@ -1811,8 +1837,11 @@ namespace UnrealEngine.Framework {
 		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
 		internal delegate void ClearMoveIgnoreComponentsFunction(IntPtr primitiveComponent);
 		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
+		internal delegate void RegisterEventFunction(IntPtr primitiveComponent, PrimitiveComponentEventType type);
+		internal delegate void UnregisterEventFunction(IntPtr primitiveComponent, PrimitiveComponentEventType type);
 
 		internal static IsGravityEnabledFunction isGravityEnabled;
+		internal static IsOverlappingComponentFunction isOverlappingComponent;
 		internal static AddAngularImpulseInDegreesFunction addAngularImpulseInDegrees;
 		internal static AddAngularImpulseInRadiansFunction addAngularImpulseInRadians;
 		internal static AddForceFunction addForce;
@@ -1823,6 +1852,7 @@ namespace UnrealEngine.Framework {
 		internal static AddRadialImpulseFunction addRadialImpulse;
 		internal static AddTorqueInDegreesFunction addTorqueInDegrees;
 		internal static AddTorqueInRadiansFunction addTorqueInRadians;
+		internal static GetGenerateOverlapEventsFunction getGenerateOverlapEvents;
 		internal static GetMassFunction getMass;
 		internal static GetPhysicsLinearVelocityFunction getPhysicsLinearVelocity;
 		internal static GetPhysicsLinearVelocityAtPointFunction getPhysicsLinearVelocityAtPoint;
@@ -1837,6 +1867,7 @@ namespace UnrealEngine.Framework {
 		internal static GetSquaredDistanceToCollisionFunction getSquaredDistanceToCollision;
 		internal static GetAngularDampingFunction getAngularDamping;
 		internal static GetLinearDampingFunction getLinearDamping;
+		internal static SetGenerateOverlapEventsFunction setGenerateOverlapEvents;
 		internal static SetMassFunction setMass;
 		internal static SetCenterOfMassFunction setCenterOfMass;
 		internal static SetPhysicsLinearVelocityFunction setPhysicsLinearVelocity;
@@ -1862,6 +1893,8 @@ namespace UnrealEngine.Framework {
 		internal static ClearMoveIgnoreActorsFunction clearMoveIgnoreActors;
 		internal static ClearMoveIgnoreComponentsFunction clearMoveIgnoreComponents;
 		internal static CreateAndSetMaterialInstanceDynamicFunction createAndSetMaterialInstanceDynamic;
+		internal static RegisterEventFunction registerEvent;
+		internal static UnregisterEventFunction unregisterEvent;
 	}
 
 	partial class ShapeComponent {

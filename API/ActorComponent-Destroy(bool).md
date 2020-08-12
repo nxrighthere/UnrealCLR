@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent')
 ## ActorComponent.Destroy(bool) Method
-Unregister the component, removes it from its outer actor's components array and marks for pending kill  
+Unregisters the component, removes it from its outer actor's components array and marks for pending kill  
 ```csharp
 public void Destroy(bool promoteChildren=false);
 ```

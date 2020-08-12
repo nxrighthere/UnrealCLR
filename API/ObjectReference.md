@@ -7,7 +7,9 @@ IEquatable<ObjectReference>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[ObjectReference](./ObjectReference.md 'UnrealEngine.Framework.ObjectReference')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties
+- [ID](./ObjectReference-ID.md 'UnrealEngine.Framework.ObjectReference.ID')
 - [IsCreated](./ObjectReference-IsCreated.md 'UnrealEngine.Framework.ObjectReference.IsCreated')
+- [Name](./ObjectReference-Name.md 'UnrealEngine.Framework.ObjectReference.Name')
 ### Methods
 - [Equals(object)](./ObjectReference-Equals(object).md 'UnrealEngine.Framework.ObjectReference.Equals(object)')
 - [Equals(UnrealEngine.Framework.ObjectReference)](./ObjectReference-Equals(ObjectReference).md 'UnrealEngine.Framework.ObjectReference.Equals(UnrealEngine.Framework.ObjectReference)')

@@ -62,6 +62,7 @@
 
 #include "UnrealCLRFramework.h"
 #include "UnrealCLRLibrary.h"
+#include "UnrealCLRManager.h"
 
 #if WITH_EDITOR
 	#include "Editor.h"
@@ -91,22 +92,24 @@ namespace UnrealCLR {
 
 	enum struct ArgumentType : int32 {
 		None,
-		Float,
+		Single,
 		Integer,
-		Pointer
+		Pointer,
+		Array
 	};
 
 	struct Argument {
 		union {
-			float Float;
+			float Single;
 			uint32_t Integer;
 			void* Pointer;
+			void** Array;
 		};
 		ArgumentType Type;
 
 		FORCEINLINE Argument(float Value) {
-			Float = Value;
-			Type = ArgumentType::Float;
+			Single = Value;
+			Type = ArgumentType::Single;
 		}
 
 		FORCEINLINE Argument(uint32_t Value) {
@@ -118,10 +121,15 @@ namespace UnrealCLR {
 			Type = !Value ? ArgumentType::None : ArgumentType::Pointer;
 			Pointer = Value;
 		}
+
+		FORCEINLINE Argument(void** Value, bool IsArray) {
+			Type = !Value ? ArgumentType::None : (IsArray ? ArgumentType::Array : ArgumentType::Pointer);
+			Array = Value;
+		}
 	};
 
 	typedef void (*ExecuteManagedFunctionDelegate)(void*, Argument);
-	typedef void* (*FindManagedFunctionDelegate)(const char_t* Method, int32_t Optional);
+	typedef void* (*FindManagedFunctionDelegate)(const char_t*, int32_t);
 	typedef void (*LoadAssembliesDelegate)();
 	typedef void (*UnloadAssembliesDelegate)();
 
@@ -135,12 +143,16 @@ namespace UnrealCLR {
 
 	static StatusType Status = StatusType::Stopped;
 
-	constexpr static int32 OnBeginWorld = 0;
-	constexpr static int32 OnPrePhysicsTickWorld = 1;
-	constexpr static int32 OnDuringPhysicsTickWorld = 2;
-	constexpr static int32 OnPostPhysicsTickWorld = 3;
-	constexpr static int32 OnPostUpdateTickWorld = 4;
-	constexpr static int32 OnEndWorld = 5;
+	constexpr static int32 OnWorldBegin = 0;
+	constexpr static int32 OnWorldPrePhysicsTick = 1;
+	constexpr static int32 OnWorldDuringPhysicsTick = 2;
+	constexpr static int32 OnWorldPostPhysicsTick = 3;
+	constexpr static int32 OnWorldPostUpdateTick = 4;
+	constexpr static int32 OnWorldEnd = 5;
+	constexpr static int32 OnActorBeginOverlap = 6;
+	constexpr static int32 OnActorEndOverlap = 7;
+	constexpr static int32 OnComponentBeginOverlap = 8;
+	constexpr static int32 OnComponentEndOverlap = 9;
 
 	struct PrePhysicsTickFunction : public FTickFunction {
 		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
@@ -173,6 +185,7 @@ namespace UnrealCLR {
 		void OnWorldInitializedActors(const UWorld::FActorsInitializedParams& ActorsInitializedParams);
 		void OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources);
 
+		static void RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup);
 		static void HostError(const char_t* Message);
 		static void Invoke(void(*)(), Argument Value);
 		static void Exception(const char* Message);
@@ -190,6 +203,7 @@ namespace UnrealCLR {
 	};
 
 	namespace Engine {
+		static UUnrealCLRManager* Manager;
 		static UWorld* World;
 		static bool TickStarted;
 	}
@@ -254,7 +268,7 @@ namespace UnrealCLR {
 
 		static void* ManagedFunctions[4];
 		static void* NativeFunctions[5];
-		static void* Events[6];
+		static void* Events[10];
 		static void* Functions[128];
 	}
 

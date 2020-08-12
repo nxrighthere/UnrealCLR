@@ -55,6 +55,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [HasTag(string)](./Actor-HasTag(string).md 'UnrealEngine.Framework.Actor.HasTag(string)')
 - [Hide(bool)](./Actor-Hide(bool).md 'UnrealEngine.Framework.Actor.Hide(bool)')
 - [IsOverlappingActor(UnrealEngine.Framework.Actor)](./Actor-IsOverlappingActor(Actor).md 'UnrealEngine.Framework.Actor.IsOverlappingActor(UnrealEngine.Framework.Actor)')
+- [RegisterEvent(UnrealEngine.Framework.ActorEventType)](./Actor-RegisterEvent(ActorEventType).md 'UnrealEngine.Framework.Actor.RegisterEvent(UnrealEngine.Framework.ActorEventType)')
 - [RemoveTag(string)](./Actor-RemoveTag(string).md 'UnrealEngine.Framework.Actor.RemoveTag(string)')
 - [Rename(string)](./Actor-Rename(string).md 'UnrealEngine.Framework.Actor.Rename(string)')
 - [SetBool(string, bool)](./Actor-SetBool(string_bool).md 'UnrealEngine.Framework.Actor.SetBool(string, bool)')
@@ -72,3 +73,4 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [SetULong(string, ulong)](./Actor-SetULong(string_ulong).md 'UnrealEngine.Framework.Actor.SetULong(string, ulong)')
 - [SetUShort(string, ushort)](./Actor-SetUShort(string_ushort).md 'UnrealEngine.Framework.Actor.SetUShort(string, ushort)')
 - [TeleportTo(System.Numerics.Vector3, System.Numerics.Quaternion, bool, bool)](./Actor-TeleportTo(Vector3_Quaternion_bool_bool).md 'UnrealEngine.Framework.Actor.TeleportTo(System.Numerics.Vector3, System.Numerics.Quaternion, bool, bool)')
+- [UnregisterEvent(UnrealEngine.Framework.ActorEventType)](./Actor-UnregisterEvent(ActorEventType).md 'UnrealEngine.Framework.Actor.UnregisterEvent(UnrealEngine.Framework.ActorEventType)')

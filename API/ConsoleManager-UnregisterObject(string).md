@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[ConsoleManager](./ConsoleManager.md 'UnrealEngine.Framework.ConsoleManager')
 ## ConsoleManager.UnregisterObject(string) Method
-Deletes and unregister a console command or variable  
+Deletes and unregisters a console command or variable  
 ```csharp
 public static void UnregisterObject(string name);
 ```

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## TriggerCapsule Class
-A capsule shaped trigger used to generate overlap events  
+A capsule shaped trigger with [CapsuleComponent](./CapsuleComponent.md 'UnrealEngine.Framework.CapsuleComponent') used to generate overlap events  
 ```csharp
 public class TriggerCapsule : TriggerBase
 ```

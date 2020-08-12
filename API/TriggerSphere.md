@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## TriggerSphere Class
-A sphere shaped trigger used to generate overlap events  
+A sphere shaped trigger with [SphereComponent](./SphereComponent.md 'UnrealEngine.Framework.SphereComponent') used to generate overlap events  
 ```csharp
 public class TriggerSphere : TriggerBase
 ```

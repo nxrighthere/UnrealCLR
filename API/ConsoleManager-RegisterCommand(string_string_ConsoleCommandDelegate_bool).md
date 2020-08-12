@@ -1,8 +1,8 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[ConsoleManager](./ConsoleManager.md 'UnrealEngine.Framework.ConsoleManager')
 ## ConsoleManager.RegisterCommand(string, string, UnrealEngine.Framework.ConsoleCommandDelegate, bool) Method
-Creates and registers a static callback function to a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered  
+Creates and registers a static callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered  
 ```csharp
-public static void RegisterCommand(string name, string help, UnrealEngine.Framework.ConsoleCommandDelegate action, bool readOnly=false);
+public static void RegisterCommand(string name, string help, UnrealEngine.Framework.ConsoleCommandDelegate callback, bool readOnly=false);
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-name'></a>
@@ -13,8 +13,8 @@ The name of the command
 `help` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
 Help text for the command  
   
-<a name='UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-action'></a>
-`action` [ConsoleCommandDelegate(float)](./ConsoleCommandDelegate(float).md 'UnrealEngine.Framework.ConsoleCommandDelegate(float)')  
+<a name='UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-callback'></a>
+`callback` [ConsoleCommandDelegate(float)](./ConsoleCommandDelegate(float).md 'UnrealEngine.Framework.ConsoleCommandDelegate(float)')  
 The static function to call when the command is executed  
   
 <a name='UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-readOnly'></a>
@@ -23,4 +23,4 @@ If `true`, cannot be changed by the user from console
   
 #### Exceptions
 [System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [action](#UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-action 'UnrealEngine.Framework.ConsoleManager.RegisterCommand(string, string, UnrealEngine.Framework.ConsoleCommandDelegate, bool).action') is not static  
+Thrown if [callback](#UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-callback 'UnrealEngine.Framework.ConsoleManager.RegisterCommand(string, string, UnrealEngine.Framework.ConsoleCommandDelegate, bool).callback') is not static  

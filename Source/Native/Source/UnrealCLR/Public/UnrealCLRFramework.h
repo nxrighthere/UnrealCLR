@@ -73,6 +73,16 @@ namespace UnrealCLRFramework {
 		Gameplay = 2
 	};
 
+	enum struct ActorEventType : int32 {
+		OnActorBeginOverlap,
+		OnActorEndOverlap
+	};
+
+	enum struct PrimitiveComponentEventType : int32 {
+		OnComponentBeginOverlap,
+		OnComponentEndOverlap
+	};
+
 	struct Color {
 		uint8 B;
 		uint8 G;
@@ -196,6 +206,10 @@ namespace UnrealCLRFramework {
 	typedef void (*ConsoleVariableDelegate)();
 
 	typedef void (*ConsoleCommandDelegate)(float);
+
+	typedef void (*ActorOverlapDelegate)(AActor*, AActor*);
+
+	typedef void (*PrimitiveComponentOverlapDelegate)(UPrimitiveComponent*, UPrimitiveComponent*);
 
 	// Enumerable
 
@@ -332,7 +346,7 @@ namespace UnrealCLRFramework {
 		static IConsoleVariable* RegisterVariableInt(const char* Name, const char* Help, int32 DefaultValue, bool ReadOnly);
 		static IConsoleVariable* RegisterVariableFloat(const char* Name, const char* Help, float DefaultValue, bool ReadOnly);
 		static IConsoleVariable* RegisterVariableString(const char* Name, const char* Help, const char* DefaultValue, bool ReadOnly);
-		static void RegisterCommand(const char* Name, const char* Help, ConsoleCommandDelegate Function, bool ReadOnly);
+		static void RegisterCommand(const char* Name, const char* Help, ConsoleCommandDelegate Callback, bool ReadOnly);
 		static void UnregisterObject(const char* Name);
 	}
 
@@ -377,6 +391,10 @@ namespace UnrealCLRFramework {
 		static AActor* GetActorByTag(const char* Tag, ActorType Type);
 		static AActor* GetActorByID(uint32 ID, ActorType Type);
 		static APlayerController* GetFirstPlayerController();
+		static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback);
+		static void SetOnActorEndOverlapCallback(ActorOverlapDelegate Callback);
+		static void SetOnComponentBeginOverlapCallback(PrimitiveComponentOverlapDelegate Callback);
+		static void SetOnComponentEndOverlapCallback(PrimitiveComponentOverlapDelegate Callback);
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
 		static bool SetWorldOrigin(const Vector3* Value);
@@ -418,7 +436,7 @@ namespace UnrealCLRFramework {
 		static void SetInt(IConsoleVariable* ConsoleVariable, int32 Value);
 		static void SetFloat(IConsoleVariable* ConsoleVariable, float Value);
 		static void SetString(IConsoleVariable* ConsoleVariable, const char* Value);
-		static void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Function);
+		static void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Callback);
 		static void ClearOnChangedCallback(IConsoleVariable* ConsoleVariable);
 	}
 
@@ -450,6 +468,8 @@ namespace UnrealCLRFramework {
 		static void AddTag(AActor* Actor, const char* Tag);
 		static void RemoveTag(AActor* Actor, const char* Tag);
 		static bool HasTag(AActor* Actor, const char* Tag);
+		static void RegisterEvent(AActor* Actor, ActorEventType Type);
+		static void UnregisterEvent(AActor* Actor, ActorEventType Type);
 	}
 
 	namespace TriggerBase { }
@@ -636,8 +656,8 @@ namespace UnrealCLRFramework {
 		static bool HasBindings(UInputComponent* InputComponent);
 		static int32 GetActionBindingsNumber(UInputComponent* InputComponent);
 		static void ClearActionBindings(UInputComponent* InputComponent);
-		static void BindAction(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent, bool ExecutedWhenPaused, InputDelegate Function);
-		static void BindAxis(UInputComponent* InputComponent, const char* AxisName, bool ExecutedWhenPaused, InputAxisDelegate Function);
+		static void BindAction(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent, bool ExecutedWhenPaused, InputDelegate Callback);
+		static void BindAxis(UInputComponent* InputComponent, const char* AxisName, bool ExecutedWhenPaused, InputAxisDelegate Callback);
 		static void RemoveActionBinding(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent);
 		static bool GetBlockInput(UInputComponent* InputComponent);
 		static void SetBlockInput(UInputComponent* InputComponent, bool Value);
@@ -720,6 +740,7 @@ namespace UnrealCLRFramework {
 
 	namespace PrimitiveComponent {
 		static bool IsGravityEnabled(UPrimitiveComponent* PrimitiveComponent);
+		static bool IsOverlappingComponent(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Other);
 		static void AddAngularImpulseInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange);
 		static void AddAngularImpulseInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange);
 		static void AddForce(UPrimitiveComponent* PrimitiveComponent, const Vector3* Force, const char* BoneName, bool AccelerationChange);
@@ -730,6 +751,7 @@ namespace UnrealCLRFramework {
 		static void AddRadialImpulse(UPrimitiveComponent* PrimitiveComponent, const Vector3* Origin, float Radius, float Strength, bool LinearFalloff, bool AccelerationChange);
 		static void AddTorqueInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Torque, const char* BoneName, bool AccelerationChange);
 		static void AddTorqueInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* Torque, const char* BoneName, bool AccelerationChange);
+		static bool GetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent);
 		static float GetMass(UPrimitiveComponent* PrimitiveComponent);
 		static void GetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const char* BoneName);
 		static void GetPhysicsLinearVelocityAtPoint(UPrimitiveComponent* PrimitiveComponent, Vector3* Value, const Vector3* Point, const char* BoneName);
@@ -744,6 +766,7 @@ namespace UnrealCLRFramework {
 		static bool GetSquaredDistanceToCollision(UPrimitiveComponent* PrimitiveComponent, const Vector3* Point, float* SquaredDistance, Vector3* ClosestPointOnCollision);
 		static float GetAngularDamping(UPrimitiveComponent* PrimitiveComponent);
 		static float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent);
+		static void SetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName);
 		static void SetCenterOfMass(UPrimitiveComponent* PrimitiveComponent, const Vector3* Offset, const char* BoneName);
 		static void SetPhysicsLinearVelocity(UPrimitiveComponent* PrimitiveComponent, const Vector3* Velocity, bool AddToCurrent, const char* BoneName);
@@ -769,6 +792,8 @@ namespace UnrealCLRFramework {
 		static void ClearMoveIgnoreActors(UPrimitiveComponent* PrimitiveComponent);
 		static void ClearMoveIgnoreComponents(UPrimitiveComponent* PrimitiveComponent);
 		static UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
+		static void RegisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type);
+		static void UnregisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type);
 	}
 
 	namespace ShapeComponent {

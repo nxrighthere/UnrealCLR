@@ -82,6 +82,7 @@
 - [ObjectReference](./ObjectReference.md 'UnrealEngine.Framework.ObjectReference')
 - [Transform](./Transform.md 'UnrealEngine.Framework.Transform')
 ### Enums
+- [ActorEventType](./ActorEventType.md 'UnrealEngine.Framework.ActorEventType')
 - [AIFocusPriority](./AIFocusPriority.md 'UnrealEngine.Framework.AIFocusPriority')
 - [AnimationMode](./AnimationMode.md 'UnrealEngine.Framework.AnimationMode')
 - [AttachmentTransformRule](./AttachmentTransformRule.md 'UnrealEngine.Framework.AttachmentTransformRule')
@@ -98,11 +99,14 @@
 - [InputEvent](./InputEvent.md 'UnrealEngine.Framework.InputEvent')
 - [LogLevel](./LogLevel.md 'UnrealEngine.Framework.LogLevel')
 - [NetMode](./NetMode.md 'UnrealEngine.Framework.NetMode')
+- [PrimitiveComponentEventType](./PrimitiveComponentEventType.md 'UnrealEngine.Framework.PrimitiveComponentEventType')
 - [TeleportType](./TeleportType.md 'UnrealEngine.Framework.TeleportType')
 - [UpdateTransformFlags](./UpdateTransformFlags.md 'UnrealEngine.Framework.UpdateTransformFlags')
 - [WindowMode](./WindowMode.md 'UnrealEngine.Framework.WindowMode')
 ### Delegates
+- [ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ActorOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')
 - [ConsoleCommandDelegate(float)](./ConsoleCommandDelegate(float).md 'UnrealEngine.Framework.ConsoleCommandDelegate(float)')
 - [ConsoleVariableDelegate()](./ConsoleVariableDelegate().md 'UnrealEngine.Framework.ConsoleVariableDelegate()')
 - [InputAxisDelegate(float)](./InputAxisDelegate(float).md 'UnrealEngine.Framework.InputAxisDelegate(float)')
 - [InputDelegate()](./InputDelegate().md 'UnrealEngine.Framework.InputDelegate()')
+- [PrimitiveComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./PrimitiveComponentOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.PrimitiveComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')

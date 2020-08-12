@@ -13,7 +13,6 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [Angle(System.Numerics.Vector2, System.Numerics.Vector2)](./Maths-Angle(Vector2_Vector2).md 'UnrealEngine.Framework.Maths.Angle(System.Numerics.Vector2, System.Numerics.Vector2)')
 - [Angle(System.Numerics.Vector3, System.Numerics.Vector3)](./Maths-Angle(Vector3_Vector3).md 'UnrealEngine.Framework.Maths.Angle(System.Numerics.Vector3, System.Numerics.Vector3)')
 - [AngleAxis(float, System.Numerics.Vector3)](./Maths-AngleAxis(float_Vector3).md 'UnrealEngine.Framework.Maths.AngleAxis(float, System.Numerics.Vector3)')
-- [Clamp(float, float, float)](./Maths-Clamp(float_float_float).md 'UnrealEngine.Framework.Maths.Clamp(float, float, float)')
 - [ClampMagnitude(System.Numerics.Vector2, float)](./Maths-ClampMagnitude(Vector2_float).md 'UnrealEngine.Framework.Maths.ClampMagnitude(System.Numerics.Vector2, float)')
 - [ClampMagnitude(System.Numerics.Vector3, float)](./Maths-ClampMagnitude(Vector3_float).md 'UnrealEngine.Framework.Maths.ClampMagnitude(System.Numerics.Vector3, float)')
 - [CreateFromYawPitchRoll(float, float, float)](./Maths-CreateFromYawPitchRoll(float_float_float).md 'UnrealEngine.Framework.Maths.CreateFromYawPitchRoll(float, float, float)')

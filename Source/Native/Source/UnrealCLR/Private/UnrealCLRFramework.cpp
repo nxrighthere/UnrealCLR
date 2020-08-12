@@ -257,6 +257,36 @@ namespace UnrealCLRFramework {
 		if (IgnoredComponent)\
 			queryParams.AddIgnoredComponent(IgnoredComponent);
 
+	#define UNREALCLR_SET_ACTOR_EVENT(Type, Condition, Method) {\
+		switch (Type) {\
+			case ActorEventType::OnActorBeginOverlap:\
+				if (Condition Actor->OnActorBeginOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorBeginOverlap))\
+					Actor->OnActorBeginOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorBeginOverlap);\
+				break;\
+			case ActorEventType::OnActorEndOverlap:\
+				if (Condition Actor->OnActorEndOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorEndOverlap))\
+					Actor->OnActorEndOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorEndOverlap);\
+				break;\
+			default:\
+				break;\
+		}\
+	}
+
+	#define UNREALCLR_SET_PRIMITIVE_COMPONENT_EVENT(Type, Condition, Method) {\
+		switch (Type) {\
+			case PrimitiveComponentEventType::OnComponentBeginOverlap:\
+				if (Condition PrimitiveComponent->OnComponentBeginOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentBeginOverlap))\
+					PrimitiveComponent->OnComponentBeginOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentBeginOverlap);\
+				break;\
+			case PrimitiveComponentEventType::OnComponentEndOverlap:\
+				if (Condition PrimitiveComponent->OnComponentEndOverlap.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentEndOverlap))\
+					PrimitiveComponent->OnComponentEndOverlap. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentEndOverlap);\
+				break;\
+			default:\
+				break;\
+		}\
+	}
+
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
 	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the AudioFadeCurve enumeration");
@@ -679,19 +709,19 @@ namespace UnrealCLRFramework {
 			return IConsoleManager::Get().RegisterConsoleVariable(ANSI_TO_TCHAR(Name), ANSI_TO_TCHAR(DefaultValue), ANSI_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
-		void RegisterCommand(const char* Name, const char* Help, ConsoleCommandDelegate Function, bool ReadOnly) {
-			auto function = [Function](const TArray<FString>& Arguments) {
+		void RegisterCommand(const char* Name, const char* Help, ConsoleCommandDelegate Callback, bool ReadOnly) {
+			auto callback = [Callback](const TArray<FString>& Arguments) {
 				if (UnrealCLR::Status == UnrealCLR::StatusType::Running) {
 					float value = 0.0f;
 
 					if (Arguments.Num() > 0)
 						FDefaultValueHelper::ParseFloat(Arguments[0], value);
 
-					UnrealCLR::ExecuteManagedFunction(Function, value);
+					UnrealCLR::ExecuteManagedFunction(Callback, value);
 				}
 			};
 
-			IConsoleManager::Get().RegisterConsoleCommand(ANSI_TO_TCHAR(Name), ANSI_TO_TCHAR(Help), FConsoleCommandWithArgsDelegate::CreateLambda(function), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
+			IConsoleManager::Get().RegisterConsoleCommand(ANSI_TO_TCHAR(Name), ANSI_TO_TCHAR(Help), FConsoleCommandWithArgsDelegate::CreateLambda(callback), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
 		void UnregisterObject(const char* Name) {
@@ -900,6 +930,22 @@ namespace UnrealCLRFramework {
 			return UnrealCLR::Engine::World->GetFirstPlayerController();
 		}
 
+		void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap] = Callback;
+		}
+
+		void SetOnActorEndOverlapCallback(ActorOverlapDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap] = Callback;
+		}
+
+		void SetOnComponentBeginOverlapCallback(PrimitiveComponentOverlapDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap] = Callback;
+		}
+
+		void SetOnComponentEndOverlapCallback(PrimitiveComponentOverlapDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap] = Callback;
+		}
+
 		void SetSimulatePhysics(bool Value) {
 			UnrealCLR::Engine::World->bShouldSimulatePhysics = Value;
 		}
@@ -1093,12 +1139,12 @@ namespace UnrealCLRFramework {
 			ConsoleVariable->Set(ANSI_TO_TCHAR(Value));
 		}
 
-		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Function) {
-			auto function = [Function](IConsoleVariable* ConsoleVariable) {
-				UnrealCLR::ExecuteManagedFunction(Function, nullptr);
+		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Callback) {
+			auto callback = [Callback](IConsoleVariable* ConsoleVariable) {
+				UnrealCLR::ExecuteManagedFunction(Callback, nullptr);
 			};
 
-			ConsoleVariable->SetOnChangedCallback(FConsoleVariableDelegate::CreateLambda(function));
+			ConsoleVariable->SetOnChangedCallback(FConsoleVariableDelegate::CreateLambda(callback));
 		}
 
 		void ClearOnChangedCallback(IConsoleVariable* ConsoleVariable) {
@@ -1304,6 +1350,14 @@ namespace UnrealCLRFramework {
 
 		bool HasTag(AActor* Actor, const char* Tag) {
 			return Actor->ActorHasTag(FName(ANSI_TO_TCHAR(Tag)));
+		}
+
+		void RegisterEvent(AActor* Actor, ActorEventType Type) {
+			UNREALCLR_SET_ACTOR_EVENT(Type, !, AddDynamic);
+		}
+
+		void UnregisterEvent(AActor* Actor, ActorEventType Type) {
+			UNREALCLR_SET_ACTOR_EVENT(Type, UNREALCLR_NONE, RemoveDynamic);
 		}
 	}
 
@@ -1662,23 +1716,23 @@ namespace UnrealCLRFramework {
 			InputComponent->ClearActionBindings();
 		}
 
-		void BindAction(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent, bool ExecutedWhenPaused, InputDelegate Function) {
+		void BindAction(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent, bool ExecutedWhenPaused, InputDelegate Callback) {
 			FInputActionBinding actionBinding(FName(ANSI_TO_TCHAR(ActionName)), KeyEvent);
 
 			actionBinding.bExecuteWhenPaused = ExecutedWhenPaused;
-			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Function]() {
-				UnrealCLR::ExecuteManagedFunction(Function, nullptr);
+			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Callback]() {
+				UnrealCLR::ExecuteManagedFunction(Callback, nullptr);
 			});
 
 			InputComponent->AddActionBinding(actionBinding);
 		}
 
-		void BindAxis(UInputComponent* InputComponent, const char* AxisName, bool ExecutedWhenPaused, InputAxisDelegate Function) {
+		void BindAxis(UInputComponent* InputComponent, const char* AxisName, bool ExecutedWhenPaused, InputAxisDelegate Callback) {
 			FInputAxisBinding axisBinding(FName(ANSI_TO_TCHAR(AxisName)));
 
 			axisBinding.bExecuteWhenPaused = ExecutedWhenPaused;
-			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Function](float AxisValue) {
-				UnrealCLR::ExecuteManagedFunction(Function, AxisValue);
+			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Callback](float AxisValue) {
+				UnrealCLR::ExecuteManagedFunction(Callback, AxisValue);
 			});
 
 			InputComponent->AxisBindings.Emplace(axisBinding);
@@ -2037,6 +2091,10 @@ namespace UnrealCLRFramework {
 			return PrimitiveComponent->IsGravityEnabled();
 		}
 
+		bool IsOverlappingComponent(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Other) {
+			return PrimitiveComponent->IsOverlappingComponent(Other);
+		}
+
 		void AddAngularImpulseInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
@@ -2094,6 +2152,10 @@ namespace UnrealCLRFramework {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
 			PrimitiveComponent->AddTorqueInRadians(*Torque, boneName, AccelerationChange);
+		}
+
+		bool GetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent) {
+			return PrimitiveComponent->GetGenerateOverlapEvents();
 		}
 
 		float GetMass(UPrimitiveComponent* PrimitiveComponent) {
@@ -2172,6 +2234,10 @@ namespace UnrealCLRFramework {
 
 		float GetLinearDamping(UPrimitiveComponent* PrimitiveComponent) {
 			return PrimitiveComponent->GetLinearDamping();
+		}
+
+		void SetGenerateOverlapEvents(UPrimitiveComponent* PrimitiveComponent, bool Value) {
+			PrimitiveComponent->SetGenerateOverlapEvents(Value);
 		}
 
 		void SetMass(UPrimitiveComponent* PrimitiveComponent, float Mass, const char* BoneName) {
@@ -2286,6 +2352,14 @@ namespace UnrealCLRFramework {
 
 		UMaterialInstanceDynamic* CreateAndSetMaterialInstanceDynamic(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex) {
 			return PrimitiveComponent->CreateAndSetMaterialInstanceDynamic(ElementIndex);
+		}
+
+		void RegisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type) {
+			UNREALCLR_SET_PRIMITIVE_COMPONENT_EVENT(Type, !, AddDynamic);
+		}
+
+		void UnregisterEvent(UPrimitiveComponent* PrimitiveComponent, PrimitiveComponentEventType Type) {
+			UNREALCLR_SET_PRIMITIVE_COMPONENT_EVENT(Type, UNREALCLR_NONE, RemoveDynamic);
 		}
 	}
 

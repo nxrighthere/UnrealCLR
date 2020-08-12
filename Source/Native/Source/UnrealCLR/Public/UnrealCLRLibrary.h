@@ -23,9 +23,9 @@ struct UNREALCLR_API FManagedFunction {
 
 	public:
 
-	FManagedFunction();
-
 	void* Pointer;
+
+	FManagedFunction();
 };
 
 UCLASS()
