@@ -29,3 +29,9 @@ https://www.gamedev.net/news/unrealclr-released-a-cnet-core-plugin-for-ue4-r1374
 https://indiegamesjp.dev/?p=1931 </br>
 https://twitter.com/nx_righthere/status/1272555274180706304 </br>
 https://twitter.com/nx_righthere/status/1277405597055561732 </br>
+
+#### A video overview by the Game From Scratch
+
+https://www.youtube.com/watch?v=t8nP0IEWLZU </br>
+https://gamefromscratch.com/getting-started-with-unrealclr/ </br>
+https://twitter.com/gamefromscratch/status/1293964070689951744
