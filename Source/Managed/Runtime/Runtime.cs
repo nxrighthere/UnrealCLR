@@ -164,7 +164,15 @@ namespace UnrealEngine.Runtime {
 					IEnumerable<string> assemblies = Directory.EnumerateFiles(folder, "*.dll", SearchOption.AllDirectories);
 
 					foreach (string assembly in assemblies) {
-						AssemblyName name = AssemblyName.GetAssemblyName(assembly);
+						AssemblyName name = null;
+
+						try {
+							name = AssemblyName.GetAssemblyName(assembly);
+						}
+
+						catch (BadImageFormatException) {
+							continue;
+						}
 
 						if (name != null && name.Name != frameworkName) {
 							plugin = new Plugin();
