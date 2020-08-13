@@ -142,7 +142,7 @@ namespace UnrealEngine.Runtime {
 			try {
 				string method = Marshal.PtrToStringAuto(methodPointer);
 
-				if (!plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
+				if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
 					Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
 			}
 
@@ -157,8 +157,13 @@ namespace UnrealEngine.Runtime {
 		internal static void LoadAssemblies() {
 			try {
 				const string frameworkName = "UnrealEngine.Framework";
-				string path = Assembly.GetExecutingAssembly().Location;
-				string[] folders = Directory.GetDirectories(path.Substring(0, path.IndexOf("Plugins", StringComparison.CurrentCulture)) + "Managed");
+				string assemblyPath = Assembly.GetExecutingAssembly().Location;
+				string managedFolder = assemblyPath.Substring(0, assemblyPath.IndexOf("Plugins", StringComparison.CurrentCulture)) + "Managed";
+				string[] folders = Directory.GetDirectories(managedFolder);
+
+				Array.Resize(ref folders, folders.Length + 1);
+
+				folders[folders.Length - 1] = managedFolder;
 
 				foreach (string folder in folders) {
 					IEnumerable<string> assemblies = Directory.EnumerateFiles(folder, "*.dll", SearchOption.AllDirectories);
@@ -174,7 +179,7 @@ namespace UnrealEngine.Runtime {
 							continue;
 						}
 
-						if (name != null && name.Name != frameworkName) {
+						if (name?.Name != frameworkName) {
 							plugin = new Plugin();
 							plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
 							plugin.assembly = plugin.loader.LoadAssemblyFromPath(assembly);
