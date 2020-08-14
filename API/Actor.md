@@ -62,6 +62,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [SetByte(string, byte)](./Actor-SetByte(string_byte).md 'UnrealEngine.Framework.Actor.SetByte(string, byte)')
 - [SetDouble(string, double)](./Actor-SetDouble(string_double).md 'UnrealEngine.Framework.Actor.SetDouble(string, double)')
 - [SetEnableCollision(bool)](./Actor-SetEnableCollision(bool).md 'UnrealEngine.Framework.Actor.SetEnableCollision(bool)')
+- [SetEnableInput(UnrealEngine.Framework.PlayerController, bool)](./Actor-SetEnableInput(PlayerController_bool).md 'UnrealEngine.Framework.Actor.SetEnableInput(UnrealEngine.Framework.PlayerController, bool)')
 - [SetFloat(string, float)](./Actor-SetFloat(string_float).md 'UnrealEngine.Framework.Actor.SetFloat(string, float)')
 - [SetInt(string, int)](./Actor-SetInt(string_int).md 'UnrealEngine.Framework.Actor.SetInt(string, int)')
 - [SetLifeSpan(float)](./Actor-SetLifeSpan(float).md 'UnrealEngine.Framework.Actor.SetLifeSpan(float)')

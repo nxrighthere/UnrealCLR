@@ -4266,6 +4266,16 @@ namespace UnrealEngine.Framework {
 		public void SetLifeSpan(float lifeSpan) => setLifeSpan(Pointer, lifeSpan);
 
 		/// <summary>
+		/// Sets the input handled by a <see cref="PlayerController"/>
+		/// </summary>
+		public void SetEnableInput(PlayerController playerController, bool value) {
+			if (playerController == null)
+				throw new ArgumentNullException(nameof(playerController));
+
+			setEnableInput(Pointer, playerController.Pointer, value);
+		}
+
+		/// <summary>
 		/// Sets the collision detection of the actor
 		/// </summary>
 		public void SetEnableCollision(bool value) => setEnableCollision(Pointer, value);
@@ -4470,6 +4480,21 @@ namespace UnrealEngine.Framework {
 		private protected Character() { }
 
 		internal Character(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public Character(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>

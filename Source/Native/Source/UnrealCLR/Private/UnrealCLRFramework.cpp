@@ -1352,6 +1352,13 @@ namespace UnrealCLRFramework {
 			Actor->SetLifeSpan(LifeSpan);
 		}
 
+		void SetEnableInput(AActor* Actor, APlayerController* PlayerController, bool Value) {
+			if (Value)
+				Actor->EnableInput(PlayerController);
+			else
+				Actor->DisableInput(PlayerController);
+		}
+
 		void SetEnableCollision(AActor* Actor, bool Value) {
 			Actor->SetActorEnableCollision(Value);
 		}

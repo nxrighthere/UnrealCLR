@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1EA;
+		internal const int checksum = 0x1EB;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -267,6 +267,7 @@ namespace UnrealEngine.Framework {
 				Actor.setInputComponent = GenerateOptimizedFunction<Actor.SetInputComponentFunction>(actorFunctions[head++]);
 				Actor.setBlockInput = GenerateOptimizedFunction<Actor.SetBlockInputFunction>(actorFunctions[head++]);
 				Actor.setLifeSpan = GenerateOptimizedFunction<Actor.SetLifeSpanFunction>(actorFunctions[head++]);
+				Actor.setEnableInput = GenerateOptimizedFunction<Actor.SetEnableInputFunction>(actorFunctions[head++]);
 				Actor.setEnableCollision = GenerateOptimizedFunction<Actor.SetEnableCollisionFunction>(actorFunctions[head++]);
 				Actor.addTag = GenerateOptimizedFunction<Actor.AddTagFunction>(actorFunctions[head++]);
 				Actor.removeTag = GenerateOptimizedFunction<Actor.RemoveTagFunction>(actorFunctions[head++]);
@@ -1339,6 +1340,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetInputComponentFunction(IntPtr actor, IntPtr inputComponent);
 		internal delegate void SetBlockInputFunction(IntPtr actor, Bool value);
 		internal delegate void SetLifeSpanFunction(IntPtr actor, float lifeSpan);
+		internal delegate void SetEnableInputFunction(IntPtr actor, IntPtr playerController, Bool value);
 		internal delegate void SetEnableCollisionFunction(IntPtr actor, Bool value);
 		internal delegate void AddTagFunction(IntPtr actor, string tag);
 		internal delegate void RemoveTagFunction(IntPtr actor, string tag);
@@ -1369,6 +1371,7 @@ namespace UnrealEngine.Framework {
 		internal static SetInputComponentFunction setInputComponent;
 		internal static SetBlockInputFunction setBlockInput;
 		internal static SetLifeSpanFunction setLifeSpan;
+		internal static SetEnableInputFunction setEnableInput;
 		internal static SetEnableCollisionFunction setEnableCollision;
 		internal static AddTagFunction addTag;
 		internal static RemoveTagFunction removeTag;

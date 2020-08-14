@@ -389,6 +389,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetInputComponent;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetBlockInput;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetLifeSpan;
+				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetEnableInput;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetEnableCollision;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::AddTag;
 				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::RemoveTag;

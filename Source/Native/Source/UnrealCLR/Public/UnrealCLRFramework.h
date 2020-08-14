@@ -472,6 +472,7 @@ namespace UnrealCLRFramework {
 		static void SetInputComponent(AActor* Actor, UInputComponent* InputComponent);
 		static void SetBlockInput(AActor* Actor, bool Value);
 		static void SetLifeSpan(AActor* Actor, float LifeSpan);
+		static void SetEnableInput(AActor* Actor, APlayerController* PlayerController, bool Value);
 		static void SetEnableCollision(AActor* Actor, bool Value);
 		static void AddTag(AActor* Actor, const char* Tag);
 		static void RemoveTag(AActor* Actor, const char* Tag);
