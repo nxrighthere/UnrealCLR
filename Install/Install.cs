@@ -56,6 +56,20 @@ public static class Install {
 				if (runtimeCompilation.ExitCode != 0)
 					Error("Compilation of the runtime was finished with an error!");
 
+				Console.WriteLine("Launching compilation of the framework...");
+
+				var frameworkCompilation = Process.Start(new ProcessStartInfo {
+					FileName = "dotnet",
+					Arguments =  "publish " + sourcePath + "/Source/Managed/Framework --configuration Release --framework netcoreapp3.1",
+					CreateNoWindow = false,
+					UseShellExecute = true
+				});
+
+				frameworkCompilation.WaitForExit();
+
+				if (frameworkCompilation.ExitCode != 0)
+					Error("Compilation of the framework was finished with an error!");
+
 				if (compileTests) {
 					string contentPath = sourcePath + "/Content";
 
@@ -73,20 +87,6 @@ public static class Install {
 					foreach (string filesPath in Directory.GetFiles(contentPath, "*.*", SearchOption.AllDirectories)) {
 						File.Copy(filesPath, filesPath.Replace(contentPath, projectPath  + "/Content"), true);
 					}
-
-					Console.WriteLine("Launching compilation of the framework...");
-
-					var frameworkCompilation = Process.Start(new ProcessStartInfo {
-						FileName = "dotnet",
-						Arguments =  "publish " + sourcePath + "/Source/Managed/Framework --configuration Release --framework netcoreapp3.1",
-						CreateNoWindow = false,
-						UseShellExecute = true
-					});
-
-					frameworkCompilation.WaitForExit();
-
-					if (frameworkCompilation.ExitCode != 0)
-						Error("Compilation of the framework was finished with an error!");
 
 					Console.WriteLine("Launching compilation of the tests...");
 
