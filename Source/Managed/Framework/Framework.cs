@@ -1108,7 +1108,7 @@ namespace UnrealEngine.Framework {
 		/// Returns a box shape
 		/// </summary>
 		public static CollisionShape CreateBox(in Vector3 halfExtent) {
-			CollisionShape collisionShape = default(CollisionShape);
+			CollisionShape collisionShape = default;
 
 			collisionShape.shapeType = CollisionShapeType.Box;
 			collisionShape.box.halfExtent = halfExtent;
@@ -1120,7 +1120,7 @@ namespace UnrealEngine.Framework {
 		/// Returns a sphere shape
 		/// </summary>
 		public static CollisionShape CreateSphere(float radius) {
-			CollisionShape collisionShape = default(CollisionShape);
+			CollisionShape collisionShape = default;
 
 			collisionShape.shapeType = CollisionShapeType.Sphere;
 			collisionShape.sphere.radius = radius;
@@ -1132,7 +1132,7 @@ namespace UnrealEngine.Framework {
 		/// Returns a capsule shape
 		/// </summary>
 		public static CollisionShape CreateCapsule(float radius, float halfHeight) {
-			CollisionShape collisionShape = default(CollisionShape);
+			CollisionShape collisionShape = default;
 
 			collisionShape.shapeType = CollisionShapeType.Capsule;
 			collisionShape.capsule.radius = radius;
@@ -1815,7 +1815,7 @@ namespace UnrealEngine.Framework {
 			sy = MathF.Sin(halfYaw);
 			cy = MathF.Cos(halfYaw);
 
-			Quaternion result = default(Quaternion);
+			Quaternion result = default;
 
 			result.X = cy * cp * sr - sy * sp * cr;
 			result.Y = cy * sp * cr + sy * cp * sr;
@@ -3118,7 +3118,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static Vector2 GetViewportSize() {
 			Vector2 value = default;
+
 			getViewportSize(ref value);
+
 			return value;
 		}
 
@@ -3132,7 +3134,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static Vector2 GetScreenResolution() {
 			Vector2 value = default;
+
 			getScreenResolution(ref value);
+
 			return value;
 		}
 
@@ -3378,7 +3382,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public static Vector3 GetWorldOrigin() {
 			Vector3 value = default;
+
 			getWorldOrigin(ref value);
+
 			return value;
 		}
 
@@ -4502,7 +4508,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetGravityDirection() {
 			Vector3 value = default;
+
 			getGravityDirection(Pointer, ref value);
+
 			return value;
 		}
 	}
@@ -4654,7 +4662,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetFocalPoint() {
 			Vector3 value = default;
+
 			getFocalPoint(Pointer, ref value);
+
 			return value;
 		}
 
@@ -5794,7 +5804,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector2 GetMouseSensitivity() {
 			Vector2 value = default;
+
 			getMouseSensitivity(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6022,7 +6034,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector2 GetSize() {
 			Vector2 value = default;
+
 			getSize(Pointer, ref value);
+
 			return value;
 		}
 	}
@@ -6639,7 +6653,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetSocketLocation(string socketName) {
 			Vector3 value = default;
+
 			getSocketLocation(Pointer, socketName, ref value);
+
 			return value;
 		}
 
@@ -6653,7 +6669,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Quaternion GetSocketRotation(string socketName) {
 			Quaternion value = default;
+
 			getSocketRotation(Pointer, socketName, ref value);
+
 			return value;
 		}
 
@@ -6667,7 +6685,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetVelocity() {
 			Vector3 value = default;
+
 			getComponentVelocity(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6681,7 +6701,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetLocation() {
 			Vector3 value = default;
+
 			getComponentLocation(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6695,7 +6717,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Quaternion GetRotation() {
 			Quaternion value = default;
+
 			getComponentRotation(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6709,7 +6733,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetScale() {
 			Vector3 value = default;
+
 			getComponentScale(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6723,7 +6749,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Transform GetTransform() {
 			Transform value = default;
+
 			SceneComponent.getComponentTransform(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6737,7 +6765,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetForwardVector() {
 			Vector3 value = default;
+
 			getForwardVector(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6751,7 +6781,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetRightVector() {
 			Vector3 value = default;
+
 			getRightVector(Pointer, ref value);
+
 			return value;
 		}
 
@@ -6765,7 +6797,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetUpVector() {
 			Vector3 value = default;
+
 			getUpVector(Pointer, ref value);
+
 			return value;
 		}
 
@@ -7197,7 +7231,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetPhysicsLinearVelocity(string boneName = null) {
 			Vector3 value = default;
+
 			getPhysicsLinearVelocity(Pointer, ref value, boneName);
+
 			return value;
 		}
 
@@ -7211,7 +7247,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetPhysicsLinearVelocityAtPoint(in Vector3 point, string boneName = null) {
 			Vector3 value = default;
+
 			getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName);
+
 			return value;
 		}
 
@@ -7225,7 +7263,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetPhysicsAngularVelocityInDegrees(string boneName = null) {
 			Vector3 value = default;
+
 			getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName);
+
 			return value;
 		}
 
@@ -7239,7 +7279,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetPhysicsAngularVelocityInRadians(string boneName = null) {
 			Vector3 value = default;
+
 			getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName);
+
 			return value;
 		}
 
@@ -7475,7 +7517,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetScaledBoxExtent() {
 			Vector3 value = default;
+
 			getScaledBoxExtent(Pointer, ref value);
+
 			return value;
 		}
 
@@ -7489,7 +7533,9 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Vector3 GetUnscaledBoxExtent() {
 			Vector3 value = default;
+
 			getUnscaledBoxExtent(Pointer, ref value);
+
 			return value;
 		}
 

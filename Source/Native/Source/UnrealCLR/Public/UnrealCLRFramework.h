@@ -498,7 +498,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Character {
-
+		
 	}
 
 	namespace Controller {

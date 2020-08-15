@@ -11,6 +11,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [AllowStrafe](./AIController-AllowStrafe.md 'UnrealEngine.Framework.AIController.AllowStrafe')
 ### Methods
 - [ClearFocus(UnrealEngine.Framework.AIFocusPriority)](./AIController-ClearFocus(AIFocusPriority).md 'UnrealEngine.Framework.AIController.ClearFocus(UnrealEngine.Framework.AIFocusPriority)')
+- [GetFocalPoint()](./AIController-GetFocalPoint().md 'UnrealEngine.Framework.AIController.GetFocalPoint()')
 - [GetFocalPoint(System.Numerics.Vector3)](./AIController-GetFocalPoint(Vector3).md 'UnrealEngine.Framework.AIController.GetFocalPoint(System.Numerics.Vector3)')
 - [GetFocusActor()](./AIController-GetFocusActor().md 'UnrealEngine.Framework.AIController.GetFocusActor()')
 - [SetFocalPoint(System.Numerics.Vector3, UnrealEngine.Framework.AIFocusPriority)](./AIController-SetFocalPoint(Vector3_AIFocusPriority).md 'UnrealEngine.Framework.AIController.SetFocalPoint(System.Numerics.Vector3, UnrealEngine.Framework.AIFocusPriority)')

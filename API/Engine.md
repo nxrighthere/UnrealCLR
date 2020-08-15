@@ -20,6 +20,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [AddAxisMapping(string, string, float)](./Engine-AddAxisMapping(string_string_float).md 'UnrealEngine.Framework.Engine.AddAxisMapping(string, string, float)')
 - [DelayGarbageCollection()](./Engine-DelayGarbageCollection().md 'UnrealEngine.Framework.Engine.DelayGarbageCollection()')
 - [ForceGarbageCollection(bool)](./Engine-ForceGarbageCollection(bool).md 'UnrealEngine.Framework.Engine.ForceGarbageCollection(bool)')
+- [GetScreenResolution()](./Engine-GetScreenResolution().md 'UnrealEngine.Framework.Engine.GetScreenResolution()')
 - [GetScreenResolution(System.Numerics.Vector2)](./Engine-GetScreenResolution(Vector2).md 'UnrealEngine.Framework.Engine.GetScreenResolution(System.Numerics.Vector2)')
+- [GetViewportSize()](./Engine-GetViewportSize().md 'UnrealEngine.Framework.Engine.GetViewportSize()')
 - [GetViewportSize(System.Numerics.Vector2)](./Engine-GetViewportSize(Vector2).md 'UnrealEngine.Framework.Engine.GetViewportSize(System.Numerics.Vector2)')
 - [SetTitle(string)](./Engine-SetTitle(string).md 'UnrealEngine.Framework.Engine.SetTitle(string)')

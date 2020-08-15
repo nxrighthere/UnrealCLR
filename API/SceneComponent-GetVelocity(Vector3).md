@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetVelocity(System.Numerics.Vector3) Method
-Retrieves velocity of the component, or the velocity of the physics body if simulating physics  
+Retrieves velocity of the component, or the velocity of the physics body if simulating physics and returns to a reference  
 ```csharp
 public void GetVelocity(ref System.Numerics.Vector3 value);
 ```

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetUpVector(System.Numerics.Vector3) Method
-Retrieves the up Z unit direction vector from the component in world space  
+Retrieves the up Z unit direction vector from the component in world space and returns to a reference  
 ```csharp
 public void GetUpVector(ref System.Numerics.Vector3 value);
 ```

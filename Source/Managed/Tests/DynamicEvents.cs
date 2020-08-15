@@ -29,13 +29,11 @@ namespace UnrealEngine.Tests {
 
 			TriggerBox triggerBox = new TriggerBox();
 			BoxComponent collisionComponent = triggerBox.GetComponent<BoxComponent>();
-			Vector3 collisionLocation = new Vector3(0.0f, 0.0f, 0.0f);
 			Vector3 collisionShape = new Vector3(200.0f, 200.0f, 200.0f);
 
-			collisionComponent.GetLocation(ref collisionLocation);
 			collisionComponent.SetBoxExtent(collisionShape);
 
-			Debug.DrawBox(collisionLocation, collisionShape, Quaternion.Identity, Color.Aqua, true, thickness: linesThickness);
+			Debug.DrawBox(collisionComponent.GetLocation(), collisionShape, Quaternion.Identity, Color.Aqua, true, thickness: linesThickness);
 
 			leftActor.RegisterEvent(ActorEventType.OnActorBeginOverlap);
 			leftActor.RegisterEvent(ActorEventType.OnActorEndOverlap);

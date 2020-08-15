@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 ## PrimitiveComponent.GetPhysicsLinearVelocity(System.Numerics.Vector3, string) Method
-Retrieves the linear velocity of a single body  
+Retrieves the linear velocity of a single body and returns to a reference  
 ```csharp
 public void GetPhysicsLinearVelocity(ref System.Numerics.Vector3 value, string boneName=null);
 ```

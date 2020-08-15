@@ -21,11 +21,7 @@ namespace UnrealEngine.Tests {
 			staticMeshComponent.SetWorldLocation(new Vector3(-800.0f, 0.0f, 0.0f));
 			staticMeshComponent.SetWorldRotation(Maths.Euler(90.0f, 0.0f, 90.0f));
 
-			Vector2 textureSize = default(Vector2);
-
-			texture.GetSize(ref textureSize);
-
-			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Texture size: " + textureSize);
+			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Texture size: " + texture.GetSize());
 		}
 
 		public static void OnEndPlay() => Debug.ClearOnScreenMessages();

@@ -13,6 +13,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 ### Methods
 - [Equals(UnrealEngine.Framework.PlayerInput)](./PlayerInput-Equals(PlayerInput).md 'UnrealEngine.Framework.PlayerInput.Equals(UnrealEngine.Framework.PlayerInput)')
 - [GetHashCode()](./PlayerInput-GetHashCode().md 'UnrealEngine.Framework.PlayerInput.GetHashCode()')
+- [GetMouseSensitivity()](./PlayerInput-GetMouseSensitivity().md 'UnrealEngine.Framework.PlayerInput.GetMouseSensitivity()')
 - [GetMouseSensitivity(System.Numerics.Vector2)](./PlayerInput-GetMouseSensitivity(Vector2).md 'UnrealEngine.Framework.PlayerInput.GetMouseSensitivity(System.Numerics.Vector2)')
 - [GetTimeKeyPressed(string)](./PlayerInput-GetTimeKeyPressed(string).md 'UnrealEngine.Framework.PlayerInput.GetTimeKeyPressed(string)')
 - [IsKeyPressed(string)](./PlayerInput-IsKeyPressed(string).md 'UnrealEngine.Framework.PlayerInput.IsKeyPressed(string)')

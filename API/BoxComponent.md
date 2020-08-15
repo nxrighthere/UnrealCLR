@@ -8,7 +8,9 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Constructors
 - [BoxComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./BoxComponent-BoxComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.BoxComponent.BoxComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Methods
+- [GetScaledBoxExtent()](./BoxComponent-GetScaledBoxExtent().md 'UnrealEngine.Framework.BoxComponent.GetScaledBoxExtent()')
 - [GetScaledBoxExtent(System.Numerics.Vector3)](./BoxComponent-GetScaledBoxExtent(Vector3).md 'UnrealEngine.Framework.BoxComponent.GetScaledBoxExtent(System.Numerics.Vector3)')
+- [GetUnscaledBoxExtent()](./BoxComponent-GetUnscaledBoxExtent().md 'UnrealEngine.Framework.BoxComponent.GetUnscaledBoxExtent()')
 - [GetUnscaledBoxExtent(System.Numerics.Vector3)](./BoxComponent-GetUnscaledBoxExtent(Vector3).md 'UnrealEngine.Framework.BoxComponent.GetUnscaledBoxExtent(System.Numerics.Vector3)')
 - [InitBoxExtent(System.Numerics.Vector3)](./BoxComponent-InitBoxExtent(Vector3).md 'UnrealEngine.Framework.BoxComponent.InitBoxExtent(System.Numerics.Vector3)')
 - [SetBoxExtent(System.Numerics.Vector3, bool)](./BoxComponent-SetBoxExtent(Vector3_bool).md 'UnrealEngine.Framework.BoxComponent.SetBoxExtent(System.Numerics.Vector3, bool)')

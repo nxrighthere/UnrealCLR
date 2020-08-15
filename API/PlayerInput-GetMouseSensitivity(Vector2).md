@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PlayerInput](./PlayerInput.md 'UnrealEngine.Framework.PlayerInput')
 ## PlayerInput.GetMouseSensitivity(System.Numerics.Vector2) Method
-Retrieves mouse sensitivity  
+Retrieves mouse sensitivity and returns to a reference  
 ```csharp
 public void GetMouseSensitivity(ref System.Numerics.Vector2 value);
 ```

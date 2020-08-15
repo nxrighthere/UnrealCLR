@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetTransform(UnrealEngine.Framework.Transform) Method
-Retrieves the transform which assigned to the component  
+Retrieves the transform which assigned to the component and returns to a reference  
 ```csharp
 public void GetTransform(ref UnrealEngine.Framework.Transform value);
 ```

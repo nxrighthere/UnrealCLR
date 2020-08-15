@@ -1406,6 +1406,10 @@ namespace UnrealCLRFramework {
 		}
 	}
 
+	namespace Character {
+		
+	}
+
 	namespace Controller {
 		bool IsLookInputIgnored(AController* Controller) {
 			return Controller->IsLookInputIgnored();

@@ -264,12 +264,10 @@ namespace UnrealEngine.Tests {
 
 			BoxComponent boxComponent = childActor.GetComponent<BoxComponent>();
 			Vector3 initialExtent = new Vector3(100.0f, 100.0f, 100.0f);
-			Vector3 unscaledExtent = default(Vector3);
 
 			boxComponent.InitBoxExtent(initialExtent);
-			boxComponent.GetUnscaledBoxExtent(ref unscaledExtent);
 
-			if (initialExtent != unscaledExtent) {
+			if (initialExtent != boxComponent.GetUnscaledBoxExtent()) {
 				Debug.Log(LogLevel.Error, "Child actor box extent check failed!");
 
 				return;
