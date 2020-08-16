@@ -1406,10 +1406,6 @@ namespace UnrealCLRFramework {
 		}
 	}
 
-	namespace Character {
-		
-	}
-
 	namespace Controller {
 		bool IsLookInputIgnored(AController* Controller) {
 			return Controller->IsLookInputIgnored();
@@ -2599,6 +2595,24 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace SkinnedMeshComponent {
+		int32 GetBonesNumber(USkinnedMeshComponent* SkinnedMeshComponent) {
+			return SkinnedMeshComponent->GetNumBones();
+		}
+
+		int32 GetBoneIndex(USkinnedMeshComponent* SkinnedMeshComponent, const char* BoneName) {
+			return SkinnedMeshComponent->GetBoneIndex(FName(ANSI_TO_TCHAR(BoneName)));
+		}
+
+		void GetBoneName(USkinnedMeshComponent* SkinnedMeshComponent, int32 BoneIndex, char* BoneName) {
+			const char* boneName = TCHAR_TO_ANSI(*SkinnedMeshComponent->GetBoneName(BoneIndex).ToString());
+
+			UnrealCLR::Utility::Strcpy(BoneName, boneName, UnrealCLR::Utility::Strlen(boneName));
+		}
+
+		void GetBoneTransform(USkinnedMeshComponent* SkinnedMeshComponent, int32 BoneIndex, Transform* Value) {
+			*Value = SkinnedMeshComponent->GetBoneTransform(BoneIndex);
+		}
+
 		void SetSkeletalMesh(USkinnedMeshComponent* SkinnedMeshComponent, USkeletalMesh* SkeletalMesh, bool ReinitializePose) {
 			SkinnedMeshComponent->SetSkeletalMesh(SkeletalMesh, ReinitializePose);
 		}

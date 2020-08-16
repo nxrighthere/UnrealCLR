@@ -882,6 +882,10 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SkinnedMeshComponentFunctions;
 
+				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBonesNumber;
+				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBoneIndex;
+				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBoneName;
+				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBoneTransform;
 				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::SetSkeletalMesh;
 
 				checksum += head;

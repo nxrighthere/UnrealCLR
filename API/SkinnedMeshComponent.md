@@ -9,4 +9,9 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 Derived  
 &#8627; [SkeletalMeshComponent](./SkeletalMeshComponent.md 'UnrealEngine.Framework.SkeletalMeshComponent')  
 ### Methods
+- [GetBoneIndex(string)](./SkinnedMeshComponent-GetBoneIndex(string).md 'UnrealEngine.Framework.SkinnedMeshComponent.GetBoneIndex(string)')
+- [GetBoneName(int)](./SkinnedMeshComponent-GetBoneName(int).md 'UnrealEngine.Framework.SkinnedMeshComponent.GetBoneName(int)')
+- [GetBonesNumber()](./SkinnedMeshComponent-GetBonesNumber().md 'UnrealEngine.Framework.SkinnedMeshComponent.GetBonesNumber()')
+- [GetBoneTransform(int)](./SkinnedMeshComponent-GetBoneTransform(int).md 'UnrealEngine.Framework.SkinnedMeshComponent.GetBoneTransform(int)')
+- [GetBoneTransform(int, UnrealEngine.Framework.Transform)](./SkinnedMeshComponent-GetBoneTransform(int_Transform).md 'UnrealEngine.Framework.SkinnedMeshComponent.GetBoneTransform(int, UnrealEngine.Framework.Transform)')
 - [SetSkeletalMesh(UnrealEngine.Framework.SkeletalMesh, bool)](./SkinnedMeshComponent-SetSkeletalMesh(SkeletalMesh_bool).md 'UnrealEngine.Framework.SkinnedMeshComponent.SetSkeletalMesh(UnrealEngine.Framework.SkeletalMesh, bool)')

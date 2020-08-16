@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Pawn](./Pawn.md 'UnrealEngine.Framework.Pawn')
 ## Pawn.GetGravityDirection() Method
-Retrieves vector direction of gravity  
+Returns vector direction of gravity  
 ```csharp
 public System.Numerics.Vector3 GetGravityDirection();
 ```

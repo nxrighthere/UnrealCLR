@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Engine](./Engine.md 'UnrealEngine.Framework.Engine')
 ## Engine.GetScreenResolution(System.Numerics.Vector2) Method
-Retrieves the current resolution of the screen and returns to a reference  
+Retrieves the current resolution of the screen  
 ```csharp
 public static void GetScreenResolution(ref System.Numerics.Vector2 value);
 ```

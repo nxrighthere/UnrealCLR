@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Engine](./Engine.md 'UnrealEngine.Framework.Engine')
 ## Engine.GetViewportSize(System.Numerics.Vector2) Method
-Retrieves the current size of the viewport and returns to a reference  
+Retrieves the current size of the viewport  
 ```csharp
 public static void GetViewportSize(ref System.Numerics.Vector2 value);
 ```

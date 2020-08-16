@@ -29,7 +29,7 @@ namespace UnrealEngine.Tests {
 
 			Debug.DrawBox(boxLocation, boxScale * 50.0f, Quaternion.Identity, Color.SlateBlue, true, thickness: linesThickness);
 
-			Hit hit = default(Hit);
+			Hit hit = default;
 			Vector3 lineTraceStart = new Vector3(0.0f, 0.0f, 0.0f);
 
 			bool hitTraceByChannel = World.LineTraceSingleByChannel(lineTraceStart, boxLocation, CollisionChannel.WorldStatic, ref hit);

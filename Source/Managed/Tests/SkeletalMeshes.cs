@@ -23,6 +23,7 @@ namespace UnrealEngine.Tests {
 			leftSkeletalMeshComponent.PlayAnimation(AnimationSequence.Load("/Game/Tests/Characters/Animations/IdleAnimationSequence"), true);
 
 			Assert.IsTrue(leftSkeletalMeshComponent.IsPlaying);
+			Assert.IsTrue(leftSkeletalMeshComponent.GetBoneName(0) == "root");
 
 			Actor rightPrototype = new Actor("rightPrototype");
 			SkeletalMeshComponent rightSkeletalMeshComponent = new SkeletalMeshComponent(rightPrototype);
@@ -40,6 +41,7 @@ namespace UnrealEngine.Tests {
 			AnimationInstance rightPrototypeAnimationInstance = rightSkeletalMeshComponent.GetAnimationInstance();
 
 			Assert.IsTrue(rightPrototypeAnimationInstance.IsPlaying(rightPrototypeAnimationMontage));
+			Assert.IsTrue(rightSkeletalMeshComponent.GetBoneName(0) == "root");
 		}
 
 		public static void OnEndPlay() => Debug.ClearOnScreenMessages();

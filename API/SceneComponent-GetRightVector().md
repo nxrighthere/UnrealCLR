@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetRightVector() Method
-Retrieves the right Y unit direction vector from the component in world space  
+Returns the right Y unit direction vector from the component in world space  
 ```csharp
 public System.Numerics.Vector3 GetRightVector();
 ```

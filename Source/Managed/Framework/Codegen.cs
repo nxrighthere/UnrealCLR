@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1EB;
+		internal const int checksum = 0x1EF;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -700,6 +700,10 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
 
+				SkinnedMeshComponent.getBonesNumber = GenerateOptimizedFunction<SkinnedMeshComponent.GetBonesNumberFunction>(skinnedMeshComponentFunctions[head++]);
+				SkinnedMeshComponent.getBoneIndex = GenerateOptimizedFunction<SkinnedMeshComponent.GetBoneIndexFunction>(skinnedMeshComponentFunctions[head++]);
+				SkinnedMeshComponent.getBoneName = GenerateOptimizedFunction<SkinnedMeshComponent.GetBoneNameFunction>(skinnedMeshComponentFunctions[head++]);
+				SkinnedMeshComponent.getBoneTransform = GenerateOptimizedFunction<SkinnedMeshComponent.GetBoneTransformFunction>(skinnedMeshComponentFunctions[head++]);
 				SkinnedMeshComponent.setSkeletalMesh = GenerateOptimizedFunction<SkinnedMeshComponent.SetSkeletalMeshFunction>(skinnedMeshComponentFunctions[head++]);
 			}
 
@@ -2035,8 +2039,16 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class SkinnedMeshComponent {
+		internal delegate int GetBonesNumberFunction(IntPtr skinnedMeshComponent);
+		internal delegate int GetBoneIndexFunction(IntPtr skinnedMeshComponent, string boneName);
+		internal delegate void GetBoneNameFunction(IntPtr skinnedMeshComponent, int boneIndex, byte[] boneName);
+		internal delegate void GetBoneTransformFunction(IntPtr skinnedMeshComponent, int boneIndex, ref Transform value);
 		internal delegate void SetSkeletalMeshFunction(IntPtr skinnedMeshComponent, IntPtr skeletalMesh, Bool reinitializePose);
 
+		internal static GetBonesNumberFunction getBonesNumber;
+		internal static GetBoneIndexFunction getBoneIndex;
+		internal static GetBoneNameFunction getBoneName;
+		internal static GetBoneTransformFunction getBoneTransform;
 		internal static SetSkeletalMeshFunction setSkeletalMesh;
 	}
 

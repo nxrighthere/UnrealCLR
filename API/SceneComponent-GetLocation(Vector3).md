@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetLocation(System.Numerics.Vector3) Method
-Retrieves location of the component in world space and returns to a reference  
+Retrieves location of the component in world space  
 ```csharp
 public void GetLocation(ref System.Numerics.Vector3 value);
 ```

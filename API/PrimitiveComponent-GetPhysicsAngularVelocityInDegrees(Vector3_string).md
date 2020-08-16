@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 ## PrimitiveComponent.GetPhysicsAngularVelocityInDegrees(System.Numerics.Vector3, string) Method
-Retrieves the angular velocity in degrees of a single body and returns to a reference  
+Retrieves the angular velocity in degrees of a single body  
 ```csharp
 public void GetPhysicsAngularVelocityInDegrees(ref System.Numerics.Vector3 value, string boneName=null);
 ```

@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetSocketRotation(string, System.Numerics.Quaternion) Method
-Retrieves rotation of a socket in world space and returns to a reference  
+Retrieves rotation of a socket in world space  
 ```csharp
 public void GetSocketRotation(string socketName, ref System.Numerics.Quaternion value);
 ```

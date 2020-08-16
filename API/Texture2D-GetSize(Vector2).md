@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Texture2D](./Texture2D.md 'UnrealEngine.Framework.Texture2D')
 ## Texture2D.GetSize(System.Numerics.Vector2) Method
-Retrieves size of the texture and returns to a reference  
+Retrieves size of the texture  
 ```csharp
 public void GetSize(ref System.Numerics.Vector2 value);
 ```

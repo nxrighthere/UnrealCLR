@@ -3109,12 +3109,12 @@ namespace UnrealEngine.Framework {
 		public static uint FrameNumber => getFrameNumber();
 
 		/// <summary>
-		/// Retrieves the current size of the viewport and returns to a reference
+		/// Retrieves the current size of the viewport
 		/// </summary>
 		public static void GetViewportSize(ref Vector2 value) => getViewportSize(ref value);
 
 		/// <summary>
-		/// Retrieves the current size of the viewport
+		/// Returns the current size of the viewport
 		/// </summary>
 		public static Vector2 GetViewportSize() {
 			Vector2 value = default;
@@ -3125,12 +3125,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the current resolution of the screen and returns to a reference
+		/// Retrieves the current resolution of the screen
 		/// </summary>
 		public static void GetScreenResolution(ref Vector2 value) => getScreenResolution(ref value);
 
 		/// <summary>
-		/// Retrieves the current resolution of the screen
+		/// Returns the current resolution of the screen
 		/// </summary>
 		public static Vector2 GetScreenResolution() {
 			Vector2 value = default;
@@ -3244,7 +3244,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the name of the device
+		/// Returns the name of the device
 		/// </summary>
 		public static string DeviceName {
 			get {
@@ -3378,7 +3378,7 @@ namespace UnrealEngine.Framework {
 		public static void GetWorldOrigin(ref Vector3 value) => getWorldOrigin(ref value);
 
 		/// <summary>
-		/// Retrieves the current location of the <a href="https://docs.unrealengine.com/en-US/Engine/LevelStreaming/WorldBrowser/index.html">world origin</a>
+		/// Returns the current location of the <a href="https://docs.unrealengine.com/en-US/Engine/LevelStreaming/WorldBrowser/index.html">world origin</a>
 		/// </summary>
 		public static Vector3 GetWorldOrigin() {
 			Vector3 value = default;
@@ -4499,12 +4499,12 @@ namespace UnrealEngine.Framework {
 		public void AddMovementInput(in Vector3 worldDirection, float scaleValue = 1.0f, bool force = false) => addMovementInput(Pointer, worldDirection, scaleValue, force);
 
 		/// <summary>
-		/// Retrieves vector direction of gravity and returns to a reference
+		/// Retrieves vector direction of gravity
 		/// </summary>
 		public void GetGravityDirection(ref Vector3 value) => getGravityDirection(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves vector direction of gravity
+		/// Returns vector direction of gravity
 		/// </summary>
 		public Vector3 GetGravityDirection() {
 			Vector3 value = default;
@@ -4653,12 +4653,12 @@ namespace UnrealEngine.Framework {
 		public void ClearFocus(AIFocusPriority priority = AIFocusPriority.High) => clearFocus(Pointer, priority);
 
 		/// <summary>
-		/// Retrieves the final position that controller should be looking at and returns to a reference
+		/// Retrieves the final position that controller should be looking at
 		/// </summary>
 		public void GetFocalPoint(ref Vector3 value) => getFocalPoint(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the final position that controller should be looking at
+		/// Returns the final position that controller should be looking at
 		/// </summary>
 		public Vector3 GetFocalPoint() {
 			Vector3 value = default;
@@ -5795,12 +5795,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves mouse sensitivity and returns to a reference
+		/// Retrieves mouse sensitivity
 		/// </summary>
 		public void GetMouseSensitivity(ref Vector2 value) => getMouseSensitivity(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves mouse sensitivity
+		/// Returns mouse sensitivity
 		/// </summary>
 		public Vector2 GetMouseSensitivity() {
 			Vector2 value = default;
@@ -6025,12 +6025,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves size of the texture and returns to a reference
+		/// Retrieves size of the texture
 		/// </summary>
 		public void GetSize(ref Vector2 value) => getSize(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves size of the texture
+		/// Returns size of the texture
 		/// </summary>
 		public Vector2 GetSize() {
 			Vector2 value = default;
@@ -6644,12 +6644,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves location of a socket in world space and returns to a reference
+		/// Retrieves location of a socket in world space
 		/// </summary>
 		public void GetSocketLocation(string socketName, ref Vector3 value) => getSocketLocation(Pointer, socketName, ref value);
 
 		/// <summary>
-		/// Retrieves location of a socket in world space
+		/// Returns location of a socket in world space
 		/// </summary>
 		public Vector3 GetSocketLocation(string socketName) {
 			Vector3 value = default;
@@ -6660,12 +6660,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves rotation of a socket in world space and returns to a reference
+		/// Retrieves rotation of a socket in world space
 		/// </summary>
 		public void GetSocketRotation(string socketName, ref Quaternion value) => getSocketRotation(Pointer, socketName, ref value);
 
 		/// <summary>
-		/// Retrieves rotation of a socket in world space
+		/// Returns rotation of a socket in world space
 		/// </summary>
 		public Quaternion GetSocketRotation(string socketName) {
 			Quaternion value = default;
@@ -6676,12 +6676,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves velocity of the component, or the velocity of the physics body if simulating physics and returns to a reference
+		/// Retrieves velocity of the component, or the velocity of the physics body if simulating physics
 		/// </summary>
 		public void GetVelocity(ref Vector3 value) => getComponentVelocity(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves velocity of the component, or the velocity of the physics body if simulating physics
+		/// Returns velocity of the component, or the velocity of the physics body if simulating physics
 		/// </summary>
 		public Vector3 GetVelocity() {
 			Vector3 value = default;
@@ -6692,12 +6692,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves location of the component in world space and returns to a reference
+		/// Retrieves location of the component in world space
 		/// </summary>
 		public void GetLocation(ref Vector3 value) => getComponentLocation(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves location of the component in world space
+		/// Returns location of the component in world space
 		/// </summary>
 		public Vector3 GetLocation() {
 			Vector3 value = default;
@@ -6708,12 +6708,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves rotation of the component in world space and returns to a reference
+		/// Returns rotation of the component in world space
 		/// </summary>
 		public void GetRotation(ref Quaternion value) => getComponentRotation(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves rotation of the component in world space
+		/// Returns rotation of the component in world space
 		/// </summary>
 		public Quaternion GetRotation() {
 			Quaternion value = default;
@@ -6724,12 +6724,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves scale of the component in world space and returns to a reference
+		/// Retrieves scale of the component in world space
 		/// </summary>
 		public void GetScale(ref Vector3 value) => getComponentScale(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves scale of the component in world space
+		/// Returns scale of the component in world space
 		/// </summary>
 		public Vector3 GetScale() {
 			Vector3 value = default;
@@ -6740,12 +6740,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the transform which assigned to the component and returns to a reference
+		/// Returns the transform which assigned to the component
 		/// </summary>
 		public void GetTransform(ref Transform value) => SceneComponent.getComponentTransform(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the transform which assigned to the component
+		/// Returns the transform which assigned to the component
 		/// </summary>
 		public Transform GetTransform() {
 			Transform value = default;
@@ -6756,12 +6756,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the forward X unit direction vector from the component in world space and returns to a reference
+		/// Retrieves the forward X unit direction vector from the component in world space
 		/// </summary>
 		public void GetForwardVector(ref Vector3 value) => getForwardVector(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the forward X unit direction vector from the component in world space
+		/// Returns the forward X unit direction vector from the component in world space
 		/// </summary>
 		public Vector3 GetForwardVector() {
 			Vector3 value = default;
@@ -6772,12 +6772,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the right Y unit direction vector from the component in world space and returns to a reference
+		/// Retrieves the right Y unit direction vector from the component in world space
 		/// </summary>
 		public void GetRightVector(ref Vector3 value) => getRightVector(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the right Y unit direction vector from the component in world space
+		/// Returns the right Y unit direction vector from the component in world space
 		/// </summary>
 		public Vector3 GetRightVector() {
 			Vector3 value = default;
@@ -6788,12 +6788,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the up Z unit direction vector from the component in world space and returns to a reference
+		/// Retrieves the up Z unit direction vector from the component in world space
 		/// </summary>
 		public void GetUpVector(ref Vector3 value) => getUpVector(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the up Z unit direction vector from the component in world space
+		/// Returns the up Z unit direction vector from the component in world space
 		/// </summary>
 		public Vector3 GetUpVector() {
 			Vector3 value = default;
@@ -7222,12 +7222,12 @@ namespace UnrealEngine.Framework {
 		public void AddTorqueInRadians(in Vector3 torque, string boneName = null, bool accelerationChange = false) => addTorqueInRadians(Pointer, torque, boneName, accelerationChange);
 
 		/// <summary>
-		/// Retrieves the linear velocity of a single body and returns to a reference
+		/// Retrieves the linear velocity of a single body
 		/// </summary>
 		public void GetPhysicsLinearVelocity(ref Vector3 value, string boneName = null) => getPhysicsLinearVelocity(Pointer, ref value, boneName);
 
 		/// <summary>
-		/// Retrieves the linear velocity of a single body
+		/// Returns the linear velocity of a single body
 		/// </summary>
 		public Vector3 GetPhysicsLinearVelocity(string boneName = null) {
 			Vector3 value = default;
@@ -7238,12 +7238,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the linear velocity of a point on a single body and returns to a reference
+		/// Retrieves the linear velocity of a point on a single body
 		/// </summary>
 		public void GetPhysicsLinearVelocityAtPoint(ref Vector3 value, in Vector3 point, string boneName = null) => getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName);
 
 		/// <summary>
-		/// Retrieves the linear velocity of a point on a single body
+		/// Returns the linear velocity of a point on a single body
 		/// </summary>
 		public Vector3 GetPhysicsLinearVelocityAtPoint(in Vector3 point, string boneName = null) {
 			Vector3 value = default;
@@ -7254,12 +7254,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the angular velocity in degrees of a single body and returns to a reference
+		/// Retrieves the angular velocity in degrees of a single body
 		/// </summary>
 		public void GetPhysicsAngularVelocityInDegrees(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName);
 
 		/// <summary>
-		/// Retrieves the angular velocity in degrees of a single body
+		/// Returns the angular velocity in degrees of a single body
 		/// </summary>
 		public Vector3 GetPhysicsAngularVelocityInDegrees(string boneName = null) {
 			Vector3 value = default;
@@ -7270,12 +7270,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the angular velocity in radians of a single body and returns to a reference
+		/// Retrieves the angular velocity in radians of a single body
 		/// </summary>
 		public void GetPhysicsAngularVelocityInRadians(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName);
 
 		/// <summary>
-		/// Retrieves the angular velocity in radians of a single body
+		/// Returns the angular velocity in radians of a single body
 		/// </summary>
 		public Vector3 GetPhysicsAngularVelocityInRadians(string boneName = null) {
 			Vector3 value = default;
@@ -7508,12 +7508,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the box extents scaled by the component scale and returns to a reference
+		/// Retrieves the box extents scaled by the component scale
 		/// </summary>
 		public void GetScaledBoxExtent(ref Vector3 value) => getScaledBoxExtent(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the box extents scaled by the component scale
+		/// Returns the box extents scaled by the component scale
 		/// </summary>
 		public Vector3 GetScaledBoxExtent() {
 			Vector3 value = default;
@@ -7524,12 +7524,12 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Retrieves the box extent ignoring the component scale and returns to a reference
+		/// Retrieves the box extent ignoring the component scale
 		/// </summary>
 		public void GetUnscaledBoxExtent(ref Vector3 value) => getUnscaledBoxExtent(Pointer, ref value);
 
 		/// <summary>
-		/// Retrieves the box extent ignoring the component scale
+		/// Returns the box extent ignoring the component scale
 		/// </summary>
 		public Vector3 GetUnscaledBoxExtent() {
 			Vector3 value = default;
@@ -7943,6 +7943,43 @@ namespace UnrealEngine.Framework {
 	/// </summary>
 	public abstract partial class SkinnedMeshComponent : MeshComponent {
 		private protected SkinnedMeshComponent() { }
+
+		/// <summary>
+		/// Returns the number of bones in the skeleton
+		/// </summary>
+		public int GetBonesNumber() => getBonesNumber(Pointer);
+
+		/// <summary>
+		/// Returns the index of a bone by name
+		/// </summary>
+		public int GetBoneIndex(string boneName) => getBoneIndex(Pointer, boneName);
+
+		/// <summary>
+		/// Returns the name of a bone by index
+		/// </summary>
+		public string GetBoneName(int boneIndex) {
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			getBoneName(Pointer, boneIndex, stringBuffer);
+
+			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+		}
+
+		/// <summary>
+		/// Retrieves the transform of a bone by index
+		/// </summary>
+		public void GetBoneTransform(int boneIndex, ref Transform value) => getBoneTransform(Pointer, boneIndex, ref value);
+
+		/// <summary>
+		/// Returns the transform of a bone by index
+		/// </summary>
+		public Transform GetBoneTransform(int boneIndex) {
+			Transform value = default;
+
+			getBoneTransform(Pointer, boneIndex, ref value);
+
+			return value;
+		}
 
 		/// <summary>
 		/// Changes the skeletal mesh

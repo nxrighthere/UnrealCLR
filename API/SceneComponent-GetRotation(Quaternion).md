@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetRotation(System.Numerics.Quaternion) Method
-Retrieves rotation of the component in world space and returns to a reference  
+Returns rotation of the component in world space  
 ```csharp
 public void GetRotation(ref System.Numerics.Quaternion value);
 ```

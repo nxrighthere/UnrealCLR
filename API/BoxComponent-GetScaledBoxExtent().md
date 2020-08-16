@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[BoxComponent](./BoxComponent.md 'UnrealEngine.Framework.BoxComponent')
 ## BoxComponent.GetScaledBoxExtent() Method
-Retrieves the box extents scaled by the component scale  
+Returns the box extents scaled by the component scale  
 ```csharp
 public System.Numerics.Vector3 GetScaledBoxExtent();
 ```

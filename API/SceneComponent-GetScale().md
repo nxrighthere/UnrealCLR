@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetScale() Method
-Retrieves scale of the component in world space  
+Returns scale of the component in world space  
 ```csharp
 public System.Numerics.Vector3 GetScale();
 ```

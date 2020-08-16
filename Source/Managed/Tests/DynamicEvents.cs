@@ -79,7 +79,7 @@ namespace UnrealEngine.Tests {
 
 		private static void Translate(StaticMeshComponent staticMeshComponent, float direction) {
 			if (!stopTranslation) {
-				Vector3 currentLocation = default(Vector3);
+				Vector3 currentLocation = default;
 
 				staticMeshComponent.GetLocation(ref currentLocation);
 

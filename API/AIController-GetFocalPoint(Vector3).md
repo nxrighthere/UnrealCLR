@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AIController](./AIController.md 'UnrealEngine.Framework.AIController')
 ## AIController.GetFocalPoint(System.Numerics.Vector3) Method
-Retrieves the final position that controller should be looking at and returns to a reference  
+Retrieves the final position that controller should be looking at  
 ```csharp
 public void GetFocalPoint(ref System.Numerics.Vector3 value);
 ```

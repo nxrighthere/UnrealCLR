@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetForwardVector(System.Numerics.Vector3) Method
-Retrieves the forward X unit direction vector from the component in world space and returns to a reference  
+Retrieves the forward X unit direction vector from the component in world space  
 ```csharp
 public void GetForwardVector(ref System.Numerics.Vector3 value);
 ```

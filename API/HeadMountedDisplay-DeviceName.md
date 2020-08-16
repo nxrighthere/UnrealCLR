@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[HeadMountedDisplay](./HeadMountedDisplay.md 'UnrealEngine.Framework.HeadMountedDisplay')
 ## HeadMountedDisplay.DeviceName Property
-Retrieves the name of the device  
+Returns the name of the device  
 ```csharp
 public static string DeviceName { get; }
 ```

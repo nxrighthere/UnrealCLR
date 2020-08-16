@@ -883,6 +883,10 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace SkinnedMeshComponent {
+		static int32 GetBonesNumber(USkinnedMeshComponent* SkinnedMeshComponent);
+		static int32 GetBoneIndex(USkinnedMeshComponent* SkinnedMeshComponent, const char* BoneName);
+		static void GetBoneName(USkinnedMeshComponent* SkinnedMeshComponent, int32 BoneIndex, char* BoneName);
+		static void GetBoneTransform(USkinnedMeshComponent* SkinnedMeshComponent, int32 BoneIndex, Transform* Value);
 		static void SetSkeletalMesh(USkinnedMeshComponent* SkinnedMeshComponent, USkeletalMesh* SkeletalMesh, bool ReinitializePose);
 	}
 

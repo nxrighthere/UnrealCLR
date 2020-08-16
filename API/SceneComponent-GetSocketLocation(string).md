@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 ## SceneComponent.GetSocketLocation(string) Method
-Retrieves location of a socket in world space  
+Returns location of a socket in world space  
 ```csharp
 public System.Numerics.Vector3 GetSocketLocation(string socketName);
 ```

@@ -90,7 +90,7 @@ namespace UnrealEngine.Tests {
 		}
 
 		private static void WindowTest() {
-			Vector2 viewportSize = default(Vector2);
+			Vector2 viewportSize = default;
 
 			Engine.GetViewportSize(ref viewportSize);
 
