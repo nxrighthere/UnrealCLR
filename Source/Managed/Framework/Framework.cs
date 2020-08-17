@@ -3178,7 +3178,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Adds an engine defined axis mapping, cannot be remapped
+		/// Adds an engine defined action mapping, cannot be remapped
 		/// </summary>
 		/// <param name="actionName">Friendly name of action</param>
 		/// <param name="key">Key to bind in accordance with <see cref="Keys"/></param>

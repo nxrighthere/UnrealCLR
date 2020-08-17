@@ -54,7 +54,7 @@ public static class Install {
 				runtimeCompilation.WaitForExit();
 
 				if (runtimeCompilation.ExitCode != 0)
-					Error("Compilation of the runtime was finished with an error!");
+					Error("Compilation of the runtime was finished with an error (Exit code: " + runtimeCompilation.ExitCode + ")!");
 
 				Console.WriteLine("Launching compilation of the framework...");
 
@@ -68,7 +68,7 @@ public static class Install {
 				frameworkCompilation.WaitForExit();
 
 				if (frameworkCompilation.ExitCode != 0)
-					Error("Compilation of the framework was finished with an error!");
+					Error("Compilation of the framework was finished with an error (Exit code: " + frameworkCompilation.ExitCode + ")!");
 
 				if (compileTests) {
 					string contentPath = sourcePath + "/Content";
@@ -100,7 +100,7 @@ public static class Install {
 					testsCompilation.WaitForExit();
 
 					if (testsCompilation.ExitCode != 0)
-						Error("Compilation of the tests was finished with an error!");
+						Error("Compilation of the tests was finished with an error (Exit code: " + testsCompilation.ExitCode + ")!");
 				}
 
 				Console.WriteLine("Done! Please, don't forget to recompile custom code with an updated framework!");

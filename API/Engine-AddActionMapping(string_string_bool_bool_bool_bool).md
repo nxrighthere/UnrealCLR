@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Engine](./Engine.md 'UnrealEngine.Framework.Engine')
 ## Engine.AddActionMapping(string, string, bool, bool, bool, bool) Method
-Adds an engine defined axis mapping, cannot be remapped  
+Adds an engine defined action mapping, cannot be remapped  
 ```csharp
 public static void AddActionMapping(string actionName, string key, bool shift=false, bool ctrl=false, bool alt=false, bool cmd=false);
 ```
