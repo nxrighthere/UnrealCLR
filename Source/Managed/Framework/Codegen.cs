@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1EF;
+		internal const int checksum = 0x1F3;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -410,6 +410,10 @@ namespace UnrealEngine.Framework {
 				PlayerInput.getTimeKeyPressed = GenerateOptimizedFunction<PlayerInput.GetTimeKeyPressedFunction>(playerInputFunctions[head++]);
 				PlayerInput.getMouseSensitivity = GenerateOptimizedFunction<PlayerInput.GetMouseSensitivityFunction>(playerInputFunctions[head++]);
 				PlayerInput.setMouseSensitivity = GenerateOptimizedFunction<PlayerInput.SetMouseSensitivityFunction>(playerInputFunctions[head++]);
+				PlayerInput.addActionMapping = GenerateOptimizedFunction<PlayerInput.AddActionMappingFunction>(playerInputFunctions[head++]);
+				PlayerInput.addAxisMapping = GenerateOptimizedFunction<PlayerInput.AddAxisMappingFunction>(playerInputFunctions[head++]);
+				PlayerInput.removeActionMapping = GenerateOptimizedFunction<PlayerInput.RemoveActionMappingFunction>(playerInputFunctions[head++]);
+				PlayerInput.removeAxisMapping = GenerateOptimizedFunction<PlayerInput.RemoveAxisMappingFunction>(playerInputFunctions[head++]);
 			}
 
 			unchecked {
@@ -1597,11 +1601,19 @@ namespace UnrealEngine.Framework {
 		internal delegate float GetTimeKeyPressedFunction(IntPtr playerInput, string key);
 		internal delegate void GetMouseSensitivityFunction(IntPtr playerInput, ref Vector2 value);
 		internal delegate void SetMouseSensitivityFunction(IntPtr playerInput, in Vector2 value);
+		internal delegate void AddActionMappingFunction(IntPtr playerInput, string actionName, string key, Bool shift, Bool ctrl, Bool alt, Bool cmd);
+		internal delegate void AddAxisMappingFunction(IntPtr playerInput, string axisName, string key, float scale);
+		internal delegate void RemoveActionMappingFunction(IntPtr playerInput, string actionName, string key);
+		internal delegate void RemoveAxisMappingFunction(IntPtr playerInput, string axisName, string key);
 
 		internal static IsKeyPressedFunction isKeyPressed;
 		internal static GetTimeKeyPressedFunction getTimeKeyPressed;
 		internal static GetMouseSensitivityFunction getMouseSensitivity;
 		internal static SetMouseSensitivityFunction setMouseSensitivity;
+		internal static AddActionMappingFunction addActionMapping;
+		internal static AddAxisMappingFunction addAxisMapping;
+		internal static RemoveActionMappingFunction removeActionMapping;
+		internal static RemoveAxisMappingFunction removeAxisMapping;
 	}
 
 	partial class StreamableRenderAsset { }

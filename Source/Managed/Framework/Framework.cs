@@ -5814,6 +5814,51 @@ namespace UnrealEngine.Framework {
 		/// Sets mouse sensitivity
 		/// </summary>
 		public void SetMouseSensitivity(in Vector2 value) => setMouseSensitivity(Pointer, value);
+
+		/// <summary>
+		/// Adds a player-specific action mapping
+		/// </summary>
+		/// <param name="actionName">Friendly name of action</param>
+		/// <param name="key">Key to bind in accordance with <see cref="Keys"/></param>
+		/// <param name="shift"><c>true</c> if one of the Shift keys must be down when the KeyEvent is received to be acknowledged</param>
+		/// <param name="ctrl"><c>true</c> if one of the Ctrl keys must be down when the KeyEvent is received to be acknowledged</param>
+		/// <param name="alt"><c>true</c> if one of the Alt keys must be down when the KeyEvent is received to be acknowledged</param>
+		/// <param name="cmd"><c>true</c> if one of the Cmd keys must be down when the KeyEvent is received to be acknowledged</param>
+		public void AddActionMapping(string actionName, string key, bool shift = false, bool ctrl = false, bool alt = false, bool cmd = false) {
+			if (actionName == null)
+				throw new ArgumentNullException(nameof(actionName));
+
+			if (key == null)
+				throw new ArgumentNullException(nameof(key));
+
+			addActionMapping(Pointer, actionName, key, shift, ctrl, alt, cmd);
+		}
+
+		/// <summary>
+		/// Adds a player-specific mapping between an axis and key
+		/// </summary>
+		/// <param name="axisName">Friendly name of axis</param>
+		/// <param name="key">Key to bind in accordance with <see cref="Keys"/></param>
+		/// <param name="scale">Multiplier to use for the mapping when accumulating the axis value</param>
+		public void AddAxisMapping(string axisName, string key, float scale = 1.0f) {
+			if (axisName == null)
+				throw new ArgumentNullException(nameof(axisName));
+
+			if (key == null)
+				throw new ArgumentNullException(nameof(key));
+
+			addAxisMapping(Pointer, axisName, key, scale);
+		}
+
+		/// <summary>
+		/// Removes a player-specific action mapping
+		/// </summary>
+		public void RemoveActionMapping(string actionName, string key) => removeActionMapping(Pointer, actionName, key);
+
+		/// <summary>
+		/// Removes a player-specific mapping between an axis and key
+		/// </summary>
+		public void RemoveAxisMapping(string axisName, string key) => removeAxisMapping(Pointer, axisName, key);
 	}
 
 	/// <summary>
@@ -6450,7 +6495,7 @@ namespace UnrealEngine.Framework {
 		public void ClearActionBindings() => clearActionBindings(Pointer);
 
 		/// <summary>
-		/// Binds a static callback function to an action defined in the project settings or by using <see cref="Engine.AddActionMapping"/>
+		/// Binds a static callback function to an action defined in the project settings, or by using <see cref="Engine.AddActionMapping"/> and <see cref="PlayerInput.AddActionMapping"/>
 		/// </summary>
 		/// <param name="actionName">The name of the action</param>
 		/// <param name="keyEvent">The type of input behavior</param>
@@ -6471,7 +6516,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Binds a static callback function an axis defined in the project settings or by using <see cref="Engine.AddAxisMapping"/>
+		/// Binds a static callback function to an axis defined in the project settings, or by using <see cref="Engine.AddAxisMapping"/> and <see cref="PlayerInput.AddAxisMapping"/>
 		/// </summary>
 		/// <param name="axisName">The name of the axis</param>
 		/// <param name="callback">The static function to call while tracking axis</param>

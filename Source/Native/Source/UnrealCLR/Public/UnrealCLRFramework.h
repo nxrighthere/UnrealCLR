@@ -630,6 +630,10 @@ namespace UnrealCLRFramework {
 		static float GetTimeKeyPressed(UPlayerInput* PlayerInput, const char* Key);
 		static void GetMouseSensitivity(UPlayerInput* PlayerInput, Vector2* Value);
 		static void SetMouseSensitivity(UPlayerInput* PlayerInput, const Vector2* Value);
+		static void AddActionMapping(UPlayerInput* PlayerInput, const char* ActionName, const char* Key, bool Shift, bool Ctrl, bool Alt, bool Cmd);
+		static void AddAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key, float Scale);
+		static void RemoveActionMapping(UPlayerInput* PlayerInput, const char* ActionName, const char* Key);
+		static void RemoveAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key);
 	}
 
 	namespace StreamableRenderAsset {

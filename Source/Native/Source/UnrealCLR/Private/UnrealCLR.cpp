@@ -554,6 +554,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::GetTimeKeyPressed;
 				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::GetMouseSensitivity;
 				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::SetMouseSensitivity;
+				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::AddActionMapping;
+				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::AddAxisMapping;
+				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::RemoveActionMapping;
+				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::RemoveAxisMapping;
 
 				checksum += head;
 			}

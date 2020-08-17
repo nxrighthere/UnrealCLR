@@ -1687,6 +1687,22 @@ namespace UnrealCLRFramework {
 		void SetMouseSensitivity(UPlayerInput* PlayerInput, const Vector2* Value) {
 			PlayerInput->SetMouseSensitivity(Value->X, Value->Y);
 		}
+
+		void AddActionMapping(UPlayerInput* PlayerInput, const char* ActionName, const char* Key, bool Shift, bool Ctrl, bool Alt, bool Cmd) {
+			PlayerInput->AddActionMapping(FInputActionKeyMapping(FName(ANSI_TO_TCHAR(ActionName)), FKey(ANSI_TO_TCHAR(Key)), Shift, Ctrl, Alt, Cmd));
+		}
+
+		void AddAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key, float Scale) {
+			PlayerInput->AddAxisMapping(FInputAxisKeyMapping(FName(ANSI_TO_TCHAR(AxisName)), FKey(ANSI_TO_TCHAR(Key)), Scale));
+		}
+
+		void RemoveActionMapping(UPlayerInput* PlayerInput, const char* ActionName, const char* Key) {
+			PlayerInput->RemoveActionMapping(FInputActionKeyMapping(FName(ANSI_TO_TCHAR(ActionName)), FKey(ANSI_TO_TCHAR(Key))));
+		}
+
+		void RemoveAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key) {
+			PlayerInput->RemoveAxisMapping(FInputAxisKeyMapping(FName(ANSI_TO_TCHAR(AxisName)), FKey(ANSI_TO_TCHAR(Key))));
+		}
 	}
 
 	namespace Texture2D {
