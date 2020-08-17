@@ -14,7 +14,7 @@ namespace UnrealEngine.Tests {
 		private const string consoleVariable = "TestVariable";
 		private const string consoleCommand = "TestCommand";
 		private const string pauseResumeAction = "Pause/Resume";
-		private const string playerCommandAction = "PlayerQuitAction";
+		private const string playerCommandAction = "PlayerCommandAction";
 		private const string pauseResumeKey = Keys.Q;
 		private const string playerCommandKey = Keys.X;
 		private const string messageKey = Keys.E;

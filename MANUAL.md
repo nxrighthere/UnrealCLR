@@ -5,6 +5,7 @@
     + [Blueprint functions](#blueprint-functions)
   * [Packaging](#packaging)
 - [Engine](#engine)
+  * [Code structure](#code-structure)
   * [Blueprints](#blueprints)
   * [Data passing](#data-passing)
 - [Tools](#tools)
@@ -58,17 +59,17 @@ open System.Drawing
 open UnrealEngine.Framework
 
 module Main = // Indicates the main entry point for automatic loading by the plugin
-    let OnWorldBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
+    let OnWorldBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!")
 
-    let OnWorldEnd() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
+    let OnWorldEnd() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!")
 
-    let OnWorldPrePhysicsTick(deltaTime:single) = Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
+    let OnWorldPrePhysicsTick(deltaTime:float32) = Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!")
 
-    let OnWorldDuringPhysicsTick(deltaTime:single) = Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!");
+    let OnWorldDuringPhysicsTick(deltaTime:float32) = Debug.AddOnScreenMessage(2, 10.0f, Color.DeepPink, "On during physics tick invoked!")
 
-    let OnWorldPostPhysicsTick(deltaTime:single) = Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!");
+    let OnWorldPostPhysicsTick(deltaTime:float32) = Debug.AddOnScreenMessage(3, 10.0f, Color.DeepPink, "On post physics tick invoked!")
 
-    let OnWorldPostUpdateTick(deltaTime:single) = Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!");
+    let OnWorldPostUpdateTick(deltaTime:float32) = Debug.AddOnScreenMessage(4, 10.0f, Color.DeepPink, "On post update tick invoked!")
 ```
 </details>
 
@@ -109,7 +110,7 @@ open System.Drawing
 open UnrealEngine.Framework
 
 module System = // Custom module for loading functions from blueprints
-    let Function() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Blueprint function invoked!");
+    let Function() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Blueprint function invoked!")
 ```
 </details>
 
@@ -126,6 +127,84 @@ The plugin is transparently integrated into the [packaging](https://docs.unreale
 
 Engine
 --------
+### Code structure
+The plugin allows organizing the code structure of the project in any preferable way. Any paradigms or patterns can be used to drive the logic and simulation without any intermediate management between user code and the engine.
+
+**Object-Oriented Design**
+
+```csharp
+using System;
+using System.Drawing;
+using UnrealEngine.Framework;
+
+namespace Game {
+	public static class Main {
+		private static Entity[] entities = new Entity[32];
+
+		public static void OnWorldBegin() {
+			for (int i = 0; i < entities.Length; i++) {
+				entities[i] = new Entity(nameof(Entity) + i);
+				entities[i].OnBegin();
+			}
+		}
+
+		public static void OnWorldPrePhysicsTick(float deltaTime) {
+			for (int i = 0; i < entities.Length; i++) {
+				if (entities[i].CanTick)
+					entities[i].OnPrePhysicsTick(deltaTime);
+			}
+		}
+	}
+
+	public class Entity : Actor {
+		public Entity(string name = null, bool canTick = true) : base(name) {
+			CanTick = canTick;
+		}
+
+		public bool CanTick { get; set; }
+
+		public void OnBegin() => Debug.AddOnScreenMessage(-1, 1.0f, Color.LightSeaGreen, Name + " begin!");
+
+		public void OnPrePhysicsTick(float deltaTime) => Debug.AddOnScreenMessage(-1, 1.0f, Color.LightSteelBlue, Name + " tick!");
+	}
+}
+```
+
+**Data-Oriented Design**
+
+```csharp
+using System;
+using System.Drawing;
+using UnrealEngine.Framework;
+
+namespace Game {
+	public static class Main {
+		private static Actor[] entities = new Actor[32];
+		private static bool[] canTick = new bool[entities.Length];
+
+		public static void OnWorldBegin() {
+			for (int i = 0; i < entities.Length; i++) {
+				entities[i] = new Actor("Entity" + i);
+				canTick[i] = true;
+
+				OnEntityBegin(i);
+			}
+		}
+
+		public static void OnWorldPrePhysicsTick(float deltaTime) {
+			for (int i = 0; i < entities.Length; i++) {
+				if (canTick[i])
+					OnEntityPrePhysicsTick(i, deltaTime);
+			}
+		}
+
+		private static void OnEntityBegin(int id) => Debug.AddOnScreenMessage(-1, 1.0f, Color.LightSeaGreen, entities[id].Name + " begin!");
+
+		private static void OnEntityPrePhysicsTick(int id, float deltaTime) => Debug.AddOnScreenMessage(-1, 1.0f, Color.LightSteelBlue, entities[id].Name + " tick!");
+	}
+}
+```
+
 ### Blueprints
 The plugin provides two blueprints to manage the execution. They can be used in any combinations with other nodes, data types, and C++ code to weave managed functionality with events. It's highly recommended to use creative approaches that extract information from blueprint classes instead of using plain strings for managed functions.
 
