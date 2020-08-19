@@ -4681,6 +4681,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Sets the control rotation which is a full aim rotation
+		/// </summary>
+		public void SetControlRotation(in Quaternion value) => setControlRotation(Pointer, value);
+
+		/// <summary>
 		/// Sets the initial location and rotation of the controller, as well as the control rotation
 		/// </summary>
 		public void SetInitialLocationAndRotation(in Vector3 newLocation, in Quaternion newRotation) => setInitialLocationAndRotation(Pointer, newLocation, newRotation);

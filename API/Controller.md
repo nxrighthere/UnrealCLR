@@ -21,6 +21,7 @@ Derived
 - [LineOfSightTo(UnrealEngine.Framework.Actor, System.Numerics.Vector3, bool)](./Controller-LineOfSightTo(Actor_Vector3_bool).md 'UnrealEngine.Framework.Controller.LineOfSightTo(UnrealEngine.Framework.Actor, System.Numerics.Vector3, bool)')
 - [ResetIgnoreLookInput()](./Controller-ResetIgnoreLookInput().md 'UnrealEngine.Framework.Controller.ResetIgnoreLookInput()')
 - [ResetIgnoreMoveInput()](./Controller-ResetIgnoreMoveInput().md 'UnrealEngine.Framework.Controller.ResetIgnoreMoveInput()')
+- [SetControlRotation(System.Numerics.Quaternion)](./Controller-SetControlRotation(Quaternion).md 'UnrealEngine.Framework.Controller.SetControlRotation(System.Numerics.Quaternion)')
 - [SetIgnoreLookInput(bool)](./Controller-SetIgnoreLookInput(bool).md 'UnrealEngine.Framework.Controller.SetIgnoreLookInput(bool)')
 - [SetIgnoreMoveInput(bool)](./Controller-SetIgnoreMoveInput(bool).md 'UnrealEngine.Framework.Controller.SetIgnoreMoveInput(bool)')
 - [SetInitialLocationAndRotation(System.Numerics.Vector3, System.Numerics.Quaternion)](./Controller-SetInitialLocationAndRotation(Vector3_Quaternion).md 'UnrealEngine.Framework.Controller.SetInitialLocationAndRotation(System.Numerics.Vector3, System.Numerics.Quaternion)')
