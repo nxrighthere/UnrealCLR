@@ -51,6 +51,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerInput.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Misc/DefaultValueHelper.h"
@@ -268,6 +269,7 @@ namespace UnrealCLR {
 		static void* AudioComponentFunctions[storageSize];
 		static void* CameraComponentFunctions[storageSize];
 		static void* ChildActorComponentFunctions[storageSize];
+		static void* SpringArmComponentFunctions[storageSize];
 		static void* PrimitiveComponentFunctions[storageSize];
 		static void* ShapeComponentFunctions[storageSize];
 		static void* BoxComponentFunctions[storageSize];

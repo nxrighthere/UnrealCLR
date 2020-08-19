@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 ## Hit.TraceStart Property
-Gets the start location of the trace  
+Returns the start location of the trace  
 ```csharp
 public System.Numerics.Vector3 TraceStart { get; }
 ```

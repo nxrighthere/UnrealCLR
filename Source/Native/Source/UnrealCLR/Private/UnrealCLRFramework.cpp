@@ -146,6 +146,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::ChildActor:\
 				Result = Head UChildActorComponent Tail;\
 				break;\
+			case ComponentType::SpringArm:\
+				Result = Head USpringArmComponent Tail;\
+				break;\
 			case ComponentType::Box:\
 				Result = Head UBoxComponent Tail;\
 				break;\
@@ -194,6 +197,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::ChildActor:\
 				Result = Head UChildActorComponent Tail;\
+				break;\
+			case ComponentType::SpringArm:\
+				Result = Head USpringArmComponent Tail;\
 				break;\
 			case ComponentType::Box:\
 				Result = Head UBoxComponent Tail;\
@@ -2176,6 +2182,160 @@ namespace UnrealCLRFramework {
 			ChildActorComponent->SetChildActorClass(type);
 
 			return ChildActorComponent->GetChildActor();
+		}
+	}
+
+	namespace SpringArmComponent {
+		bool IsCollisionFixApplied(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->IsCollisionFixApplied();
+		}
+
+		bool GetDrawDebugLagMarkers(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bDrawDebugLagMarkers;
+		}
+
+		bool GetCollisionTest(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bDoCollisionTest;
+		}
+
+		bool GetCameraPositionLag(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bEnableCameraLag;
+		}
+
+		bool GetCameraRotationLag(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bEnableCameraRotationLag;
+		}
+
+		bool GetCameraLagSubstepping(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bUseCameraLagSubstepping;
+		}
+
+		bool GetInheritPitch(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bInheritPitch;
+		}
+
+		bool GetInheritRoll(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bInheritRoll;
+		}
+
+		bool GetInheritYaw(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bInheritYaw;
+		}
+
+		float GetCameraLagMaxDistance(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->CameraLagMaxDistance;
+		}
+
+		float GetCameraLagMaxTimeStep(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->CameraLagMaxTimeStep;
+		}
+
+		float GetCameraPositionLagSpeed(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->CameraLagSpeed;
+		}
+
+		float GetCameraRotationLagSpeed(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->CameraRotationLagSpeed;
+		}
+
+		CollisionChannel GetProbeChannel(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->ProbeChannel;
+		}
+
+		float GetProbeSize(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->ProbeSize;
+		}
+
+		void GetSocketOffset(USpringArmComponent* SpringArmComponent, Vector3* Value) {
+			*Value = SpringArmComponent->SocketOffset;
+		}
+
+		float GetTargetArmLength(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->TargetArmLength;
+		}
+
+		void GetTargetOffset(USpringArmComponent* SpringArmComponent, Vector3* Value) {
+			*Value = SpringArmComponent->TargetOffset;
+		}
+
+		void GetUnfixedCameraPosition(USpringArmComponent* SpringArmComponent, Vector3* Value) {
+			*Value = SpringArmComponent->GetUnfixedCameraPosition();
+		}
+
+		void GetDesiredRotation(USpringArmComponent* SpringArmComponent, Quaternion* Value) {
+			*Value = SpringArmComponent->GetDesiredRotation().Quaternion();
+		}
+
+		void GetTargetRotation(USpringArmComponent* SpringArmComponent, Quaternion* Value) {
+			*Value = SpringArmComponent->GetTargetRotation().Quaternion();
+		}
+
+		void SetDrawDebugLagMarkers(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bDrawDebugLagMarkers = Value;
+		}
+
+		void SetCollisionTest(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bDoCollisionTest = Value;
+		}
+
+		void SetCameraPositionLag(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bEnableCameraLag = Value;
+		}
+
+		void SetCameraRotationLag(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bEnableCameraRotationLag = Value;
+		}
+
+		void SetCameraLagSubstepping(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bUseCameraLagSubstepping = Value;
+		}
+
+		void SetInheritPitch(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bInheritPitch = Value;
+		}
+
+		void SetInheritRoll(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bInheritRoll = Value;
+		}
+
+		void SetInheritYaw(USpringArmComponent* SpringArmComponent, bool Value) {
+			SpringArmComponent->bInheritYaw = Value;
+		}
+
+		void SetCameraLagMaxDistance(USpringArmComponent* SpringArmComponent, float Value) {
+			SpringArmComponent->CameraLagMaxDistance = Value;
+		}
+
+		void SetCameraLagMaxTimeStep(USpringArmComponent* SpringArmComponent, float Value) {
+			SpringArmComponent->CameraLagMaxTimeStep = Value;
+		}
+
+		void SetCameraPositionLagSpeed(USpringArmComponent* SpringArmComponent, float Value) {
+			SpringArmComponent->CameraLagSpeed = Value;
+		}
+
+		void SetCameraRotationLagSpeed(USpringArmComponent* SpringArmComponent, float Value) {
+			SpringArmComponent->CameraRotationLagSpeed = Value;
+		}
+
+		void SetProbeChannel(USpringArmComponent* SpringArmComponent, CollisionChannel Value) {
+			SpringArmComponent->ProbeChannel = Value;
+		}
+
+		void SetProbeSize(USpringArmComponent* SpringArmComponent, float Value) {
+			SpringArmComponent->ProbeSize = Value;
+		}
+
+		void SetSocketOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value) {
+			SpringArmComponent->SocketOffset = *Value;
+		}
+
+		void SetTargetArmLength(USpringArmComponent* SpringArmComponent, float Value) {
+			SpringArmComponent->TargetArmLength = Value;
+		}
+
+		void SetTargetOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value) {
+			SpringArmComponent->TargetOffset = *Value;
 		}
 	}
 

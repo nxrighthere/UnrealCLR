@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 ## Hit.ImpactLocation Property
-Gets the location in world space of the actual contact of the trace shape with the impacted object  
+Returns the location in world space of the actual contact of the trace shape with the impacted object  
 ```csharp
 public System.Numerics.Vector3 ImpactLocation { get; }
 ```

@@ -981,47 +981,47 @@ namespace UnrealEngine.Framework {
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Hit : IEquatable<Hit> {
 		/// <summary>
-		/// Gets the location in world space where the moving shape would end up against the impacted object if there was a hit
+		/// Returns the location in world space where the moving shape would end up against the impacted object if there was a hit
 		/// </summary>
 		public Vector3 Location => location;
 
 		/// <summary>
-		/// Gets the location in world space of the actual contact of the trace shape with the impacted object
+		/// Returns the location in world space of the actual contact of the trace shape with the impacted object
 		/// </summary>
 		public Vector3 ImpactLocation => impactLocation;
 
 		/// <summary>
-		/// Gets the normal of the hit in world space for the object that was swept
+		/// Returns the normal of the hit in world space for the object that was swept
 		/// </summary>
 		public Vector3 Normal => normal;
 
 		/// <summary>
-		/// Gets the normal of the hit in world space for the object that was hit by the sweep
+		/// Returns the normal of the hit in world space for the object that was hit by the sweep
 		/// </summary>
 		public Vector3 ImpactNormal => impactNormal;
 
 		/// <summary>
-		/// Gets the start location of the trace
+		/// Returns the start location of the trace
 		/// </summary>
 		public Vector3 TraceStart => traceStart;
 
 		/// <summary>
-		/// Gets the end location of the trace
+		/// Returns the end location of the trace
 		/// </summary>
 		public Vector3 TraceEnd => traceEnd;
 
 		/// <summary>
-		/// Gets the impact along trace direction between 0.0f and 1.0f if there was a hit, indicating time between <see cref="TraceStart"/> and <see cref="TraceEnd"/>
+		/// Returns the impact along trace direction between 0.0f and 1.0f if there was a hit, indicating time between <see cref="TraceStart"/> and <see cref="TraceEnd"/>
 		/// </summary>
 		public float Time => time;
 
 		/// <summary>
-		/// Gets the distance from <see cref="TraceStart"/> to <see cref="Location"/> in world space
+		/// Returns the distance from <see cref="TraceStart"/> to <see cref="Location"/> in world space
 		/// </summary>
 		public float Distance => distance;
 
 		/// <summary>
-		/// Gets the distance along with <see cref="Normal"/> that will result in moving out of penetration if <see cref="StartPenetrating"/> is <c>true</c> and a penetration vector can be computed
+		/// Returns the distance along with <see cref="Normal"/> that will result in moving out of penetration if <see cref="StartPenetrating"/> is <c>true</c> and a penetration vector can be computed
 		/// </summary>
 		public float PenetrationDepth => penetrationDepth;
 
@@ -1100,7 +1100,7 @@ namespace UnrealEngine.Framework {
 	[StructLayout(LayoutKind.Explicit)]
 	public partial struct CollisionShape : IEquatable<CollisionShape> {
 		/// <summary>
-		/// Gets the shape type
+		/// Returns the shape type
 		/// </summary>
 		public CollisionShapeType ShapeType => shapeType;
 
@@ -7205,6 +7205,232 @@ namespace UnrealEngine.Framework {
 
 			return null;
 		}
+	}
+
+	/// <summary>
+	/// A component that maintains its children at a fixed distance from the parent, but will retract the children if there is a collision, and spring back when there is no collision
+	/// </summary>
+	public partial class SpringArmComponent : SceneComponent {
+		internal override ComponentType Type => ComponentType.SpringArm;
+
+		private protected SpringArmComponent() { }
+
+		internal SpringArmComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Returns <c>true</c> if the collision test displacement being applied
+		/// </summary>
+		public bool IsCollisionFixApplied() => isCollisionFixApplied(Pointer);
+
+		/// <summary>
+		/// Gets or sets whether draw markers at the camera target (in green) and the lagged position (in yellow) if the camera location lag is enabled
+		/// </summary>
+		public bool DrawDebugLagMarkers {
+			get => getDrawDebugLagMarkers(Pointer);
+			set => setDrawDebugLagMarkers(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the collision test is enabled using <see cref="ProbeChannel"/> and <see cref="ProbeSize"/> to prevent camera clipping into level
+		/// </summary>
+		public bool CollisionTest {
+			get => getCollisionTest(Pointer);
+			set => setCollisionTest(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the camera lags behind target position to smooth its movement
+		/// </summary>
+		public bool CameraPositionLag {
+			get => getCameraPositionLag(Pointer);
+			set => setCameraPositionLag(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the camera lags behind target rotation to smooth its movement
+		/// </summary>
+		public bool CameraRotationLag {
+			get => getCameraRotationLag(Pointer);
+			set => setCameraRotationLag(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the sub-step camera damping so that it handles fluctuating frame rates well
+		/// </summary>
+		public bool CameraLagSubstepping {
+			get => getCameraLagSubstepping(Pointer);
+			set => setCameraLagSubstepping(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the component should inherit yaw from the parent component, has no effect if using absolute rotation
+		/// </summary>
+		public bool InheritYaw {
+			get => getInheritYaw(Pointer);
+			set => setInheritYaw(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the component should inherit pitch from the parent component, has no effect if using absolute rotation
+		/// </summary>
+		public bool InheritPitch {
+			get => getInheritPitch(Pointer);
+			set => setInheritPitch(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the component should inherit roll from the parent component, has no effect if using absolute rotation
+		/// </summary>
+		public bool InheritRoll {
+			get => getInheritRoll(Pointer);
+			set => setInheritRoll(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets a max distance the camera target may lag behind the current location
+		/// </summary>
+		public float CameraLagMaxDistance {
+			get => getCameraLagMaxDistance(Pointer);
+			set => setCameraLagMaxDistance(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets a max time step used when sub-stepping camera lag
+		/// </summary>
+		public float CameraLagMaxTimeStep {
+			get => getCameraLagMaxTimeStep(Pointer);
+			set => setCameraLagMaxTimeStep(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets how quickly the camera reaches a target position
+		/// </summary>
+		public float CameraPositionLagSpeed {
+			get => getCameraPositionLagSpeed(Pointer);
+			set => setCameraPositionLagSpeed(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets how quickly еру camera reaches a target rotation
+		/// </summary>
+		public float CameraRotationLagSpeed {
+			get => getCameraRotationLagSpeed(Pointer);
+			set => setCameraRotationLagSpeed(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the collision channel of the query probe (<see cref="CollisionChannel.Camera"/> by default)
+		/// </summary>
+		public CollisionChannel ProbeChannel {
+			get => getProbeChannel(Pointer);
+			set => setProbeChannel(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets how big should be the query probe sphere
+		/// </summary>
+		public float ProbeSize {
+			get => getProbeSize(Pointer);
+			set => setProbeSize(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the natural length of the spring arm when there are no collisions
+		/// </summary>
+		public float TargetArmLength {
+			get => getTargetArmLength(Pointer);
+			set => setTargetArmLength(Pointer, value);
+		}
+
+		/// <summary>
+		/// Retrieves offset at the end of the spring arm, can be used instead of the relative offset of the attached component to ensure the line trace works as desired
+		/// </summary>
+		public void GetSocketOffset(ref Vector3 value) => getSocketOffset(Pointer, ref value);
+
+		/// <summary>
+		/// Returns offset at the end of the spring arm, can be used instead of the relative offset of the attached component to ensure the line trace works as desired
+		/// </summary>
+		public Vector3 GetSocketOffset() {
+			Vector3 value = default;
+
+			getSocketOffset(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves offset at the start of the spring arm in world space
+		/// </summary>
+		public void GetTargetOffset(ref Vector3 value) => getTargetOffset(Pointer, ref value);
+
+		/// <summary>
+		/// Returns offset at the start of the spring arm in world space
+		/// </summary>
+		public Vector3 GetTargetOffset() {
+			Vector3 value = default;
+
+			getTargetOffset(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the unfixed camera position
+		/// </summary>
+		public void GetUnfixedCameraPosition(ref Vector3 value) => getUnfixedCameraPosition(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the unfixed camera position
+		/// </summary>
+		public Vector3 GetUnfixedCameraPosition() {
+			Vector3 value = default;
+
+			getUnfixedCameraPosition(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the desired rotation for the spring arm, before the rotation constraints such as <see cref="InheritYaw"/>, <see cref="InheritPitch"/>, or <see cref="InheritRoll"/> are enforced
+		/// </summary>
+		public void GetDesiredRotation(ref Quaternion value) => getDesiredRotation(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the desired rotation for the spring arm, before the rotation constraints such as <see cref="InheritYaw"/>, <see cref="InheritPitch"/>, or <see cref="InheritRoll"/> are enforced
+		/// </summary>
+		public Quaternion GetDesiredRotation() {
+			Quaternion value = default;
+
+			getDesiredRotation(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the target inherited rotation
+		/// </summary>
+		public void GetTargetRotation(ref Quaternion value) => getTargetRotation(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the target inherited rotation
+		/// </summary>
+		public Quaternion GetTargetRotation() {
+			Quaternion value = default;
+
+			getTargetRotation(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Sets offset at the end of the spring arm, can be used instead of the relative offset of the attached component to ensure the line trace works as desired
+		/// </summary>
+		public void SetSocketOffset(in Vector3 value) => setSocketOffset(Pointer, value);
+
+		/// <summary>
+		/// Sets offset at the start of the spring arm in world space
+		/// </summary>
+		public void SetTargetOffset(in Vector3 value) => setTargetOffset(Pointer, value);
 	}
 
 	/// <summary>

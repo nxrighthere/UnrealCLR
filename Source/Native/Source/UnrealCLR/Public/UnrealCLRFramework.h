@@ -265,6 +265,7 @@ namespace UnrealCLRFramework {
 		StaticMesh,
 		InstancedStaticMesh,
 		ChildActor,
+		SpringArm,
 		Box,
 		Sphere,
 		Capsule,
@@ -761,6 +762,47 @@ namespace UnrealCLRFramework {
 
 	namespace ChildActorComponent {
 		static AActor* SetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type);
+	}
+
+	namespace SpringArmComponent {
+		static bool IsCollisionFixApplied(USpringArmComponent* SpringArmComponent);
+		static bool GetDrawDebugLagMarkers(USpringArmComponent* SpringArmComponent);
+		static bool GetCollisionTest(USpringArmComponent* SpringArmComponent);
+		static bool GetCameraPositionLag(USpringArmComponent* SpringArmComponent);
+		static bool GetCameraRotationLag(USpringArmComponent* SpringArmComponent);
+		static bool GetCameraLagSubstepping(USpringArmComponent* SpringArmComponent);
+		static bool GetInheritPitch(USpringArmComponent* SpringArmComponent);
+		static bool GetInheritRoll(USpringArmComponent* SpringArmComponent);
+		static bool GetInheritYaw(USpringArmComponent* SpringArmComponent);
+		static float GetCameraLagMaxDistance(USpringArmComponent* SpringArmComponent);
+		static float GetCameraLagMaxTimeStep(USpringArmComponent* SpringArmComponent);
+		static float GetCameraPositionLagSpeed(USpringArmComponent* SpringArmComponent);
+		static float GetCameraRotationLagSpeed(USpringArmComponent* SpringArmComponent);
+		static CollisionChannel GetProbeChannel(USpringArmComponent* SpringArmComponent);
+		static float GetProbeSize(USpringArmComponent* SpringArmComponent);
+		static void GetSocketOffset(USpringArmComponent* SpringArmComponent, Vector3* Value);
+		static float GetTargetArmLength(USpringArmComponent* SpringArmComponent);
+		static void GetTargetOffset(USpringArmComponent* SpringArmComponent, Vector3* Value);
+		static void GetUnfixedCameraPosition(USpringArmComponent* SpringArmComponent, Vector3* Value);
+		static void GetDesiredRotation(USpringArmComponent* SpringArmComponent, Quaternion* Value);
+		static void GetTargetRotation(USpringArmComponent* SpringArmComponent, Quaternion* Value);
+		static void SetDrawDebugLagMarkers(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetCollisionTest(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetCameraPositionLag(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetCameraRotationLag(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetCameraLagSubstepping(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetInheritPitch(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetInheritRoll(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetInheritYaw(USpringArmComponent* SpringArmComponent, bool Value);
+		static void SetCameraLagMaxDistance(USpringArmComponent* SpringArmComponent, float Value);
+		static void SetCameraLagMaxTimeStep(USpringArmComponent* SpringArmComponent, float Value);
+		static void SetCameraPositionLagSpeed(USpringArmComponent* SpringArmComponent, float Value);
+		static void SetCameraRotationLagSpeed(USpringArmComponent* SpringArmComponent, float Value);
+		static void SetProbeChannel(USpringArmComponent* SpringArmComponent, CollisionChannel Value);
+		static void SetProbeSize(USpringArmComponent* SpringArmComponent, float Value);
+		static void SetSocketOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value);
+		static void SetTargetArmLength(USpringArmComponent* SpringArmComponent, float Value);
+		static void SetTargetOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value);
 	}
 
 	namespace PrimitiveComponent {

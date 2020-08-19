@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 ## Hit.Distance Property
-Gets the distance from [TraceStart](./Hit-TraceStart.md 'UnrealEngine.Framework.Hit.TraceStart') to [Location](./Hit-Location.md 'UnrealEngine.Framework.Hit.Location') in world space  
+Returns the distance from [TraceStart](./Hit-TraceStart.md 'UnrealEngine.Framework.Hit.TraceStart') to [Location](./Hit-Location.md 'UnrealEngine.Framework.Hit.Location') in world space  
 ```csharp
 public float Distance { get; }
 ```

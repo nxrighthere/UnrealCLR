@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[CollisionShape](./CollisionShape.md 'UnrealEngine.Framework.CollisionShape')
 ## CollisionShape.ShapeType Property
-Gets the shape type  
+Returns the shape type  
 ```csharp
 public UnrealEngine.Framework.CollisionShapeType ShapeType { get; }
 ```

@@ -63,6 +63,7 @@
 - [SoundWave](./SoundWave.md 'UnrealEngine.Framework.SoundWave')
 - [SphereComponent](./SphereComponent.md 'UnrealEngine.Framework.SphereComponent')
 - [SpotLight](./SpotLight.md 'UnrealEngine.Framework.SpotLight')
+- [SpringArmComponent](./SpringArmComponent.md 'UnrealEngine.Framework.SpringArmComponent')
 - [StaticMesh](./StaticMesh.md 'UnrealEngine.Framework.StaticMesh')
 - [StaticMeshComponent](./StaticMeshComponent.md 'UnrealEngine.Framework.StaticMeshComponent')
 - [StreamableRenderAsset](./StreamableRenderAsset.md 'UnrealEngine.Framework.StreamableRenderAsset')

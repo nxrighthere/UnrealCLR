@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x201;
+		internal const int checksum = 0x228;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -557,6 +557,50 @@ namespace UnrealEngine.Framework {
 
 			unchecked {
 				int head = 0;
+				IntPtr* springArmComponentFunctions = (IntPtr*)buffer[position++];
+
+				SpringArmComponent.isCollisionFixApplied = GenerateOptimizedFunction<SpringArmComponent.IsCollisionFixAppliedFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getDrawDebugLagMarkers = GenerateOptimizedFunction<SpringArmComponent.GetDrawDebugLagMarkersFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCollisionTest = GenerateOptimizedFunction<SpringArmComponent.GetCollisionTestFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraPositionLag = GenerateOptimizedFunction<SpringArmComponent.GetCameraPositionLagFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraRotationLag = GenerateOptimizedFunction<SpringArmComponent.GetCameraRotationLagFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraLagSubstepping = GenerateOptimizedFunction<SpringArmComponent.GetCameraLagSubsteppingFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getInheritPitch = GenerateOptimizedFunction<SpringArmComponent.GetInheritPitchFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getInheritRoll = GenerateOptimizedFunction<SpringArmComponent.GetInheritRollFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getInheritYaw = GenerateOptimizedFunction<SpringArmComponent.GetInheritYawFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraLagMaxDistance = GenerateOptimizedFunction<SpringArmComponent.GetCameraLagMaxDistanceFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraLagMaxTimeStep = GenerateOptimizedFunction<SpringArmComponent.GetCameraLagMaxTimeStepFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraPositionLagSpeed = GenerateOptimizedFunction<SpringArmComponent.GetCameraPositionLagSpeedFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getCameraRotationLagSpeed = GenerateOptimizedFunction<SpringArmComponent.GetCameraRotationLagSpeedFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getProbeChannel = GenerateOptimizedFunction<SpringArmComponent.GetProbeChannelFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getProbeSize = GenerateOptimizedFunction<SpringArmComponent.GetProbeSizeFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getSocketOffset = GenerateOptimizedFunction<SpringArmComponent.GetSocketOffsetFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getTargetArmLength = GenerateOptimizedFunction<SpringArmComponent.GetTargetArmLengthFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getTargetOffset = GenerateOptimizedFunction<SpringArmComponent.GetTargetOffsetFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getUnfixedCameraPosition = GenerateOptimizedFunction<SpringArmComponent.GetUnfixedCameraPositionFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getDesiredRotation = GenerateOptimizedFunction<SpringArmComponent.GetDesiredRotationFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.getTargetRotation = GenerateOptimizedFunction<SpringArmComponent.GetTargetRotationFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setDrawDebugLagMarkers = GenerateOptimizedFunction<SpringArmComponent.SetDrawDebugLagMarkersFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCollisionTest = GenerateOptimizedFunction<SpringArmComponent.SetCollisionTestFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraPositionLag = GenerateOptimizedFunction<SpringArmComponent.SetCameraPositionLagFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraRotationLag = GenerateOptimizedFunction<SpringArmComponent.SetCameraRotationLagFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraLagSubstepping = GenerateOptimizedFunction<SpringArmComponent.SetCameraLagSubsteppingFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setInheritPitch = GenerateOptimizedFunction<SpringArmComponent.SetInheritPitchFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setInheritRoll = GenerateOptimizedFunction<SpringArmComponent.SetInheritRollFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setInheritYaw = GenerateOptimizedFunction<SpringArmComponent.SetInheritYawFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraLagMaxDistance = GenerateOptimizedFunction<SpringArmComponent.SetCameraLagMaxDistanceFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraLagMaxTimeStep = GenerateOptimizedFunction<SpringArmComponent.SetCameraLagMaxTimeStepFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraPositionLagSpeed = GenerateOptimizedFunction<SpringArmComponent.SetCameraPositionLagSpeedFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setCameraRotationLagSpeed = GenerateOptimizedFunction<SpringArmComponent.SetCameraRotationLagSpeedFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setProbeChannel = GenerateOptimizedFunction<SpringArmComponent.SetProbeChannelFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setProbeSize = GenerateOptimizedFunction<SpringArmComponent.SetProbeSizeFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setSocketOffset = GenerateOptimizedFunction<SpringArmComponent.SetSocketOffsetFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setTargetArmLength = GenerateOptimizedFunction<SpringArmComponent.SetTargetArmLengthFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.setTargetOffset = GenerateOptimizedFunction<SpringArmComponent.SetTargetOffsetFunction>(springArmComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
 				IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
 
 				PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
@@ -1016,6 +1060,7 @@ namespace UnrealEngine.Framework {
 		StaticMesh,
 		InstancedStaticMesh,
 		ChildActor,
+		SpringArm,
 		Box,
 		Sphere,
 		Capsule,
@@ -1853,6 +1898,86 @@ namespace UnrealEngine.Framework {
 		internal delegate IntPtr SetChildActorFunction(IntPtr childActorComponent, ActorType type);
 
 		internal static SetChildActorFunction setChildActor;
+	}
+
+	partial class SpringArmComponent {
+		internal delegate Bool IsCollisionFixAppliedFunction(IntPtr springArmComponent);
+		internal delegate Bool GetDrawDebugLagMarkersFunction(IntPtr springArmComponent);
+		internal delegate Bool GetCollisionTestFunction(IntPtr springArmComponent);
+		internal delegate Bool GetCameraPositionLagFunction(IntPtr springArmComponent);
+		internal delegate Bool GetCameraRotationLagFunction(IntPtr springArmComponent);
+		internal delegate Bool GetCameraLagSubsteppingFunction(IntPtr springArmComponent);
+		internal delegate Bool GetInheritPitchFunction(IntPtr springArmComponent);
+		internal delegate Bool GetInheritRollFunction(IntPtr springArmComponent);
+		internal delegate Bool GetInheritYawFunction(IntPtr springArmComponent);
+		internal delegate float GetCameraLagMaxDistanceFunction(IntPtr springArmComponent);
+		internal delegate float GetCameraLagMaxTimeStepFunction(IntPtr springArmComponent);
+		internal delegate float GetCameraPositionLagSpeedFunction(IntPtr springArmComponent);
+		internal delegate float GetCameraRotationLagSpeedFunction(IntPtr springArmComponent);
+		internal delegate CollisionChannel GetProbeChannelFunction(IntPtr springArmComponent);
+		internal delegate float GetProbeSizeFunction(IntPtr springArmComponent);
+		internal delegate void GetSocketOffsetFunction(IntPtr springArmComponent, ref Vector3 value);
+		internal delegate float GetTargetArmLengthFunction(IntPtr springArmComponent);
+		internal delegate void GetTargetOffsetFunction(IntPtr springArmComponent, ref Vector3 value);
+		internal delegate void GetUnfixedCameraPositionFunction(IntPtr springArmComponent, ref Vector3 value);
+		internal delegate void GetDesiredRotationFunction(IntPtr springArmComponent, ref Quaternion value);
+		internal delegate void GetTargetRotationFunction(IntPtr springArmComponent, ref Quaternion value);
+		internal delegate void SetDrawDebugLagMarkersFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetCollisionTestFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetCameraPositionLagFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetCameraRotationLagFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetCameraLagSubsteppingFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetInheritPitchFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetInheritRollFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetInheritYawFunction(IntPtr springArmComponent, Bool value);
+		internal delegate void SetCameraLagMaxDistanceFunction(IntPtr springArmComponent, float value);
+		internal delegate void SetCameraLagMaxTimeStepFunction(IntPtr springArmComponent, float value);
+		internal delegate void SetCameraPositionLagSpeedFunction(IntPtr springArmComponent, float value);
+		internal delegate void SetCameraRotationLagSpeedFunction(IntPtr springArmComponent, float value);
+		internal delegate void SetProbeChannelFunction(IntPtr springArmComponent, CollisionChannel value);
+		internal delegate void SetProbeSizeFunction(IntPtr springArmComponent, float value);
+		internal delegate void SetSocketOffsetFunction(IntPtr springArmComponent, in Vector3 value);
+		internal delegate void SetTargetArmLengthFunction(IntPtr springArmComponent, float value);
+		internal delegate void SetTargetOffsetFunction(IntPtr springArmComponent, in Vector3 value);
+
+		internal static IsCollisionFixAppliedFunction isCollisionFixApplied;
+		internal static GetDrawDebugLagMarkersFunction getDrawDebugLagMarkers;
+		internal static GetCollisionTestFunction getCollisionTest;
+		internal static GetCameraPositionLagFunction getCameraPositionLag;
+		internal static GetCameraRotationLagFunction getCameraRotationLag;
+		internal static GetCameraLagSubsteppingFunction getCameraLagSubstepping;
+		internal static GetInheritPitchFunction getInheritPitch;
+		internal static GetInheritRollFunction getInheritRoll;
+		internal static GetInheritYawFunction getInheritYaw;
+		internal static GetCameraLagMaxDistanceFunction getCameraLagMaxDistance;
+		internal static GetCameraLagMaxTimeStepFunction getCameraLagMaxTimeStep;
+		internal static GetCameraPositionLagSpeedFunction getCameraPositionLagSpeed;
+		internal static GetCameraRotationLagSpeedFunction getCameraRotationLagSpeed;
+		internal static GetProbeChannelFunction getProbeChannel;
+		internal static GetProbeSizeFunction getProbeSize;
+		internal static GetSocketOffsetFunction getSocketOffset;
+		internal static GetTargetArmLengthFunction getTargetArmLength;
+		internal static GetTargetOffsetFunction getTargetOffset;
+		internal static GetUnfixedCameraPositionFunction getUnfixedCameraPosition;
+		internal static GetDesiredRotationFunction getDesiredRotation;
+		internal static GetTargetRotationFunction getTargetRotation;
+		internal static SetDrawDebugLagMarkersFunction setDrawDebugLagMarkers;
+		internal static SetCollisionTestFunction setCollisionTest;
+		internal static SetCameraPositionLagFunction setCameraPositionLag;
+		internal static SetCameraRotationLagFunction setCameraRotationLag;
+		internal static SetCameraLagSubsteppingFunction setCameraLagSubstepping;
+		internal static SetInheritPitchFunction setInheritPitch;
+		internal static SetInheritRollFunction setInheritRoll;
+		internal static SetInheritYawFunction setInheritYaw;
+		internal static SetCameraLagMaxDistanceFunction setCameraLagMaxDistance;
+		internal static SetCameraLagMaxTimeStepFunction setCameraLagMaxTimeStep;
+		internal static SetCameraPositionLagSpeedFunction setCameraPositionLagSpeed;
+		internal static SetCameraRotationLagSpeedFunction setCameraRotationLagSpeed;
+		internal static SetProbeChannelFunction setProbeChannel;
+		internal static SetProbeSizeFunction setProbeSize;
+		internal static SetSocketOffsetFunction setSocketOffset;
+		internal static SetTargetArmLengthFunction setTargetArmLength;
+		internal static SetTargetOffsetFunction setTargetOffset;
 	}
 
 	partial class PrimitiveComponent {

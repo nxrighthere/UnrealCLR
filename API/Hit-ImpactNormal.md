@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 ## Hit.ImpactNormal Property
-Gets the normal of the hit in world space for the object that was hit by the sweep  
+Returns the normal of the hit in world space for the object that was hit by the sweep  
 ```csharp
 public System.Numerics.Vector3 ImpactNormal { get; }
 ```

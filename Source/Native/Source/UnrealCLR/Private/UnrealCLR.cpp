@@ -719,6 +719,52 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::SpringArmComponentFunctions;
+
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::IsCollisionFixApplied;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetDrawDebugLagMarkers;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCollisionTest;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraPositionLag;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraRotationLag;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraLagSubstepping;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetInheritPitch;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetInheritRoll;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetInheritYaw;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraLagMaxDistance;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraLagMaxTimeStep;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraPositionLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraRotationLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetProbeChannel;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetProbeSize;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetSocketOffset;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetTargetArmLength;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetTargetOffset;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetUnfixedCameraPosition;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetDesiredRotation;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetTargetRotation;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetDrawDebugLagMarkers;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCollisionTest;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraPositionLag;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraRotationLag;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraLagSubstepping;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetInheritPitch;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetInheritRoll;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetInheritYaw;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraLagMaxDistance;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraLagMaxTimeStep;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraPositionLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraRotationLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetProbeChannel;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetProbeSize;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetSocketOffset;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetTargetArmLength;
+				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetTargetOffset;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::PrimitiveComponentFunctions;
 
 				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;

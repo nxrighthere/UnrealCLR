@@ -13,6 +13,7 @@ Derived
 &#8627; [LightComponentBase](./LightComponentBase.md 'UnrealEngine.Framework.LightComponentBase')  
 &#8627; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')  
 &#8627; [RadialForceComponent](./RadialForceComponent.md 'UnrealEngine.Framework.RadialForceComponent')  
+&#8627; [SpringArmComponent](./SpringArmComponent.md 'UnrealEngine.Framework.SpringArmComponent')  
 ### Constructors
 - [SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./SceneComponent-SceneComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.SceneComponent.SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties

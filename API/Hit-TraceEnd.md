@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 ## Hit.TraceEnd Property
-Gets the end location of the trace  
+Returns the end location of the trace  
 ```csharp
 public System.Numerics.Vector3 TraceEnd { get; }
 ```
