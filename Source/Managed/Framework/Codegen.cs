@@ -1438,8 +1438,8 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool CanJumpFunction(IntPtr character);
 		internal delegate void CheckJumpInputFunction(IntPtr character, float deltaTime);
 		internal delegate void ClearJumpInputFunction(IntPtr character, float deltaTime);
-		internal delegate void CrouchFunction(IntPtr character, Bool clientSimulation);
-		internal delegate void StopCrouchingFunction(IntPtr character, Bool clientSimulation);
+		internal delegate void CrouchFunction(IntPtr character);
+		internal delegate void StopCrouchingFunction(IntPtr character);
 		internal delegate void JumpFunction(IntPtr character);
 		internal delegate void StopJumpingFunction(IntPtr character);
 

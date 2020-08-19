@@ -504,8 +504,8 @@ namespace UnrealCLRFramework {
 		static bool CanJump(ACharacter* Character);
 		static void CheckJumpInput(ACharacter* Character, float DeltaTime);
 		static void ClearJumpInput(ACharacter* Character, float DeltaTime);
-		static void Crouch(ACharacter* Character, bool ClientSimulation);
-		static void StopCrouching(ACharacter* Character, bool ClientSimulation);
+		static void Crouch(ACharacter* Character);
+		static void StopCrouching(ACharacter* Character);
 		static void Jump(ACharacter* Character);
 		static void StopJumping(ACharacter* Character);
 	}

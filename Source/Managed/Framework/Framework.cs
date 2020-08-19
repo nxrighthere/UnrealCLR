@@ -4587,12 +4587,12 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Starts the character crouching on the next update
 		/// </summary>
-		public void Crouch(bool clientSimulation) => crouch(Pointer, clientSimulation);
+		public void Crouch() => crouch(Pointer);
 
 		/// <summary>
 		/// Stops the character crouching on the next update
 		/// </summary>
-		public void StopCrouching(bool clientSimulation) => stopCrouching(Pointer, clientSimulation);
+		public void StopCrouching() => stopCrouching(Pointer);
 
 		/// <summary>
 		/// Starts the character jumping on the next update

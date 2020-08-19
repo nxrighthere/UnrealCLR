@@ -1431,12 +1431,12 @@ namespace UnrealCLRFramework {
 			Character->ClearJumpInput(DeltaTime);
 		}
 
-		void Crouch(ACharacter* Character, bool ClientSimulation) {
-			Character->Crouch(ClientSimulation);
+		void Crouch(ACharacter* Character) {
+			Character->Crouch();
 		}
 
-		void StopCrouching(ACharacter* Character, bool ClientSimulation) {
-			Character->UnCrouch(ClientSimulation);
+		void StopCrouching(ACharacter* Character) {
+			Character->UnCrouch();
 		}
 
 		void Jump(ACharacter* Character) {
