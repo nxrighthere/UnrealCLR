@@ -5,6 +5,8 @@ A component that maintains its children at a fixed distance from the parent, but
 public class SpringArmComponent : SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; SpringArmComponent  
+### Constructors
+- [SpringArmComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./SpringArmComponent-SpringArmComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.SpringArmComponent.SpringArmComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
 - [CameraLagMaxDistance](./SpringArmComponent-CameraLagMaxDistance.md 'UnrealEngine.Framework.SpringArmComponent.CameraLagMaxDistance')
 - [CameraLagMaxTimeStep](./SpringArmComponent-CameraLagMaxTimeStep.md 'UnrealEngine.Framework.SpringArmComponent.CameraLagMaxTimeStep')
