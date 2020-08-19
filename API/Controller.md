@@ -14,6 +14,9 @@ Derived
 - [IsMoveInputIgnored](./Controller-IsMoveInputIgnored.md 'UnrealEngine.Framework.Controller.IsMoveInputIgnored')
 - [IsPlayerController](./Controller-IsPlayerController.md 'UnrealEngine.Framework.Controller.IsPlayerController')
 ### Methods
+- [GetCharacter()](./Controller-GetCharacter().md 'UnrealEngine.Framework.Controller.GetCharacter()')
+- [GetControlRotation()](./Controller-GetControlRotation().md 'UnrealEngine.Framework.Controller.GetControlRotation()')
+- [GetControlRotation(System.Numerics.Quaternion)](./Controller-GetControlRotation(Quaternion).md 'UnrealEngine.Framework.Controller.GetControlRotation(System.Numerics.Quaternion)')
 - [GetPawn()](./Controller-GetPawn().md 'UnrealEngine.Framework.Controller.GetPawn()')
 - [LineOfSightTo(UnrealEngine.Framework.Actor, System.Numerics.Vector3, bool)](./Controller-LineOfSightTo(Actor_Vector3_bool).md 'UnrealEngine.Framework.Controller.LineOfSightTo(UnrealEngine.Framework.Actor, System.Numerics.Vector3, bool)')
 - [ResetIgnoreLookInput()](./Controller-ResetIgnoreLookInput().md 'UnrealEngine.Framework.Controller.ResetIgnoreLookInput()')

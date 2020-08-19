@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x1F3;
+		internal const int checksum = 0x201;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -285,6 +285,22 @@ namespace UnrealEngine.Framework {
 				Pawn.addControllerRollInput = GenerateOptimizedFunction<Pawn.AddControllerRollInputFunction>(pawnFunctions[head++]);
 				Pawn.addMovementInput = GenerateOptimizedFunction<Pawn.AddMovementInputFunction>(pawnFunctions[head++]);
 				Pawn.getGravityDirection = GenerateOptimizedFunction<Pawn.GetGravityDirectionFunction>(pawnFunctions[head++]);
+				Pawn.getAIController = GenerateOptimizedFunction<Pawn.GetAIControllerFunction>(pawnFunctions[head++]);
+				Pawn.getPlayerController = GenerateOptimizedFunction<Pawn.GetPlayerControllerFunction>(pawnFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* characterFunctions = (IntPtr*)buffer[position++];
+
+				Character.canCrouch = GenerateOptimizedFunction<Character.CanCrouchFunction>(characterFunctions[head++]);
+				Character.canJump = GenerateOptimizedFunction<Character.CanJumpFunction>(characterFunctions[head++]);
+				Character.checkJumpInput = GenerateOptimizedFunction<Character.CheckJumpInputFunction>(characterFunctions[head++]);
+				Character.clearJumpInput = GenerateOptimizedFunction<Character.ClearJumpInputFunction>(characterFunctions[head++]);
+				Character.crouch = GenerateOptimizedFunction<Character.CrouchFunction>(characterFunctions[head++]);
+				Character.stopCrouching = GenerateOptimizedFunction<Character.StopCrouchingFunction>(characterFunctions[head++]);
+				Character.jump = GenerateOptimizedFunction<Character.JumpFunction>(characterFunctions[head++]);
+				Character.stopJumping = GenerateOptimizedFunction<Character.StopJumpingFunction>(characterFunctions[head++]);
 			}
 
 			unchecked {
@@ -295,7 +311,10 @@ namespace UnrealEngine.Framework {
 				Controller.isMoveInputIgnored = GenerateOptimizedFunction<Controller.IsMoveInputIgnoredFunction>(controllerFunctions[head++]);
 				Controller.isPlayerController = GenerateOptimizedFunction<Controller.IsPlayerControllerFunction>(controllerFunctions[head++]);
 				Controller.getPawn = GenerateOptimizedFunction<Controller.GetPawnFunction>(controllerFunctions[head++]);
+				Controller.getCharacter = GenerateOptimizedFunction<Controller.GetCharacterFunction>(controllerFunctions[head++]);
+				Controller.getControlRotation = GenerateOptimizedFunction<Controller.GetControlRotationFunction>(controllerFunctions[head++]);
 				Controller.lineOfSightTo = GenerateOptimizedFunction<Controller.LineOfSightToFunction>(controllerFunctions[head++]);
+				Controller.setControlRotation = GenerateOptimizedFunction<Controller.SetControlRotationFunction>(controllerFunctions[head++]);
 				Controller.setInitialLocationAndRotation = GenerateOptimizedFunction<Controller.SetInitialLocationAndRotationFunction>(controllerFunctions[head++]);
 				Controller.setIgnoreLookInput = GenerateOptimizedFunction<Controller.SetIgnoreLookInputFunction>(controllerFunctions[head++]);
 				Controller.setIgnoreMoveInput = GenerateOptimizedFunction<Controller.SetIgnoreMoveInputFunction>(controllerFunctions[head++]);
@@ -1402,22 +1421,47 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddControllerRollInputFunction(IntPtr pawn, float value);
 		internal delegate void AddMovementInputFunction(IntPtr pawn, in Vector3 worldDirection, float scaleValue, Bool force);
 		internal delegate void GetGravityDirectionFunction(IntPtr pawn, ref Vector3 value);
+		internal delegate IntPtr GetAIControllerFunction(IntPtr pawn);
+		internal delegate IntPtr GetPlayerControllerFunction(IntPtr pawn);
 
 		internal static AddControllerYawInputFunction addControllerYawInput;
 		internal static AddControllerPitchInputFunction addControllerPitchInput;
 		internal static AddControllerRollInputFunction addControllerRollInput;
 		internal static AddMovementInputFunction addMovementInput;
 		internal static GetGravityDirectionFunction getGravityDirection;
+		internal static GetAIControllerFunction getAIController;
+		internal static GetPlayerControllerFunction getPlayerController;
 	}
 
-	partial class Character { }
+	partial class Character {
+		internal delegate Bool CanCrouchFunction(IntPtr character);
+		internal delegate Bool CanJumpFunction(IntPtr character);
+		internal delegate void CheckJumpInputFunction(IntPtr character, float deltaTime);
+		internal delegate void ClearJumpInputFunction(IntPtr character, float deltaTime);
+		internal delegate void CrouchFunction(IntPtr character, Bool clientSimulation);
+		internal delegate void StopCrouchingFunction(IntPtr character, Bool clientSimulation);
+		internal delegate void JumpFunction(IntPtr character);
+		internal delegate void StopJumpingFunction(IntPtr character);
+
+		internal static CanCrouchFunction canCrouch;
+		internal static CanJumpFunction canJump;
+		internal static CheckJumpInputFunction checkJumpInput;
+		internal static ClearJumpInputFunction clearJumpInput;
+		internal static CrouchFunction crouch;
+		internal static StopCrouchingFunction stopCrouching;
+		internal static JumpFunction jump;
+		internal static StopJumpingFunction stopJumping;
+	}
 
 	partial class Controller {
 		internal delegate Bool IsLookInputIgnoredFunction(IntPtr controller);
 		internal delegate Bool IsMoveInputIgnoredFunction(IntPtr controller);
 		internal delegate Bool IsPlayerControllerFunction(IntPtr controller);
 		internal delegate IntPtr GetPawnFunction(IntPtr controller);
+		internal delegate IntPtr GetCharacterFunction(IntPtr controller);
+		internal delegate void GetControlRotationFunction(IntPtr controller, ref Quaternion value);
 		internal delegate Bool LineOfSightToFunction(IntPtr controller, IntPtr actor, in Vector3 viewPoint, Bool alternateChecks);
+		internal delegate void SetControlRotationFunction(IntPtr controller, in Quaternion value);
 		internal delegate void SetInitialLocationAndRotationFunction(IntPtr controller, in Vector3 newLocation, in Quaternion newRotation);
 		internal delegate void SetIgnoreLookInputFunction(IntPtr controller, Bool value);
 		internal delegate void SetIgnoreMoveInputFunction(IntPtr controller, Bool value);
@@ -1428,7 +1472,10 @@ namespace UnrealEngine.Framework {
 		internal static IsMoveInputIgnoredFunction isMoveInputIgnored;
 		internal static IsPlayerControllerFunction isPlayerController;
 		internal static GetPawnFunction getPawn;
+		internal static GetCharacterFunction getCharacter;
+		internal static GetControlRotationFunction getControlRotation;
 		internal static LineOfSightToFunction lineOfSightTo;
+		internal static SetControlRotationFunction setControlRotation;
 		internal static SetInitialLocationAndRotationFunction setInitialLocationAndRotation;
 		internal static SetIgnoreLookInputFunction setIgnoreLookInput;
 		internal static SetIgnoreMoveInputFunction setIgnoreMoveInput;

@@ -1404,6 +1404,48 @@ namespace UnrealCLRFramework {
 		void GetGravityDirection(APawn* Pawn, Vector3* Value) {
 			*Value = Pawn->GetGravityDirection();
 		}
+
+		AAIController* GetAIController(APawn* Pawn) {
+			return Cast<AAIController>(Pawn->GetController());
+		}
+
+		APlayerController* GetPlayerController(APawn* Pawn) {
+			return Cast<APlayerController>(Pawn->GetController());
+		}
+	}
+
+	namespace Character {
+		bool CanCrouch(ACharacter* Character) {
+			return Character->CanCrouch();
+		}
+
+		bool CanJump(ACharacter* Character) {
+			return Character->CanJump();
+		}
+
+		void CheckJumpInput(ACharacter* Character, float DeltaTime) {
+			Character->CheckJumpInput(DeltaTime);
+		}
+
+		void ClearJumpInput(ACharacter* Character, float DeltaTime) {
+			Character->ClearJumpInput(DeltaTime);
+		}
+
+		void Crouch(ACharacter* Character, bool ClientSimulation) {
+			Character->Crouch(ClientSimulation);
+		}
+
+		void StopCrouching(ACharacter* Character, bool ClientSimulation) {
+			Character->UnCrouch(ClientSimulation);
+		}
+
+		void Jump(ACharacter* Character) {
+			Character->Jump();
+		}
+
+		void StopJumping(ACharacter* Character) {
+			Character->StopJumping();
+		}
 	}
 
 	namespace Controller {
@@ -1423,8 +1465,20 @@ namespace UnrealCLRFramework {
 			return Controller->GetPawn();
 		}
 
+		ACharacter* GetCharacter(AController* Controller) {
+			return Controller->GetCharacter();
+		}
+
+		void GetControlRotation(AController* Controller, Quaternion* Value) {
+			*Value = Controller->GetControlRotation().Quaternion();
+		}
+
 		bool LineOfSightTo(AController* Controller, AActor* Actor, const Vector3* ViewPoint, bool AlternateChecks) {
 			return Controller->LineOfSightTo(Actor, *ViewPoint, AlternateChecks);
+		}
+
+		void SetControlRotation(AController* Controller, const Quaternion* Value) {
+			Controller->SetControlRotation(FRotator(*Value));
 		}
 
 		void SetInitialLocationAndRotation(AController* Controller, const Vector3* NewLocation, const Quaternion* NewRotation) {

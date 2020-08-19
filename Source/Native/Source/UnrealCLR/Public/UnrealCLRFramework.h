@@ -495,10 +495,19 @@ namespace UnrealCLRFramework {
 		static void AddControllerRollInput(APawn* Pawn, float Value);
 		static void AddMovementInput(APawn* Pawn, const Vector3* WorldDirection, float ScaleValue, bool Force);
 		static void GetGravityDirection(APawn* Pawn, Vector3* Value);
+		static AAIController* GetAIController(APawn* Pawn);
+		static APlayerController* GetPlayerController(APawn* Pawn);
 	}
 
 	namespace Character {
-		
+		static bool CanCrouch(ACharacter* Character);
+		static bool CanJump(ACharacter* Character);
+		static void CheckJumpInput(ACharacter* Character, float DeltaTime);
+		static void ClearJumpInput(ACharacter* Character, float DeltaTime);
+		static void Crouch(ACharacter* Character, bool ClientSimulation);
+		static void StopCrouching(ACharacter* Character, bool ClientSimulation);
+		static void Jump(ACharacter* Character);
+		static void StopJumping(ACharacter* Character);
 	}
 
 	namespace Controller {
@@ -506,7 +515,10 @@ namespace UnrealCLRFramework {
 		static bool IsMoveInputIgnored(AController* Controller);
 		static bool IsPlayerController(AController* Controller);
 		static APawn* GetPawn(AController* Controller);
+		static ACharacter* GetCharacter(AController* Controller);
+		static void GetControlRotation(AController* Controller, Quaternion* Value);
 		static bool LineOfSightTo(AController* Controller, AActor* Actor, const Vector3* ViewPoint, bool AlternateChecks);
+		static void SetControlRotation(AController* Controller, const Quaternion* Value);
 		static void SetInitialLocationAndRotation(AController* Controller, const Vector3* NewLocation, const Quaternion* NewRotation);
 		static void SetIgnoreLookInput(AController* Controller, bool Value);
 		static void SetIgnoreMoveInput(AController* Controller, bool Value);

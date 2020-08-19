@@ -409,6 +409,24 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddControllerRollInput;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddMovementInput;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetGravityDirection;
+				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAIController;
+				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetPlayerController;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::CharacterFunctions;
+
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CanCrouch;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CanJump;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CheckJumpInput;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::ClearJumpInput;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Crouch;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::StopCrouching;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Jump;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::StopJumping;
 
 				checksum += head;
 			}
@@ -421,7 +439,10 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::IsMoveInputIgnored;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::IsPlayerController;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetPawn;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetCharacter;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetControlRotation;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::LineOfSightTo;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetControlRotation;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetInitialLocationAndRotation;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetIgnoreLookInput;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetIgnoreMoveInput;

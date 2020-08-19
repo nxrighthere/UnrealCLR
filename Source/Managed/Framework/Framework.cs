@@ -4513,6 +4513,30 @@ namespace UnrealEngine.Framework {
 
 			return value;
 		}
+
+		/// <summary>
+		/// Returns the AI controller or <c>null</c> on failure
+		/// </summary>
+		public AIController GetAIController() {
+			IntPtr pointer = getAIController(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new AIController(pointer);
+
+			return null;
+		}
+
+		/// <summary>
+		/// Returns the player controller or <c>null</c> on failure
+		/// </summary>
+		public PlayerController GetPlayerController() {
+			IntPtr pointer = getPlayerController(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new PlayerController(pointer);
+
+			return null;
+		}
 	}
 
 	/// <summary>
@@ -4539,6 +4563,46 @@ namespace UnrealEngine.Framework {
 
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
+
+		/// <summary>
+		/// Returns <c>true</c> if the character can crouch
+		/// </summary>
+		public bool CanCrouch() => canCrouch(Pointer);
+
+		/// <summary>
+		/// Returns <c>true</c> if the character can jump
+		/// </summary>
+		public bool CanJump() => canJump(Pointer);
+
+		/// <summary>
+		/// Triggers jump if a jump button is pressed
+		/// </summary>
+		public void CheckJumpInput(float deltaTime) => checkJumpInput(Pointer, deltaTime);
+
+		/// <summary>
+		/// Updates jump input state after checking input
+		/// </summary>
+		public void ClearJumpInput(float deltaTime) => clearJumpInput(Pointer, deltaTime);
+
+		/// <summary>
+		/// Starts the character crouching on the next update
+		/// </summary>
+		public void Crouch(bool clientSimulation) => crouch(Pointer, clientSimulation);
+
+		/// <summary>
+		/// Stops the character crouching on the next update
+		/// </summary>
+		public void StopCrouching(bool clientSimulation) => stopCrouching(Pointer, clientSimulation);
+
+		/// <summary>
+		/// Starts the character jumping on the next update
+		/// </summary>
+		public void Jump() => jump(Pointer);
+
+		/// <summary>
+		/// Stops the character from jumping on the next update
+		/// </summary>
+		public void StopJumping() => stopJumping(Pointer);
 	}
 
 	/// <summary>
@@ -4572,6 +4636,34 @@ namespace UnrealEngine.Framework {
 				return new Pawn(pointer);
 
 			return null;
+		}
+
+		/// <summary>
+		/// Returns the character or <c>null</c> on failure
+		/// </summary>
+		public Character GetCharacter() {
+			IntPtr pointer = getCharacter(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new Character(pointer);
+
+			return null;
+		}
+
+		/// <summary>
+		/// Retrieves the control rotation which is a full aim rotation
+		/// </summary>
+		public void GetControlRotation(ref Quaternion value) => getControlRotation(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the control rotation which is a full aim rotation
+		/// </summary>
+		public Quaternion GetControlRotation() {
+			Quaternion value = default;
+
+			getControlRotation(Pointer, ref value);
+
+			return value;
 		}
 
 		/// <summary>

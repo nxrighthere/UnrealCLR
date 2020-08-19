@@ -250,6 +250,7 @@ namespace UnrealCLR {
 		static void* ConsoleVariableFunctions[storageSize];
 		static void* ActorFunctions[storageSize];
 		static void* PawnFunctions[storageSize];
+		static void* CharacterFunctions[storageSize];
 		static void* ControllerFunctions[storageSize];
 		static void* AIControllerFunctions[storageSize];
 		static void* PlayerControllerFunctions[storageSize];
