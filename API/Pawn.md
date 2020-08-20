@@ -10,16 +10,15 @@ Derived
 &#8627; [Character](./Character.md 'UnrealEngine.Framework.Character')  
 ### Constructors
 - [Pawn(string, UnrealEngine.Framework.Blueprint)](./Pawn-Pawn(string_Blueprint).md 'UnrealEngine.Framework.Pawn.Pawn(string, UnrealEngine.Framework.Blueprint)')
+### Properties
+- [AutoPossessAI](./Pawn-AutoPossessAI.md 'UnrealEngine.Framework.Pawn.AutoPossessAI')
+- [AutoPossessPlayer](./Pawn-AutoPossessPlayer.md 'UnrealEngine.Framework.Pawn.AutoPossessPlayer')
 ### Methods
 - [AddControllerPitchInput(float)](./Pawn-AddControllerPitchInput(float).md 'UnrealEngine.Framework.Pawn.AddControllerPitchInput(float)')
 - [AddControllerRollInput(float)](./Pawn-AddControllerRollInput(float).md 'UnrealEngine.Framework.Pawn.AddControllerRollInput(float)')
 - [AddControllerYawInput(float)](./Pawn-AddControllerYawInput(float).md 'UnrealEngine.Framework.Pawn.AddControllerYawInput(float)')
 - [AddMovementInput(System.Numerics.Vector3, float, bool)](./Pawn-AddMovementInput(Vector3_float_bool).md 'UnrealEngine.Framework.Pawn.AddMovementInput(System.Numerics.Vector3, float, bool)')
 - [GetAIController()](./Pawn-GetAIController().md 'UnrealEngine.Framework.Pawn.GetAIController()')
-- [GetAutoPossessAI()](./Pawn-GetAutoPossessAI().md 'UnrealEngine.Framework.Pawn.GetAutoPossessAI()')
-- [GetAutoPossessPlayer()](./Pawn-GetAutoPossessPlayer().md 'UnrealEngine.Framework.Pawn.GetAutoPossessPlayer()')
 - [GetGravityDirection()](./Pawn-GetGravityDirection().md 'UnrealEngine.Framework.Pawn.GetGravityDirection()')
 - [GetGravityDirection(System.Numerics.Vector3)](./Pawn-GetGravityDirection(Vector3).md 'UnrealEngine.Framework.Pawn.GetGravityDirection(System.Numerics.Vector3)')
 - [GetPlayerController()](./Pawn-GetPlayerController().md 'UnrealEngine.Framework.Pawn.GetPlayerController()')
-- [SetAutoPossessAI(UnrealEngine.Framework.AutoPossessAI)](./Pawn-SetAutoPossessAI(AutoPossessAI).md 'UnrealEngine.Framework.Pawn.SetAutoPossessAI(UnrealEngine.Framework.AutoPossessAI)')
-- [SetAutoPossessPlayer(UnrealEngine.Framework.AutoReceiveInput)](./Pawn-SetAutoPossessPlayer(AutoReceiveInput).md 'UnrealEngine.Framework.Pawn.SetAutoPossessPlayer(UnrealEngine.Framework.AutoReceiveInput)')

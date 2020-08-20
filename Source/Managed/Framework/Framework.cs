@@ -4528,14 +4528,20 @@ namespace UnrealEngine.Framework {
 		public void AddMovementInput(in Vector3 worldDirection, float scaleValue = 1.0f, bool force = false) => addMovementInput(Pointer, worldDirection, scaleValue, force);
 
 		/// <summary>
-		/// Returns the automatic possession type by an AI controller
+		/// Gets or sets the automatic possession type by an AI controller
 		/// </summary>
-		public AutoPossessAI GetAutoPossessAI() => getAutoPossessAI(Pointer);
+		public AutoPossessAI AutoPossessAI {
+			get => getAutoPossessAI(Pointer);
+			set => setAutoPossessAI(Pointer, value);
+		}
 
 		/// <summary>
-		/// Returns the player index for automatic possession by a player controller
+		/// Gets or sets the player index for automatic possession by a player controller
 		/// </summary>
-		public AutoReceiveInput GetAutoPossessPlayer() => getAutoPossessPlayer(Pointer);
+		public AutoReceiveInput AutoPossessPlayer {
+			get => getAutoPossessPlayer(Pointer);
+			set => setAutoPossessPlayer(Pointer, value);
+		}
 
 		/// <summary>
 		/// Retrieves vector direction of gravity
@@ -4576,16 +4582,6 @@ namespace UnrealEngine.Framework {
 
 			return null;
 		}
-
-		/// <summary>
-		/// Sets the automatic possession type by an AI controller
-		/// </summary>
-		public void SetAutoPossessAI(AutoPossessAI value) => setAutoPossessAI(Pointer, value);
-
-		/// <summary>
-		/// Sets the player index for automatic possession by a player controller
-		/// </summary>
-		public void SetAutoPossessPlayer(AutoReceiveInput value) => setAutoPossessPlayer(Pointer, value);
 	}
 
 	/// <summary>

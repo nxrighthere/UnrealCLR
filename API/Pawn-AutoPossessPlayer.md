@@ -1,8 +1,8 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Pawn](./Pawn.md 'UnrealEngine.Framework.Pawn')
-## Pawn.GetAutoPossessPlayer() Method
-Returns the player index for automatic possession by a player controller  
+## Pawn.AutoPossessPlayer Property
+Gets or sets the player index for automatic possession by a player controller  
 ```csharp
-public UnrealEngine.Framework.AutoReceiveInput GetAutoPossessPlayer();
+public UnrealEngine.Framework.AutoReceiveInput AutoPossessPlayer { get; set; }
 ```
-#### Returns
+#### Property Value
 [AutoReceiveInput](./AutoReceiveInput.md 'UnrealEngine.Framework.AutoReceiveInput')  
