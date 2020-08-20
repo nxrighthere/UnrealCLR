@@ -666,6 +666,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Texture2D {
+		static UTexture2D* Create();
 		static void GetSize(UTexture2D* Texture2D, Vector2* Value);
 	}
 

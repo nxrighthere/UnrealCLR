@@ -9,6 +9,3 @@ public static void SetOnActorBeginOverlapCallback(UnrealEngine.Framework.ActorOv
 `callback` [ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ActorOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')  
 The static function to call when an actor start overlapping with another one  
   
-#### Exceptions
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [callback](#UnrealEngine-Framework-World-SetOnActorBeginOverlapCallback(UnrealEngine-Framework-ActorOverlapDelegate)-callback 'UnrealEngine.Framework.World.SetOnActorBeginOverlapCallback(UnrealEngine.Framework.ActorOverlapDelegate).callback') is not static  

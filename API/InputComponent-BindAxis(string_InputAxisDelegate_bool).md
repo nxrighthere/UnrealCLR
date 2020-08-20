@@ -17,6 +17,3 @@ The static function to call while tracking axis
 `executedWhenPaused` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
 If `true`, executes even if the game is paused  
   
-#### Exceptions
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [callback](#UnrealEngine-Framework-InputComponent-BindAxis(string_UnrealEngine-Framework-InputAxisDelegate_bool)-callback 'UnrealEngine.Framework.InputComponent.BindAxis(string, UnrealEngine.Framework.InputAxisDelegate, bool).callback') is not static  

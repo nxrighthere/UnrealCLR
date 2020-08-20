@@ -21,6 +21,3 @@ The static function to call when the input is triggered
 `executedWhenPaused` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
 If `true`, executes even if the game is paused  
   
-#### Exceptions
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [callback](#UnrealEngine-Framework-InputComponent-BindAction(string_UnrealEngine-Framework-InputEvent_UnrealEngine-Framework-InputDelegate_bool)-callback 'UnrealEngine.Framework.InputComponent.BindAction(string, UnrealEngine.Framework.InputEvent, UnrealEngine.Framework.InputDelegate, bool).callback') is not static  

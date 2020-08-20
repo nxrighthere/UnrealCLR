@@ -9,6 +9,3 @@ public static void SetOnComponentHitCallback(UnrealEngine.Framework.ComponentHit
 `callback` [ComponentHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ComponentHitDelegate(ObjectReference_ObjectReference_Vector3_Hit).md 'UnrealEngine.Framework.ComponentHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')  
 The static function to call when a primitive component hit another one  
   
-#### Exceptions
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [callback](#UnrealEngine-Framework-World-SetOnComponentHitCallback(UnrealEngine-Framework-ComponentHitDelegate)-callback 'UnrealEngine.Framework.World.SetOnComponentHitCallback(UnrealEngine.Framework.ComponentHitDelegate).callback') is not static  

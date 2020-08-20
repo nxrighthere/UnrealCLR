@@ -9,6 +9,3 @@ public static void SetOnComponentBeginOverlapCallback(UnrealEngine.Framework.Com
 `callback` [ComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ComponentOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')  
 The static function to call when a primitive component start overlapping with another one  
   
-#### Exceptions
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [callback](#UnrealEngine-Framework-World-SetOnComponentBeginOverlapCallback(UnrealEngine-Framework-ComponentOverlapDelegate)-callback 'UnrealEngine.Framework.World.SetOnComponentBeginOverlapCallback(UnrealEngine.Framework.ComponentOverlapDelegate).callback') is not static  

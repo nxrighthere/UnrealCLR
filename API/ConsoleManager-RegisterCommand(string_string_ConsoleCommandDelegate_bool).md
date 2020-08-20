@@ -21,6 +21,3 @@ The static function to call when the command is executed
 `readOnly` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
 If `true`, cannot be changed by the user from console  
   
-#### Exceptions
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
-Thrown if [callback](#UnrealEngine-Framework-ConsoleManager-RegisterCommand(string_string_UnrealEngine-Framework-ConsoleCommandDelegate_bool)-callback 'UnrealEngine.Framework.ConsoleManager.RegisterCommand(string, string, UnrealEngine.Framework.ConsoleCommandDelegate, bool).callback') is not static  

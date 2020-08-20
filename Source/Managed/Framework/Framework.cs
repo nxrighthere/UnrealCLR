@@ -13,6 +13,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -52,6 +53,18 @@ namespace UnrealEngine.Framework {
 				stringBuffer = new byte[8192];
 
 			return stringBuffer;
+		}
+	}
+
+	internal static class Collector {
+		[ThreadStatic]
+		private static List<object> references;
+
+		public static void AddReference(object reference) {
+			if (references == null)
+				references = new List<object>();
+
+			references.Add(reference);
 		}
 	}
 
@@ -3045,7 +3058,6 @@ namespace UnrealEngine.Framework {
 		/// <param name="help">Help text for the command</param>
 		/// <param name="callback">The static function to call when the command is executed</param>
 		/// <param name="readOnly">If <c>true</c>, cannot be changed by the user from console</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void RegisterCommand(string name, string help, ConsoleCommandDelegate callback, bool readOnly = false) {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
@@ -3056,10 +3068,9 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			registerCommand(name, help, callback.Method.MethodHandle.GetFunctionPointer(), readOnly);
+			registerCommand(name, help, Marshal.GetFunctionPointerForDelegate(callback), readOnly);
 		}
 
 		/// <summary>
@@ -3392,90 +3403,78 @@ namespace UnrealEngine.Framework {
 		/// Sets the static callback function that is called when actors start overlapping
 		/// </summary>
 		/// <param name="callback">The static function to call when an actor start overlapping with another one</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnActorBeginOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+			setOnActorBeginOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
 		/// Sets the static callback function that is called when actors end overlapping
 		/// </summary>
 		/// <param name="callback">The static function to call when an actor end overlapping with another one</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void SetOnActorEndOverlapCallback(ActorOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnActorEndOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+			setOnActorEndOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
 		/// Sets the static callback function that is called when actors hit collisions
 		/// </summary>
 		/// <param name="callback">The static function to call when an actor hit another one</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void SetOnActorHitCallback(ActorHitDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnActorHitCallback(callback.Method.MethodHandle.GetFunctionPointer());
+			setOnActorHitCallback(Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
 		/// Sets the static callback function that is called when primitive components start overlapping
 		/// </summary>
 		/// <param name="callback">The static function to call when a primitive component start overlapping with another one</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnComponentBeginOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+			setOnComponentBeginOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
 		/// Sets the static callback function that is called when primitive components end overlapping
 		/// </summary>
 		/// <param name="callback">The static function to call when a primitive component end overlapping with another one</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnComponentEndOverlapCallback(callback.Method.MethodHandle.GetFunctionPointer());
+			setOnComponentEndOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
 		/// Sets the static callback function that is called when components hit collisions
 		/// </summary>
 		/// <param name="callback">The static function to call when a primitive component hit another one</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public static void SetOnComponentHitCallback(ComponentHitDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnComponentHitCallback(callback.Method.MethodHandle.GetFunctionPointer());
+			setOnComponentHitCallback(Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
@@ -3751,15 +3750,13 @@ namespace UnrealEngine.Framework {
 		/// Sets the static callback function that is called when the console variable value changes
 		/// </summary>
 		/// <param name="callback">The static function to call when the value of variable is changed</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public void SetOnChangedCallback(ConsoleVariableDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			setOnChangedCallback(Pointer, callback.Method.MethodHandle.GetFunctionPointer());
+			setOnChangedCallback(Pointer, Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
@@ -6598,7 +6595,6 @@ namespace UnrealEngine.Framework {
 		/// <param name="keyEvent">The type of input behavior</param>
 		/// <param name="callback">The static function to call when the input is triggered</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public void BindAction(string actionName, InputEvent keyEvent, InputDelegate callback, bool executedWhenPaused = false) {
 			if (actionName == null)
 				throw new ArgumentNullException(nameof(actionName));
@@ -6606,10 +6602,9 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, callback.Method.MethodHandle.GetFunctionPointer());
+			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
@@ -6618,7 +6613,6 @@ namespace UnrealEngine.Framework {
 		/// <param name="axisName">The name of the axis</param>
 		/// <param name="callback">The static function to call while tracking axis</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
-		/// <exception cref="System.ArgumentException">Thrown if <paramref name="callback"/> is not static</exception>
 		public void BindAxis(string axisName, InputAxisDelegate callback, bool executedWhenPaused = false) {
 			if (axisName == null)
 				throw new ArgumentNullException(nameof(axisName));
@@ -6626,10 +6620,9 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			if (!callback.Method.IsStatic)
-				throw new ArgumentException(nameof(callback) + " should be static");
+			Collector.AddReference(callback);
 
-			bindAxis(Pointer, axisName, executedWhenPaused, callback.Method.MethodHandle.GetFunctionPointer());
+			bindAxis(Pointer, axisName, executedWhenPaused, Marshal.GetFunctionPointerForDelegate(callback));
 		}
 
 		/// <summary>
