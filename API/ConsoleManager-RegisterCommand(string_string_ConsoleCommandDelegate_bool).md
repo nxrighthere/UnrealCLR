@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[ConsoleManager](./ConsoleManager.md 'UnrealEngine.Framework.ConsoleManager')
 ## ConsoleManager.RegisterCommand(string, string, UnrealEngine.Framework.ConsoleCommandDelegate, bool) Method
-Creates and registers a static callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered  
+Creates and registers a callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered  
 ```csharp
 public static void RegisterCommand(string name, string help, UnrealEngine.Framework.ConsoleCommandDelegate callback, bool readOnly=false);
 ```

@@ -88,6 +88,8 @@
 - [AnimationMode](./AnimationMode.md 'UnrealEngine.Framework.AnimationMode')
 - [AttachmentTransformRule](./AttachmentTransformRule.md 'UnrealEngine.Framework.AttachmentTransformRule')
 - [AudioFadeCurve](./AudioFadeCurve.md 'UnrealEngine.Framework.AudioFadeCurve')
+- [AutoPossessAI](./AutoPossessAI.md 'UnrealEngine.Framework.AutoPossessAI')
+- [AutoReceiveInput](./AutoReceiveInput.md 'UnrealEngine.Framework.AutoReceiveInput')
 - [BlendType](./BlendType.md 'UnrealEngine.Framework.BlendType')
 - [CameraProjectionMode](./CameraProjectionMode.md 'UnrealEngine.Framework.CameraProjectionMode')
 - [CollisionChannel](./CollisionChannel.md 'UnrealEngine.Framework.CollisionChannel')

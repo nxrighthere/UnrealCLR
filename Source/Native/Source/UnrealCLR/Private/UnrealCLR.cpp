@@ -408,9 +408,13 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddControllerPitchInput;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddControllerRollInput;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddMovementInput;
+				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAutoPossessAI;
+				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAutoPossessPlayer;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetGravityDirection;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAIController;
 				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetPlayerController;
+				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::SetAutoPossessAI;
+				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::SetAutoPossessPlayer;
 
 				checksum += head;
 			}

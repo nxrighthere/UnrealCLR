@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[AudioComponent](./AudioComponent.md 'UnrealEngine.Framework.AudioComponent')
 ## AudioComponent.SetSound(UnrealEngine.Framework.SoundBase) Method
-Sets a sound object  
+Sets the sound object  
 ```csharp
 public void SetSound(UnrealEngine.Framework.SoundBase sound);
 ```

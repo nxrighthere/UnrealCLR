@@ -19,6 +19,7 @@ UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealManaged, Log, All);
 
 namespace UnrealCLRFramework {
 	using AnimationMode = EAnimationMode::Type;
+	using AutoReceiveInput = EAutoReceiveInput::Type;
 	using CameraProjectionMode = ECameraProjectionMode::Type;
 	using CollisionMode = ECollisionEnabled::Type;
 	using CollisionShapeType = ECollisionShape::Type;
@@ -26,6 +27,7 @@ namespace UnrealCLRFramework {
 	using WindowMode = EWindowMode::Type;
 
 	using AudioFadeCurve = EAudioFaderCurve;
+	using AutoPossessAI = EAutoPossessAI;
 	using BlendType = EViewTargetBlendFunction;
 	using CollisionChannel = ECollisionChannel;
 	using CollisionResponse = ECollisionResponse;
@@ -495,9 +497,13 @@ namespace UnrealCLRFramework {
 		static void AddControllerPitchInput(APawn* Pawn, float Value);
 		static void AddControllerRollInput(APawn* Pawn, float Value);
 		static void AddMovementInput(APawn* Pawn, const Vector3* WorldDirection, float ScaleValue, bool Force);
+		static AutoPossessAI GetAutoPossessAI(APawn* Pawn);
+		static AutoReceiveInput GetAutoPossessPlayer(APawn* Pawn);
 		static void GetGravityDirection(APawn* Pawn, Vector3* Value);
 		static AAIController* GetAIController(APawn* Pawn);
 		static APlayerController* GetPlayerController(APawn* Pawn);
+		static void SetAutoPossessAI(APawn* Pawn, AutoPossessAI Value);
+		static void SetAutoPossessPlayer(APawn* Pawn, AutoReceiveInput Value);
 	}
 
 	namespace Character {

@@ -246,6 +246,30 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines the player index that will be used to pass input
+	/// </summary>
+	public enum AutoReceiveInput : int {
+		/// <summary/>
+		Disabled,
+		/// <summary/>
+		Player0,
+		/// <summary/>
+		Player1,
+		/// <summary/>
+		Player2,
+		/// <summary/>
+		Player3,
+		/// <summary/>
+		Player4,
+		/// <summary/>
+		Player5,
+		/// <summary/>
+		Player6,
+		/// <summary/>
+		Player7
+	}
+
+	/// <summary>
 	/// Defines the projection mode for a camera
 	/// </summary>
 	public enum CameraProjectionMode : int {
@@ -333,6 +357,28 @@ namespace UnrealEngine.Framework {
 		SCurve,
 		/// <summary/>
 		Sin
+	}
+
+	/// <summary>
+	/// Defines the possession type for AI pawn that will be automatically possed by an AI controller
+	/// </summary>
+	public enum AutoPossessAI : byte {
+		/// <summary>
+		/// Disabled and not possesses AI
+		/// </summary>
+		Disabled,
+		/// <summary>
+		/// Only possess by an AI controller if a pawn is placed in the world
+		/// </summary>
+		PlacedInWorld,
+		/// <summary>
+		/// Only possess by an AI controller if a pawn is spawned after the world has loaded
+		/// </summary>
+		Spawned,
+		/// <summary>
+		/// Pawn is automatically possessed by an AI controller whenever it's created
+		/// </summary>
+		PlacedInWorldOrSpawned
 	}
 
 	/// <summary>
@@ -3054,7 +3100,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Creates and registers a static callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered
+		/// Creates and registers a callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered
 		/// </summary>
 		/// <param name="name">The name of the command</param>
 		/// <param name="help">Help text for the command</param>
@@ -3735,9 +3781,9 @@ namespace UnrealEngine.Framework {
 		public void SetString(string value) => setString(Pointer, value);
 
 		/// <summary>
-		/// Sets the static callback function that is called when the console variable value changes
+		/// Sets the callback function that is called when the console variable value changes
 		/// </summary>
-		/// <param name="callback">The static function to call when the value of variable is changed</param>
+		/// <param name="callback">The function to call when the value of variable is changed</param>
 		public void SetOnChangedCallback(ConsoleVariableDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
@@ -4282,7 +4328,7 @@ namespace UnrealEngine.Framework {
 		public void SetLifeSpan(float lifeSpan) => setLifeSpan(Pointer, lifeSpan);
 
 		/// <summary>
-		/// Sets the input handled by a <see cref="PlayerController"/>
+		/// Sets <see cref="InputComponent"/> for non-pawn actors handled by a <see cref="PlayerController"/>
 		/// </summary>
 		public void SetEnableInput(PlayerController playerController, bool value) {
 			if (playerController == null)
@@ -4482,6 +4528,16 @@ namespace UnrealEngine.Framework {
 		public void AddMovementInput(in Vector3 worldDirection, float scaleValue = 1.0f, bool force = false) => addMovementInput(Pointer, worldDirection, scaleValue, force);
 
 		/// <summary>
+		/// Returns the automatic possession type by an AI controller
+		/// </summary>
+		public AutoPossessAI GetAutoPossessAI() => getAutoPossessAI(Pointer);
+
+		/// <summary>
+		/// Returns the player index for automatic possession by a player controller
+		/// </summary>
+		public AutoReceiveInput GetAutoPossessPlayer() => getAutoPossessPlayer(Pointer);
+
+		/// <summary>
 		/// Retrieves vector direction of gravity
 		/// </summary>
 		public void GetGravityDirection(ref Vector3 value) => getGravityDirection(Pointer, ref value);
@@ -4520,6 +4576,16 @@ namespace UnrealEngine.Framework {
 
 			return null;
 		}
+
+		/// <summary>
+		/// Sets the automatic possession type by an AI controller
+		/// </summary>
+		public void SetAutoPossessAI(AutoPossessAI value) => setAutoPossessAI(Pointer, value);
+
+		/// <summary>
+		/// Sets the player index for automatic possession by a player controller
+		/// </summary>
+		public void SetAutoPossessPlayer(AutoReceiveInput value) => setAutoPossessPlayer(Pointer, value);
 	}
 
 	/// <summary>
@@ -6575,11 +6641,11 @@ namespace UnrealEngine.Framework {
 		public void ClearActionBindings() => clearActionBindings(Pointer);
 
 		/// <summary>
-		/// Binds a static callback function to an action defined in the project settings, or by using <see cref="Engine.AddActionMapping"/> and <see cref="PlayerInput.AddActionMapping"/>
+		/// Binds a callback function to an action defined in the project settings, or by using <see cref="Engine.AddActionMapping"/> and <see cref="PlayerInput.AddActionMapping"/>
 		/// </summary>
 		/// <param name="actionName">The name of the action</param>
 		/// <param name="keyEvent">The type of input behavior</param>
-		/// <param name="callback">The static function to call when the input is triggered</param>
+		/// <param name="callback">The function to call when the input is triggered</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
 		public void BindAction(string actionName, InputEvent keyEvent, InputDelegate callback, bool executedWhenPaused = false) {
 			if (actionName == null)
@@ -6592,10 +6658,10 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Binds a static callback function to an axis defined in the project settings, or by using <see cref="Engine.AddAxisMapping"/> and <see cref="PlayerInput.AddAxisMapping"/>
+		/// Binds a callback function to an axis defined in the project settings, or by using <see cref="Engine.AddAxisMapping"/> and <see cref="PlayerInput.AddAxisMapping"/>
 		/// </summary>
 		/// <param name="axisName">The name of the axis</param>
-		/// <param name="callback">The static function to call while tracking axis</param>
+		/// <param name="callback">The function to call while tracking axis</param>
 		/// <param name="executedWhenPaused">If <c>true</c>, executes even if the game is paused</param>
 		public void BindAxis(string axisName, InputAxisDelegate callback, bool executedWhenPaused = false) {
 			if (axisName == null)
@@ -7005,7 +7071,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets a sound object
+		/// Sets the sound object
 		/// </summary>
 		public void SetSound(SoundBase sound) {
 			if (sound == null)

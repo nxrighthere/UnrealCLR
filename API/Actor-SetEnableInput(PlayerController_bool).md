@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Actor](./Actor.md 'UnrealEngine.Framework.Actor')
 ## Actor.SetEnableInput(UnrealEngine.Framework.PlayerController, bool) Method
-Sets the input handled by a [PlayerController](./PlayerController.md 'UnrealEngine.Framework.PlayerController')  
+Sets [InputComponent](./Actor-InputComponent.md 'UnrealEngine.Framework.Actor.InputComponent') for non-pawn actors handled by a [PlayerController](./PlayerController.md 'UnrealEngine.Framework.PlayerController')  
 ```csharp
 public void SetEnableInput(UnrealEngine.Framework.PlayerController playerController, bool value);
 ```

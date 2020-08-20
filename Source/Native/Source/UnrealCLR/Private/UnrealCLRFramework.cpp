@@ -1407,6 +1407,14 @@ namespace UnrealCLRFramework {
 			Pawn->AddMovementInput(*WorldDirection, ScaleValue, Force);
 		}
 
+		AutoPossessAI GetAutoPossessAI(APawn* Pawn) {
+			return Pawn->AutoPossessAI;
+		}
+
+		AutoReceiveInput GetAutoPossessPlayer(APawn* Pawn) {
+			return Pawn->AutoPossessPlayer;
+		}
+
 		void GetGravityDirection(APawn* Pawn, Vector3* Value) {
 			*Value = Pawn->GetGravityDirection();
 		}
@@ -1417,6 +1425,14 @@ namespace UnrealCLRFramework {
 
 		APlayerController* GetPlayerController(APawn* Pawn) {
 			return Cast<APlayerController>(Pawn->GetController());
+		}
+
+		void SetAutoPossessAI(APawn* Pawn, AutoPossessAI Value) {
+			Pawn->AutoPossessAI = Value;
+		}
+
+		void SetAutoPossessPlayer(APawn* Pawn, AutoReceiveInput Value) {
+			Pawn->AutoPossessPlayer = Value;
 		}
 	}
 

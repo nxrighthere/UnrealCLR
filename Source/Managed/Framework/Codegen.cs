@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x228;
+		internal const int checksum = 0x22C;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -284,9 +284,13 @@ namespace UnrealEngine.Framework {
 				Pawn.addControllerPitchInput = GenerateOptimizedFunction<Pawn.AddControllerPitchInputFunction>(pawnFunctions[head++]);
 				Pawn.addControllerRollInput = GenerateOptimizedFunction<Pawn.AddControllerRollInputFunction>(pawnFunctions[head++]);
 				Pawn.addMovementInput = GenerateOptimizedFunction<Pawn.AddMovementInputFunction>(pawnFunctions[head++]);
+				Pawn.getAutoPossessAI = GenerateOptimizedFunction<Pawn.GetAutoPossessAIFunction>(pawnFunctions[head++]);
+				Pawn.getAutoPossessPlayer = GenerateOptimizedFunction<Pawn.GetAutoPossessPlayerFunction>(pawnFunctions[head++]);
 				Pawn.getGravityDirection = GenerateOptimizedFunction<Pawn.GetGravityDirectionFunction>(pawnFunctions[head++]);
 				Pawn.getAIController = GenerateOptimizedFunction<Pawn.GetAIControllerFunction>(pawnFunctions[head++]);
 				Pawn.getPlayerController = GenerateOptimizedFunction<Pawn.GetPlayerControllerFunction>(pawnFunctions[head++]);
+				Pawn.setAutoPossessAI = GenerateOptimizedFunction<Pawn.SetAutoPossessAIFunction>(pawnFunctions[head++]);
+				Pawn.setAutoPossessPlayer = GenerateOptimizedFunction<Pawn.SetAutoPossessPlayerFunction>(pawnFunctions[head++]);
 			}
 
 			unchecked {
@@ -1465,17 +1469,25 @@ namespace UnrealEngine.Framework {
 		internal delegate void AddControllerPitchInputFunction(IntPtr pawn, float value);
 		internal delegate void AddControllerRollInputFunction(IntPtr pawn, float value);
 		internal delegate void AddMovementInputFunction(IntPtr pawn, in Vector3 worldDirection, float scaleValue, Bool force);
+		internal delegate AutoPossessAI GetAutoPossessAIFunction(IntPtr pawn);
+		internal delegate AutoReceiveInput GetAutoPossessPlayerFunction(IntPtr pawn);
 		internal delegate void GetGravityDirectionFunction(IntPtr pawn, ref Vector3 value);
 		internal delegate IntPtr GetAIControllerFunction(IntPtr pawn);
 		internal delegate IntPtr GetPlayerControllerFunction(IntPtr pawn);
+		internal delegate void SetAutoPossessAIFunction(IntPtr pawn, AutoPossessAI value);
+		internal delegate void SetAutoPossessPlayerFunction(IntPtr pawn, AutoReceiveInput value);
 
 		internal static AddControllerYawInputFunction addControllerYawInput;
 		internal static AddControllerPitchInputFunction addControllerPitchInput;
 		internal static AddControllerRollInputFunction addControllerRollInput;
 		internal static AddMovementInputFunction addMovementInput;
+		internal static GetAutoPossessAIFunction getAutoPossessAI;
+		internal static GetAutoPossessPlayerFunction getAutoPossessPlayer;
 		internal static GetGravityDirectionFunction getGravityDirection;
 		internal static GetAIControllerFunction getAIController;
 		internal static GetPlayerControllerFunction getPlayerController;
+		internal static SetAutoPossessAIFunction setAutoPossessAI;
+		internal static SetAutoPossessPlayerFunction setAutoPossessPlayer;
 	}
 
 	partial class Character {
