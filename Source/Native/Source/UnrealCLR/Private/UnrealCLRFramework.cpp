@@ -1453,6 +1453,10 @@ namespace UnrealCLRFramework {
 			Character->ClearJumpInput(DeltaTime);
 		}
 
+		void Launch(ACharacter* Character, const Vector3* Velocity, bool OverrideXY, bool OverrideZ) {
+			Character->LaunchCharacter(*Velocity, OverrideXY, OverrideZ);
+		}
+
 		void Crouch(ACharacter* Character) {
 			Character->Crouch();
 		}

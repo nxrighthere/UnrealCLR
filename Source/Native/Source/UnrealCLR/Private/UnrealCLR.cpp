@@ -427,6 +427,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CanJump;
 				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CheckJumpInput;
 				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::ClearJumpInput;
+				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Launch;
 				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Crouch;
 				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::StopCrouching;
 				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Jump;

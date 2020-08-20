@@ -14,5 +14,6 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [ClearJumpInput(float)](./Character-ClearJumpInput(float).md 'UnrealEngine.Framework.Character.ClearJumpInput(float)')
 - [Crouch()](./Character-Crouch().md 'UnrealEngine.Framework.Character.Crouch()')
 - [Jump()](./Character-Jump().md 'UnrealEngine.Framework.Character.Jump()')
+- [Launch(System.Numerics.Vector3, bool, bool)](./Character-Launch(Vector3_bool_bool).md 'UnrealEngine.Framework.Character.Launch(System.Numerics.Vector3, bool, bool)')
 - [StopCrouching()](./Character-StopCrouching().md 'UnrealEngine.Framework.Character.StopCrouching()')
 - [StopJumping()](./Character-StopJumping().md 'UnrealEngine.Framework.Character.StopJumping()')

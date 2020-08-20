@@ -4630,6 +4630,11 @@ namespace UnrealEngine.Framework {
 		public void ClearJumpInput(float deltaTime) => clearJumpInput(Pointer, deltaTime);
 
 		/// <summary>
+		/// Launches the character using the specified velocity
+		/// </summary>
+		public void Launch(in Vector3 velocity, bool overrideXY = false, bool overrideZ = false) => launch(Pointer, velocity, overrideXY, overrideZ);
+
+		/// <summary>
 		/// Starts the character crouching on the next update
 		/// </summary>
 		public void Crouch() => crouch(Pointer);

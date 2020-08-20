@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x230;
+		internal const int checksum = 0x231;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -301,6 +301,7 @@ namespace UnrealEngine.Framework {
 				Character.canJump = GenerateOptimizedFunction<Character.CanJumpFunction>(characterFunctions[head++]);
 				Character.checkJumpInput = GenerateOptimizedFunction<Character.CheckJumpInputFunction>(characterFunctions[head++]);
 				Character.clearJumpInput = GenerateOptimizedFunction<Character.ClearJumpInputFunction>(characterFunctions[head++]);
+				Character.launch = GenerateOptimizedFunction<Character.LaunchFunction>(characterFunctions[head++]);
 				Character.crouch = GenerateOptimizedFunction<Character.CrouchFunction>(characterFunctions[head++]);
 				Character.stopCrouching = GenerateOptimizedFunction<Character.StopCrouchingFunction>(characterFunctions[head++]);
 				Character.jump = GenerateOptimizedFunction<Character.JumpFunction>(characterFunctions[head++]);
@@ -1499,6 +1500,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool CanJumpFunction(IntPtr character);
 		internal delegate void CheckJumpInputFunction(IntPtr character, float deltaTime);
 		internal delegate void ClearJumpInputFunction(IntPtr character, float deltaTime);
+		internal delegate void LaunchFunction(IntPtr character, in Vector3 velocity, Bool overrideXY, Bool overrideZ);
 		internal delegate void CrouchFunction(IntPtr character);
 		internal delegate void StopCrouchingFunction(IntPtr character);
 		internal delegate void JumpFunction(IntPtr character);
@@ -1508,6 +1510,7 @@ namespace UnrealEngine.Framework {
 		internal static CanJumpFunction canJump;
 		internal static CheckJumpInputFunction checkJumpInput;
 		internal static ClearJumpInputFunction clearJumpInput;
+		internal static LaunchFunction launch;
 		internal static CrouchFunction crouch;
 		internal static StopCrouchingFunction stopCrouching;
 		internal static JumpFunction jump;
