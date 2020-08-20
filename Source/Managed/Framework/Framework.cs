@@ -60,11 +60,13 @@ namespace UnrealEngine.Framework {
 		[ThreadStatic]
 		private static List<object> references;
 
-		public static void AddReference(object reference) {
+		public static IntPtr GetFunctionPointer<TDelegate>(TDelegate reference) where TDelegate : class {
 			if (references == null)
 				references = new List<object>();
 
 			references.Add(reference);
+
+			return Marshal.GetFunctionPointerForDelegate(reference);
 		}
 	}
 
@@ -3068,9 +3070,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			registerCommand(name, help, Marshal.GetFunctionPointerForDelegate(callback), readOnly);
+			registerCommand(name, help, Collector.GetFunctionPointer(callback), readOnly);
 		}
 
 		/// <summary>
@@ -3407,9 +3407,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnActorBeginOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
+			setOnActorBeginOverlapCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3420,9 +3418,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnActorEndOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
+			setOnActorEndOverlapCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3433,9 +3429,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnActorHitCallback(Marshal.GetFunctionPointerForDelegate(callback));
+			setOnActorHitCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3446,9 +3440,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnComponentBeginOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
+			setOnComponentBeginOverlapCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3459,9 +3451,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnComponentEndOverlapCallback(Marshal.GetFunctionPointerForDelegate(callback));
+			setOnComponentEndOverlapCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3472,9 +3462,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnComponentHitCallback(Marshal.GetFunctionPointerForDelegate(callback));
+			setOnComponentHitCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3754,9 +3742,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			setOnChangedCallback(Pointer, Marshal.GetFunctionPointerForDelegate(callback));
+			setOnChangedCallback(Pointer, Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -6602,9 +6588,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, Marshal.GetFunctionPointerForDelegate(callback));
+			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -6620,9 +6604,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			Collector.AddReference(callback);
-
-			bindAxis(Pointer, axisName, executedWhenPaused, Marshal.GetFunctionPointerForDelegate(callback));
+			bindAxis(Pointer, axisName, executedWhenPaused, Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
