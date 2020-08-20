@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x22C;
+		internal const int checksum = 0x230;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -316,7 +316,9 @@ namespace UnrealEngine.Framework {
 				Controller.isPlayerController = GenerateOptimizedFunction<Controller.IsPlayerControllerFunction>(controllerFunctions[head++]);
 				Controller.getPawn = GenerateOptimizedFunction<Controller.GetPawnFunction>(controllerFunctions[head++]);
 				Controller.getCharacter = GenerateOptimizedFunction<Controller.GetCharacterFunction>(controllerFunctions[head++]);
+				Controller.getViewTarget = GenerateOptimizedFunction<Controller.GetViewTargetFunction>(controllerFunctions[head++]);
 				Controller.getControlRotation = GenerateOptimizedFunction<Controller.GetControlRotationFunction>(controllerFunctions[head++]);
+				Controller.getDesiredRotation = GenerateOptimizedFunction<Controller.GetDesiredRotationFunction>(controllerFunctions[head++]);
 				Controller.lineOfSightTo = GenerateOptimizedFunction<Controller.LineOfSightToFunction>(controllerFunctions[head++]);
 				Controller.setControlRotation = GenerateOptimizedFunction<Controller.SetControlRotationFunction>(controllerFunctions[head++]);
 				Controller.setInitialLocationAndRotation = GenerateOptimizedFunction<Controller.SetInitialLocationAndRotationFunction>(controllerFunctions[head++]);
@@ -324,6 +326,8 @@ namespace UnrealEngine.Framework {
 				Controller.setIgnoreMoveInput = GenerateOptimizedFunction<Controller.SetIgnoreMoveInputFunction>(controllerFunctions[head++]);
 				Controller.resetIgnoreLookInput = GenerateOptimizedFunction<Controller.ResetIgnoreLookInputFunction>(controllerFunctions[head++]);
 				Controller.resetIgnoreMoveInput = GenerateOptimizedFunction<Controller.ResetIgnoreMoveInputFunction>(controllerFunctions[head++]);
+				Controller.possess = GenerateOptimizedFunction<Controller.PossessFunction>(controllerFunctions[head++]);
+				Controller.unpossess = GenerateOptimizedFunction<Controller.UnpossessFunction>(controllerFunctions[head++]);
 			}
 
 			unchecked {
@@ -1516,7 +1520,9 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsPlayerControllerFunction(IntPtr controller);
 		internal delegate IntPtr GetPawnFunction(IntPtr controller);
 		internal delegate IntPtr GetCharacterFunction(IntPtr controller);
+		internal delegate IntPtr GetViewTargetFunction(IntPtr controller);
 		internal delegate void GetControlRotationFunction(IntPtr controller, ref Quaternion value);
+		internal delegate void GetDesiredRotationFunction(IntPtr controller, ref Quaternion value);
 		internal delegate Bool LineOfSightToFunction(IntPtr controller, IntPtr actor, in Vector3 viewPoint, Bool alternateChecks);
 		internal delegate void SetControlRotationFunction(IntPtr controller, in Quaternion value);
 		internal delegate void SetInitialLocationAndRotationFunction(IntPtr controller, in Vector3 newLocation, in Quaternion newRotation);
@@ -1524,13 +1530,17 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetIgnoreMoveInputFunction(IntPtr controller, Bool value);
 		internal delegate void ResetIgnoreLookInputFunction(IntPtr controller);
 		internal delegate void ResetIgnoreMoveInputFunction(IntPtr controller);
+		internal delegate void PossessFunction(IntPtr controller, IntPtr pawn);
+		internal delegate void UnpossessFunction(IntPtr controller);
 
 		internal static IsLookInputIgnoredFunction isLookInputIgnored;
 		internal static IsMoveInputIgnoredFunction isMoveInputIgnored;
 		internal static IsPlayerControllerFunction isPlayerController;
 		internal static GetPawnFunction getPawn;
 		internal static GetCharacterFunction getCharacter;
+		internal static GetViewTargetFunction getViewTarget;
 		internal static GetControlRotationFunction getControlRotation;
+		internal static GetDesiredRotationFunction getDesiredRotation;
 		internal static LineOfSightToFunction lineOfSightTo;
 		internal static SetControlRotationFunction setControlRotation;
 		internal static SetInitialLocationAndRotationFunction setInitialLocationAndRotation;
@@ -1538,6 +1548,8 @@ namespace UnrealEngine.Framework {
 		internal static SetIgnoreMoveInputFunction setIgnoreMoveInput;
 		internal static ResetIgnoreLookInputFunction resetIgnoreLookInput;
 		internal static ResetIgnoreMoveInputFunction resetIgnoreMoveInput;
+		internal static PossessFunction possess;
+		internal static UnpossessFunction unpossess;
 	}
 
 	partial class AIController {

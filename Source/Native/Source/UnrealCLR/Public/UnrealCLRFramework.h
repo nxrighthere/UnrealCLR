@@ -523,7 +523,9 @@ namespace UnrealCLRFramework {
 		static bool IsPlayerController(AController* Controller);
 		static APawn* GetPawn(AController* Controller);
 		static ACharacter* GetCharacter(AController* Controller);
+		static AActor* GetViewTarget(AController* Controller);
 		static void GetControlRotation(AController* Controller, Quaternion* Value);
+		static void GetDesiredRotation(AController* Controller, Quaternion* Value);
 		static bool LineOfSightTo(AController* Controller, AActor* Actor, const Vector3* ViewPoint, bool AlternateChecks);
 		static void SetControlRotation(AController* Controller, const Quaternion* Value);
 		static void SetInitialLocationAndRotation(AController* Controller, const Vector3* NewLocation, const Quaternion* NewRotation);
@@ -531,6 +533,8 @@ namespace UnrealCLRFramework {
 		static void SetIgnoreMoveInput(AController* Controller, bool Value);
 		static void ResetIgnoreLookInput(AController* Controller);
 		static void ResetIgnoreMoveInput(AController* Controller);
+		static void Possess(AController* Controller, APawn* Pawn);
+		static void Unpossess(AController* Controller);
 	}
 
 	namespace AIController {

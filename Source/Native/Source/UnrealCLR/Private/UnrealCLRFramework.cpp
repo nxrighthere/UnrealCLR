@@ -1491,8 +1491,16 @@ namespace UnrealCLRFramework {
 			return Controller->GetCharacter();
 		}
 
+		AActor* GetViewTarget(AController* Controller) {
+			return Controller->GetViewTarget();
+		}
+
 		void GetControlRotation(AController* Controller, Quaternion* Value) {
 			*Value = Controller->GetControlRotation().Quaternion();
+		}
+
+		void GetDesiredRotation(AController* Controller, Quaternion* Value) {
+			*Value = Controller->GetDesiredRotation().Quaternion();
 		}
 
 		bool LineOfSightTo(AController* Controller, AActor* Actor, const Vector3* ViewPoint, bool AlternateChecks) {
@@ -1521,6 +1529,14 @@ namespace UnrealCLRFramework {
 
 		void ResetIgnoreMoveInput(AController* Controller) {
 			Controller->ResetIgnoreMoveInput();
+		}
+
+		void Possess(AController* Controller, APawn* Pawn) {
+			Controller->Possess(Pawn);
+		}
+
+		void Unpossess(AController* Controller) {
+			Controller->UnPossess();
 		}
 	}
 

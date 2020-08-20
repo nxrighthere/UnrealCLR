@@ -4696,6 +4696,18 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns the actor the controller is looking at or <c>null</c> on failure
+		/// </summary>
+		public Actor GetViewTarget() {
+			IntPtr pointer = getViewTarget(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new Actor(pointer);
+
+			return null;
+		}
+
+		/// <summary>
 		/// Retrieves the control rotation which is a full aim rotation
 		/// </summary>
 		public void GetControlRotation(ref Quaternion value) => getControlRotation(Pointer, ref value);
@@ -4707,6 +4719,22 @@ namespace UnrealEngine.Framework {
 			Quaternion value = default;
 
 			getControlRotation(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the target rotation of the pawn
+		/// </summary>
+		public void GetDesiredRotation(ref Quaternion value) => getDesiredRotation(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the target rotation of the pawn
+		/// </summary>
+		public Quaternion GetDesiredRotation() {
+			Quaternion value = default;
+
+			getDesiredRotation(Pointer, ref value);
 
 			return value;
 		}
@@ -4754,6 +4782,21 @@ namespace UnrealEngine.Framework {
 		/// Stops ignoring move input by resetting the ignore move input state
 		/// </summary>
 		public void ResetIgnoreMoveInput() => resetIgnoreMoveInput(Pointer);
+
+		/// <summary>
+		/// Handles attaching the controller to the specified pawn
+		/// </summary>
+		public void Possess(Pawn pawn) {
+			if (pawn == null)
+				throw new ArgumentNullException(nameof(pawn));
+
+			possess(Pointer, pawn.Pointer);
+		}
+
+		/// <summary>
+		/// Relinquishes control of the pawn
+		/// </summary>
+		public void Unpossess() => unpossess(Pointer);
 	}
 
 	/// <summary>

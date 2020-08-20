@@ -444,7 +444,9 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::IsPlayerController;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetPawn;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetCharacter;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetViewTarget;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetControlRotation;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetDesiredRotation;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::LineOfSightTo;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetControlRotation;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetInitialLocationAndRotation;
@@ -452,6 +454,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetIgnoreMoveInput;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::ResetIgnoreLookInput;
 				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::ResetIgnoreMoveInput;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::Possess;
+				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::Unpossess;
 
 				checksum += head;
 			}
