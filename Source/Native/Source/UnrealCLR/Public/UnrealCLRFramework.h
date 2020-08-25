@@ -34,6 +34,7 @@ namespace UnrealCLRFramework {
 	using ControllerHand = EControllerHand;
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
+	using PixelFormat = EPixelFormat;
 
 	using CollisionShape = FCollisionShape;
 
@@ -312,7 +313,7 @@ namespace UnrealCLRFramework {
 		static uint32 GetID(UObject* Object);
 		static void GetName(UObject* Object, char* Name);
 		static bool GetBool(UObject* Object, const char* Name, bool* value);
-		static bool GetByte(UObject* Object, const char* Name, int8* Value);
+		static bool GetByte(UObject* Object, const char* Name, uint8* Value);
 		static bool GetShort(UObject* Object, const char* Name, int16* Value);
 		static bool GetInt(UObject* Object, const char* Name, int32* Value);
 		static bool GetLong(UObject* Object, const char* Name, int64* Value);
@@ -677,7 +678,11 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Texture2D {
+		static UTexture2D* CreateFromFile(const char* FilePath);
+		static UTexture2D* CreateFromBuffer(const uint8* Buffer, int32 Length);
+		static bool HasAlphaChannel(UTexture2D* Texture2D);
 		static void GetSize(UTexture2D* Texture2D, Vector2* Value);
+		static PixelFormat GetPixelFormat(UTexture2D* Texture2D);
 	}
 
 	namespace ActorComponent {

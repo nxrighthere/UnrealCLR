@@ -310,6 +310,7 @@ namespace UnrealCLRFramework {
 	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the [ControllerHand] enumeration");
 	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the [InputEvent] enumeration");
 	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the [NetMode] enumeration");
+	static_assert(PixelFormat::PF_MAX != PixelFormat(72), "Invalid elements count of the [PixelFormat] enumeration");
 
 	static_assert(sizeof(CollisionShape) != 20, "Invalid size of the [CollisionShape] structure");
 
@@ -509,7 +510,7 @@ namespace UnrealCLRFramework {
 			UNREALCLR_GET_PROPERTY_VALUE(FBoolProperty, Object, Name, Value);
 		}
 
-		bool GetByte(UObject* Object, const char* Name, int8* Value) {
+		bool GetByte(UObject* Object, const char* Name, uint8* Value) {
 			UNREALCLR_GET_PROPERTY_VALUE(FByteProperty, Object, Name, Value);
 		}
 
@@ -1802,9 +1803,25 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Texture2D {
+		UTexture2D* CreateFromFile(const char* FilePath) {
+			return FImageUtils::ImportFileAsTexture2D(FString(ANSI_TO_TCHAR(FilePath)));
+		}
+
+		UTexture2D* CreateFromBuffer(const uint8* Buffer, int32 Length) {
+			return FImageUtils::ImportBufferAsTexture2D(TArray<uint8>(Buffer, Length));
+		}
+
+		bool HasAlphaChannel(UTexture2D* Texture2D) {
+			return Texture2D->HasAlphaChannel();
+		}
+
 		void GetSize(UTexture2D* Texture2D, Vector2* Value) {
 			Value->X = Texture2D->GetSizeX();
 			Value->Y = Texture2D->GetSizeY();
+		}
+
+		PixelFormat GetPixelFormat(UTexture2D* Texture2D) {
+			return Texture2D->GetPixelFormat();
 		}
 	}
 

@@ -22,6 +22,7 @@ namespace UnrealEngine.Tests {
 			staticMeshComponent.SetWorldRotation(Maths.Euler(90.0f, 0.0f, 90.0f));
 
 			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Texture size: " + texture.GetSize());
+			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Pixel format: " + texture.GetPixelFormat());
 		}
 
 		public static void OnEndPlay() => Debug.ClearOnScreenMessages();

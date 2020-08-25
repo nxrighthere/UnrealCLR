@@ -596,7 +596,11 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::Texture2DFunctions;
 
+				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::CreateFromFile;
+				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::CreateFromBuffer;
+				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::HasAlphaChannel;
 				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::GetSize;
+				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::GetPixelFormat;
 
 				checksum += head;
 			}

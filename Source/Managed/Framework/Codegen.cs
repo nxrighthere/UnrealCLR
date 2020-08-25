@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x231;
+		internal const int checksum = 0x235;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -448,7 +448,11 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
 
+				Texture2D.createFromFile = GenerateOptimizedFunction<Texture2D.CreateFromFileFunction>(texture2DFunctions[head++]);
+				Texture2D.createFromBuffer = GenerateOptimizedFunction<Texture2D.CreateFromBufferFunction>(texture2DFunctions[head++]);
+				Texture2D.hasAlphaChannel = GenerateOptimizedFunction<Texture2D.HasAlphaChannelFunction>(texture2DFunctions[head++]);
 				Texture2D.getSize = GenerateOptimizedFunction<Texture2D.GetSizeFunction>(texture2DFunctions[head++]);
+				Texture2D.getPixelFormat = GenerateOptimizedFunction<Texture2D.GetPixelFormatFunction>(texture2DFunctions[head++]);
 			}
 
 			unchecked {
@@ -1744,9 +1748,17 @@ namespace UnrealEngine.Framework {
 	partial class Texture { }
 
 	partial class Texture2D {
+		internal delegate IntPtr CreateFromFileFunction(string filePath);
+		internal delegate IntPtr CreateFromBufferFunction(byte[] buffer, int length);
+		internal delegate Bool HasAlphaChannelFunction(IntPtr texture2D);
 		internal delegate void GetSizeFunction(IntPtr texture2D, ref Vector2 value);
+		internal delegate PixelFormat GetPixelFormatFunction(IntPtr texture2D);
 
+		internal static CreateFromFileFunction createFromFile;
+		internal static CreateFromBufferFunction createFromBuffer;
+		internal static HasAlphaChannelFunction hasAlphaChannel;
 		internal static GetSizeFunction getSize;
+		internal static GetPixelFormatFunction getPixelFormat;
 	}
 
 	partial class ActorComponent {

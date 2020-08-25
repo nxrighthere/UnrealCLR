@@ -578,6 +578,156 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines the pixel format
+	/// </summary>
+	public enum PixelFormat : int {
+		/// <summary/>
+		Unknown = 0,
+		/// <summary/>
+		A32B32G32R32F = 1,
+		/// <summary/>
+		B8G8R8A8 = 2,
+		/// <summary/>
+		G8 = 3,
+		/// <summary/>
+		G16 = 4,
+		/// <summary/>
+		DXT1 = 5,
+		/// <summary/>
+		DXT3 = 6,
+		/// <summary/>
+		DXT5 = 7,
+		/// <summary/>
+		UYVY = 8,
+		/// <summary/>
+		FloatRGB = 9,
+		/// <summary/>
+		FloatRGBA = 10,
+		/// <summary/>
+		DepthStencil = 11,
+		/// <summary/>
+		ShadowDepth = 12,
+		/// <summary/>
+		R32Float = 13,
+		/// <summary/>
+		G16R16 = 14,
+		/// <summary/>
+		G16R16F = 15,
+		/// <summary/>
+		G16R16FFilter = 16,
+		/// <summary/>
+		G32R32F = 17,
+		/// <summary/>
+		A2B10G10R10 = 18,
+		/// <summary/>
+		A16B16G16R16 = 19,
+		/// <summary/>
+		D24 = 20,
+		/// <summary/>
+		R16F = 21,
+		/// <summary/>
+		R16FFilter = 22,
+		/// <summary/>
+		BC5 = 23,
+		/// <summary/>
+		V8U8 = 24,
+		/// <summary/>
+		A1 = 25,
+		/// <summary/>
+		FloatR11G11B10 = 26,
+		/// <summary/>
+		A8 = 27,
+		/// <summary/>
+		R32UInt = 28,
+		/// <summary/>
+		R32SInt = 29,
+		/// <summary/>
+		PVRTC2 = 30,
+		/// <summary/>
+		PVRTC4 = 31,
+		/// <summary/>
+		R16UInt = 32,
+		/// <summary/>
+		R16SInt = 33,
+		/// <summary/>
+		R16G16B16A16UInt = 34,
+		/// <summary/>
+		R16G16B16A16SInt = 35,
+		/// <summary/>
+		R5G6B5UNorm = 36,
+		/// <summary/>
+		R8G8B8A8 = 37,
+		/// <summary/>
+		A8R8G8B8 = 38,
+		/// <summary/>
+		BC4 = 39,
+		/// <summary/>
+		R8G8 = 40,
+		/// <summary/>
+		ATCRGB = 41,
+		/// <summary/>
+		ATCRGBAE = 42,
+		/// <summary/>
+		ATCRGBAI = 43,
+		/// <summary/>
+		X24G8 = 44,
+		/// <summary/>
+		ETC1 = 45,
+		/// <summary/>
+		ETC2RGB = 46,
+		/// <summary/>
+		ETC2RGBA = 47,
+		/// <summary/>
+		R32G32B32A32UInt = 48,
+		/// <summary/>
+		R16G16UInt = 49,
+		/// <summary/>
+		ASTC4x4 = 50,
+		/// <summary/>
+		ASTC6x6 = 51,
+		/// <summary/>
+		ASTC8x8 = 52,
+		/// <summary/>
+		ASTC10x10 = 53,
+		/// <summary/>
+		ASTC12x12 = 54,
+		/// <summary/>
+		BC6H = 55,
+		/// <summary/>
+		BC7 = 56,
+		/// <summary/>
+		R8UInt = 57,
+		/// <summary/>
+		L8 = 58,
+		/// <summary/>
+		XGXR8 = 59,
+		/// <summary/>
+		R8G8B8A8UInt = 60,
+		/// <summary/>
+		R8G8B8A8SNorm = 61,
+		/// <summary/>
+		R16G16B16A16UNorm = 62,
+		/// <summary/>
+		R16G16B16A16SNorm = 63,
+		/// <summary/>
+		PLATFORMHDR0 = 64,
+		/// <summary/>
+		PLATFORMHDR1 = 65,
+		/// <summary/>
+		PLATFORMHDR2 = 66,
+		/// <summary/>
+		NV12 = 67,
+		/// <summary/>
+		R32G32UInt = 68,
+		/// <summary/>
+		ETC2R11EAC = 69,
+		/// <summary/>
+		ETC2RG11EAC = 70,
+		/// <summary/>
+		R8 = 71
+	}
+
+	/// <summary>
 	/// A representation of the engine's object reference
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -6236,12 +6386,32 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A single texture asset
+	/// A texture asset
 	/// </summary>
 	public partial class Texture2D : Texture {
 		private protected Texture2D() { }
 
 		internal Texture2D(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates a texture asset from a raw PNG, JPEG, BMP, or EXR image file
+		/// </summary>
+		public Texture2D(string filePath) {
+			if (filePath == null)
+				throw new ArgumentNullException(nameof(filePath));
+
+			Pointer = createFromFile(filePath);
+		}
+
+		/// <summary>
+		/// Creates a texture asset from a raw PNG, JPEG, BMP, or EXR image buffer
+		/// </summary>
+		public Texture2D(byte[] buffer, int length) {
+			if (buffer == null)
+				throw new ArgumentNullException(nameof(buffer));
+
+			Pointer = createFromBuffer(buffer, length);
+		}
 
 		/// <summary>
 		/// Finds and loads a texture by name
@@ -6260,6 +6430,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if the runtime texture has an alpha channel that is not completely white
+		/// </summary>
+		public bool HasAlphaChannel => hasAlphaChannel(Pointer);
+
+		/// <summary>
 		/// Retrieves size of the texture
 		/// </summary>
 		public void GetSize(ref Vector2 value) => getSize(Pointer, ref value);
@@ -6274,6 +6449,11 @@ namespace UnrealEngine.Framework {
 
 			return value;
 		}
+
+		/// <summary>
+		/// Returns the pixel format
+		/// </summary>
+		public PixelFormat GetPixelFormat() => getPixelFormat(Pointer);
 	}
 
 	/// <summary>
