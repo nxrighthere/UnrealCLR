@@ -324,7 +324,7 @@ namespace UnrealCLRFramework {
 		static bool GetDouble(UObject* Object, const char* Name, double* Value);
 		static bool GetText(UObject* Object, const char* Name, char* Value);
 		static bool SetBool(UObject* Object, const char* Name, bool value);
-		static bool SetByte(UObject* Object, const char* Name, int8 Value);
+		static bool SetByte(UObject* Object, const char* Name, uint8 Value);
 		static bool SetShort(UObject* Object, const char* Name, int16 Value);
 		static bool SetInt(UObject* Object, const char* Name, int32 Value);
 		static bool SetLong(UObject* Object, const char* Name, int64 Value);

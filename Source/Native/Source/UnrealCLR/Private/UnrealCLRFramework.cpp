@@ -568,7 +568,7 @@ namespace UnrealCLRFramework {
 			UNREALCLR_SET_PROPERTY_VALUE(FBoolProperty, Object, Name, Value);
 		}
 
-		bool SetByte(UObject* Object, const char* Name, int8 Value) {
+		bool SetByte(UObject* Object, const char* Name, uint8 Value) {
 			UNREALCLR_SET_PROPERTY_VALUE(FByteProperty, Object, Name, Value);
 		}
 
