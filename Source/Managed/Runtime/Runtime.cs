@@ -30,14 +30,6 @@ namespace UnrealEngine.Runtime {
 		Fatal
 	}
 
-	internal enum ArgumentType : int {
-		None,
-		Single,
-		Integer,
-		Pointer,
-		Array
-	}
-
 	internal unsafe struct Argument {
 		internal fixed byte data[16];
 	}

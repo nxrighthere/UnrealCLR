@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <Reference Include="UnrealEngine.Plugins">
-      <HintPath>libs/UnrealEngine.Plugins.dll</HintPath>
+      <HintPath>libs/plugins/UnrealEngine.Plugins.dll</HintPath>
     </Reference>
   </ItemGroup>
 
