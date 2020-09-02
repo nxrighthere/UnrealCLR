@@ -26,10 +26,13 @@ void UnrealCLR::Module::StartupModule() {
 
 	#ifdef PLATFORM_WINDOWS
 		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Win64/host/fxr/" HOSTFXR_VERSION HOSTFXR_WINDOWS
+		#define UNREALCLR_STRING(string) string
 	#elif PLATFORM_MAC
 		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Mac/host/fxr/" HOSTFXR_VERSION HOSTFXR_MAC
+		#define UNREALCLR_STRING(string) TCHAR_TO_ANSI(string)
 	#else
 		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Linux/host/fxr/" HOSTFXR_VERSION HOSTFXR_LINUX
+		#define UNREALCLR_STRING(string) TCHAR_TO_ANSI(string)
 	#endif
 
 	UnrealCLR::Status = UnrealCLR::StatusType::Stopped;
@@ -90,7 +93,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		hostfxr_handle HostfxrContext = nullptr;
 
-		if (HostfxrInitializeForRuntimeConfig(*runtimeConfigPath, nullptr, &HostfxrContext) != 0 || !HostfxrContext) {
+		if (HostfxrInitializeForRuntimeConfig(UNREALCLR_STRING(*runtimeConfigPath), nullptr, &HostfxrContext) != 0 || !HostfxrContext) {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Unable to initialize the host! Please, try to restart the engine."), ANSI_TO_TCHAR(__FUNCTION__));
 
 			HostfxrClose(HostfxrContext);
@@ -116,7 +119,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		int32 (*Initialize)(void* const Functions[4], int32 Checksum) = nullptr;
 
-		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(*runtimeAssemblyPath, *runtimeTypeName, *runtimeMethodName, *runtimeMethodDelegateName, nullptr, (void**)&Initialize) == 0) {
+		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_STRING(*runtimeAssemblyPath), UNREALCLR_STRING(*runtimeTypeName), UNREALCLR_STRING(*runtimeMethodName), UNREALCLR_STRING(*runtimeMethodDelegateName), nullptr, (void**)&Initialize) == 0) {
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 		} else {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -134,7 +137,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::AssertFunctions;
 
-				Shared::AssertFunctions[head++] = &UnrealCLRFramework::Assert::OutputMessage;
+				Shared::AssertFunctions[head++] = (void*)&UnrealCLRFramework::Assert::OutputMessage;
 
 				checksum += head;
 			}
@@ -143,9 +146,9 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::CommandLineFunctions;
 
-				Shared::CommandLineFunctions[head++] = &UnrealCLRFramework::CommandLine::Get;
-				Shared::CommandLineFunctions[head++] = &UnrealCLRFramework::CommandLine::Set;
-				Shared::CommandLineFunctions[head++] = &UnrealCLRFramework::CommandLine::Append;
+				Shared::CommandLineFunctions[head++] = (void*)&UnrealCLRFramework::CommandLine::Get;
+				Shared::CommandLineFunctions[head++] = (void*)&UnrealCLRFramework::CommandLine::Set;
+				Shared::CommandLineFunctions[head++] = (void*)&UnrealCLRFramework::CommandLine::Append;
 
 				checksum += head;
 			}
@@ -154,18 +157,18 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::DebugFunctions;
 
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::Log;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::HandleException;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::AddOnScreenMessage;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::ClearOnScreenMessages;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawBox;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawCapsule;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawCone;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawCylinder;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawSphere;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawLine;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::DrawPoint;
-				Shared::DebugFunctions[head++] = &UnrealCLRFramework::Debug::FlushPersistentLines;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::Log;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::HandleException;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::AddOnScreenMessage;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::ClearOnScreenMessages;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawBox;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawCapsule;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawCone;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawCylinder;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawSphere;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawLine;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawPoint;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::FlushPersistentLines;
 
 				checksum += head;
 			}
@@ -174,36 +177,36 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ObjectFunctions;
 
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::IsPendingKill;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::IsValid;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Load;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::Rename;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::ToActor;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::ToComponent;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetID;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetName;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetBool;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetByte;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetShort;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetInt;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetLong;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetUShort;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetUInt;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetULong;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetFloat;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetDouble;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::GetText;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetBool;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetByte;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetShort;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetInt;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetLong;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetUShort;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetUInt;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetULong;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetFloat;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetDouble;
-				Shared::ObjectFunctions[head++] = &UnrealCLRFramework::Object::SetText;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::IsPendingKill;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::IsValid;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::Load;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::Rename;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::ToActor;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::ToComponent;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetID;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetName;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetBool;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetByte;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetShort;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetInt;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetLong;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetUShort;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetUInt;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetULong;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetFloat;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetDouble;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetText;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetBool;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetByte;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetShort;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetInt;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetLong;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetUShort;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetUInt;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetULong;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetFloat;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetDouble;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetText;
 
 				checksum += head;
 			}
@@ -212,16 +215,16 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ApplicationFunctions;
 
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::IsCanEverRender;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::IsPackagedForDistribution;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::IsPackagedForShipping;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::GetProjectDirectory;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::GetDefaultLanguage;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::GetProjectName;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::GetVolumeMultiplier;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::SetProjectName;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::SetVolumeMultiplier;
-				Shared::ApplicationFunctions[head++] = &UnrealCLRFramework::Application::RequestExit;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::IsCanEverRender;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::IsPackagedForDistribution;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::IsPackagedForShipping;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::GetProjectDirectory;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::GetDefaultLanguage;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::GetProjectName;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::GetVolumeMultiplier;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::SetProjectName;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::SetVolumeMultiplier;
+				Shared::ApplicationFunctions[head++] = (void*)&UnrealCLRFramework::Application::RequestExit;
 
 				checksum += head;
 			}
@@ -230,14 +233,14 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ConsoleManagerFunctions;
 
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::IsRegisteredVariable;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::FindVariable;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::RegisterVariableBool;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::RegisterVariableInt;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::RegisterVariableFloat;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::RegisterVariableString;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::RegisterCommand;
-				Shared::ConsoleManagerFunctions[head++] = &UnrealCLRFramework::ConsoleManager::UnregisterObject;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::IsRegisteredVariable;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::FindVariable;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::RegisterVariableBool;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::RegisterVariableInt;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::RegisterVariableFloat;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::RegisterVariableString;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::RegisterCommand;
+				Shared::ConsoleManagerFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleManager::UnregisterObject;
 
 				checksum += head;
 			}
@@ -246,23 +249,23 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::EngineFunctions;
 
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::IsSplitScreen;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::IsEditor;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::IsForegroundWindow;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::IsExitRequested;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetNetMode;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetFrameNumber;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetViewportSize;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetScreenResolution;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetWindowMode;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetVersion;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::GetMaxFPS;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::SetMaxFPS;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::SetTitle;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::AddActionMapping;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::AddAxisMapping;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::ForceGarbageCollection;
-				Shared::EngineFunctions[head++] = &UnrealCLRFramework::Engine::DelayGarbageCollection;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::IsSplitScreen;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::IsEditor;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::IsForegroundWindow;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::IsExitRequested;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetNetMode;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetFrameNumber;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetViewportSize;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetScreenResolution;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetWindowMode;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetVersion;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::GetMaxFPS;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::SetMaxFPS;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::SetTitle;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::AddActionMapping;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::AddAxisMapping;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::ForceGarbageCollection;
+				Shared::EngineFunctions[head++] = (void*)&UnrealCLRFramework::Engine::DelayGarbageCollection;
 
 				checksum += head;
 			}
@@ -271,12 +274,12 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::HeadMountedDisplayFunctions;
 
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::IsConnected;
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::GetEnabled;
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::GetLowPersistenceMode;
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::GetDeviceName;
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::SetEnable;
-				Shared::HeadMountedDisplayFunctions[head++] = &UnrealCLRFramework::HeadMountedDisplay::SetLowPersistenceMode;
+				Shared::HeadMountedDisplayFunctions[head++] = (void*)&UnrealCLRFramework::HeadMountedDisplay::IsConnected;
+				Shared::HeadMountedDisplayFunctions[head++] = (void*)&UnrealCLRFramework::HeadMountedDisplay::GetEnabled;
+				Shared::HeadMountedDisplayFunctions[head++] = (void*)&UnrealCLRFramework::HeadMountedDisplay::GetLowPersistenceMode;
+				Shared::HeadMountedDisplayFunctions[head++] = (void*)&UnrealCLRFramework::HeadMountedDisplay::GetDeviceName;
+				Shared::HeadMountedDisplayFunctions[head++] = (void*)&UnrealCLRFramework::HeadMountedDisplay::SetEnable;
+				Shared::HeadMountedDisplayFunctions[head++] = (void*)&UnrealCLRFramework::HeadMountedDisplay::SetLowPersistenceMode;
 
 				checksum += head;
 			}
@@ -285,39 +288,39 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::WorldFunctions;
 
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorCount;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetDeltaSeconds;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetRealTimeSeconds;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetTimeSeconds;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetCurrentLevelName;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetSimulatePhysics;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetWorldOrigin;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActor;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorByTag;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetActorByID;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::GetFirstPlayerController;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnActorBeginOverlapCallback;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnActorEndOverlapCallback;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnActorHitCallback;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnComponentBeginOverlapCallback;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnComponentEndOverlapCallback;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetOnComponentHitCallback;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetSimulatePhysics;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetGravity;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SetWorldOrigin;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OpenLevel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByChannel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceTestByProfile;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByChannel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::LineTraceSingleByProfile;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepTestByChannel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepTestByProfile;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepSingleByChannel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::SweepSingleByProfile;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapAnyTestByChannel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapAnyTestByProfile;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapBlockingTestByChannel;
-				Shared::WorldFunctions[head++] = &UnrealCLRFramework::World::OverlapBlockingTestByProfile;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorCount;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetDeltaSeconds;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetRealTimeSeconds;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetTimeSeconds;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetCurrentLevelName;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetSimulatePhysics;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetWorldOrigin;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActor;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorByTag;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorByID;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetFirstPlayerController;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorBeginOverlapCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorEndOverlapCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorHitCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentBeginOverlapCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentEndOverlapCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentHitCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetSimulatePhysics;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetGravity;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetWorldOrigin;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::OpenLevel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::LineTraceTestByChannel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::LineTraceTestByProfile;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::LineTraceSingleByChannel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::LineTraceSingleByProfile;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SweepTestByChannel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SweepTestByProfile;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SweepSingleByChannel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SweepSingleByProfile;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::OverlapAnyTestByChannel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::OverlapAnyTestByProfile;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::OverlapBlockingTestByChannel;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::OverlapBlockingTestByProfile;
 
 				checksum += head;
 			}
@@ -326,8 +329,8 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::BlueprintFunctions;
 
-				Shared::BlueprintFunctions[head++] = &UnrealCLRFramework::Blueprint::IsValidActorClass;
-				Shared::BlueprintFunctions[head++] = &UnrealCLRFramework::Blueprint::IsValidComponentClass;
+				Shared::BlueprintFunctions[head++] = (void*)&UnrealCLRFramework::Blueprint::IsValidActorClass;
+				Shared::BlueprintFunctions[head++] = (void*)&UnrealCLRFramework::Blueprint::IsValidComponentClass;
 
 				checksum += head;
 			}
@@ -336,10 +339,10 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ConsoleObjectFunctions;
 
-				Shared::ConsoleObjectFunctions[head++] = &UnrealCLRFramework::ConsoleObject::IsBool;
-				Shared::ConsoleObjectFunctions[head++] = &UnrealCLRFramework::ConsoleObject::IsInt;
-				Shared::ConsoleObjectFunctions[head++] = &UnrealCLRFramework::ConsoleObject::IsFloat;
-				Shared::ConsoleObjectFunctions[head++] = &UnrealCLRFramework::ConsoleObject::IsString;
+				Shared::ConsoleObjectFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleObject::IsBool;
+				Shared::ConsoleObjectFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleObject::IsInt;
+				Shared::ConsoleObjectFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleObject::IsFloat;
+				Shared::ConsoleObjectFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleObject::IsString;
 
 				checksum += head;
 			}
@@ -348,16 +351,16 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ConsoleVariableFunctions;
 
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::GetBool;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::GetInt;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::GetFloat;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::GetString;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::SetBool;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::SetInt;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::SetFloat;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::SetString;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::SetOnChangedCallback;
-				Shared::ConsoleVariableFunctions[head++] = &UnrealCLRFramework::ConsoleVariable::ClearOnChangedCallback;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::GetBool;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::GetInt;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::GetFloat;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::GetString;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::SetBool;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::SetInt;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::SetFloat;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::SetString;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::SetOnChangedCallback;
+				Shared::ConsoleVariableFunctions[head++] = (void*)&UnrealCLRFramework::ConsoleVariable::ClearOnChangedCallback;
 
 				checksum += head;
 			}
@@ -366,36 +369,36 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ActorFunctions;
 
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::IsPendingKill;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::IsRootComponentMovable;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::IsOverlappingActor;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Spawn;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Destroy;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Rename;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::Hide;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::TeleportTo;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponent;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponentByTag;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetComponentByID;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetRootComponent;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetInputComponent;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetCreationTime;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetBlockInput;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetDistanceTo;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetHorizontalDistanceTo;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetBounds;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::GetEyesViewPoint;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetRootComponent;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetInputComponent;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetBlockInput;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetLifeSpan;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetEnableInput;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::SetEnableCollision;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::AddTag;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::RemoveTag;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::HasTag;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::RegisterEvent;
-				Shared::ActorFunctions[head++] = &UnrealCLRFramework::Actor::UnregisterEvent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsPendingKill;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsRootComponentMovable;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsOverlappingActor;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Spawn;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Destroy;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Rename;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Hide;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::TeleportTo;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetComponent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetComponentByTag;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetComponentByID;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetRootComponent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetInputComponent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetCreationTime;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetBlockInput;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetDistanceTo;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetHorizontalDistanceTo;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetBounds;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::GetEyesViewPoint;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::SetRootComponent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::SetInputComponent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::SetBlockInput;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::SetLifeSpan;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::SetEnableInput;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::SetEnableCollision;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::AddTag;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::RemoveTag;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::HasTag;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::RegisterEvent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::UnregisterEvent;
 
 				checksum += head;
 			}
@@ -404,17 +407,17 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PawnFunctions;
 
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddControllerYawInput;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddControllerPitchInput;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddControllerRollInput;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::AddMovementInput;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAutoPossessAI;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAutoPossessPlayer;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetGravityDirection;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetAIController;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::GetPlayerController;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::SetAutoPossessAI;
-				Shared::PawnFunctions[head++] = &UnrealCLRFramework::Pawn::SetAutoPossessPlayer;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerYawInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerPitchInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerRollInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddMovementInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAutoPossessAI;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAutoPossessPlayer;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetGravityDirection;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAIController;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetPlayerController;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetAutoPossessAI;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetAutoPossessPlayer;
 
 				checksum += head;
 			}
@@ -423,15 +426,15 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::CharacterFunctions;
 
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CanCrouch;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CanJump;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::CheckJumpInput;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::ClearJumpInput;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Launch;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Crouch;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::StopCrouching;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::Jump;
-				Shared::CharacterFunctions[head++] = &UnrealCLRFramework::Character::StopJumping;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::CanCrouch;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::CanJump;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::CheckJumpInput;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::ClearJumpInput;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::Launch;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::Crouch;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::StopCrouching;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::Jump;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::StopJumping;
 
 				checksum += head;
 			}
@@ -440,23 +443,23 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ControllerFunctions;
 
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::IsLookInputIgnored;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::IsMoveInputIgnored;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::IsPlayerController;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetPawn;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetCharacter;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetViewTarget;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetControlRotation;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::GetDesiredRotation;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::LineOfSightTo;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetControlRotation;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetInitialLocationAndRotation;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetIgnoreLookInput;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::SetIgnoreMoveInput;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::ResetIgnoreLookInput;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::ResetIgnoreMoveInput;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::Possess;
-				Shared::ControllerFunctions[head++] = &UnrealCLRFramework::Controller::Unpossess;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::IsLookInputIgnored;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::IsMoveInputIgnored;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::IsPlayerController;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::GetPawn;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::GetCharacter;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::GetViewTarget;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::GetControlRotation;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::GetDesiredRotation;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::LineOfSightTo;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::SetControlRotation;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::SetInitialLocationAndRotation;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::SetIgnoreLookInput;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::SetIgnoreMoveInput;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::ResetIgnoreLookInput;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::ResetIgnoreMoveInput;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::Possess;
+				Shared::ControllerFunctions[head++] = (void*)&UnrealCLRFramework::Controller::Unpossess;
 
 				checksum += head;
 			}
@@ -465,13 +468,13 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::AIControllerFunctions;
 
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::ClearFocus;
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::GetFocalPoint;
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::SetFocalPoint;
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::GetFocusActor;
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::GetAllowStrafe;
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::SetAllowStrafe;
-				Shared::AIControllerFunctions[head++] = &UnrealCLRFramework::AIController::SetFocus;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::ClearFocus;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::GetFocalPoint;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::SetFocalPoint;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::GetFocusActor;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::GetAllowStrafe;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::SetAllowStrafe;
+				Shared::AIControllerFunctions[head++] = (void*)&UnrealCLRFramework::AIController::SetFocus;
 
 				checksum += head;
 			}
@@ -480,20 +483,20 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PlayerControllerFunctions;
 
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::IsPaused;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetShowMouseCursor;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetMousePosition;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayer;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::GetPlayerInput;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetShowMouseCursor;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetMousePosition;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::ConsoleCommand;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetPause;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetViewTarget;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::SetViewTargetWithBlend;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::AddYawInput;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::AddPitchInput;
-				Shared::PlayerControllerFunctions[head++] = &UnrealCLRFramework::PlayerController::AddRollInput;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::IsPaused;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetShowMouseCursor;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetMousePosition;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetPlayer;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetPlayerInput;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetShowMouseCursor;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetMousePosition;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::ConsoleCommand;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetPause;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetViewTarget;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetViewTargetWithBlend;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::AddYawInput;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::AddPitchInput;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::AddRollInput;
 
 				checksum += head;
 			}
@@ -502,7 +505,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::VolumeFunctions;
 
-				Shared::VolumeFunctions[head++] = &UnrealCLRFramework::Volume::EncompassesPoint;
+				Shared::VolumeFunctions[head++] = (void*)&UnrealCLRFramework::Volume::EncompassesPoint;
 
 				checksum += head;
 			}
@@ -511,16 +514,16 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PostProcessVolumeFunctions;
 
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetEnabled;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetBlendRadius;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetBlendWeight;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetUnbound;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::GetPriority;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetEnabled;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetBlendRadius;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetBlendWeight;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetUnbound;
-				Shared::PostProcessVolumeFunctions[head++] = &UnrealCLRFramework::PostProcessVolume::SetPriority;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::GetEnabled;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::GetBlendRadius;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::GetBlendWeight;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::GetUnbound;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::GetPriority;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::SetEnabled;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::SetBlendRadius;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::SetBlendWeight;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::SetUnbound;
+				Shared::PostProcessVolumeFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessVolume::SetPriority;
 
 				checksum += head;
 			}
@@ -529,7 +532,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SoundBaseFunctions;
 
-				Shared::SoundBaseFunctions[head++] = &UnrealCLRFramework::SoundBase::GetDuration;
+				Shared::SoundBaseFunctions[head++] = (void*)&UnrealCLRFramework::SoundBase::GetDuration;
 
 				checksum += head;
 			}
@@ -538,8 +541,8 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SoundWaveFunctions;
 
-				Shared::SoundWaveFunctions[head++] = &UnrealCLRFramework::SoundWave::GetLoop;
-				Shared::SoundWaveFunctions[head++] = &UnrealCLRFramework::SoundWave::SetLoop;
+				Shared::SoundWaveFunctions[head++] = (void*)&UnrealCLRFramework::SoundWave::GetLoop;
+				Shared::SoundWaveFunctions[head++] = (void*)&UnrealCLRFramework::SoundWave::SetLoop;
 
 				checksum += head;
 			}
@@ -548,21 +551,21 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::AnimationInstanceFunctions;
 
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetCurrentActiveMontage;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::IsPlaying;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetPlayRate;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetPosition;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetBlendTime;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::GetCurrentSection;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::SetPlayRate;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::SetPosition;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::SetNextSection;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::PlayMontage;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::PauseMontage;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::ResumeMontage;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::StopMontage;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::JumpToSection;
-				Shared::AnimationInstanceFunctions[head++] = &UnrealCLRFramework::AnimationInstance::JumpToSectionsEnd;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::GetCurrentActiveMontage;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::IsPlaying;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::GetPlayRate;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::GetPosition;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::GetBlendTime;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::GetCurrentSection;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::SetPlayRate;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::SetPosition;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::SetNextSection;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::PlayMontage;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::PauseMontage;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::ResumeMontage;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::StopMontage;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::JumpToSection;
+				Shared::AnimationInstanceFunctions[head++] = (void*)&UnrealCLRFramework::AnimationInstance::JumpToSectionsEnd;
 
 				checksum += head;
 			}
@@ -571,7 +574,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PlayerFunctions;
 
-				Shared::PlayerFunctions[head++] = &UnrealCLRFramework::Player::GetPlayerController;
+				Shared::PlayerFunctions[head++] = (void*)&UnrealCLRFramework::Player::GetPlayerController;
 
 				checksum += head;
 			}
@@ -580,14 +583,14 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PlayerInputFunctions;
 
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::IsKeyPressed;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::GetTimeKeyPressed;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::GetMouseSensitivity;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::SetMouseSensitivity;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::AddActionMapping;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::AddAxisMapping;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::RemoveActionMapping;
-				Shared::PlayerInputFunctions[head++] = &UnrealCLRFramework::PlayerInput::RemoveAxisMapping;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::IsKeyPressed;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::GetTimeKeyPressed;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::GetMouseSensitivity;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::SetMouseSensitivity;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::AddActionMapping;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::AddAxisMapping;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::RemoveActionMapping;
+				Shared::PlayerInputFunctions[head++] = (void*)&UnrealCLRFramework::PlayerInput::RemoveAxisMapping;
 
 				checksum += head;
 			}
@@ -596,11 +599,11 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::Texture2DFunctions;
 
-				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::CreateFromFile;
-				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::CreateFromBuffer;
-				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::HasAlphaChannel;
-				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::GetSize;
-				Shared::Texture2DFunctions[head++] = &UnrealCLRFramework::Texture2D::GetPixelFormat;
+				Shared::Texture2DFunctions[head++] = (void*)&UnrealCLRFramework::Texture2D::CreateFromFile;
+				Shared::Texture2DFunctions[head++] = (void*)&UnrealCLRFramework::Texture2D::CreateFromBuffer;
+				Shared::Texture2DFunctions[head++] = (void*)&UnrealCLRFramework::Texture2D::HasAlphaChannel;
+				Shared::Texture2DFunctions[head++] = (void*)&UnrealCLRFramework::Texture2D::GetSize;
+				Shared::Texture2DFunctions[head++] = (void*)&UnrealCLRFramework::Texture2D::GetPixelFormat;
 
 				checksum += head;
 			}
@@ -609,12 +612,12 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ActorComponentFunctions;
 
-				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::IsOwnerSelected;
-				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::GetOwner;
-				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::Destroy;
-				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::AddTag;
-				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::RemoveTag;
-				Shared::ActorComponentFunctions[head++] = &UnrealCLRFramework::ActorComponent::HasTag;
+				Shared::ActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ActorComponent::IsOwnerSelected;
+				Shared::ActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ActorComponent::GetOwner;
+				Shared::ActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ActorComponent::Destroy;
+				Shared::ActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ActorComponent::AddTag;
+				Shared::ActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ActorComponent::RemoveTag;
+				Shared::ActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ActorComponent::HasTag;
 
 				checksum += head;
 			}
@@ -623,16 +626,16 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::InputComponentFunctions;
 
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::HasBindings;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::GetActionBindingsNumber;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::ClearActionBindings;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::BindAction;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::BindAxis;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::RemoveActionBinding;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::GetBlockInput;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::SetBlockInput;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::GetPriority;
-				Shared::InputComponentFunctions[head++] = &UnrealCLRFramework::InputComponent::SetPriority;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::HasBindings;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::GetActionBindingsNumber;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::ClearActionBindings;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::BindAction;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::BindAxis;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::RemoveActionBinding;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::GetBlockInput;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::SetBlockInput;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::GetPriority;
+				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::SetPriority;
 
 				checksum += head;
 			}
@@ -641,43 +644,43 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SceneComponentFunctions;
 
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::IsAttachedToComponent;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::IsAttachedToActor;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::IsSocketExists;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::HasAnySockets;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Create;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AttachToComponent;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::DetachFromComponent;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Activate;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::Deactivate;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::UpdateToWorld;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddLocalOffset;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddLocalRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddRelativeLocation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddRelativeRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddLocalTransform;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldOffset;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::AddWorldTransform;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetAttachedSocketName;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetSocketLocation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetSocketRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentVelocity;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentLocation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentScale;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetComponentTransform;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetForwardVector;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetRightVector;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::GetUpVector;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetMobility;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetRelativeLocation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetRelativeRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetRelativeTransform;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldLocation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldRotation;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldScale;
-				Shared::SceneComponentFunctions[head++] = &UnrealCLRFramework::SceneComponent::SetWorldTransform;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsAttachedToComponent;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsAttachedToActor;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsSocketExists;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::HasAnySockets;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::Create;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AttachToComponent;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::DetachFromComponent;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::Activate;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::Deactivate;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::UpdateToWorld;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddLocalOffset;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddLocalRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddRelativeLocation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddRelativeRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddLocalTransform;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddWorldOffset;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddWorldRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddWorldTransform;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetAttachedSocketName;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetSocketLocation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetSocketRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetComponentVelocity;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetComponentLocation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetComponentRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetComponentScale;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetComponentTransform;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetForwardVector;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetRightVector;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetUpVector;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetMobility;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetRelativeLocation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetRelativeRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetRelativeTransform;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetWorldLocation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetWorldRotation;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetWorldScale;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetWorldTransform;
 
 				checksum += head;
 			}
@@ -686,14 +689,14 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::AudioComponentFunctions;
 
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::IsPlaying;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::GetPaused;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::SetSound;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::SetPaused;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::Play;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::Stop;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::FadeIn;
-				Shared::AudioComponentFunctions[head++] = &UnrealCLRFramework::AudioComponent::FadeOut;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::IsPlaying;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::GetPaused;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::SetSound;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::SetPaused;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::Play;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::Stop;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::FadeIn;
+				Shared::AudioComponentFunctions[head++] = (void*)&UnrealCLRFramework::AudioComponent::FadeOut;
 
 				checksum += head;
 			}
@@ -702,21 +705,21 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::CameraComponentFunctions;
 
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetConstrainAspectRatio;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetAspectRatio;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetFieldOfView;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetOrthoFarClipPlane;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetOrthoNearClipPlane;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetOrthoWidth;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::GetLockToHeadMountedDisplay;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetProjectionMode;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetConstrainAspectRatio;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetAspectRatio;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetFieldOfView;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetOrthoFarClipPlane;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetOrthoNearClipPlane;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetOrthoWidth;
-				Shared::CameraComponentFunctions[head++] = &UnrealCLRFramework::CameraComponent::SetLockToHeadMountedDisplay;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetConstrainAspectRatio;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetAspectRatio;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetFieldOfView;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetOrthoFarClipPlane;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetOrthoNearClipPlane;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetOrthoWidth;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::GetLockToHeadMountedDisplay;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetProjectionMode;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetConstrainAspectRatio;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetAspectRatio;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetFieldOfView;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetOrthoFarClipPlane;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetOrthoNearClipPlane;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetOrthoWidth;
+				Shared::CameraComponentFunctions[head++] = (void*)&UnrealCLRFramework::CameraComponent::SetLockToHeadMountedDisplay;
 
 				checksum += head;
 			}
@@ -725,7 +728,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ChildActorComponentFunctions;
 
-				Shared::ChildActorComponentFunctions[head++] = &UnrealCLRFramework::ChildActorComponent::SetChildActor;
+				Shared::ChildActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ChildActorComponent::SetChildActor;
 
 				checksum += head;
 			}
@@ -734,44 +737,44 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SpringArmComponentFunctions;
 
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::IsCollisionFixApplied;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetDrawDebugLagMarkers;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCollisionTest;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraPositionLag;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraRotationLag;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraLagSubstepping;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetInheritPitch;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetInheritRoll;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetInheritYaw;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraLagMaxDistance;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraLagMaxTimeStep;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraPositionLagSpeed;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetCameraRotationLagSpeed;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetProbeChannel;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetProbeSize;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetSocketOffset;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetTargetArmLength;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetTargetOffset;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetUnfixedCameraPosition;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetDesiredRotation;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::GetTargetRotation;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetDrawDebugLagMarkers;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCollisionTest;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraPositionLag;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraRotationLag;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraLagSubstepping;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetInheritPitch;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetInheritRoll;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetInheritYaw;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraLagMaxDistance;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraLagMaxTimeStep;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraPositionLagSpeed;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetCameraRotationLagSpeed;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetProbeChannel;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetProbeSize;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetSocketOffset;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetTargetArmLength;
-				Shared::SpringArmComponentFunctions[head++] = &UnrealCLRFramework::SpringArmComponent::SetTargetOffset;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::IsCollisionFixApplied;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetDrawDebugLagMarkers;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCollisionTest;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraPositionLag;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraRotationLag;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraLagSubstepping;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetInheritPitch;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetInheritRoll;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetInheritYaw;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraLagMaxDistance;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraLagMaxTimeStep;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraPositionLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetCameraRotationLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetProbeChannel;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetProbeSize;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetSocketOffset;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetTargetArmLength;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetTargetOffset;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetUnfixedCameraPosition;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetDesiredRotation;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetTargetRotation;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetDrawDebugLagMarkers;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCollisionTest;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraPositionLag;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraRotationLag;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraLagSubstepping;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetInheritPitch;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetInheritRoll;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetInheritYaw;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraLagMaxDistance;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraLagMaxTimeStep;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraPositionLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraRotationLagSpeed;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetProbeChannel;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetProbeSize;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetSocketOffset;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetTargetArmLength;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetTargetOffset;
 
 				checksum += head;
 			}
@@ -780,61 +783,61 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PrimitiveComponentFunctions;
 
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::IsOverlappingComponent;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInDegrees;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInRadians;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddForce;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddForceAtLocation;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddImpulse;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddImpulseAtLocation;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddRadialForce;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddRadialImpulse;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddTorqueInDegrees;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::AddTorqueInRadians;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetMass;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocity;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocityAtPoint;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsAngularVelocityInDegrees;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetPhysicsAngularVelocityInRadians;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetCastShadow;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetOnlyOwnerSee;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetOwnerNoSee;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetMaterial;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetMaterialsNumber;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetDistanceToCollision;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetSquaredDistanceToCollision;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetAngularDamping;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::GetLinearDamping;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetGenerateOverlapEvents;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetGenerateHitEvents;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetMass;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCenterOfMass;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetPhysicsLinearVelocity;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetPhysicsAngularVelocityInDegrees;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetPhysicsAngularVelocityInRadians;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetPhysicsMaxAngularVelocityInDegrees;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetPhysicsMaxAngularVelocityInRadians;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCastShadow;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetOnlyOwnerSee;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetOwnerNoSee;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetMaterial;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetSimulatePhysics;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetAngularDamping;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetLinearDamping;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetEnableGravity;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionMode;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionChannel;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionProfileName;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionResponseToChannel;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetCollisionResponseToAllChannels;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetIgnoreActorWhenMoving;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::SetIgnoreComponentWhenMoving;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::ClearMoveIgnoreActors;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::ClearMoveIgnoreComponents;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::CreateAndSetMaterialInstanceDynamic;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::RegisterEvent;
-				Shared::PrimitiveComponentFunctions[head++] = &UnrealCLRFramework::PrimitiveComponent::UnregisterEvent;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::IsOverlappingComponent;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInDegrees;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInRadians;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddForce;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddForceAtLocation;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddImpulse;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddImpulseAtLocation;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddRadialForce;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddRadialImpulse;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddTorqueInDegrees;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddTorqueInRadians;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetMass;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocity;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetPhysicsLinearVelocityAtPoint;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetPhysicsAngularVelocityInDegrees;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetPhysicsAngularVelocityInRadians;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetCastShadow;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetOnlyOwnerSee;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetOwnerNoSee;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetMaterial;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetMaterialsNumber;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetDistanceToCollision;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetSquaredDistanceToCollision;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetAngularDamping;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetLinearDamping;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetGenerateOverlapEvents;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetGenerateHitEvents;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetMass;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCenterOfMass;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetPhysicsLinearVelocity;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetPhysicsAngularVelocityInDegrees;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetPhysicsAngularVelocityInRadians;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetPhysicsMaxAngularVelocityInDegrees;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetPhysicsMaxAngularVelocityInRadians;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCastShadow;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetOnlyOwnerSee;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetOwnerNoSee;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetMaterial;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetSimulatePhysics;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetAngularDamping;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetLinearDamping;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetEnableGravity;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCollisionMode;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCollisionChannel;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCollisionProfileName;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCollisionResponseToChannel;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCollisionResponseToAllChannels;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetIgnoreActorWhenMoving;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetIgnoreComponentWhenMoving;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::ClearMoveIgnoreActors;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::ClearMoveIgnoreComponents;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::CreateAndSetMaterialInstanceDynamic;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::RegisterEvent;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::UnregisterEvent;
 
 				checksum += head;
 			}
@@ -843,10 +846,10 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ShapeComponentFunctions;
 
-				Shared::ShapeComponentFunctions[head++] = &UnrealCLRFramework::ShapeComponent::GetDynamicObstacle;
-				Shared::ShapeComponentFunctions[head++] = &UnrealCLRFramework::ShapeComponent::GetShapeColor;
-				Shared::ShapeComponentFunctions[head++] = &UnrealCLRFramework::ShapeComponent::SetDynamicObstacle;
-				Shared::ShapeComponentFunctions[head++] = &UnrealCLRFramework::ShapeComponent::SetShapeColor;
+				Shared::ShapeComponentFunctions[head++] = (void*)&UnrealCLRFramework::ShapeComponent::GetDynamicObstacle;
+				Shared::ShapeComponentFunctions[head++] = (void*)&UnrealCLRFramework::ShapeComponent::GetShapeColor;
+				Shared::ShapeComponentFunctions[head++] = (void*)&UnrealCLRFramework::ShapeComponent::SetDynamicObstacle;
+				Shared::ShapeComponentFunctions[head++] = (void*)&UnrealCLRFramework::ShapeComponent::SetShapeColor;
 
 				checksum += head;
 			}
@@ -855,10 +858,10 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::BoxComponentFunctions;
 
-				Shared::BoxComponentFunctions[head++] = &UnrealCLRFramework::BoxComponent::GetScaledBoxExtent;
-				Shared::BoxComponentFunctions[head++] = &UnrealCLRFramework::BoxComponent::GetUnscaledBoxExtent;
-				Shared::BoxComponentFunctions[head++] = &UnrealCLRFramework::BoxComponent::SetBoxExtent;
-				Shared::BoxComponentFunctions[head++] = &UnrealCLRFramework::BoxComponent::InitBoxExtent;
+				Shared::BoxComponentFunctions[head++] = (void*)&UnrealCLRFramework::BoxComponent::GetScaledBoxExtent;
+				Shared::BoxComponentFunctions[head++] = (void*)&UnrealCLRFramework::BoxComponent::GetUnscaledBoxExtent;
+				Shared::BoxComponentFunctions[head++] = (void*)&UnrealCLRFramework::BoxComponent::SetBoxExtent;
+				Shared::BoxComponentFunctions[head++] = (void*)&UnrealCLRFramework::BoxComponent::InitBoxExtent;
 
 				checksum += head;
 			}
@@ -867,11 +870,11 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SphereComponentFunctions;
 
-				Shared::SphereComponentFunctions[head++] = &UnrealCLRFramework::SphereComponent::GetScaledSphereRadius;
-				Shared::SphereComponentFunctions[head++] = &UnrealCLRFramework::SphereComponent::GetUnscaledSphereRadius;
-				Shared::SphereComponentFunctions[head++] = &UnrealCLRFramework::SphereComponent::GetShapeScale;
-				Shared::SphereComponentFunctions[head++] = &UnrealCLRFramework::SphereComponent::SetSphereRadius;
-				Shared::SphereComponentFunctions[head++] = &UnrealCLRFramework::SphereComponent::InitSphereRadius;
+				Shared::SphereComponentFunctions[head++] = (void*)&UnrealCLRFramework::SphereComponent::GetScaledSphereRadius;
+				Shared::SphereComponentFunctions[head++] = (void*)&UnrealCLRFramework::SphereComponent::GetUnscaledSphereRadius;
+				Shared::SphereComponentFunctions[head++] = (void*)&UnrealCLRFramework::SphereComponent::GetShapeScale;
+				Shared::SphereComponentFunctions[head++] = (void*)&UnrealCLRFramework::SphereComponent::SetSphereRadius;
+				Shared::SphereComponentFunctions[head++] = (void*)&UnrealCLRFramework::SphereComponent::InitSphereRadius;
 
 				checksum += head;
 			}
@@ -880,14 +883,14 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::CapsuleComponentFunctions;
 
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::GetScaledCapsuleRadius;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::GetUnscaledCapsuleRadius;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::GetShapeScale;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::GetScaledCapsuleSize;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::GetUnscaledCapsuleSize;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::SetCapsuleRadius;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::SetCapsuleSize;
-				Shared::CapsuleComponentFunctions[head++] = &UnrealCLRFramework::CapsuleComponent::InitCapsuleSize;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::GetScaledCapsuleRadius;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::GetUnscaledCapsuleRadius;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::GetShapeScale;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::GetScaledCapsuleSize;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::GetUnscaledCapsuleSize;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::SetCapsuleRadius;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::SetCapsuleSize;
+				Shared::CapsuleComponentFunctions[head++] = (void*)&UnrealCLRFramework::CapsuleComponent::InitCapsuleSize;
 
 				checksum += head;
 			}
@@ -896,8 +899,8 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MeshComponentFunctions;
 
-				Shared::MeshComponentFunctions[head++] = &UnrealCLRFramework::MeshComponent::IsValidMaterialSlotName;
-				Shared::MeshComponentFunctions[head++] = &UnrealCLRFramework::MeshComponent::GetMaterialIndex;
+				Shared::MeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::MeshComponent::IsValidMaterialSlotName;
+				Shared::MeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::MeshComponent::GetMaterialIndex;
 
 				checksum += head;
 			}
@@ -906,9 +909,9 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::LightComponentBaseFunctions;
 
-				Shared::LightComponentBaseFunctions[head++] = &UnrealCLRFramework::LightComponentBase::GetIntensity;
-				Shared::LightComponentBaseFunctions[head++] = &UnrealCLRFramework::LightComponentBase::GetCastShadows;
-				Shared::LightComponentBaseFunctions[head++] = &UnrealCLRFramework::LightComponentBase::SetCastShadows;
+				Shared::LightComponentBaseFunctions[head++] = (void*)&UnrealCLRFramework::LightComponentBase::GetIntensity;
+				Shared::LightComponentBaseFunctions[head++] = (void*)&UnrealCLRFramework::LightComponentBase::GetCastShadows;
+				Shared::LightComponentBaseFunctions[head++] = (void*)&UnrealCLRFramework::LightComponentBase::SetCastShadows;
 
 				checksum += head;
 			}
@@ -917,8 +920,8 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::LightComponentFunctions;
 
-				Shared::LightComponentFunctions[head++] = &UnrealCLRFramework::LightComponent::SetIntensity;
-				Shared::LightComponentFunctions[head++] = &UnrealCLRFramework::LightComponent::SetLightColor;
+				Shared::LightComponentFunctions[head++] = (void*)&UnrealCLRFramework::LightComponent::SetIntensity;
+				Shared::LightComponentFunctions[head++] = (void*)&UnrealCLRFramework::LightComponent::SetLightColor;
 
 				checksum += head;
 			}
@@ -927,12 +930,12 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MotionControllerComponentFunctions;
 
-				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::IsTracked;
-				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::GetDisableLowLatencyUpdate;
-				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::GetTrackingSource;
-				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::SetDisableLowLatencyUpdate;
-				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::SetTrackingSource;
-				Shared::MotionControllerComponentFunctions[head++] = &UnrealCLRFramework::MotionControllerComponent::SetTrackingMotionSource;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::IsTracked;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::GetDisableLowLatencyUpdate;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::GetTrackingSource;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetDisableLowLatencyUpdate;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetTrackingSource;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetTrackingMotionSource;
 
 				checksum += head;
 			}
@@ -941,9 +944,9 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::StaticMeshComponentFunctions;
 
-				Shared::StaticMeshComponentFunctions[head++] = &UnrealCLRFramework::StaticMeshComponent::GetLocalBounds;
-				Shared::StaticMeshComponentFunctions[head++] = &UnrealCLRFramework::StaticMeshComponent::GetStaticMesh;
-				Shared::StaticMeshComponentFunctions[head++] = &UnrealCLRFramework::StaticMeshComponent::SetStaticMesh;
+				Shared::StaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::StaticMeshComponent::GetLocalBounds;
+				Shared::StaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::StaticMeshComponent::GetStaticMesh;
+				Shared::StaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::StaticMeshComponent::SetStaticMesh;
 
 				checksum += head;
 			}
@@ -952,12 +955,12 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::InstancedStaticMeshComponentFunctions;
 
-				Shared::InstancedStaticMeshComponentFunctions[head++] = &UnrealCLRFramework::InstancedStaticMeshComponent::GetInstanceCount;
-				Shared::InstancedStaticMeshComponentFunctions[head++] = &UnrealCLRFramework::InstancedStaticMeshComponent::GetInstanceTransform;
-				Shared::InstancedStaticMeshComponentFunctions[head++] = &UnrealCLRFramework::InstancedStaticMeshComponent::AddInstance;
-				Shared::InstancedStaticMeshComponentFunctions[head++] = &UnrealCLRFramework::InstancedStaticMeshComponent::UpdateInstanceTransform;
-				Shared::InstancedStaticMeshComponentFunctions[head++] = &UnrealCLRFramework::InstancedStaticMeshComponent::RemoveInstance;
-				Shared::InstancedStaticMeshComponentFunctions[head++] = &UnrealCLRFramework::InstancedStaticMeshComponent::ClearInstances;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::GetInstanceCount;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::GetInstanceTransform;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::AddInstance;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::UpdateInstanceTransform;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::RemoveInstance;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::ClearInstances;
 
 				checksum += head;
 			}
@@ -966,11 +969,11 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SkinnedMeshComponentFunctions;
 
-				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBonesNumber;
-				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBoneIndex;
-				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBoneName;
-				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::GetBoneTransform;
-				Shared::SkinnedMeshComponentFunctions[head++] = &UnrealCLRFramework::SkinnedMeshComponent::SetSkeletalMesh;
+				Shared::SkinnedMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkinnedMeshComponent::GetBonesNumber;
+				Shared::SkinnedMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkinnedMeshComponent::GetBoneIndex;
+				Shared::SkinnedMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkinnedMeshComponent::GetBoneName;
+				Shared::SkinnedMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkinnedMeshComponent::GetBoneTransform;
+				Shared::SkinnedMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkinnedMeshComponent::SetSkeletalMesh;
 
 				checksum += head;
 			}
@@ -979,14 +982,81 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::SkeletalMeshComponentFunctions;
 
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::IsPlaying;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::GetAnimationInstance;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::SetAnimation;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::SetAnimationMode;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::SetAnimationBlueprint;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::Play;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::PlayAnimation;
-				Shared::SkeletalMeshComponentFunctions[head++] = &UnrealCLRFramework::SkeletalMeshComponent::Stop;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::IsPlaying;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::GetAnimationInstance;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::SetAnimation;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::SetAnimationMode;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::SetAnimationBlueprint;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::Play;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::PlayAnimation;
+				Shared::SkeletalMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkeletalMeshComponent::Stop;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::SplineComponentFunctions;
+
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::IsClosedLoop;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetDuration;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetSplinePointType;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetSplinePointsNumber;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetSplineSegmentsNumber;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetTangentAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetTangentAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetTangentAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetTransformAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetTransformAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetArriveTangentAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetDefaultUpVector;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetDirectionAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetDirectionAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetDirectionAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetDistanceAlongSplineAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetLeaveTangentAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetLocationAndTangentAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetLocationAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetLocationAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetLocationAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRightVectorAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRightVectorAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRightVectorAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRollAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRollAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRollAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRotationAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRotationAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetRotationAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetScaleAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetScaleAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetScaleAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetSplineLength;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetTransformAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetUpVectorAtDistanceAlongSpline;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetUpVectorAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::GetUpVectorAtTime;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetDuration;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetSplinePointType;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetClosedLoop;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetDefaultUpVector;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetLocationAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetTangentAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetTangentsAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::SetUpVectorAtSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::AddSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::AddSplinePointAtIndex;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::ClearSplinePoints;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindDirectionClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindLocationClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindUpVectorClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindRightVectorClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindRollClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindScaleClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindTangentClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::FindTransformClosestToWorldLocation;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::RemoveSplinePoint;
+				Shared::SplineComponentFunctions[head++] = (void*)&UnrealCLRFramework::SplineComponent::UpdateSpline;
 
 				checksum += head;
 			}
@@ -995,20 +1065,20 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::RadialForceComponentFunctions;
 
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetIgnoreOwningActor;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetImpulseVelocityChange;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetLinearFalloff;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetForceStrength;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetImpulseStrength;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::GetRadius;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetIgnoreOwningActor;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetImpulseVelocityChange;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetLinearFalloff;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetForceStrength;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetImpulseStrength;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::SetRadius;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::AddCollisionChannelToAffect;
-				Shared::RadialForceComponentFunctions[head++] = &UnrealCLRFramework::RadialForceComponent::FireImpulse;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::GetIgnoreOwningActor;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::GetImpulseVelocityChange;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::GetLinearFalloff;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::GetForceStrength;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::GetImpulseStrength;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::GetRadius;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::SetIgnoreOwningActor;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::SetImpulseVelocityChange;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::SetLinearFalloff;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::SetForceStrength;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::SetImpulseStrength;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::SetRadius;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::AddCollisionChannelToAffect;
+				Shared::RadialForceComponentFunctions[head++] = (void*)&UnrealCLRFramework::RadialForceComponent::FireImpulse;
 
 				checksum += head;
 			}
@@ -1017,7 +1087,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MaterialInterfaceFunctions;
 
-				Shared::MaterialInterfaceFunctions[head++] = &UnrealCLRFramework::MaterialInterface::IsTwoSided;
+				Shared::MaterialInterfaceFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInterface::IsTwoSided;
 
 				checksum += head;
 			}
@@ -1026,7 +1096,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MaterialFunctions;
 
-				Shared::MaterialFunctions[head++] = &UnrealCLRFramework::Material::IsDefaultMaterial;
+				Shared::MaterialFunctions[head++] = (void*)&UnrealCLRFramework::Material::IsDefaultMaterial;
 
 				checksum += head;
 			}
@@ -1035,7 +1105,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MaterialInstanceFunctions;
 
-				Shared::MaterialInstanceFunctions[head++] = &UnrealCLRFramework::MaterialInstance::IsChildOf;
+				Shared::MaterialInstanceFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstance::IsChildOf;
 
 				checksum += head;
 			}
@@ -1044,10 +1114,10 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::MaterialInstanceDynamicFunctions;
 
-				Shared::MaterialInstanceDynamicFunctions[head++] = &UnrealCLRFramework::MaterialInstanceDynamic::ClearParameterValues;
-				Shared::MaterialInstanceDynamicFunctions[head++] = &UnrealCLRFramework::MaterialInstanceDynamic::SetTextureParameterValue;
-				Shared::MaterialInstanceDynamicFunctions[head++] = &UnrealCLRFramework::MaterialInstanceDynamic::SetVectorParameterValue;
-				Shared::MaterialInstanceDynamicFunctions[head++] = &UnrealCLRFramework::MaterialInstanceDynamic::SetScalarParameterValue;
+				Shared::MaterialInstanceDynamicFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstanceDynamic::ClearParameterValues;
+				Shared::MaterialInstanceDynamicFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstanceDynamic::SetTextureParameterValue;
+				Shared::MaterialInstanceDynamicFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstanceDynamic::SetVectorParameterValue;
+				Shared::MaterialInstanceDynamicFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstanceDynamic::SetScalarParameterValue;
 
 				checksum += head;
 			}
@@ -1056,9 +1126,9 @@ void UnrealCLR::Module::StartupModule() {
 
 			// Runtime pointers
 
-			Shared::ManagedFunctions[0] = &UnrealCLR::Module::Invoke;
-			Shared::ManagedFunctions[1] = &UnrealCLR::Module::Exception;
-			Shared::ManagedFunctions[2] = &UnrealCLR::Module::Log;
+			Shared::ManagedFunctions[0] = (void*)&UnrealCLR::Module::Invoke;
+			Shared::ManagedFunctions[1] = (void*)&UnrealCLR::Module::Exception;
+			Shared::ManagedFunctions[2] = (void*)&UnrealCLR::Module::Log;
 
 			constexpr void* functions[4] = {
 				Shared::ManagedFunctions,

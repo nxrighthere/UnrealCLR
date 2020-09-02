@@ -42,7 +42,7 @@ namespace UnrealEngine.Runtime {
 		internal Dictionary<int, IntPtr> userFunctions;
 	}
 
-	internal sealed class AssembliesContextManager  {
+	internal sealed class AssembliesContextManager {
 		internal AssemblyLoadContext assembliesContext;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]

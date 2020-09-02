@@ -32,6 +32,7 @@
 #include "Components/LightComponentBase.h"
 #include "Components/ShapeComponent.h"
 #include "Components/SphereComponent.h"
+#include "Components/SplineComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/GameEngine.h"
@@ -284,6 +285,7 @@ namespace UnrealCLR {
 		static void* InstancedStaticMeshComponentFunctions[storageSize];
 		static void* SkinnedMeshComponentFunctions[storageSize];
 		static void* SkeletalMeshComponentFunctions[storageSize];
+		static void* SplineComponentFunctions[storageSize];
 		static void* RadialForceComponentFunctions[storageSize];
 		static void* MaterialInterfaceFunctions[storageSize];
 		static void* MaterialFunctions[storageSize];

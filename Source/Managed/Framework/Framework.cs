@@ -334,6 +334,32 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines coordinate space
+	/// </summary>
+	public enum SplineCoordinateSpace : int {
+		/// <summary/>
+		Local,
+		/// <summary/>
+		World
+	}
+
+	/// <summary>
+	/// Defines the spline point type
+	/// </summary>
+	public enum SplinePointType : int {
+		/// <summary/>
+		Linear,
+		/// <summary/>
+		Curve,
+		/// <summary/>
+		Constant,
+		/// <summary/>
+		CurveClamped,
+		/// <summary/>
+		CurveCustomTangent
+	}
+
+	/// <summary>
 	/// Defines the window mode
 	/// </summary>
 	public enum WindowMode : int {
@@ -8736,6 +8762,649 @@ namespace UnrealEngine.Framework {
 		/// Stops the animation
 		/// </summary>
 		public void Stop() => stop(Pointer);
+	}
+
+	/// <summary>
+	/// Represents a spline shape
+	/// </summary>
+	public partial class SplineComponent : PrimitiveComponent {
+		internal override ComponentType Type => ComponentType.Spline;
+
+		private protected SplineComponent() { }
+
+		internal SplineComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Returns <c>true</c> if the spline is a closed loop
+		/// </summary>
+		public bool IsClosedLoop => isClosedLoop(Pointer);
+
+		/// <summary>
+		/// Gets or sets the duration of the spline in seconds
+		/// </summary>
+		public float Duration {
+			get => getDuration(Pointer);
+			set => setDuration(Pointer, value);
+		}
+
+		/// <summary>
+		/// Returns the number of spline points
+		/// </summary>
+		public int SplinePointsNumber => getSplinePointsNumber(Pointer);
+
+		/// <summary>
+		/// Returns the number of spline segments
+		/// </summary>
+		public int SplineSegmentsNumber => getSplineSegmentsNumber(Pointer);
+
+		/// <summary>
+		/// Returns the type of a spline point
+		/// </summary>
+		public SplinePointType GetSplinePointType(int pointIndex) => getSplinePointType(Pointer, pointIndex);
+
+		/// <summary>
+		/// Retrieves the tangent at the given distance along the length of the spline
+		/// </summary>
+		public void GetTangentAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getTangentAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the tangent at the given distance along the length of the spline
+		/// </summary>
+		public Vector3 GetTangentAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getTangentAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the tangent at the spline point
+		/// </summary>
+		public void GetTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the tangent at the spline point
+		/// </summary>
+		public Vector3 GetTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the tangent at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetTangentAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity, ref Vector3 value) => getTangentAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+		/// <summary>
+		/// Returns the tangent at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Vector3 GetTangentAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false) {
+			Vector3 value = default;
+
+			getTangentAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the transform at the given distance along the length of the spline
+		/// </summary>
+		public void GetTransformAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Transform value) => getTransformAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the transform at the given distance along the length of the spline
+		/// </summary>
+		public Transform GetTransformAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Transform value = default;
+
+			getTransformAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the transform at the spline point
+		/// </summary>
+		public void GetTransformAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, bool useScale, ref Transform value) => getTransformAtSplinePoint(Pointer, pointIndex, coordinateSpace, useScale, ref value);
+
+		/// <summary>
+		/// Returns the transform at the spline point
+		/// </summary>
+		public Transform GetTransformAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, bool useScale = false) {
+			Transform value = default;
+
+			getTransformAtSplinePoint(Pointer, pointIndex, coordinateSpace, useScale, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the arrive tangent at the spline point
+		/// </summary>
+		public void GetArriveTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getArriveTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the arrive tangent at the spline point
+		/// </summary>
+		public Vector3 GetArriveTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getArriveTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the default up vector of the spline
+		/// </summary>
+		public void GetDefaultUpVector(SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getDefaultUpVector(Pointer, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the default up vector of the spline
+		/// </summary>
+		public Vector3 GetDefaultUpVector(SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getDefaultUpVector(Pointer, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a unit direction vector of the spline tangent at the given distance along the length of the spline
+		/// </summary>
+		public void GetDirectionAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getDirectionAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns a unit direction vector of the spline tangent at the given distance along the length of the spline
+		/// </summary>
+		public Vector3 GetDirectionAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getDirectionAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a unit direction vector at the spline point
+		/// </summary>
+		public void GetDirectionAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getDirectionAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns a unit direction vector at the spline point
+		/// </summary>
+		public Vector3 GetDirectionAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getDirectionAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a unit direction vector of the spline tangent at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetDirectionAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity, ref Vector3 value) => getDirectionAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+		/// <summary>
+		/// Returns a unit direction vector of the spline tangent at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Vector3 GetDirectionAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false) {
+			Vector3 value = default;
+
+			getDirectionAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns the distance along the spline at the spline point
+		/// </summary>
+		public float GetDistanceAlongSplineAtSplinePoint(int pointIndex) => getDistanceAlongSplineAtSplinePoint(Pointer, pointIndex);
+
+		/// <summary>
+		/// Retrieves the leave tangent at the spline point
+		/// </summary>
+		public void GetLeaveTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getLeaveTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the leave tangent at the spline point
+		/// </summary>
+		public Vector3 GetLeaveTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getLeaveTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the location and tangent at the spline point
+		/// </summary>
+		public void GetLocationAndTangentAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 location, ref Vector3 tangent) => getLocationAndTangentAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref location, ref tangent);
+
+		/// <summary>
+		/// Retrieves the location at the given distance along the length of the spline
+		/// </summary>
+		public void GetLocationAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getLocationAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the location at the given distance along the length of the spline
+		/// </summary>
+		public Vector3 GetLocationAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getLocationAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the location at the spline point
+		/// </summary>
+		public void GetLocationAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getLocationAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the location at the spline point
+		/// </summary>
+		public Vector3 GetLocationAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getLocationAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the location at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetLocationAtTime(float time, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getLocationAtTime(Pointer, time, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the location at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Vector3 GetLocationAtTime(float time, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getLocationAtTime(Pointer, time, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a unit direction vector corresponding to the spline's right vector at the given distance along the length of the spline
+		/// </summary>
+		public void GetRightVectorAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getRightVectorAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Retrieves a unit direction vector corresponding to the spline's right vector at the given distance along the length of the spline
+		/// </summary>
+		public Vector3 GetRightVectorAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getRightVectorAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's right vector at the spline point
+		/// </summary>
+		public void GetRightVectorAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getRightVectorAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the spline's right vector at the spline point
+		/// </summary>
+		public Vector3 GetRightVectorAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getRightVectorAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's right vector at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetRightVectorAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity, ref Vector3 value) => getRightVectorAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+		/// <summary>
+		/// Returns the spline's right vector at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Vector3 GetRightVectorAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false) {
+			Vector3 value = default;
+
+			getRightVectorAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns the spline's roll in degrees at the given distance along the length of the spline
+		/// </summary>
+		public float GetRollAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) => getRollAtDistanceAlongSpline(Pointer, distance, coordinateSpace);
+
+		/// <summary>
+		/// Returns the spline's roll in degrees at the spline point
+		/// </summary>
+		public float GetRollAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) => getRollAtSplinePoint(Pointer, pointIndex, coordinateSpace);
+
+		/// <summary>
+		/// Returns the spline's roll in degrees at the given time from 0.0f to the spline duration
+		/// </summary>
+		public float GetRollAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false) => getRollAtTime(Pointer, time, coordinateSpace, useConstantVelocity);
+
+		/// <summary>
+		/// Retrieves a rotation corresponding to the spline's rotation at the given distance along the length of the spline
+		/// </summary>
+		public void GetRotationAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Quaternion value) => getRotationAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns a rotation corresponding to the spline's rotation at the given distance along the length of the spline
+		/// </summary>
+		public Quaternion GetRotationAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Quaternion value = default;
+
+			getRotationAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a spline's rotation at the spline point
+		/// </summary>
+		public void GetRotationAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Quaternion value) => getRotationAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns a spline's rotation at the spline point
+		/// </summary>
+		public Quaternion GetRotationAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Quaternion value = default;
+
+			getRotationAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a rotation corresponding to the spline's position and direction at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetRotationAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity, ref Quaternion value) => getRotationAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+		/// <summary>
+		/// Returns a rotation corresponding to the spline's position and direction at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Quaternion GetRotationAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false) {
+			Quaternion value = default;
+
+			getRotationAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's scale at the given distance along the length of the spline
+		/// </summary>
+		public void GetScaleAtDistanceAlongSpline(float distance, ref Vector3 value) => getScaleAtDistanceAlongSpline(Pointer, distance, ref value);
+
+		/// <summary>
+		/// Returns the spline's scale at the given distance along the length of the spline
+		/// </summary>
+		public Vector3 GetScaleAtDistanceAlongSpline(float distance) {
+			Vector3 value = default;
+
+			getScaleAtDistanceAlongSpline(Pointer, distance, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's scale at the spline point
+		/// </summary>
+		public void GetScaleAtSplinePoint(int pointIndex, ref Vector3 value) => getScaleAtSplinePoint(Pointer, pointIndex, ref value);
+
+		/// <summary>
+		/// Returns the spline's scale at the spline point
+		/// </summary>
+		public Vector3 GetScaleAtSplinePoint(int pointIndex) {
+			Vector3 value = default;
+
+			getScaleAtSplinePoint(Pointer, pointIndex, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's scale at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetScaleAtTime(float time, bool useConstantVelocity, ref Vector3 value) => getScaleAtTime(Pointer, time, useConstantVelocity, ref value);
+
+		/// <summary>
+		/// Returns the spline's scale at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Vector3 GetScaleAtTime(float time, bool useConstantVelocity = false) {
+			Vector3 value = default;
+
+			getScaleAtTime(Pointer, time, useConstantVelocity, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns the total length along the spline
+		/// </summary>
+		public float GetSplineLength() => getSplineLength(Pointer);
+
+		/// <summary>
+		/// Retrieves the spline's transform at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetTransformAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity, bool useScale, ref Transform value) => getTransformAtTime(Pointer, time, coordinateSpace, useConstantVelocity, useScale, ref value);
+
+		/// <summary>
+		/// Returns the spline's transform at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Transform GetTransformAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false, bool useScale = false) {
+			Transform value = default;
+
+			getTransformAtTime(Pointer, time, coordinateSpace, useConstantVelocity, useScale, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves a unit direction vector corresponding to the spline's up vector at the given distance along the length of the spline
+		/// </summary>
+		public void GetUpVectorAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getUpVectorAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns a unit direction vector corresponding to the spline's up vector at the given distance along the length of the spline
+		/// </summary>
+		public Vector3 GetUpVectorAtDistanceAlongSpline(float distance, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getUpVectorAtDistanceAlongSpline(Pointer, distance, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's up vector at the spline point
+		/// </summary>
+		public void GetUpVectorAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value) => getUpVectorAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+		/// <summary>
+		/// Returns the spline's up vector at the spline point
+		/// </summary>
+		public Vector3 GetUpVectorAtSplinePoint(int pointIndex, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			getUpVectorAtSplinePoint(Pointer, pointIndex, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the spline's up vector at the given time from 0.0f to the spline duration
+		/// </summary>
+		public void GetUpVectorAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity, ref Vector3 value) => getUpVectorAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+		/// <summary>
+		/// Returns the spline's up vector at the given time from 0.0f to the spline duration
+		/// </summary>
+		public Vector3 GetUpVectorAtTime(float time, SplineCoordinateSpace coordinateSpace, bool useConstantVelocity = false) {
+			Vector3 value = default;
+
+			getUpVectorAtTime(Pointer, time, coordinateSpace, useConstantVelocity, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Sets the type of a spline point
+		/// </summary>
+		public void SetSplinePointType(int pointIndex, SplinePointType type, bool updateSpline = true) => setSplinePointType(Pointer, pointIndex, type, updateSpline);
+
+		/// <summary>
+		/// Sets whether the spline is a closed loop
+		/// </summary>
+		public void SetClosedLoop(bool value, bool updateSpline = true) => setClosedLoop(Pointer, value, updateSpline);
+
+		/// <summary>
+		/// Sets the default up vector of the spline
+		/// </summary>
+		public void SetDefaultUpVector(in Vector3 value, SplineCoordinateSpace coordinateSpace) => setDefaultUpVector(Pointer, value, coordinateSpace);
+
+		/// <summary>
+		/// Sets an existing point to a new location
+		/// </summary>
+		public void SetLocationAtSplinePoint(int pointIndex, in Vector3 value, SplineCoordinateSpace coordinateSpace, bool updateSpline = true) => setLocationAtSplinePoint(Pointer, pointIndex, value, coordinateSpace, updateSpline);
+
+		/// <summary>
+		/// Sets the tangent at a given spline point
+		/// </summary>
+		public void SetTangentAtSplinePoint(int pointIndex, in Vector3 tangent, SplineCoordinateSpace coordinateSpace, bool updateSpline = true) => setTangentAtSplinePoint(Pointer, pointIndex, tangent, coordinateSpace, updateSpline);
+
+		/// <summary>
+		/// Sets the tangents at a given spline point
+		/// </summary>
+		public void SetTangentsAtSplinePoint(int pointIndex, in Vector3 arriveTangent, in Vector3 leaveTangent, SplineCoordinateSpace coordinateSpace, bool updateSpline = true) => setTangentsAtSplinePoint(Pointer, pointIndex, arriveTangent, leaveTangent, coordinateSpace, updateSpline);
+
+		/// <summary>
+		/// Sets the up vector at a given spline point
+		/// </summary>
+		public void SetUpVectorAtSplinePoint(int pointIndex, in Vector3 upVector, SplineCoordinateSpace coordinateSpace, bool updateSpline = true) => setUpVectorAtSplinePoint(Pointer, pointIndex, upVector, coordinateSpace, updateSpline);
+
+		/// <summary>
+		/// Adds a point to the spline
+		/// </summary>
+		public void AddSplinePoint(in Vector3 location, SplineCoordinateSpace coordinateSpace, bool updateSpline = true) => addSplinePoint(Pointer, location, coordinateSpace, updateSpline);
+
+		/// <summary>
+		/// Adds a point to the spline at the specified index
+		/// </summary>
+		public void AddSplinePointAtIndex(in Vector3 location, int pointIndex, SplineCoordinateSpace coordinateSpace, bool updateSpline = true) => addSplinePointAtIndex(Pointer, location, pointIndex, coordinateSpace, updateSpline);
+
+		/// <summary>
+		/// Clears all the points in the spline
+		/// </summary>
+		public void ClearSplinePoints(bool updateSpline = true) => clearSplinePoints(Pointer, updateSpline);
+
+		/// <summary>
+		/// Returns a unit direction vector of the spline tangent closest to the location in world space
+		/// </summary>
+		public Vector3 FindDirectionClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			findDirectionClosestToWorldLocation(Pointer, location, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns a point of the spline closest to the location in world space
+		/// </summary>
+		public Vector3 FindLocationClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			findLocationClosestToWorldLocation(Pointer, location, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns a unit direction vector corresponding to the spline's up vector closest to the location in world space
+		/// </summary>
+		public Vector3 FindUpVectorClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			findUpVectorClosestToWorldLocation(Pointer, location, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns a unit direction vector corresponding to the spline's right vector closest to the location in world space
+		/// </summary>
+		public Vector3 FindRightVectorClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			findRightVectorClosestToWorldLocation(Pointer, location, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns the spline's roll in degrees closest to the location in world space
+		/// </summary>
+		public float FindRollClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace) => findRollClosestToWorldLocation(Pointer, location, coordinateSpace);
+
+		/// <summary>
+		/// Returns the spline's scale closest to the location in world space
+		/// </summary>
+		public Vector3 FindScaleClosestToWorldLocation(in Vector3 location) {
+			Vector3 value = default;
+
+			findScaleClosestToWorldLocation(Pointer, location, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns a tangent of the spline closest to the location in world space
+		/// </summary>
+		public Vector3 FindTangentClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace) {
+			Vector3 value = default;
+
+			findTangentClosestToWorldLocation(Pointer, location, coordinateSpace, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns a transform closest to the location in world space
+		/// </summary>
+		public Transform FindTransformClosestToWorldLocation(in Vector3 location, SplineCoordinateSpace coordinateSpace, bool useScale = false) {
+			Transform value = default;
+
+			findTransformClosestToWorldLocation(Pointer, location, coordinateSpace, useScale, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Removes a point at the specified index from the spline
+		/// </summary>
+		public void RemoveSplinePoint(int pointIndex, bool updateSpline = true) => removeSplinePoint(Pointer, pointIndex, updateSpline);
+
+		/// <summary>
+		/// Updates the spline
+		/// </summary>
+		public void UpdateSpline() => updateSpline(Pointer);
 	}
 
 	/// <summary>

@@ -161,6 +161,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::SkeletalMesh:\
 				Result = Head USkeletalMeshComponent Tail;\
 				break;\
+			case ComponentType::Spline:\
+				Result = Head USplineComponent Tail;\
+				break;\
 			case ComponentType::RadialForce:\
 				Result = Head URadialForceComponent Tail;\
 				break;\
@@ -212,6 +215,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::SkeletalMesh:\
 				Result = Head USkeletalMeshComponent Tail;\
+				break;\
+			case ComponentType::Spline:\
+				Result = Head USplineComponent Tail;\
 				break;\
 			case ComponentType::RadialForce:\
 				Result = Head URadialForceComponent Tail;\
@@ -2936,6 +2942,249 @@ namespace UnrealCLRFramework {
 
 		void Stop(USkeletalMeshComponent* SkeletalMeshComponent) {
 			SkeletalMeshComponent->Stop();
+		}
+	}
+
+	namespace SplineComponent {
+		bool IsClosedLoop(USplineComponent* SplineComponent) {
+			return SplineComponent->IsClosedLoop();
+		}
+
+		float GetDuration(USplineComponent* SplineComponent) {
+			return SplineComponent->Duration;
+		}
+
+		SplinePointType GetSplinePointType(USplineComponent* SplineComponent, int32 PointIndex) {
+			return SplineComponent->GetSplinePointType(PointIndex);
+		}
+
+		int32 GetSplinePointsNumber(USplineComponent* SplineComponent) {
+			return SplineComponent->GetNumberOfSplinePoints();
+		}
+
+		int32 GetSplineSegmentsNumber(USplineComponent* SplineComponent) {
+			return SplineComponent->GetNumberOfSplineSegments();
+		}
+
+		void GetTangentAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetTangentAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		void GetTangentAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetTangentAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetTangentAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity, Vector3* Value) {
+			*Value = SplineComponent->GetTangentAtTime(Time, CoordinateSpace, UseConstantVelocity);
+		}
+
+		void GetTransformAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Transform* Value) {
+			*Value = SplineComponent->GetTransformAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		void GetTransformAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, bool UseScale, Transform* Value) {
+			*Value = SplineComponent->GetTransformAtSplinePoint(PointIndex, CoordinateSpace, UseScale);
+		}
+
+		void GetArriveTangentAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetArriveTangentAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetDefaultUpVector(USplineComponent* SplineComponent, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetDefaultUpVector(CoordinateSpace);
+		}
+
+		void GetDirectionAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetDirectionAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		void GetDirectionAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetDirectionAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetDirectionAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity, Vector3* Value) {
+			*Value = SplineComponent->GetDirectionAtTime(Time, CoordinateSpace, UseConstantVelocity);
+		}
+
+		float GetDistanceAlongSplineAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex) {
+			return SplineComponent->GetDistanceAlongSplineAtSplinePoint(PointIndex);
+		}
+
+		void GetLeaveTangentAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetLeaveTangentAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetLocationAndTangentAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Location, Vector3* Tangent) {
+			FVector location, tangent;
+
+			SplineComponent->GetLocationAndTangentAtSplinePoint(PointIndex, location, tangent, CoordinateSpace);
+
+			*Location = location;
+			*Tangent = tangent;
+		}
+
+		void GetLocationAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetLocationAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		void GetLocationAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetLocationAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetLocationAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetLocationAtTime(Time, CoordinateSpace);
+		}
+
+		void GetRightVectorAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetRightVectorAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		void GetRightVectorAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetRightVectorAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetRightVectorAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity, Vector3* Value) {
+			*Value = SplineComponent->GetRightVectorAtTime(Time, CoordinateSpace, UseConstantVelocity);
+		}
+
+		float GetRollAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace) {
+			return SplineComponent->GetRollAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		float GetRollAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace) {
+			return SplineComponent->GetRollAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		float GetRollAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity) {
+			return SplineComponent->GetRollAtTime(Time, CoordinateSpace, UseConstantVelocity);
+		}
+
+		void GetRotationAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Quaternion* Value) {
+			*Value = SplineComponent->GetRotationAtDistanceAlongSpline(Distance, CoordinateSpace).Quaternion();
+		}
+
+		void GetRotationAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Quaternion* Value) {
+			*Value = SplineComponent->GetRotationAtSplinePoint(PointIndex, CoordinateSpace).Quaternion();
+		}
+
+		void GetRotationAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity, Quaternion* Value) {
+			*Value = SplineComponent->GetRotationAtTime(Time, CoordinateSpace, UseConstantVelocity).Quaternion();
+		}
+
+		void GetScaleAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, Vector3* Value) {
+			*Value = SplineComponent->GetScaleAtDistanceAlongSpline(Distance);
+		}
+
+		void GetScaleAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, Vector3* Value) {
+			*Value = SplineComponent->GetScaleAtSplinePoint(PointIndex);
+		}
+
+		void GetScaleAtTime(USplineComponent* SplineComponent, float Time, bool UseConstantVelocity, Vector3* Value) {
+			*Value = SplineComponent->GetScaleAtTime(Time, UseConstantVelocity);
+		}
+
+		float GetSplineLength(USplineComponent* SplineComponent) {
+			return SplineComponent->GetSplineLength();
+		}
+
+		void GetTransformAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity, bool UseScale, Transform* Value) {
+			*Value = SplineComponent->GetTransformAtTime(Time, CoordinateSpace, UseConstantVelocity, UseScale);
+		}
+
+		void GetUpVectorAtDistanceAlongSpline(USplineComponent* SplineComponent, float Distance, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetUpVectorAtDistanceAlongSpline(Distance, CoordinateSpace);
+		}
+
+		void GetUpVectorAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->GetUpVectorAtSplinePoint(PointIndex, CoordinateSpace);
+		}
+
+		void GetUpVectorAtTime(USplineComponent* SplineComponent, float Time, SplineCoordinateSpace CoordinateSpace, bool UseConstantVelocity, Vector3* Value) {
+			*Value = SplineComponent->GetUpVectorAtTime(Time, CoordinateSpace, UseConstantVelocity);
+		}
+
+		void SetDuration(USplineComponent* SplineComponent, float Value) {
+			SplineComponent->Duration = Value;
+		}
+
+		void SetSplinePointType(USplineComponent* SplineComponent, int32 PointIndex, SplinePointType Type, bool UpdateSpline) {
+			SplineComponent->SetSplinePointType(PointIndex, Type, UpdateSpline);
+		}
+
+		void SetClosedLoop(USplineComponent* SplineComponent, bool Value, bool UpdateSpline) {
+			SplineComponent->SetClosedLoop(Value, UpdateSpline);
+		}
+
+		void SetDefaultUpVector(USplineComponent* SplineComponent, const Vector3* Value, SplineCoordinateSpace CoordinateSpace) {
+			SplineComponent->SetDefaultUpVector(*Value, CoordinateSpace);
+		}
+
+		void SetLocationAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, const Vector3* Value, SplineCoordinateSpace CoordinateSpace, bool UpdateSpline) {
+			SplineComponent->SetLocationAtSplinePoint(PointIndex, *Value, CoordinateSpace, UpdateSpline);
+		}
+
+		void SetTangentAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, const Vector3* Tangent, SplineCoordinateSpace CoordinateSpace, bool UpdateSpline) {
+			SplineComponent->SetTangentAtSplinePoint(PointIndex, *Tangent, CoordinateSpace, UpdateSpline);
+		}
+
+		void SetTangentsAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, const Vector3* ArriveTangent, const Vector3* LeaveTangent, SplineCoordinateSpace CoordinateSpace, bool UpdateSpline) {
+			SplineComponent->SetTangentsAtSplinePoint(PointIndex, *ArriveTangent, *LeaveTangent, CoordinateSpace, UpdateSpline);
+		}
+
+		void SetUpVectorAtSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, const Vector3* UpVector, SplineCoordinateSpace CoordinateSpace, bool UpdateSpline) {
+			SplineComponent->SetUpVectorAtSplinePoint(PointIndex, *UpVector, CoordinateSpace, UpdateSpline);
+		}
+
+		void AddSplinePoint(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, bool UpdateSpline) {
+			SplineComponent->AddSplinePoint(*Location, CoordinateSpace, UpdateSpline);
+		}
+
+		void AddSplinePointAtIndex(USplineComponent* SplineComponent, const Vector3* Location, int32 PointIndex, SplineCoordinateSpace CoordinateSpace, bool UpdateSpline) {
+			SplineComponent->AddSplinePointAtIndex(*Location, PointIndex, CoordinateSpace, UpdateSpline);
+		}
+
+		void ClearSplinePoints(USplineComponent* SplineComponent, bool UpdateSpline) {
+			SplineComponent->ClearSplinePoints(UpdateSpline);
+		}
+
+		void FindDirectionClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->FindDirectionClosestToWorldLocation(*Location, CoordinateSpace);
+		}
+
+		void FindLocationClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->FindLocationClosestToWorldLocation(*Location, CoordinateSpace);
+		}
+
+		void FindUpVectorClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->FindUpVectorClosestToWorldLocation(*Location, CoordinateSpace);
+		}
+
+		void FindRightVectorClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->FindRightVectorClosestToWorldLocation(*Location, CoordinateSpace);
+		}
+
+		float FindRollClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace) {
+			return SplineComponent->FindRollClosestToWorldLocation(*Location, CoordinateSpace);
+		}
+
+		void FindScaleClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, Vector3* Value) {
+			*Value = SplineComponent->FindScaleClosestToWorldLocation(*Location);
+		}
+
+		void FindTangentClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, Vector3* Value) {
+			*Value = SplineComponent->FindTangentClosestToWorldLocation(*Location, CoordinateSpace);
+		}
+
+		void FindTransformClosestToWorldLocation(USplineComponent* SplineComponent, const Vector3* Location, SplineCoordinateSpace CoordinateSpace, bool UseScale, Transform* Value) {
+			*Value = SplineComponent->FindTransformClosestToWorldLocation(*Location, CoordinateSpace, UseScale);
+		}
+
+		void RemoveSplinePoint(USplineComponent* SplineComponent, int32 PointIndex, bool UpdateSpline) {
+			SplineComponent->RemoveSplinePoint(PointIndex, UpdateSpline);
+		}
+
+		void UpdateSpline(USplineComponent* SplineComponent) {
+			SplineComponent->UpdateSpline();
 		}
 	}
 

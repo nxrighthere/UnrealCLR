@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x235;
+		internal const int checksum = 0x271;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -803,6 +803,71 @@ namespace UnrealEngine.Framework {
 
 			unchecked {
 				int head = 0;
+				IntPtr* splineComponentFunctions = (IntPtr*)buffer[position++];
+
+				SplineComponent.isClosedLoop = GenerateOptimizedFunction<SplineComponent.IsClosedLoopFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getDuration = GenerateOptimizedFunction<SplineComponent.GetDurationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getSplinePointType = GenerateOptimizedFunction<SplineComponent.GetSplinePointTypeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getSplinePointsNumber = GenerateOptimizedFunction<SplineComponent.GetSplinePointsNumberFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getSplineSegmentsNumber = GenerateOptimizedFunction<SplineComponent.GetSplineSegmentsNumberFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getTangentAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetTangentAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getTangentAtTime = GenerateOptimizedFunction<SplineComponent.GetTangentAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getTransformAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetTransformAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getTransformAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetTransformAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getArriveTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetArriveTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getDefaultUpVector = GenerateOptimizedFunction<SplineComponent.GetDefaultUpVectorFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getDirectionAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetDirectionAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getDirectionAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetDirectionAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getDirectionAtTime = GenerateOptimizedFunction<SplineComponent.GetDirectionAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getDistanceAlongSplineAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetDistanceAlongSplineAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getLeaveTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetLeaveTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getLocationAndTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetLocationAndTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getLocationAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetLocationAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getLocationAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetLocationAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getLocationAtTime = GenerateOptimizedFunction<SplineComponent.GetLocationAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRightVectorAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetRightVectorAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRightVectorAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetRightVectorAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRightVectorAtTime = GenerateOptimizedFunction<SplineComponent.GetRightVectorAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRollAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetRollAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRollAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetRollAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRollAtTime = GenerateOptimizedFunction<SplineComponent.GetRollAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRotationAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetRotationAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRotationAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetRotationAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getRotationAtTime = GenerateOptimizedFunction<SplineComponent.GetRotationAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getScaleAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetScaleAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getScaleAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetScaleAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getScaleAtTime = GenerateOptimizedFunction<SplineComponent.GetScaleAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getSplineLength = GenerateOptimizedFunction<SplineComponent.GetSplineLengthFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getTransformAtTime = GenerateOptimizedFunction<SplineComponent.GetTransformAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getUpVectorAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetUpVectorAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getUpVectorAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetUpVectorAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.getUpVectorAtTime = GenerateOptimizedFunction<SplineComponent.GetUpVectorAtTimeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setDuration = GenerateOptimizedFunction<SplineComponent.SetDurationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setSplinePointType = GenerateOptimizedFunction<SplineComponent.SetSplinePointTypeFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setClosedLoop = GenerateOptimizedFunction<SplineComponent.SetClosedLoopFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setDefaultUpVector = GenerateOptimizedFunction<SplineComponent.SetDefaultUpVectorFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setLocationAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetLocationAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setTangentsAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetTangentsAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.setUpVectorAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetUpVectorAtSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.addSplinePoint = GenerateOptimizedFunction<SplineComponent.AddSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.addSplinePointAtIndex = GenerateOptimizedFunction<SplineComponent.AddSplinePointAtIndexFunction>(splineComponentFunctions[head++]);
+				SplineComponent.clearSplinePoints = GenerateOptimizedFunction<SplineComponent.ClearSplinePointsFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findDirectionClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindDirectionClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findLocationClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindLocationClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findUpVectorClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindUpVectorClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findRightVectorClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindRightVectorClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findRollClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindRollClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findScaleClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindScaleClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findTangentClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindTangentClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.findTransformClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindTransformClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
+				SplineComponent.removeSplinePoint = GenerateOptimizedFunction<SplineComponent.RemoveSplinePointFunction>(splineComponentFunctions[head++]);
+				SplineComponent.updateSpline = GenerateOptimizedFunction<SplineComponent.UpdateSplineFunction>(splineComponentFunctions[head++]);
+			}
+
+			unchecked {
+				int head = 0;
 				IntPtr* radialForceComponentFunctions = (IntPtr*)buffer[position++];
 
 				RadialForceComponent.getIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.GetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
@@ -1078,6 +1143,7 @@ namespace UnrealEngine.Framework {
 		Sphere,
 		Capsule,
 		SkeletalMesh,
+		Spline,
 		RadialForce
 	}
 
@@ -2293,6 +2359,128 @@ namespace UnrealEngine.Framework {
 		internal static PlayFunction play;
 		internal static PlayAnimationFunction playAnimation;
 		internal static StopFunction stop;
+	}
+
+	partial class SplineComponent {
+		internal delegate Bool IsClosedLoopFunction(IntPtr splineComponent);
+		internal delegate float GetDurationFunction(IntPtr splineComponent);
+		internal delegate SplinePointType GetSplinePointTypeFunction(IntPtr splineComponent, int pointIndex);
+		internal delegate int GetSplinePointsNumberFunction(IntPtr splineComponent);
+		internal delegate int GetSplineSegmentsNumberFunction(IntPtr splineComponent);
+		internal delegate void GetTangentAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetTangentAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
+		internal delegate void GetTransformAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Transform value);
+		internal delegate void GetTransformAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, Bool useScale, ref Transform value);
+		internal delegate void GetArriveTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetDefaultUpVectorFunction(IntPtr splineComponent, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetDirectionAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetDirectionAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetDirectionAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
+		internal delegate float GetDistanceAlongSplineAtSplinePointFunction(IntPtr splineComponent, int pointIndex);
+		internal delegate void GetLeaveTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetLocationAndTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 location, ref Vector3 tangent);
+		internal delegate void GetLocationAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetLocationAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetLocationAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetRightVectorAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetRightVectorAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetRightVectorAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
+		internal delegate float GetRollAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace);
+		internal delegate float GetRollAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace);
+		internal delegate float GetRollAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity);
+		internal delegate void GetRotationAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Quaternion value);
+		internal delegate void GetRotationAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Quaternion value);
+		internal delegate void GetRotationAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Quaternion value);
+		internal delegate void GetScaleAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, ref Vector3 value);
+		internal delegate void GetScaleAtSplinePointFunction(IntPtr splineComponent, int pointIndex, ref Vector3 value);
+		internal delegate void GetScaleAtTimeFunction(IntPtr splineComponent, float time, Bool useConstantVelocity, ref Vector3 value);
+		internal delegate float GetSplineLengthFunction(IntPtr splineComponent);
+		internal delegate void GetTransformAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, Bool useScale, ref Transform value);
+		internal delegate void GetUpVectorAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetUpVectorAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void GetUpVectorAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
+		internal delegate void SetDurationFunction(IntPtr splineComponent, float value);
+		internal delegate void SetSplinePointTypeFunction(IntPtr splineComponent, int pointIndex, SplinePointType type, Bool updateSpline);
+		internal delegate void SetClosedLoopFunction(IntPtr splineComponent, Bool value, Bool updateSpline);
+		internal delegate void SetDefaultUpVectorFunction(IntPtr splineComponent, in Vector3 value, SplineCoordinateSpace coordinateSpace);
+		internal delegate void SetLocationAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 value, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
+		internal delegate void SetTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 tangent, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
+		internal delegate void SetTangentsAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 arriveTangent, in Vector3 leaveTangent, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
+		internal delegate void SetUpVectorAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 upVector, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
+		internal delegate void AddSplinePointFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
+		internal delegate void AddSplinePointAtIndexFunction(IntPtr splineComponent, in Vector3 location, int pointIndex, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
+		internal delegate void ClearSplinePointsFunction(IntPtr splineComponent, Bool updateSpline);
+		internal delegate void FindDirectionClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void FindLocationClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void FindUpVectorClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void FindRightVectorClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate float FindRollClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace);
+		internal delegate void FindScaleClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, ref Vector3 value);
+		internal delegate void FindTangentClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
+		internal delegate void FindTransformClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, Bool useScale, ref Transform value);
+		internal delegate void RemoveSplinePointFunction(IntPtr splineComponent, int pointIndex, Bool updateSpline);
+		internal delegate void UpdateSplineFunction(IntPtr splineComponent);
+
+		internal static IsClosedLoopFunction isClosedLoop;
+		internal static GetDurationFunction getDuration;
+		internal static GetSplinePointTypeFunction getSplinePointType;
+		internal static GetSplinePointsNumberFunction getSplinePointsNumber;
+		internal static GetSplineSegmentsNumberFunction getSplineSegmentsNumber;
+		internal static GetTangentAtDistanceAlongSplineFunction getTangentAtDistanceAlongSpline;
+		internal static GetTangentAtSplinePointFunction getTangentAtSplinePoint;
+		internal static GetTangentAtTimeFunction getTangentAtTime;
+		internal static GetTransformAtDistanceAlongSplineFunction getTransformAtDistanceAlongSpline;
+		internal static GetTransformAtSplinePointFunction getTransformAtSplinePoint;
+		internal static GetArriveTangentAtSplinePointFunction getArriveTangentAtSplinePoint;
+		internal static GetDefaultUpVectorFunction getDefaultUpVector;
+		internal static GetDirectionAtDistanceAlongSplineFunction getDirectionAtDistanceAlongSpline;
+		internal static GetDirectionAtSplinePointFunction getDirectionAtSplinePoint;
+		internal static GetDirectionAtTimeFunction getDirectionAtTime;
+		internal static GetDistanceAlongSplineAtSplinePointFunction getDistanceAlongSplineAtSplinePoint;
+		internal static GetLeaveTangentAtSplinePointFunction getLeaveTangentAtSplinePoint;
+		internal static GetLocationAndTangentAtSplinePointFunction getLocationAndTangentAtSplinePoint;
+		internal static GetLocationAtDistanceAlongSplineFunction getLocationAtDistanceAlongSpline;
+		internal static GetLocationAtSplinePointFunction getLocationAtSplinePoint;
+		internal static GetLocationAtTimeFunction getLocationAtTime;
+		internal static GetRightVectorAtDistanceAlongSplineFunction getRightVectorAtDistanceAlongSpline;
+		internal static GetRightVectorAtSplinePointFunction getRightVectorAtSplinePoint;
+		internal static GetRightVectorAtTimeFunction getRightVectorAtTime;
+		internal static GetRollAtDistanceAlongSplineFunction getRollAtDistanceAlongSpline;
+		internal static GetRollAtSplinePointFunction getRollAtSplinePoint;
+		internal static GetRollAtTimeFunction getRollAtTime;
+		internal static GetRotationAtDistanceAlongSplineFunction getRotationAtDistanceAlongSpline;
+		internal static GetRotationAtSplinePointFunction getRotationAtSplinePoint;
+		internal static GetRotationAtTimeFunction getRotationAtTime;
+		internal static GetScaleAtDistanceAlongSplineFunction getScaleAtDistanceAlongSpline;
+		internal static GetScaleAtSplinePointFunction getScaleAtSplinePoint;
+		internal static GetScaleAtTimeFunction getScaleAtTime;
+		internal static GetSplineLengthFunction getSplineLength;
+		internal static GetTransformAtTimeFunction getTransformAtTime;
+		internal static GetUpVectorAtDistanceAlongSplineFunction getUpVectorAtDistanceAlongSpline;
+		internal static GetUpVectorAtSplinePointFunction getUpVectorAtSplinePoint;
+		internal static GetUpVectorAtTimeFunction getUpVectorAtTime;
+		internal static SetDurationFunction setDuration;
+		internal static SetSplinePointTypeFunction setSplinePointType;
+		internal static SetClosedLoopFunction setClosedLoop;
+		internal static SetDefaultUpVectorFunction setDefaultUpVector;
+		internal static SetLocationAtSplinePointFunction setLocationAtSplinePoint;
+		internal static SetTangentAtSplinePointFunction setTangentAtSplinePoint;
+		internal static SetTangentsAtSplinePointFunction setTangentsAtSplinePoint;
+		internal static SetUpVectorAtSplinePointFunction setUpVectorAtSplinePoint;
+		internal static AddSplinePointFunction addSplinePoint;
+		internal static AddSplinePointAtIndexFunction addSplinePointAtIndex;
+		internal static ClearSplinePointsFunction clearSplinePoints;
+		internal static FindDirectionClosestToWorldLocationFunction findDirectionClosestToWorldLocation;
+		internal static FindLocationClosestToWorldLocationFunction findLocationClosestToWorldLocation;
+		internal static FindUpVectorClosestToWorldLocationFunction findUpVectorClosestToWorldLocation;
+		internal static FindRightVectorClosestToWorldLocationFunction findRightVectorClosestToWorldLocation;
+		internal static FindRollClosestToWorldLocationFunction findRollClosestToWorldLocation;
+		internal static FindScaleClosestToWorldLocationFunction findScaleClosestToWorldLocation;
+		internal static FindTangentClosestToWorldLocationFunction findTangentClosestToWorldLocation;
+		internal static FindTransformClosestToWorldLocationFunction findTransformClosestToWorldLocation;
+		internal static RemoveSplinePointFunction removeSplinePoint;
+		internal static UpdateSplineFunction updateSpline;
 	}
 
 	partial class RadialForceComponent {
