@@ -164,7 +164,7 @@ namespace UnrealCLR {
 	};
 
 	typedef void (*ExecuteManagedFunctionDelegate)(void*, Argument);
-	typedef void* (*FindManagedFunctionDelegate)(const char_t*, int32_t);
+	typedef void* (*FindManagedFunctionDelegate)(const char*, int32_t);
 	typedef void (*LoadAssembliesDelegate)();
 	typedef void (*UnloadAssembliesDelegate)();
 

@@ -132,7 +132,7 @@ namespace UnrealEngine.Runtime {
 			IntPtr function = IntPtr.Zero;
 
 			try {
-				string method = Marshal.PtrToStringAuto(methodPointer);
+				string method = Marshal.PtrToStringAnsi(methodPointer);
 
 				if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
 					Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");

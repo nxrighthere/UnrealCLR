@@ -27,7 +27,7 @@ FManagedFunction UUnrealCLRLibrary::FindManagedFunction(FString Method, bool Opt
 	FManagedFunction managedFunction;
 
 	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && !Method.IsEmpty())
-		managedFunction.Pointer = UnrealCLR::FindManagedFunction(*Method, Optional);
+		managedFunction.Pointer = UnrealCLR::FindManagedFunction(TCHAR_TO_ANSI(*Method), Optional);
 
 	Result = managedFunction.Pointer != nullptr;
 
