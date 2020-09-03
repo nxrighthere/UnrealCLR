@@ -37,6 +37,7 @@ namespace UnrealCLRFramework {
 	using InputEvent = EInputEvent;
 	using NetMode = ENetMode;
 	using PixelFormat = EPixelFormat;
+	using TeleportType = ETeleportType;
 
 	using CollisionShape = FCollisionShape;
 
@@ -57,12 +58,6 @@ namespace UnrealCLRFramework {
 	enum struct DetachmentTransformRule : int32 {
 		KeepRelativeTransform,
 		KeepWorldTransform
-	};
-
-	enum struct TeleportType : int32 {
-		None,
-		TeleportPhysics,
-		ResetPhysics
 	};
 
 	enum struct UpdateTransformFlags : int32 {

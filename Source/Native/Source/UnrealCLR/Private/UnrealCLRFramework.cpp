@@ -312,7 +312,7 @@ namespace UnrealCLRFramework {
 	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the [AudioFadeCurve] enumeration");
 	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the [BlendType] enumeration");
 	static_assert(CollisionChannel::ECC_MAX != CollisionChannel(34), "Invalid elements count of the [CollisionChannel] enumeration");
-	static_assert(CollisionResponse::ECR_MAX != CollisionChannel(2), "Invalid elements count of the [CollisionResponse] enumeration");
+	static_assert(CollisionResponse::ECR_MAX != CollisionResponse(2), "Invalid elements count of the [CollisionResponse] enumeration");
 	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the [ControllerHand] enumeration");
 	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the [InputEvent] enumeration");
 	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the [NetMode] enumeration");
@@ -738,7 +738,7 @@ namespace UnrealCLRFramework {
 					if (Arguments.Num() > 0)
 						FDefaultValueHelper::ParseFloat(Arguments[0], value);
 
-					UnrealCLR::ExecuteManagedFunction(Callback, value);
+					UnrealCLR::ExecuteManagedFunction((void*)Callback, value);
 				}
 			};
 
@@ -952,27 +952,27 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback) {
-			UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap] = Callback;
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap] = (void*)Callback;
 		}
 
 		void SetOnActorEndOverlapCallback(ActorOverlapDelegate Callback) {
-			UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap] = Callback;
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap] = (void*)Callback;
 		}
 
 		void SetOnActorHitCallback(ActorHitDelegate Callback) {
-			UnrealCLR::Shared::Events[UnrealCLR::OnActorHit] = Callback;
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorHit] = (void*)Callback;
 		}
 
 		void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate Callback) {
-			UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap] = Callback;
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap] = (void*)Callback;
 		}
 
 		void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate Callback) {
-			UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap] = Callback;
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap] = (void*)Callback;
 		}
 
 		void SetOnComponentHitCallback(ComponentHitDelegate Callback) {
-			UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit] = Callback;
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit] = (void*)Callback;
 		}
 
 		void SetSimulatePhysics(bool Value) {
@@ -1879,7 +1879,7 @@ namespace UnrealCLRFramework {
 
 			actionBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Callback]() {
-				UnrealCLR::ExecuteManagedFunction(Callback, nullptr);
+				UnrealCLR::ExecuteManagedFunction((void*)Callback, nullptr);
 			});
 
 			InputComponent->AddActionBinding(actionBinding);
@@ -1890,7 +1890,7 @@ namespace UnrealCLRFramework {
 
 			axisBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Callback](float AxisValue) {
-				UnrealCLR::ExecuteManagedFunction(Callback, AxisValue);
+				UnrealCLR::ExecuteManagedFunction((void*)Callback, AxisValue);
 			});
 
 			InputComponent->AxisBindings.Emplace(axisBinding);
@@ -2004,25 +2004,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void UpdateToWorld(USceneComponent* SceneComponent, TeleportType Type, UpdateTransformFlags Flags) {
-			ETeleportType type = ETeleportType::None;
-
-			switch (Type) {
-				case ETeleportType::None:
-					break;
-
-				case ETeleportType::TeleportPhysics:
-					type = ETeleportType::TeleportPhysics;
-					break;
-
-				case ETeleportType::ResetPhysics:
-					type = ETeleportType::ResetPhysics;
-					break;
-
-				default:
-					break;
-			}
-
-			SceneComponent->UpdateComponentToWorld(static_cast<EUpdateTransformFlags>(Flags), type);
+			SceneComponent->UpdateComponentToWorld(static_cast<EUpdateTransformFlags>(Flags), Type);
 		}
 
 		void AddLocalOffset(USceneComponent* SceneComponent, const Vector3* DeltaLocation) {

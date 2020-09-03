@@ -2,7 +2,7 @@
 ## TeleportType Enum
 Defines teleportation types of physics body  
 ```csharp
-public enum TeleportType
+public enum TeleportType : System.Byte
 ```
 ### Fields
 <a name='TeleportType-None'></a>

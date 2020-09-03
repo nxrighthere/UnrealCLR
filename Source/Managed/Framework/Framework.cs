@@ -145,7 +145,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Defines teleportation types of physics body
 	/// </summary>
-	public enum TeleportType : int {
+	public enum TeleportType : byte {
 		/// <summary>
 		/// Don't teleport physics body
 		/// </summary>
