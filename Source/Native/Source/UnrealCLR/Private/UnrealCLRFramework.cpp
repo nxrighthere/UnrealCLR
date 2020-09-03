@@ -905,7 +905,7 @@ namespace UnrealCLRFramework {
 			UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
 			for (TActorIterator<AActor> currentActor(UnrealCLR::Engine::World, type); currentActor; ++currentActor) {
-				if (!Name || Name && *currentActor->GetName() == name) {
+				if (!Name || (Name && *currentActor->GetName() == name)) {
 					actor = *currentActor;
 					break;
 				}
@@ -1170,7 +1170,7 @@ namespace UnrealCLRFramework {
 
 		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Callback) {
 			auto callback = [Callback](IConsoleVariable* ConsoleVariable) {
-				UnrealCLR::ExecuteManagedFunction(Callback, nullptr);
+				UnrealCLR::ExecuteManagedFunction((void*)Callback, nullptr);
 			};
 
 			ConsoleVariable->SetOnChangedCallback(FConsoleVariableDelegate::CreateLambda(callback));
@@ -1255,7 +1255,7 @@ namespace UnrealCLRFramework {
 			UNREALCLR_GET_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
 			for (UActorComponent* currentComponent : Actor->GetComponents()) {
-				if (currentComponent && currentComponent->IsA(type) && (!Name || Name && *currentComponent->GetName() == name)) {
+				if (currentComponent && currentComponent->IsA(type) && (!Name || (Name && *currentComponent->GetName() == name))) {
 					component = currentComponent;
 					break;
 				}
