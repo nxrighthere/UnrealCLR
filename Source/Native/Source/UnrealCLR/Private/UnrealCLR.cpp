@@ -24,12 +24,17 @@ void UnrealCLR::Module::StartupModule() {
 	#define HOSTFXR_MAC "/libhostfxr.dylib"
 	#define HOSTFXR_LINUX "/libhostfxr.so"
 
-	#ifdef PLATFORM_WINDOWS
+	#ifdef UNREALCLR_WINDOWS
 		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Win64/host/fxr/" HOSTFXR_VERSION HOSTFXR_WINDOWS
-	#elif PLATFORM_MAC
+		#define UNREALCLR_PLATFORM_STRING(string) string
+	#elif defined(UNREALCLR_MAC)
 		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Mac/host/fxr/" HOSTFXR_VERSION HOSTFXR_MAC
-	#else
+		#define UNREALCLR_PLATFORM_STRING(string) TCHAR_TO_ANSI(string)
+	#elif defined(UNREALCLR_UNIX)
 		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Linux/host/fxr/" HOSTFXR_VERSION HOSTFXR_LINUX
+		#define UNREALCLR_PLATFORM_STRING(string) TCHAR_TO_ANSI(string)
+	#else
+		#error "Unknown platform"
 	#endif
 
 	UnrealCLR::Status = UnrealCLR::StatusType::Stopped;
@@ -90,7 +95,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		hostfxr_handle HostfxrContext = nullptr;
 
-		if (HostfxrInitializeForRuntimeConfig(*runtimeConfigPath, nullptr, &HostfxrContext) != 0 || !HostfxrContext) {
+		if (HostfxrInitializeForRuntimeConfig(UNREALCLR_PLATFORM_STRING(*runtimeConfigPath), nullptr, &HostfxrContext) != 0 || !HostfxrContext) {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Unable to initialize the host! Please, try to restart the engine."), ANSI_TO_TCHAR(__FUNCTION__));
 
 			HostfxrClose(HostfxrContext);
@@ -116,7 +121,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		int32 (*Initialize)(void* const Functions[4], int32 Checksum) = nullptr;
 
-		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(*runtimeAssemblyPath, *runtimeTypeName, *runtimeMethodName, *runtimeMethodDelegateName, nullptr, (void**)&Initialize) == 0) {
+		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_PLATFORM_STRING(*runtimeAssemblyPath), UNREALCLR_PLATFORM_STRING(*runtimeTypeName), UNREALCLR_PLATFORM_STRING(*runtimeMethodName), UNREALCLR_PLATFORM_STRING(*runtimeMethodDelegateName), nullptr, (void**)&Initialize) == 0) {
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 		} else {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));

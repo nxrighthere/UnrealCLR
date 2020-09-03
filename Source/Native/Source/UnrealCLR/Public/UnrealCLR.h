@@ -73,6 +73,14 @@
 	#include "Widgets/Notifications/SNotificationList.h"
 #endif
 
+#ifdef _WIN32
+	#define UNREALCLR_WINDOWS 1
+#elif defined(__unix__)
+	#define UNREALCLR_UNIX 2
+#elif defined(__APPLE__)
+	#define UNREALCLR_MAC 3
+#endif
+
 #define UNREALCLR_NONE
 #define UNREALCLR_BRACKET_LEFT (
 #define UNREALCLR_BRACKET_RIGHT )
