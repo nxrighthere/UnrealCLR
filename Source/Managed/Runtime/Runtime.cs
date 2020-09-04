@@ -121,7 +121,7 @@ namespace UnrealEngine.Runtime {
 				try {
 					string method = Marshal.PtrToStringAnsi(command.method);
 
-					if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && command.optional != 1)
+					if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.Ordinal), out function) && command.optional != 1)
 						Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
 				}
 
@@ -165,7 +165,7 @@ namespace UnrealEngine.Runtime {
 				try {
 					const string frameworkName = "UnrealEngine.Framework";
 					string assemblyPath = Assembly.GetExecutingAssembly().Location;
-					string managedFolder = assemblyPath.Substring(0, assemblyPath.IndexOf("Plugins", StringComparison.CurrentCulture)) + "Managed";
+					string managedFolder = assemblyPath.Substring(0, assemblyPath.IndexOf("Plugins", StringComparison.Ordinal)) + "Managed";
 					string[] folders = Directory.GetDirectories(managedFolder);
 
 					Array.Resize(ref folders, folders.Length + 1);

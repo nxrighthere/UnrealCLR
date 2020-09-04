@@ -984,12 +984,12 @@ namespace UnrealEngine.Framework {
 
 								if (parameterInfos.Length == 1) {
 									if (parameterInfos[0].ParameterType == typeof(ObjectReference))
-										userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(method.CreateDelegate(typeof(ObjectReferenceDelegate))));
+										userFunctions.Add(name.GetHashCode(StringComparison.Ordinal), Collector.GetFunctionPointer(method.CreateDelegate(typeof(ObjectReferenceDelegate))));
 
 									continue;
 								}
 
-								userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate))));
+								userFunctions.Add(name.GetHashCode(StringComparison.Ordinal), Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate))));
 							}
 						}
 					}

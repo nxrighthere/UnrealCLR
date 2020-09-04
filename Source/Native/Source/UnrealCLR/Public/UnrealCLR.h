@@ -228,6 +228,7 @@ namespace UnrealCLR {
 		}
 	};
 
+	static_assert(sizeof(Object) == 16, "Invalid size of the [Object] structure");
 	static_assert(sizeof(Argument) == 24, "Invalid size of the [Argument] structure");
 	static_assert(sizeof(Command) == 40, "Invalid size of the [Command] structure");
 

@@ -36,7 +36,7 @@ namespace UnrealEngine.Framework {
 			get {
 				if (project == null) {
 					project = Assembly.GetExecutingAssembly().Location;
-					project = project.Substring(0, project.IndexOf("Managed", StringComparison.CurrentCulture));
+					project = project.Substring(0, project.IndexOf("Managed", StringComparison.Ordinal));
 				}
 
 				return project;
@@ -73,7 +73,7 @@ namespace UnrealEngine.Framework {
 	internal static class Extensions {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static string TrimFromZero(this string input) {
-			int index = input.IndexOf('\0', StringComparison.CurrentCulture);
+			int index = input.IndexOf('\0', StringComparison.Ordinal);
 
 			if (index < 0)
 				return input;
@@ -3879,7 +3879,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns a hash code for the object
 		/// </summary>
-		public override int GetHashCode() => name.GetHashCode(StringComparison.CurrentCulture);
+		public override int GetHashCode() => name.GetHashCode(StringComparison.Ordinal);
 
 		/// <summary>
 		/// Returns <c>true</c> if the object is a bool
