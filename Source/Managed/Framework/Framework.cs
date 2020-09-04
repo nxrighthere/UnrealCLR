@@ -1334,7 +1334,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A representation of the collision shape
 	/// </summary>
-	[StructLayout(LayoutKind.Explicit)]
+	[StructLayout(LayoutKind.Explicit, Size = 16)]
 	public partial struct CollisionShape : IEquatable<CollisionShape> {
 		/// <summary>
 		/// Returns the shape type

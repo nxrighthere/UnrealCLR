@@ -1064,11 +1064,11 @@ namespace UnrealEngine.Framework {
 	partial struct CollisionShape {
 		[FieldOffset(0)]
 		private CollisionShapeType shapeType;
-		[FieldOffset(8)]
+		[FieldOffset(4)]
 		private Box box;
-		[FieldOffset(8)]
+		[FieldOffset(4)]
 		private Sphere sphere;
-		[FieldOffset(8)]
+		[FieldOffset(4)]
 		private Capsule capsule;
 
 		private struct Box {
