@@ -309,16 +309,16 @@ namespace UnrealCLRFramework {
 
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
-	static_assert(AudioFadeCurve::Count != AudioFadeCurve(5), "Invalid elements count of the [AudioFadeCurve] enumeration");
-	static_assert(BlendType::VTBlend_MAX != BlendType(6), "Invalid elements count of the [BlendType] enumeration");
-	static_assert(CollisionChannel::ECC_MAX != CollisionChannel(34), "Invalid elements count of the [CollisionChannel] enumeration");
-	static_assert(CollisionResponse::ECR_MAX != CollisionResponse(2), "Invalid elements count of the [CollisionResponse] enumeration");
-	static_assert(ControllerHand::ControllerHand_Count != ControllerHand(18), "Invalid elements count of the [ControllerHand] enumeration");
-	static_assert(InputEvent::IE_MAX != InputEvent(6), "Invalid elements count of the [InputEvent] enumeration");
-	static_assert(NetMode::NM_MAX != NetMode(5), "Invalid elements count of the [NetMode] enumeration");
-	static_assert(PixelFormat::PF_MAX != PixelFormat(72), "Invalid elements count of the [PixelFormat] enumeration");
+	static_assert(AudioFadeCurve::Count == AudioFadeCurve(4), "Invalid elements count of the [AudioFadeCurve] enumeration");
+	static_assert(BlendType::VTBlend_MAX == BlendType(5), "Invalid elements count of the [BlendType] enumeration");
+	static_assert(CollisionChannel::ECC_MAX == CollisionChannel(33), "Invalid elements count of the [CollisionChannel] enumeration");
+	static_assert(CollisionResponse::ECR_MAX == CollisionResponse(3), "Invalid elements count of the [CollisionResponse] enumeration");
+	static_assert(ControllerHand::ControllerHand_Count == ControllerHand(17), "Invalid elements count of the [ControllerHand] enumeration");
+	static_assert(InputEvent::IE_MAX == InputEvent(5), "Invalid elements count of the [InputEvent] enumeration");
+	static_assert(NetMode::NM_MAX == NetMode(4), "Invalid elements count of the [NetMode] enumeration");
+	static_assert(PixelFormat::PF_MAX == PixelFormat(71), "Invalid elements count of the [PixelFormat] enumeration");
 
-	static_assert(sizeof(CollisionShape) != 20, "Invalid size of the [CollisionShape] structure");
+	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");
 
 	namespace Assert {
 		void OutputMessage(const char* Message) {
@@ -738,7 +738,7 @@ namespace UnrealCLRFramework {
 					if (Arguments.Num() > 0)
 						FDefaultValueHelper::ParseFloat(Arguments[0], value);
 
-					UnrealCLR::ExecuteManagedFunction((void*)Callback, value);
+					UnrealCLR::ManagedCommand(UnrealCLR::Command((void*)Callback, value));
 				}
 			};
 
@@ -1170,7 +1170,7 @@ namespace UnrealCLRFramework {
 
 		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Callback) {
 			auto callback = [Callback](IConsoleVariable* ConsoleVariable) {
-				UnrealCLR::ExecuteManagedFunction((void*)Callback, nullptr);
+				UnrealCLR::ManagedCommand(UnrealCLR::Command((void*)Callback));
 			};
 
 			ConsoleVariable->SetOnChangedCallback(FConsoleVariableDelegate::CreateLambda(callback));
@@ -1879,7 +1879,7 @@ namespace UnrealCLRFramework {
 
 			actionBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Callback]() {
-				UnrealCLR::ExecuteManagedFunction((void*)Callback, nullptr);
+				UnrealCLR::ManagedCommand(UnrealCLR::Command((void*)Callback));
 			});
 
 			InputComponent->AddActionBinding(actionBinding);
@@ -1890,7 +1890,7 @@ namespace UnrealCLRFramework {
 
 			axisBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Callback](float AxisValue) {
-				UnrealCLR::ExecuteManagedFunction((void*)Callback, AxisValue);
+				UnrealCLR::ManagedCommand(UnrealCLR::Command((void*)Callback, AxisValue));
 			});
 
 			InputComponent->AxisBindings.Emplace(axisBinding);

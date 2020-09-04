@@ -49,8 +49,8 @@ void UnrealCLR::Module::StartupModule() {
 	const FString runtimeConfigPath = assembliesPath + TEXT("UnrealEngine.Runtime.runtimeconfig.json");
 	const FString runtimeAssemblyPath = assembliesPath + TEXT("UnrealEngine.Runtime.dll");
 	const FString runtimeTypeName = TEXT("UnrealEngine.Runtime.Core, UnrealEngine.Runtime");
-	const FString runtimeMethodName = TEXT("Initialize");
-	const FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.InitializeDelegate, UnrealEngine.Runtime");
+	const FString runtimeMethodName = TEXT("ManagedCommand");
+	const FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.ManagedCommandDelegate, UnrealEngine.Runtime");
 
 	UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host path set to \"%s\""), ANSI_TO_TCHAR(__FUNCTION__), *hostfxrPath);
 
@@ -119,9 +119,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		load_assembly_and_get_function_pointer_fn HostfxrLoadAssemblyAndGetFunctionPointer = (load_assembly_and_get_function_pointer_fn)hostfxrLoadAssemblyAndGetFunctionPointer;
 
-		int32 (*Initialize)(void* const Functions[4], int32 Checksum) = nullptr;
-
-		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_PLATFORM_STRING(*runtimeAssemblyPath), UNREALCLR_PLATFORM_STRING(*runtimeTypeName), UNREALCLR_PLATFORM_STRING(*runtimeMethodName), UNREALCLR_PLATFORM_STRING(*runtimeMethodDelegateName), nullptr, (void**)&Initialize) == 0) {
+		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_PLATFORM_STRING(*runtimeAssemblyPath), UNREALCLR_PLATFORM_STRING(*runtimeTypeName), UNREALCLR_PLATFORM_STRING(*runtimeMethodName), UNREALCLR_PLATFORM_STRING(*runtimeMethodDelegateName), nullptr, (void**)&UnrealCLR::ManagedCommand) == 0) {
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 		} else {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -129,7 +127,7 @@ void UnrealCLR::Module::StartupModule() {
 			return;
 		}
 
-		if (Initialize) {
+		if (UnrealCLR::ManagedCommand) {
 			// Framework pointers
 
 			int32 position = 0;
@@ -1128,23 +1126,17 @@ void UnrealCLR::Module::StartupModule() {
 
 			// Runtime pointers
 
-			Shared::ManagedFunctions[0] = (void*)&UnrealCLR::Module::Invoke;
-			Shared::ManagedFunctions[1] = (void*)&UnrealCLR::Module::Exception;
-			Shared::ManagedFunctions[2] = (void*)&UnrealCLR::Module::Log;
+			Shared::RuntimeFunctions[0] = (void*)&UnrealCLR::Module::Invoke;
+			Shared::RuntimeFunctions[1] = (void*)&UnrealCLR::Module::Exception;
+			Shared::RuntimeFunctions[2] = (void*)&UnrealCLR::Module::Log;
 
-			constexpr void* functions[4] = {
-				Shared::ManagedFunctions,
-				Shared::NativeFunctions,
+			constexpr void* functions[3] = {
+				Shared::RuntimeFunctions,
 				Shared::Events,
 				Shared::Functions
 			};
 
-			if (Initialize(functions, checksum) == 0xF) {
-				UnrealCLR::ExecuteManagedFunction = (UnrealCLR::ExecuteManagedFunctionDelegate)Shared::NativeFunctions[0];
-				UnrealCLR::FindManagedFunction = (UnrealCLR::FindManagedFunctionDelegate)Shared::NativeFunctions[1];
-				UnrealCLR::LoadAssemblies = (UnrealCLR::LoadAssembliesDelegate)Shared::NativeFunctions[2];
-				UnrealCLR::UnloadAssemblies = (UnrealCLR::UnloadAssembliesDelegate)Shared::NativeFunctions[3];
-
+			if (reinterpret_cast<intptr_t>(UnrealCLR::ManagedCommand(UnrealCLR::Command(functions, checksum))) == 0xF) {
 				UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly initialized succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 			} else {
 				UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly initialization failed!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1194,7 +1186,7 @@ void UnrealCLR::Module::OnWorldInitializedActors(const UWorld::FActorsInitialize
 		UnrealCLR::Engine::World = ActorsInitializedParams.World;
 
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
-			UnrealCLR::LoadAssemblies();
+			UnrealCLR::ManagedCommand(UnrealCLR::Command(true));
 			UnrealCLR::Status = UnrealCLR::StatusType::Running;
 
 			RegisterTickFunction(OnPrePhysicsTickFunction, TG_PrePhysics);
@@ -1217,14 +1209,14 @@ void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool Cl
 	if (World->IsGameWorld() && World == UnrealCLR::Engine::World) {
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
 			if (UnrealCLR::Shared::Events[OnWorldEnd])
-				UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnWorldEnd], nullptr);
+				UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldEnd]));
 
 			OnPrePhysicsTickFunction.UnRegisterTickFunction();
 			OnDuringPhysicsTickFunction.UnRegisterTickFunction();
 			OnPostPhysicsTickFunction.UnRegisterTickFunction();
 			OnPostUpdateTickFunction.UnRegisterTickFunction();
 
-			UnrealCLR::UnloadAssemblies();
+			UnrealCLR::ManagedCommand(UnrealCLR::Command(false));
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 		}
 
@@ -1250,8 +1242,6 @@ void UnrealCLR::Module::HostError(const char_t* Message) {
 }
 
 void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
-	static_assert(sizeof(Argument) != 16, "Invalid size of the [Argument] structure");
-
 	if (Value.Type == ArgumentType::None) {
 		ManagedFunction();
 	} else if (Value.Type == ArgumentType::Single) {
@@ -1303,27 +1293,27 @@ void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
 
 void UnrealCLR::PrePhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
 	if (!UnrealCLR::Engine::TickStarted && UnrealCLR::Shared::Events[OnWorldBegin]) {
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnWorldBegin], nullptr);
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldBegin]));
 		UnrealCLR::Engine::TickStarted = true;
 	}
 
 	if (UnrealCLR::Shared::Events[OnWorldPrePhysicsTick])
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnWorldPrePhysicsTick], DeltaTime);
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldPrePhysicsTick], DeltaTime));
 }
 
 void UnrealCLR::DuringPhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
 	if (UnrealCLR::Shared::Events[OnWorldDuringPhysicsTick])
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnWorldDuringPhysicsTick], DeltaTime);
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldDuringPhysicsTick], DeltaTime));
 }
 
 void UnrealCLR::PostPhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
 	if (UnrealCLR::Shared::Events[OnWorldPostPhysicsTick])
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnWorldPostPhysicsTick], DeltaTime);
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldPostPhysicsTick], DeltaTime));
 }
 
 void UnrealCLR::PostUpdateTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) {
 	if (UnrealCLR::Shared::Events[OnWorldPostUpdateTick])
-		UnrealCLR::ExecuteManagedFunction(UnrealCLR::Shared::Events[OnWorldPostUpdateTick], DeltaTime);
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldPostUpdateTick], DeltaTime));
 }
 
 FString UnrealCLR::PrePhysicsTickFunction::DiagnosticMessage() {

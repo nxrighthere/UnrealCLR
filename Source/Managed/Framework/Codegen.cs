@@ -931,42 +931,42 @@ namespace UnrealEngine.Framework {
 								if (parameterInfos.Length <= 1) {
 									if (method.Name == "OnWorldBegin") {
 										if (parameterInfos.Length == 0)
-											events[0] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(VoidDelegate), method));
+											events[0] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate)));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPrePhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[1] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
+											events[1] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldDuringPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[2] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
+											events[2] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPostPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[3] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
+											events[3] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPostUpdateTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[4] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
+											events[4] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldEnd") {
 										if (parameterInfos.Length == 0)
-											events[5] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(VoidDelegate), method));
+											events[5] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate)));
 
 										continue;
 									}
@@ -984,12 +984,12 @@ namespace UnrealEngine.Framework {
 
 								if (parameterInfos.Length == 1) {
 									if (parameterInfos[0].ParameterType == typeof(ObjectReference))
-										userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(ObjectReferenceDelegate), method)));
+										userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(method.CreateDelegate(typeof(ObjectReferenceDelegate))));
 
 									continue;
 								}
 
-								userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(VoidDelegate), method)));
+								userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate))));
 							}
 						}
 					}
@@ -1064,24 +1064,21 @@ namespace UnrealEngine.Framework {
 	partial struct CollisionShape {
 		[FieldOffset(0)]
 		private CollisionShapeType shapeType;
-		[FieldOffset(4)]
+		[FieldOffset(8)]
 		private Box box;
-		[FieldOffset(4)]
+		[FieldOffset(8)]
 		private Sphere sphere;
-		[FieldOffset(4)]
+		[FieldOffset(8)]
 		private Capsule capsule;
 
-		[StructLayout(LayoutKind.Sequential)]
 		private struct Box {
 			internal Vector3 halfExtent;
 		}
 
-		[StructLayout(LayoutKind.Sequential)]
 		private struct Sphere {
 			internal float radius;
 		}
 
-		[StructLayout(LayoutKind.Sequential)]
 		private struct Capsule {
 			internal float radius;
 			internal float halfHeight;

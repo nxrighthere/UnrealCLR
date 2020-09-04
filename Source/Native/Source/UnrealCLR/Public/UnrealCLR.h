@@ -116,6 +116,14 @@ namespace UnrealCLR {
 		Object
 	};
 
+	enum struct CommandType : int32 {
+		Initialize = 1,
+		LoadAssemblies = 2,
+		UnloadAssemblies = 3,
+		Find = 4,
+		Execute = 5
+	};
+
 	enum {
 		OnWorldBegin,
 		OnWorldPrePhysicsTick,
@@ -171,15 +179,61 @@ namespace UnrealCLR {
 		}
 	};
 
-	typedef void (*ExecuteManagedFunctionDelegate)(void*, Argument);
-	typedef void* (*FindManagedFunctionDelegate)(const char*, int32_t);
-	typedef void (*LoadAssembliesDelegate)();
-	typedef void (*UnloadAssembliesDelegate)();
+	struct Command {
+		union {
+			struct {
+				void* Buffer;
+				int32 Checksum;
+			};
+			struct {
+				char* Method;
+				int32 Optional;
+			};
+			struct {
+				void* Function;
+				Argument Value;
+			};
+		};
+		CommandType Type;
 
-	static ExecuteManagedFunctionDelegate ExecuteManagedFunction;
-	static FindManagedFunctionDelegate FindManagedFunction;
-	static LoadAssembliesDelegate LoadAssemblies;
-	static UnloadAssembliesDelegate UnloadAssemblies;
+		FORCEINLINE Command(void* const Functions[3], int32 Checksum) {
+			this->Buffer = (void*)Functions;
+			this->Checksum = Checksum;
+			this->Type = CommandType::Initialize;
+		}
+
+		FORCEINLINE Command(bool ProcessAssemblies) {
+			if (ProcessAssemblies)
+				this->Type = CommandType::LoadAssemblies;
+			else
+				this->Type = CommandType::UnloadAssemblies;
+		}
+
+		FORCEINLINE Command(const char* Method, bool Optional) {
+			this->Method = (char*)Method;
+			this->Optional = Optional;
+			this->Type = CommandType::Find;
+		}
+
+		FORCEINLINE Command(void* Function) {
+			this->Function = Function;
+			this->Value = nullptr;
+			this->Type = CommandType::Execute;
+		}
+
+		FORCEINLINE Command(void* Function, Argument Value) {
+			this->Function = Function;
+			this->Value = Value;
+			this->Type = CommandType::Execute;
+		}
+	};
+
+	static_assert(sizeof(Argument) == 24, "Invalid size of the [Argument] structure");
+	static_assert(sizeof(Command) == 40, "Invalid size of the [Command] structure");
+
+	typedef void* (*ManagedCommandDelegate)(Command);
+
+	static ManagedCommandDelegate ManagedCommand;
 
 	static FString ProjectPath;
 	static FString UserAssembliesPath;
@@ -301,8 +355,7 @@ namespace UnrealCLR {
 		static void* MaterialInstanceDynamicFunctions[storageSize];
 		static void* HeadMountedDisplayFunctions[storageSize];
 
-		static void* ManagedFunctions[4];
-		static void* NativeFunctions[5];
+		static void* RuntimeFunctions[4];
 		static void* Events[128];
 		static void* Functions[128];
 	}

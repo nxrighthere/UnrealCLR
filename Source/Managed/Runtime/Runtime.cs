@@ -30,11 +30,40 @@ namespace UnrealEngine.Runtime {
 		Fatal
 	}
 
-	internal unsafe struct Argument {
-		internal fixed byte data[16];
+	internal enum CommandType : int {
+		Initialize = 1,
+		LoadAssemblies = 2,
+		UnloadAssemblies = 3,
+		Find = 4,
+		Execute = 5
 	}
 
-	internal delegate int InitializeDelegate(IntPtr functions, int checksum);
+	internal unsafe struct Argument {
+		internal fixed byte data[24];
+	}
+
+	[StructLayout(LayoutKind.Explicit, Size = 40)]
+	internal unsafe struct Command {
+		[FieldOffset(0)]
+		internal IntPtr* buffer;
+		[FieldOffset(8)]
+		internal int checksum;
+
+		[FieldOffset(0)]
+		internal IntPtr method;
+		[FieldOffset(8)]
+		internal int optional;
+
+		[FieldOffset(0)]
+		internal IntPtr function;
+		[FieldOffset(8)]
+		internal Argument value;
+
+		[FieldOffset(32)]
+		internal CommandType type;
+	}
+
+	internal delegate IntPtr ManagedCommandDelegate(Command command);
 
 	internal sealed class Plugin {
 		internal PluginLoader loader;
@@ -57,8 +86,6 @@ namespace UnrealEngine.Runtime {
 	}
 
 	internal static class Core {
-		// Managed functionality
-
 		internal delegate void InvokeDelegate(IntPtr managedFunction, Argument value);
 		internal delegate void ExceptionDelegate(string message);
 		internal delegate void LogDelegate(LogLevel level, string message);
@@ -75,173 +102,171 @@ namespace UnrealEngine.Runtime {
 		internal static LogDelegate Log;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static unsafe int Initialize(IntPtr functions, int checksum) {
-			try {
-				assembliesContextManager = new AssembliesContextManager();
-				assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
-
-				int position = 0;
-				IntPtr* buffer = (IntPtr*)functions;
-
-				unchecked {
-					int head = 0;
-					IntPtr* managedFunctions = (IntPtr*)buffer[position++];
-
-					Invoke = GenerateOptimizedFunction<InvokeDelegate>(managedFunctions[head++]);
-					Exception = GenerateOptimizedFunction<ExceptionDelegate>(managedFunctions[head++]);
-					Log = GenerateOptimizedFunction<LogDelegate>(managedFunctions[head++]);
+		internal static unsafe IntPtr ManagedCommand(Command command) {
+			if (command.type == CommandType.Execute) {
+				try {
+					Invoke(command.function, command.value);
 				}
 
-				unchecked {
-					int head = 0;
-					IntPtr* nativeFunctions = (IntPtr*)buffer[position++];
-
-					nativeFunctions[head++] = typeof(Core).GetMethod("ExecuteManagedFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
-					nativeFunctions[head++] = typeof(Core).GetMethod("FindManagedFunction", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
-					nativeFunctions[head++] = typeof(Core).GetMethod("LoadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
-					nativeFunctions[head++] = typeof(Core).GetMethod("UnloadAssemblies", BindingFlags.NonPublic | BindingFlags.Static).MethodHandle.GetFunctionPointer();
+				catch (Exception exception) {
+					Exception(exception.ToString());
 				}
 
-				sharedEvents = buffer[position++];
-				sharedFunctions = buffer[position++];
-				sharedChecksum = checksum;
+				return IntPtr.Zero;
 			}
 
-			catch (Exception exception) {
-				Exception("Runtime initialization failed\r\n" + exception.ToString());
+			if (command.type == CommandType.Find) {
+				IntPtr function = IntPtr.Zero;
+
+				try {
+					string method = Marshal.PtrToStringAnsi(command.method);
+
+					if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && command.optional != 1)
+						Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
+				}
+
+				catch (Exception exception) {
+					Exception(exception.ToString());
+				}
+
+				return function;
 			}
 
-			return 0xF;
-		}
+			if (command.type == CommandType.Initialize) {
+				try {
+					assembliesContextManager = new AssembliesContextManager();
+					assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
 
-		// Native functionality
+					int position = 0;
+					IntPtr* buffer = command.buffer;
 
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static void ExecuteManagedFunction(IntPtr managedFunction, Argument value) {
-			try {
-				Invoke(managedFunction, value);
+					unchecked {
+						int head = 0;
+						IntPtr* runtimeFunctions = (IntPtr*)buffer[position++];
+
+						Invoke = GenerateOptimizedFunction<InvokeDelegate>(runtimeFunctions[head++]);
+						Exception = GenerateOptimizedFunction<ExceptionDelegate>(runtimeFunctions[head++]);
+						Log = GenerateOptimizedFunction<LogDelegate>(runtimeFunctions[head++]);
+					}
+
+					sharedEvents = buffer[position++];
+					sharedFunctions = buffer[position++];
+					sharedChecksum = command.checksum;
+				}
+
+				catch (Exception exception) {
+					Exception("Runtime initialization failed\r\n" + exception.ToString());
+				}
+
+				return new IntPtr(0xF);
 			}
 
-			catch (Exception exception) {
-				Exception(exception.ToString());
-			}
-		}
+			if (command.type == CommandType.LoadAssemblies) {
+				try {
+					const string frameworkName = "UnrealEngine.Framework";
+					string assemblyPath = Assembly.GetExecutingAssembly().Location;
+					string managedFolder = assemblyPath.Substring(0, assemblyPath.IndexOf("Plugins", StringComparison.CurrentCulture)) + "Managed";
+					string[] folders = Directory.GetDirectories(managedFolder);
 
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static IntPtr FindManagedFunction(IntPtr methodPointer, int optional) {
-			IntPtr function = IntPtr.Zero;
+					Array.Resize(ref folders, folders.Length + 1);
 
-			try {
-				string method = Marshal.PtrToStringAnsi(methodPointer);
+					folders[folders.Length - 1] = managedFolder;
 
-				if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.CurrentCulture), out function) && optional != 1)
-					Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
-			}
+					foreach (string folder in folders) {
+						IEnumerable<string> assemblies = Directory.EnumerateFiles(folder, "*.dll", SearchOption.AllDirectories);
 
-			catch (Exception exception) {
-				Exception(exception.ToString());
-			}
+						foreach (string assembly in assemblies) {
+							AssemblyName name = null;
 
-			return function;
-		}
-
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static void LoadAssemblies() {
-			try {
-				const string frameworkName = "UnrealEngine.Framework";
-				string assemblyPath = Assembly.GetExecutingAssembly().Location;
-				string managedFolder = assemblyPath.Substring(0, assemblyPath.IndexOf("Plugins", StringComparison.CurrentCulture)) + "Managed";
-				string[] folders = Directory.GetDirectories(managedFolder);
-
-				Array.Resize(ref folders, folders.Length + 1);
-
-				folders[folders.Length - 1] = managedFolder;
-
-				foreach (string folder in folders) {
-					IEnumerable<string> assemblies = Directory.EnumerateFiles(folder, "*.dll", SearchOption.AllDirectories);
-
-					foreach (string assembly in assemblies) {
-						AssemblyName name = null;
-
-						try {
-							name = AssemblyName.GetAssemblyName(assembly);
-						}
-
-						catch (BadImageFormatException) {
-							continue;
-						}
-
-						if (name?.Name != frameworkName) {
-							plugin = new Plugin();
-							plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
-							plugin.assembly = plugin.loader.LoadAssemblyFromPath(assembly);
-
-							AssemblyName[] referencedAssemblies = plugin.assembly.GetReferencedAssemblies();
-
-							foreach (AssemblyName referencedAssembly in referencedAssemblies) {
-								if (referencedAssembly.Name == frameworkName) {
-									Assembly framework = plugin.loader.LoadAssembly(referencedAssembly);
-
-									using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
-										Type sharedClass = framework.GetType(frameworkName + ".Shared");
-
-										if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
-											plugin.userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
-
-											Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
-										} else {
-											Log(LogLevel.Fatal, "Framework loading failed, version is incompatible with the runtime, please, recompile the project with an updated version referenced in " + assembly);
-										}
-									}
-
-									return;
-								}
+							try {
+								name = AssemblyName.GetAssemblyName(assembly);
 							}
 
-							UnloadAssemblies();
+							catch (BadImageFormatException) {
+								continue;
+							}
+
+							if (name?.Name != frameworkName) {
+								plugin = new Plugin();
+								plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
+								plugin.assembly = plugin.loader.LoadAssemblyFromPath(assembly);
+
+								AssemblyName[] referencedAssemblies = plugin.assembly.GetReferencedAssemblies();
+
+								foreach (AssemblyName referencedAssembly in referencedAssemblies) {
+									if (referencedAssembly.Name == frameworkName) {
+										Assembly framework = plugin.loader.LoadAssembly(referencedAssembly);
+
+										using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
+											Type sharedClass = framework.GetType(frameworkName + ".Shared");
+
+											if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
+												plugin.userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
+
+												Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
+											} else {
+												Log(LogLevel.Fatal, "Framework loading failed, version is incompatible with the runtime, please, recompile the project with an updated version referenced in " + assembly);
+											}
+										}
+
+										return IntPtr.Zero;
+									}
+								}
+
+								command.type = CommandType.UnloadAssemblies;
+
+								goto UnloadAssemblies;
+							}
 						}
 					}
 				}
-			}
 
-			catch (Exception exception) {
-				Exception("Loading of assemblies failed\r\n" + exception.ToString());
-			}
-		}
-
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static void UnloadAssemblies() {
-			try {
-				plugin?.loader.Dispose();
-				plugin = null;
-
-				assembliesContextManager.UnloadAssembliesContext();
-				assembliesContextManager = null;
-
-				uint unloadAttempts = 0;
-
-				while (assembliesContextWeakReference.IsAlive) {
-					GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-					GC.WaitForPendingFinalizers();
-
-					unloadAttempts++;
-
-					if (unloadAttempts == 5000) {
-						Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
-					} else if (unloadAttempts == 10000) {
-						Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
-
-						break;
-					}
+				catch (Exception exception) {
+					Exception("Loading of assemblies failed\r\n" + exception.ToString());
 				}
 
-				assembliesContextManager = new AssembliesContextManager();
-				assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
+				return IntPtr.Zero;
 			}
 
-			catch (Exception exception) {
-				Exception("Unloading of assemblies failed\r\n" + exception.ToString());
+			UnloadAssemblies:
+
+			if (command.type == CommandType.UnloadAssemblies) {
+				try {
+					plugin?.loader.Dispose();
+					plugin = null;
+
+					assembliesContextManager.UnloadAssembliesContext();
+					assembliesContextManager = null;
+
+					uint unloadAttempts = 0;
+
+					while (assembliesContextWeakReference.IsAlive) {
+						GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+						GC.WaitForPendingFinalizers();
+
+						unloadAttempts++;
+
+						if (unloadAttempts == 5000) {
+							Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
+						} else if (unloadAttempts == 10000) {
+							Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
+
+							break;
+						}
+					}
+
+					assembliesContextManager = new AssembliesContextManager();
+					assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
+				}
+
+				catch (Exception exception) {
+					Exception("Unloading of assemblies failed\r\n" + exception.ToString());
+				}
+
+				return IntPtr.Zero;
 			}
+
+			return IntPtr.Zero;
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]

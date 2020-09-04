@@ -20,14 +20,14 @@ UUnrealCLRLibrary::UUnrealCLRLibrary(const FObjectInitializer& ObjectInitializer
 
 void UUnrealCLRLibrary::ExecuteManagedFunction(FManagedFunction ManagedFunction, UObject* Object = nullptr) {
 	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && ManagedFunction.Pointer)
-		UnrealCLR::ExecuteManagedFunction(ManagedFunction.Pointer, Object);
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(ManagedFunction.Pointer, Object));
 }
 
 FManagedFunction UUnrealCLRLibrary::FindManagedFunction(FString Method, bool Optional, bool& Result) {
 	FManagedFunction managedFunction;
 
 	if (UnrealCLR::Status == UnrealCLR::StatusType::Running && !Method.IsEmpty())
-		managedFunction.Pointer = UnrealCLR::FindManagedFunction(TCHAR_TO_ANSI(*Method), Optional);
+		managedFunction.Pointer = UnrealCLR::ManagedCommand(UnrealCLR::Command(TCHAR_TO_ANSI(*Method), Optional));
 
 	Result = managedFunction.Pointer != nullptr;
 
