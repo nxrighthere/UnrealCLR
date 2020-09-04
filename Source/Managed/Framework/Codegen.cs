@@ -931,42 +931,42 @@ namespace UnrealEngine.Framework {
 								if (parameterInfos.Length <= 1) {
 									if (method.Name == "OnWorldBegin") {
 										if (parameterInfos.Length == 0)
-											events[0] = method.MethodHandle.GetFunctionPointer();
+											events[0] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(VoidDelegate), method));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPrePhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[1] = method.MethodHandle.GetFunctionPointer();
+											events[1] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldDuringPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[2] = method.MethodHandle.GetFunctionPointer();
+											events[2] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPostPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[3] = method.MethodHandle.GetFunctionPointer();
+											events[3] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPostUpdateTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[4] = method.MethodHandle.GetFunctionPointer();
+											events[4] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(FloatDelegate), method));
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldEnd") {
 										if (parameterInfos.Length == 0)
-											events[5] = method.MethodHandle.GetFunctionPointer();
+											events[5] = Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(VoidDelegate), method));
 
 										continue;
 									}
@@ -980,12 +980,16 @@ namespace UnrealEngine.Framework {
 							ParameterInfo[] parameterInfos = method.GetParameters();
 
 							if (parameterInfos.Length <= 1) {
-								if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType != typeof(ObjectReference))
-									continue;
-
 								string name = type.FullName + "." + method.Name;
 
-								userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), method.MethodHandle.GetFunctionPointer());
+								if (parameterInfos.Length == 1) {
+									if (parameterInfos[0].ParameterType == typeof(ObjectReference))
+										userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(ObjectReferenceDelegate), method)));
+
+									continue;
+								}
+
+								userFunctions.Add(name.GetHashCode(StringComparison.CurrentCulture), Collector.GetFunctionPointer(Delegate.CreateDelegate(typeof(VoidDelegate), method)));
 							}
 						}
 					}
@@ -1024,6 +1028,10 @@ namespace UnrealEngine.Framework {
 			return dynamicMethod.CreateDelegate(type) as TDelegate;
 		}
 	}
+
+	internal delegate void VoidDelegate();
+	internal delegate void FloatDelegate(float @float);
+	internal delegate void ObjectReferenceDelegate(ObjectReference objectReference);
 
 	partial struct LinearColor {
 		private float r;
