@@ -212,7 +212,15 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Called when actors hit collisions
 		/// </summary>
-		OnActorHit
+		OnActorHit,
+		/// <summary>
+		/// Called when the mouse cursor is moved over an actor if mouse over events are enabled in the player controller
+		/// </summary>
+		OnActorBeginCursorOver,
+		/// <summary>
+		/// Called when the mouse cursor is moved off an actor if mouse over events are enabled in the player controller
+		/// </summary>
+		OnActorEndCursorOver
 	}
 
 	/// <summary>
@@ -230,7 +238,15 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Called when components hit collisions
 		/// </summary>
-		OnComponentHit
+		OnComponentHit,
+		/// <summary>
+		/// Called when the mouse cursor is moved over a component and mouse over events are enabled in the player controller
+		/// </summary>
+		OnComponentBeginCursorOver,
+		/// <summary>
+		/// Called when the mouse cursor is moved off a component and mouse over events are enabled in the player controller
+		/// </summary>
+		OnComponentEndCursorOver
 	}
 
 	/// <summary>
@@ -1443,6 +1459,11 @@ namespace UnrealEngine.Framework {
 	public delegate void ActorHitDelegate(ObjectReference hitActor, ObjectReference otherActor, in Vector3 normalImpulse, in Hit hit);
 
 	/// <summary>
+	/// Delegate for actor cursor events
+	/// </summary>
+	public delegate void ActorCursorDelegate(ObjectReference actor);
+
+	/// <summary>
 	/// Delegate for component overlap events
 	/// </summary>
 	public delegate void ComponentOverlapDelegate(ObjectReference overlapComponent, ObjectReference otherComponent);
@@ -1451,6 +1472,11 @@ namespace UnrealEngine.Framework {
 	/// Delegate for component hit events
 	/// </summary>
 	public delegate void ComponentHitDelegate(ObjectReference hitComponent, ObjectReference otherComponent, in Vector3 normalImpulse, in Hit hit);
+
+	/// <summary>
+	/// Delegate for component cursor events
+	/// </summary>
+	public delegate void ComponentCursorDelegate(ObjectReference component);
 
 	/// <summary>
 	/// Provides additional static constants and methods for mathematical functions that are lack in <see cref="System.Math"/>, <see cref="System.MathF"/>, and <see cref="System.Numerics"/>
@@ -3276,11 +3302,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Creates and registers a callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered
+		/// Creates and registers the callback function for a console command that takes no arguments, remains alive during the lifetime of the engine until unregistered
 		/// </summary>
 		/// <param name="name">The name of the command</param>
 		/// <param name="help">Help text for the command</param>
-		/// <param name="callback">The static function to call when the command is executed</param>
+		/// <param name="callback">The function to call when the command is executed</param>
 		/// <param name="readOnly">If <c>true</c>, cannot be changed by the user from console</param>
 		public static void RegisterCommand(string name, string help, ConsoleCommandDelegate callback, bool readOnly = false) {
 			if (name == null)
@@ -3622,9 +3648,8 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the static callback function that is called when actors start overlapping
+		/// Sets the callback function that is called when actors start overlapping
 		/// </summary>
-		/// <param name="callback">The static function to call when an actor start overlapping with another one</param>
 		public static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
@@ -3633,9 +3658,8 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the static callback function that is called when actors end overlapping
+		/// Sets the callback function that is called when actors end overlapping
 		/// </summary>
-		/// <param name="callback">The static function to call when an actor end overlapping with another one</param>
 		public static void SetOnActorEndOverlapCallback(ActorOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
@@ -3644,9 +3668,8 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the static callback function that is called when actors hit collisions
+		/// Sets the callback function that is called when actors hit collisions
 		/// </summary>
-		/// <param name="callback">The static function to call when an actor hit another one</param>
 		public static void SetOnActorHitCallback(ActorHitDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
@@ -3655,9 +3678,28 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the static callback function that is called when primitive components start overlapping
+		/// Sets the callback function that is called when the mouse cursor is moved over an actor if mouse over events are enabled in the player controller
 		/// </summary>
-		/// <param name="callback">The static function to call when a primitive component start overlapping with another one</param>
+		public static void SetOnActorBeginCursorOverCallback(ActorCursorDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnActorBeginCursorOverCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called the mouse cursor is moved off an actor if mouse over events are enabled in the player controller
+		/// </summary>
+		public static void SetOnActorEndCursorOverCallback(ActorCursorDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnActorEndCursorOverCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when primitive components start overlapping
+		/// </summary>
 		public static void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
@@ -3666,9 +3708,8 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the static callback function that is called when primitive components end overlapping
+		/// Sets the callback function that is called when primitive components end overlapping
 		/// </summary>
-		/// <param name="callback">The static function to call when a primitive component end overlapping with another one</param>
 		public static void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
@@ -3677,14 +3718,33 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the static callback function that is called when components hit collisions
+		/// Sets the callback function that is called when components hit collisions
 		/// </summary>
-		/// <param name="callback">The static function to call when a primitive component hit another one</param>
 		public static void SetOnComponentHitCallback(ComponentHitDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
 			setOnComponentHitCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when the mouse cursor is moved over a component and mouse over events are enabled in the player controller
+		/// </summary>
+		public static void SetOnComponentBeginCursorOverCallback(ComponentCursorDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnComponentBeginCursorOverCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when the mouse cursor is moved off a component and mouse over events are enabled in the player controller
+		/// </summary>
+		public static void SetOnComponentEndCursorOverCallback(ComponentCursorDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnComponentEndCursorOverCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -5098,6 +5158,14 @@ namespace UnrealEngine.Framework {
 		public bool ShowMouseCursor {
 			get => getShowMouseCursor(Pointer);
 			set => setShowMouseCursor(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the mouse over events should be generated
+		/// </summary>
+		public bool EnableMouseOverEvents {
+			get => getEnableMouseOverEvents(Pointer);
+			set => setEnableMouseOverEvents(Pointer, value);
 		}
 
 		/// <summary>
@@ -6891,7 +6959,7 @@ namespace UnrealEngine.Framework {
 		public void ClearActionBindings() => clearActionBindings(Pointer);
 
 		/// <summary>
-		/// Binds a callback function to an action defined in the project settings, or by using <see cref="Engine.AddActionMapping"/> and <see cref="PlayerInput.AddActionMapping"/>
+		/// Binds the callback function to an action defined in the project settings, or by using <see cref="Engine.AddActionMapping"/> and <see cref="PlayerInput.AddActionMapping"/>
 		/// </summary>
 		/// <param name="actionName">The name of the action</param>
 		/// <param name="keyEvent">The type of input behavior</param>
@@ -6908,7 +6976,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Binds a callback function to an axis defined in the project settings, or by using <see cref="Engine.AddAxisMapping"/> and <see cref="PlayerInput.AddAxisMapping"/>
+		/// Binds the callback function to an axis defined in the project settings, or by using <see cref="Engine.AddAxisMapping"/> and <see cref="PlayerInput.AddAxisMapping"/>
 		/// </summary>
 		/// <param name="axisName">The name of the axis</param>
 		/// <param name="callback">The function to call while tracking axis</param>

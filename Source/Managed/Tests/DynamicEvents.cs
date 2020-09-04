@@ -17,13 +17,22 @@ namespace UnrealEngine.Tests {
 		public static void OnBeginPlay() {
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
 
-			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
+			PlayerController playerController = World.GetFirstPlayerController();
+
+			playerController.ShowMouseCursor = true;
+			playerController.EnableMouseOverEvents = true;
+			playerController.SetViewTarget(World.GetActor<Camera>("MainCamera"));
+
 			World.SetOnActorBeginOverlapCallback(OnActorBeginOverlap);
 			World.SetOnActorEndOverlapCallback(OnActorEndOverlap);
 			World.SetOnActorHitCallback(OnActorHit);
+			World.SetOnActorBeginCursorOverCallback(OnActorBeginCursorOver);
+			World.SetOnActorEndCursorOverCallback(OnActorEndCursorOver);
 			World.SetOnComponentBeginOverlapCallback(OnComponentBeginOverlap);
 			World.SetOnComponentEndOverlapCallback(OnComponentEndOverlap);
 			World.SetOnComponentHitCallback(OnComponentHit);
+			World.SetOnComponentBeginCursorOverCallback(OnComponentBeginCursorOver);
+			World.SetOnComponentEndCursorOverCallback(OnComponentEndCursorOver);
 
 			const float linesThickness = 3.0f;
 
@@ -38,10 +47,14 @@ namespace UnrealEngine.Tests {
 			leftActor.RegisterEvent(ActorEventType.OnActorBeginOverlap);
 			leftActor.RegisterEvent(ActorEventType.OnActorEndOverlap);
 			leftActor.RegisterEvent(ActorEventType.OnActorHit);
+			leftActor.RegisterEvent(ActorEventType.OnActorBeginCursorOver);
+			leftActor.RegisterEvent(ActorEventType.OnActorEndCursorOver);
 
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginOverlap);
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndOverlap);
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentHit);
+			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginCursorOver);
+			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndCursorOver);
 			leftStaticMeshComponent.SetGenerateOverlapEvents(true);
 			leftStaticMeshComponent.SetGenerateHitEvents(true);
 
@@ -55,10 +68,14 @@ namespace UnrealEngine.Tests {
 			rightActor.RegisterEvent(ActorEventType.OnActorBeginOverlap);
 			rightActor.RegisterEvent(ActorEventType.OnActorEndOverlap);
 			rightActor.RegisterEvent(ActorEventType.OnActorHit);
+			rightActor.RegisterEvent(ActorEventType.OnActorBeginCursorOver);
+			rightActor.RegisterEvent(ActorEventType.OnActorEndCursorOver);
 
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginOverlap);
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndOverlap);
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentHit);
+			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginCursorOver);
+			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndCursorOver);
 			rightStaticMeshComponent.SetGenerateOverlapEvents(true);
 			rightStaticMeshComponent.SetGenerateHitEvents(true);
 
@@ -119,6 +136,18 @@ namespace UnrealEngine.Tests {
 			Assert.IsNotNull(hit.GetActor());
 		}
 
+		private static void OnActorBeginCursorOver(ObjectReference actor) {
+			Debug.AddOnScreenMessage(2, 3.0f, Color.Plum, "Cursor moved over " + actor.Name);
+
+			Assert.IsNotNull(actor.ToActor<Actor>());
+		}
+
+		private static void OnActorEndCursorOver(ObjectReference actor) {
+			Debug.AddOnScreenMessage(2, 3.0f, Color.Plum, "Cursor moved off " + actor.Name);
+
+			Assert.IsNotNull(actor.ToActor<Actor>());
+		}
+
 		private static void OnComponentBeginOverlap(ObjectReference overlapComponent, ObjectReference otherComponent) {
 			Debug.AddOnScreenMessage(-1, 3.0f, overlapComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, overlapComponent.Name + " start overlapping " + otherComponent.Name);
 
@@ -134,11 +163,23 @@ namespace UnrealEngine.Tests {
 		}
 
 		private static void OnComponentHit(ObjectReference hitComponent, ObjectReference otherComponent, in Vector3 normalImpulse, in Hit hit) {
-			Debug.AddOnScreenMessage(2, 3.0f, hitComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, hitComponent.Name + " hit " + otherComponent.Name);
+			Debug.AddOnScreenMessage(3, 3.0f, hitComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, hitComponent.Name + " hit " + otherComponent.Name);
 
 			Assert.IsNotNull(hitComponent.ToComponent<StaticMeshComponent>());
 			Assert.IsNotNull(otherComponent.ToComponent<StaticMeshComponent>());
 			Assert.IsNotNull(hit.GetActor());
+		}
+
+		private static void OnComponentBeginCursorOver(ObjectReference component) {
+			Debug.AddOnScreenMessage(4, 3.0f, Color.Plum, "Cursor moved over " + component.Name);
+
+			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
+		}
+
+		private static void OnComponentEndCursorOver(ObjectReference component) {
+			Debug.AddOnScreenMessage(4, 3.0f, Color.Plum, "Cursor moved off " + component.Name);
+
+			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
 		}
 	}
 }

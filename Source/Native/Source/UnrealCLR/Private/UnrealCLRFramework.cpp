@@ -283,6 +283,14 @@ namespace UnrealCLRFramework {
 				if (Condition Actor->OnActorHit.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorHit))\
 					Actor->OnActorHit. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorHit);\
 				break;\
+			case ActorEventType::OnActorBeginCursorOver:\
+				if (Condition Actor->OnBeginCursorOver.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorBeginCursorOver))\
+					Actor->OnBeginCursorOver. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorBeginCursorOver);\
+				break;\
+			case ActorEventType::OnActorEndCursorOver:\
+				if (Condition Actor->OnEndCursorOver.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorEndCursorOver))\
+					Actor->OnEndCursorOver. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ActorEndCursorOver);\
+				break;\
 			default:\
 				break;\
 		}\
@@ -301,6 +309,14 @@ namespace UnrealCLRFramework {
 			case ComponentEventType::OnComponentHit:\
 				if (Condition PrimitiveComponent->OnComponentHit.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentHit))\
 					PrimitiveComponent->OnComponentHit. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentHit);\
+				break;\
+			case ComponentEventType::OnComponentBeginCursorOver:\
+				if (Condition PrimitiveComponent->OnBeginCursorOver.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentBeginCursorOver))\
+					PrimitiveComponent->OnBeginCursorOver. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentBeginCursorOver);\
+				break;\
+			case ComponentEventType::OnComponentEndCursorOver:\
+				if (Condition PrimitiveComponent->OnEndCursorOver.IsAlreadyBound(UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentEndCursorOver))\
+					PrimitiveComponent->OnEndCursorOver. Method (UnrealCLR::Engine::Manager, &UUnrealCLRManager::ComponentEndCursorOver);\
 				break;\
 			default:\
 				break;\
@@ -963,6 +979,14 @@ namespace UnrealCLRFramework {
 			UnrealCLR::Shared::Events[UnrealCLR::OnActorHit] = (void*)Callback;
 		}
 
+		void SetOnActorBeginCursorOverCallback(ActorCursorDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginCursorOver] = (void*)Callback;
+		}
+
+		void SetOnActorEndCursorOverCallback(ActorCursorDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnActorEndCursorOver] = (void*)Callback;
+		}
+
 		void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate Callback) {
 			UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap] = (void*)Callback;
 		}
@@ -973,6 +997,14 @@ namespace UnrealCLRFramework {
 
 		void SetOnComponentHitCallback(ComponentHitDelegate Callback) {
 			UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit] = (void*)Callback;
+		}
+
+		void SetOnComponentBeginCursorOverCallback(ComponentCursorDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginCursorOver] = (void*)Callback;
+		}
+
+		void SetOnComponentEndCursorOverCallback(ComponentCursorDelegate Callback) {
+			UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndCursorOver] = (void*)Callback;
 		}
 
 		void SetSimulatePhysics(bool Value) {
@@ -1590,6 +1622,10 @@ namespace UnrealCLRFramework {
 			return PlayerController->bShowMouseCursor;
 		}
 
+		bool GetEnableMouseOverEvents(APlayerController* PlayerController) {
+			return PlayerController->bEnableMouseOverEvents;
+		}
+
 		bool GetMousePosition(APlayerController* PlayerController, float* X, float* Y) {
 			return PlayerController->GetMousePosition(*X, *Y);
 		}
@@ -1604,6 +1640,10 @@ namespace UnrealCLRFramework {
 
 		void SetShowMouseCursor(APlayerController* PlayerController, bool Value) {
 			PlayerController->bShowMouseCursor = Value;
+		}
+
+		void SetEnableMouseOverEvents(APlayerController* PlayerController, bool Value) {
+			PlayerController->bEnableMouseOverEvents = Value;
 		}
 
 		void SetMousePosition(APlayerController* PlayerController, float X, float Y) {

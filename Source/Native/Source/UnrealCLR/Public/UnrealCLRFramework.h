@@ -76,13 +76,17 @@ namespace UnrealCLRFramework {
 	enum struct ActorEventType : int32 {
 		OnActorBeginOverlap,
 		OnActorEndOverlap,
-		OnActorHit
+		OnActorHit,
+		OnActorBeginCursorOver,
+		OnActorEndCursorOver
 	};
 
 	enum struct ComponentEventType : int32 {
 		OnComponentBeginOverlap,
 		OnComponentEndOverlap,
-		OnComponentHit
+		OnComponentHit,
+		OnComponentBeginCursorOver,
+		OnComponentEndCursorOver
 	};
 
 	struct Color {
@@ -213,9 +217,13 @@ namespace UnrealCLRFramework {
 
 	typedef void (*ActorHitDelegate)(AActor* HitActor, AActor* OtherActor, Vector3* NormalImpulse, Hit* Hit);
 
+	typedef void (*ActorCursorDelegate)(AActor* Actor);
+
 	typedef void (*ComponentOverlapDelegate)(UPrimitiveComponent*, UPrimitiveComponent*);
 
 	typedef void (*ComponentHitDelegate)(UPrimitiveComponent* HitComponent, UPrimitiveComponent* OtherComponent, Vector3* NormalImpulse, Hit* Hit);
+
+	typedef void (*ComponentCursorDelegate)(UPrimitiveComponent* Component);
 
 	// Enumerable
 
@@ -402,9 +410,13 @@ namespace UnrealCLRFramework {
 		static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback);
 		static void SetOnActorEndOverlapCallback(ActorOverlapDelegate Callback);
 		static void SetOnActorHitCallback(ActorHitDelegate Callback);
+		static void SetOnActorBeginCursorOverCallback(ActorCursorDelegate Callback);
+		static void SetOnActorEndCursorOverCallback(ActorCursorDelegate Callback);
 		static void SetOnComponentBeginOverlapCallback(ComponentOverlapDelegate Callback);
 		static void SetOnComponentEndOverlapCallback(ComponentOverlapDelegate Callback);
 		static void SetOnComponentHitCallback(ComponentHitDelegate Callback);
+		static void SetOnComponentBeginCursorOverCallback(ComponentCursorDelegate Callback);
+		static void SetOnComponentEndCursorOverCallback(ComponentCursorDelegate Callback);
 		static void SetSimulatePhysics(bool Value);
 		static void SetGravity(float Value);
 		static bool SetWorldOrigin(const Vector3* Value);
@@ -550,10 +562,12 @@ namespace UnrealCLRFramework {
 	namespace PlayerController {
 		static bool IsPaused(APlayerController* PlayerController);
 		static bool GetShowMouseCursor(APlayerController* PlayerController);
+		static bool GetEnableMouseOverEvents(APlayerController* PlayerController);
 		static bool GetMousePosition(APlayerController* PlayerController, float* X, float* Y);
 		static UPlayer* GetPlayer(APlayerController* PlayerController);
 		static UPlayerInput* GetPlayerInput(APlayerController* PlayerController);
 		static void SetShowMouseCursor(APlayerController* PlayerController, bool Value);
+		static void SetEnableMouseOverEvents(APlayerController* PlayerController, bool Value);
 		static void SetMousePosition(APlayerController* PlayerController, float X, float Y);
 		static void ConsoleCommand(APlayerController* PlayerController, const char* Command, bool WriteToLog);
 		static bool SetPause(APlayerController* PlayerController, bool Value);

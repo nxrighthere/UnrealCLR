@@ -300,11 +300,15 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorByID;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetFirstPlayerController;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorBeginOverlapCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorBeginCursorOverCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorEndCursorOverCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorEndOverlapCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorHitCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentBeginOverlapCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentEndOverlapCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentHitCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentBeginCursorOverCallback;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnComponentEndCursorOverCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetSimulatePhysics;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetGravity;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetWorldOrigin;
@@ -485,10 +489,12 @@ void UnrealCLR::Module::StartupModule() {
 
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::IsPaused;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetShowMouseCursor;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetEnableMouseOverEvents;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetMousePosition;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetPlayer;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetPlayerInput;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetShowMouseCursor;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetEnableMouseOverEvents;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetMousePosition;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::ConsoleCommand;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetPause;
@@ -1255,10 +1261,14 @@ void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
 			reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]), static_cast<AActor*>(Value.Object.Parameters[1]));
 		} else if (Value.Object.Type == ObjectType::ActorHitDelegate) {
 			reinterpret_cast<UnrealCLRFramework::ActorHitDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]), static_cast<AActor*>(Value.Object.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Object.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Object.Parameters[3]));
+		} else if (Value.Object.Type == ObjectType::ActorCursorDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ActorCursorDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]));
 		} else if (Value.Object.Type == ObjectType::ComponentOverlapDelegate) {
 			reinterpret_cast<UnrealCLRFramework::ComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Object.Parameters[1]));
 		} else if (Value.Object.Type == ObjectType::ComponentHitDelegate) {
 			reinterpret_cast<UnrealCLRFramework::ComponentHitDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Object.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Object.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Object.Parameters[3]));
+		} else if (Value.Object.Type == ObjectType::ComponentCursorDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ComponentCursorDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]));
 		}
 	}
 }

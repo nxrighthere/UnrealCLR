@@ -8,6 +8,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Constructors
 - [PlayerController(string, UnrealEngine.Framework.Blueprint)](./PlayerController-PlayerController(string_Blueprint).md 'UnrealEngine.Framework.PlayerController.PlayerController(string, UnrealEngine.Framework.Blueprint)')
 ### Properties
+- [EnableMouseOverEvents](./PlayerController-EnableMouseOverEvents.md 'UnrealEngine.Framework.PlayerController.EnableMouseOverEvents')
 - [IsPaused](./PlayerController-IsPaused.md 'UnrealEngine.Framework.PlayerController.IsPaused')
 - [ShowMouseCursor](./PlayerController-ShowMouseCursor.md 'UnrealEngine.Framework.PlayerController.ShowMouseCursor')
 ### Methods

@@ -17,3 +17,11 @@ Called when actors stop overlapping
 `OnActorHit` 2  
 Called when actors hit collisions  
   
+<a name='ActorEventType-OnActorBeginCursorOver'></a>
+`OnActorBeginCursorOver` 3  
+Called when the mouse cursor is moved over an actor if mouse over events are enabled in the player controller  
+  
+<a name='ActorEventType-OnActorEndCursorOver'></a>
+`OnActorEndCursorOver` 4  
+Called when the mouse cursor is moved off an actor if mouse over events are enabled in the player controller  
+  

@@ -104,8 +104,10 @@ namespace UnrealCLR {
 	enum struct ObjectType : int32 {
 		ActorOverlapDelegate,
 		ActorHitDelegate,
+		ActorCursorDelegate,
 		ComponentOverlapDelegate,
-		ComponentHitDelegate
+		ComponentHitDelegate,
+		ComponentCursorDelegate
 	};
 
 	enum struct ArgumentType : int32 {
@@ -134,9 +136,13 @@ namespace UnrealCLR {
 		OnActorBeginOverlap,
 		OnActorEndOverlap,
 		OnActorHit,
+		OnActorBeginCursorOver,
+		OnActorEndCursorOver,
 		OnComponentBeginOverlap,
 		OnComponentEndOverlap,
-		OnComponentHit
+		OnComponentHit,
+		OnComponentBeginCursorOver,
+		OnComponentEndCursorOver
 	};
 
 	struct Object {
@@ -356,7 +362,7 @@ namespace UnrealCLR {
 		static void* MaterialInstanceDynamicFunctions[storageSize];
 		static void* HeadMountedDisplayFunctions[storageSize];
 
-		static void* RuntimeFunctions[4];
+		static void* RuntimeFunctions[3];
 		static void* Events[128];
 		static void* Functions[128];
 	}

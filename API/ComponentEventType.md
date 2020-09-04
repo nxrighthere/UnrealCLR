@@ -17,3 +17,11 @@ Called when components stop overlapping
 `OnComponentHit` 2  
 Called when components hit collisions  
   
+<a name='ComponentEventType-OnComponentBeginCursorOver'></a>
+`OnComponentBeginCursorOver` 3  
+Called when the mouse cursor is moved over a component and mouse over events are enabled in the player controller  
+  
+<a name='ComponentEventType-OnComponentEndCursorOver'></a>
+`OnComponentEndCursorOver` 4  
+Called when the mouse cursor is moved off a component and mouse over events are enabled in the player controller  
+  

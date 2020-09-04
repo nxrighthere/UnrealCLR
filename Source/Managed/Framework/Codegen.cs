@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x271;
+		internal const int checksum = 0x277;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -183,11 +183,15 @@ namespace UnrealEngine.Framework {
 				World.getActorByID = GenerateOptimizedFunction<World.GetActorByIDFunction>(worldFunctions[head++]);
 				World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
 				World.setOnActorBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnActorBeginOverlapCallbackFunction>(worldFunctions[head++]);
+				World.setOnActorBeginCursorOverCallback = GenerateOptimizedFunction<World.SetOnActorBeginCursorOverCallbackFunction>(worldFunctions[head++]);
+				World.setOnActorEndCursorOverCallback = GenerateOptimizedFunction<World.SetOnActorEndCursorOverCallbackFunction>(worldFunctions[head++]);
 				World.setOnActorEndOverlapCallback = GenerateOptimizedFunction<World.SetOnActorEndOverlapCallbackFunction>(worldFunctions[head++]);
 				World.setOnActorHitCallback = GenerateOptimizedFunction<World.SetOnActorHitCallbackFunction>(worldFunctions[head++]);
 				World.setOnComponentBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentBeginOverlapCallbackFunction>(worldFunctions[head++]);
 				World.setOnComponentEndOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentEndOverlapCallbackFunction>(worldFunctions[head++]);
 				World.setOnComponentHitCallback = GenerateOptimizedFunction<World.SetOnComponentHitCallbackFunction>(worldFunctions[head++]);
+				World.setOnComponentBeginCursorOverCallback = GenerateOptimizedFunction<World.SetOnComponentBeginCursorOverCallbackFunction>(worldFunctions[head++]);
+				World.setOnComponentEndCursorOverCallback = GenerateOptimizedFunction<World.SetOnComponentEndCursorOverCallbackFunction>(worldFunctions[head++]);
 				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
 				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
 				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
@@ -350,10 +354,12 @@ namespace UnrealEngine.Framework {
 
 				PlayerController.isPaused = GenerateOptimizedFunction<PlayerController.IsPausedFunction>(playerControllerFunctions[head++]);
 				PlayerController.getShowMouseCursor = GenerateOptimizedFunction<PlayerController.GetShowMouseCursorFunction>(playerControllerFunctions[head++]);
+				PlayerController.getEnableMouseOverEvents = GenerateOptimizedFunction<PlayerController.GetEnableMouseOverEventsFunction>(playerControllerFunctions[head++]);
 				PlayerController.getMousePosition = GenerateOptimizedFunction<PlayerController.GetMousePositionFunction>(playerControllerFunctions[head++]);
 				PlayerController.getPlayer = GenerateOptimizedFunction<PlayerController.GetPlayerFunction>(playerControllerFunctions[head++]);
 				PlayerController.getPlayerInput = GenerateOptimizedFunction<PlayerController.GetPlayerInputFunction>(playerControllerFunctions[head++]);
 				PlayerController.setShowMouseCursor = GenerateOptimizedFunction<PlayerController.SetShowMouseCursorFunction>(playerControllerFunctions[head++]);
+				PlayerController.setEnableMouseOverEvents = GenerateOptimizedFunction<PlayerController.SetEnableMouseOverEventsFunction>(playerControllerFunctions[head++]);
 				PlayerController.setMousePosition = GenerateOptimizedFunction<PlayerController.SetMousePositionFunction>(playerControllerFunctions[head++]);
 				PlayerController.consoleCommand = GenerateOptimizedFunction<PlayerController.ConsoleCommandFunction>(playerControllerFunctions[head++]);
 				PlayerController.setPause = GenerateOptimizedFunction<PlayerController.SetPauseFunction>(playerControllerFunctions[head++]);
@@ -1373,9 +1379,13 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetOnActorBeginOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetOnActorEndOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetOnActorHitCallbackFunction(IntPtr callback);
+		internal delegate void SetOnActorBeginCursorOverCallbackFunction(IntPtr callback);
+		internal delegate void SetOnActorEndCursorOverCallbackFunction(IntPtr callback);
 		internal delegate void SetOnComponentBeginOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetOnComponentEndOverlapCallbackFunction(IntPtr callback);
 		internal delegate void SetOnComponentHitCallbackFunction(IntPtr callback);
+		internal delegate void SetOnComponentBeginCursorOverCallbackFunction(IntPtr callback);
+		internal delegate void SetOnComponentEndCursorOverCallbackFunction(IntPtr callback);
 		internal delegate void SetSimulatePhysicsFunction(Bool value);
 		internal delegate void SetGravityFunction(float value);
 		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
@@ -1407,9 +1417,13 @@ namespace UnrealEngine.Framework {
 		internal static SetOnActorBeginOverlapCallbackFunction setOnActorBeginOverlapCallback;
 		internal static SetOnActorEndOverlapCallbackFunction setOnActorEndOverlapCallback;
 		internal static SetOnActorHitCallbackFunction setOnActorHitCallback;
+		internal static SetOnActorBeginCursorOverCallbackFunction setOnActorBeginCursorOverCallback;
+		internal static SetOnActorEndCursorOverCallbackFunction setOnActorEndCursorOverCallback;
 		internal static SetOnComponentBeginOverlapCallbackFunction setOnComponentBeginOverlapCallback;
 		internal static SetOnComponentEndOverlapCallbackFunction setOnComponentEndOverlapCallback;
 		internal static SetOnComponentHitCallbackFunction setOnComponentHitCallback;
+		internal static SetOnComponentBeginCursorOverCallbackFunction setOnComponentBeginCursorOverCallback;
+		internal static SetOnComponentEndCursorOverCallbackFunction setOnComponentEndCursorOverCallback;
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetGravityFunction setGravity;
 		internal static SetWorldOriginFunction setWorldOrigin;
@@ -1651,10 +1665,12 @@ namespace UnrealEngine.Framework {
 	partial class PlayerController {
 		internal delegate Bool IsPausedFunction(IntPtr playerController);
 		internal delegate Bool GetShowMouseCursorFunction(IntPtr playerController);
+		internal delegate Bool GetEnableMouseOverEventsFunction(IntPtr playerController);
 		internal delegate Bool GetMousePositionFunction(IntPtr playerController, ref float x, ref float y);
 		internal delegate IntPtr GetPlayerFunction(IntPtr playerController);
 		internal delegate IntPtr GetPlayerInputFunction(IntPtr playerController);
 		internal delegate void SetShowMouseCursorFunction(IntPtr playerController, Bool value);
+		internal delegate void SetEnableMouseOverEventsFunction(IntPtr playerController, Bool value);
 		internal delegate void SetMousePositionFunction(IntPtr playerController, float x, float y);
 		internal delegate void ConsoleCommandFunction(IntPtr playerController, string command, Bool writeToLog);
 		internal delegate Bool SetPauseFunction(IntPtr playerController, Bool value);
@@ -1666,10 +1682,12 @@ namespace UnrealEngine.Framework {
 
 		internal static IsPausedFunction isPaused;
 		internal static GetShowMouseCursorFunction getShowMouseCursor;
+		internal static GetEnableMouseOverEventsFunction getEnableMouseOverEvents;
 		internal static GetMousePositionFunction getMousePosition;
 		internal static GetPlayerFunction getPlayer;
 		internal static GetPlayerInputFunction getPlayerInput;
 		internal static SetShowMouseCursorFunction setShowMouseCursor;
+		internal static SetEnableMouseOverEventsFunction setEnableMouseOverEvents;
 		internal static SetMousePositionFunction setMousePosition;
 		internal static ConsoleCommandFunction consoleCommand;
 		internal static SetPauseFunction setPause;

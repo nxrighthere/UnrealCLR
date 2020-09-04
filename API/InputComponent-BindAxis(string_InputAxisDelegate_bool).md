@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[InputComponent](./InputComponent.md 'UnrealEngine.Framework.InputComponent')
 ## InputComponent.BindAxis(string, UnrealEngine.Framework.InputAxisDelegate, bool) Method
-Binds a callback function to an axis defined in the project settings, or by using [AddAxisMapping(string, string, float)](./Engine-AddAxisMapping(string_string_float).md 'UnrealEngine.Framework.Engine.AddAxisMapping(string, string, float)') and [AddAxisMapping(string, string, float)](./PlayerInput-AddAxisMapping(string_string_float).md 'UnrealEngine.Framework.PlayerInput.AddAxisMapping(string, string, float)')  
+Binds the callback function to an axis defined in the project settings, or by using [AddAxisMapping(string, string, float)](./Engine-AddAxisMapping(string_string_float).md 'UnrealEngine.Framework.Engine.AddAxisMapping(string, string, float)') and [AddAxisMapping(string, string, float)](./PlayerInput-AddAxisMapping(string_string_float).md 'UnrealEngine.Framework.PlayerInput.AddAxisMapping(string, string, float)')  
 ```csharp
 public void BindAxis(string axisName, UnrealEngine.Framework.InputAxisDelegate callback, bool executedWhenPaused=false);
 ```

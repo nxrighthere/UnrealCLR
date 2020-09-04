@@ -34,6 +34,12 @@ class UNREALCLR_API UUnrealCLRManager : public UObject {
 	void ActorHit(AActor* HitActor, AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit);
 
 	UFUNCTION()
+	void ActorBeginCursorOver(AActor* Actor);
+
+	UFUNCTION()
+	void ActorEndCursorOver(AActor* Actor);
+
+	UFUNCTION()
 	void ComponentBeginOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
@@ -41,4 +47,10 @@ class UNREALCLR_API UUnrealCLRManager : public UObject {
 
 	UFUNCTION()
 	void ComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+	UFUNCTION()
+	void ComponentBeginCursorOver(UPrimitiveComponent* Component);
+
+	UFUNCTION()
+	void ComponentEndCursorOver(UPrimitiveComponent* Component);
 };

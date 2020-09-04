@@ -111,8 +111,10 @@
 - [UpdateTransformFlags](./UpdateTransformFlags.md 'UnrealEngine.Framework.UpdateTransformFlags')
 - [WindowMode](./WindowMode.md 'UnrealEngine.Framework.WindowMode')
 ### Delegates
+- [ActorCursorDelegate(UnrealEngine.Framework.ObjectReference)](./ActorCursorDelegate(ObjectReference).md 'UnrealEngine.Framework.ActorCursorDelegate(UnrealEngine.Framework.ObjectReference)')
 - [ActorHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ActorHitDelegate(ObjectReference_ObjectReference_Vector3_Hit).md 'UnrealEngine.Framework.ActorHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')
 - [ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ActorOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')
+- [ComponentCursorDelegate(UnrealEngine.Framework.ObjectReference)](./ComponentCursorDelegate(ObjectReference).md 'UnrealEngine.Framework.ComponentCursorDelegate(UnrealEngine.Framework.ObjectReference)')
 - [ComponentHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ComponentHitDelegate(ObjectReference_ObjectReference_Vector3_Hit).md 'UnrealEngine.Framework.ComponentHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')
 - [ComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ComponentOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')
 - [ConsoleCommandDelegate(float)](./ConsoleCommandDelegate(float).md 'UnrealEngine.Framework.ConsoleCommandDelegate(float)')
