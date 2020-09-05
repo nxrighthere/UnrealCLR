@@ -64,7 +64,7 @@ open UnrealEngine.Framework
 module Main = // Indicates the main entry point for automatic loading by the plugin
     let OnWorldBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!")
 
-	let OnWorldPostBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "How's it going?")
+    let OnWorldPostBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "How's it going?")
 
     let OnWorldEnd() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!")
 
