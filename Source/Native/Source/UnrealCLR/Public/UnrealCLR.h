@@ -94,6 +94,12 @@ namespace UnrealCLR {
 		Running
 	};
 
+	enum struct TickState : int32 {
+		Stopped,
+		Registered,
+		Started
+	};
+
 	enum struct LogLevel : int32 {
 		Display,
 		Warning,
@@ -128,6 +134,7 @@ namespace UnrealCLR {
 
 	enum {
 		OnWorldBegin,
+		OnWorldPostBegin,
 		OnWorldPrePhysicsTick,
 		OnWorldDuringPhysicsTick,
 		OnWorldPostPhysicsTick,
@@ -246,6 +253,7 @@ namespace UnrealCLR {
 	static FString UserAssembliesPath;
 
 	static StatusType Status = StatusType::Stopped;
+	static TickState WorldTickState = TickState::Stopped;
 
 	struct PrePhysicsTickFunction : public FTickFunction {
 		virtual void ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent) override;
@@ -275,16 +283,16 @@ namespace UnrealCLR {
 
 		private:
 
-		void OnWorldInitializedActors(const UWorld::FActorsInitializedParams& ActorsInitializedParams);
+		void OnWorldPostInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues);
 		void OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources);
 
-		static void RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup);
+		static void RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup, ALevelScriptActor* LevelActor);
 		static void HostError(const char_t* Message);
 		static void Invoke(void(*)(), Argument Value);
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
 
-		FDelegateHandle OnWorldInitializedActorsHandle;
+		FDelegateHandle OnWorldPostInitializationHandle;
 		FDelegateHandle OnWorldCleanupHandle;
 
 		PrePhysicsTickFunction OnPrePhysicsTickFunction;
@@ -298,7 +306,6 @@ namespace UnrealCLR {
 	namespace Engine {
 		static UUnrealCLRManager* Manager;
 		static UWorld* World;
-		static bool TickStarted;
 	}
 
 	namespace Shared {

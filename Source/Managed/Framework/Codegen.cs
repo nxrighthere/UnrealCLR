@@ -938,41 +938,62 @@ namespace UnrealEngine.Framework {
 									if (method.Name == "OnWorldBegin") {
 										if (parameterInfos.Length == 0)
 											events[0] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should not have arguments");
+
+										continue;
+									}
+
+									if (method.Name == "OnWorldPostBegin") {
+										if (parameterInfos.Length == 0)
+											events[1] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should not have arguments");
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPrePhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[1] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+											events[2] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should have a float argument");
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldDuringPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[2] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+											events[3] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should have a float argument");
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPostPhysicsTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[3] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+											events[4] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should have a float argument");
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldPostUpdateTick") {
 										if (parameterInfos.Length == 1 && parameterInfos[0].ParameterType == typeof(float))
-											events[4] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+											events[5] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(FloatDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should have a float argument");
 
 										continue;
 									}
 
 									if (method.Name == "OnWorldEnd") {
 										if (parameterInfos.Length == 0)
-											events[5] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate)));
+											events[6] = Collector.GetFunctionPointer(method.CreateDelegate(typeof(VoidDelegate)));
+										else
+											throw new ArgumentException(method.Name + " should not have arguments");
 
 										continue;
 									}

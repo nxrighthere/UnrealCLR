@@ -5,6 +5,7 @@
     + [Blueprint functions](#blueprint-functions)
   * [Packaging](#packaging)
 - [Engine](#engine)
+  * [World events](#world-events)
   * [Code structure](#code-structure)
   * [Blueprints](#blueprints)
   * [Data passing](#data-passing)
@@ -34,6 +35,8 @@ namespace Game {
 	public static class Main { // Indicates the main entry point for automatic loading by the plugin
 		public static void OnWorldBegin() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
 
+		public static void OnWorldPostBegin() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "How's it going?");
+
 		public static void OnWorldEnd() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!");
 
 		public static void OnWorldPrePhysicsTick(float deltaTime) => Debug.AddOnScreenMessage(1, 10.0f, Color.DeepPink, "On pre physics tick invoked!");
@@ -60,6 +63,8 @@ open UnrealEngine.Framework
 
 module Main = // Indicates the main entry point for automatic loading by the plugin
     let OnWorldBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!")
+
+	let OnWorldPostBegin() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "How's it going?")
 
     let OnWorldEnd() = Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "See you soon, Unreal Engine!")
 
@@ -127,8 +132,25 @@ The plugin is transparently integrated into the [packaging](https://docs.unreale
 
 Engine
 --------
+### World events
+The framework provides world events that are executed by the engine in a predetermined order to drive logic and simulation. Event functions are automatically loaded by the plugin from `Main` class for further execution.
+
+`OnWorldBegin()` Called after the world is initialized before the level script.
+
+`OnWorldPostBegin()` Called after the level script.
+
+`OnWorldEnd()` Called before deinitialization of the world after the level script.
+
+`OnWorldPrePhysicsTick(float deltaTime)` Called at the beginning of the frame.
+
+`OnWorldDuringPhysicsTick(float deltaTime)` Called when physics simulation has begun.
+
+`OnWorldPostPhysicsTick(float deltaTime)` Called when physics simulation is complete.
+
+`OnWorldPostUpdateTick(float deltaTime)` Called after cameras are updated.
+
 ### Code structure
-The plugin allows organizing the code structure of the project in any preferable way. Any paradigms or patterns can be used to drive the logic and simulation without any intermediate management between user code and the engine.
+The plugin allows organizing the code structure of the project in any preferable way. Any paradigms or patterns can be used to drive logic and simulation without any intermediate management between user code and the engine.
 
 **Object-Oriented Design**
 
