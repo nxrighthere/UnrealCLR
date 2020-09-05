@@ -62,6 +62,7 @@ namespace UnrealEngine.Tests {
 			leftStaticMeshComponent.SetMaterial(0, material);
 			leftStaticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Green);
 			leftStaticMeshComponent.SetWorldLocation(new Vector3(0.0f, -startY, 0.0f));
+			leftStaticMeshComponent.UpdateToWorld(TeleportType.ResetPhysics);
 			leftStaticMeshComponent.SetEnableGravity(false);
 			leftStaticMeshComponent.SetSimulatePhysics(true);
 
@@ -83,6 +84,7 @@ namespace UnrealEngine.Tests {
 			rightStaticMeshComponent.SetMaterial(0, material);
 			rightStaticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Yellow);
 			rightStaticMeshComponent.SetWorldLocation(new Vector3(0.0f, startY, 0.0f));
+			rightStaticMeshComponent.UpdateToWorld(TeleportType.ResetPhysics);
 			rightStaticMeshComponent.SetEnableGravity(false);
 			rightStaticMeshComponent.SetSimulatePhysics(true);
 		}

@@ -1202,13 +1202,13 @@ void UnrealCLR::Module::OnWorldPostInitialization(UWorld* World, const UWorld::I
 					RegisterTickFunction(OnPostPhysicsTickFunction, TG_PostPhysics, *currentActor);
 					RegisterTickFunction(OnPostUpdateTickFunction, TG_PostUpdateWork, *currentActor);
 
+					UnrealCLR::WorldTickState = UnrealCLR::TickState::Registered;
+
 					if (UnrealCLR::Shared::Events[OnWorldBegin])
 						UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldBegin]));
 
 					break;
 				}
-
-				UnrealCLR::WorldTickState = UnrealCLR::TickState::Registered;
 			} else {
 				#if WITH_EDITOR
 					FNotificationInfo notificationInfo(FText::FromString(TEXT("UnrealCLR host is not initialized! Please, check logs and try to restart the engine.")));
