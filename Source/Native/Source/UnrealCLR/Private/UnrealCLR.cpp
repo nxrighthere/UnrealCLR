@@ -1274,28 +1274,32 @@ void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
 }
 
 void UnrealCLR::Module::Exception(const char* Message) {
-	UE_LOG(LogUnrealCLR, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(ANSI_TO_TCHAR(Message)));
+	FString message(ANSI_TO_TCHAR(Message));
 
-	GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+	UE_LOG(LogUnrealCLR, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
+
+	GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *message);
 }
 
 void UnrealCLR::Module::Log(UnrealCLR::LogLevel Level, const char* Message) {
-	#define UNREALCLR_LOG(Verbosity) UE_LOG(LogUnrealCLR, Verbosity, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(ANSI_TO_TCHAR(Message)));
+	#define UNREALCLR_LOG(Verbosity) UE_LOG(LogUnrealCLR, Verbosity, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
+
+	FString message(ANSI_TO_TCHAR(Message));
 
 	if (Level == UnrealCLR::LogLevel::Display) {
 		UNREALCLR_LOG(Display);
 	} else if (Level == UnrealCLR::LogLevel::Warning) {
 		UNREALCLR_LOG(Warning);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Yellow, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Yellow, *message);
 	} else if (Level == UnrealCLR::LogLevel::Error) {
 		UNREALCLR_LOG(Error);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *message);
 	} else if (Level == UnrealCLR::LogLevel::Fatal) {
 		UNREALCLR_LOG(Error);
 
-		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+		GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *message);
 
 		UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 	}
