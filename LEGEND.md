@@ -1,3 +1,5 @@
+_The vast majority of information in the following links is outdated and can be used only for historical references._
+
 #### First video teaser
 
 https://www.reddit.com/r/csharp/comments/fcpj2f/integration_of_net_core_into_the_unreal_engine_4/ </br>
