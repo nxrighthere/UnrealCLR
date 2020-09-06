@@ -67,7 +67,7 @@ namespace UnrealEngine.Tests {
 			playerInput.RemoveActionMapping(removableAction, removableKey);
 		}
 
-		public void OnTick() {
+		public void OnTick(float deltaTime) {
 			TimeTest();
 			MousePositionTest();
 			WindowTest();

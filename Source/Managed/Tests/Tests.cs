@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using UnrealEngine.Framework;
 
@@ -21,6 +22,9 @@ namespace UnrealEngine.Tests {
 		private static StaticMeshes staticMeshes;
 		private static TextureAssets textureAssets;
 		private static TestSystems testSystem;
+		private static event Action OnBeginPlay;
+		private static event Action<float> OnTick;
+		private static event Action OnEndPlay;
 
 		public static void OnWorldPostBegin() {
 			Debug.Log(LogLevel.Display, "Hello, Unreal Engine!");
@@ -31,186 +35,120 @@ namespace UnrealEngine.Tests {
 			switch (testSystem) {
 				case TestSystems.AssertionConsistency:
 					assertionConsistency = new AssertionConsistency();
-					assertionConsistency.OnBeginPlay();
+					OnBeginPlay += assertionConsistency.OnBeginPlay;
 					break;
 
 				case TestSystems.AudioPlayback:
 					audioPlayback = new AudioPlayback();
-					audioPlayback.OnBeginPlay();
+					OnBeginPlay += audioPlayback.OnBeginPlay;
+					OnEndPlay += audioPlayback.OnEndPlay;
 					break;
 
 				case TestSystems.BlueprintsExtensibility:
 					blueprintsExtensibility = new BlueprintsExtensibility();
-					blueprintsExtensibility.OnBeginPlay();
+					OnBeginPlay += blueprintsExtensibility.OnBeginPlay;
+					OnEndPlay += blueprintsExtensibility.OnEndPlay;
 					break;
 
 				case TestSystems.DebugVisualization:
 					debugVisualization = new DebugVisualization();
-					debugVisualization.OnBeginPlay();
+					OnBeginPlay += debugVisualization.OnBeginPlay;
+					OnEndPlay += debugVisualization.OnEndPlay;
 					break;
 
 				case TestSystems.DynamicEvents:
 					dynamicEvents = new DynamicEvents();
-					dynamicEvents.OnBeginPlay();
+					OnBeginPlay += dynamicEvents.OnBeginPlay;
+					OnTick += dynamicEvents.OnTick;
+					OnEndPlay += dynamicEvents.OnEndPlay;
 					break;
 
 				case TestSystems.DynamicsConsistency:
 					dynamicsConsistency = new DynamicsConsistency();
-					dynamicsConsistency.OnBeginPlay();
+					OnBeginPlay += dynamicsConsistency.OnBeginPlay;
+					OnTick += dynamicsConsistency.OnTick;
+					OnEndPlay += dynamicsConsistency.OnEndPlay;
 					break;
 
 				case TestSystems.ExceptionsConsistency:
 					exceptionsConsistency = new ExceptionsConsistency();
-					exceptionsConsistency.OnBeginPlay();
+					OnBeginPlay += exceptionsConsistency.OnBeginPlay;
+					OnEndPlay += exceptionsConsistency.OnEndPlay;
 					break;
 
 				case TestSystems.ExternalConsistency:
 					externalConsistency = new ExternalConsistency();
-					externalConsistency.OnBeginPlay();
+					OnBeginPlay += externalConsistency.OnBeginPlay;
 					break;
 
 				case TestSystems.InstancedStaticMeshes:
 					instancedStaticMeshes = new InstancedStaticMeshes();
-					instancedStaticMeshes.OnBeginPlay();
+					OnBeginPlay += instancedStaticMeshes.OnBeginPlay;
+					OnTick += instancedStaticMeshes.OnTick;
+					OnEndPlay += instancedStaticMeshes.OnEndPlay;
 					break;
 
 				case TestSystems.ObjectOrientedDesign:
 					objectOrientedDesign = new ObjectOrientedDesign();
-					objectOrientedDesign.OnBeginPlay();
+					OnBeginPlay += objectOrientedDesign.OnBeginPlay;
+					OnTick += objectOrientedDesign.OnTick;
+					OnEndPlay += objectOrientedDesign.OnEndPlay;
 					break;
 
 				case TestSystems.PhysicsSimulation:
 					physicsSimulation = new PhysicsSimulation();
-					physicsSimulation.OnBeginPlay();
+					OnBeginPlay += physicsSimulation.OnBeginPlay;
+					OnTick += physicsSimulation.OnTick;
+					OnEndPlay += physicsSimulation.OnEndPlay;
 					break;
 
 				case TestSystems.RadialForce:
 					radialForce = new RadialForce();
-					radialForce.OnBeginPlay();
+					OnBeginPlay += radialForce.OnBeginPlay;
+					OnEndPlay += radialForce.OnEndPlay;
 					break;
 
 				case TestSystems.RuntimeConsistency:
 					runtimeConsistency = new RuntimeConsistency();
-					runtimeConsistency.OnBeginPlay();
+					OnBeginPlay += runtimeConsistency.OnBeginPlay;
 					break;
 
 				case TestSystems.SkeletalMeshes:
 					skeletalMeshes = new SkeletalMeshes();
-					skeletalMeshes.OnBeginPlay();
+					OnBeginPlay += skeletalMeshes.OnBeginPlay;
+					OnEndPlay += skeletalMeshes.OnEndPlay;
 					break;
 
 				case TestSystems.SpatialQueries:
 					spatialQueries = new SpatialQueries();
-					spatialQueries.OnBeginPlay();
+					OnBeginPlay += spatialQueries.OnBeginPlay;
+					OnEndPlay += spatialQueries.OnEndPlay;
 					break;
 
 				case TestSystems.StaticMeshes:
 					staticMeshes = new StaticMeshes();
-					staticMeshes.OnBeginPlay();
+					OnBeginPlay += staticMeshes.OnBeginPlay;
+					OnTick += staticMeshes.OnTick;
+					OnEndPlay += staticMeshes.OnEndPlay;
 					break;
 
 				case TestSystems.TextureAssets:
 					textureAssets = new TextureAssets();
-					textureAssets.OnBeginPlay();
+					OnBeginPlay += textureAssets.OnBeginPlay;
+					OnEndPlay += textureAssets.OnEndPlay;
 					break;
 
 				default:
 					break;
 			}
+
+			OnBeginPlay?.Invoke();
 		}
 
-		public static void OnWorldPrePhysicsTick(float deltaTime) {
-			switch (testSystem) {
-				case TestSystems.DynamicEvents:
-					dynamicEvents.OnTick();
-					break;
-
-				case TestSystems.DynamicsConsistency:
-					dynamicsConsistency.OnTick();
-					break;
-
-				case TestSystems.InstancedStaticMeshes:
-					instancedStaticMeshes.OnTick(deltaTime);
-					break;
-
-				case TestSystems.ObjectOrientedDesign:
-					objectOrientedDesign.OnTick(deltaTime);
-					break;
-
-				case TestSystems.PhysicsSimulation:
-					physicsSimulation.OnTick(deltaTime);
-					break;
-
-				case TestSystems.StaticMeshes:
-					staticMeshes.OnTick(deltaTime);
-					break;
-
-				default:
-					break;
-			}
-		}
+		public static void OnWorldPrePhysicsTick(float deltaTime) => OnTick?.Invoke(deltaTime);
 
 		public static void OnWorldEnd() {
-			switch (testSystem) {
-				case TestSystems.AudioPlayback:
-					audioPlayback.OnEndPlay();
-					break;
-
-				case TestSystems.BlueprintsExtensibility:
-					blueprintsExtensibility.OnEndPlay();
-					break;
-
-				case TestSystems.DebugVisualization:
-					debugVisualization.OnEndPlay();
-					break;
-
-				case TestSystems.DynamicEvents:
-					dynamicEvents.OnEndPlay();
-					break;
-
-				case TestSystems.DynamicsConsistency:
-					dynamicsConsistency.OnEndPlay();
-					break;
-
-				case TestSystems.ExceptionsConsistency:
-					exceptionsConsistency.OnEndPlay();
-					break;
-
-				case TestSystems.InstancedStaticMeshes:
-					instancedStaticMeshes.OnEndPlay();
-					break;
-
-				case TestSystems.ObjectOrientedDesign:
-					objectOrientedDesign.OnEndPlay();
-					break;
-
-				case TestSystems.PhysicsSimulation:
-					physicsSimulation.OnEndPlay();
-					break;
-
-				case TestSystems.RadialForce:
-					radialForce.OnEndPlay();
-					break;
-
-				case TestSystems.SkeletalMeshes:
-					skeletalMeshes.OnEndPlay();
-					break;
-
-				case TestSystems.SpatialQueries:
-					spatialQueries.OnEndPlay();
-					break;
-
-				case TestSystems.StaticMeshes:
-					staticMeshes.OnEndPlay();
-					break;
-
-				case TestSystems.TextureAssets:
-					textureAssets.OnEndPlay();
-					break;
-
-				default:
-					break;
-			}
+			OnEndPlay?.Invoke();
 
 			Debug.Log(LogLevel.Display, "See you soon, Unreal Engine!");
 		}

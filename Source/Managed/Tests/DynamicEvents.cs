@@ -95,7 +95,7 @@ namespace UnrealEngine.Tests {
 			rightStaticMeshComponent.SetSimulatePhysics(true);
 		}
 
-		public void OnTick() {
+		public void OnTick(float deltaTime) {
 			Translate(leftStaticMeshComponent, 750.0f);
 			Translate(rightStaticMeshComponent, -750.0f);
 		}
