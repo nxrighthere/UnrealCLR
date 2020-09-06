@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x277;
+		internal const int checksum = 0x279;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -88,6 +88,7 @@ namespace UnrealEngine.Framework {
 				Object.getULong = GenerateOptimizedFunction<Object.GetULongFunction>(objectFunctions[head++]);
 				Object.getFloat = GenerateOptimizedFunction<Object.GetFloatFunction>(objectFunctions[head++]);
 				Object.getDouble = GenerateOptimizedFunction<Object.GetDoubleFunction>(objectFunctions[head++]);
+				Object.getEnum = GenerateOptimizedFunction<Object.GetEnumFunction>(objectFunctions[head++]);
 				Object.getText = GenerateOptimizedFunction<Object.GetTextFunction>(objectFunctions[head++]);
 				Object.setBool = GenerateOptimizedFunction<Object.SetBoolFunction>(objectFunctions[head++]);
 				Object.setByte = GenerateOptimizedFunction<Object.SetByteFunction>(objectFunctions[head++]);
@@ -99,6 +100,7 @@ namespace UnrealEngine.Framework {
 				Object.setULong = GenerateOptimizedFunction<Object.SetULongFunction>(objectFunctions[head++]);
 				Object.setFloat = GenerateOptimizedFunction<Object.SetFloatFunction>(objectFunctions[head++]);
 				Object.setDouble = GenerateOptimizedFunction<Object.SetDoubleFunction>(objectFunctions[head++]);
+				Object.setEnum = GenerateOptimizedFunction<Object.SetEnumFunction>(objectFunctions[head++]);
 				Object.setText = GenerateOptimizedFunction<Object.SetTextFunction>(objectFunctions[head++]);
 			}
 
@@ -1242,6 +1244,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool GetULongFunction(IntPtr @object, string name, ref ulong value);
 		internal delegate Bool GetFloatFunction(IntPtr @object, string name, ref float value);
 		internal delegate Bool GetDoubleFunction(IntPtr @object, string name, ref double value);
+		internal delegate Bool GetEnumFunction(IntPtr @object, string name, ref int value);
 		internal delegate Bool GetTextFunction(IntPtr @object, string name, byte[] value);
 		internal delegate Bool SetBoolFunction(IntPtr @object, string name, Bool value);
 		internal delegate Bool SetByteFunction(IntPtr @object, string name, byte value);
@@ -1253,6 +1256,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool SetULongFunction(IntPtr @object, string name, ulong value);
 		internal delegate Bool SetFloatFunction(IntPtr @object, string name, float value);
 		internal delegate Bool SetDoubleFunction(IntPtr @object, string name, double value);
+		internal delegate Bool SetEnumFunction(IntPtr @object, string name, int value);
 		internal delegate Bool SetTextFunction(IntPtr @object, string name, string value);
 
 		internal static IsPendingKillFunction isPendingKill;
@@ -1273,6 +1277,7 @@ namespace UnrealEngine.Framework {
 		internal static GetULongFunction getULong;
 		internal static GetFloatFunction getFloat;
 		internal static GetDoubleFunction getDouble;
+		internal static GetEnumFunction getEnum;
 		internal static GetTextFunction getText;
 		internal static SetBoolFunction setBool;
 		internal static SetByteFunction setByte;
@@ -1284,6 +1289,7 @@ namespace UnrealEngine.Framework {
 		internal static SetULongFunction setULong;
 		internal static SetFloatFunction setFloat;
 		internal static SetDoubleFunction setDouble;
+		internal static SetEnumFunction setEnum;
 		internal static SetTextFunction setText;
 	}
 

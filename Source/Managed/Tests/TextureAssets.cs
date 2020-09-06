@@ -1,14 +1,11 @@
 using System;
 using System.Drawing;
 using System.Numerics;
-using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class TextureAssets {
-		public static void OnBeginPlay() {
-			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
-
+	public class TextureAssets {
+		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
 			Actor actor = new Actor();
@@ -25,6 +22,6 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Pixel format: " + texture.GetPixelFormat());
 		}
 
-		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
+		public void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

@@ -4224,6 +4224,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the value of the enum property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetEnum<T>(string name, ref T value) where T : Enum {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			int data = 0;
+
+			if (Object.getEnum(Pointer, name, ref data)) {
+				value = (T)Enum.ToObject(typeof(T), data);
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Retrieves the value of the text property
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
@@ -4349,6 +4368,17 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			return Object.setDouble(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the enum property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetEnum<T>(string name, T value) where T : Enum {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
 		}
 
 		/// <summary>
@@ -5803,6 +5833,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the value of the enum property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetEnum<T>(string name, ref T value) where T : Enum {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			int data = 0;
+
+			if (Object.getEnum(Pointer, name, ref data)) {
+				value = (T)Enum.ToObject(typeof(T), data);
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Retrieves the value of the text property
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
@@ -5928,6 +5977,17 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			return Object.setDouble(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the enum property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetEnum<T>(string name, T value) where T : Enum {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
 		}
 
 		/// <summary>
@@ -6711,6 +6771,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the value of the enum property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetEnum<T>(string name, ref T value) where T : Enum {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			int data = 0;
+
+			if (Object.getEnum(Pointer, name, ref data)) {
+				value = (T)Enum.ToObject(typeof(T), data);
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Retrieves the value of the text property
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
@@ -6836,6 +6915,17 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			return Object.setDouble(Pointer, name, value);
+		}
+
+		/// <summary>
+		/// Sets the value of the enum property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetEnum<T>(string name, T value) where T : Enum {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
 		}
 
 		/// <summary>

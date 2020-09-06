@@ -1,14 +1,11 @@
 using System;
 using System.Drawing;
 using System.Numerics;
-using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class SkeletalMeshes {
-		public static void OnBeginPlay() {
-			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
-
+	public class SkeletalMeshes {
+		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
 			SkeletalMesh prototypeMesh = SkeletalMesh.Load("/Game/Tests/Characters/Prototype");
@@ -44,6 +41,6 @@ namespace UnrealEngine.Tests {
 			Assert.IsTrue(rightSkeletalMeshComponent.GetBoneName(0) == "root");
 		}
 
-		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
+		public void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

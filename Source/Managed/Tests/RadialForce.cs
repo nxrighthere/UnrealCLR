@@ -1,14 +1,11 @@
 using System;
 using System.Drawing;
 using System.Numerics;
-using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class RadialForce {
-		public static void OnBeginPlay() {
-			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
-
+	public class RadialForce {
+		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
 			const int maxActors = 100;
@@ -40,6 +37,6 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, "Actors are spawned! Number of actors in the world: " + World.ActorCount);
 		}
 
-		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
+		public void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

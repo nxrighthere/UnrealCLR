@@ -1,15 +1,14 @@
 using System;
 using System.Drawing;
 using System.Numerics;
-using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class DynamicsConsistency {
-		private static PlayerController playerController = World.GetFirstPlayerController();
-		private static PlayerInput playerInput = playerController.GetPlayerInput();
-		private static ConsoleVariable variable = ConsoleManager.RegisterVariable(consoleVariable, "A test variable", variableValue);
-		private static uint commandsCount = 0;
+	public class DynamicsConsistency {
+		private PlayerController playerController;
+		private PlayerInput playerInput;
+		private ConsoleVariable variable;
+		private uint commandsCount;
 		private const int variableValue = 64;
 		private const string consoleVariable = "TestVariable";
 		private const string consoleCommand = "TestCommand";
@@ -23,7 +22,14 @@ namespace UnrealEngine.Tests {
 		private const string mouseXKey = Keys.MouseX;
 		private const string mouseYKey = Keys.MouseY;
 
-		public static void OnBeginPlay() {
+		public DynamicsConsistency() {
+			playerController = World.GetFirstPlayerController();
+			playerInput = playerController.GetPlayerInput();
+			variable = ConsoleManager.RegisterVariable(consoleVariable, "A test variable", variableValue);
+			commandsCount = 0;
+		}
+
+		public void OnBeginPlay() {
 			Assert.IsFalse(variable.IsBool);
 			Assert.IsFalse(variable.IsFloat);
 			Assert.IsFalse(variable.IsString);
@@ -61,13 +67,7 @@ namespace UnrealEngine.Tests {
 			playerInput.RemoveActionMapping(removableAction, removableKey);
 		}
 
-		public static void OnEndPlay() {
-			ConsoleManager.UnregisterObject(consoleVariable);
-			ConsoleManager.UnregisterObject(consoleCommand);
-			Debug.ClearOnScreenMessages();
-		}
-
-		public static void OnTick() {
+		public void OnTick() {
 			TimeTest();
 			MousePositionTest();
 			WindowTest();
@@ -76,25 +76,31 @@ namespace UnrealEngine.Tests {
 			ConsoleTest();
 		}
 
-		private static void VariableEvent() => Debug.AddOnScreenMessage(-1, 5.0f, Color.LightBlue, "Variable has changed: " + variable.GetInt());
+		public void OnEndPlay() {
+			ConsoleManager.UnregisterObject(consoleVariable);
+			ConsoleManager.UnregisterObject(consoleCommand);
+			Debug.ClearOnScreenMessages();
+		}
 
-		private static void ConsoleCommand(float value) => Debug.AddOnScreenMessage(-1, 5.0f, Color.LightGreen, "Test console command executed: " + value);
+		private void VariableEvent() => Debug.AddOnScreenMessage(-1, 5.0f, Color.LightBlue, "Variable has changed: " + variable.GetInt());
 
-		private static void PauseResume() => playerController.SetPause(!playerController.IsPaused);
+		private void ConsoleCommand(float value) => Debug.AddOnScreenMessage(-1, 5.0f, Color.LightGreen, "Test console command executed: " + value);
 
-		private static void PlayerCommand() => playerController.ConsoleCommand(consoleCommand + " " + ++commandsCount);
+		private void PauseResume() => playerController.SetPause(!playerController.IsPaused);
 
-		private static void MouseXMessage(float axisValue) => Debug.AddOnScreenMessage(1, 3.0f, Color.PaleGoldenrod, "Mouse X axis value: " + axisValue);
+		private void PlayerCommand() => playerController.ConsoleCommand(consoleCommand + " " + ++commandsCount);
 
-		private static void MouseYMessage(float axisValue) => Debug.AddOnScreenMessage(2, 3.0f, Color.PaleGoldenrod, "Mouse Y axis value: " + axisValue);
+		private void MouseXMessage(float axisValue) => Debug.AddOnScreenMessage(1, 3.0f, Color.PaleGoldenrod, "Mouse X axis value: " + axisValue);
 
-		private static void TimeTest() {
+		private void MouseYMessage(float axisValue) => Debug.AddOnScreenMessage(2, 3.0f, Color.PaleGoldenrod, "Mouse Y axis value: " + axisValue);
+
+		private void TimeTest() {
 			Debug.AddOnScreenMessage(3, 3.0f, Color.LightCyan, "Time: " + World.RealTime);
 			Debug.AddOnScreenMessage(4, 3.0f, Color.LightCyan, "Delta time: " + World.DeltaTime);
 			Debug.AddOnScreenMessage(5, 3.0f, Color.LightCyan, "Real time: " + World.RealTime);
 		}
 
-		private static void MousePositionTest() {
+		private void MousePositionTest() {
 			float mousePositionX = 0.0f;
 			float mousePositionY = 0.0f;
 
@@ -104,7 +110,7 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(8, 3.0f, Color.MediumAquamarine, "Mouse position Y: " + mousePositionY);
 		}
 
-		private static void WindowTest() {
+		private void WindowTest() {
 			Vector2 viewportSize = default;
 
 			Engine.GetViewportSize(ref viewportSize);
@@ -115,20 +121,20 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(12, 3.0f, Color.LightSteelBlue, "Window mode: " + Engine.WindowMode);
 		}
 
-		private static void ActionBindingsTest() {
+		private void ActionBindingsTest() {
 			Debug.AddOnScreenMessage(13, 3.0f, Color.Orange, "Action bindings: " + playerController.InputComponent.ActionBindingsNumber);
 			Debug.AddOnScreenMessage(14, 3.0f, Color.Orange, "Press [" + pauseResumeKey + "] key to pause/resume");
 			Debug.AddOnScreenMessage(15, 3.0f, Color.Orange, "Press [" + playerCommandKey + "] key to execute a player command");
 		}
 
-		private static void KeyPressTest() {
+		private void KeyPressTest() {
 			Debug.AddOnScreenMessage(16, 3.0f, Color.Khaki, "Press [" + messageKey + "] key for a message");
 
 			if (playerInput.IsKeyPressed(Keys.E))
 				Debug.AddOnScreenMessage(-1, 0.1f, Color.LightSalmon, "[" + messageKey + "] key pressed!");
 		}
 
-		private static void ConsoleTest() {
+		private void ConsoleTest() {
 			Debug.AddOnScreenMessage(17, 3.0f, Color.YellowGreen, "Enter " + consoleVariable + " (value) to the console to change a variable");
 			Debug.AddOnScreenMessage(18, 3.0f, Color.YellowGreen, "Enter " + consoleCommand + " (value) to the console to execute a command");
 		}

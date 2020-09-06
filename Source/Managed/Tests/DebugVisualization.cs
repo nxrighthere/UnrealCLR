@@ -1,14 +1,11 @@
 using System;
 using System.Drawing;
 using System.Numerics;
-using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class DebugVisualization {
-		public static void OnBeginPlay() {
-			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, MethodBase.GetCurrentMethod().DeclaringType + " system started!");
-
+	public class DebugVisualization {
+		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
 			const float linesThickness = 3.0f;
@@ -25,6 +22,6 @@ namespace UnrealEngine.Tests {
 			Debug.DrawPoint(new Vector3(0.0f, 350.0f, -150.0f), 8.0f, Color.MediumVioletRed, true);
 		}
 
-		public static void OnEndPlay() => Debug.ClearOnScreenMessages();
+		public void OnEndPlay() => Debug.ClearOnScreenMessages();
 	}
 }

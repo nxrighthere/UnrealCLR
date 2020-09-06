@@ -2,11 +2,11 @@ using System;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class ExceptionsConsistency {
+	public class ExceptionsConsistency {
 		private const string consoleVariable = "TestVariable";
 		private const string consoleCommand = "TestCommand";
 
-		public static void OnBeginPlay() {
+		public void OnBeginPlay() {
 			ConsoleVariable variable = ConsoleManager.RegisterVariable(consoleVariable, "A test variable", 0);
 
 			ConsoleManager.RegisterCommand(consoleCommand, "A test command", ConsoleCommand);
@@ -21,14 +21,14 @@ namespace UnrealEngine.Tests {
 			throw new Exception("Test exception (OnBeginPlay)");
 		}
 
-		public static void OnEndPlay() {
+		public void OnEndPlay() {
 			ConsoleManager.UnregisterObject(consoleVariable);
 			ConsoleManager.UnregisterObject(consoleCommand);
 			Debug.ClearOnScreenMessages();
 		}
 
-		private static void VariableEvent() => throw new Exception("Test exception (VariableEvent)");
+		private void VariableEvent() => throw new Exception("Test exception (VariableEvent)");
 
-		private static void ConsoleCommand(float value) => throw new Exception("Test exception (ConsoleCommand)");
+		private void ConsoleCommand(float value) => throw new Exception("Test exception (ConsoleCommand)");
 	}
 }

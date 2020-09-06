@@ -568,6 +568,22 @@ namespace UnrealCLRFramework {
 			UNREALCLR_GET_PROPERTY_VALUE(FDoubleProperty, Object, Name, Value);
 		}
 
+		bool GetEnum(UObject* Object, const char* Name, int32* Value) {
+			FName name(ANSI_TO_TCHAR(Name));
+
+			for (TFieldIterator<FNumericProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
+				FNumericProperty* property = *currentProperty;
+
+				if (property->GetFName() == name) {
+					*Value = static_cast<int32>(property->GetSignedIntPropertyValue(property->ContainerPtrToValuePtr<int32>(Object)));
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 		bool GetText(UObject* Object, const char* Name, char* Value) {
 			FName name(ANSI_TO_TCHAR(Name));
 
@@ -624,6 +640,22 @@ namespace UnrealCLRFramework {
 
 		bool SetDouble(UObject* Object, const char* Name, double Value) {
 			UNREALCLR_SET_PROPERTY_VALUE(FDoubleProperty, Object, Name, Value);
+		}
+
+		bool SetEnum(UObject* Object, const char* Name, int32 Value) {
+			FName name(ANSI_TO_TCHAR(Name));
+
+			for (TFieldIterator<FNumericProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
+				FNumericProperty* property = *currentProperty;
+
+				if (property->GetFName() == name) {
+					property->SetIntPropertyValue(property->ContainerPtrToValuePtr<int32>(Object), static_cast<int64>(Value));
+
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		bool SetText(UObject* Object, const char* Name, const char* Value) {

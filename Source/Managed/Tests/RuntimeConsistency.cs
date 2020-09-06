@@ -5,8 +5,8 @@ using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class RuntimeConsistency {
-		public static void OnBeginPlay() {
+	public class RuntimeConsistency {
+		public void OnBeginPlay() {
 			ActorMemoryManagementTest();
 			ComponentMemoryManagementTest();
 			ActorBlueprintClassesMatchingTest();
@@ -18,7 +18,7 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(-1, 10.0f, Color.MediumTurquoise, "Verify " + MethodBase.GetCurrentMethod().DeclaringType + " results in output log!");
 		}
 
-		private static void ActorMemoryManagementTest() {
+		private void ActorMemoryManagementTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
@@ -41,7 +41,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Error, "Test failed!");
 		}
 
-		private static void ComponentMemoryManagementTest() {
+		private void ComponentMemoryManagementTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
@@ -64,7 +64,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Error, "Test failed!");
 		}
 
-		private static void ActorBlueprintClassesMatchingTest() {
+		private void ActorBlueprintClassesMatchingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
@@ -84,7 +84,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Error, "Test failed!");
 		}
 
-		private static void ComponentBlueprintClassesMatchingTest() {
+		private void ComponentBlueprintClassesMatchingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
@@ -105,7 +105,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Error, "Test failed!");
 		}
 
-		private static void DuplicateActorMemoryManagementTest() {
+		private void DuplicateActorMemoryManagementTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			const string actorName = "Player";
@@ -138,7 +138,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Error, "Test failed!");
 		}
 
-		private static void DuplicateComponentMemoryManagementTest() {
+		private void DuplicateComponentMemoryManagementTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
@@ -169,7 +169,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Error, "Test failed!");
 		}
 
-		private static void ConsoleVariablesMemoryManagementTest() {
+		private void ConsoleVariablesMemoryManagementTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			const string variableName = "TestVariable";

@@ -5,8 +5,8 @@ using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class ExternalConsistency {
-		public static void OnBeginPlay() {
+	public class ExternalConsistency {
+		public void OnBeginPlay() {
 			CommandLineArgumentsTest();
 			ReferencesEqualityTest();
 			NamingTest();
@@ -22,7 +22,7 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(-1, 10.0f, Color.MediumTurquoise, "Verify " + MethodBase.GetCurrentMethod().DeclaringType + " results in output log!");
 		}
 
-		private static void CommandLineArgumentsTest() {
+		private void CommandLineArgumentsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			string append = " -test 1";
@@ -76,7 +76,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void ReferencesEqualityTest() {
+		private void ReferencesEqualityTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			TriggerBox actorLeft = new TriggerBox();
@@ -137,7 +137,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void NamingTest() {
+		private void NamingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			const string actorName = "TestActorName";
@@ -184,7 +184,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void HashCodesTest() {
+		private void HashCodesTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actorLeft = new Actor();
@@ -223,7 +223,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void ActorsHierarchyTest() {
+		private void ActorsHierarchyTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			const string actorName = "TestPlayerController";
@@ -249,7 +249,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void ChildActorsTest() {
+		private void ChildActorsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new Actor();
@@ -276,7 +276,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void ComponentsAttachmentTest() {
+		private void ComponentsAttachmentTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new Actor();
@@ -301,7 +301,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void ComponentsMatchingTest() {
+		private void ComponentsMatchingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new Actor();
@@ -336,7 +336,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void ObjectIDsTest() {
+		private void ObjectIDsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new Actor();
@@ -361,7 +361,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void MaxFramesPerSecondTest() {
+		private void MaxFramesPerSecondTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			float currentMaxFPS = Engine.MaxFPS;
@@ -382,7 +382,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
-		private static void TagsTest() {
+		private void TagsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new Actor();

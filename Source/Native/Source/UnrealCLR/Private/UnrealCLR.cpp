@@ -195,6 +195,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetULong;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetFloat;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetDouble;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetEnum;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetText;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetBool;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetByte;
@@ -206,6 +207,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetULong;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetFloat;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetDouble;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetEnum;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::SetText;
 
 				checksum += head;
