@@ -4878,12 +4878,12 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns <c>true</c> if the character can crouch
 		/// </summary>
-		public bool CanCrouch() => canCrouch(Pointer);
+		public bool CanCrouch => canCrouch(Pointer);
 
 		/// <summary>
 		/// Returns <c>true</c> if the character can jump
 		/// </summary>
-		public bool CanJump() => canJump(Pointer);
+		public bool CanJump => canJump(Pointer);
 
 		/// <summary>
 		/// Triggers jump if a jump button is pressed
@@ -7198,6 +7198,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if the component is visible in the current context
+		/// </summary>
+		public bool IsVisible => isVisible(Pointer);
+
+		/// <summary>
 		/// Returns <c>true</c> if the a socket with the given name exists
 		/// </summary>
 		public bool IsSocketExists(string socketName) {
@@ -7458,6 +7463,11 @@ namespace UnrealEngine.Framework {
 		/// Sets how often the component is allowed to move at runtime
 		/// </summary>
 		public void SetMobility(ComponentMobility mobility) => setMobility(Pointer, mobility);
+
+		/// <summary>
+		/// Sets the visibility of the component
+		/// </summary>
+		public void SetVisibility(bool newVisibility, bool propagateToChildren = false) => setVisibility(Pointer, newVisibility, propagateToChildren);
 
 		/// <summary>
 		/// Sets the location of the component relative to its parent
@@ -7749,7 +7759,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns <c>true</c> if the collision test displacement being applied
 		/// </summary>
-		public bool IsCollisionFixApplied() => isCollisionFixApplied(Pointer);
+		public bool IsCollisionFixApplied => isCollisionFixApplied(Pointer);
 
 		/// <summary>
 		/// Gets or sets whether draw markers at the camera target (in green) and the lagged position (in yellow) if the camera location lag is enabled

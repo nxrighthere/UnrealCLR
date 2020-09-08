@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x279;
+		internal const int checksum = 0x27B;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -497,6 +497,7 @@ namespace UnrealEngine.Framework {
 
 				SceneComponent.isAttachedToComponent = GenerateOptimizedFunction<SceneComponent.IsAttachedToComponentFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.isAttachedToActor = GenerateOptimizedFunction<SceneComponent.IsAttachedToActorFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.isVisible = GenerateOptimizedFunction<SceneComponent.IsVisibleFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.isSocketExists = GenerateOptimizedFunction<SceneComponent.IsSocketExistsFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.hasAnySockets = GenerateOptimizedFunction<SceneComponent.HasAnySocketsFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.create = GenerateOptimizedFunction<SceneComponent.CreateFunction>(sceneComponentFunctions[head++]);
@@ -525,6 +526,7 @@ namespace UnrealEngine.Framework {
 				SceneComponent.getRightVector = GenerateOptimizedFunction<SceneComponent.GetRightVectorFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.getUpVector = GenerateOptimizedFunction<SceneComponent.GetUpVectorFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setMobility = GenerateOptimizedFunction<SceneComponent.SetMobilityFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.setVisibility = GenerateOptimizedFunction<SceneComponent.SetVisibilityFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setRelativeLocation = GenerateOptimizedFunction<SceneComponent.SetRelativeLocationFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setRelativeRotation = GenerateOptimizedFunction<SceneComponent.SetRelativeRotationFunction>(sceneComponentFunctions[head++]);
 				SceneComponent.setRelativeTransform = GenerateOptimizedFunction<SceneComponent.SetRelativeTransformFunction>(sceneComponentFunctions[head++]);
@@ -1920,6 +1922,7 @@ namespace UnrealEngine.Framework {
 	partial class SceneComponent {
 		internal delegate Bool IsAttachedToComponentFunction(IntPtr sceneComponent, IntPtr component);
 		internal delegate Bool IsAttachedToActorFunction(IntPtr sceneComponent, IntPtr actor);
+		internal delegate Bool IsVisibleFunction(IntPtr sceneComponent);
 		internal delegate Bool IsSocketExistsFunction(IntPtr sceneComponent, string socketName);
 		internal delegate Bool HasAnySocketsFunction(IntPtr sceneComponent);
 		internal delegate IntPtr CreateFunction(IntPtr actor, ComponentType type, string name, Bool setAsRoot, IntPtr blueprint);
@@ -1948,6 +1951,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void GetRightVectorFunction(IntPtr sceneComponent, ref Vector3 value);
 		internal delegate void GetUpVectorFunction(IntPtr sceneComponent, ref Vector3 value);
 		internal delegate void SetMobilityFunction(IntPtr sceneComponent, ComponentMobility mobility);
+		internal delegate void SetVisibilityFunction(IntPtr sceneComponent, Bool newVisibility, Bool propagateToChildren);
 		internal delegate void SetRelativeLocationFunction(IntPtr sceneComponent, in Vector3 location);
 		internal delegate void SetRelativeRotationFunction(IntPtr sceneComponent, in Quaternion rotation);
 		internal delegate void SetRelativeTransformFunction(IntPtr sceneComponent, in Transform transform);
@@ -1958,6 +1962,7 @@ namespace UnrealEngine.Framework {
 
 		internal static IsAttachedToComponentFunction isAttachedToComponent;
 		internal static IsAttachedToActorFunction isAttachedToActor;
+		internal static IsVisibleFunction isVisible;
 		internal static IsSocketExistsFunction isSocketExists;
 		internal static HasAnySocketsFunction hasAnySockets;
 		internal static CreateFunction create;
@@ -1986,6 +1991,7 @@ namespace UnrealEngine.Framework {
 		internal static GetRightVectorFunction getRightVector;
 		internal static GetUpVectorFunction getUpVector;
 		internal static SetMobilityFunction setMobility;
+		internal static SetVisibilityFunction setVisibility;
 		internal static SetRelativeLocationFunction setRelativeLocation;
 		internal static SetRelativeRotationFunction setRelativeRotation;
 		internal static SetRelativeTransformFunction setRelativeTransform;

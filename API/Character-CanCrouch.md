@@ -1,8 +1,8 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Character](./Character.md 'UnrealEngine.Framework.Character')
-## Character.CanJump() Method
-Returns `true` if the character can jump  
+## Character.CanCrouch Property
+Returns `true` if the character can crouch  
 ```csharp
-public bool CanJump();
+public bool CanCrouch { get; }
 ```
-#### Returns
+#### Property Value
 [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  

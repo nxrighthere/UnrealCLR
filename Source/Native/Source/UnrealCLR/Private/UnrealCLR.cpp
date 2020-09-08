@@ -654,6 +654,7 @@ void UnrealCLR::Module::StartupModule() {
 
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsAttachedToComponent;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsAttachedToActor;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsVisible;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsSocketExists;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::HasAnySockets;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::Create;
@@ -682,6 +683,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetRightVector;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetUpVector;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetMobility;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetVisibility;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetRelativeLocation;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetRelativeRotation;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::SetRelativeTransform;

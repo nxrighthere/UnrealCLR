@@ -2007,6 +2007,10 @@ namespace UnrealCLRFramework {
 			return false;
 		}
 
+		bool IsVisible(USceneComponent* SceneComponent) {
+			return SceneComponent->IsVisible();
+		}
+
 		bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName) {
 			return SceneComponent->DoesSocketExist(FName(ANSI_TO_TCHAR(SocketName)));
 		}
@@ -2159,6 +2163,10 @@ namespace UnrealCLRFramework {
 
 		void SetMobility(USceneComponent* SceneComponent, ComponentMobility Mobility) {
 			SceneComponent->SetMobility(Mobility);
+		}
+
+		void SetVisibility(USceneComponent* SceneComponent, bool NewVisibility, bool PropagateToChildren) {
+			SceneComponent->SetVisibility(NewVisibility, PropagateToChildren);
 		}
 
 		void SetRelativeLocation(USceneComponent* SceneComponent, const Vector3* Location) {

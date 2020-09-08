@@ -18,6 +18,7 @@ Derived
 - [SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./SceneComponent-SceneComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.SceneComponent.SceneComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
 - [HasAnySockets](./SceneComponent-HasAnySockets.md 'UnrealEngine.Framework.SceneComponent.HasAnySockets')
+- [IsVisible](./SceneComponent-IsVisible.md 'UnrealEngine.Framework.SceneComponent.IsVisible')
 ### Methods
 - [Activate()](./SceneComponent-Activate().md 'UnrealEngine.Framework.SceneComponent.Activate()')
 - [AddLocalOffset(System.Numerics.Vector3)](./SceneComponent-AddLocalOffset(Vector3).md 'UnrealEngine.Framework.SceneComponent.AddLocalOffset(System.Numerics.Vector3)')
@@ -59,6 +60,7 @@ Derived
 - [SetRelativeLocation(System.Numerics.Vector3)](./SceneComponent-SetRelativeLocation(Vector3).md 'UnrealEngine.Framework.SceneComponent.SetRelativeLocation(System.Numerics.Vector3)')
 - [SetRelativeRotation(System.Numerics.Quaternion)](./SceneComponent-SetRelativeRotation(Quaternion).md 'UnrealEngine.Framework.SceneComponent.SetRelativeRotation(System.Numerics.Quaternion)')
 - [SetRelativeTransform(UnrealEngine.Framework.Transform)](./SceneComponent-SetRelativeTransform(Transform).md 'UnrealEngine.Framework.SceneComponent.SetRelativeTransform(UnrealEngine.Framework.Transform)')
+- [SetVisibility(bool, bool)](./SceneComponent-SetVisibility(bool_bool).md 'UnrealEngine.Framework.SceneComponent.SetVisibility(bool, bool)')
 - [SetWorldLocation(System.Numerics.Vector3)](./SceneComponent-SetWorldLocation(Vector3).md 'UnrealEngine.Framework.SceneComponent.SetWorldLocation(System.Numerics.Vector3)')
 - [SetWorldRotation(System.Numerics.Quaternion)](./SceneComponent-SetWorldRotation(Quaternion).md 'UnrealEngine.Framework.SceneComponent.SetWorldRotation(System.Numerics.Quaternion)')
 - [SetWorldScale(System.Numerics.Vector3)](./SceneComponent-SetWorldScale(Vector3).md 'UnrealEngine.Framework.SceneComponent.SetWorldScale(System.Numerics.Vector3)')

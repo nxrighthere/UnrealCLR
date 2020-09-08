@@ -724,6 +724,7 @@ namespace UnrealCLRFramework {
 	namespace SceneComponent {
 		static bool IsAttachedToComponent(USceneComponent* SceneComponent, USceneComponent* Component);
 		static bool IsAttachedToActor(USceneComponent* SceneComponent, AActor* Actor);
+		static bool IsVisible(USceneComponent* SceneComponent);
 		static bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName);
 		static bool HasAnySockets(USceneComponent* SceneComponent);
 		static USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint);
@@ -752,6 +753,7 @@ namespace UnrealCLRFramework {
 		static void GetRightVector(USceneComponent* SceneComponent, Vector3* Value);
 		static void GetUpVector(USceneComponent* SceneComponent, Vector3* Value);
 		static void SetMobility(USceneComponent* SceneComponent, ComponentMobility Mobility);
+		static void SetVisibility(USceneComponent* SceneComponent, bool NewVisibility, bool PropagateToChildren);
 		static void SetRelativeLocation(USceneComponent* SceneComponent, const Vector3* Location);
 		static void SetRelativeRotation(USceneComponent* SceneComponent, const Quaternion* Rotation);
 		static void SetRelativeTransform(USceneComponent* SceneComponent, const Transform* Transform);
