@@ -10,6 +10,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Properties
 - [CanCrouch](./Character-CanCrouch.md 'UnrealEngine.Framework.Character.CanCrouch')
 - [CanJump](./Character-CanJump.md 'UnrealEngine.Framework.Character.CanJump')
+- [IsCrouched](./Character-IsCrouched.md 'UnrealEngine.Framework.Character.IsCrouched')
 ### Methods
 - [CheckJumpInput(float)](./Character-CheckJumpInput(float).md 'UnrealEngine.Framework.Character.CheckJumpInput(float)')
 - [ClearJumpInput(float)](./Character-ClearJumpInput(float).md 'UnrealEngine.Framework.Character.ClearJumpInput(float)')

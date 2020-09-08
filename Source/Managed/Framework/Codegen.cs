@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x27B;
+		internal const int checksum = 0x27C;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 
 		internal static unsafe Dictionary<int, IntPtr> Load(IntPtr* events, IntPtr functions, Assembly pluginAssembly) {
@@ -303,6 +303,7 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* characterFunctions = (IntPtr*)buffer[position++];
 
+				Character.isCrouched = GenerateOptimizedFunction<Character.IsCrouchedFunction>(characterFunctions[head++]);
 				Character.canCrouch = GenerateOptimizedFunction<Character.CanCrouchFunction>(characterFunctions[head++]);
 				Character.canJump = GenerateOptimizedFunction<Character.CanJumpFunction>(characterFunctions[head++]);
 				Character.checkJumpInput = GenerateOptimizedFunction<Character.CheckJumpInputFunction>(characterFunctions[head++]);
@@ -1614,6 +1615,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	partial class Character {
+		internal delegate Bool IsCrouchedFunction(IntPtr character);
 		internal delegate Bool CanCrouchFunction(IntPtr character);
 		internal delegate Bool CanJumpFunction(IntPtr character);
 		internal delegate void CheckJumpInputFunction(IntPtr character, float deltaTime);
@@ -1624,6 +1626,7 @@ namespace UnrealEngine.Framework {
 		internal delegate void JumpFunction(IntPtr character);
 		internal delegate void StopJumpingFunction(IntPtr character);
 
+		internal static IsCrouchedFunction isCrouched;
 		internal static CanCrouchFunction canCrouch;
 		internal static CanJumpFunction canJump;
 		internal static CheckJumpInputFunction checkJumpInput;

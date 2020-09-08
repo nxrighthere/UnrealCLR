@@ -1508,6 +1508,10 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Character {
+		bool IsCrouched(ACharacter* Character) {
+			return Character->bIsCrouched;
+		}
+
 		bool CanCrouch(ACharacter* Character) {
 			return Character->CanCrouch();
 		}

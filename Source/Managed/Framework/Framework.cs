@@ -4876,6 +4876,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if the character is currently crouched
+		/// </summary>
+		public bool IsCrouched => isCrouched(Pointer);
+
+		/// <summary>
 		/// Returns <c>true</c> if the character can crouch
 		/// </summary>
 		public bool CanCrouch => canCrouch(Pointer);

@@ -520,6 +520,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Character {
+		static bool IsCrouched(ACharacter* Character);
 		static bool CanCrouch(ACharacter* Character);
 		static bool CanJump(ACharacter* Character);
 		static void CheckJumpInput(ACharacter* Character, float DeltaTime);
