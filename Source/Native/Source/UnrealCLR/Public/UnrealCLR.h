@@ -245,9 +245,7 @@ namespace UnrealCLR {
 	static_assert(sizeof(Argument) == 24, "Invalid size of the [Argument] structure");
 	static_assert(sizeof(Command) == 40, "Invalid size of the [Command] structure");
 
-	typedef void* (*ManagedCommandDelegate)(Command);
-
-	static ManagedCommandDelegate ManagedCommand;
+	static void* (*ManagedCommand)(Command);
 
 	static FString ProjectPath;
 	static FString UserAssembliesPath;

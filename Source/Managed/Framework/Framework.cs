@@ -5471,6 +5471,21 @@ namespace UnrealEngine.Framework {
 		private protected DirectionalLight() { }
 
 		internal DirectionalLight(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public DirectionalLight(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>
@@ -5482,6 +5497,21 @@ namespace UnrealEngine.Framework {
 		private protected PointLight() { }
 
 		internal PointLight(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public PointLight(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>
@@ -5493,6 +5523,21 @@ namespace UnrealEngine.Framework {
 		private protected RectLight() { }
 
 		internal RectLight(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public RectLight(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>
@@ -5504,6 +5549,21 @@ namespace UnrealEngine.Framework {
 		private protected SpotLight() { }
 
 		internal SpotLight(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Spawns the actor in the world
+		/// </summary>
+		/// <param name="name">The name of the actor</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the actor</param>
+		public SpotLight(string name = null, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>
