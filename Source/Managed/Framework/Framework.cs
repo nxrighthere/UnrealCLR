@@ -75,13 +75,16 @@ namespace UnrealEngine.Framework {
 		internal static T GetOrAdd<S, T>(this IDictionary<S, T> dictionary, S key, Func<T> valueCreator) => dictionary.TryGetValue(key, out var value) ? value : dictionary[key] = valueCreator();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static string TrimFromZero(this string input) {
-			int index = input.IndexOf('\0', StringComparison.Ordinal);
+		internal static string BytesToString(this byte[] buffer) {
+			int end;
 
-			if (index < 0)
-				return input;
+			for (end = 0; end < buffer.Length && buffer[end] != 0; end++);
 
-			return input.Substring(0, index);
+			unsafe {
+				fixed (byte* pinnedBuffer = buffer) { 
+					return new String((sbyte*)pinnedBuffer, 0, end);
+				}
+			}
 		}
 	}
 
@@ -824,7 +827,7 @@ namespace UnrealEngine.Framework {
 
 				Object.getName(Pointer, stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -2997,7 +3000,7 @@ namespace UnrealEngine.Framework {
 
 			get(stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			return stringBuffer.BytesToString();
 		}
 
 		/// <summary>
@@ -3144,7 +3147,7 @@ namespace UnrealEngine.Framework {
 
 				getProjectDirectory(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -3157,7 +3160,7 @@ namespace UnrealEngine.Framework {
 
 				getDefaultLanguage(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -3170,7 +3173,7 @@ namespace UnrealEngine.Framework {
 
 				getProjectName(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 
 			set {
@@ -3427,7 +3430,7 @@ namespace UnrealEngine.Framework {
 
 				getVersion(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -3514,7 +3517,7 @@ namespace UnrealEngine.Framework {
 
 				getDeviceName(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 	}
@@ -3552,7 +3555,7 @@ namespace UnrealEngine.Framework {
 
 				getCurrentLevelName(stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -3793,7 +3796,7 @@ namespace UnrealEngine.Framework {
 
 			bool result = lineTraceSingleByChannel(start, end, channel, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
-			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			boneName = stringBuffer.BytesToString();
 
 			return result;
 		}
@@ -3813,7 +3816,7 @@ namespace UnrealEngine.Framework {
 
 			bool result = lineTraceSingleByProfile(start, end, profileName, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
-			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			boneName = stringBuffer.BytesToString();
 
 			return result;
 		}
@@ -3845,7 +3848,7 @@ namespace UnrealEngine.Framework {
 
 			bool result = sweepSingleByChannel(start, end, rotation, channel, shape, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
-			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			boneName = stringBuffer.BytesToString();
 
 			return result;
 		}
@@ -3865,7 +3868,7 @@ namespace UnrealEngine.Framework {
 
 			bool result = sweepSingleByProfile(start, end, rotation, profileName, shape, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
-			boneName = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			boneName = stringBuffer.BytesToString();
 
 			return result;
 		}
@@ -3996,7 +3999,7 @@ namespace UnrealEngine.Framework {
 
 			getString(Pointer, stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			return stringBuffer.BytesToString();
 		}
 
 		/// <summary>
@@ -4113,7 +4116,7 @@ namespace UnrealEngine.Framework {
 
 				Object.getName(Pointer, stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -4256,7 +4259,7 @@ namespace UnrealEngine.Framework {
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
 			if (Object.getText(Pointer, name, stringBuffer)) {
-				value = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				value = stringBuffer.BytesToString();
 
 				return true;
 			}
@@ -5930,7 +5933,7 @@ namespace UnrealEngine.Framework {
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
 			if (Object.getText(Pointer, name, stringBuffer)) {
-				value = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				value = stringBuffer.BytesToString();
 
 				return true;
 			}
@@ -6145,7 +6148,7 @@ namespace UnrealEngine.Framework {
 
 			getCurrentSection(Pointer, montage.Pointer, stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			return stringBuffer.BytesToString();
 		}
 
 		/// <summary>
@@ -6725,7 +6728,7 @@ namespace UnrealEngine.Framework {
 
 				Object.getName(Pointer, stringBuffer);
 
-				return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				return stringBuffer.BytesToString();
 			}
 		}
 
@@ -6868,7 +6871,7 @@ namespace UnrealEngine.Framework {
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
 			if (Object.getText(Pointer, name, stringBuffer)) {
-				value = Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+				value = stringBuffer.BytesToString();
 
 				return true;
 			}
@@ -7304,7 +7307,7 @@ namespace UnrealEngine.Framework {
 
 			getAttachedSocketName(Pointer, stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			return stringBuffer.BytesToString();
 		}
 
 		/// <summary>
@@ -8877,7 +8880,7 @@ namespace UnrealEngine.Framework {
 
 			getBoneName(Pointer, boneIndex, stringBuffer);
 
-			return Encoding.UTF8.GetString(stringBuffer).TrimFromZero();
+			return stringBuffer.BytesToString();
 		}
 
 		/// <summary>
