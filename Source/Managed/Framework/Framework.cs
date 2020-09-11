@@ -72,6 +72,9 @@ namespace UnrealEngine.Framework {
 
 	internal static class Extensions {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static T GetOrAdd<S, T>(this IDictionary<S, T> dictionary, S key, Func<T> valueCreator) => dictionary.TryGetValue(key, out var value) ? value : dictionary[key] = valueCreator();
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static string TrimFromZero(this string input) {
 			int index = input.IndexOf('\0', StringComparison.Ordinal);
 
