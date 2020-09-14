@@ -213,9 +213,7 @@ namespace UnrealEngine.Runtime {
 									}
 								}
 
-								command.type = CommandType.UnloadAssemblies;
-
-								goto UnloadAssemblies;
+								UnloadAssemblies();
 							}
 						}
 					}
@@ -228,49 +226,48 @@ namespace UnrealEngine.Runtime {
 				return IntPtr.Zero;
 			}
 
-			UnloadAssemblies:
-
-			if (command.type == CommandType.UnloadAssemblies) {
-				try {
-					plugin?.loader.Dispose();
-					plugin = null;
-
-					assembliesContextManager.UnloadAssembliesContext();
-					assembliesContextManager = null;
-
-					uint unloadAttempts = 0;
-
-					while (assembliesContextWeakReference.IsAlive) {
-						GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-						GC.WaitForPendingFinalizers();
-
-						unloadAttempts++;
-
-						if (unloadAttempts == 5000) {
-							Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
-						} else if (unloadAttempts == 10000) {
-							Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
-
-							break;
-						}
-					}
-
-					assembliesContextManager = new AssembliesContextManager();
-					assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
-				}
-
-				catch (Exception exception) {
-					Exception("Unloading of assemblies failed\r\n" + exception.ToString());
-				}
-
-				return IntPtr.Zero;
-			}
+			if (command.type == CommandType.UnloadAssemblies)
+				UnloadAssemblies();
 
 			return IntPtr.Zero;
 		}
 
+		private static void UnloadAssemblies() {
+			try {
+				plugin?.loader.Dispose();
+				plugin = null;
+
+				assembliesContextManager.UnloadAssembliesContext();
+				assembliesContextManager = null;
+
+				uint unloadAttempts = 0;
+
+				while (assembliesContextWeakReference.IsAlive) {
+					GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+					GC.WaitForPendingFinalizers();
+
+					unloadAttempts++;
+
+					if (unloadAttempts == 5000) {
+						Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
+					} else if (unloadAttempts == 10000) {
+						Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
+
+						break;
+					}
+				}
+
+				assembliesContextManager = new AssembliesContextManager();
+				assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
+			}
+
+			catch (Exception exception) {
+				Exception("Unloading of assemblies failed\r\n" + exception.ToString());
+			}
+		}
+
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal static TDelegate GenerateOptimizedFunction<TDelegate>(IntPtr pointer) where TDelegate : class {
+		private static TDelegate GenerateOptimizedFunction<TDelegate>(IntPtr pointer) where TDelegate : class {
 			Type type = typeof(TDelegate);
 			MethodInfo method = type.GetMethod("Invoke");
 			ParameterInfo[] parameterInfos = method.GetParameters();
