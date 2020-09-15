@@ -44,21 +44,21 @@ namespace UnrealEngine.Runtime {
 
 	[StructLayout(LayoutKind.Explicit, Size = 40)]
 	internal unsafe struct Command {
+		// Initialize
 		[FieldOffset(0)]
 		internal IntPtr* buffer;
 		[FieldOffset(8)]
 		internal int checksum;
-
+		// Find
 		[FieldOffset(0)]
 		internal IntPtr method;
 		[FieldOffset(8)]
 		internal int optional;
-
+		// Execute
 		[FieldOffset(0)]
 		internal IntPtr function;
 		[FieldOffset(8)]
 		internal Argument value;
-
 		[FieldOffset(32)]
 		internal CommandType type;
 	}
@@ -86,20 +86,20 @@ namespace UnrealEngine.Runtime {
 	}
 
 	internal static class Core {
-		internal delegate void InvokeDelegate(IntPtr managedFunction, Argument value);
-		internal delegate void ExceptionDelegate(string message);
-		internal delegate void LogDelegate(LogLevel level, string message);
+		private delegate void InvokeDelegate(IntPtr managedFunction, Argument value);
+		private delegate void ExceptionDelegate(string message);
+		private delegate void LogDelegate(LogLevel level, string message);
 
-		internal static AssembliesContextManager assembliesContextManager;
-		internal static WeakReference assembliesContextWeakReference;
-		internal static Plugin plugin;
-		internal static IntPtr sharedEvents;
-		internal static IntPtr sharedFunctions;
-		internal static int sharedChecksum;
+		private static InvokeDelegate Invoke;
+		private static ExceptionDelegate Exception;
+		private static LogDelegate Log;
 
-		internal static InvokeDelegate Invoke;
-		internal static ExceptionDelegate Exception;
-		internal static LogDelegate Log;
+		private static AssembliesContextManager assembliesContextManager;
+		private static WeakReference assembliesContextWeakReference;
+		private static Plugin plugin;
+		private static IntPtr sharedEvents;
+		private static IntPtr sharedFunctions;
+		private static int sharedChecksum;
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		internal static unsafe IntPtr ManagedCommand(Command command) {
@@ -232,6 +232,7 @@ namespace UnrealEngine.Runtime {
 			return IntPtr.Zero;
 		}
 
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static void UnloadAssemblies() {
 			try {
 				plugin?.loader.Dispose();

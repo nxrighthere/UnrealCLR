@@ -32,7 +32,7 @@ Building
 ### Prerequisites
 - Unreal Engine 4.25.3 or higher
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html#runtheunrealenginepre-requisiteinstaller) with platform-specific dependencies
-- [.NET Core SDK 3.1.401](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [.NET Core SDK 3.1.402](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 ### Auto
 
@@ -70,7 +70,7 @@ Open the scene with tests in the editor and enter the play mode. To switch a tes
 Overview
 --------
 ### Design and architecture
-UnrealCLR is designed to be flexible and extensible. The plugin is transparently managing core functionality of the runtime, binding and caching the engine API for managed environment. The programmer has full control over execution flow through blueprint pipelines that allow to dynamically weave native events of the engine and its objects with managed logic. There's no hidden states or obscured order of execution behind the lifecycle of scripts.
+UnrealCLR is designed to be flexible and extensible. The plugin is transparently managing core functionality of the runtime, binding and caching the engine API for managed environment. The programmer has full control over execution flow through code and blueprints that allow to dynamically weave native events of the engine and its objects with managed logic. There's no hidden states or obscured order of execution behind the lifecycle of scripts.
 
 ### Assemblies management
 At runtime, UnrealCLR loading managed assemblies into a cached isolated context. It allows dynamically replace assemblies after unloading them from memory, therefore the programmer can work with code without restarting the editor for continuous development. The compilation pipeline is entirely up to a developer, it can be organized in any desirable way without any limitations and with full support of [NuGet](https://www.nuget.org) packages.

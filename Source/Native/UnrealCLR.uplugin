@@ -1,30 +1,29 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.20",
-	"FriendlyName": "UnrealCLR",
-	"Description": ".NET Core integration ",
-	"Category": "Scripting",
-	"CreatedBy": "nxrighthere",
-	"CreatedByURL": "https://github.com/nxrighthere",
-	"DocsURL": "https://github.com/nxrighthere/UnrealCLR",
-	"MarketplaceURL": "",
-	"SupportURL": "https://gumroad.com/l/unrealclr",
-	"EnabledByDefault": true,
-	"CanContainContent": false,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": false,
-	"Modules": [
-		{
-			"Name": "UnrealCLR",
-			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen",
-			"WhitelistPlatforms": [
-				"Win64",
-				"Linux",
-				"Mac"
-			]
-		}
-	]
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.20",
+  "FriendlyName": "UnrealCLR",
+  "Description": ".NET Core integration",
+  "Category": "Scripting",
+  "CreatedBy": "nxrighthere",
+  "CreatedByURL": "https://github.com/nxrighthere",
+  "DocsURL": "https://github.com/nxrighthere/UnrealCLR",
+  "SupportURL": "https://gumroad.com/l/unrealclr",
+  "EnabledByDefault": true,
+  "CanContainContent": false,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": false,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "UnrealCLR",
+      "Type": "Runtime",
+      "LoadingPhase": "PreLoadingScreen",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Linux",
+        "Mac"
+      ]
+    }
+  ]
 }

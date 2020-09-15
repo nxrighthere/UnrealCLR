@@ -279,14 +279,14 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " animation property value retrievement failed!");
 		}
 
-		public static void TestBlueprintActorFunction(ObjectReference blueprintReference) {
-			Actor blueprintActor = blueprintReference.ToActor<Actor>();
+		public static void TestBlueprintActorFunction(ObjectReference self) {
+			Actor blueprintActor = self.ToActor<Actor>();
 
 			Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the " + blueprintActor.Name);
 		}
 
-		public static void TestBlueprintComponentFunction(ObjectReference blueprintReference) {
-			SceneComponent blueprintSceneComponent = blueprintReference.ToComponent<SceneComponent>();
+		public static void TestBlueprintComponentFunction(ObjectReference self) {
+			SceneComponent blueprintSceneComponent = self.ToComponent<SceneComponent>();
 
 			Debug.AddOnScreenMessage(-1, 30.0f, Color.Orange, "Cheers from managed function of the " + blueprintSceneComponent.Name);
 		}

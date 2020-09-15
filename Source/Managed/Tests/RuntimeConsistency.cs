@@ -38,7 +38,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 
 		private void ComponentMemoryManagementTest() {
@@ -61,7 +61,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 
 		private void ActorBlueprintClassesMatchingTest() {
@@ -81,14 +81,14 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 
 		private void ComponentBlueprintClassesMatchingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
-				Blueprint blueprintComponent = Blueprint.Load("/Game/Tests/BlueprintStaticMeshComponent");
+				Blueprint blueprintComponent = Blueprint.Load("/Game/Tests/BlueprintActor");
 				Actor actor = new Actor();
 
 				Debug.Log(LogLevel.Display, "Triggering invalid action after the blueprint loading");
@@ -102,7 +102,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 
 		private void DuplicateActorMemoryManagementTest() {
@@ -135,7 +135,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 
 		private void DuplicateComponentMemoryManagementTest() {
@@ -166,7 +166,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 
 		private void ConsoleVariablesMemoryManagementTest() {
@@ -196,7 +196,7 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			Debug.Log(LogLevel.Error, "Test failed!");
+			Debug.Log(LogLevel.Error, MethodBase.GetCurrentMethod().Name + " test failed!");
 		}
 	}
 }

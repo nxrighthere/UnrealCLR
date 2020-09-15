@@ -378,7 +378,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void HandleException(const char* Message) {
-			GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+			GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
 		}
 
 		void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const char* Message) {
