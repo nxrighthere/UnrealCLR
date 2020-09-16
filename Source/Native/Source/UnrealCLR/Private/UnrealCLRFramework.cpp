@@ -502,6 +502,12 @@ namespace UnrealCLRFramework {
 			Object->Rename(*name);
 		}
 
+		bool Invoke(UObject* Object, const char* Command) {
+			static FOutputDeviceNull outputDevice;
+
+			return Object->CallFunctionByNameWithArguments(ANSI_TO_TCHAR(Command), outputDevice, nullptr, true);
+		}
+
 		AActor* ToActor(UObject* Object, ActorType Type) {
 			AActor* actor = nullptr;
 

@@ -314,6 +314,7 @@ namespace UnrealCLRFramework {
 		static bool IsValid(UObject* Object);
 		static UObject* Load(ObjectType Type, const char* Name);
 		static void Rename(UObject* Object, const char* Name);
+		static bool Invoke(UObject* Object, const char* Command);
 		static AActor* ToActor(UObject* Object, ActorType Type);
 		static UActorComponent* ToComponent(UObject* Object, ComponentType Type);
 		static uint32 GetID(UObject* Object);

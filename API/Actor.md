@@ -55,6 +55,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [GetUShort(string, ushort)](./Actor-GetUShort(string_ushort).md 'UnrealEngine.Framework.Actor.GetUShort(string, ushort)')
 - [HasTag(string)](./Actor-HasTag(string).md 'UnrealEngine.Framework.Actor.HasTag(string)')
 - [Hide(bool)](./Actor-Hide(bool).md 'UnrealEngine.Framework.Actor.Hide(bool)')
+- [Invoke(string)](./Actor-Invoke(string).md 'UnrealEngine.Framework.Actor.Invoke(string)')
 - [IsOverlappingActor(UnrealEngine.Framework.Actor)](./Actor-IsOverlappingActor(Actor).md 'UnrealEngine.Framework.Actor.IsOverlappingActor(UnrealEngine.Framework.Actor)')
 - [RegisterEvent(UnrealEngine.Framework.ActorEventType)](./Actor-RegisterEvent(ActorEventType).md 'UnrealEngine.Framework.Actor.RegisterEvent(UnrealEngine.Framework.ActorEventType)')
 - [RemoveTag(string)](./Actor-RemoveTag(string).md 'UnrealEngine.Framework.Actor.RemoveTag(string)')

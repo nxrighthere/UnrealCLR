@@ -57,6 +57,7 @@
 #include "ImageUtils.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Misc/DefaultValueHelper.h"
+#include "Misc/OutputDeviceNull.h"
 #include "Modules/ModuleManager.h"
 #include "MotionControllerComponent.h"
 #include "PhysicsEngine/RadialForceComponent.h"

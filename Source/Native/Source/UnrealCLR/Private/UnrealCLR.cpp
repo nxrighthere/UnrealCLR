@@ -181,6 +181,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::IsValid;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::Load;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::Rename;
+				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::Invoke;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::ToActor;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::ToComponent;
 				Shared::ObjectFunctions[head++] = (void*)&UnrealCLRFramework::Object::GetID;

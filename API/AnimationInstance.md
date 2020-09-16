@@ -30,6 +30,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [GetUInt(string, uint)](./AnimationInstance-GetUInt(string_uint).md 'UnrealEngine.Framework.AnimationInstance.GetUInt(string, uint)')
 - [GetULong(string, ulong)](./AnimationInstance-GetULong(string_ulong).md 'UnrealEngine.Framework.AnimationInstance.GetULong(string, ulong)')
 - [GetUShort(string, ushort)](./AnimationInstance-GetUShort(string_ushort).md 'UnrealEngine.Framework.AnimationInstance.GetUShort(string, ushort)')
+- [Invoke(string)](./AnimationInstance-Invoke(string).md 'UnrealEngine.Framework.AnimationInstance.Invoke(string)')
 - [IsPlaying(UnrealEngine.Framework.AnimationMontage)](./AnimationInstance-IsPlaying(AnimationMontage).md 'UnrealEngine.Framework.AnimationInstance.IsPlaying(UnrealEngine.Framework.AnimationMontage)')
 - [JumpToSection(UnrealEngine.Framework.AnimationMontage, string)](./AnimationInstance-JumpToSection(AnimationMontage_string).md 'UnrealEngine.Framework.AnimationInstance.JumpToSection(UnrealEngine.Framework.AnimationMontage, string)')
 - [JumpToSectionsEnd(UnrealEngine.Framework.AnimationMontage, string)](./AnimationInstance-JumpToSectionsEnd(AnimationMontage_string).md 'UnrealEngine.Framework.AnimationInstance.JumpToSectionsEnd(UnrealEngine.Framework.AnimationMontage, string)')

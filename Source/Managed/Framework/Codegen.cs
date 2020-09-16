@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x27C;
+		internal const int checksum = 0x27D;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -83,6 +83,7 @@ namespace UnrealEngine.Framework {
 				Object.isValid = GenerateOptimizedFunction<Object.IsValidFunction>(objectFunctions[head++]);
 				Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
 				Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
+				Object.invoke = GenerateOptimizedFunction<Object.InvokeFunction>(objectFunctions[head++]);
 				Object.toActor = GenerateOptimizedFunction<Object.ToActorFunction>(objectFunctions[head++]);
 				Object.toComponent = GenerateOptimizedFunction<Object.ToComponentFunction>(objectFunctions[head++]);
 				Object.getID = GenerateOptimizedFunction<Object.GetIDFunction>(objectFunctions[head++]);
@@ -1283,6 +1284,7 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool IsValidFunction(IntPtr @object);
 		internal delegate IntPtr LoadFunction(ObjectType type, string name);
 		internal delegate void RenameFunction(IntPtr @object, string name);
+		internal delegate Bool InvokeFunction(IntPtr @object, string command);
 		internal delegate IntPtr ToActorFunction(IntPtr @object, ActorType type);
 		internal delegate IntPtr ToComponentFunction(IntPtr @object, ComponentType type);
 		internal delegate uint GetIDFunction(IntPtr @object);
@@ -1316,6 +1318,7 @@ namespace UnrealEngine.Framework {
 		internal static IsValidFunction isValid;
 		internal static LoadFunction load;
 		internal static RenameFunction rename;
+		internal static InvokeFunction invoke;
 		internal static ToActorFunction toActor;
 		internal static ToComponentFunction toComponent;
 		internal static GetIDFunction getID;

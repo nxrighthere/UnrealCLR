@@ -4461,6 +4461,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Invokes a command, function, or an event with optional arguments
+		/// </summary>
+		public bool Invoke(string command) => Object.invoke(Pointer, command);
+
+		/// <summary>
 		/// Sets the actor to be hidden
 		/// </summary>
 		public void Hide(bool value) => hide(Pointer, value);
@@ -6086,6 +6091,11 @@ namespace UnrealEngine.Framework {
 		public override int GetHashCode() => pointer.GetHashCode();
 
 		/// <summary>
+		/// Invokes a command, function, or an event with optional arguments
+		/// </summary>
+		public bool Invoke(string command) => Object.invoke(Pointer, command);
+
+		/// <summary>
 		/// Returns the current active animation montage or <c>null</c> on failure
 		/// </summary>
 		public AnimationMontage GetCurrentActiveMontage() {
@@ -7032,6 +7042,11 @@ namespace UnrealEngine.Framework {
 
 			Object.rename(Pointer, name);
 		}
+
+		/// <summary>
+		/// Invokes a command, function, or an event with optional arguments
+		/// </summary>
+		public bool Invoke(string command) => Object.invoke(Pointer, command);
 
 		/// <summary>
 		/// Unregisters the component, removes it from its outer actor's components array and marks for pending kill
