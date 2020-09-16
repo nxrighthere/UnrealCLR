@@ -29,10 +29,10 @@ namespace UnrealEngine.Tests {
 		}
 
 		public void OnBeginPlay() {
-			const string eventMessage = "Blueprint event dispatched:";
+			const string eventMessage = "Blueprint event dispatched";
 			const float eventValue = 100.0f;
 
-			levelScript.Invoke($"Test_Event \"{ eventMessage } \" { eventValue }");
+			Assert.IsTrue(levelScript.Invoke($"Test_Event \"{ eventMessage }: \" { eventValue }"));
 
 			if (actor.IsSpawned)
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Tomato, "Blueprint actor is spawned!");
