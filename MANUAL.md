@@ -241,6 +241,18 @@ Attempts to execute a managed function. This node performs a fast execution of a
 ### Data passing
 Two options are available to pass data between the managed runtime and the engine.
 
+**Commands, functions, and events**
+
+The engine's reflection system allows to dynamically invoke commands, functions, and events of engine's classes from managed code to pass data on demand.
+
+Blueprint event dispatcher:
+
+<p align="left">
+	<img src="https://github.com/Rageware/Images/blob/master/UnrealCLR/event-dispatcher.png" alt="event-dispatcher">
+</p>
+
+See [Actor.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/Actor-Invoke(string).md), [ActorComponent.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ActorComponent-Invoke(string).md), and [AnimationInstance.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/AnimationInstance-Invoke(string).md) methods.
+
 **Blueprint variables**
 
 The engine provides a convenient way to [manage variables/properties](https://docs.unrealengine.com/en-US/Engine/Blueprints/UserGuide/Variables/index.html) per actor/component basis that are accessible from the world outliner.
