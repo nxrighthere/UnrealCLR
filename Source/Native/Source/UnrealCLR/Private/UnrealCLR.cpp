@@ -815,6 +815,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetCastShadow;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetOnlyOwnerSee;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetOwnerNoSee;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetIgnoreRadialForce;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetIgnoreRadialImpulse;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetMaterial;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetMaterialsNumber;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::GetDistanceToCollision;
@@ -833,6 +835,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetCastShadow;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetOnlyOwnerSee;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetOwnerNoSee;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetIgnoreRadialForce;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetIgnoreRadialImpulse;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetMaterial;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetSimulatePhysics;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::SetAngularDamping;

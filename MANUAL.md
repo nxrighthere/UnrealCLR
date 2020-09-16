@@ -243,7 +243,7 @@ Several options are available to pass data between the managed runtime and the e
 
 **Commands, functions, and events**
 
-The engine's reflection system allows to dynamically invoke commands, functions, and events of engine's classes from managed code to pass data on demand.
+The engine's reflection system allows to dynamically invoke commands, functions, and events of engine classes from managed code to pass data on demand.
 
 Blueprint event dispatcher:
 

@@ -14,6 +14,8 @@ Derived
 ### Properties
 - [AngularDamping](./PrimitiveComponent-AngularDamping.md 'UnrealEngine.Framework.PrimitiveComponent.AngularDamping')
 - [CastShadow](./PrimitiveComponent-CastShadow.md 'UnrealEngine.Framework.PrimitiveComponent.CastShadow')
+- [IgnoreRadialForce](./PrimitiveComponent-IgnoreRadialForce.md 'UnrealEngine.Framework.PrimitiveComponent.IgnoreRadialForce')
+- [IgnoreRadialImpulse](./PrimitiveComponent-IgnoreRadialImpulse.md 'UnrealEngine.Framework.PrimitiveComponent.IgnoreRadialImpulse')
 - [IsGravityEnabled](./PrimitiveComponent-IsGravityEnabled.md 'UnrealEngine.Framework.PrimitiveComponent.IsGravityEnabled')
 - [LinearDamping](./PrimitiveComponent-LinearDamping.md 'UnrealEngine.Framework.PrimitiveComponent.LinearDamping')
 - [Mass](./PrimitiveComponent-Mass.md 'UnrealEngine.Framework.PrimitiveComponent.Mass')

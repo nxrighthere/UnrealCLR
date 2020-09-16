@@ -81,7 +81,7 @@ namespace UnrealEngine.Framework {
 			for (end = 0; end < buffer.Length && buffer[end] != 0; end++);
 
 			unsafe {
-				fixed (byte* pinnedBuffer = buffer) { 
+				fixed (byte* pinnedBuffer = buffer) {
 					return new String((sbyte*)pinnedBuffer, 0, end);
 				}
 			}
@@ -8046,6 +8046,22 @@ namespace UnrealEngine.Framework {
 		public bool OwnerNoSee {
 			get => getOwnerNoSee(Pointer);
 			set => setOwnerNoSee(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the component should ignore radial forces
+		/// </summary>
+		public bool IgnoreRadialForce {
+			get => getIgnoreRadialForce(Pointer);
+			set => setIgnoreRadialForce(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the component should ignore radial impulses
+		/// </summary>
+		public bool IgnoreRadialImpulse {
+			get => getIgnoreRadialImpulse(Pointer);
+			set => setIgnoreRadialImpulse(Pointer, value);
 		}
 
 		/// <summary>

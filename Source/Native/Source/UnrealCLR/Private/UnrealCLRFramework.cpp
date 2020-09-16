@@ -2578,6 +2578,14 @@ namespace UnrealCLRFramework {
 			return PrimitiveComponent->bOwnerNoSee;
 		}
 
+		bool GetIgnoreRadialForce(UPrimitiveComponent* PrimitiveComponent) {
+			return PrimitiveComponent->bIgnoreRadialForce;
+		}
+
+		bool GetIgnoreRadialImpulse(UPrimitiveComponent* PrimitiveComponent) {
+			return PrimitiveComponent->bIgnoreRadialImpulse;
+		}
+
 		UMaterialInstanceDynamic* GetMaterial(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex) {
 			return Cast<UMaterialInstanceDynamic>(PrimitiveComponent->GetMaterial(ElementIndex));
 		}
@@ -2676,6 +2684,14 @@ namespace UnrealCLRFramework {
 
 		void SetOwnerNoSee(UPrimitiveComponent* PrimitiveComponent, bool Value) {
 			PrimitiveComponent->bOwnerNoSee = Value;
+		}
+
+		void SetIgnoreRadialForce(UPrimitiveComponent* PrimitiveComponent, bool Value) {
+			PrimitiveComponent->bIgnoreRadialForce = Value;
+		}
+
+		void SetIgnoreRadialImpulse(UPrimitiveComponent* PrimitiveComponent, bool Value) {
+			PrimitiveComponent->bIgnoreRadialImpulse = Value;
 		}
 
 		void SetMaterial(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex, UMaterialInterface* Material) {

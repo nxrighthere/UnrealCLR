@@ -25,7 +25,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x27D;
+		internal const int checksum = 0x281;
 		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -657,6 +657,8 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.getCastShadow = GenerateOptimizedFunction<PrimitiveComponent.GetCastShadowFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.GetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.GetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getIgnoreRadialForce = GenerateOptimizedFunction<PrimitiveComponent.GetIgnoreRadialForceFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.getIgnoreRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.GetIgnoreRadialImpulseFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getMaterial = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getMaterialsNumber = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialsNumberFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.getDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
@@ -675,6 +677,8 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.setCastShadow = GenerateOptimizedFunction<PrimitiveComponent.SetCastShadowFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.SetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.SetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setIgnoreRadialForce = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreRadialForceFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.setIgnoreRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreRadialImpulseFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setMaterial = GenerateOptimizedFunction<PrimitiveComponent.SetMaterialFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setSimulatePhysics = GenerateOptimizedFunction<PrimitiveComponent.SetSimulatePhysicsFunction>(primitiveComponentFunctions[head++]);
 				PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
@@ -2218,6 +2222,8 @@ namespace UnrealEngine.Framework {
 		internal delegate Bool GetCastShadowFunction(IntPtr primitiveComponent);
 		internal delegate Bool GetOnlyOwnerSeeFunction(IntPtr primitiveComponent);
 		internal delegate Bool GetOwnerNoSeeFunction(IntPtr primitiveComponent);
+		internal delegate Bool GetIgnoreRadialForceFunction(IntPtr primitiveComponent);
+		internal delegate Bool GetIgnoreRadialImpulseFunction(IntPtr primitiveComponent);
 		internal delegate IntPtr GetMaterialFunction(IntPtr primitiveComponent, int elementIndex);
 		internal delegate int GetMaterialsNumberFunction(IntPtr primitiveComponent);
 		internal delegate float GetDistanceToCollisionFunction(IntPtr primitiveComponent, in Vector3 point, ref Vector3 closestPointOnCollision);
@@ -2236,6 +2242,8 @@ namespace UnrealEngine.Framework {
 		internal delegate void SetCastShadowFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetOnlyOwnerSeeFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetOwnerNoSeeFunction(IntPtr primitiveComponent, Bool value);
+		internal delegate void SetIgnoreRadialForceFunction(IntPtr primitiveComponent, Bool value);
+		internal delegate void SetIgnoreRadialImpulseFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetMaterialFunction(IntPtr primitiveComponent, int elementIndex, IntPtr material);
 		internal delegate void SetSimulatePhysicsFunction(IntPtr primitiveComponent, Bool value);
 		internal delegate void SetAngularDampingFunction(IntPtr primitiveComponent, float value);
@@ -2274,6 +2282,8 @@ namespace UnrealEngine.Framework {
 		internal static GetCastShadowFunction getCastShadow;
 		internal static GetOnlyOwnerSeeFunction getOnlyOwnerSee;
 		internal static GetOwnerNoSeeFunction getOwnerNoSee;
+		internal static GetIgnoreRadialForceFunction getIgnoreRadialForce;
+		internal static GetIgnoreRadialImpulseFunction getIgnoreRadialImpulse;
 		internal static GetMaterialFunction getMaterial;
 		internal static GetMaterialsNumberFunction getMaterialsNumber;
 		internal static GetDistanceToCollisionFunction getDistanceToCollision;
@@ -2292,6 +2302,8 @@ namespace UnrealEngine.Framework {
 		internal static SetCastShadowFunction setCastShadow;
 		internal static SetOnlyOwnerSeeFunction setOnlyOwnerSee;
 		internal static SetOwnerNoSeeFunction setOwnerNoSee;
+		internal static SetIgnoreRadialForceFunction setIgnoreRadialForce;
+		internal static SetIgnoreRadialImpulseFunction setIgnoreRadialImpulse;
 		internal static SetMaterialFunction setMaterial;
 		internal static SetSimulatePhysicsFunction setSimulatePhysics;
 		internal static SetAngularDampingFunction setAngularDamping;

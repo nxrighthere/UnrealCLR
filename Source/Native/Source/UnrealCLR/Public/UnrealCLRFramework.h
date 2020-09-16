@@ -860,6 +860,8 @@ namespace UnrealCLRFramework {
 		static bool GetCastShadow(UPrimitiveComponent* PrimitiveComponent);
 		static bool GetOnlyOwnerSee(UPrimitiveComponent* PrimitiveComponent);
 		static bool GetOwnerNoSee(UPrimitiveComponent* PrimitiveComponent);
+		static bool GetIgnoreRadialForce(UPrimitiveComponent* PrimitiveComponent);
+		static bool GetIgnoreRadialImpulse(UPrimitiveComponent* PrimitiveComponent);
 		static UMaterialInstanceDynamic* GetMaterial(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex);
 		static int32 GetMaterialsNumber(UPrimitiveComponent* PrimitiveComponent);
 		static float GetDistanceToCollision(UPrimitiveComponent* PrimitiveComponent, const Vector3* Point, Vector3* ClosestPointOnCollision);
@@ -878,6 +880,8 @@ namespace UnrealCLRFramework {
 		static void SetCastShadow(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetOnlyOwnerSee(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetOwnerNoSee(UPrimitiveComponent* PrimitiveComponent, bool Value);
+		static void SetIgnoreRadialForce(UPrimitiveComponent* PrimitiveComponent, bool Value);
+		static void SetIgnoreRadialImpulse(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetMaterial(UPrimitiveComponent* PrimitiveComponent, int32 ElementIndex, UMaterialInterface* Material);
 		static void SetSimulatePhysics(UPrimitiveComponent* PrimitiveComponent, bool Value);
 		static void SetAngularDamping(UPrimitiveComponent* PrimitiveComponent, float Value);
