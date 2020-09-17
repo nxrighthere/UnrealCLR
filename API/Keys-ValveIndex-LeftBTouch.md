@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.LeftBTouch Field
   
 ```csharp
-public const LeftBTouch;
+public const string LeftBTouch = ValveIndex_Left_B_Touch;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

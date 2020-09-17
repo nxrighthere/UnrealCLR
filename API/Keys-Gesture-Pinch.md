@@ -2,7 +2,7 @@
 ## Keys.Gesture.Pinch Field
   
 ```csharp
-public const Pinch;
+public const string Pinch = Gesture_Pinch;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

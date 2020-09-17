@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.LeftGripForce Field
   
 ```csharp
-public const LeftGripForce;
+public const string LeftGripForce = ValveIndex_Left_Grip_Force;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

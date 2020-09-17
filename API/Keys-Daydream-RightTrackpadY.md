@@ -2,7 +2,7 @@
 ## Keys.Daydream.RightTrackpadY Field
   
 ```csharp
-public const RightTrackpadY;
+public const string RightTrackpadY = Daydream_Right_Trackpad_Y;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

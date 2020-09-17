@@ -2,7 +2,7 @@
 ## Keys.Steam.TouchTwo Field
   
 ```csharp
-public const TouchTwo;
+public const string TouchTwo = Steam_Touch_2;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

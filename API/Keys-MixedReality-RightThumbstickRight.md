@@ -2,7 +2,7 @@
 ## Keys.MixedReality.RightThumbstickRight Field
   
 ```csharp
-public const RightThumbstickRight;
+public const string RightThumbstickRight = MixedReality_Right_Thumbstick_Right;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

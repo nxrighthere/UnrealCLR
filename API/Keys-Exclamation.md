@@ -2,7 +2,7 @@
 ## Keys.Exclamation Field
   
 ```csharp
-public const Exclamation;
+public const string Exclamation = Exclamation;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

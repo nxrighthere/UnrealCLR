@@ -2,7 +2,7 @@
 ## Keys.Section Field
   
 ```csharp
-public const Section;
+public const string Section = Section;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

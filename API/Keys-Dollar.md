@@ -2,7 +2,7 @@
 ## Keys.Dollar Field
   
 ```csharp
-public const Dollar;
+public const string Dollar = Dollar;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

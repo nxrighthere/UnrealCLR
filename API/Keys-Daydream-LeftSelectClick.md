@@ -2,7 +2,7 @@
 ## Keys.Daydream.LeftSelectClick Field
   
 ```csharp
-public const LeftSelectClick;
+public const string LeftSelectClick = Daydream_Left_Select_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

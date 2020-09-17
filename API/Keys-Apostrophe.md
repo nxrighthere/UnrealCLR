@@ -2,7 +2,7 @@
 ## Keys.Apostrophe Field
   
 ```csharp
-public const Apostrophe;
+public const string Apostrophe = Apostrophe;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

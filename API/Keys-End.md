@@ -2,7 +2,7 @@
 ## Keys.End Field
   
 ```csharp
-public const End;
+public const string End = End;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

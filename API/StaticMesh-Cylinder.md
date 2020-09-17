@@ -2,7 +2,7 @@
 ## StaticMesh.Cylinder Field
 A basic cylinder  
 ```csharp
-public static readonly Cylinder;
+public static readonly StaticMesh Cylinder;
 ```
 #### Field Value
 [StaticMesh](./StaticMesh.md 'UnrealEngine.Framework.StaticMesh')  

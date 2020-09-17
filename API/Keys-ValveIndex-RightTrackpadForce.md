@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightTrackpadForce Field
   
 ```csharp
-public const RightTrackpadForce;
+public const string RightTrackpadForce = ValveIndex_Right_Trackpad_Force;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

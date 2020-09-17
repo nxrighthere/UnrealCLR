@@ -2,7 +2,7 @@
 ## Keys.Steam.TouchZero Field
   
 ```csharp
-public const TouchZero;
+public const string TouchZero = Steam_Touch_0;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

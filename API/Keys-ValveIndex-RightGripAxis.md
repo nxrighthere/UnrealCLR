@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightGripAxis Field
   
 ```csharp
-public const RightGripAxis;
+public const string RightGripAxis = ValveIndex_Right_Grip_Axis;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

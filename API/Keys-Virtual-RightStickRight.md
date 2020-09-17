@@ -2,7 +2,7 @@
 ## Keys.Virtual.RightStickRight Field
   
 ```csharp
-public const RightStickRight;
+public const string RightStickRight = Gamepad_RightStick_Right;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

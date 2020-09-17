@@ -2,7 +2,7 @@
 ## Keys.Invalid Field
   
 ```csharp
-public const Invalid;
+public const string Invalid = Invalid;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

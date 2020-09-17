@@ -2,7 +2,7 @@
 ## Keys.Platform.Delete Field
   
 ```csharp
-public const Delete;
+public const string Delete = Platform_Delete;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.Insert Field
   
 ```csharp
-public const Insert;
+public const string Insert = Insert;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

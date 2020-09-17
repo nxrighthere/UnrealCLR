@@ -2,7 +2,7 @@
 ## Keys.Virtual.Accept Field
   
 ```csharp
-public const Accept;
+public const string Accept = Virtual_Accept;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

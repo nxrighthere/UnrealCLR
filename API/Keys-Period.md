@@ -2,7 +2,7 @@
 ## Keys.Period Field
   
 ```csharp
-public const Period;
+public const string Period = Period;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

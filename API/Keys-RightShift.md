@@ -2,7 +2,7 @@
 ## Keys.RightShift Field
   
 ```csharp
-public const RightShift;
+public const string RightShift = RightShift;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

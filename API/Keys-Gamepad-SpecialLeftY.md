@@ -2,7 +2,7 @@
 ## Keys.Gamepad.SpecialLeftY Field
   
 ```csharp
-public const SpecialLeftY;
+public const string SpecialLeftY = Gamepad_Special_Left_Y;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

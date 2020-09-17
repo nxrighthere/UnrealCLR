@@ -2,7 +2,7 @@
 ## Keys.Add Field
   
 ```csharp
-public const Add;
+public const string Add = Add;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

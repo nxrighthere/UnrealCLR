@@ -2,7 +2,7 @@
 ## Keys.MixedReality.LeftTriggerClick Field
   
 ```csharp
-public const LeftTriggerClick;
+public const string LeftTriggerClick = MixedReality_Left_Trigger_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

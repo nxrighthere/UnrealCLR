@@ -2,7 +2,7 @@
 ## Keys.Decimal Field
   
 ```csharp
-public const Decimal;
+public const string Decimal = Decimal;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

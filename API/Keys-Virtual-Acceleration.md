@@ -2,7 +2,7 @@
 ## Keys.Virtual.Acceleration Field
   
 ```csharp
-public const Acceleration;
+public const string Acceleration = Acceleration;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

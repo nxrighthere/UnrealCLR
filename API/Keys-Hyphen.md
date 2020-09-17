@@ -2,7 +2,7 @@
 ## Keys.Hyphen Field
   
 ```csharp
-public const Hyphen;
+public const string Hyphen = Hyphen;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.OculusTouch.LeftThumbstickLeft Field
   
 ```csharp
-public const LeftThumbstickLeft;
+public const string LeftThumbstickLeft = OculusTouch_Left_Thumbstick_Left;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

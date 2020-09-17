@@ -2,7 +2,7 @@
 ## Keys.Ampersand Field
   
 ```csharp
-public const Ampersand;
+public const string Ampersand = Ampersand;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

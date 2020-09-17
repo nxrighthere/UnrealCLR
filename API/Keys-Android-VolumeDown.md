@@ -2,7 +2,7 @@
 ## Keys.Android.VolumeDown Field
   
 ```csharp
-public const VolumeDown;
+public const string VolumeDown = Android_Volume_Down;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

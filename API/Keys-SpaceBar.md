@@ -2,7 +2,7 @@
 ## Keys.SpaceBar Field
   
 ```csharp
-public const SpaceBar;
+public const string SpaceBar = SpaceBar;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

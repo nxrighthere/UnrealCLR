@@ -2,7 +2,7 @@
 ## Keys.Right Field
   
 ```csharp
-public const Right;
+public const string Right = Right;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.MouseY Field
   
 ```csharp
-public const MouseY;
+public const string MouseY = MouseY;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

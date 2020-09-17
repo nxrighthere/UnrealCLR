@@ -2,7 +2,7 @@
 ## Keys.Virtual.LeftStickUp Field
   
 ```csharp
-public const LeftStickUp;
+public const string LeftStickUp = Gamepad_LeftStick_Up;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

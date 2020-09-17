@@ -2,7 +2,7 @@
 ## Keys.Virtual.Gravity Field
   
 ```csharp
-public const Gravity;
+public const string Gravity = Gravity;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

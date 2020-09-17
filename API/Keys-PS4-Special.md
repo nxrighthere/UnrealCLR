@@ -2,7 +2,7 @@
 ## Keys.PS4.Special Field
   
 ```csharp
-public const Special;
+public const string Special = PS4_Special;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

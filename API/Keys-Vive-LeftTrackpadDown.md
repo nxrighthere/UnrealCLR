@@ -2,7 +2,7 @@
 ## Keys.Vive.LeftTrackpadDown Field
   
 ```csharp
-public const LeftTrackpadDown;
+public const string LeftTrackpadDown = Vive_Left_Trackpad_Down;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

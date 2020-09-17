@@ -2,7 +2,7 @@
 ## Keys.Divide Field
   
 ```csharp
-public const Divide;
+public const string Divide = Divide;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

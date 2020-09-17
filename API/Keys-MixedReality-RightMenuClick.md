@@ -2,7 +2,7 @@
 ## Keys.MixedReality.RightMenuClick Field
   
 ```csharp
-public const RightMenuClick;
+public const string RightMenuClick = MixedReality_Right_Menu_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

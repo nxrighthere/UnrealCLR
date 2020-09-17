@@ -2,7 +2,7 @@
 ## Keys.Xbox.GlobalPlay Field
   
 ```csharp
-public const GlobalPlay;
+public const string GlobalPlay = Global_Play;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

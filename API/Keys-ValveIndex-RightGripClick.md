@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightGripClick Field
   
 ```csharp
-public const RightGripClick;
+public const string RightGripClick = ValveIndex_Right_Grip_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

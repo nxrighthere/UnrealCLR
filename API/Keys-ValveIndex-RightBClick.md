@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightBClick Field
   
 ```csharp
-public const RightBClick;
+public const string RightBClick = ValveIndex_Right_B_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

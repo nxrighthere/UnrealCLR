@@ -2,7 +2,7 @@
 ## Keys.Escape Field
   
 ```csharp
-public const Escape;
+public const string Escape = Escape;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

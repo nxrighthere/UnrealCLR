@@ -2,7 +2,7 @@
 ## Keys.Gamepad.RightShoulder Field
   
 ```csharp
-public const RightShoulder;
+public const string RightShoulder = Gamepad_RightShoulder;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

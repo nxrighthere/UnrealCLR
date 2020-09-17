@@ -2,7 +2,7 @@
 ## Keys.Down Field
   
 ```csharp
-public const Down;
+public const string Down = Down;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

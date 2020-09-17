@@ -2,7 +2,7 @@
 ## Keys.Steam.BackLeft Field
   
 ```csharp
-public const BackLeft;
+public const string BackLeft = Steam_Back_Left;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

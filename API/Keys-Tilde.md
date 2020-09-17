@@ -2,7 +2,7 @@
 ## Keys.Tilde Field
   
 ```csharp
-public const Tilde;
+public const string Tilde = Tilde;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

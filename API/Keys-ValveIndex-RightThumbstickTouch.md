@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightThumbstickTouch Field
   
 ```csharp
-public const RightThumbstickTouch;
+public const string RightThumbstickTouch = ValveIndex_Right_Thumbstick_Touch;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## StaticMesh.Cube Field
 A basic cube  
 ```csharp
-public static readonly Cube;
+public static readonly StaticMesh Cube;
 ```
 #### Field Value
 [StaticMesh](./StaticMesh.md 'UnrealEngine.Framework.StaticMesh')  

@@ -2,7 +2,7 @@
 ## Keys.Gesture.Rotate Field
   
 ```csharp
-public const Rotate;
+public const string Rotate = Gesture_Rotate;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.Xbox.GlobalBack Field
   
 ```csharp
-public const GlobalBack;
+public const string GlobalBack = Global_Back;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

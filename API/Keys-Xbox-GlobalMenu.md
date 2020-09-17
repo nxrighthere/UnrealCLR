@@ -2,7 +2,7 @@
 ## Keys.Xbox.GlobalMenu Field
   
 ```csharp
-public const GlobalMenu;
+public const string GlobalMenu = Global_Menu;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

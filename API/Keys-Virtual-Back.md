@@ -2,7 +2,7 @@
 ## Keys.Virtual.Back Field
   
 ```csharp
-public const Back;
+public const string Back = Virtual_Back;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

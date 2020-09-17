@@ -2,7 +2,7 @@
 ## Keys.OculusGo.LeftTrackpadX Field
   
 ```csharp
-public const LeftTrackpadX;
+public const string LeftTrackpadX = OculusGo_Left_Trackpad_X;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

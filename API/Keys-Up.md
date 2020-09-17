@@ -2,7 +2,7 @@
 ## Keys.Up Field
   
 ```csharp
-public const Up;
+public const string Up = Up;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

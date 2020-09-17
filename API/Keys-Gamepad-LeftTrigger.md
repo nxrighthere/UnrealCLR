@@ -2,7 +2,7 @@
 ## Keys.Gamepad.LeftTrigger Field
   
 ```csharp
-public const LeftTrigger;
+public const string LeftTrigger = Gamepad_LeftTrigger;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

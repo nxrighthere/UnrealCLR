@@ -2,7 +2,7 @@
 ## Keys.Gesture.Flick Field
   
 ```csharp
-public const Flick;
+public const string Flick = Gesture_Flick;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

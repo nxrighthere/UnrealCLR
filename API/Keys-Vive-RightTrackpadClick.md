@@ -2,7 +2,7 @@
 ## Keys.Vive.RightTrackpadClick Field
   
 ```csharp
-public const RightTrackpadClick;
+public const string RightTrackpadClick = Vive_Right_Trackpad_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

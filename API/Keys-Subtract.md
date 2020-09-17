@@ -2,7 +2,7 @@
 ## Keys.Subtract Field
   
 ```csharp
-public const Subtract;
+public const string Subtract = Subtract;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

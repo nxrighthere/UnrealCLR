@@ -2,7 +2,7 @@
 ## Keys.Multiply Field
   
 ```csharp
-public const Multiply;
+public const string Multiply = Multiply;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

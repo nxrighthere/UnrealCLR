@@ -2,7 +2,7 @@
 ## Keys.Gamepad.FaceButtonBottom Field
   
 ```csharp
-public const FaceButtonBottom;
+public const string FaceButtonBottom = Gamepad_FaceButton_Bottom;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

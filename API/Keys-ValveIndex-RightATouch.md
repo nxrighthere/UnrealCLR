@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightATouch Field
   
 ```csharp
-public const RightATouch;
+public const string RightATouch = ValveIndex_Right_A_Touch;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

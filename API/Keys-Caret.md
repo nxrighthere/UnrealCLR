@@ -2,7 +2,7 @@
 ## Keys.Caret Field
   
 ```csharp
-public const Caret;
+public const string Caret = Caret;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

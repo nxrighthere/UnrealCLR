@@ -2,7 +2,7 @@
 ## Keys.Virtual.Tilt Field
   
 ```csharp
-public const Tilt;
+public const string Tilt = Tilt;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

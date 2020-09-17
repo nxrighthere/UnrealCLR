@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.RightTriggerClick Field
   
 ```csharp
-public const RightTriggerClick;
+public const string RightTriggerClick = ValveIndex_Right_Trigger_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

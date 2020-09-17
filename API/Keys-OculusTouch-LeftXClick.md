@@ -2,7 +2,7 @@
 ## Keys.OculusTouch.LeftXClick Field
   
 ```csharp
-public const LeftXClick;
+public const string LeftXClick = OculusTouch_Left_X_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

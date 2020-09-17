@@ -2,7 +2,7 @@
 ## Keys.OculusTouch.RightBClick Field
   
 ```csharp
-public const RightBClick;
+public const string RightBClick = OculusTouch_Right_B_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.Gamepad.FaceButtonLeft Field
   
 ```csharp
-public const FaceButtonLeft;
+public const string FaceButtonLeft = Gamepad_FaceButton_Left;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

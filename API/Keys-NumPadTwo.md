@@ -2,7 +2,7 @@
 ## Keys.NumPadTwo Field
   
 ```csharp
-public const NumPadTwo;
+public const string NumPadTwo = NumPadTwo;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

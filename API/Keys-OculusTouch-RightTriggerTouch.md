@@ -2,7 +2,7 @@
 ## Keys.OculusTouch.RightTriggerTouch Field
   
 ```csharp
-public const RightTriggerTouch;
+public const string RightTriggerTouch = OculusTouch_Right_Trigger_Touch;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

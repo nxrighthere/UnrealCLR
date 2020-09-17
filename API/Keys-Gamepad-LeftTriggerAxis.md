@@ -2,7 +2,7 @@
 ## Keys.Gamepad.LeftTriggerAxis Field
   
 ```csharp
-public const LeftTriggerAxis;
+public const string LeftTriggerAxis = Gamepad_LeftTriggerAxis;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

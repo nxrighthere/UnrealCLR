@@ -2,7 +2,7 @@
 ## Keys.Equal Field
   
 ```csharp
-public const Equal;
+public const string Equal = Equals;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

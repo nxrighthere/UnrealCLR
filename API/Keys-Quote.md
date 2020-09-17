@@ -2,7 +2,7 @@
 ## Keys.Quote Field
   
 ```csharp
-public const Quote;
+public const string Quote = Quote;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

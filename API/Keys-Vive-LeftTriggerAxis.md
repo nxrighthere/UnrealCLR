@@ -2,7 +2,7 @@
 ## Keys.Vive.LeftTriggerAxis Field
   
 ```csharp
-public const LeftTriggerAxis;
+public const string LeftTriggerAxis = Vive_Left_Trigger_Axis;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Maths.RadToDegF Field
 Radians-to-degrees conversion constant  
 ```csharp
-public const RadToDegF;
+public const float RadToDegF = 57,29578;
 ```
 #### Field Value
 [System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')  

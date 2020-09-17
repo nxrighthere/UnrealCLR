@@ -2,7 +2,7 @@
 ## Keys.MixedReality.RightTriggerAxis Field
   
 ```csharp
-public const RightTriggerAxis;
+public const string RightTriggerAxis = MixedReality_Right_Trigger_Axis;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

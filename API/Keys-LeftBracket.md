@@ -2,7 +2,7 @@
 ## Keys.LeftBracket Field
   
 ```csharp
-public const LeftBracket;
+public const string LeftBracket = LeftBracket;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

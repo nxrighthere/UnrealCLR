@@ -2,7 +2,7 @@
 ## Keys.Gamepad.SpecialRight Field
   
 ```csharp
-public const SpecialRight;
+public const string SpecialRight = Gamepad_Special_Right;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

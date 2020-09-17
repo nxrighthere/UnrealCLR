@@ -2,7 +2,7 @@
 ## Keys.Gamepad.RightX Field
   
 ```csharp
-public const RightX;
+public const string RightX = Gamepad_RightX;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

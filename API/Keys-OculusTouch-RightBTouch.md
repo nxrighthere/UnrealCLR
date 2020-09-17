@@ -2,7 +2,7 @@
 ## Keys.OculusTouch.RightBTouch Field
   
 ```csharp
-public const RightBTouch;
+public const string RightBTouch = OculusTouch_Right_B_Touch;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

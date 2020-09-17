@@ -2,7 +2,7 @@
 ## Keys.RightParantheses Field
   
 ```csharp
-public const RightParantheses;
+public const string RightParantheses = RightParantheses;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.Colon Field
   
 ```csharp
-public const Colon;
+public const string Colon = Colon;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

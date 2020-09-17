@@ -2,7 +2,7 @@
 ## Keys.MixedReality.RightTrackpadRight Field
   
 ```csharp
-public const RightTrackpadRight;
+public const string RightTrackpadRight = MixedReality_Right_Trackpad_Right;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

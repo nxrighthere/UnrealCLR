@@ -2,7 +2,7 @@
 ## Keys.PageUp Field
   
 ```csharp
-public const PageUp;
+public const string PageUp = PageUp;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

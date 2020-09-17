@@ -2,7 +2,7 @@
 ## Keys.Gamepad.DPadLeft Field
   
 ```csharp
-public const DPadLeft;
+public const string DPadLeft = Gamepad_DPad_Left;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

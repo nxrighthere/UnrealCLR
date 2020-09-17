@@ -2,7 +2,7 @@
 ## Keys.Asterix Field
   
 ```csharp
-public const Asterix;
+public const string Asterix = Asterix;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

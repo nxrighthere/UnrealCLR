@@ -2,7 +2,7 @@
 ## Keys.Enter Field
   
 ```csharp
-public const Enter;
+public const string Enter = Enter;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

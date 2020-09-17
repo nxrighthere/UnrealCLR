@@ -2,7 +2,7 @@
 ## Keys.OculusGo.LeftBackClick Field
   
 ```csharp
-public const LeftBackClick;
+public const string LeftBackClick = OculusGo_Left_Back_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

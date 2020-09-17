@@ -2,7 +2,7 @@
 ## Keys.Backslash Field
   
 ```csharp
-public const Backslash;
+public const string Backslash = Backslash;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.RightCommand Field
   
 ```csharp
-public const RightCommand;
+public const string RightCommand = RightCommand;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

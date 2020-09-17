@@ -2,7 +2,7 @@
 ## Keys.NumLock Field
   
 ```csharp
-public const NumLock;
+public const string NumLock = NumLock;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

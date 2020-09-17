@@ -2,7 +2,7 @@
 ## Keys.Gamepad.RightThumbstick Field
   
 ```csharp
-public const RightThumbstick;
+public const string RightThumbstick = Gamepad_RightThumbstick;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

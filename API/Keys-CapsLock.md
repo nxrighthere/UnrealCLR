@@ -2,7 +2,7 @@
 ## Keys.CapsLock Field
   
 ```csharp
-public const CapsLock;
+public const string CapsLock = CapsLock;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.I Field
   
 ```csharp
-public const I;
+public const string I = I;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

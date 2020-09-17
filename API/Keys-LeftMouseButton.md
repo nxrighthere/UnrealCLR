@@ -2,7 +2,7 @@
 ## Keys.LeftMouseButton Field
   
 ```csharp
-public const LeftMouseButton;
+public const string LeftMouseButton = LeftMouseButton;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

@@ -2,7 +2,7 @@
 ## Keys.ScrollLock Field
   
 ```csharp
-public const ScrollLock;
+public const string ScrollLock = ScrollLock;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

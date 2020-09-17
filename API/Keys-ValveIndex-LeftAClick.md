@@ -2,7 +2,7 @@
 ## Keys.ValveIndex.LeftAClick Field
   
 ```csharp
-public const LeftAClick;
+public const string LeftAClick = ValveIndex_Left_A_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

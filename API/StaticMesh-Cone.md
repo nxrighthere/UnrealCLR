@@ -2,7 +2,7 @@
 ## StaticMesh.Cone Field
 A basic cone  
 ```csharp
-public static readonly Cone;
+public static readonly StaticMesh Cone;
 ```
 #### Field Value
 [StaticMesh](./StaticMesh.md 'UnrealEngine.Framework.StaticMesh')  

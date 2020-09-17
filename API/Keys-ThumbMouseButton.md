@@ -2,7 +2,7 @@
 ## Keys.ThumbMouseButton Field
   
 ```csharp
-public const ThumbMouseButton;
+public const string ThumbMouseButton = ThumbMouseButton;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

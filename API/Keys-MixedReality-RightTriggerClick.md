@@ -2,7 +2,7 @@
 ## Keys.MixedReality.RightTriggerClick Field
   
 ```csharp
-public const RightTriggerClick;
+public const string RightTriggerClick = MixedReality_Right_Trigger_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  

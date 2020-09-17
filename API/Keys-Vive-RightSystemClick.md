@@ -2,7 +2,7 @@
 ## Keys.Vive.RightSystemClick Field
   
 ```csharp
-public const RightSystemClick;
+public const string RightSystemClick = Vive_Right_System_Click;
 ```
 #### Field Value
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
