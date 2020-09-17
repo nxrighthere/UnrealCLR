@@ -236,7 +236,7 @@ Attempts to find a managed function from loaded assemblies. This node performs a
 
 **Execute Managed Function**
 
-Attempts to execute a managed function. This node performs a fast execution of a function pointer. Optionally allows passing an [object reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ObjectReference.md) of the engine to managed code with conversion to an appropriate type.
+Attempts to execute a managed function. This node performs a fast execution of a function pointer. Optionally allows passing an [object reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ObjectReference.md) of the engine to managed code with further conversion to an appropriate type.
 
 ### Data passing
 Several options are available to pass data between the managed runtime and the engine.
