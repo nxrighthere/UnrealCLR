@@ -13,7 +13,7 @@ namespace UnrealEngine.Tests {
 		public ObjectOrientedDesign() {
 			entities = new Entity[maxEntities];
 			material = Material.Load("/Game/Tests/BasicMaterial");
-			random = new Random();
+			random = new();
 		}
 
 		public void OnBeginPlay() {

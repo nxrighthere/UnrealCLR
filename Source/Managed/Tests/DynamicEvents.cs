@@ -42,7 +42,7 @@ namespace UnrealEngine.Tests {
 
 			const float linesThickness = 3.0f;
 
-			TriggerBox triggerBox = new TriggerBox();
+			TriggerBox triggerBox = new();
 			BoxComponent collisionComponent = triggerBox.GetComponent<BoxComponent>();
 			Vector3 collisionShape = new Vector3(200.0f, 200.0f, 200.0f);
 

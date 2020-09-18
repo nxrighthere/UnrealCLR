@@ -22,7 +22,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
-				Actor actor = new Actor();
+				Actor actor = new();
 				SceneComponent sceneComponent = new SceneComponent(actor, setAsRoot: true);
 
 				actor.Destroy();
@@ -45,7 +45,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
-				Actor actor = new Actor();
+				Actor actor = new();
 				SceneComponent sceneComponent = new SceneComponent(actor, setAsRoot: true);
 
 				sceneComponent.Destroy();
@@ -89,7 +89,7 @@ namespace UnrealEngine.Tests {
 
 			try {
 				Blueprint blueprintComponent = Blueprint.Load("/Game/Tests/BlueprintActor");
-				Actor actor = new Actor();
+				Actor actor = new();
 
 				Debug.Log(LogLevel.Display, "Triggering invalid action after the blueprint loading");
 
@@ -111,7 +111,7 @@ namespace UnrealEngine.Tests {
 			const string actorName = "Player";
 
 			try {
-				Pawn pawn = new Pawn();
+				Pawn pawn = new();
 				Pawn namedPawn = new Pawn(actorName);
 				Pawn duplicateActor = World.GetActor<Pawn>(actorName);
 
@@ -142,7 +142,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			try {
-				Actor actor = new Actor();
+				Actor actor = new();
 				SceneComponent sceneComponent = new SceneComponent(actor, setAsRoot: true);
 				SceneComponent duplicateReference = actor.GetRootComponent<SceneComponent>();
 

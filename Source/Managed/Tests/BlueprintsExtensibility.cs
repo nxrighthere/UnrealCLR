@@ -33,12 +33,8 @@ namespace UnrealEngine.Tests {
 			const float eventValue = 100.0f;
 
 			Assert.IsTrue(levelScript.Invoke($"TestEvent \"{ eventMessage }: \" { eventValue }"));
-
-			if (actor.IsSpawned)
-				Debug.AddOnScreenMessage(-1, 30.0f, Color.Tomato, "Blueprint actor is spawned!");
-
-			if (sceneComponent.IsCreated)
-				Debug.AddOnScreenMessage(-1, 30.0f, Color.Tomato, "Blueprint scene component is created!");
+			Assert.IsTrue(actor.IsSpawned);
+			Assert.IsTrue(sceneComponent.IsCreated);
 
 			TestActorBoolProperty();
 			TestActorByteProperty();

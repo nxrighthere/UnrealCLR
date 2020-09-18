@@ -79,8 +79,8 @@ namespace UnrealEngine.Tests {
 		private void ReferencesEqualityTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			TriggerBox actorLeft = new TriggerBox();
-			TriggerSphere actorRight = new TriggerSphere();
+			TriggerBox actorLeft = new();
+			TriggerSphere actorRight = new();
 			SceneComponent sceneComponentLeft = new SceneComponent(actorLeft);
 			SceneComponent sceneComponentRight = new SceneComponent(actorRight);
 
@@ -187,8 +187,8 @@ namespace UnrealEngine.Tests {
 		private void HashCodesTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actorLeft = new Actor();
-			Actor actorRight = new Actor();
+			Actor actorLeft = new();
+			Actor actorRight = new();
 			SceneComponent sceneComponentLeft = new SceneComponent(actorLeft);
 			SceneComponent sceneComponentRight = new SceneComponent(actorRight);
 
@@ -252,7 +252,7 @@ namespace UnrealEngine.Tests {
 		private void ChildActorsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actor = new Actor();
+			Actor actor = new();
 			ChildActorComponent childActorComponent = new ChildActorComponent(actor, setAsRoot: true);
 			TriggerBox childActor = childActorComponent.SetChildActor<TriggerBox>();
 
@@ -279,7 +279,7 @@ namespace UnrealEngine.Tests {
 		private void ComponentsAttachmentTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actor = new Actor();
+			Actor actor = new();
 			StaticMeshComponent staticMeshComponent = new StaticMeshComponent(actor, setAsRoot: true);
 			InstancedStaticMeshComponent instancedStaticMeshComponent = new InstancedStaticMeshComponent(actor);
 			SceneComponent sceneComponent = new SceneComponent(actor);
@@ -304,7 +304,7 @@ namespace UnrealEngine.Tests {
 		private void ComponentsMatchingTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actor = new Actor();
+			Actor actor = new();
 			StaticMeshComponent staticMeshComponent = new StaticMeshComponent(actor, setAsRoot: true);
 			SceneComponent sceneComponent = actor.GetRootComponent<SceneComponent>();
 			InstancedStaticMeshComponent instancedStaticMeshComponent = actor.GetRootComponent<InstancedStaticMeshComponent>();
@@ -339,7 +339,7 @@ namespace UnrealEngine.Tests {
 		private void ObjectIDsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actor = new Actor();
+			Actor actor = new();
 			SceneComponent sceneComponent = new SceneComponent(actor, setAsRoot: true);
 
 			Actor actorByID = World.GetActorByID<Actor>(actor.ID);
@@ -385,7 +385,7 @@ namespace UnrealEngine.Tests {
 		private void TagsTest() {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
-			Actor actor = new Actor();
+			Actor actor = new();
 			SceneComponent sceneComponent = new SceneComponent(actor);
 
 			const string tag = "TestTag";

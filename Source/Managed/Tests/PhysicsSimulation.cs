@@ -18,7 +18,7 @@ namespace UnrealEngine.Tests {
 			staticMeshComponents = new StaticMeshComponent[maxActors];
 			material = Material.Load("/Game/Tests/BasicMaterial");
 			rotationSpeed = 2.5f;
-			random = new Random();
+			random = new();
 		}
 
 		public void OnBeginPlay() {
@@ -29,7 +29,7 @@ namespace UnrealEngine.Tests {
 			const int halfActors = maxActors / 2;
 
 			for (int i = 0; i < maxActors; i++) {
-				actors[i] = new Actor();
+				actors[i] = new();
 				staticMeshComponents[i] = new StaticMeshComponent(actors[i], setAsRoot: true);
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);
 				staticMeshComponents[i].SetMaterial(0, material);

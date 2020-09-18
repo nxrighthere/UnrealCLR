@@ -8,7 +8,7 @@ namespace UnrealEngine.Tests {
 		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
-			Actor actor = new Actor();
+			Actor actor = new();
 			StaticMeshComponent staticMeshComponent = new StaticMeshComponent(actor, setAsRoot: true);
 			Texture2D texture = Texture2D.Load("/Game/Tests/BasicTexture");
 

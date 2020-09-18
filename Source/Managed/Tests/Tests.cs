@@ -34,106 +34,106 @@ namespace UnrealEngine.Tests {
 
 			switch (testSystem) {
 				case TestSystems.AssertionConsistency:
-					assertionConsistency = new AssertionConsistency();
+					assertionConsistency = new();
 					OnBeginPlay += assertionConsistency.OnBeginPlay;
 					break;
 
 				case TestSystems.AudioPlayback:
-					audioPlayback = new AudioPlayback();
+					audioPlayback = new();
 					OnBeginPlay += audioPlayback.OnBeginPlay;
 					OnEndPlay += audioPlayback.OnEndPlay;
 					break;
 
 				case TestSystems.BlueprintsExtensibility:
-					blueprintsExtensibility = new BlueprintsExtensibility();
+					blueprintsExtensibility = new();
 					OnBeginPlay += blueprintsExtensibility.OnBeginPlay;
 					OnEndPlay += blueprintsExtensibility.OnEndPlay;
 					break;
 
 				case TestSystems.DebugVisualization:
-					debugVisualization = new DebugVisualization();
+					debugVisualization = new();
 					OnBeginPlay += debugVisualization.OnBeginPlay;
 					OnEndPlay += debugVisualization.OnEndPlay;
 					break;
 
 				case TestSystems.DynamicEvents:
-					dynamicEvents = new DynamicEvents();
+					dynamicEvents = new();
 					OnBeginPlay += dynamicEvents.OnBeginPlay;
 					OnTick += dynamicEvents.OnTick;
 					OnEndPlay += dynamicEvents.OnEndPlay;
 					break;
 
 				case TestSystems.DynamicsConsistency:
-					dynamicsConsistency = new DynamicsConsistency();
+					dynamicsConsistency = new();
 					OnBeginPlay += dynamicsConsistency.OnBeginPlay;
 					OnTick += dynamicsConsistency.OnTick;
 					OnEndPlay += dynamicsConsistency.OnEndPlay;
 					break;
 
 				case TestSystems.ExceptionsConsistency:
-					exceptionsConsistency = new ExceptionsConsistency();
+					exceptionsConsistency = new();
 					OnBeginPlay += exceptionsConsistency.OnBeginPlay;
 					OnEndPlay += exceptionsConsistency.OnEndPlay;
 					break;
 
 				case TestSystems.ExternalConsistency:
-					externalConsistency = new ExternalConsistency();
+					externalConsistency = new();
 					OnBeginPlay += externalConsistency.OnBeginPlay;
 					break;
 
 				case TestSystems.InstancedStaticMeshes:
-					instancedStaticMeshes = new InstancedStaticMeshes();
+					instancedStaticMeshes = new();
 					OnBeginPlay += instancedStaticMeshes.OnBeginPlay;
 					OnTick += instancedStaticMeshes.OnTick;
 					OnEndPlay += instancedStaticMeshes.OnEndPlay;
 					break;
 
 				case TestSystems.ObjectOrientedDesign:
-					objectOrientedDesign = new ObjectOrientedDesign();
+					objectOrientedDesign = new();
 					OnBeginPlay += objectOrientedDesign.OnBeginPlay;
 					OnTick += objectOrientedDesign.OnTick;
 					OnEndPlay += objectOrientedDesign.OnEndPlay;
 					break;
 
 				case TestSystems.PhysicsSimulation:
-					physicsSimulation = new PhysicsSimulation();
+					physicsSimulation = new();
 					OnBeginPlay += physicsSimulation.OnBeginPlay;
 					OnTick += physicsSimulation.OnTick;
 					OnEndPlay += physicsSimulation.OnEndPlay;
 					break;
 
 				case TestSystems.RadialForce:
-					radialForce = new RadialForce();
+					radialForce = new();
 					OnBeginPlay += radialForce.OnBeginPlay;
 					OnEndPlay += radialForce.OnEndPlay;
 					break;
 
 				case TestSystems.RuntimeConsistency:
-					runtimeConsistency = new RuntimeConsistency();
+					runtimeConsistency = new();
 					OnBeginPlay += runtimeConsistency.OnBeginPlay;
 					break;
 
 				case TestSystems.SkeletalMeshes:
-					skeletalMeshes = new SkeletalMeshes();
+					skeletalMeshes = new();
 					OnBeginPlay += skeletalMeshes.OnBeginPlay;
 					OnEndPlay += skeletalMeshes.OnEndPlay;
 					break;
 
 				case TestSystems.SpatialQueries:
-					spatialQueries = new SpatialQueries();
+					spatialQueries = new();
 					OnBeginPlay += spatialQueries.OnBeginPlay;
 					OnEndPlay += spatialQueries.OnEndPlay;
 					break;
 
 				case TestSystems.StaticMeshes:
-					staticMeshes = new StaticMeshes();
+					staticMeshes = new();
 					OnBeginPlay += staticMeshes.OnBeginPlay;
 					OnTick += staticMeshes.OnTick;
 					OnEndPlay += staticMeshes.OnEndPlay;
 					break;
 
 				case TestSystems.TextureAssets:
-					textureAssets = new TextureAssets();
+					textureAssets = new();
 					OnBeginPlay += textureAssets.OnBeginPlay;
 					OnEndPlay += textureAssets.OnEndPlay;
 					break;

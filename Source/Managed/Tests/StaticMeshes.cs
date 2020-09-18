@@ -17,14 +17,14 @@ namespace UnrealEngine.Tests {
 			staticMeshComponents = new StaticMeshComponent[maxActors];
 			material = Material.Load("/Game/Tests/BasicMaterial");
 			rotationSpeed = 2.5f;
-			random = new Random();
+			random = new();
 		}
 
 		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
 			for (int i = 0; i < maxActors; i++) {
-				actors[i] = new Actor();
+				actors[i] = new();
 				staticMeshComponents[i] = new StaticMeshComponent(actors[i], setAsRoot: true);
 				staticMeshComponents[i].AddLocalOffset(new Vector3(15.0f * i, 20.0f * i, 25.0f * i));
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);

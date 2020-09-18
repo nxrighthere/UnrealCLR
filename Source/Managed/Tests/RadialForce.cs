@@ -14,7 +14,7 @@ namespace UnrealEngine.Tests {
 			StaticMeshComponent[] staticMeshComponents = new StaticMeshComponent[maxActors];
 
 			for (int i = 0; i < maxActors; i++) {
-				actors[i] = new Actor();
+				actors[i] = new();
 				staticMeshComponents[i] = new StaticMeshComponent(actors[i], setAsRoot: true);
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);
 				staticMeshComponents[i].SetMaterial(0, Material.Load("/Game/Tests/BasicMaterial"));
@@ -25,7 +25,7 @@ namespace UnrealEngine.Tests {
 				staticMeshComponents[i].SetCollisionChannel(CollisionChannel.PhysicsBody);
 			}
 
-			RadialForceComponent radialForceComponent = new RadialForceComponent(new Actor(), setAsRoot: true);
+			RadialForceComponent radialForceComponent = new RadialForceComponent(new(), setAsRoot: true);
 
 			radialForceComponent.IgnoreOwningActor = true;
 			radialForceComponent.ImpulseVelocityChange = true;
