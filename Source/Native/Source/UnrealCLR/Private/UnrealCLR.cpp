@@ -19,7 +19,7 @@
 DEFINE_LOG_CATEGORY(LogUnrealCLR);
 
 void UnrealCLR::Module::StartupModule() {
-	#define HOSTFXR_VERSION "3.1.8"
+	#define HOSTFXR_VERSION "5.0.0-rc.1.20451.14"
 	#define HOSTFXR_WINDOWS "/hostfxr.dll"
 	#define HOSTFXR_MAC "/libhostfxr.dylib"
 	#define HOSTFXR_LINUX "/libhostfxr.so"
@@ -50,7 +50,6 @@ void UnrealCLR::Module::StartupModule() {
 	const FString runtimeAssemblyPath = assembliesPath + TEXT("UnrealEngine.Runtime.dll");
 	const FString runtimeTypeName = TEXT("UnrealEngine.Runtime.Core, UnrealEngine.Runtime");
 	const FString runtimeMethodName = TEXT("ManagedCommand");
-	const FString runtimeMethodDelegateName = TEXT("UnrealEngine.Runtime.ManagedCommandDelegate, UnrealEngine.Runtime");
 
 	UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host path set to \"%s\""), ANSI_TO_TCHAR(__FUNCTION__), *hostfxrPath);
 
@@ -119,7 +118,7 @@ void UnrealCLR::Module::StartupModule() {
 
 		load_assembly_and_get_function_pointer_fn HostfxrLoadAssemblyAndGetFunctionPointer = (load_assembly_and_get_function_pointer_fn)hostfxrLoadAssemblyAndGetFunctionPointer;
 
-		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_PLATFORM_STRING(*runtimeAssemblyPath), UNREALCLR_PLATFORM_STRING(*runtimeTypeName), UNREALCLR_PLATFORM_STRING(*runtimeMethodName), UNREALCLR_PLATFORM_STRING(*runtimeMethodDelegateName), nullptr, (void**)&UnrealCLR::ManagedCommand) == 0) {
+		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_PLATFORM_STRING(*runtimeAssemblyPath), UNREALCLR_PLATFORM_STRING(*runtimeTypeName), UNREALCLR_PLATFORM_STRING(*runtimeMethodName), UNMANAGEDCALLERSONLY_METHOD, nullptr, (void**)&UnrealCLR::ManagedCommand) == 0) {
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 		} else {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1279,19 +1278,19 @@ void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
 		reinterpret_cast<void(*)(uint32_t)>(ManagedFunction)(Value.Integer);
 	} else if (Value.Type == ArgumentType::Pointer) {
 		reinterpret_cast<void(*)(void*)>(ManagedFunction)(Value.Pointer);
-	} else if (Value.Type == ArgumentType::Object) {
-		if (Value.Object.Type == ObjectType::ActorOverlapDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]), static_cast<AActor*>(Value.Object.Parameters[1]));
-		} else if (Value.Object.Type == ObjectType::ActorHitDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ActorHitDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]), static_cast<AActor*>(Value.Object.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Object.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Object.Parameters[3]));
-		} else if (Value.Object.Type == ObjectType::ActorCursorDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ActorCursorDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Object.Parameters[0]));
-		} else if (Value.Object.Type == ObjectType::ComponentOverlapDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Object.Parameters[1]));
-		} else if (Value.Object.Type == ObjectType::ComponentHitDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ComponentHitDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Object.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Object.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Object.Parameters[3]));
-		} else if (Value.Object.Type == ObjectType::ComponentCursorDelegate) {
-			reinterpret_cast<UnrealCLRFramework::ComponentCursorDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Object.Parameters[0]));
+	} else if (Value.Type == ArgumentType::Callback) {
+		if (Value.Callback.Type == CallbackType::ActorOverlapDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]), static_cast<AActor*>(Value.Callback.Parameters[1]));
+		} else if (Value.Callback.Type == CallbackType::ActorHitDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ActorHitDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]), static_cast<AActor*>(Value.Callback.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Callback.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Callback.Parameters[3]));
+		} else if (Value.Callback.Type == CallbackType::ActorCursorDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ActorCursorDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]));
+		} else if (Value.Callback.Type == CallbackType::ComponentOverlapDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[1]));
+		} else if (Value.Callback.Type == CallbackType::ComponentHitDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ComponentHitDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[1]), static_cast<UnrealCLRFramework::Vector3*>(Value.Callback.Parameters[2]), static_cast<UnrealCLRFramework::Hit*>(Value.Callback.Parameters[3]));
+		} else if (Value.Callback.Type == CallbackType::ComponentCursorDelegate) {
+			reinterpret_cast<UnrealCLRFramework::ComponentCursorDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]));
 		}
 	}
 }

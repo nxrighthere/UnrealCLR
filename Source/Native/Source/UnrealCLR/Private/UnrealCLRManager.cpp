@@ -21,7 +21,7 @@ void UUnrealCLRManager::ActorBeginOverlap(AActor* OverlapActor, AActor* OtherAct
 			OtherActor
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorOverlapDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorOverlapDelegate)));
 	}
 }
 
@@ -32,7 +32,7 @@ void UUnrealCLRManager::ActorEndOverlap(AActor* OverlapActor, AActor* OtherActor
 			OtherActor
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorOverlapDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorEndOverlap], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorOverlapDelegate)));
 	}
 }
 
@@ -48,7 +48,7 @@ void UUnrealCLRManager::ActorHit(AActor* HitActor, AActor* OtherActor, FVector N
 			&hit
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorHit], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorHitDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorHit], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorHitDelegate)));
 	}
 }
 
@@ -58,7 +58,7 @@ void UUnrealCLRManager::ActorBeginCursorOver(AActor* Actor) {
 			Actor
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginCursorOver], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorCursorDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginCursorOver], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorCursorDelegate)));
 	}
 }
 
@@ -68,7 +68,7 @@ void UUnrealCLRManager::ActorEndCursorOver(AActor* Actor) {
 			Actor
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorEndCursorOver], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ActorCursorDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorEndCursorOver], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorCursorDelegate)));
 	}
 }
 
@@ -79,7 +79,7 @@ void UUnrealCLRManager::ComponentBeginOverlap(UPrimitiveComponent* OverlapCompon
 			OtherComponent
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentOverlapDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentOverlapDelegate)));
 	}
 }
 
@@ -90,7 +90,7 @@ void UUnrealCLRManager::ComponentEndOverlap(UPrimitiveComponent* OverlapComponen
 			OtherComponent
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentOverlapDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndOverlap], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentOverlapDelegate)));
 	}
 }
 
@@ -106,7 +106,7 @@ void UUnrealCLRManager::ComponentHit(UPrimitiveComponent* HitComponent, AActor* 
 			&hit
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentHitDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentHit], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentHitDelegate)));
 	}
 }
 
@@ -116,7 +116,7 @@ void UUnrealCLRManager::ComponentBeginCursorOver(UPrimitiveComponent* Component)
 			Component
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginCursorOver], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentCursorDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginCursorOver], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentCursorDelegate)));
 	}
 }
 
@@ -126,6 +126,6 @@ void UUnrealCLRManager::ComponentEndCursorOver(UPrimitiveComponent* Component) {
 			Component
 		};
 
-		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndCursorOver], UnrealCLR::Object(parameters, UnrealCLR::ObjectType::ComponentCursorDelegate)));
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndCursorOver], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentCursorDelegate)));
 	}
 }

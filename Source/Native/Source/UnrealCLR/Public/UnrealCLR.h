@@ -108,7 +108,7 @@ namespace UnrealCLR {
 		Fatal
 	};
 
-	enum struct ObjectType : int32 {
+	enum struct CallbackType : int32 {
 		ActorOverlapDelegate,
 		ActorHitDelegate,
 		ActorCursorDelegate,
@@ -122,7 +122,7 @@ namespace UnrealCLR {
 		Single,
 		Integer,
 		Pointer,
-		Object
+		Callback
 	};
 
 	enum struct CommandType : int32 {
@@ -153,11 +153,11 @@ namespace UnrealCLR {
 		OnComponentEndCursorOver
 	};
 
-	struct Object {
+	struct Callback {
 		void** Parameters;
-		ObjectType Type;
+		CallbackType Type;
 
-		FORCEINLINE Object(void** Parameters, ObjectType Type) {
+		FORCEINLINE Callback(void** Parameters, CallbackType Type) {
 			this->Parameters = Parameters;
 			this->Type = Type;
 		}
@@ -168,7 +168,7 @@ namespace UnrealCLR {
 			float Single;
 			uint32_t Integer;
 			void* Pointer;
-			Object Object;
+			Callback Callback;
 		};
 		ArgumentType Type;
 
@@ -187,9 +187,9 @@ namespace UnrealCLR {
 			this->Type = !Value ? ArgumentType::None : ArgumentType::Pointer;
 		}
 
-		FORCEINLINE Argument(UnrealCLR::Object Value) {
-			this->Object = Value;
-			this->Type = ArgumentType::Object;
+		FORCEINLINE Argument(UnrealCLR::Callback Value) {
+			this->Callback = Value;
+			this->Type = ArgumentType::Callback;
 		}
 	};
 
@@ -242,7 +242,7 @@ namespace UnrealCLR {
 		}
 	};
 
-	static_assert(sizeof(Object) == 16, "Invalid size of the [Object] structure");
+	static_assert(sizeof(Callback) == 16, "Invalid size of the [Callback] structure");
 	static_assert(sizeof(Argument) == 24, "Invalid size of the [Argument] structure");
 	static_assert(sizeof(Command) == 40, "Invalid size of the [Command] structure");
 

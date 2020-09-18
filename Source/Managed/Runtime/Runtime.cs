@@ -63,8 +63,6 @@ namespace UnrealEngine.Runtime {
 		internal CommandType type;
 	}
 
-	internal delegate IntPtr ManagedCommandDelegate(Command command);
-
 	internal sealed class Plugin {
 		internal PluginLoader loader;
 		internal Assembly assembly;
@@ -85,15 +83,7 @@ namespace UnrealEngine.Runtime {
 		internal void UnloadAssembliesContext() => assembliesContext?.Unload();
 	}
 
-	internal static class Core {
-		private delegate void InvokeDelegate(IntPtr managedFunction, Argument value);
-		private delegate void ExceptionDelegate(string message);
-		private delegate void LogDelegate(LogLevel level, string message);
-
-		private static InvokeDelegate Invoke;
-		private static ExceptionDelegate Exception;
-		private static LogDelegate Log;
-
+	internal static unsafe class Core {
 		private static AssembliesContextManager assembliesContextManager;
 		private static WeakReference assembliesContextWeakReference;
 		private static Plugin plugin;
@@ -101,7 +91,11 @@ namespace UnrealEngine.Runtime {
 		private static IntPtr sharedFunctions;
 		private static int sharedChecksum;
 
-		[MethodImpl(MethodImplOptions.NoInlining)]
+		private static delegate* unmanaged[Cdecl]<IntPtr, Argument, void> Invoke;
+		private static delegate* unmanaged[Cdecl]<string, void> Exception;
+		private static delegate* unmanaged[Cdecl]<LogLevel, string, void> Log;
+
+		[UnmanagedCallersOnly]
 		internal static unsafe IntPtr ManagedCommand(Command command) {
 			if (command.type == CommandType.Execute) {
 				try {
@@ -112,7 +106,7 @@ namespace UnrealEngine.Runtime {
 					Exception(exception.ToString());
 				}
 
-				return IntPtr.Zero;
+				return default(IntPtr);
 			}
 
 			if (command.type == CommandType.Find) {
@@ -121,7 +115,7 @@ namespace UnrealEngine.Runtime {
 				try {
 					string method = Marshal.PtrToStringAnsi(command.method);
 
-					if (plugin != null && !plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.Ordinal), out function) && command.optional != 1)
+					if (!plugin.userFunctions.TryGetValue(method.GetHashCode(StringComparison.Ordinal), out function) && command.optional != 1)
 						Log(LogLevel.Error, "Managed function was not found \"" + method + "\"");
 				}
 
@@ -144,9 +138,9 @@ namespace UnrealEngine.Runtime {
 						int head = 0;
 						IntPtr* runtimeFunctions = (IntPtr*)buffer[position++];
 
-						Invoke = GenerateOptimizedFunction<InvokeDelegate>(runtimeFunctions[head++]);
-						Exception = GenerateOptimizedFunction<ExceptionDelegate>(runtimeFunctions[head++]);
-						Log = GenerateOptimizedFunction<LogDelegate>(runtimeFunctions[head++]);
+						Invoke = (delegate* unmanaged[Cdecl]<IntPtr, Argument, void>)runtimeFunctions[head++];
+						Exception = (delegate* unmanaged[Cdecl]<string, void>)runtimeFunctions[head++];
+						Log = (delegate* unmanaged[Cdecl]<LogLevel, string, void>)runtimeFunctions[head++];
 					}
 
 					sharedEvents = buffer[position++];
@@ -209,7 +203,7 @@ namespace UnrealEngine.Runtime {
 											}
 										}
 
-										return IntPtr.Zero;
+										return default(IntPtr);
 									}
 								}
 
@@ -223,13 +217,13 @@ namespace UnrealEngine.Runtime {
 					Exception("Loading of assemblies failed\r\n" + exception.ToString());
 				}
 
-				return IntPtr.Zero;
+				return default(IntPtr);
 			}
 
 			if (command.type == CommandType.UnloadAssemblies)
 				UnloadAssemblies();
 
-			return IntPtr.Zero;
+			return default(IntPtr);
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
@@ -265,32 +259,6 @@ namespace UnrealEngine.Runtime {
 			catch (Exception exception) {
 				Exception("Unloading of assemblies failed\r\n" + exception.ToString());
 			}
-		}
-
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static TDelegate GenerateOptimizedFunction<TDelegate>(IntPtr pointer) where TDelegate : class {
-			Type type = typeof(TDelegate);
-			MethodInfo method = type.GetMethod("Invoke");
-			ParameterInfo[] parameterInfos = method.GetParameters();
-			Type[] parameterTypes = new Type[parameterInfos.Length];
-
-			for (int i = 0; i < parameterTypes.Length; i++) {
-				parameterTypes[i] = parameterInfos[i].ParameterType;
-			}
-
-			DynamicMethod dynamicMethod = new DynamicMethod(method.Name, method.ReturnType, parameterTypes, Assembly.GetExecutingAssembly().ManifestModule);
-			ILGenerator generator = dynamicMethod.GetILGenerator();
-
-			for (int i = 0; i < parameterTypes.Length; i++) {
-				generator.Emit(OpCodes.Ldarg, i);
-			}
-
-			generator.Emit(OpCodes.Ldc_I8, pointer.ToInt64());
-			generator.Emit(OpCodes.Conv_I);
-			generator.EmitCalli(OpCodes.Calli, CallingConvention.Cdecl, method.ReturnType, parameterTypes);
-			generator.Emit(OpCodes.Ret);
-
-			return dynamicMethod.CreateDelegate(type) as TDelegate;
 		}
 	}
 }
