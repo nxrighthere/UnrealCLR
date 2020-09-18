@@ -32,7 +32,7 @@ Building
 ### Prerequisites
 - Unreal Engine 4.25.3 or higher
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html#runtheunrealenginepre-requisiteinstaller) with platform-specific dependencies
-- [.NET Core SDK 3.1.402](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [.NET 5 SDK SDK 5.0.100-rc.1](https://dotnet.microsoft.com/download/dotnet/5.0)
 
 ### Auto
 
@@ -47,13 +47,13 @@ To upgrade the plugin, re-run the installation process. Recompile custom code wi
 #### Compilation
 
 ##### Plugin
-Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
+Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework net5.0 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
 
 ##### Tests
 To quickly start testing, open a project with the plugin in Unreal Engine, copy all folders from the `Content` of the repository to `%Project%/Content` directory, and wait until they loaded in the Content Browser. Compile the managed assemblies from `Source/Managed/Tests` folder by running the following commands:
 ```
-dotnet publish "../Framework" --configuration Release --framework netcoreapp3.1
-dotnet publish --configuration Release --framework netcoreapp3.1 --output "%Project%/Managed/Tests"
+dotnet publish "../Framework" --configuration Release --framework net5.0
+dotnet publish --configuration Release --framework net5.0 --output "%Project%/Managed/Tests"
 ```
 
 #### Upgrading
