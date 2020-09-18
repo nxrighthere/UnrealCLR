@@ -46,7 +46,7 @@ public static class Install {
 
 				var runtimeCompilation = Process.Start(new ProcessStartInfo {
 					FileName = "dotnet",
-					Arguments =  "publish " + sourcePath + "/Source/Managed/Runtime --configuration Release --framework netcoreapp3.1 --output \"" + projectPath + "/Plugins/UnrealCLR/Managed\"",
+					Arguments =  "publish " + sourcePath + "/Source/Managed/Runtime --configuration Release --framework net5.0 --output \"" + projectPath + "/Plugins/UnrealCLR/Managed\"",
 					CreateNoWindow = false,
 					UseShellExecute = true
 				});
@@ -60,7 +60,7 @@ public static class Install {
 
 				var frameworkCompilation = Process.Start(new ProcessStartInfo {
 					FileName = "dotnet",
-					Arguments =  "publish " + sourcePath + "/Source/Managed/Framework --configuration Release --framework netcoreapp3.1",
+					Arguments =  "publish " + sourcePath + "/Source/Managed/Framework --configuration Release --framework net5.0",
 					CreateNoWindow = false,
 					UseShellExecute = true
 				});
@@ -92,7 +92,7 @@ public static class Install {
 
 					var testsCompilation = Process.Start(new ProcessStartInfo {
 						FileName = "dotnet",
-						Arguments =  "publish " + sourcePath + "/Source/Managed/Tests --configuration Release --framework netcoreapp3.1 --output \"" + projectPath + "/Managed/Tests\"",
+						Arguments =  "publish " + sourcePath + "/Source/Managed/Tests --configuration Release --framework net5.0 --output \"" + projectPath + "/Managed/Tests\"",
 						CreateNoWindow = false,
 						UseShellExecute = true
 					});

@@ -128,7 +128,7 @@ namespace UnrealEngine.Runtime {
 
 			if (command.type == CommandType.Initialize) {
 				try {
-					assembliesContextManager = new AssembliesContextManager();
+					assembliesContextManager = new();
 					assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
 
 					int position = 0;
@@ -181,7 +181,7 @@ namespace UnrealEngine.Runtime {
 							}
 
 							if (name?.Name != frameworkName) {
-								plugin = new Plugin();
+								plugin = new();
 								plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
 								plugin.assembly = plugin.loader.LoadAssemblyFromPath(assembly);
 
@@ -252,7 +252,7 @@ namespace UnrealEngine.Runtime {
 					}
 				}
 
-				assembliesContextManager = new AssembliesContextManager();
+				assembliesContextManager = new();
 				assembliesContextWeakReference = assembliesContextManager.CreateAssembliesContext();
 			}
 
