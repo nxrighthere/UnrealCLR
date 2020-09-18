@@ -26,12 +26,12 @@ namespace UnrealEngine.Framework {
 
 	internal static class Shared {
 		internal const int checksum = 0x281;
-		internal static Dictionary<int, IntPtr> userFunctions = new Dictionary<int, IntPtr>();
+		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
 		private static readonly Type[] delegateCtorSignature = { typeof(object), typeof(IntPtr) };
-		private static Dictionary<string, Delegate> delegatesCache = new Dictionary<string, Delegate>();
-		private static Dictionary<string, Type> delegateTypesCache = new Dictionary<string, Type>();
+		private static Dictionary<string, Delegate> delegatesCache = new();
+		private static Dictionary<string, Type> delegateTypesCache = new();
 		private const MethodAttributes ctorAttributes = MethodAttributes.RTSpecialName | MethodAttributes.HideBySig | MethodAttributes.Public;
 		private const MethodImplAttributes implAttributes = MethodImplAttributes.Runtime | MethodImplAttributes.Managed;
 		private const MethodAttributes invokeAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.NewSlot | MethodAttributes.Virtual;

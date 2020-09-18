@@ -50,7 +50,7 @@ namespace UnrealEngine.Framework {
 
 		public static byte[] GetStringBuffer() {
 			if (stringBuffer == null)
-				stringBuffer = new byte[8192];
+				stringBuffer = GC.AllocateUninitializedArray<byte>(8192, pinned: true);
 
 			return stringBuffer;
 		}
@@ -62,7 +62,7 @@ namespace UnrealEngine.Framework {
 
 		public static IntPtr GetFunctionPointer<TDelegate>(TDelegate reference) where TDelegate : class {
 			if (references == null)
-				references = new List<object>();
+				references = new();
 
 			references.Add(reference);
 
