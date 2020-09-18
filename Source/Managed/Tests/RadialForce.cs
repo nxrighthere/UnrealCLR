@@ -15,7 +15,7 @@ namespace UnrealEngine.Tests {
 
 			for (int i = 0; i < maxActors; i++) {
 				actors[i] = new();
-				staticMeshComponents[i] = new StaticMeshComponent(actors[i], setAsRoot: true);
+				staticMeshComponents[i] = new(actors[i], setAsRoot: true);
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);
 				staticMeshComponents[i].SetMaterial(0, Material.Load("/Game/Tests/BasicMaterial"));
 				staticMeshComponents[i].CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Red);
@@ -25,14 +25,14 @@ namespace UnrealEngine.Tests {
 				staticMeshComponents[i].SetCollisionChannel(CollisionChannel.PhysicsBody);
 			}
 
-			RadialForceComponent radialForceComponent = new RadialForceComponent(new(), setAsRoot: true);
+			RadialForceComponent radialForceComponent = new(new(), setAsRoot: true);
 
 			radialForceComponent.IgnoreOwningActor = true;
 			radialForceComponent.ImpulseVelocityChange = true;
 			radialForceComponent.LinearFalloff = true;
 			radialForceComponent.ForceStrength = 10000000.0f;
 			radialForceComponent.Radius = 1000;
-			radialForceComponent.SetRelativeLocation(new Vector3(10000.0f, 0.0f, -100.0f));
+			radialForceComponent.SetRelativeLocation(new(10000.0f, 0.0f, -100.0f));
 
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, "Actors are spawned! Number of actors in the world: " + World.ActorCount);
 		}

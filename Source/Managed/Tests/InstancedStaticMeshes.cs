@@ -14,10 +14,10 @@ namespace UnrealEngine.Tests {
 		private const int maxCubes = 200;
 
 		public InstancedStaticMeshes() {
-			actor = new Actor("InstancedCubes");
-			sceneComponent = new SceneComponent(actor);
+			actor = new("InstancedCubes");
+			sceneComponent = new(actor);
 			transforms = new Transform[maxCubes];
-			instancedStaticMeshComponent = new InstancedStaticMeshComponent(actor, setAsRoot: true);
+			instancedStaticMeshComponent = new(actor, setAsRoot: true);
 			material = Material.Load("/Game/Tests/BasicMaterial");
 			rotationSpeed = 2.5f;
 		}
@@ -30,9 +30,9 @@ namespace UnrealEngine.Tests {
 			instancedStaticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.White);
 
 			for (int i = 0; i < maxCubes; i++) {
-				sceneComponent.SetRelativeLocation(new Vector3(150.0f * i, 50.0f * i, 100.0f * i));
+				sceneComponent.SetRelativeLocation(new(150.0f * i, 50.0f * i, 100.0f * i));
 				sceneComponent.SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
-				sceneComponent.AddLocalOffset(new Vector3(15.0f * i, 20.0f * i, 25.0f * i));
+				sceneComponent.AddLocalOffset(new(15.0f * i, 20.0f * i, 25.0f * i));
 				sceneComponent.GetTransform(ref transforms[i]);
 				instancedStaticMeshComponent.AddInstance(transforms[i]);
 			}

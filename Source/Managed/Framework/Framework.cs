@@ -82,7 +82,7 @@ namespace UnrealEngine.Framework {
 
 			unsafe {
 				fixed (byte* pinnedBuffer = buffer) {
-					return new String((sbyte*)pinnedBuffer, 0, end);
+					return new((sbyte*)pinnedBuffer, 0, end);
 				}
 			}
 		}
@@ -1001,37 +1001,37 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// The black color
 		/// </summary>
-		public static LinearColor Black => new LinearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		public static LinearColor Black => new(0.0f, 0.0f, 0.0f, 1.0f);
 
 		/// <summary>
 		/// The blue color
 		/// </summary>
-		public static LinearColor Blue => new LinearColor(0.0f, 0.0f, 1.0f, 1.0f);
+		public static LinearColor Blue => new(0.0f, 0.0f, 1.0f, 1.0f);
 
 		/// <summary>
 		/// The green color
 		/// </summary>
-		public static LinearColor Green => new LinearColor(0.0f, 1.0f, 0.0f, 1.0f);
+		public static LinearColor Green => new(0.0f, 1.0f, 0.0f, 1.0f);
 
 		/// <summary>
 		/// The grey color
 		/// </summary>
-		public static LinearColor Grey => new LinearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		public static LinearColor Grey => new(0.5f, 0.5f, 0.5f, 1.0f);
 
 		/// <summary>
 		/// The red color
 		/// </summary>
-		public static LinearColor Red => new LinearColor(1.0f, 0.0f, 0.0f, 1.0f);
+		public static LinearColor Red => new(1.0f, 0.0f, 0.0f, 1.0f);
 
 		/// <summary>
 		/// The white color
 		/// </summary>
-		public static LinearColor White => new LinearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		public static LinearColor White => new(1.0f, 1.0f, 1.0f, 1.0f);
 
 		/// <summary>
 		/// The yellow color
 		/// </summary>
-		public static LinearColor Yellow => new LinearColor(1.0f, 1.0f, 0.0f, 1.0f);
+		public static LinearColor Yellow => new(1.0f, 1.0f, 0.0f, 1.0f);
 
 		/// <summary>
 		/// Tests for equality between two objects
@@ -1046,22 +1046,22 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Adds two colors
 		/// </summary>
-		public static LinearColor operator +(LinearColor left, LinearColor right) => new LinearColor(left.r + right.r, left.g + right.g, left.b + right.b, left.a + right.a);
+		public static LinearColor operator +(LinearColor left, LinearColor right) => new(left.r + right.r, left.g + right.g, left.b + right.b, left.a + right.a);
 
 		/// <summary>
 		/// Subtracts two colors
 		/// </summary>
-		public static LinearColor operator -(LinearColor left, LinearColor right) => new LinearColor(left.b - right.b, left.g - right.g, left.b - right.b, left.a - right.a);
+		public static LinearColor operator -(LinearColor left, LinearColor right) => new(left.b - right.b, left.g - right.g, left.b - right.b, left.a - right.a);
 
 		/// <summary>
 		/// Multiplies two colors
 		/// </summary>
-		public static LinearColor operator *(float scale, LinearColor value) => new LinearColor(value.r * scale, value.g * scale, value.b * scale, value.a * scale);
+		public static LinearColor operator *(float scale, LinearColor value) => new(value.r * scale, value.g * scale, value.b * scale, value.a * scale);
 
 		/// <summary>
 		/// Divides two colors
 		/// </summary>
-		public static LinearColor operator /(float scale, LinearColor value) => new LinearColor(value.r / scale, value.g / scale, value.b / scale, value.a / scale);
+		public static LinearColor operator /(float scale, LinearColor value) => new(value.r / scale, value.g / scale, value.b / scale, value.a / scale);
 
 		/// <summary>
 		/// Implicitly casts this instance to a string
@@ -1072,41 +1072,41 @@ namespace UnrealEngine.Framework {
 		/// Adds two colors
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static LinearColor Add(LinearColor left, LinearColor right) => new LinearColor(left.r + right.r, left.g + right.g, left.b + right.b, left.a + right.a);
+		public static LinearColor Add(LinearColor left, LinearColor right) => new(left.r + right.r, left.g + right.g, left.b + right.b, left.a + right.a);
 
 		/// <summary>
 		/// Subtracts two colors
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static LinearColor Subtract(LinearColor left, LinearColor right) => new LinearColor(left.r - right.r, left.g - right.g, left.b - right.b, left.a - right.a);
+		public static LinearColor Subtract(LinearColor left, LinearColor right) => new(left.r - right.r, left.g - right.g, left.b - right.b, left.a - right.a);
 
 		/// <summary>
 		/// Multiplies two colors
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static LinearColor Multiply(LinearColor left, LinearColor right) => new LinearColor(left.r * right.r, left.g * right.g, left.b * right.b, left.a * right.a);
+		public static LinearColor Multiply(LinearColor left, LinearColor right) => new(left.r * right.r, left.g * right.g, left.b * right.b, left.a * right.a);
 
 		/// <summary>
 		/// Divides two colors
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static LinearColor Divide(LinearColor left, LinearColor right) => new LinearColor(left.r / right.r, left.g / right.g, left.b / right.b, left.a / right.a);
+		public static LinearColor Divide(LinearColor left, LinearColor right) => new(left.r / right.r, left.g / right.g, left.b / right.b, left.a / right.a);
 
 		/// <summary>
 		/// Performs a linear interpolation between two colors
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static LinearColor Lerp(LinearColor start, LinearColor end, float amount) => new LinearColor(Maths.Lerp(start.r, end.r, amount), Maths.Lerp(start.g, end.g, amount), Maths.Lerp(start.b, end.b, amount), Maths.Lerp(start.a, end.a, amount));
+		public static LinearColor Lerp(LinearColor start, LinearColor end, float amount) => new(Maths.Lerp(start.r, end.r, amount), Maths.Lerp(start.g, end.g, amount), Maths.Lerp(start.b, end.b, amount), Maths.Lerp(start.a, end.a, amount));
 
 		/// <summary>
 		/// Converts the color into a three component vector
 		/// </summary>
-		public Vector3 ToVector3() => new Vector3(r, g, b);
+		public Vector3 ToVector3() => new(r, g, b);
 
 		/// <summary>
 		/// Converts the color into a four component vector
 		/// </summary>
-		public Vector4 ToVector4() => new Vector4(r, g, b, a);
+		public Vector4 ToVector4() => new(r, g, b, a);
 
 		/// <summary>
 		/// Creates an array containing the elements of the color
@@ -1299,7 +1299,7 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public Actor GetActor() {
 			if (actor != IntPtr.Zero)
-				return new Actor(actor);
+				return new(actor);
 
 			return null;
 		}
@@ -1790,7 +1790,7 @@ namespace UnrealEngine.Framework {
 		/// Returns the vector perpendicular to the specified vector
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Vector2 Perpendicular(Vector2 value) => new Vector2(-value.Y, value.X);
+		public static Vector2 Perpendicular(Vector2 value) => new(-value.Y, value.X);
 
 		/// <summary>
 		/// Returns the unsigned angle in degrees
@@ -1813,7 +1813,7 @@ namespace UnrealEngine.Framework {
 			if (squareMagnitude > maxLength * maxLength) {
 				float magnitude = MathF.Sqrt(squareMagnitude);
 
-				return new Vector2((value.X / magnitude) * maxLength, (value.Y / magnitude) * maxLength);
+				return new((value.X / magnitude) * maxLength, (value.Y / magnitude) * maxLength);
 			}
 
 			return value;
@@ -1843,7 +1843,7 @@ namespace UnrealEngine.Framework {
 
 			float distance = MathF.Sqrt(squareMagnitude);
 
-			return new Vector2(current.X + destination.X / distance * maxDistanceDelta, current.Y + destination.Y / distance * maxDistanceDelta);
+			return new(current.X + destination.X / distance * maxDistanceDelta, current.Y + destination.Y / distance * maxDistanceDelta);
 		}
 
 		// Vector3
@@ -1905,7 +1905,7 @@ namespace UnrealEngine.Framework {
 			if (squareMagnitude > maxLength * maxLength) {
 				float magnitude = MathF.Sqrt(squareMagnitude);
 
-				return new Vector3((value.X / magnitude) * maxLength, (value.Y / magnitude) * maxLength, (value.Z / magnitude) * maxLength);
+				return new((value.X / magnitude) * maxLength, (value.Y / magnitude) * maxLength, (value.Z / magnitude) * maxLength);
 			}
 
 			return value;
@@ -1935,7 +1935,7 @@ namespace UnrealEngine.Framework {
 
 			float distance = MathF.Sqrt(squareMagnitude);
 
-			return new Vector3(current.X + destination.X / distance * maxDistanceDelta, current.Y + destination.Y / distance * maxDistanceDelta, current.Z + destination.Z / distance * maxDistanceDelta);
+			return new(current.X + destination.X / distance * maxDistanceDelta, current.Y + destination.Y / distance * maxDistanceDelta, current.Z + destination.Z / distance * maxDistanceDelta);
 		}
 
 		/// <summary>
@@ -1950,7 +1950,7 @@ namespace UnrealEngine.Framework {
 
 			float dot = Vector3.Dot(value, normal);
 
-			return new Vector3(normal.X * dot / squareMagnitude, normal.Y * dot / squareMagnitude, normal.Z * dot / squareMagnitude);
+			return new(normal.X * dot / squareMagnitude, normal.Y * dot / squareMagnitude, normal.Z * dot / squareMagnitude);
 		}
 
 		/// <summary>
@@ -1965,7 +1965,7 @@ namespace UnrealEngine.Framework {
 
 			float dot = Vector3.Dot(value, planeNormal);
 
-			return new Vector3(value.X - planeNormal.X * dot / squareMagnitude, value.Y - planeNormal.Y * dot / squareMagnitude, value.Z - planeNormal.Z * dot / squareMagnitude);
+			return new(value.X - planeNormal.X * dot / squareMagnitude, value.Y - planeNormal.Y * dot / squareMagnitude, value.Z - planeNormal.Z * dot / squareMagnitude);
 		}
 
 		// Vector4
@@ -2037,7 +2037,7 @@ namespace UnrealEngine.Framework {
 			float halfAngle = angle * DegToRadF * 0.5f;
 			float sin = MathF.Sin(halfAngle);
 
-			return new Quaternion(axis.X * sin, axis.Y * sin, axis.Z * sin, MathF.Cos(halfAngle));
+			return new(axis.X * sin, axis.Y * sin, axis.Z * sin, MathF.Cos(halfAngle));
 		}
 
 		/// <summary>
@@ -2937,7 +2937,7 @@ namespace UnrealEngine.Framework {
 	/// </summary>
 	public static partial class Assert {
 		[ThreadStatic]
-		private static StringBuilder stringBuffer = new StringBuilder(8192);
+		private static StringBuilder stringBuffer = new(8192);
 
 		private static void Message(string message, int callerLineNumber, string callerFilePath) {
 			stringBuffer.Clear()
@@ -3029,7 +3029,7 @@ namespace UnrealEngine.Framework {
 	/// </summary>
 	public static partial class Debug {
 		[ThreadStatic]
-		private static StringBuilder stringBuffer = new StringBuilder(8192);
+		private static StringBuilder stringBuffer = new(8192);
 
 		/// <summary>
 		/// Logs a message in accordance to the specified level, omitted in builds with the <a href="https://docs.unrealengine.com/en-US/Programming/Development/BuildConfigurations/index.html#buildconfigurationdescriptions">Shipping</a> configuration
@@ -3218,7 +3218,7 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			if (findVariable(name) != IntPtr.Zero)
-				return new ConsoleVariable(name);
+				return new(name);
 
 			return null;
 		}
@@ -3239,7 +3239,7 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(help));
 
 			if (registerVariableBool(name, help, defaultValue, readOnly) != IntPtr.Zero)
-				return new ConsoleVariable(name);
+				return new(name);
 
 			return null;
 		}
@@ -3260,7 +3260,7 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(help));
 
 			if (registerVariableInt(name, help, defaultValue, readOnly) != IntPtr.Zero)
-				return new ConsoleVariable(name);
+				return new(name);
 
 			return null;
 		}
@@ -3281,7 +3281,7 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(help));
 
 			if (registerVariableFloat(name, help, defaultValue, readOnly) != IntPtr.Zero)
-				return new ConsoleVariable(name);
+				return new(name);
 
 			return null;
 		}
@@ -3302,7 +3302,7 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(help));
 
 			if (registerVariableString(name, help, defaultValue, readOnly) != IntPtr.Zero)
-				return new ConsoleVariable(name);
+				return new(name);
 
 			return null;
 		}
@@ -3632,7 +3632,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getFirstPlayerController();
 
 			if (pointer != IntPtr.Zero)
-				return new PlayerController(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -4409,7 +4409,7 @@ namespace UnrealEngine.Framework {
 				IntPtr pointer = getInputComponent(Pointer);
 
 				if (pointer != IntPtr.Zero)
-					return new InputComponent(pointer);
+					return new(pointer);
 
 				return null;
 			}
@@ -4843,7 +4843,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getAIController(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new AIController(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -4855,7 +4855,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getPlayerController(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new PlayerController(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -4965,7 +4965,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getPawn(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new Pawn(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -4977,7 +4977,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getCharacter(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new Character(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -4989,7 +4989,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getViewTarget(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new Actor(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -5152,7 +5152,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getFocusActor(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new Actor(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -5227,7 +5227,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getPlayer(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new Player(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -5239,7 +5239,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getPlayerInput(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new PlayerInput(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -5648,7 +5648,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.SoundWave, name);
 
 			if (pointer != IntPtr.Zero)
-				return new SoundWave(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -5730,7 +5730,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.AnimationSequence, name);
 
 			if (pointer != IntPtr.Zero)
-				return new AnimationSequence(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -5762,7 +5762,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.AnimationMontage, name);
 
 			if (pointer != IntPtr.Zero)
-				return new AnimationMontage(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -6102,7 +6102,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getCurrentActiveMontage(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new AnimationMontage(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -6302,7 +6302,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getPlayerController(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new PlayerController(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -6492,7 +6492,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.Blueprint, name);
 
 			if (pointer != IntPtr.Zero)
-				return new Blueprint(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -6582,7 +6582,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.StaticMesh, name);
 
 			if (pointer != IntPtr.Zero)
-				return new StaticMesh(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -6607,7 +6607,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.SkeletalMesh, name);
 
 			if (pointer != IntPtr.Zero)
-				return new SkeletalMesh(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -6659,7 +6659,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.Texture2D, name);
 
 			if (pointer != IntPtr.Zero)
-				return new Texture2D(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -8237,7 +8237,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns the material at the specified element index
 		/// </summary>
-		public MaterialInstanceDynamic GetMaterial(int elementIndex) => new MaterialInstanceDynamic(getMaterial(Pointer, elementIndex));
+		public MaterialInstanceDynamic GetMaterial(int elementIndex) => new(getMaterial(Pointer, elementIndex));
 
 		/// <summary>
 		/// Retrieves distance to closest collision
@@ -8387,7 +8387,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = createAndSetMaterialInstanceDynamic(Pointer, elementIndex);
 
 			if (pointer != IntPtr.Zero)
-				return new MaterialInstanceDynamic(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -8804,7 +8804,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getStaticMesh(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new StaticMesh(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -8983,7 +8983,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = getAnimationInstance(Pointer);
 
 			if (pointer != IntPtr.Zero)
-				return new AnimationInstance(pointer);
+				return new(pointer);
 
 			return null;
 		}
@@ -9830,7 +9830,7 @@ namespace UnrealEngine.Framework {
 			IntPtr pointer = Object.load(ObjectType.Material, name);
 
 			if (pointer != IntPtr.Zero)
-				return new Material(pointer);
+				return new(pointer);
 
 			return null;
 		}

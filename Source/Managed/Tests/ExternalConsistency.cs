@@ -81,8 +81,8 @@ namespace UnrealEngine.Tests {
 
 			TriggerBox actorLeft = new();
 			TriggerSphere actorRight = new();
-			SceneComponent sceneComponentLeft = new SceneComponent(actorLeft);
-			SceneComponent sceneComponentRight = new SceneComponent(actorRight);
+			SceneComponent sceneComponentLeft = new(actorLeft);
+			SceneComponent sceneComponentRight = new(actorRight);
 
 			if (sceneComponentLeft.Equals(sceneComponentRight) || !sceneComponentLeft.Equals(sceneComponentLeft)) {
 				Debug.Log(LogLevel.Error, "Scene components equality check failed!");
@@ -146,8 +146,8 @@ namespace UnrealEngine.Tests {
 			const string componentShortName = "TestComponent";
 			const string renamedSuffix = "Renamed";
 
-			Actor actor = new Actor(actorName);
-			SceneComponent sceneComponent = new SceneComponent(actor, componentName);
+			Actor actor = new(actorName);
+			SceneComponent sceneComponent = new(actor, componentName);
 
 			if (actor.Name != actorName || sceneComponent.Name != componentName) {
 				Debug.Log(LogLevel.Error, "Names check failed!");
@@ -189,8 +189,8 @@ namespace UnrealEngine.Tests {
 
 			Actor actorLeft = new();
 			Actor actorRight = new();
-			SceneComponent sceneComponentLeft = new SceneComponent(actorLeft);
-			SceneComponent sceneComponentRight = new SceneComponent(actorRight);
+			SceneComponent sceneComponentLeft = new(actorLeft);
+			SceneComponent sceneComponentRight = new(actorRight);
 
 			if (sceneComponentLeft.GetHashCode() == sceneComponentRight.GetHashCode() || sceneComponentLeft.GetHashCode() != sceneComponentLeft.GetHashCode()) {
 				Debug.Log(LogLevel.Error, "Scene components hash codes check failed!");
@@ -228,7 +228,7 @@ namespace UnrealEngine.Tests {
 
 			const string actorName = "TestPlayerController";
 
-			PlayerController playerController = new PlayerController(actorName);
+			PlayerController playerController = new(actorName);
 			Actor actor = World.GetActor<Actor>(actorName);
 
 			if (playerController == null || actor == null) {
@@ -253,7 +253,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new();
-			ChildActorComponent childActorComponent = new ChildActorComponent(actor, setAsRoot: true);
+			ChildActorComponent childActorComponent = new(actor, setAsRoot: true);
 			TriggerBox childActor = childActorComponent.SetChildActor<TriggerBox>();
 
 			if (childActor == null) {
@@ -263,7 +263,7 @@ namespace UnrealEngine.Tests {
 			}
 
 			BoxComponent boxComponent = childActor.GetComponent<BoxComponent>();
-			Vector3 initialExtent = new Vector3(100.0f, 100.0f, 100.0f);
+			Vector3 initialExtent = new(100.0f, 100.0f, 100.0f);
 
 			boxComponent.InitBoxExtent(initialExtent);
 
@@ -280,9 +280,9 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new();
-			StaticMeshComponent staticMeshComponent = new StaticMeshComponent(actor, setAsRoot: true);
-			InstancedStaticMeshComponent instancedStaticMeshComponent = new InstancedStaticMeshComponent(actor);
-			SceneComponent sceneComponent = new SceneComponent(actor);
+			StaticMeshComponent staticMeshComponent = new(actor, setAsRoot: true);
+			InstancedStaticMeshComponent instancedStaticMeshComponent = new(actor);
+			SceneComponent sceneComponent = new(actor);
 
 			sceneComponent.AttachToComponent(instancedStaticMeshComponent, AttachmentTransformRule.KeepRelativeTransform);
 
@@ -305,7 +305,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new();
-			StaticMeshComponent staticMeshComponent = new StaticMeshComponent(actor, setAsRoot: true);
+			StaticMeshComponent staticMeshComponent = new(actor, setAsRoot: true);
 			SceneComponent sceneComponent = actor.GetRootComponent<SceneComponent>();
 			InstancedStaticMeshComponent instancedStaticMeshComponent = actor.GetRootComponent<InstancedStaticMeshComponent>();
 
@@ -340,7 +340,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new();
-			SceneComponent sceneComponent = new SceneComponent(actor, setAsRoot: true);
+			SceneComponent sceneComponent = new(actor, setAsRoot: true);
 
 			Actor actorByID = World.GetActorByID<Actor>(actor.ID);
 
@@ -386,7 +386,7 @@ namespace UnrealEngine.Tests {
 			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
 
 			Actor actor = new();
-			SceneComponent sceneComponent = new SceneComponent(actor);
+			SceneComponent sceneComponent = new(actor);
 
 			const string tag = "TestTag";
 

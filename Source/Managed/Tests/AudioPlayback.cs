@@ -6,8 +6,8 @@ using UnrealEngine.Framework;
 namespace UnrealEngine.Tests {
 	public class AudioPlayback {
 		public void OnBeginPlay() {
-			Actor alarmSound = new Actor("AlarmSound");
-			AudioComponent alarmAudioComponent = new AudioComponent(alarmSound);
+			Actor alarmSound = new("AlarmSound");
+			AudioComponent alarmAudioComponent = new(alarmSound);
 			SoundWave alarmSoundWave = SoundWave.Load("/Game/Tests/AlarmSound");
 
 			Debug.AddOnScreenMessage(-1, 5.0f, Color.PowderBlue, "Sound wave duration: " + alarmSoundWave.Duration + " seconds");

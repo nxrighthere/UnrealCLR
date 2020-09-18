@@ -28,7 +28,7 @@ namespace UnrealEngine.Framework {
 		internal const int checksum = 0x281;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
-		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
+		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
 		private static readonly Type[] delegateCtorSignature = { typeof(object), typeof(IntPtr) };
 		private static Dictionary<string, Delegate> delegatesCache = new();
 		private static Dictionary<string, Type> delegateTypesCache = new();
@@ -1104,7 +1104,7 @@ namespace UnrealEngine.Framework {
 				parameterTypes[i] = parameterInfos[i].ParameterType;
 			}
 
-			DynamicMethod dynamicMethod = new DynamicMethod(method.Name, method.ReturnType, parameterTypes, Assembly.GetExecutingAssembly().ManifestModule);
+			DynamicMethod dynamicMethod = new(method.Name, method.ReturnType, parameterTypes, Assembly.GetExecutingAssembly().ManifestModule);
 			ILGenerator generator = dynamicMethod.GetILGenerator();
 
 			for (int i = 0; i < parameterTypes.Length; i++) {
@@ -1179,7 +1179,7 @@ namespace UnrealEngine.Framework {
 
 		public static implicit operator bool(Bool value) => value.value != 0;
 
-		public static implicit operator Bool(bool value) => !value ? new Bool(0) : new Bool(1);
+		public static implicit operator Bool(bool value) => !value ? new(0) : new(1);
 
 		public override int GetHashCode() => value.GetHashCode();
 	}

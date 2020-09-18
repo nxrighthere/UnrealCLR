@@ -14,10 +14,10 @@ namespace UnrealEngine.Tests {
 		private const float startY = 450.0f;
 
 		public DynamicEvents() {
-			leftActor = new Actor("LeftActor");
-			rightActor = new Actor("RightActor");
-			leftStaticMeshComponent = new StaticMeshComponent(leftActor, "LeftActorComponent", true);
-			rightStaticMeshComponent = new StaticMeshComponent(rightActor, "RightActorComponent", true);
+			leftActor = new("LeftActor");
+			rightActor = new("RightActor");
+			leftStaticMeshComponent = new(leftActor, "LeftActorComponent", true);
+			rightStaticMeshComponent = new(rightActor, "RightActorComponent", true);
 			material = Material.Load("/Game/Tests/BasicMaterial");
 			stopTranslation = false;
 		}
@@ -44,7 +44,7 @@ namespace UnrealEngine.Tests {
 
 			TriggerBox triggerBox = new();
 			BoxComponent collisionComponent = triggerBox.GetComponent<BoxComponent>();
-			Vector3 collisionShape = new Vector3(200.0f, 200.0f, 200.0f);
+			Vector3 collisionShape = new(200.0f, 200.0f, 200.0f);
 
 			collisionComponent.SetBoxExtent(collisionShape);
 
@@ -67,7 +67,7 @@ namespace UnrealEngine.Tests {
 			leftStaticMeshComponent.SetStaticMesh(StaticMesh.Cube);
 			leftStaticMeshComponent.SetMaterial(0, material);
 			leftStaticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Green);
-			leftStaticMeshComponent.SetWorldLocation(new Vector3(0.0f, -startY, 0.0f));
+			leftStaticMeshComponent.SetWorldLocation(new(0.0f, -startY, 0.0f));
 			leftStaticMeshComponent.UpdateToWorld(TeleportType.ResetPhysics);
 			leftStaticMeshComponent.SetEnableGravity(false);
 			leftStaticMeshComponent.SetSimulatePhysics(true);
@@ -89,7 +89,7 @@ namespace UnrealEngine.Tests {
 			rightStaticMeshComponent.SetStaticMesh(StaticMesh.Cube);
 			rightStaticMeshComponent.SetMaterial(0, material);
 			rightStaticMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Yellow);
-			rightStaticMeshComponent.SetWorldLocation(new Vector3(0.0f, startY, 0.0f));
+			rightStaticMeshComponent.SetWorldLocation(new(0.0f, startY, 0.0f));
 			rightStaticMeshComponent.UpdateToWorld(TeleportType.ResetPhysics);
 			rightStaticMeshComponent.SetEnableGravity(false);
 			rightStaticMeshComponent.SetSimulatePhysics(true);
@@ -132,10 +132,10 @@ namespace UnrealEngine.Tests {
 			Debug.AddOnScreenMessage(1, 3.0f, hitActor.ID == leftActor.ID ? Color.Lime : Color.Yellow, hitActor.Name + " hit " + otherActor.Name);
 
 			if (!stopTranslation) {
-				leftStaticMeshComponent.AddImpulse(new Vector3(0.0f, -250.0f, 0.0f), velocityChange: true);
-				leftStaticMeshComponent.AddTorqueInRadians(new Vector3(20.0f, 25.0f, 30.0f), accelerationChange: true);
-				rightStaticMeshComponent.AddImpulse(new Vector3(0.0f, 250.0f, 0.0f), velocityChange: true);
-				rightStaticMeshComponent.AddTorqueInRadians(new Vector3(-20.0f, -25.0f, -30.0f), accelerationChange: true);
+				leftStaticMeshComponent.AddImpulse(new(0.0f, -250.0f, 0.0f), velocityChange: true);
+				leftStaticMeshComponent.AddTorqueInRadians(new(20.0f, 25.0f, 30.0f), accelerationChange: true);
+				rightStaticMeshComponent.AddImpulse(new(0.0f, 250.0f, 0.0f), velocityChange: true);
+				rightStaticMeshComponent.AddTorqueInRadians(new(-20.0f, -25.0f, -30.0f), accelerationChange: true);
 				stopTranslation = true;
 			}
 

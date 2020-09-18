@@ -30,15 +30,15 @@ namespace UnrealEngine.Tests {
 
 			for (int i = 0; i < maxActors; i++) {
 				actors[i] = new();
-				staticMeshComponents[i] = new StaticMeshComponent(actors[i], setAsRoot: true);
+				staticMeshComponents[i] = new(actors[i], setAsRoot: true);
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);
 				staticMeshComponents[i].SetMaterial(0, material);
 				staticMeshComponents[i].CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", LinearColor.Yellow);
 
 				if (i < halfActors)
-					staticMeshComponents[i].SetRelativeLocation(new Vector3(0.0f, -400.0f, 250.0f * i));
+					staticMeshComponents[i].SetRelativeLocation(new(0.0f, -400.0f, 250.0f * i));
 				else
-					staticMeshComponents[i].SetRelativeLocation(new Vector3(0.0f, 400.0f, 250.0f * (i - halfActors)));
+					staticMeshComponents[i].SetRelativeLocation(new(0.0f, 400.0f, 250.0f * (i - halfActors)));
 
 				staticMeshComponents[i].UpdateToWorld(TeleportType.ResetPhysics);
 				staticMeshComponents[i].SetSimulatePhysics(true);

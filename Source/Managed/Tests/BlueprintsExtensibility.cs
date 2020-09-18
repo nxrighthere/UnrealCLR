@@ -21,8 +21,8 @@ namespace UnrealEngine.Tests {
 		public BlueprintsExtensibility() {
 			blueprintActor = Blueprint.Load("/Game/Tests/BlueprintActor");
 			blueprintSceneComponent = Blueprint.Load("/Game/Tests/BlueprintSceneComponent");
-			actor = new Actor(blueprint: blueprintActor);
-			sceneComponent = new SceneComponent(actor, blueprint: blueprintSceneComponent);
+			actor = new(blueprint: blueprintActor);
+			sceneComponent = new(actor, blueprint: blueprintSceneComponent);
 			levelScript = World.GetActor<LevelScript>();
 			skeletalMeshComponent = actor.GetComponent<SkeletalMeshComponent>();
 			animationInstance = skeletalMeshComponent.GetAnimationInstance();

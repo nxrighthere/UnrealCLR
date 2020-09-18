@@ -25,12 +25,12 @@ namespace UnrealEngine.Tests {
 
 			for (int i = 0; i < maxActors; i++) {
 				actors[i] = new();
-				staticMeshComponents[i] = new StaticMeshComponent(actors[i], setAsRoot: true);
-				staticMeshComponents[i].AddLocalOffset(new Vector3(15.0f * i, 20.0f * i, 25.0f * i));
+				staticMeshComponents[i] = new(actors[i], setAsRoot: true);
+				staticMeshComponents[i].AddLocalOffset(new(15.0f * i, 20.0f * i, 25.0f * i));
 				staticMeshComponents[i].SetStaticMesh(StaticMesh.Cube);
 				staticMeshComponents[i].SetMaterial(0, material);
-				staticMeshComponents[i].CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", new LinearColor((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-				staticMeshComponents[i].SetRelativeLocation(new Vector3(150.0f * i, 50.0f * i, 100.0f * i));
+				staticMeshComponents[i].CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", new((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
+				staticMeshComponents[i].SetRelativeLocation(new(150.0f * i, 50.0f * i, 100.0f * i));
 				staticMeshComponents[i].SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
 			}
 

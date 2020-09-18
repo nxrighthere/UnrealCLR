@@ -74,9 +74,9 @@ namespace UnrealEngine.Runtime {
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		internal WeakReference CreateAssembliesContext() {
-			assembliesContext = new AssemblyLoadContext("UnrealEngine", true);
+			assembliesContext = new("UnrealEngine", true);
 
-			return new WeakReference(assembliesContext, trackResurrection: true);
+			return new(assembliesContext, trackResurrection: true);
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
@@ -152,7 +152,7 @@ namespace UnrealEngine.Runtime {
 					Exception("Runtime initialization failed\r\n" + exception.ToString());
 				}
 
-				return new IntPtr(0xF);
+				return new(0xF);
 			}
 
 			if (command.type == CommandType.LoadAssemblies) {

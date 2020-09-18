@@ -22,12 +22,12 @@ namespace UnrealEngine.Tests {
 			for (int i = 0; i < maxEntities; i++) {
 				string entityName = "Entity" + (i > 0 ? i.ToString() : String.Empty);
 
-				entities[i] = new Entity(entityName);
+				entities[i] = new(entityName);
 				entities[i].CreateMesh(material, 1.0f, "StateComponent", true);
 				entities[i].StateComponent.SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
-				entities[i].StateComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", new LinearColor((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
-				entities[i].StateComponent.SetRelativeLocation(new Vector3(0.0f, 0.0f, 120.0f * i));
-				entities[i].StateComponent.AddLocalOffset(new Vector3(0.0f, 0.0f, -420.0f));
+				entities[i].StateComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("Color", new((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()));
+				entities[i].StateComponent.SetRelativeLocation(new(0.0f, 0.0f, 120.0f * i));
+				entities[i].StateComponent.AddLocalOffset(new(0.0f, 0.0f, -420.0f));
 
 				Entity entity = World.GetActor<Entity>(entityName);
 				StateComponent component = entity.GetComponent<StateComponent>();
@@ -41,7 +41,7 @@ namespace UnrealEngine.Tests {
 
 		public void OnTick(float deltaTime) {
 			for (int i = 0; i < maxEntities; i++) {
-				entities[i].StateComponent.AddLocalRotation(new Quaternion(Vector3.UnitZ * entities[i].StateComponent.RotationSpeed * deltaTime, -1.0f));
+				entities[i].StateComponent.AddLocalRotation(new(Vector3.UnitZ * entities[i].StateComponent.RotationSpeed * deltaTime, -1.0f));
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace UnrealEngine.Tests {
 			public Entity(string name = null) : base(name) { }
 
 			public void CreateMesh(Material material, float rotationSpeed, string name = null, bool setAsRoot = false) {
-				component = new StateComponent(this, rotationSpeed, name, setAsRoot);
+				component = new(this, rotationSpeed, name, setAsRoot);
 				component.SetStaticMesh(StaticMesh.Cube);
 				component.SetMaterial(0, material);
 			}
