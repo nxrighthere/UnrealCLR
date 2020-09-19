@@ -13,6 +13,7 @@
  */
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Reflection;
@@ -1037,6 +1038,8 @@ namespace UnrealEngine.Framework {
 					}
 				}
 			}
+
+			Directory.SetCurrentDirectory(Path.Project);
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
