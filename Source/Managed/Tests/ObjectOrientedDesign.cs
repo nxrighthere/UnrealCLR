@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class ObjectOrientedDesign {
+	public class ObjectOrientedDesign : ISystem {
 		private Entity[] entities;
 		private Material material;
 		private Random random;

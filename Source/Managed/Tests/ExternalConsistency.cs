@@ -5,7 +5,7 @@ using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class ExternalConsistency {
+	public class ExternalConsistency : ISystem {
 		public void OnBeginPlay() {
 			CommandLineArgumentsTest();
 			ReferencesEqualityTest();

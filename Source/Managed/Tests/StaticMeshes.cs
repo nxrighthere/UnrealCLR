@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class StaticMeshes {
+	public class StaticMeshes : ISystem {
 		private Actor[] actors;
 		private StaticMeshComponent[] staticMeshComponents;
 		private Material material;

@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class AudioPlayback {
+	public class AudioPlayback : ISystem {
 		public void OnBeginPlay() {
 			Actor alarmSound = new("AlarmSound");
 			AudioComponent alarmAudioComponent = new(alarmSound);

@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class DynamicEvents {
+	public class DynamicEvents : ISystem {
 		private Actor leftActor;
 		private Actor rightActor;
 		private StaticMeshComponent leftStaticMeshComponent;

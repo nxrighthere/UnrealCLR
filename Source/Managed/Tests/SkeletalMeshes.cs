@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class SkeletalMeshes {
+	public class SkeletalMeshes : ISystem {
 		public void OnBeginPlay() {
 			World.GetFirstPlayerController().SetViewTarget(World.GetActor<Camera>("MainCamera"));
 

@@ -5,7 +5,7 @@ using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class RuntimeConsistency {
+	public class RuntimeConsistency : ISystem {
 		public void OnBeginPlay() {
 			ActorMemoryManagementTest();
 			ComponentMemoryManagementTest();

@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class DynamicsConsistency {
+	public class DynamicsConsistency : ISystem {
 		private PlayerController playerController;
 		private PlayerInput playerInput;
 		private ConsoleVariable variable;

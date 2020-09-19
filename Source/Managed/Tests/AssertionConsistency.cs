@@ -2,7 +2,7 @@ using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class AssertionConsistency {
+	public class AssertionConsistency : ISystem {
 		private Actor actor;
 
 		public void OnBeginPlay() {

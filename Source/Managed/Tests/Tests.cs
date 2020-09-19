@@ -4,24 +4,8 @@ using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
 	public static class Main {
-		private static AssertionConsistency assertionConsistency;
-		private static AudioPlayback audioPlayback;
-		private static BlueprintsExtensibility blueprintsExtensibility;
-		private static DebugVisualization debugVisualization;
-		private static DynamicEvents dynamicEvents;
-		private static DynamicsConsistency dynamicsConsistency;
-		private static ExceptionsConsistency exceptionsConsistency;
-		private static ExternalConsistency externalConsistency;
-		private static InstancedStaticMeshes instancedStaticMeshes;
-		private static ObjectOrientedDesign objectOrientedDesign;
-		private static PhysicsSimulation physicsSimulation;
-		private static RadialForce radialForce;
-		private static RuntimeConsistency runtimeConsistency;
-		private static SkeletalMeshes skeletalMeshes;
-		private static SpatialQueries spatialQueries;
-		private static StaticMeshes staticMeshes;
-		private static TextureAssets textureAssets;
 		private static TestSystems testSystem;
+		private static ISystem runningSystem;
 		private static event Action OnBeginPlay;
 		private static event Action<float> OnTick;
 		private static event Action OnEndPlay;
@@ -34,108 +18,108 @@ namespace UnrealEngine.Tests {
 
 			switch (testSystem) {
 				case TestSystems.AssertionConsistency:
-					assertionConsistency = new();
-					OnBeginPlay += assertionConsistency.OnBeginPlay;
+					runningSystem = new AssertionConsistency();
+					OnBeginPlay += runningSystem.OnBeginPlay;
 					break;
 
 				case TestSystems.AudioPlayback:
-					audioPlayback = new();
-					OnBeginPlay += audioPlayback.OnBeginPlay;
-					OnEndPlay += audioPlayback.OnEndPlay;
+					runningSystem = new AudioPlayback();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.BlueprintsExtensibility:
-					blueprintsExtensibility = new();
-					OnBeginPlay += blueprintsExtensibility.OnBeginPlay;
-					OnEndPlay += blueprintsExtensibility.OnEndPlay;
+					runningSystem = new BlueprintsExtensibility();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.DebugVisualization:
-					debugVisualization = new();
-					OnBeginPlay += debugVisualization.OnBeginPlay;
-					OnEndPlay += debugVisualization.OnEndPlay;
+					runningSystem = new DebugVisualization();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.DynamicEvents:
-					dynamicEvents = new();
-					OnBeginPlay += dynamicEvents.OnBeginPlay;
-					OnTick += dynamicEvents.OnTick;
-					OnEndPlay += dynamicEvents.OnEndPlay;
+					runningSystem = new DynamicEvents();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnTick += runningSystem.OnTick;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.DynamicsConsistency:
-					dynamicsConsistency = new();
-					OnBeginPlay += dynamicsConsistency.OnBeginPlay;
-					OnTick += dynamicsConsistency.OnTick;
-					OnEndPlay += dynamicsConsistency.OnEndPlay;
+					runningSystem = new DynamicsConsistency();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnTick += runningSystem.OnTick;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.ExceptionsConsistency:
-					exceptionsConsistency = new();
-					OnBeginPlay += exceptionsConsistency.OnBeginPlay;
-					OnEndPlay += exceptionsConsistency.OnEndPlay;
+					runningSystem = new ExceptionsConsistency();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.ExternalConsistency:
-					externalConsistency = new();
-					OnBeginPlay += externalConsistency.OnBeginPlay;
+					runningSystem = new ExternalConsistency();
+					OnBeginPlay += runningSystem.OnBeginPlay;
 					break;
 
 				case TestSystems.InstancedStaticMeshes:
-					instancedStaticMeshes = new();
-					OnBeginPlay += instancedStaticMeshes.OnBeginPlay;
-					OnTick += instancedStaticMeshes.OnTick;
-					OnEndPlay += instancedStaticMeshes.OnEndPlay;
+					runningSystem = new InstancedStaticMeshes();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnTick += runningSystem.OnTick;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.ObjectOrientedDesign:
-					objectOrientedDesign = new();
-					OnBeginPlay += objectOrientedDesign.OnBeginPlay;
-					OnTick += objectOrientedDesign.OnTick;
-					OnEndPlay += objectOrientedDesign.OnEndPlay;
+					runningSystem = new ObjectOrientedDesign();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnTick += runningSystem.OnTick;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.PhysicsSimulation:
-					physicsSimulation = new();
-					OnBeginPlay += physicsSimulation.OnBeginPlay;
-					OnTick += physicsSimulation.OnTick;
-					OnEndPlay += physicsSimulation.OnEndPlay;
+					runningSystem = new PhysicsSimulation();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnTick += runningSystem.OnTick;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.RadialForce:
-					radialForce = new();
-					OnBeginPlay += radialForce.OnBeginPlay;
-					OnEndPlay += radialForce.OnEndPlay;
+					runningSystem = new RadialForce();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.RuntimeConsistency:
-					runtimeConsistency = new();
-					OnBeginPlay += runtimeConsistency.OnBeginPlay;
+					runningSystem = new RuntimeConsistency();
+					OnBeginPlay += runningSystem.OnBeginPlay;
 					break;
 
 				case TestSystems.SkeletalMeshes:
-					skeletalMeshes = new();
-					OnBeginPlay += skeletalMeshes.OnBeginPlay;
-					OnEndPlay += skeletalMeshes.OnEndPlay;
+					runningSystem = new SkeletalMeshes();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.SpatialQueries:
-					spatialQueries = new();
-					OnBeginPlay += spatialQueries.OnBeginPlay;
-					OnEndPlay += spatialQueries.OnEndPlay;
+					runningSystem = new SpatialQueries();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.StaticMeshes:
-					staticMeshes = new();
-					OnBeginPlay += staticMeshes.OnBeginPlay;
-					OnTick += staticMeshes.OnTick;
-					OnEndPlay += staticMeshes.OnEndPlay;
+					runningSystem = new StaticMeshes();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnTick += runningSystem.OnTick;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				case TestSystems.TextureAssets:
-					textureAssets = new();
-					OnBeginPlay += textureAssets.OnBeginPlay;
-					OnEndPlay += textureAssets.OnEndPlay;
+					runningSystem = new TextureAssets();
+					OnBeginPlay += runningSystem.OnBeginPlay;
+					OnEndPlay += runningSystem.OnEndPlay;
 					break;
 
 				default:
@@ -172,5 +156,11 @@ namespace UnrealEngine.Tests {
 			StaticMeshes,
 			TextureAssets
 		}
+	}
+
+	public interface ISystem {
+		void OnBeginPlay() { }
+		void OnTick(float deltaTime) { }
+		void OnEndPlay() { }
 	}
 }

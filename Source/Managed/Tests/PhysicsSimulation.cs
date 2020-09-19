@@ -5,7 +5,7 @@ using System.Reflection;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class PhysicsSimulation {
+	public class PhysicsSimulation : ISystem {
 		private Actor[] actors;
 		private StaticMeshComponent[] staticMeshComponents;
 		private Material material;

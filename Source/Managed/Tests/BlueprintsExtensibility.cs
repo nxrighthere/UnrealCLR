@@ -4,7 +4,7 @@ using System.Numerics;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public class BlueprintsExtensibility {
+	public class BlueprintsExtensibility : ISystem {
 		private Blueprint blueprintActor;
 		private Blueprint blueprintSceneComponent;
 		private Actor actor;
