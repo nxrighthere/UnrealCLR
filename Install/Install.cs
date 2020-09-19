@@ -103,7 +103,11 @@ public static class Install {
 						Error("Compilation of the tests was finished with an error (Exit code: " + testsCompilation.ExitCode + ")!");
 				}
 
-				Console.WriteLine("Done! Please, don't forget to recompile custom code with an updated framework!");
+				Console.Write("Done!");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write(" Please, don't forget to recompile custom code with an updated framework!");
+				Console.ResetColor();
+				Environment.Exit(0);
 			} else {
 				Console.WriteLine(Environment.NewLine + "Installation canceled");
 			}

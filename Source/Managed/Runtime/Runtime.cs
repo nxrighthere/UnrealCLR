@@ -157,7 +157,7 @@ namespace UnrealEngine.Runtime {
 
 			if (command.type == CommandType.LoadAssemblies) {
 				try {
-					const string frameworkName = "UnrealEngine.Framework";
+					const string frameworkAssemblyName = "UnrealEngine.Framework";
 					string assemblyPath = Assembly.GetExecutingAssembly().Location;
 					string managedFolder = assemblyPath.Substring(0, assemblyPath.IndexOf("Plugins", StringComparison.Ordinal)) + "Managed";
 					string[] folders = Directory.GetDirectories(managedFolder);
@@ -180,7 +180,7 @@ namespace UnrealEngine.Runtime {
 								continue;
 							}
 
-							if (name?.Name != frameworkName) {
+							if (name?.Name != frameworkAssemblyName) {
 								plugin = new();
 								plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
 								plugin.assembly = plugin.loader.LoadAssemblyFromPath(assembly);
@@ -188,11 +188,11 @@ namespace UnrealEngine.Runtime {
 								AssemblyName[] referencedAssemblies = plugin.assembly.GetReferencedAssemblies();
 
 								foreach (AssemblyName referencedAssembly in referencedAssemblies) {
-									if (referencedAssembly.Name == frameworkName) {
+									if (referencedAssembly.Name == frameworkAssemblyName) {
 										Assembly framework = plugin.loader.LoadAssembly(referencedAssembly);
 
 										using (assembliesContextManager.assembliesContext.EnterContextualReflection()) {
-											Type sharedClass = framework.GetType(frameworkName + ".Shared");
+											Type sharedClass = framework.GetType(frameworkAssemblyName + ".Shared");
 
 											if ((int)sharedClass.GetField("checksum", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) == sharedChecksum) {
 												plugin.userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
