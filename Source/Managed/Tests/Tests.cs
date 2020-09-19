@@ -14,78 +14,26 @@ namespace UnrealEngine.Tests {
 			if (World.GetActor<LevelScript>().GetEnum("Test Systems", ref testSystem))
 				Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, testSystem + " system started!");
 
-			switch (testSystem) {
-				case TestSystems.AssertionConsistency:
-					runningSystem = new AssertionConsistency();
-					break;
-
-				case TestSystems.AudioPlayback:
-					runningSystem = new AudioPlayback();
-					break;
-
-				case TestSystems.BlueprintsExtensibility:
-					runningSystem = new BlueprintsExtensibility();
-					break;
-
-				case TestSystems.DebugVisualization:
-					runningSystem = new DebugVisualization();
-					break;
-
-				case TestSystems.DynamicEvents:
-					runningSystem = new DynamicEvents();
-					break;
-
-				case TestSystems.DynamicsConsistency:
-					runningSystem = new DynamicsConsistency();
-					break;
-
-				case TestSystems.ExceptionsConsistency:
-					runningSystem = new ExceptionsConsistency();
-					break;
-
-				case TestSystems.ExternalConsistency:
-					runningSystem = new ExternalConsistency();
-					break;
-
-				case TestSystems.InstancedStaticMeshes:
-					runningSystem = new InstancedStaticMeshes();
-					break;
-
-				case TestSystems.ObjectOrientedDesign:
-					runningSystem = new ObjectOrientedDesign();
-					break;
-
-				case TestSystems.PhysicsSimulation:
-					runningSystem = new PhysicsSimulation();
-					break;
-
-				case TestSystems.RadialForce:
-					runningSystem = new RadialForce();
-					break;
-
-				case TestSystems.RuntimeConsistency:
-					runningSystem = new RuntimeConsistency();
-					break;
-
-				case TestSystems.SkeletalMeshes:
-					runningSystem = new SkeletalMeshes();
-					break;
-
-				case TestSystems.SpatialQueries:
-					runningSystem = new SpatialQueries();
-					break;
-
-				case TestSystems.StaticMeshes:
-					runningSystem = new StaticMeshes();
-					break;
-
-				case TestSystems.TextureAssets:
-					runningSystem = new TextureAssets();
-					break;
-
-				default:
-					break;
-			}
+			runningSystem = testSystem switch {
+				TestSystems.AssertionConsistency => new AssertionConsistency(),
+				TestSystems.AudioPlayback => new AudioPlayback(),
+				TestSystems.BlueprintsExtensibility => new BlueprintsExtensibility(),
+				TestSystems.DebugVisualization => new DebugVisualization(),
+				TestSystems.DynamicEvents => new DynamicEvents(),
+				TestSystems.DynamicsConsistency => new DynamicsConsistency(),
+				TestSystems.ExceptionsConsistency => new ExceptionsConsistency(),
+				TestSystems.ExternalConsistency => new ExternalConsistency(),
+				TestSystems.InstancedStaticMeshes => new InstancedStaticMeshes(),
+				TestSystems.ObjectOrientedDesign => new ObjectOrientedDesign(),
+				TestSystems.PhysicsSimulation => new PhysicsSimulation(),
+				TestSystems.RadialForce => new RadialForce(),
+				TestSystems.RuntimeConsistency => new RuntimeConsistency(),
+				TestSystems.SkeletalMeshes => new SkeletalMeshes(),
+				TestSystems.SpatialQueries => new SpatialQueries(),
+				TestSystems.StaticMeshes => new StaticMeshes(),
+				TestSystems.TextureAssets => new TextureAssets(),
+				_ => throw new Exception("Unknown system")
+			};
 
 			runningSystem.OnBeginPlay();
 		}
