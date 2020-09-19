@@ -227,6 +227,8 @@ namespace Game {
 }
 ```
 
+See [tests project](https://github.com/nxrighthere/UnrealCLR/tree/master/Source/Managed/Tests) for a basic implementation of various systems.
+
 ### Blueprints
 The plugin provides two blueprints to manage the execution. They can be used in any combinations with other nodes, data types, and C++ code to weave managed functionality with events. It's highly recommended to use creative approaches that extract information from blueprint classes instead of using plain strings for managed functions.
 
