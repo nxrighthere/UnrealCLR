@@ -49,7 +49,6 @@ namespace UnrealEngine.Tests {
 				sceneComponent.SetWorldTransform(transforms[i]);
 				sceneComponent.AddLocalRotation(deltaRotation);
 				sceneComponent.GetTransform(ref transforms[i]);
-
 				instancedStaticMeshComponent.UpdateInstanceTransform(i, transforms[i], markRenderStateDirty: i == maxCubes - 1);
 			}
 		}

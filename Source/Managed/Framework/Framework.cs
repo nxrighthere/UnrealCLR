@@ -779,7 +779,7 @@ namespace UnrealEngine.Framework {
 	/// A representation of the engine's object reference
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public struct ObjectReference : IEquatable<ObjectReference> {
+	public unsafe struct ObjectReference : IEquatable<ObjectReference> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -2935,7 +2935,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Functionality to detect and diagnose unexpected or invalid runtime conditions during development, emitted if the assembly is built with the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-build#options">Debug</a> configuration or if <c>ASSERTIONS</c> symbol is defined, signals a breakpoint to an attached debugger
 	/// </summary>
-	public static partial class Assert {
+	public static unsafe partial class Assert {
 		[ThreadStatic]
 		private static StringBuilder stringBuffer = new(8192);
 
@@ -2991,7 +2991,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Functionality to work with the command-line of the engine executable
 	/// </summary>
-	public static partial class CommandLine {
+	public static unsafe partial class CommandLine {
 		/// <summary>
 		/// Returns the user arguments
 		/// </summary>
@@ -3027,7 +3027,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Functionality for debugging
 	/// </summary>
-	public static partial class Debug {
+	public static unsafe partial class Debug {
 		[ThreadStatic]
 		private static StringBuilder stringBuffer = new(8192);
 
@@ -3122,7 +3122,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Provides information about the application
 	/// </summary>
-	public static partial class Application {
+	public static unsafe partial class Application {
 		/// <summary>
 		/// Returns <c>true</c> if the application can render anything
 		/// </summary>
@@ -3198,7 +3198,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Handles console commands and variables
 	/// </summary>
-	public static partial class ConsoleManager {
+	public static unsafe partial class ConsoleManager {
 		/// <summary>
 		/// Returns <c>true</c> if a console command or variable has been registered
 		/// </summary>
@@ -3341,7 +3341,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Functionality for management of engine systems
 	/// </summary>
-	public static partial class Engine {
+	public static unsafe partial class Engine {
 		/// <summary>
 		/// Returns <c>true</c> if the game is running in split screen mode
 		/// </summary>
@@ -3486,7 +3486,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Functionality for access to the head-mounted display
 	/// </summary>
-	public static partial class HeadMountedDisplay {
+	public static unsafe partial class HeadMountedDisplay {
 		/// <summary>
 		/// Returns <c>true</c> if the head-mounted display is connected and ready to use
 		/// </summary>
@@ -3525,7 +3525,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The top-level representation of a map or a sandbox in which actors and components will exist and rendered
 	/// </summary>
-	public static partial class World {
+	public static unsafe partial class World {
 		/// <summary>
 		/// Returns the actor count
 		/// </summary>
@@ -3901,7 +3901,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Interface for console objects
 	/// </summary>
-	public partial class ConsoleObject : IEquatable<ConsoleObject> {
+	public unsafe partial class ConsoleObject : IEquatable<ConsoleObject> {
 		private string name;
 
 		internal string Name {
@@ -3971,7 +3971,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Interface for console variables
 	/// </summary>
-	public partial class ConsoleVariable : ConsoleObject {
+	public unsafe partial class ConsoleVariable : ConsoleObject {
 		private protected ConsoleVariable() { }
 
 		internal ConsoleVariable(string name) => Name = name;
@@ -4042,7 +4042,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of an object that can be placed or spawned in a level
 	/// </summary>
-	public partial class Actor : IEquatable<Actor> {
+	public unsafe partial class Actor : IEquatable<Actor> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -4648,7 +4648,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A camera viewpoint that can be placed in a level
 	/// </summary>
-	public partial class Camera : Actor {
+	public unsafe partial class Camera : Actor {
 		internal override ActorType Type => ActorType.Camera;
 
 		private protected Camera() { }
@@ -4674,14 +4674,14 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of actors that used to generate collision events
 	/// </summary>
-	public abstract partial class TriggerBase : Actor {
+	public abstract unsafe partial class TriggerBase : Actor {
 		private protected TriggerBase() { }
 	}
 
 	/// <summary>
 	/// A box shaped trigger with <see cref="BoxComponent"/> used to generate overlap events
 	/// </summary>
-	public partial class TriggerBox : TriggerBase {
+	public unsafe partial class TriggerBox : TriggerBase {
 		internal override ActorType Type => ActorType.TriggerBox;
 
 		private protected TriggerBox() { }
@@ -4707,7 +4707,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A sphere shaped trigger with <see cref="SphereComponent"/> used to generate overlap events
 	/// </summary>
-	public partial class TriggerSphere : TriggerBase {
+	public unsafe partial class TriggerSphere : TriggerBase {
 		internal override ActorType Type => ActorType.TriggerSphere;
 
 		private protected TriggerSphere() { }
@@ -4733,7 +4733,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A capsule shaped trigger with <see cref="CapsuleComponent"/> used to generate overlap events
 	/// </summary>
-	public partial class TriggerCapsule : TriggerBase {
+	public unsafe partial class TriggerCapsule : TriggerBase {
 		internal override ActorType Type => ActorType.TriggerCapsule;
 
 		private protected TriggerCapsule() { }
@@ -4759,7 +4759,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of actors that can be possessed by players or AI
 	/// </summary>
-	public partial class Pawn : Actor {
+	public unsafe partial class Pawn : Actor {
 		internal override ActorType Type => ActorType.Pawn;
 
 		private protected Pawn() { }
@@ -4864,7 +4864,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Represents a character that have a mesh, collision, and built-in movement logic
 	/// </summary>
-	public partial class Character : Pawn {
+	public unsafe partial class Character : Pawn {
 		internal override ActorType Type => ActorType.Character;
 
 		private protected Character() { }
@@ -4940,7 +4940,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Non-physical actors that can possess a <see cref="Pawn"/> to control its actions
 	/// </summary>
-	public abstract partial class Controller : Actor {
+	public abstract unsafe partial class Controller : Actor {
 		private protected Controller() { }
 
 		/// <summary>
@@ -5089,7 +5089,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of controllers for an AI-controlled <see cref="Pawn"/>
 	/// </summary>
-	public partial class AIController : Controller {
+	public unsafe partial class AIController : Controller {
 		internal override ActorType Type => ActorType.AIController;
 
 		private protected AIController() { }
@@ -5171,7 +5171,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An actor that is used by human players to control a <see cref="Pawn"/>
 	/// </summary>
-	public partial class PlayerController : Controller {
+	public unsafe partial class PlayerController : Controller {
 		internal override ActorType Type => ActorType.PlayerController;
 
 		private protected PlayerController() { }
@@ -5307,7 +5307,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of brushes for level construction
 	/// </summary>
-	public partial class Brush : Actor {
+	public unsafe partial class Brush : Actor {
 		internal override ActorType Type => ActorType.Brush;
 
 		private protected Brush() { }
@@ -5333,7 +5333,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An editable 3D volume placed in a level, different types of volumes perform different functions
 	/// </summary>
-	public abstract partial class Volume : Brush {
+	public abstract unsafe partial class Volume : Brush {
 		private protected Volume() { }
 
 		/// <summary>
@@ -5345,7 +5345,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An actor that is used to trigger events
 	/// </summary>
-	public partial class TriggerVolume : Volume {
+	public unsafe partial class TriggerVolume : Volume {
 		internal override ActorType Type => ActorType.TriggerVolume;
 
 		private protected TriggerVolume() { }
@@ -5371,7 +5371,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An actor that is used for post-processing manipulations
 	/// </summary>
-	public partial class PostProcessVolume : Volume {
+	public unsafe partial class PostProcessVolume : Volume {
 		internal override ActorType Type => ActorType.PostProcessVolume;
 
 		private protected PostProcessVolume() { }
@@ -5437,7 +5437,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A representation of the level-wide logic defined in the level blueprint
 	/// </summary>
-	public partial class LevelScript : Actor {
+	public unsafe partial class LevelScript : Actor {
 		internal override ActorType Type => ActorType.LevelScript;
 
 		private protected LevelScript() { }
@@ -5448,7 +5448,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A sound actor that can be placed in a level
 	/// </summary>
-	public partial class AmbientSound : Actor {
+	public unsafe partial class AmbientSound : Actor {
 		internal override ActorType Type => ActorType.AmbientSound;
 
 		private protected AmbientSound() { }
@@ -5474,14 +5474,14 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A light actor that can be placed in a level
 	/// </summary>
-	public abstract partial class Light : Actor {
+	public abstract unsafe partial class Light : Actor {
 		private protected Light() { }
 	}
 
 	/// <summary>
 	/// Simulates light that is being emitted from a source that is infinitely far away
 	/// </summary>
-	public partial class DirectionalLight : Light {
+	public unsafe partial class DirectionalLight : Light {
 		internal override ActorType Type => ActorType.DirectionalLight;
 
 		private protected DirectionalLight() { }
@@ -5507,7 +5507,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Emits light in all directions from the light bulb's tungsten filament
 	/// </summary>
-	public partial class PointLight : Light {
+	public unsafe partial class PointLight : Light {
 		internal override ActorType Type => ActorType.PointLight;
 
 		private protected PointLight() { }
@@ -5533,7 +5533,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Emits light into the scene from a rectangular plane with a defined width and height
 	/// </summary>
-	public partial class RectLight : Light {
+	public unsafe partial class RectLight : Light {
 		internal override ActorType Type => ActorType.RectLight;
 
 		private protected RectLight() { }
@@ -5559,7 +5559,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Emits light from a single point in a cone shape
 	/// </summary>
-	public partial class SpotLight : Light {
+	public unsafe partial class SpotLight : Light {
 		internal override ActorType Type => ActorType.SpotLight;
 
 		private protected SpotLight() { }
@@ -5585,7 +5585,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of playable sound objects
 	/// </summary>
-	public abstract partial class SoundBase : IEquatable<SoundBase> {
+	public abstract unsafe partial class SoundBase : IEquatable<SoundBase> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -5632,7 +5632,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A playable sound object for raw wave files
 	/// </summary>
-	public partial class SoundWave : SoundBase {
+	public unsafe partial class SoundWave : SoundBase {
 		private protected SoundWave() { }
 
 		internal SoundWave(IntPtr pointer) => Pointer = pointer;
@@ -5665,7 +5665,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of animation assets that can be played and evaluated to produce a pose
 	/// </summary>
-	public abstract partial class AnimationAsset : IEquatable<AnimationAsset> {
+	public abstract unsafe partial class AnimationAsset : IEquatable<AnimationAsset> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -5707,14 +5707,14 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of animation sequences
 	/// </summary>
-	public abstract partial class AnimationSequenceBase : AnimationAsset {
+	public abstract unsafe partial class AnimationSequenceBase : AnimationAsset {
 		private protected AnimationSequenceBase() { }
 	}
 
 	/// <summary>
 	/// A single animation asset that can be played
 	/// </summary>
-	public partial class AnimationSequence : AnimationSequenceBase {
+	public unsafe partial class AnimationSequence : AnimationSequenceBase {
 		private protected AnimationSequence() { }
 
 		internal AnimationSequence(IntPtr pointer) => Pointer = pointer;
@@ -5739,14 +5739,14 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of animation composites
 	/// </summary>
-	public abstract partial class AnimationCompositeBase : AnimationSequenceBase {
+	public abstract unsafe partial class AnimationCompositeBase : AnimationSequenceBase {
 		private protected AnimationCompositeBase() { }
 	}
 
 	/// <summary>
 	/// A single animation asset that can combine and selectively play animations
 	/// </summary>
-	public partial class AnimationMontage : AnimationCompositeBase {
+	public unsafe partial class AnimationMontage : AnimationCompositeBase {
 		private protected AnimationMontage() { }
 
 		internal AnimationMontage(IntPtr pointer) => Pointer = pointer;
@@ -5771,7 +5771,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An animation instance representation
 	/// </summary>
-	public partial class AnimationInstance : IEquatable<AnimationInstance> {
+	public unsafe partial class AnimationInstance : IEquatable<AnimationInstance> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -6257,7 +6257,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A player representation
 	/// </summary>
-	public partial class Player : IEquatable<Player> {
+	public unsafe partial class Player : IEquatable<Player> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -6311,7 +6311,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An input manager of <see cref="PlayerController"/>
 	/// </summary>
-	public partial class PlayerInput : IEquatable<PlayerInput> {
+	public unsafe partial class PlayerInput : IEquatable<PlayerInput> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -6439,7 +6439,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An asset that provides an intuitive node-based interface
 	/// </summary>
-	public partial class Blueprint : IEquatable<Blueprint> {
+	public unsafe partial class Blueprint : IEquatable<Blueprint> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -6501,7 +6501,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A render asset that can be streamed at runtime
 	/// </summary>
-	public abstract partial class StreamableRenderAsset : IEquatable<StreamableRenderAsset> {
+	public abstract unsafe partial class StreamableRenderAsset : IEquatable<StreamableRenderAsset> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -6541,7 +6541,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A piece of geometry that consists of a static set of polygons
 	/// </summary>
-	public partial class StaticMesh : StreamableRenderAsset {
+	public unsafe partial class StaticMesh : StreamableRenderAsset {
 		private protected StaticMesh() { }
 
 		internal StaticMesh(IntPtr pointer) => Pointer = pointer;
@@ -6591,7 +6591,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A geometry bound to a hierarchical skeleton of bones which can be animated
 	/// </summary>
-	public partial class SkeletalMesh : StreamableRenderAsset {
+	public unsafe partial class SkeletalMesh : StreamableRenderAsset {
 		private protected SkeletalMesh() { }
 
 		internal SkeletalMesh(IntPtr pointer) => Pointer = pointer;
@@ -6616,14 +6616,14 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A representation of the surface of an object
 	/// </summary>
-	public abstract partial class Texture : StreamableRenderAsset {
+	public abstract unsafe partial class Texture : StreamableRenderAsset {
 		private protected Texture() { }
 	}
 
 	/// <summary>
 	/// A texture asset
 	/// </summary>
-	public partial class Texture2D : Texture {
+	public unsafe partial class Texture2D : Texture {
 		private protected Texture2D() { }
 
 		internal Texture2D(IntPtr pointer) => Pointer = pointer;
@@ -6694,7 +6694,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
-	public partial class ActorComponent : IEquatable<ActorComponent> {
+	public unsafe partial class ActorComponent : IEquatable<ActorComponent> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -7096,7 +7096,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An input component is a transient component that enables an actor to bind various forms of input events to delegate functions
 	/// </summary>
-	public partial class InputComponent : ActorComponent {
+	public unsafe partial class InputComponent : ActorComponent {
 		internal override ComponentType Type => ComponentType.Input;
 
 		private protected InputComponent() { }
@@ -7176,7 +7176,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of components that can be transformed or attached, but has no rendering or collision capabilities
 	/// </summary>
-	public partial class SceneComponent : ActorComponent {
+	public unsafe partial class SceneComponent : ActorComponent {
 		internal override ComponentType Type => ComponentType.Scene;
 
 		private protected SceneComponent() { }
@@ -7534,7 +7534,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that is used to play a sound
 	/// </summary>
-	public partial class AudioComponent : SceneComponent {
+	public unsafe partial class AudioComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.Audio;
 
 		private protected AudioComponent() { }
@@ -7615,7 +7615,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Represents a camera viewpoint and settings, such as projection type, field of view, and post-process overrides
 	/// </summary>
-	public partial class CameraComponent : SceneComponent {
+	public unsafe partial class CameraComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.Camera;
 
 		private protected CameraComponent() { }
@@ -7707,7 +7707,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that automatically spawns and destroys a child actor
 	/// </summary>
-	public partial class ChildActorComponent : SceneComponent {
+	public unsafe partial class ChildActorComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.ChildActor;
 
 		private protected ChildActorComponent() { }
@@ -7755,7 +7755,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that maintains its children at a fixed distance from the parent, but will retract the children if there is a collision, and spring back when there is no collision
 	/// </summary>
-	public partial class SpringArmComponent : SceneComponent {
+	public unsafe partial class SpringArmComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.SpringArm;
 
 		private protected SpringArmComponent() { }
@@ -8001,7 +8001,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An abstract component that contains or generates some sort of geometry, generally to be rendered or used as collision data
 	/// </summary>
-	public abstract partial class PrimitiveComponent : SceneComponent {
+	public abstract unsafe partial class PrimitiveComponent : SceneComponent {
 		private protected PrimitiveComponent() { }
 
 		/// <summary>
@@ -8406,7 +8406,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An abstract component that is represented by a simple geometrical shape
 	/// </summary>
-	public abstract partial class ShapeComponent : PrimitiveComponent {
+	public abstract unsafe partial class ShapeComponent : PrimitiveComponent {
 		private protected ShapeComponent() { }
 
 		/// <summary>
@@ -8429,7 +8429,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A box generally used for simple collision
 	/// </summary>
-	public partial class BoxComponent : ShapeComponent {
+	public unsafe partial class BoxComponent : ShapeComponent {
 		internal override ComponentType Type => ComponentType.Box;
 
 		private protected BoxComponent() { }
@@ -8502,7 +8502,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A sphere generally used for simple collision
 	/// </summary>
-	public partial class SphereComponent : ShapeComponent {
+	public unsafe partial class SphereComponent : ShapeComponent {
 		internal override ComponentType Type => ComponentType.Sphere;
 
 		private protected SphereComponent() { }
@@ -8558,7 +8558,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A capsule generally used for simple collision
 	/// </summary>
-	public partial class CapsuleComponent : ShapeComponent {
+	public unsafe partial class CapsuleComponent : ShapeComponent {
 		internal override ComponentType Type => ComponentType.Capsule;
 
 		private protected CapsuleComponent() { }
@@ -8629,7 +8629,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An abstract component that is an instance of a renderable collection of triangles
 	/// </summary>
-	public abstract partial class MeshComponent : PrimitiveComponent {
+	public abstract unsafe partial class MeshComponent : PrimitiveComponent {
 		private protected MeshComponent() { }
 
 		/// <summary>
@@ -8656,7 +8656,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of light components
 	/// </summary>
-	public abstract partial class LightComponentBase : SceneComponent {
+	public abstract unsafe partial class LightComponentBase : SceneComponent {
 		private protected LightComponentBase() { }
 
 		/// <summary>
@@ -8676,7 +8676,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that represents light
 	/// </summary>
-	public partial class LightComponent : LightComponentBase {
+	public unsafe partial class LightComponent : LightComponentBase {
 		internal override ComponentType Type => ComponentType.Light;
 
 		private protected LightComponent() { }
@@ -8697,7 +8697,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that represents directional light
 	/// </summary>
-	public partial class DirectionalLightComponent : LightComponent {
+	public unsafe partial class DirectionalLightComponent : LightComponent {
 		internal override ComponentType Type => ComponentType.DirectionalLight;
 
 		private protected DirectionalLightComponent() { }
@@ -8708,7 +8708,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that represents a physical motion controller in 3D space
 	/// </summary>
-	public partial class MotionControllerComponent : PrimitiveComponent {
+	public unsafe partial class MotionControllerComponent : PrimitiveComponent {
 		internal override ComponentType Type => ComponentType.MotionController;
 
 		private protected MotionControllerComponent() { }
@@ -8765,7 +8765,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that is used to create an instance of a static mesh, a piece of geometry that consists of a static set of polygons
 	/// </summary>
-	public partial class StaticMeshComponent : MeshComponent {
+	public unsafe partial class StaticMeshComponent : MeshComponent {
 		internal override ComponentType Type => ComponentType.StaticMesh;
 
 		private protected StaticMeshComponent() { }
@@ -8823,7 +8823,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that efficiently renders multiple instances of the same <see cref="StaticMeshComponent"/>
 	/// </summary>
-	public partial class InstancedStaticMeshComponent : StaticMeshComponent {
+	public unsafe partial class InstancedStaticMeshComponent : StaticMeshComponent {
 		internal override ComponentType Type => ComponentType.InstancedStaticMesh;
 
 		private protected InstancedStaticMeshComponent() { }
@@ -8890,7 +8890,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that supports bone skinned mesh rendering
 	/// </summary>
-	public abstract partial class SkinnedMeshComponent : MeshComponent {
+	public abstract unsafe partial class SkinnedMeshComponent : MeshComponent {
 		private protected SkinnedMeshComponent() { }
 
 		/// <summary>
@@ -8944,7 +8944,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that is used to create an instance of an animated <see cref="SkeletalMesh"/> asset
 	/// </summary>
-	public partial class SkeletalMeshComponent : SkinnedMeshComponent {
+	public unsafe partial class SkeletalMeshComponent : SkinnedMeshComponent {
 		internal override ComponentType Type => ComponentType.SkeletalMesh;
 
 		private protected SkeletalMeshComponent() { }
@@ -9037,7 +9037,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Represents a spline shape
 	/// </summary>
-	public partial class SplineComponent : PrimitiveComponent {
+	public unsafe partial class SplineComponent : PrimitiveComponent {
 		internal override ComponentType Type => ComponentType.Spline;
 
 		private protected SplineComponent() { }
@@ -9680,7 +9680,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A component that emits a radial force or impulse that can affect physics objects and destructible objects
 	/// </summary>
-	public partial class RadialForceComponent : SceneComponent {
+	public unsafe partial class RadialForceComponent : SceneComponent {
 		internal override ComponentType Type => ComponentType.RadialForce;
 
 		private protected RadialForceComponent() { }
@@ -9769,7 +9769,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of materials that can be applied to meshes
 	/// </summary>
-	public abstract partial class MaterialInterface : IEquatable<MaterialInterface> {
+	public abstract unsafe partial class MaterialInterface : IEquatable<MaterialInterface> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -9814,7 +9814,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An asset which can be applied to a mesh to control the visual look
 	/// </summary>
-	public partial class Material : MaterialInterface {
+	public unsafe partial class Material : MaterialInterface {
 		private protected Material() { }
 
 		internal Material(IntPtr pointer) => Pointer = pointer;
@@ -9844,7 +9844,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// An abstract instance of the material
 	/// </summary>
-	public abstract partial class MaterialInstance : MaterialInterface {
+	public abstract unsafe partial class MaterialInstance : MaterialInterface {
 		private protected MaterialInstance() { }
 
 		/// <summary>
@@ -9861,7 +9861,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A dynamic instance of the material
 	/// </summary>
-	public partial class MaterialInstanceDynamic : MaterialInstance {
+	public unsafe partial class MaterialInstanceDynamic : MaterialInstance {
 		private protected MaterialInstanceDynamic() { }
 
 		internal MaterialInstanceDynamic(IntPtr pointer) => Pointer = pointer;

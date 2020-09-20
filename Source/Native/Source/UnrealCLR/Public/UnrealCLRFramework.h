@@ -14,7 +14,6 @@
 
 #pragma once
 
-UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealAssert, Log, All);
 UNREALCLR_API DECLARE_LOG_CATEGORY_EXTERN(LogUnrealManaged, Log, All);
 
 namespace UnrealCLRFramework {

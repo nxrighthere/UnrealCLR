@@ -14,7 +14,6 @@
 
 #include "UnrealCLRFramework.h"
 
-DEFINE_LOG_CATEGORY(LogUnrealAssert);
 DEFINE_LOG_CATEGORY(LogUnrealManaged);
 
 namespace UnrealCLRFramework {
@@ -340,7 +339,7 @@ namespace UnrealCLRFramework {
 		void OutputMessage(const char* Message) {
 			FString message(ANSI_TO_TCHAR(Message));
 
-			UE_LOG(LogUnrealAssert, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
+			UE_LOG(LogUnrealManaged, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
 
 			GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *message);
 		}

@@ -46,901 +46,901 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* assertFunctions = (IntPtr*)buffer[position++];
 
-				Assert.outputMessage = GenerateOptimizedFunction<Assert.OutputMessageFunction>(assertFunctions[head++]);
+				Assert.outputMessage = (delegate* unmanaged[Cdecl]<string, void>)assertFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* commandLineFunctions = (IntPtr*)buffer[position++];
 
-				CommandLine.get = GenerateOptimizedFunction<CommandLine.GetFunction>(commandLineFunctions[head++]);
-				CommandLine.set = GenerateOptimizedFunction<CommandLine.SetFunction>(commandLineFunctions[head++]);
-				CommandLine.append = GenerateOptimizedFunction<CommandLine.AppendFunction>(commandLineFunctions[head++]);
+				CommandLine.get = (delegate* unmanaged[Cdecl]<byte[], void>)commandLineFunctions[head++];
+				CommandLine.set = (delegate* unmanaged[Cdecl]<string, void>)commandLineFunctions[head++];
+				CommandLine.append = (delegate* unmanaged[Cdecl]<string, void>)commandLineFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* debugFunctions = (IntPtr*)buffer[position++];
 
-				Debug.log = GenerateOptimizedFunction<Debug.LogFunction>(debugFunctions[head++]);
-				Debug.handleException = GenerateOptimizedFunction<Debug.HandleExceptionFunction>(debugFunctions[head++]);
-				Debug.addOnScreenMessage = GenerateOptimizedFunction<Debug.AddOnScreenMessageFunction>(debugFunctions[head++]);
-				Debug.clearOnScreenMessages = GenerateOptimizedFunction<Debug.ClearOnScreenMessagesFunction>(debugFunctions[head++]);
-				Debug.drawBox = GenerateOptimizedFunction<Debug.DrawBoxFunction>(debugFunctions[head++]);
-				Debug.drawCapsule = GenerateOptimizedFunction<Debug.DrawCapsuleFunction>(debugFunctions[head++]);
-				Debug.drawCone = GenerateOptimizedFunction<Debug.DrawConeFunction>(debugFunctions[head++]);
-				Debug.drawCylinder = GenerateOptimizedFunction<Debug.DrawCylinderFunction>(debugFunctions[head++]);
-				Debug.drawSphere = GenerateOptimizedFunction<Debug.DrawSphereFunction>(debugFunctions[head++]);
-				Debug.drawLine = GenerateOptimizedFunction<Debug.DrawLineFunction>(debugFunctions[head++]);
-				Debug.drawPoint = GenerateOptimizedFunction<Debug.DrawPointFunction>(debugFunctions[head++]);
-				Debug.flushPersistentLines = GenerateOptimizedFunction<Debug.FlushPersistentLinesFunction>(debugFunctions[head++]);
+				Debug.log = (delegate* unmanaged[Cdecl]<LogLevel, string, void>)debugFunctions[head++];
+				Debug.handleException = (delegate* unmanaged[Cdecl]<string, void>)debugFunctions[head++];
+				Debug.addOnScreenMessage = (delegate* unmanaged[Cdecl]<int, float, int, string, void>)debugFunctions[head++];
+				Debug.clearOnScreenMessages = (delegate* unmanaged[Cdecl]<void>)debugFunctions[head++];
+				Debug.drawBox = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, int, Bool, float, byte, float, void>)debugFunctions[head++];
+				Debug.drawCapsule = (delegate* unmanaged[Cdecl]<in Vector3, float, float, in Quaternion, int, Bool, float, byte, float, void>)debugFunctions[head++];
+				Debug.drawCone = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, float, float, float, int, int, Bool, float, byte, float, void>)debugFunctions[head++];
+				Debug.drawCylinder = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, float, int, int, Bool, float, byte, float, void>)debugFunctions[head++];
+				Debug.drawSphere = (delegate* unmanaged[Cdecl]<in Vector3, float, int, int, Bool, float, byte, float, void>)debugFunctions[head++];
+				Debug.drawLine = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, int, Bool, float, byte, float, void>)debugFunctions[head++];
+				Debug.drawPoint = (delegate* unmanaged[Cdecl]<in Vector3, float, int, Bool, float, byte, void>)debugFunctions[head++];
+				Debug.flushPersistentLines = (delegate* unmanaged[Cdecl]<void>)debugFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* objectFunctions = (IntPtr*)buffer[position++];
 
-				Object.isPendingKill = GenerateOptimizedFunction<Object.IsPendingKillFunction>(objectFunctions[head++]);
-				Object.isValid = GenerateOptimizedFunction<Object.IsValidFunction>(objectFunctions[head++]);
-				Object.load = GenerateOptimizedFunction<Object.LoadFunction>(objectFunctions[head++]);
-				Object.rename = GenerateOptimizedFunction<Object.RenameFunction>(objectFunctions[head++]);
-				Object.invoke = GenerateOptimizedFunction<Object.InvokeFunction>(objectFunctions[head++]);
-				Object.toActor = GenerateOptimizedFunction<Object.ToActorFunction>(objectFunctions[head++]);
-				Object.toComponent = GenerateOptimizedFunction<Object.ToComponentFunction>(objectFunctions[head++]);
-				Object.getID = GenerateOptimizedFunction<Object.GetIDFunction>(objectFunctions[head++]);
-				Object.getName = GenerateOptimizedFunction<Object.GetNameFunction>(objectFunctions[head++]);
-				Object.getBool = GenerateOptimizedFunction<Object.GetBoolFunction>(objectFunctions[head++]);
-				Object.getByte = GenerateOptimizedFunction<Object.GetByteFunction>(objectFunctions[head++]);
-				Object.getShort = GenerateOptimizedFunction<Object.GetShortFunction>(objectFunctions[head++]);
-				Object.getInt = GenerateOptimizedFunction<Object.GetIntFunction>(objectFunctions[head++]);
-				Object.getLong = GenerateOptimizedFunction<Object.GetLongFunction>(objectFunctions[head++]);
-				Object.getUShort = GenerateOptimizedFunction<Object.GetUShortFunction>(objectFunctions[head++]);
-				Object.getUInt = GenerateOptimizedFunction<Object.GetUIntFunction>(objectFunctions[head++]);
-				Object.getULong = GenerateOptimizedFunction<Object.GetULongFunction>(objectFunctions[head++]);
-				Object.getFloat = GenerateOptimizedFunction<Object.GetFloatFunction>(objectFunctions[head++]);
-				Object.getDouble = GenerateOptimizedFunction<Object.GetDoubleFunction>(objectFunctions[head++]);
-				Object.getEnum = GenerateOptimizedFunction<Object.GetEnumFunction>(objectFunctions[head++]);
-				Object.getText = GenerateOptimizedFunction<Object.GetTextFunction>(objectFunctions[head++]);
-				Object.setBool = GenerateOptimizedFunction<Object.SetBoolFunction>(objectFunctions[head++]);
-				Object.setByte = GenerateOptimizedFunction<Object.SetByteFunction>(objectFunctions[head++]);
-				Object.setShort = GenerateOptimizedFunction<Object.SetShortFunction>(objectFunctions[head++]);
-				Object.setInt = GenerateOptimizedFunction<Object.SetIntFunction>(objectFunctions[head++]);
-				Object.setLong = GenerateOptimizedFunction<Object.SetLongFunction>(objectFunctions[head++]);
-				Object.setUShort = GenerateOptimizedFunction<Object.SetUShortFunction>(objectFunctions[head++]);
-				Object.setUInt = GenerateOptimizedFunction<Object.SetUIntFunction>(objectFunctions[head++]);
-				Object.setULong = GenerateOptimizedFunction<Object.SetULongFunction>(objectFunctions[head++]);
-				Object.setFloat = GenerateOptimizedFunction<Object.SetFloatFunction>(objectFunctions[head++]);
-				Object.setDouble = GenerateOptimizedFunction<Object.SetDoubleFunction>(objectFunctions[head++]);
-				Object.setEnum = GenerateOptimizedFunction<Object.SetEnumFunction>(objectFunctions[head++]);
-				Object.setText = GenerateOptimizedFunction<Object.SetTextFunction>(objectFunctions[head++]);
+				Object.isPendingKill = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)objectFunctions[head++];
+				Object.isValid = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)objectFunctions[head++];
+				Object.load = (delegate* unmanaged[Cdecl]<ObjectType, string, IntPtr>)objectFunctions[head++];
+				Object.rename = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)objectFunctions[head++];
+				Object.invoke = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)objectFunctions[head++];
+				Object.toActor = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)objectFunctions[head++];
+				Object.toComponent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr>)objectFunctions[head++];
+				Object.getID = (delegate* unmanaged[Cdecl]<IntPtr, uint>)objectFunctions[head++];
+				Object.getName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)objectFunctions[head++];
+				Object.getBool = (delegate* unmanaged[Cdecl]<IntPtr, string, ref bool, Bool>)objectFunctions[head++];
+				Object.getByte = (delegate* unmanaged[Cdecl]<IntPtr, string, ref byte, Bool>)objectFunctions[head++];
+				Object.getShort = (delegate* unmanaged[Cdecl]<IntPtr, string, ref short, Bool>)objectFunctions[head++];
+				Object.getInt = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool>)objectFunctions[head++];
+				Object.getLong = (delegate* unmanaged[Cdecl]<IntPtr, string, ref long, Bool>)objectFunctions[head++];
+				Object.getUShort = (delegate* unmanaged[Cdecl]<IntPtr, string, ref ushort, Bool>)objectFunctions[head++];
+				Object.getUInt = (delegate* unmanaged[Cdecl]<IntPtr, string, ref uint, Bool>)objectFunctions[head++];
+				Object.getULong = (delegate* unmanaged[Cdecl]<IntPtr, string, ref ulong, Bool>)objectFunctions[head++];
+				Object.getFloat = (delegate* unmanaged[Cdecl]<IntPtr, string, ref float, Bool>)objectFunctions[head++];
+				Object.getDouble = (delegate* unmanaged[Cdecl]<IntPtr, string, ref double, Bool>)objectFunctions[head++];
+				Object.getEnum = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool>)objectFunctions[head++];
+				Object.getText = (delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool>)objectFunctions[head++];
+				Object.setBool = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool>)objectFunctions[head++];
+				Object.setByte = (delegate* unmanaged[Cdecl]<IntPtr, string, byte, Bool>)objectFunctions[head++];
+				Object.setShort = (delegate* unmanaged[Cdecl]<IntPtr, string, short, Bool>)objectFunctions[head++];
+				Object.setInt = (delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool>)objectFunctions[head++];
+				Object.setLong = (delegate* unmanaged[Cdecl]<IntPtr, string, long, Bool>)objectFunctions[head++];
+				Object.setUShort = (delegate* unmanaged[Cdecl]<IntPtr, string, ushort, Bool>)objectFunctions[head++];
+				Object.setUInt = (delegate* unmanaged[Cdecl]<IntPtr, string, uint, Bool>)objectFunctions[head++];
+				Object.setULong = (delegate* unmanaged[Cdecl]<IntPtr, string, ulong, Bool>)objectFunctions[head++];
+				Object.setFloat = (delegate* unmanaged[Cdecl]<IntPtr, string, float, Bool>)objectFunctions[head++];
+				Object.setDouble = (delegate* unmanaged[Cdecl]<IntPtr, string, double, Bool>)objectFunctions[head++];
+				Object.setEnum = (delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool>)objectFunctions[head++];
+				Object.setText = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool>)objectFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* applicationFunctions = (IntPtr*)buffer[position++];
 
-				Application.isCanEverRender = GenerateOptimizedFunction<Application.IsCanEverRenderFunction>(applicationFunctions[head++]);
-				Application.isPackagedForDistribution = GenerateOptimizedFunction<Application.IsPackagedForDistributionFunction>(applicationFunctions[head++]);
-				Application.isPackagedForShipping = GenerateOptimizedFunction<Application.IsPackagedForShippingFunction>(applicationFunctions[head++]);
-				Application.getProjectDirectory = GenerateOptimizedFunction<Application.GetProjectDirectoryFunction>(applicationFunctions[head++]);
-				Application.getDefaultLanguage = GenerateOptimizedFunction<Application.GetDefaultLanguageFunction>(applicationFunctions[head++]);
-				Application.getProjectName = GenerateOptimizedFunction<Application.GetProjectNameFunction>(applicationFunctions[head++]);
-				Application.getVolumeMultiplier = GenerateOptimizedFunction<Application.GetVolumeMultiplierFunction>(applicationFunctions[head++]);
-				Application.setProjectName = GenerateOptimizedFunction<Application.SetProjectNameFunction>(applicationFunctions[head++]);
-				Application.setVolumeMultiplier = GenerateOptimizedFunction<Application.SetVolumeMultiplierFunction>(applicationFunctions[head++]);
-				Application.requestExit = GenerateOptimizedFunction<Application.RequestExitFunction>(applicationFunctions[head++]);
+				Application.isCanEverRender = (delegate* unmanaged[Cdecl]<Bool>)applicationFunctions[head++];
+				Application.isPackagedForDistribution = (delegate* unmanaged[Cdecl]<Bool>)applicationFunctions[head++];
+				Application.isPackagedForShipping = (delegate* unmanaged[Cdecl]<Bool>)applicationFunctions[head++];
+				Application.getProjectDirectory = (delegate* unmanaged[Cdecl]<byte[], void>)applicationFunctions[head++];
+				Application.getDefaultLanguage = (delegate* unmanaged[Cdecl]<byte[], void>)applicationFunctions[head++];
+				Application.getProjectName = (delegate* unmanaged[Cdecl]<byte[], void>)applicationFunctions[head++];
+				Application.getVolumeMultiplier = (delegate* unmanaged[Cdecl]<float>)applicationFunctions[head++];
+				Application.setProjectName = (delegate* unmanaged[Cdecl]<string, void>)applicationFunctions[head++];
+				Application.setVolumeMultiplier = (delegate* unmanaged[Cdecl]<float, void>)applicationFunctions[head++];
+				Application.requestExit = (delegate* unmanaged[Cdecl]<Bool, void>)applicationFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* consoleManagerFunctions = (IntPtr*)buffer[position++];
 
-				ConsoleManager.isRegisteredVariable = GenerateOptimizedFunction<ConsoleManager.IsRegisteredVariableFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.findVariable = GenerateOptimizedFunction<ConsoleManager.FindVariableFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.registerVariableBool = GenerateOptimizedFunction<ConsoleManager.RegisterVariableBoolFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.registerVariableInt = GenerateOptimizedFunction<ConsoleManager.RegisterVariableIntFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.registerVariableFloat = GenerateOptimizedFunction<ConsoleManager.RegisterVariableFloatFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.registerVariableString = GenerateOptimizedFunction<ConsoleManager.RegisterVariableStringFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.registerCommand = GenerateOptimizedFunction<ConsoleManager.RegisterCommandFunction>(consoleManagerFunctions[head++]);
-				ConsoleManager.unregisterObject = GenerateOptimizedFunction<ConsoleManager.UnregisterObjectFunction>(consoleManagerFunctions[head++]);
+				ConsoleManager.isRegisteredVariable = (delegate* unmanaged[Cdecl]<string, Bool>)consoleManagerFunctions[head++];
+				ConsoleManager.findVariable = (delegate* unmanaged[Cdecl]<string, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableBool = (delegate* unmanaged[Cdecl]<string, string, Bool, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableInt = (delegate* unmanaged[Cdecl]<string, string, int, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableFloat = (delegate* unmanaged[Cdecl]<string, string, float, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableString = (delegate* unmanaged[Cdecl]<string, string, string, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerCommand = (delegate* unmanaged[Cdecl]<string, string, IntPtr, Bool, void>)consoleManagerFunctions[head++];
+				ConsoleManager.unregisterObject = (delegate* unmanaged[Cdecl]<string, void>)consoleManagerFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* engineFunctions = (IntPtr*)buffer[position++];
 
-				Engine.isSplitScreen = GenerateOptimizedFunction<Engine.IsSplitScreenFunction>(engineFunctions[head++]);
-				Engine.isEditor = GenerateOptimizedFunction<Engine.IsEditorFunction>(engineFunctions[head++]);
-				Engine.isForegroundWindow = GenerateOptimizedFunction<Engine.IsForegroundWindowFunction>(engineFunctions[head++]);
-				Engine.isExitRequested = GenerateOptimizedFunction<Engine.IsExitRequestedFunction>(engineFunctions[head++]);
-				Engine.getNetMode = GenerateOptimizedFunction<Engine.GetNetModeFunction>(engineFunctions[head++]);
-				Engine.getFrameNumber = GenerateOptimizedFunction<Engine.GetFrameNumberFunction>(engineFunctions[head++]);
-				Engine.getViewportSize = GenerateOptimizedFunction<Engine.GetViewportSizeFunction>(engineFunctions[head++]);
-				Engine.getScreenResolution = GenerateOptimizedFunction<Engine.GetScreenResolutionFunction>(engineFunctions[head++]);
-				Engine.getWindowMode = GenerateOptimizedFunction<Engine.GetWindowModeFunction>(engineFunctions[head++]);
-				Engine.getVersion = GenerateOptimizedFunction<Engine.GetVersionFunction>(engineFunctions[head++]);
-				Engine.getMaxFPS = GenerateOptimizedFunction<Engine.GetMaxFPSFunction>(engineFunctions[head++]);
-				Engine.setMaxFPS = GenerateOptimizedFunction<Engine.SetMaxFPSFunction>(engineFunctions[head++]);
-				Engine.setTitle = GenerateOptimizedFunction<Engine.SetTitleFunction>(engineFunctions[head++]);
-				Engine.addActionMapping = GenerateOptimizedFunction<Engine.AddActionMappingFunction>(engineFunctions[head++]);
-				Engine.addAxisMapping = GenerateOptimizedFunction<Engine.AddAxisMappingFunction>(engineFunctions[head++]);
-				Engine.forceGarbageCollection = GenerateOptimizedFunction<Engine.ForceGarbageCollectionFunction>(engineFunctions[head++]);
-				Engine.delayGarbageCollection = GenerateOptimizedFunction<Engine.DelayGarbageCollectionFunction>(engineFunctions[head++]);
+				Engine.isSplitScreen = (delegate* unmanaged[Cdecl]<Bool>)engineFunctions[head++];
+				Engine.isEditor = (delegate* unmanaged[Cdecl]<Bool>)engineFunctions[head++];
+				Engine.isForegroundWindow = (delegate* unmanaged[Cdecl]<Bool>)engineFunctions[head++];
+				Engine.isExitRequested = (delegate* unmanaged[Cdecl]<Bool>)engineFunctions[head++];
+				Engine.getNetMode = (delegate* unmanaged[Cdecl]<NetMode>)engineFunctions[head++];
+				Engine.getFrameNumber = (delegate* unmanaged[Cdecl]<uint>)engineFunctions[head++];
+				Engine.getViewportSize = (delegate* unmanaged[Cdecl]<ref Vector2, void>)engineFunctions[head++];
+				Engine.getScreenResolution = (delegate* unmanaged[Cdecl]<ref Vector2, void>)engineFunctions[head++];
+				Engine.getWindowMode = (delegate* unmanaged[Cdecl]<WindowMode>)engineFunctions[head++];
+				Engine.getVersion = (delegate* unmanaged[Cdecl]<byte[], void>)engineFunctions[head++];
+				Engine.getMaxFPS = (delegate* unmanaged[Cdecl]<float>)engineFunctions[head++];
+				Engine.setMaxFPS = (delegate* unmanaged[Cdecl]<float, void>)engineFunctions[head++];
+				Engine.setTitle = (delegate* unmanaged[Cdecl]<string, void>)engineFunctions[head++];
+				Engine.addActionMapping = (delegate* unmanaged[Cdecl]<string, string, Bool, Bool, Bool, Bool, void>)engineFunctions[head++];
+				Engine.addAxisMapping = (delegate* unmanaged[Cdecl]<string, string, float, void>)engineFunctions[head++];
+				Engine.forceGarbageCollection = (delegate* unmanaged[Cdecl]<Bool, void>)engineFunctions[head++];
+				Engine.delayGarbageCollection = (delegate* unmanaged[Cdecl]<void>)engineFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* headMountedDisplayFunctions = (IntPtr*)buffer[position++];
 
-				HeadMountedDisplay.isConnected = GenerateOptimizedFunction<HeadMountedDisplay.IsConnectedFunction>(headMountedDisplayFunctions[head++]);
-				HeadMountedDisplay.getEnabled = GenerateOptimizedFunction<HeadMountedDisplay.GetEnabledFunction>(headMountedDisplayFunctions[head++]);
-				HeadMountedDisplay.getLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.GetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
-				HeadMountedDisplay.getDeviceName = GenerateOptimizedFunction<HeadMountedDisplay.GetDeviceNameFunction>(headMountedDisplayFunctions[head++]);
-				HeadMountedDisplay.setEnable = GenerateOptimizedFunction<HeadMountedDisplay.SetEnableFunction>(headMountedDisplayFunctions[head++]);
-				HeadMountedDisplay.setLowPersistenceMode = GenerateOptimizedFunction<HeadMountedDisplay.SetLowPersistenceModeFunction>(headMountedDisplayFunctions[head++]);
+				HeadMountedDisplay.isConnected = (delegate* unmanaged[Cdecl]<Bool>)headMountedDisplayFunctions[head++];
+				HeadMountedDisplay.getEnabled = (delegate* unmanaged[Cdecl]<Bool>)headMountedDisplayFunctions[head++];
+				HeadMountedDisplay.getLowPersistenceMode = (delegate* unmanaged[Cdecl]<Bool>)headMountedDisplayFunctions[head++];
+				HeadMountedDisplay.getDeviceName = (delegate* unmanaged[Cdecl]<byte[], void>)headMountedDisplayFunctions[head++];
+				HeadMountedDisplay.setEnable = (delegate* unmanaged[Cdecl]<Bool, void>)headMountedDisplayFunctions[head++];
+				HeadMountedDisplay.setLowPersistenceMode = (delegate* unmanaged[Cdecl]<Bool, void>)headMountedDisplayFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* worldFunctions = (IntPtr*)buffer[position++];
 
-				World.getActorCount = GenerateOptimizedFunction<World.GetActorCountFunction>(worldFunctions[head++]);
-				World.getDeltaSeconds = GenerateOptimizedFunction<World.GetDeltaSecondsFunction>(worldFunctions[head++]);
-				World.getRealTimeSeconds = GenerateOptimizedFunction<World.GetRealTimeSecondsFunction>(worldFunctions[head++]);
-				World.getTimeSeconds = GenerateOptimizedFunction<World.GetTimeSecondsFunction>(worldFunctions[head++]);
-				World.getCurrentLevelName = GenerateOptimizedFunction<World.GetCurrentLevelNameFunction>(worldFunctions[head++]);
-				World.getSimulatePhysics = GenerateOptimizedFunction<World.GetSimulatePhysicsFunction>(worldFunctions[head++]);
-				World.getWorldOrigin = GenerateOptimizedFunction<World.GetWorldOriginFunction>(worldFunctions[head++]);
-				World.getActor = GenerateOptimizedFunction<World.GetActorFunction>(worldFunctions[head++]);
-				World.getActorByTag = GenerateOptimizedFunction<World.GetActorByTagFunction>(worldFunctions[head++]);
-				World.getActorByID = GenerateOptimizedFunction<World.GetActorByIDFunction>(worldFunctions[head++]);
-				World.getFirstPlayerController = GenerateOptimizedFunction<World.GetFirstPlayerControllerFunction>(worldFunctions[head++]);
-				World.setOnActorBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnActorBeginOverlapCallbackFunction>(worldFunctions[head++]);
-				World.setOnActorBeginCursorOverCallback = GenerateOptimizedFunction<World.SetOnActorBeginCursorOverCallbackFunction>(worldFunctions[head++]);
-				World.setOnActorEndCursorOverCallback = GenerateOptimizedFunction<World.SetOnActorEndCursorOverCallbackFunction>(worldFunctions[head++]);
-				World.setOnActorEndOverlapCallback = GenerateOptimizedFunction<World.SetOnActorEndOverlapCallbackFunction>(worldFunctions[head++]);
-				World.setOnActorHitCallback = GenerateOptimizedFunction<World.SetOnActorHitCallbackFunction>(worldFunctions[head++]);
-				World.setOnComponentBeginOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentBeginOverlapCallbackFunction>(worldFunctions[head++]);
-				World.setOnComponentEndOverlapCallback = GenerateOptimizedFunction<World.SetOnComponentEndOverlapCallbackFunction>(worldFunctions[head++]);
-				World.setOnComponentHitCallback = GenerateOptimizedFunction<World.SetOnComponentHitCallbackFunction>(worldFunctions[head++]);
-				World.setOnComponentBeginCursorOverCallback = GenerateOptimizedFunction<World.SetOnComponentBeginCursorOverCallbackFunction>(worldFunctions[head++]);
-				World.setOnComponentEndCursorOverCallback = GenerateOptimizedFunction<World.SetOnComponentEndCursorOverCallbackFunction>(worldFunctions[head++]);
-				World.setSimulatePhysics = GenerateOptimizedFunction<World.SetSimulatePhysicsFunction>(worldFunctions[head++]);
-				World.setGravity = GenerateOptimizedFunction<World.SetGravityFunction>(worldFunctions[head++]);
-				World.setWorldOrigin = GenerateOptimizedFunction<World.SetWorldOriginFunction>(worldFunctions[head++]);
-				World.openLevel = GenerateOptimizedFunction<World.OpenLevelFunction>(worldFunctions[head++]);
-				World.lineTraceTestByChannel = GenerateOptimizedFunction<World.LineTraceTestByChannelFunction>(worldFunctions[head++]);
-				World.lineTraceTestByProfile = GenerateOptimizedFunction<World.LineTraceTestByProfileFunction>(worldFunctions[head++]);
-				World.lineTraceSingleByChannel = GenerateOptimizedFunction<World.LineTraceSingleByChannelFunction>(worldFunctions[head++]);
-				World.lineTraceSingleByProfile = GenerateOptimizedFunction<World.LineTraceSingleByProfileFunction>(worldFunctions[head++]);
-				World.sweepTestByChannel = GenerateOptimizedFunction<World.SweepTestByChannelFunction>(worldFunctions[head++]);
-				World.sweepTestByProfile = GenerateOptimizedFunction<World.SweepTestByProfileFunction>(worldFunctions[head++]);
-				World.sweepSingleByChannel = GenerateOptimizedFunction<World.SweepSingleByChannelFunction>(worldFunctions[head++]);
-				World.sweepSingleByProfile = GenerateOptimizedFunction<World.SweepSingleByProfileFunction>(worldFunctions[head++]);
-				World.overlapAnyTestByChannel = GenerateOptimizedFunction<World.OverlapAnyTestByChannelFunction>(worldFunctions[head++]);
-				World.overlapAnyTestByProfile = GenerateOptimizedFunction<World.OverlapAnyTestByProfileFunction>(worldFunctions[head++]);
-				World.overlapBlockingTestByChannel = GenerateOptimizedFunction<World.OverlapBlockingTestByChannelFunction>(worldFunctions[head++]);
-				World.overlapBlockingTestByProfile = GenerateOptimizedFunction<World.OverlapBlockingTestByProfileFunction>(worldFunctions[head++]);
+				World.getActorCount = (delegate* unmanaged[Cdecl]<int>)worldFunctions[head++];
+				World.getDeltaSeconds = (delegate* unmanaged[Cdecl]<float>)worldFunctions[head++];
+				World.getRealTimeSeconds = (delegate* unmanaged[Cdecl]<float>)worldFunctions[head++];
+				World.getTimeSeconds = (delegate* unmanaged[Cdecl]<float>)worldFunctions[head++];
+				World.getCurrentLevelName = (delegate* unmanaged[Cdecl]<byte[], void>)worldFunctions[head++];
+				World.getSimulatePhysics = (delegate* unmanaged[Cdecl]<Bool>)worldFunctions[head++];
+				World.getWorldOrigin = (delegate* unmanaged[Cdecl]<ref Vector3, void>)worldFunctions[head++];
+				World.getActor = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr>)worldFunctions[head++];
+				World.getActorByTag = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr>)worldFunctions[head++];
+				World.getActorByID = (delegate* unmanaged[Cdecl]<uint, ActorType, IntPtr>)worldFunctions[head++];
+				World.getFirstPlayerController = (delegate* unmanaged[Cdecl]<IntPtr>)worldFunctions[head++];
+				World.setOnActorBeginOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnActorBeginCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnActorEndCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnActorEndOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnActorHitCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentBeginOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentEndOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentHitCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentBeginCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentEndCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setSimulatePhysics = (delegate* unmanaged[Cdecl]<Bool, void>)worldFunctions[head++];
+				World.setGravity = (delegate* unmanaged[Cdecl]<float, void>)worldFunctions[head++];
+				World.setWorldOrigin = (delegate* unmanaged[Cdecl]<in Vector3, Bool>)worldFunctions[head++];
+				World.openLevel = (delegate* unmanaged[Cdecl]<string, void>)worldFunctions[head++];
+				World.lineTraceTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.lineTraceTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.lineTraceSingleByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.lineTraceSingleByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.sweepTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.sweepTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.sweepSingleByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.sweepSingleByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.overlapAnyTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.overlapAnyTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.overlapBlockingTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.overlapBlockingTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* blueprintFunctions = (IntPtr*)buffer[position++];
 
-				Blueprint.isValidActorClass = GenerateOptimizedFunction<Blueprint.IsValidActorClassFunction>(blueprintFunctions[head++]);
-				Blueprint.isValidComponentClass = GenerateOptimizedFunction<Blueprint.IsValidComponentClassFunction>(blueprintFunctions[head++]);
+				Blueprint.isValidActorClass = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, Bool>)blueprintFunctions[head++];
+				Blueprint.isValidComponentClass = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, Bool>)blueprintFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* consoleObjectFunctions = (IntPtr*)buffer[position++];
 
-				ConsoleObject.isBool = GenerateOptimizedFunction<ConsoleObject.IsBoolFunction>(consoleObjectFunctions[head++]);
-				ConsoleObject.isInt = GenerateOptimizedFunction<ConsoleObject.IsIntFunction>(consoleObjectFunctions[head++]);
-				ConsoleObject.isFloat = GenerateOptimizedFunction<ConsoleObject.IsFloatFunction>(consoleObjectFunctions[head++]);
-				ConsoleObject.isString = GenerateOptimizedFunction<ConsoleObject.IsStringFunction>(consoleObjectFunctions[head++]);
+				ConsoleObject.isBool = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)consoleObjectFunctions[head++];
+				ConsoleObject.isInt = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)consoleObjectFunctions[head++];
+				ConsoleObject.isFloat = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)consoleObjectFunctions[head++];
+				ConsoleObject.isString = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)consoleObjectFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* consoleVariableFunctions = (IntPtr*)buffer[position++];
 
-				ConsoleVariable.getBool = GenerateOptimizedFunction<ConsoleVariable.GetBoolFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.getInt = GenerateOptimizedFunction<ConsoleVariable.GetIntFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.getFloat = GenerateOptimizedFunction<ConsoleVariable.GetFloatFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.getString = GenerateOptimizedFunction<ConsoleVariable.GetStringFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.setBool = GenerateOptimizedFunction<ConsoleVariable.SetBoolFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.setInt = GenerateOptimizedFunction<ConsoleVariable.SetIntFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.setFloat = GenerateOptimizedFunction<ConsoleVariable.SetFloatFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.setString = GenerateOptimizedFunction<ConsoleVariable.SetStringFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.setOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.SetOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
-				ConsoleVariable.clearOnChangedCallback = GenerateOptimizedFunction<ConsoleVariable.ClearOnChangedCallbackFunction>(consoleVariableFunctions[head++]);
+				ConsoleVariable.getBool = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)consoleVariableFunctions[head++];
+				ConsoleVariable.getInt = (delegate* unmanaged[Cdecl]<IntPtr, int>)consoleVariableFunctions[head++];
+				ConsoleVariable.getFloat = (delegate* unmanaged[Cdecl]<IntPtr, float>)consoleVariableFunctions[head++];
+				ConsoleVariable.getString = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)consoleVariableFunctions[head++];
+				ConsoleVariable.setBool = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)consoleVariableFunctions[head++];
+				ConsoleVariable.setInt = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)consoleVariableFunctions[head++];
+				ConsoleVariable.setFloat = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)consoleVariableFunctions[head++];
+				ConsoleVariable.setString = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)consoleVariableFunctions[head++];
+				ConsoleVariable.setOnChangedCallback = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)consoleVariableFunctions[head++];
+				ConsoleVariable.clearOnChangedCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)consoleVariableFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* actorFunctions = (IntPtr*)buffer[position++];
 
-				Actor.isPendingKill = GenerateOptimizedFunction<Actor.IsPendingKillFunction>(actorFunctions[head++]);
-				Actor.isRootComponentMovable = GenerateOptimizedFunction<Actor.IsRootComponentMovableFunction>(actorFunctions[head++]);
-				Actor.isOverlappingActor = GenerateOptimizedFunction<Actor.IsOverlappingActorFunction>(actorFunctions[head++]);
-				Actor.spawn = GenerateOptimizedFunction<Actor.SpawnFunction>(actorFunctions[head++]);
-				Actor.destroy = GenerateOptimizedFunction<Actor.DestroyFunction>(actorFunctions[head++]);
-				Actor.rename = GenerateOptimizedFunction<Actor.RenameFunction>(actorFunctions[head++]);
-				Actor.hide = GenerateOptimizedFunction<Actor.HideFunction>(actorFunctions[head++]);
-				Actor.teleportTo = GenerateOptimizedFunction<Actor.TeleportToFunction>(actorFunctions[head++]);
-				Actor.getComponent = GenerateOptimizedFunction<Actor.GetComponentFunction>(actorFunctions[head++]);
-				Actor.getComponentByTag = GenerateOptimizedFunction<Actor.GetComponentByTagFunction>(actorFunctions[head++]);
-				Actor.getComponentByID = GenerateOptimizedFunction<Actor.GetComponentByIDFunction>(actorFunctions[head++]);
-				Actor.getRootComponent = GenerateOptimizedFunction<Actor.GetRootComponentFunction>(actorFunctions[head++]);
-				Actor.getInputComponent = GenerateOptimizedFunction<Actor.GetInputComponentFunction>(actorFunctions[head++]);
-				Actor.getCreationTime = GenerateOptimizedFunction<Actor.GetCreationTimeFunction>(actorFunctions[head++]);
-				Actor.getBlockInput = GenerateOptimizedFunction<Actor.GetBlockInputFunction>(actorFunctions[head++]);
-				Actor.getDistanceTo = GenerateOptimizedFunction<Actor.GetDistanceToFunction>(actorFunctions[head++]);
-				Actor.getHorizontalDistanceTo = GenerateOptimizedFunction<Actor.GetHorizontalDistanceToFunction>(actorFunctions[head++]);
-				Actor.getBounds = GenerateOptimizedFunction<Actor.GetBoundsFunction>(actorFunctions[head++]);
-				Actor.getEyesViewPoint = GenerateOptimizedFunction<Actor.GetEyesViewPointFunction>(actorFunctions[head++]);
-				Actor.setRootComponent = GenerateOptimizedFunction<Actor.SetRootComponentFunction>(actorFunctions[head++]);
-				Actor.setInputComponent = GenerateOptimizedFunction<Actor.SetInputComponentFunction>(actorFunctions[head++]);
-				Actor.setBlockInput = GenerateOptimizedFunction<Actor.SetBlockInputFunction>(actorFunctions[head++]);
-				Actor.setLifeSpan = GenerateOptimizedFunction<Actor.SetLifeSpanFunction>(actorFunctions[head++]);
-				Actor.setEnableInput = GenerateOptimizedFunction<Actor.SetEnableInputFunction>(actorFunctions[head++]);
-				Actor.setEnableCollision = GenerateOptimizedFunction<Actor.SetEnableCollisionFunction>(actorFunctions[head++]);
-				Actor.addTag = GenerateOptimizedFunction<Actor.AddTagFunction>(actorFunctions[head++]);
-				Actor.removeTag = GenerateOptimizedFunction<Actor.RemoveTagFunction>(actorFunctions[head++]);
-				Actor.hasTag = GenerateOptimizedFunction<Actor.HasTagFunction>(actorFunctions[head++]);
-				Actor.registerEvent = GenerateOptimizedFunction<Actor.RegisterEventFunction>(actorFunctions[head++]);
-				Actor.unregisterEvent = GenerateOptimizedFunction<Actor.UnregisterEventFunction>(actorFunctions[head++]);
+				Actor.isPendingKill = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
+				Actor.isRootComponentMovable = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
+				Actor.isOverlappingActor = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)actorFunctions[head++];
+				Actor.spawn = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr>)actorFunctions[head++];
+				Actor.destroy = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
+				Actor.rename = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
+				Actor.hide = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorFunctions[head++];
+				Actor.teleportTo = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Quaternion, Bool, Bool, Bool>)actorFunctions[head++];
+				Actor.getComponent = (delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr>)actorFunctions[head++];
+				Actor.getComponentByTag = (delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr>)actorFunctions[head++];
+				Actor.getComponentByID = (delegate* unmanaged[Cdecl]<IntPtr, uint, ComponentType, IntPtr>)actorFunctions[head++];
+				Actor.getRootComponent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr>)actorFunctions[head++];
+				Actor.getInputComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)actorFunctions[head++];
+				Actor.getCreationTime = (delegate* unmanaged[Cdecl]<IntPtr, float>)actorFunctions[head++];
+				Actor.getBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
+				Actor.getDistanceTo = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float>)actorFunctions[head++];
+				Actor.getHorizontalDistanceTo = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float>)actorFunctions[head++];
+				Actor.getBounds = (delegate* unmanaged[Cdecl]<IntPtr, Bool, ref Vector3, ref Vector3, void>)actorFunctions[head++];
+				Actor.getEyesViewPoint = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, ref Quaternion, void>)actorFunctions[head++];
+				Actor.setRootComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)actorFunctions[head++];
+				Actor.setInputComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)actorFunctions[head++];
+				Actor.setBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorFunctions[head++];
+				Actor.setLifeSpan = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)actorFunctions[head++];
+				Actor.setEnableInput = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)actorFunctions[head++];
+				Actor.setEnableCollision = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorFunctions[head++];
+				Actor.addTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
+				Actor.removeTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
+				Actor.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)actorFunctions[head++];
+				Actor.registerEvent = (delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void>)actorFunctions[head++];
+				Actor.unregisterEvent = (delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void>)actorFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* pawnFunctions = (IntPtr*)buffer[position++];
 
-				Pawn.addControllerYawInput = GenerateOptimizedFunction<Pawn.AddControllerYawInputFunction>(pawnFunctions[head++]);
-				Pawn.addControllerPitchInput = GenerateOptimizedFunction<Pawn.AddControllerPitchInputFunction>(pawnFunctions[head++]);
-				Pawn.addControllerRollInput = GenerateOptimizedFunction<Pawn.AddControllerRollInputFunction>(pawnFunctions[head++]);
-				Pawn.addMovementInput = GenerateOptimizedFunction<Pawn.AddMovementInputFunction>(pawnFunctions[head++]);
-				Pawn.getAutoPossessAI = GenerateOptimizedFunction<Pawn.GetAutoPossessAIFunction>(pawnFunctions[head++]);
-				Pawn.getAutoPossessPlayer = GenerateOptimizedFunction<Pawn.GetAutoPossessPlayerFunction>(pawnFunctions[head++]);
-				Pawn.getGravityDirection = GenerateOptimizedFunction<Pawn.GetGravityDirectionFunction>(pawnFunctions[head++]);
-				Pawn.getAIController = GenerateOptimizedFunction<Pawn.GetAIControllerFunction>(pawnFunctions[head++]);
-				Pawn.getPlayerController = GenerateOptimizedFunction<Pawn.GetPlayerControllerFunction>(pawnFunctions[head++]);
-				Pawn.setAutoPossessAI = GenerateOptimizedFunction<Pawn.SetAutoPossessAIFunction>(pawnFunctions[head++]);
-				Pawn.setAutoPossessPlayer = GenerateOptimizedFunction<Pawn.SetAutoPossessPlayerFunction>(pawnFunctions[head++]);
+				Pawn.addControllerYawInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)pawnFunctions[head++];
+				Pawn.addControllerPitchInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)pawnFunctions[head++];
+				Pawn.addControllerRollInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)pawnFunctions[head++];
+				Pawn.addMovementInput = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, Bool, void>)pawnFunctions[head++];
+				Pawn.getAutoPossessAI = (delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI>)pawnFunctions[head++];
+				Pawn.getAutoPossessPlayer = (delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput>)pawnFunctions[head++];
+				Pawn.getGravityDirection = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)pawnFunctions[head++];
+				Pawn.getAIController = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)pawnFunctions[head++];
+				Pawn.getPlayerController = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)pawnFunctions[head++];
+				Pawn.setAutoPossessAI = (delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI, void>)pawnFunctions[head++];
+				Pawn.setAutoPossessPlayer = (delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput, void>)pawnFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* characterFunctions = (IntPtr*)buffer[position++];
 
-				Character.isCrouched = GenerateOptimizedFunction<Character.IsCrouchedFunction>(characterFunctions[head++]);
-				Character.canCrouch = GenerateOptimizedFunction<Character.CanCrouchFunction>(characterFunctions[head++]);
-				Character.canJump = GenerateOptimizedFunction<Character.CanJumpFunction>(characterFunctions[head++]);
-				Character.checkJumpInput = GenerateOptimizedFunction<Character.CheckJumpInputFunction>(characterFunctions[head++]);
-				Character.clearJumpInput = GenerateOptimizedFunction<Character.ClearJumpInputFunction>(characterFunctions[head++]);
-				Character.launch = GenerateOptimizedFunction<Character.LaunchFunction>(characterFunctions[head++]);
-				Character.crouch = GenerateOptimizedFunction<Character.CrouchFunction>(characterFunctions[head++]);
-				Character.stopCrouching = GenerateOptimizedFunction<Character.StopCrouchingFunction>(characterFunctions[head++]);
-				Character.jump = GenerateOptimizedFunction<Character.JumpFunction>(characterFunctions[head++]);
-				Character.stopJumping = GenerateOptimizedFunction<Character.StopJumpingFunction>(characterFunctions[head++]);
+				Character.isCrouched = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)characterFunctions[head++];
+				Character.canCrouch = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)characterFunctions[head++];
+				Character.canJump = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)characterFunctions[head++];
+				Character.checkJumpInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)characterFunctions[head++];
+				Character.clearJumpInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)characterFunctions[head++];
+				Character.launch = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, Bool, void>)characterFunctions[head++];
+				Character.crouch = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
+				Character.stopCrouching = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
+				Character.jump = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
+				Character.stopJumping = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* controllerFunctions = (IntPtr*)buffer[position++];
 
-				Controller.isLookInputIgnored = GenerateOptimizedFunction<Controller.IsLookInputIgnoredFunction>(controllerFunctions[head++]);
-				Controller.isMoveInputIgnored = GenerateOptimizedFunction<Controller.IsMoveInputIgnoredFunction>(controllerFunctions[head++]);
-				Controller.isPlayerController = GenerateOptimizedFunction<Controller.IsPlayerControllerFunction>(controllerFunctions[head++]);
-				Controller.getPawn = GenerateOptimizedFunction<Controller.GetPawnFunction>(controllerFunctions[head++]);
-				Controller.getCharacter = GenerateOptimizedFunction<Controller.GetCharacterFunction>(controllerFunctions[head++]);
-				Controller.getViewTarget = GenerateOptimizedFunction<Controller.GetViewTargetFunction>(controllerFunctions[head++]);
-				Controller.getControlRotation = GenerateOptimizedFunction<Controller.GetControlRotationFunction>(controllerFunctions[head++]);
-				Controller.getDesiredRotation = GenerateOptimizedFunction<Controller.GetDesiredRotationFunction>(controllerFunctions[head++]);
-				Controller.lineOfSightTo = GenerateOptimizedFunction<Controller.LineOfSightToFunction>(controllerFunctions[head++]);
-				Controller.setControlRotation = GenerateOptimizedFunction<Controller.SetControlRotationFunction>(controllerFunctions[head++]);
-				Controller.setInitialLocationAndRotation = GenerateOptimizedFunction<Controller.SetInitialLocationAndRotationFunction>(controllerFunctions[head++]);
-				Controller.setIgnoreLookInput = GenerateOptimizedFunction<Controller.SetIgnoreLookInputFunction>(controllerFunctions[head++]);
-				Controller.setIgnoreMoveInput = GenerateOptimizedFunction<Controller.SetIgnoreMoveInputFunction>(controllerFunctions[head++]);
-				Controller.resetIgnoreLookInput = GenerateOptimizedFunction<Controller.ResetIgnoreLookInputFunction>(controllerFunctions[head++]);
-				Controller.resetIgnoreMoveInput = GenerateOptimizedFunction<Controller.ResetIgnoreMoveInputFunction>(controllerFunctions[head++]);
-				Controller.possess = GenerateOptimizedFunction<Controller.PossessFunction>(controllerFunctions[head++]);
-				Controller.unpossess = GenerateOptimizedFunction<Controller.UnpossessFunction>(controllerFunctions[head++]);
+				Controller.isLookInputIgnored = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)controllerFunctions[head++];
+				Controller.isMoveInputIgnored = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)controllerFunctions[head++];
+				Controller.isPlayerController = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)controllerFunctions[head++];
+				Controller.getPawn = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)controllerFunctions[head++];
+				Controller.getCharacter = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)controllerFunctions[head++];
+				Controller.getViewTarget = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)controllerFunctions[head++];
+				Controller.getControlRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)controllerFunctions[head++];
+				Controller.getDesiredRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)controllerFunctions[head++];
+				Controller.lineOfSightTo = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, in Vector3, Bool, Bool>)controllerFunctions[head++];
+				Controller.setControlRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)controllerFunctions[head++];
+				Controller.setInitialLocationAndRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Quaternion, void>)controllerFunctions[head++];
+				Controller.setIgnoreLookInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)controllerFunctions[head++];
+				Controller.setIgnoreMoveInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)controllerFunctions[head++];
+				Controller.resetIgnoreLookInput = (delegate* unmanaged[Cdecl]<IntPtr, void>)controllerFunctions[head++];
+				Controller.resetIgnoreMoveInput = (delegate* unmanaged[Cdecl]<IntPtr, void>)controllerFunctions[head++];
+				Controller.possess = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)controllerFunctions[head++];
+				Controller.unpossess = (delegate* unmanaged[Cdecl]<IntPtr, void>)controllerFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* aIControllerFunctions = (IntPtr*)buffer[position++];
 
-				AIController.clearFocus = GenerateOptimizedFunction<AIController.ClearFocusFunction>(aIControllerFunctions[head++]);
-				AIController.getFocalPoint = GenerateOptimizedFunction<AIController.GetFocalPointFunction>(aIControllerFunctions[head++]);
-				AIController.setFocalPoint = GenerateOptimizedFunction<AIController.SetFocalPointFunction>(aIControllerFunctions[head++]);
-				AIController.getFocusActor = GenerateOptimizedFunction<AIController.GetFocusActorFunction>(aIControllerFunctions[head++]);
-				AIController.getAllowStrafe = GenerateOptimizedFunction<AIController.GetAllowStrafeFunction>(aIControllerFunctions[head++]);
-				AIController.setAllowStrafe = GenerateOptimizedFunction<AIController.SetAllowStrafeFunction>(aIControllerFunctions[head++]);
-				AIController.setFocus = GenerateOptimizedFunction<AIController.SetFocusFunction>(aIControllerFunctions[head++]);
+				AIController.clearFocus = (delegate* unmanaged[Cdecl]<IntPtr, AIFocusPriority, void>)aIControllerFunctions[head++];
+				AIController.getFocalPoint = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)aIControllerFunctions[head++];
+				AIController.setFocalPoint = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, AIFocusPriority, void>)aIControllerFunctions[head++];
+				AIController.getFocusActor = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)aIControllerFunctions[head++];
+				AIController.getAllowStrafe = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)aIControllerFunctions[head++];
+				AIController.setAllowStrafe = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)aIControllerFunctions[head++];
+				AIController.setFocus = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AIFocusPriority, void>)aIControllerFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* playerControllerFunctions = (IntPtr*)buffer[position++];
 
-				PlayerController.isPaused = GenerateOptimizedFunction<PlayerController.IsPausedFunction>(playerControllerFunctions[head++]);
-				PlayerController.getShowMouseCursor = GenerateOptimizedFunction<PlayerController.GetShowMouseCursorFunction>(playerControllerFunctions[head++]);
-				PlayerController.getEnableMouseOverEvents = GenerateOptimizedFunction<PlayerController.GetEnableMouseOverEventsFunction>(playerControllerFunctions[head++]);
-				PlayerController.getMousePosition = GenerateOptimizedFunction<PlayerController.GetMousePositionFunction>(playerControllerFunctions[head++]);
-				PlayerController.getPlayer = GenerateOptimizedFunction<PlayerController.GetPlayerFunction>(playerControllerFunctions[head++]);
-				PlayerController.getPlayerInput = GenerateOptimizedFunction<PlayerController.GetPlayerInputFunction>(playerControllerFunctions[head++]);
-				PlayerController.setShowMouseCursor = GenerateOptimizedFunction<PlayerController.SetShowMouseCursorFunction>(playerControllerFunctions[head++]);
-				PlayerController.setEnableMouseOverEvents = GenerateOptimizedFunction<PlayerController.SetEnableMouseOverEventsFunction>(playerControllerFunctions[head++]);
-				PlayerController.setMousePosition = GenerateOptimizedFunction<PlayerController.SetMousePositionFunction>(playerControllerFunctions[head++]);
-				PlayerController.consoleCommand = GenerateOptimizedFunction<PlayerController.ConsoleCommandFunction>(playerControllerFunctions[head++]);
-				PlayerController.setPause = GenerateOptimizedFunction<PlayerController.SetPauseFunction>(playerControllerFunctions[head++]);
-				PlayerController.setViewTarget = GenerateOptimizedFunction<PlayerController.SetViewTargetFunction>(playerControllerFunctions[head++]);
-				PlayerController.setViewTargetWithBlend = GenerateOptimizedFunction<PlayerController.SetViewTargetWithBlendFunction>(playerControllerFunctions[head++]);
-				PlayerController.addYawInput = GenerateOptimizedFunction<PlayerController.AddYawInputFunction>(playerControllerFunctions[head++]);
-				PlayerController.addPitchInput = GenerateOptimizedFunction<PlayerController.AddPitchInputFunction>(playerControllerFunctions[head++]);
-				PlayerController.addRollInput = GenerateOptimizedFunction<PlayerController.AddRollInputFunction>(playerControllerFunctions[head++]);
+				PlayerController.isPaused = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
+				PlayerController.getShowMouseCursor = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
+				PlayerController.getEnableMouseOverEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
+				PlayerController.getMousePosition = (delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, Bool>)playerControllerFunctions[head++];
+				PlayerController.getPlayer = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerControllerFunctions[head++];
+				PlayerController.getPlayerInput = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerControllerFunctions[head++];
+				PlayerController.setShowMouseCursor = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
+				PlayerController.setEnableMouseOverEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
+				PlayerController.setMousePosition = (delegate* unmanaged[Cdecl]<IntPtr, float, float, void>)playerControllerFunctions[head++];
+				PlayerController.consoleCommand = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void>)playerControllerFunctions[head++];
+				PlayerController.setPause = (delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool>)playerControllerFunctions[head++];
+				PlayerController.setViewTarget = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)playerControllerFunctions[head++];
+				PlayerController.setViewTargetWithBlend = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, BlendType, Bool, void>)playerControllerFunctions[head++];
+				PlayerController.addYawInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)playerControllerFunctions[head++];
+				PlayerController.addPitchInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)playerControllerFunctions[head++];
+				PlayerController.addRollInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)playerControllerFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* volumeFunctions = (IntPtr*)buffer[position++];
 
-				Volume.encompassesPoint = GenerateOptimizedFunction<Volume.EncompassesPointFunction>(volumeFunctions[head++]);
+				Volume.encompassesPoint = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, ref float, Bool>)volumeFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* postProcessVolumeFunctions = (IntPtr*)buffer[position++];
 
-				PostProcessVolume.getEnabled = GenerateOptimizedFunction<PostProcessVolume.GetEnabledFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.getBlendRadius = GenerateOptimizedFunction<PostProcessVolume.GetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.getBlendWeight = GenerateOptimizedFunction<PostProcessVolume.GetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.getUnbound = GenerateOptimizedFunction<PostProcessVolume.GetUnboundFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.getPriority = GenerateOptimizedFunction<PostProcessVolume.GetPriorityFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.setEnabled = GenerateOptimizedFunction<PostProcessVolume.SetEnabledFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.setBlendRadius = GenerateOptimizedFunction<PostProcessVolume.SetBlendRadiusFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.setBlendWeight = GenerateOptimizedFunction<PostProcessVolume.SetBlendWeightFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.setUnbound = GenerateOptimizedFunction<PostProcessVolume.SetUnboundFunction>(postProcessVolumeFunctions[head++]);
-				PostProcessVolume.setPriority = GenerateOptimizedFunction<PostProcessVolume.SetPriorityFunction>(postProcessVolumeFunctions[head++]);
+				PostProcessVolume.getEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.getBlendRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.getBlendWeight = (delegate* unmanaged[Cdecl]<IntPtr, float>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.getUnbound = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.getPriority = (delegate* unmanaged[Cdecl]<IntPtr, float>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.setEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.setBlendRadius = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.setBlendWeight = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.setUnbound = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)postProcessVolumeFunctions[head++];
+				PostProcessVolume.setPriority = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)postProcessVolumeFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* soundBaseFunctions = (IntPtr*)buffer[position++];
 
-				SoundBase.getDuration = GenerateOptimizedFunction<SoundBase.GetDurationFunction>(soundBaseFunctions[head++]);
+				SoundBase.getDuration = (delegate* unmanaged[Cdecl]<IntPtr, float>)soundBaseFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* soundWaveFunctions = (IntPtr*)buffer[position++];
 
-				SoundWave.getLoop = GenerateOptimizedFunction<SoundWave.GetLoopFunction>(soundWaveFunctions[head++]);
-				SoundWave.setLoop = GenerateOptimizedFunction<SoundWave.SetLoopFunction>(soundWaveFunctions[head++]);
+				SoundWave.getLoop = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)soundWaveFunctions[head++];
+				SoundWave.setLoop = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)soundWaveFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* animationInstanceFunctions = (IntPtr*)buffer[position++];
 
-				AnimationInstance.getCurrentActiveMontage = GenerateOptimizedFunction<AnimationInstance.GetCurrentActiveMontageFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.isPlaying = GenerateOptimizedFunction<AnimationInstance.IsPlayingFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.getPlayRate = GenerateOptimizedFunction<AnimationInstance.GetPlayRateFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.getPosition = GenerateOptimizedFunction<AnimationInstance.GetPositionFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.getBlendTime = GenerateOptimizedFunction<AnimationInstance.GetBlendTimeFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.getCurrentSection = GenerateOptimizedFunction<AnimationInstance.GetCurrentSectionFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.setPlayRate = GenerateOptimizedFunction<AnimationInstance.SetPlayRateFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.setPosition = GenerateOptimizedFunction<AnimationInstance.SetPositionFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.setNextSection = GenerateOptimizedFunction<AnimationInstance.SetNextSectionFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.playMontage = GenerateOptimizedFunction<AnimationInstance.PlayMontageFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.pauseMontage = GenerateOptimizedFunction<AnimationInstance.PauseMontageFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.resumeMontage = GenerateOptimizedFunction<AnimationInstance.ResumeMontageFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.stopMontage = GenerateOptimizedFunction<AnimationInstance.StopMontageFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.jumpToSection = GenerateOptimizedFunction<AnimationInstance.JumpToSectionFunction>(animationInstanceFunctions[head++]);
-				AnimationInstance.jumpToSectionsEnd = GenerateOptimizedFunction<AnimationInstance.JumpToSectionsEndFunction>(animationInstanceFunctions[head++]);
+				AnimationInstance.getCurrentActiveMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)animationInstanceFunctions[head++];
+				AnimationInstance.isPlaying = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)animationInstanceFunctions[head++];
+				AnimationInstance.getPlayRate = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float>)animationInstanceFunctions[head++];
+				AnimationInstance.getPosition = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float>)animationInstanceFunctions[head++];
+				AnimationInstance.getBlendTime = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float>)animationInstanceFunctions[head++];
+				AnimationInstance.getCurrentSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void>)animationInstanceFunctions[head++];
+				AnimationInstance.setPlayRate = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)animationInstanceFunctions[head++];
+				AnimationInstance.setPosition = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)animationInstanceFunctions[head++];
+				AnimationInstance.setNextSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, string, void>)animationInstanceFunctions[head++];
+				AnimationInstance.playMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, Bool, float>)animationInstanceFunctions[head++];
+				AnimationInstance.pauseMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)animationInstanceFunctions[head++];
+				AnimationInstance.resumeMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)animationInstanceFunctions[head++];
+				AnimationInstance.stopMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)animationInstanceFunctions[head++];
+				AnimationInstance.jumpToSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void>)animationInstanceFunctions[head++];
+				AnimationInstance.jumpToSectionsEnd = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void>)animationInstanceFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* playerFunctions = (IntPtr*)buffer[position++];
 
-				Player.getPlayerController = GenerateOptimizedFunction<Player.GetPlayerControllerFunction>(playerFunctions[head++]);
+				Player.getPlayerController = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* playerInputFunctions = (IntPtr*)buffer[position++];
 
-				PlayerInput.isKeyPressed = GenerateOptimizedFunction<PlayerInput.IsKeyPressedFunction>(playerInputFunctions[head++]);
-				PlayerInput.getTimeKeyPressed = GenerateOptimizedFunction<PlayerInput.GetTimeKeyPressedFunction>(playerInputFunctions[head++]);
-				PlayerInput.getMouseSensitivity = GenerateOptimizedFunction<PlayerInput.GetMouseSensitivityFunction>(playerInputFunctions[head++]);
-				PlayerInput.setMouseSensitivity = GenerateOptimizedFunction<PlayerInput.SetMouseSensitivityFunction>(playerInputFunctions[head++]);
-				PlayerInput.addActionMapping = GenerateOptimizedFunction<PlayerInput.AddActionMappingFunction>(playerInputFunctions[head++]);
-				PlayerInput.addAxisMapping = GenerateOptimizedFunction<PlayerInput.AddAxisMappingFunction>(playerInputFunctions[head++]);
-				PlayerInput.removeActionMapping = GenerateOptimizedFunction<PlayerInput.RemoveActionMappingFunction>(playerInputFunctions[head++]);
-				PlayerInput.removeAxisMapping = GenerateOptimizedFunction<PlayerInput.RemoveAxisMappingFunction>(playerInputFunctions[head++]);
+				PlayerInput.isKeyPressed = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)playerInputFunctions[head++];
+				PlayerInput.getTimeKeyPressed = (delegate* unmanaged[Cdecl]<IntPtr, string, float>)playerInputFunctions[head++];
+				PlayerInput.getMouseSensitivity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void>)playerInputFunctions[head++];
+				PlayerInput.setMouseSensitivity = (delegate* unmanaged[Cdecl]<IntPtr, in Vector2, void>)playerInputFunctions[head++];
+				PlayerInput.addActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool, Bool, Bool, Bool, void>)playerInputFunctions[head++];
+				PlayerInput.addAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, float, void>)playerInputFunctions[head++];
+				PlayerInput.removeActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, void>)playerInputFunctions[head++];
+				PlayerInput.removeAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, void>)playerInputFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
 
-				Texture2D.createFromFile = GenerateOptimizedFunction<Texture2D.CreateFromFileFunction>(texture2DFunctions[head++]);
-				Texture2D.createFromBuffer = GenerateOptimizedFunction<Texture2D.CreateFromBufferFunction>(texture2DFunctions[head++]);
-				Texture2D.hasAlphaChannel = GenerateOptimizedFunction<Texture2D.HasAlphaChannelFunction>(texture2DFunctions[head++]);
-				Texture2D.getSize = GenerateOptimizedFunction<Texture2D.GetSizeFunction>(texture2DFunctions[head++]);
-				Texture2D.getPixelFormat = GenerateOptimizedFunction<Texture2D.GetPixelFormatFunction>(texture2DFunctions[head++]);
+				Texture2D.createFromFile = (delegate* unmanaged[Cdecl]<string, IntPtr>)texture2DFunctions[head++];
+				Texture2D.createFromBuffer = (delegate* unmanaged[Cdecl]<byte[], int, IntPtr>)texture2DFunctions[head++];
+				Texture2D.hasAlphaChannel = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)texture2DFunctions[head++];
+				Texture2D.getSize = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void>)texture2DFunctions[head++];
+				Texture2D.getPixelFormat = (delegate* unmanaged[Cdecl]<IntPtr, PixelFormat>)texture2DFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* actorComponentFunctions = (IntPtr*)buffer[position++];
 
-				ActorComponent.isOwnerSelected = GenerateOptimizedFunction<ActorComponent.IsOwnerSelectedFunction>(actorComponentFunctions[head++]);
-				ActorComponent.getOwner = GenerateOptimizedFunction<ActorComponent.GetOwnerFunction>(actorComponentFunctions[head++]);
-				ActorComponent.destroy = GenerateOptimizedFunction<ActorComponent.DestroyFunction>(actorComponentFunctions[head++]);
-				ActorComponent.addTag = GenerateOptimizedFunction<ActorComponent.AddTagFunction>(actorComponentFunctions[head++]);
-				ActorComponent.removeTag = GenerateOptimizedFunction<ActorComponent.RemoveTagFunction>(actorComponentFunctions[head++]);
-				ActorComponent.hasTag = GenerateOptimizedFunction<ActorComponent.HasTagFunction>(actorComponentFunctions[head++]);
+				ActorComponent.isOwnerSelected = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorComponentFunctions[head++];
+				ActorComponent.getOwner = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)actorComponentFunctions[head++];
+				ActorComponent.destroy = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorComponentFunctions[head++];
+				ActorComponent.addTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorComponentFunctions[head++];
+				ActorComponent.removeTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorComponentFunctions[head++];
+				ActorComponent.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)actorComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* inputComponentFunctions = (IntPtr*)buffer[position++];
 
-				InputComponent.hasBindings = GenerateOptimizedFunction<InputComponent.HasBindingsFunction>(inputComponentFunctions[head++]);
-				InputComponent.getActionBindingsNumber = GenerateOptimizedFunction<InputComponent.GetActionBindingsNumberFunction>(inputComponentFunctions[head++]);
-				InputComponent.clearActionBindings = GenerateOptimizedFunction<InputComponent.ClearActionBindingsFunction>(inputComponentFunctions[head++]);
-				InputComponent.bindAction = GenerateOptimizedFunction<InputComponent.BindActionFunction>(inputComponentFunctions[head++]);
-				InputComponent.bindAxis = GenerateOptimizedFunction<InputComponent.BindAxisFunction>(inputComponentFunctions[head++]);
-				InputComponent.removeActionBinding = GenerateOptimizedFunction<InputComponent.RemoveActionBindingFunction>(inputComponentFunctions[head++]);
-				InputComponent.getBlockInput = GenerateOptimizedFunction<InputComponent.GetBlockInputFunction>(inputComponentFunctions[head++]);
-				InputComponent.setBlockInput = GenerateOptimizedFunction<InputComponent.SetBlockInputFunction>(inputComponentFunctions[head++]);
-				InputComponent.getPriority = GenerateOptimizedFunction<InputComponent.GetPriorityFunction>(inputComponentFunctions[head++]);
-				InputComponent.setPriority = GenerateOptimizedFunction<InputComponent.SetPriorityFunction>(inputComponentFunctions[head++]);
+				InputComponent.hasBindings = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)inputComponentFunctions[head++];
+				InputComponent.getActionBindingsNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)inputComponentFunctions[head++];
+				InputComponent.clearActionBindings = (delegate* unmanaged[Cdecl]<IntPtr, void>)inputComponentFunctions[head++];
+				InputComponent.bindAction = (delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, Bool, IntPtr, void>)inputComponentFunctions[head++];
+				InputComponent.bindAxis = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, IntPtr, void>)inputComponentFunctions[head++];
+				InputComponent.removeActionBinding = (delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, void>)inputComponentFunctions[head++];
+				InputComponent.getBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)inputComponentFunctions[head++];
+				InputComponent.setBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)inputComponentFunctions[head++];
+				InputComponent.getPriority = (delegate* unmanaged[Cdecl]<IntPtr, int>)inputComponentFunctions[head++];
+				InputComponent.setPriority = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)inputComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* sceneComponentFunctions = (IntPtr*)buffer[position++];
 
-				SceneComponent.isAttachedToComponent = GenerateOptimizedFunction<SceneComponent.IsAttachedToComponentFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.isAttachedToActor = GenerateOptimizedFunction<SceneComponent.IsAttachedToActorFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.isVisible = GenerateOptimizedFunction<SceneComponent.IsVisibleFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.isSocketExists = GenerateOptimizedFunction<SceneComponent.IsSocketExistsFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.hasAnySockets = GenerateOptimizedFunction<SceneComponent.HasAnySocketsFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.create = GenerateOptimizedFunction<SceneComponent.CreateFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.attachToComponent = GenerateOptimizedFunction<SceneComponent.AttachToComponentFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.detachFromComponent = GenerateOptimizedFunction<SceneComponent.DetachFromComponentFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.activate = GenerateOptimizedFunction<SceneComponent.ActivateFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.deactivate = GenerateOptimizedFunction<SceneComponent.DeactivateFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.updateToWorld = GenerateOptimizedFunction<SceneComponent.UpdateToWorldFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addLocalOffset = GenerateOptimizedFunction<SceneComponent.AddLocalOffsetFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addLocalRotation = GenerateOptimizedFunction<SceneComponent.AddLocalRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addRelativeLocation = GenerateOptimizedFunction<SceneComponent.AddRelativeLocationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addRelativeRotation = GenerateOptimizedFunction<SceneComponent.AddRelativeRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addLocalTransform = GenerateOptimizedFunction<SceneComponent.AddLocalTransformFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addWorldOffset = GenerateOptimizedFunction<SceneComponent.AddWorldOffsetFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addWorldRotation = GenerateOptimizedFunction<SceneComponent.AddWorldRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.addWorldTransform = GenerateOptimizedFunction<SceneComponent.AddWorldTransformFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getAttachedSocketName = GenerateOptimizedFunction<SceneComponent.GetAttachedSocketNameFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getSocketLocation = GenerateOptimizedFunction<SceneComponent.GetSocketLocationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getSocketRotation = GenerateOptimizedFunction<SceneComponent.GetSocketRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getComponentVelocity = GenerateOptimizedFunction<SceneComponent.GetComponentVelocityFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getComponentLocation = GenerateOptimizedFunction<SceneComponent.GetComponentLocationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getComponentRotation = GenerateOptimizedFunction<SceneComponent.GetComponentRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getComponentScale = GenerateOptimizedFunction<SceneComponent.GetComponentScaleFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getComponentTransform = GenerateOptimizedFunction<SceneComponent.GetComponentTransformFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getForwardVector = GenerateOptimizedFunction<SceneComponent.GetForwardVectorFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getRightVector = GenerateOptimizedFunction<SceneComponent.GetRightVectorFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.getUpVector = GenerateOptimizedFunction<SceneComponent.GetUpVectorFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setMobility = GenerateOptimizedFunction<SceneComponent.SetMobilityFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setVisibility = GenerateOptimizedFunction<SceneComponent.SetVisibilityFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setRelativeLocation = GenerateOptimizedFunction<SceneComponent.SetRelativeLocationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setRelativeRotation = GenerateOptimizedFunction<SceneComponent.SetRelativeRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setRelativeTransform = GenerateOptimizedFunction<SceneComponent.SetRelativeTransformFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setWorldLocation = GenerateOptimizedFunction<SceneComponent.SetWorldLocationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setWorldRotation = GenerateOptimizedFunction<SceneComponent.SetWorldRotationFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setWorldScale = GenerateOptimizedFunction<SceneComponent.SetWorldScaleFunction>(sceneComponentFunctions[head++]);
-				SceneComponent.setWorldTransform = GenerateOptimizedFunction<SceneComponent.SetWorldTransformFunction>(sceneComponentFunctions[head++]);
+				SceneComponent.isAttachedToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.isAttachedToActor = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.isVisible = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.isSocketExists = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.hasAnySockets = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr>)sceneComponentFunctions[head++];
+				SceneComponent.attachToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.detachFromComponent = (delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void>)sceneComponentFunctions[head++];
+				SceneComponent.activate = (delegate* unmanaged[Cdecl]<IntPtr, void>)sceneComponentFunctions[head++];
+				SceneComponent.deactivate = (delegate* unmanaged[Cdecl]<IntPtr, void>)sceneComponentFunctions[head++];
+				SceneComponent.updateToWorld = (delegate* unmanaged[Cdecl]<IntPtr, TeleportType, UpdateTransformFlags, void>)sceneComponentFunctions[head++];
+				SceneComponent.addLocalOffset = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.addLocalRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.addRelativeLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.addRelativeRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.addLocalTransform = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)sceneComponentFunctions[head++];
+				SceneComponent.addWorldOffset = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.addWorldRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.addWorldTransform = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)sceneComponentFunctions[head++];
+				SceneComponent.getAttachedSocketName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)sceneComponentFunctions[head++];
+				SceneComponent.getSocketLocation = (delegate* unmanaged[Cdecl]<IntPtr, string, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getSocketRotation = (delegate* unmanaged[Cdecl]<IntPtr, string, ref Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.getComponentVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getComponentLocation = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getComponentRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.getComponentScale = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getComponentTransform = (delegate* unmanaged[Cdecl]<IntPtr, ref Transform, void>)sceneComponentFunctions[head++];
+				SceneComponent.getForwardVector = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getRightVector = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getUpVector = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.setMobility = (delegate* unmanaged[Cdecl]<IntPtr, ComponentMobility, void>)sceneComponentFunctions[head++];
+				SceneComponent.setVisibility = (delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool, void>)sceneComponentFunctions[head++];
+				SceneComponent.setRelativeLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.setRelativeRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.setRelativeTransform = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)sceneComponentFunctions[head++];
+				SceneComponent.setWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.setWorldRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.setWorldScale = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.setWorldTransform = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)sceneComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* audioComponentFunctions = (IntPtr*)buffer[position++];
 
-				AudioComponent.isPlaying = GenerateOptimizedFunction<AudioComponent.IsPlayingFunction>(audioComponentFunctions[head++]);
-				AudioComponent.getPaused = GenerateOptimizedFunction<AudioComponent.GetPausedFunction>(audioComponentFunctions[head++]);
-				AudioComponent.setSound = GenerateOptimizedFunction<AudioComponent.SetSoundFunction>(audioComponentFunctions[head++]);
-				AudioComponent.setPaused = GenerateOptimizedFunction<AudioComponent.SetPausedFunction>(audioComponentFunctions[head++]);
-				AudioComponent.play = GenerateOptimizedFunction<AudioComponent.PlayFunction>(audioComponentFunctions[head++]);
-				AudioComponent.stop = GenerateOptimizedFunction<AudioComponent.StopFunction>(audioComponentFunctions[head++]);
-				AudioComponent.fadeIn = GenerateOptimizedFunction<AudioComponent.FadeInFunction>(audioComponentFunctions[head++]);
-				AudioComponent.fadeOut = GenerateOptimizedFunction<AudioComponent.FadeOutFunction>(audioComponentFunctions[head++]);
+				AudioComponent.isPlaying = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)audioComponentFunctions[head++];
+				AudioComponent.getPaused = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)audioComponentFunctions[head++];
+				AudioComponent.setSound = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)audioComponentFunctions[head++];
+				AudioComponent.setPaused = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)audioComponentFunctions[head++];
+				AudioComponent.play = (delegate* unmanaged[Cdecl]<IntPtr, void>)audioComponentFunctions[head++];
+				AudioComponent.stop = (delegate* unmanaged[Cdecl]<IntPtr, void>)audioComponentFunctions[head++];
+				AudioComponent.fadeIn = (delegate* unmanaged[Cdecl]<IntPtr, float, float, float, AudioFadeCurve, void>)audioComponentFunctions[head++];
+				AudioComponent.fadeOut = (delegate* unmanaged[Cdecl]<IntPtr, float, float, AudioFadeCurve, void>)audioComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* cameraComponentFunctions = (IntPtr*)buffer[position++];
 
-				CameraComponent.getConstrainAspectRatio = GenerateOptimizedFunction<CameraComponent.GetConstrainAspectRatioFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.getAspectRatio = GenerateOptimizedFunction<CameraComponent.GetAspectRatioFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.getFieldOfView = GenerateOptimizedFunction<CameraComponent.GetFieldOfViewFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.getOrthoFarClipPlane = GenerateOptimizedFunction<CameraComponent.GetOrthoFarClipPlaneFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.getOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.GetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.getOrthoWidth = GenerateOptimizedFunction<CameraComponent.GetOrthoWidthFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.getLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.GetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setProjectionMode = GenerateOptimizedFunction<CameraComponent.SetProjectionModeFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setConstrainAspectRatio = GenerateOptimizedFunction<CameraComponent.SetConstrainAspectRatioFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setAspectRatio = GenerateOptimizedFunction<CameraComponent.SetAspectRatioFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setFieldOfView = GenerateOptimizedFunction<CameraComponent.SetFieldOfViewFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setOrthoFarClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoFarClipPlaneFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setOrthoNearClipPlane = GenerateOptimizedFunction<CameraComponent.SetOrthoNearClipPlaneFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setOrthoWidth = GenerateOptimizedFunction<CameraComponent.SetOrthoWidthFunction>(cameraComponentFunctions[head++]);
-				CameraComponent.setLockToHeadMountedDisplay = GenerateOptimizedFunction<CameraComponent.SetLockToHeadMountedDisplayFunction>(cameraComponentFunctions[head++]);
+				CameraComponent.getConstrainAspectRatio = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)cameraComponentFunctions[head++];
+				CameraComponent.getAspectRatio = (delegate* unmanaged[Cdecl]<IntPtr, float>)cameraComponentFunctions[head++];
+				CameraComponent.getFieldOfView = (delegate* unmanaged[Cdecl]<IntPtr, float>)cameraComponentFunctions[head++];
+				CameraComponent.getOrthoFarClipPlane = (delegate* unmanaged[Cdecl]<IntPtr, float>)cameraComponentFunctions[head++];
+				CameraComponent.getOrthoNearClipPlane = (delegate* unmanaged[Cdecl]<IntPtr, float>)cameraComponentFunctions[head++];
+				CameraComponent.getOrthoWidth = (delegate* unmanaged[Cdecl]<IntPtr, float>)cameraComponentFunctions[head++];
+				CameraComponent.getLockToHeadMountedDisplay = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)cameraComponentFunctions[head++];
+				CameraComponent.setProjectionMode = (delegate* unmanaged[Cdecl]<IntPtr, CameraProjectionMode, void>)cameraComponentFunctions[head++];
+				CameraComponent.setConstrainAspectRatio = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)cameraComponentFunctions[head++];
+				CameraComponent.setAspectRatio = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)cameraComponentFunctions[head++];
+				CameraComponent.setFieldOfView = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)cameraComponentFunctions[head++];
+				CameraComponent.setOrthoFarClipPlane = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)cameraComponentFunctions[head++];
+				CameraComponent.setOrthoNearClipPlane = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)cameraComponentFunctions[head++];
+				CameraComponent.setOrthoWidth = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)cameraComponentFunctions[head++];
+				CameraComponent.setLockToHeadMountedDisplay = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)cameraComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* childActorComponentFunctions = (IntPtr*)buffer[position++];
 
-				ChildActorComponent.setChildActor = GenerateOptimizedFunction<ChildActorComponent.SetChildActorFunction>(childActorComponentFunctions[head++]);
+				ChildActorComponent.setChildActor = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)childActorComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* springArmComponentFunctions = (IntPtr*)buffer[position++];
 
-				SpringArmComponent.isCollisionFixApplied = GenerateOptimizedFunction<SpringArmComponent.IsCollisionFixAppliedFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getDrawDebugLagMarkers = GenerateOptimizedFunction<SpringArmComponent.GetDrawDebugLagMarkersFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCollisionTest = GenerateOptimizedFunction<SpringArmComponent.GetCollisionTestFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraPositionLag = GenerateOptimizedFunction<SpringArmComponent.GetCameraPositionLagFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraRotationLag = GenerateOptimizedFunction<SpringArmComponent.GetCameraRotationLagFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraLagSubstepping = GenerateOptimizedFunction<SpringArmComponent.GetCameraLagSubsteppingFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getInheritPitch = GenerateOptimizedFunction<SpringArmComponent.GetInheritPitchFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getInheritRoll = GenerateOptimizedFunction<SpringArmComponent.GetInheritRollFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getInheritYaw = GenerateOptimizedFunction<SpringArmComponent.GetInheritYawFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraLagMaxDistance = GenerateOptimizedFunction<SpringArmComponent.GetCameraLagMaxDistanceFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraLagMaxTimeStep = GenerateOptimizedFunction<SpringArmComponent.GetCameraLagMaxTimeStepFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraPositionLagSpeed = GenerateOptimizedFunction<SpringArmComponent.GetCameraPositionLagSpeedFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getCameraRotationLagSpeed = GenerateOptimizedFunction<SpringArmComponent.GetCameraRotationLagSpeedFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getProbeChannel = GenerateOptimizedFunction<SpringArmComponent.GetProbeChannelFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getProbeSize = GenerateOptimizedFunction<SpringArmComponent.GetProbeSizeFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getSocketOffset = GenerateOptimizedFunction<SpringArmComponent.GetSocketOffsetFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getTargetArmLength = GenerateOptimizedFunction<SpringArmComponent.GetTargetArmLengthFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getTargetOffset = GenerateOptimizedFunction<SpringArmComponent.GetTargetOffsetFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getUnfixedCameraPosition = GenerateOptimizedFunction<SpringArmComponent.GetUnfixedCameraPositionFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getDesiredRotation = GenerateOptimizedFunction<SpringArmComponent.GetDesiredRotationFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.getTargetRotation = GenerateOptimizedFunction<SpringArmComponent.GetTargetRotationFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setDrawDebugLagMarkers = GenerateOptimizedFunction<SpringArmComponent.SetDrawDebugLagMarkersFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCollisionTest = GenerateOptimizedFunction<SpringArmComponent.SetCollisionTestFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraPositionLag = GenerateOptimizedFunction<SpringArmComponent.SetCameraPositionLagFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraRotationLag = GenerateOptimizedFunction<SpringArmComponent.SetCameraRotationLagFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraLagSubstepping = GenerateOptimizedFunction<SpringArmComponent.SetCameraLagSubsteppingFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setInheritPitch = GenerateOptimizedFunction<SpringArmComponent.SetInheritPitchFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setInheritRoll = GenerateOptimizedFunction<SpringArmComponent.SetInheritRollFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setInheritYaw = GenerateOptimizedFunction<SpringArmComponent.SetInheritYawFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraLagMaxDistance = GenerateOptimizedFunction<SpringArmComponent.SetCameraLagMaxDistanceFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraLagMaxTimeStep = GenerateOptimizedFunction<SpringArmComponent.SetCameraLagMaxTimeStepFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraPositionLagSpeed = GenerateOptimizedFunction<SpringArmComponent.SetCameraPositionLagSpeedFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setCameraRotationLagSpeed = GenerateOptimizedFunction<SpringArmComponent.SetCameraRotationLagSpeedFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setProbeChannel = GenerateOptimizedFunction<SpringArmComponent.SetProbeChannelFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setProbeSize = GenerateOptimizedFunction<SpringArmComponent.SetProbeSizeFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setSocketOffset = GenerateOptimizedFunction<SpringArmComponent.SetSocketOffsetFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setTargetArmLength = GenerateOptimizedFunction<SpringArmComponent.SetTargetArmLengthFunction>(springArmComponentFunctions[head++]);
-				SpringArmComponent.setTargetOffset = GenerateOptimizedFunction<SpringArmComponent.SetTargetOffsetFunction>(springArmComponentFunctions[head++]);
+				SpringArmComponent.isCollisionFixApplied = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getDrawDebugLagMarkers = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCollisionTest = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraPositionLag = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraRotationLag = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraLagSubstepping = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getInheritPitch = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getInheritRoll = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getInheritYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraLagMaxDistance = (delegate* unmanaged[Cdecl]<IntPtr, float>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraLagMaxTimeStep = (delegate* unmanaged[Cdecl]<IntPtr, float>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraPositionLagSpeed = (delegate* unmanaged[Cdecl]<IntPtr, float>)springArmComponentFunctions[head++];
+				SpringArmComponent.getCameraRotationLagSpeed = (delegate* unmanaged[Cdecl]<IntPtr, float>)springArmComponentFunctions[head++];
+				SpringArmComponent.getProbeChannel = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel>)springArmComponentFunctions[head++];
+				SpringArmComponent.getProbeSize = (delegate* unmanaged[Cdecl]<IntPtr, float>)springArmComponentFunctions[head++];
+				SpringArmComponent.getSocketOffset = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.getTargetArmLength = (delegate* unmanaged[Cdecl]<IntPtr, float>)springArmComponentFunctions[head++];
+				SpringArmComponent.getTargetOffset = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.getUnfixedCameraPosition = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.getDesiredRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.getTargetRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setDrawDebugLagMarkers = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCollisionTest = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraPositionLag = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraRotationLag = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraLagSubstepping = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setInheritPitch = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setInheritRoll = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setInheritYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraLagMaxDistance = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraLagMaxTimeStep = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraPositionLagSpeed = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setCameraRotationLagSpeed = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setProbeChannel = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setProbeSize = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setSocketOffset = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setTargetArmLength = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setTargetOffset = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)springArmComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
 
-				PrimitiveComponent.isGravityEnabled = GenerateOptimizedFunction<PrimitiveComponent.IsGravityEnabledFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.isOverlappingComponent = GenerateOptimizedFunction<PrimitiveComponent.IsOverlappingComponentFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addAngularImpulseInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInDegreesFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addAngularImpulseInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddAngularImpulseInRadiansFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addForce = GenerateOptimizedFunction<PrimitiveComponent.AddForceFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addForceAtLocation = GenerateOptimizedFunction<PrimitiveComponent.AddForceAtLocationFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddImpulseFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addImpulseAtLocation = GenerateOptimizedFunction<PrimitiveComponent.AddImpulseAtLocationFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addRadialForce = GenerateOptimizedFunction<PrimitiveComponent.AddRadialForceFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.AddRadialImpulseFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addTorqueInDegrees = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInDegreesFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.addTorqueInRadians = GenerateOptimizedFunction<PrimitiveComponent.AddTorqueInRadiansFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getMass = GenerateOptimizedFunction<PrimitiveComponent.GetMassFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsLinearVelocityAtPointFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.GetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getCastShadow = GenerateOptimizedFunction<PrimitiveComponent.GetCastShadowFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.GetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.GetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getIgnoreRadialForce = GenerateOptimizedFunction<PrimitiveComponent.GetIgnoreRadialForceFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getIgnoreRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.GetIgnoreRadialImpulseFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getMaterial = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getMaterialsNumber = GenerateOptimizedFunction<PrimitiveComponent.GetMaterialsNumberFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getSquaredDistanceToCollision = GenerateOptimizedFunction<PrimitiveComponent.GetSquaredDistanceToCollisionFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.GetAngularDampingFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.getLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.GetLinearDampingFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setGenerateOverlapEvents = GenerateOptimizedFunction<PrimitiveComponent.SetGenerateOverlapEventsFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setGenerateHitEvents = GenerateOptimizedFunction<PrimitiveComponent.SetGenerateHitEventsFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setMass = GenerateOptimizedFunction<PrimitiveComponent.SetMassFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCenterOfMass = GenerateOptimizedFunction<PrimitiveComponent.SetCenterOfMassFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setPhysicsLinearVelocity = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsLinearVelocityFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setPhysicsAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setPhysicsAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInDegreesFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = GenerateOptimizedFunction<PrimitiveComponent.SetPhysicsMaxAngularVelocityInRadiansFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCastShadow = GenerateOptimizedFunction<PrimitiveComponent.SetCastShadowFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setOnlyOwnerSee = GenerateOptimizedFunction<PrimitiveComponent.SetOnlyOwnerSeeFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setOwnerNoSee = GenerateOptimizedFunction<PrimitiveComponent.SetOwnerNoSeeFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setIgnoreRadialForce = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreRadialForceFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setIgnoreRadialImpulse = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreRadialImpulseFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setMaterial = GenerateOptimizedFunction<PrimitiveComponent.SetMaterialFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setSimulatePhysics = GenerateOptimizedFunction<PrimitiveComponent.SetSimulatePhysicsFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setAngularDamping = GenerateOptimizedFunction<PrimitiveComponent.SetAngularDampingFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setLinearDamping = GenerateOptimizedFunction<PrimitiveComponent.SetLinearDampingFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setEnableGravity = GenerateOptimizedFunction<PrimitiveComponent.SetEnableGravityFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCollisionMode = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionModeFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCollisionChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionChannelFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCollisionProfileName = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionProfileNameFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCollisionResponseToChannel = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionResponseToChannelFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setCollisionResponseToAllChannels = GenerateOptimizedFunction<PrimitiveComponent.SetCollisionResponseToAllChannelsFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setIgnoreActorWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreActorWhenMovingFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.setIgnoreComponentWhenMoving = GenerateOptimizedFunction<PrimitiveComponent.SetIgnoreComponentWhenMovingFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.clearMoveIgnoreActors = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreActorsFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.clearMoveIgnoreComponents = GenerateOptimizedFunction<PrimitiveComponent.ClearMoveIgnoreComponentsFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.createAndSetMaterialInstanceDynamic = GenerateOptimizedFunction<PrimitiveComponent.CreateAndSetMaterialInstanceDynamicFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.registerEvent = GenerateOptimizedFunction<PrimitiveComponent.RegisterEventFunction>(primitiveComponentFunctions[head++]);
-				PrimitiveComponent.unregisterEvent = GenerateOptimizedFunction<PrimitiveComponent.UnregisterEventFunction>(primitiveComponentFunctions[head++]);
+				PrimitiveComponent.isGravityEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.isOverlappingComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addAngularImpulseInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addAngularImpulseInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addForce = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addForceAtLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addImpulse = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addImpulseAtLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addRadialForce = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addRadialImpulse = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addTorqueInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addTorqueInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getMass = (delegate* unmanaged[Cdecl]<IntPtr, float>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsLinearVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, in Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getCastShadow = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getOnlyOwnerSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getOwnerNoSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getIgnoreRadialForce = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getIgnoreRadialImpulse = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getMaterial = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getMaterialsNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getDistanceToCollision = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, float>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getSquaredDistanceToCollision = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref float, ref Vector3, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getAngularDamping = (delegate* unmanaged[Cdecl]<IntPtr, float>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getLinearDamping = (delegate* unmanaged[Cdecl]<IntPtr, float>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setGenerateOverlapEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setGenerateHitEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setMass = (delegate* unmanaged[Cdecl]<IntPtr, float, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCenterOfMass = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsLinearVelocity = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCastShadow = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setOnlyOwnerSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setOwnerNoSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setIgnoreRadialForce = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setIgnoreRadialImpulse = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setMaterial = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setSimulatePhysics = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setAngularDamping = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setLinearDamping = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setEnableGravity = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCollisionMode = (delegate* unmanaged[Cdecl]<IntPtr, CollisionMode, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCollisionChannel = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCollisionProfileName = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCollisionResponseToChannel = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, CollisionResponse, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCollisionResponseToAllChannels = (delegate* unmanaged[Cdecl]<IntPtr, CollisionResponse, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setIgnoreActorWhenMoving = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setIgnoreComponentWhenMoving = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.clearMoveIgnoreActors = (delegate* unmanaged[Cdecl]<IntPtr, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.clearMoveIgnoreComponents = (delegate* unmanaged[Cdecl]<IntPtr, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.createAndSetMaterialInstanceDynamic = (delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.registerEvent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentEventType, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.unregisterEvent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentEventType, void>)primitiveComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* shapeComponentFunctions = (IntPtr*)buffer[position++];
 
-				ShapeComponent.getDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.GetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
-				ShapeComponent.getShapeColor = GenerateOptimizedFunction<ShapeComponent.GetShapeColorFunction>(shapeComponentFunctions[head++]);
-				ShapeComponent.setDynamicObstacle = GenerateOptimizedFunction<ShapeComponent.SetDynamicObstacleFunction>(shapeComponentFunctions[head++]);
-				ShapeComponent.setShapeColor = GenerateOptimizedFunction<ShapeComponent.SetShapeColorFunction>(shapeComponentFunctions[head++]);
+				ShapeComponent.getDynamicObstacle = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)shapeComponentFunctions[head++];
+				ShapeComponent.getShapeColor = (delegate* unmanaged[Cdecl]<IntPtr, int>)shapeComponentFunctions[head++];
+				ShapeComponent.setDynamicObstacle = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)shapeComponentFunctions[head++];
+				ShapeComponent.setShapeColor = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)shapeComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* boxComponentFunctions = (IntPtr*)buffer[position++];
 
-				BoxComponent.getScaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetScaledBoxExtentFunction>(boxComponentFunctions[head++]);
-				BoxComponent.getUnscaledBoxExtent = GenerateOptimizedFunction<BoxComponent.GetUnscaledBoxExtentFunction>(boxComponentFunctions[head++]);
-				BoxComponent.setBoxExtent = GenerateOptimizedFunction<BoxComponent.SetBoxExtentFunction>(boxComponentFunctions[head++]);
-				BoxComponent.initBoxExtent = GenerateOptimizedFunction<BoxComponent.InitBoxExtentFunction>(boxComponentFunctions[head++]);
+				BoxComponent.getScaledBoxExtent = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)boxComponentFunctions[head++];
+				BoxComponent.getUnscaledBoxExtent = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)boxComponentFunctions[head++];
+				BoxComponent.setBoxExtent = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, void>)boxComponentFunctions[head++];
+				BoxComponent.initBoxExtent = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)boxComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* sphereComponentFunctions = (IntPtr*)buffer[position++];
 
-				SphereComponent.getScaledSphereRadius = GenerateOptimizedFunction<SphereComponent.GetScaledSphereRadiusFunction>(sphereComponentFunctions[head++]);
-				SphereComponent.getUnscaledSphereRadius = GenerateOptimizedFunction<SphereComponent.GetUnscaledSphereRadiusFunction>(sphereComponentFunctions[head++]);
-				SphereComponent.getShapeScale = GenerateOptimizedFunction<SphereComponent.GetShapeScaleFunction>(sphereComponentFunctions[head++]);
-				SphereComponent.setSphereRadius = GenerateOptimizedFunction<SphereComponent.SetSphereRadiusFunction>(sphereComponentFunctions[head++]);
-				SphereComponent.initSphereRadius = GenerateOptimizedFunction<SphereComponent.InitSphereRadiusFunction>(sphereComponentFunctions[head++]);
+				SphereComponent.getScaledSphereRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)sphereComponentFunctions[head++];
+				SphereComponent.getUnscaledSphereRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)sphereComponentFunctions[head++];
+				SphereComponent.getShapeScale = (delegate* unmanaged[Cdecl]<IntPtr, float>)sphereComponentFunctions[head++];
+				SphereComponent.setSphereRadius = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, void>)sphereComponentFunctions[head++];
+				SphereComponent.initSphereRadius = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)sphereComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* capsuleComponentFunctions = (IntPtr*)buffer[position++];
 
-				CapsuleComponent.getScaledCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.GetScaledCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.getUnscaledCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.GetUnscaledCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.getShapeScale = GenerateOptimizedFunction<CapsuleComponent.GetShapeScaleFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.getScaledCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.GetScaledCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.getUnscaledCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.GetUnscaledCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.setCapsuleRadius = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleRadiusFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.setCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.SetCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
-				CapsuleComponent.initCapsuleSize = GenerateOptimizedFunction<CapsuleComponent.InitCapsuleSizeFunction>(capsuleComponentFunctions[head++]);
+				CapsuleComponent.getScaledCapsuleRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)capsuleComponentFunctions[head++];
+				CapsuleComponent.getUnscaledCapsuleRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)capsuleComponentFunctions[head++];
+				CapsuleComponent.getShapeScale = (delegate* unmanaged[Cdecl]<IntPtr, float>)capsuleComponentFunctions[head++];
+				CapsuleComponent.getScaledCapsuleSize = (delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, void>)capsuleComponentFunctions[head++];
+				CapsuleComponent.getUnscaledCapsuleSize = (delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, void>)capsuleComponentFunctions[head++];
+				CapsuleComponent.setCapsuleRadius = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, void>)capsuleComponentFunctions[head++];
+				CapsuleComponent.setCapsuleSize = (delegate* unmanaged[Cdecl]<IntPtr, float, float, Bool, void>)capsuleComponentFunctions[head++];
+				CapsuleComponent.initCapsuleSize = (delegate* unmanaged[Cdecl]<IntPtr, float, float, void>)capsuleComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* meshComponentFunctions = (IntPtr*)buffer[position++];
 
-				MeshComponent.isValidMaterialSlotName = GenerateOptimizedFunction<MeshComponent.IsValidMaterialSlotNameFunction>(meshComponentFunctions[head++]);
-				MeshComponent.getMaterialIndex = GenerateOptimizedFunction<MeshComponent.GetMaterialIndexFunction>(meshComponentFunctions[head++]);
+				MeshComponent.isValidMaterialSlotName = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)meshComponentFunctions[head++];
+				MeshComponent.getMaterialIndex = (delegate* unmanaged[Cdecl]<IntPtr, string, int>)meshComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* lightComponentBaseFunctions = (IntPtr*)buffer[position++];
 
-				LightComponentBase.getIntensity = GenerateOptimizedFunction<LightComponentBase.GetIntensityFunction>(lightComponentBaseFunctions[head++]);
-				LightComponentBase.getCastShadows = GenerateOptimizedFunction<LightComponentBase.GetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
-				LightComponentBase.setCastShadows = GenerateOptimizedFunction<LightComponentBase.SetCastShadowsFunction>(lightComponentBaseFunctions[head++]);
+				LightComponentBase.getIntensity = (delegate* unmanaged[Cdecl]<IntPtr, float>)lightComponentBaseFunctions[head++];
+				LightComponentBase.getCastShadows = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)lightComponentBaseFunctions[head++];
+				LightComponentBase.setCastShadows = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)lightComponentBaseFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* lightComponentFunctions = (IntPtr*)buffer[position++];
 
-				LightComponent.setIntensity = GenerateOptimizedFunction<LightComponent.SetIntensityFunction>(lightComponentFunctions[head++]);
-				LightComponent.setLightColor = GenerateOptimizedFunction<LightComponent.SetLightColorFunction>(lightComponentFunctions[head++]);
+				LightComponent.setIntensity = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)lightComponentFunctions[head++];
+				LightComponent.setLightColor = (delegate* unmanaged[Cdecl]<IntPtr, in LinearColor, void>)lightComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* motionControllerComponentFunctions = (IntPtr*)buffer[position++];
 
-				MotionControllerComponent.isTracked = GenerateOptimizedFunction<MotionControllerComponent.IsTrackedFunction>(motionControllerComponentFunctions[head++]);
-				MotionControllerComponent.getDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.GetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
-				MotionControllerComponent.getTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.GetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
-				MotionControllerComponent.setDisableLowLatencyUpdate = GenerateOptimizedFunction<MotionControllerComponent.SetDisableLowLatencyUpdateFunction>(motionControllerComponentFunctions[head++]);
-				MotionControllerComponent.setTrackingSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingSourceFunction>(motionControllerComponentFunctions[head++]);
-				MotionControllerComponent.setTrackingMotionSource = GenerateOptimizedFunction<MotionControllerComponent.SetTrackingMotionSourceFunction>(motionControllerComponentFunctions[head++]);
+				MotionControllerComponent.isTracked = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.getDisableLowLatencyUpdate = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.getTrackingSource = (delegate* unmanaged[Cdecl]<IntPtr, ControllerHand>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setDisableLowLatencyUpdate = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setTrackingSource = (delegate* unmanaged[Cdecl]<IntPtr, ControllerHand, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setTrackingMotionSource = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)motionControllerComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* staticMeshComponentFunctions = (IntPtr*)buffer[position++];
 
-				StaticMeshComponent.getLocalBounds = GenerateOptimizedFunction<StaticMeshComponent.GetLocalBoundsFunction>(staticMeshComponentFunctions[head++]);
-				StaticMeshComponent.getStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.GetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
-				StaticMeshComponent.setStaticMesh = GenerateOptimizedFunction<StaticMeshComponent.SetStaticMeshFunction>(staticMeshComponentFunctions[head++]);
+				StaticMeshComponent.getLocalBounds = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, ref Vector3, void>)staticMeshComponentFunctions[head++];
+				StaticMeshComponent.getStaticMesh = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)staticMeshComponentFunctions[head++];
+				StaticMeshComponent.setStaticMesh = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)staticMeshComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* instancedStaticMeshComponentFunctions = (IntPtr*)buffer[position++];
 
-				InstancedStaticMeshComponent.getInstanceCount = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceCountFunction>(instancedStaticMeshComponentFunctions[head++]);
-				InstancedStaticMeshComponent.getInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.GetInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
-				InstancedStaticMeshComponent.addInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.AddInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
-				InstancedStaticMeshComponent.updateInstanceTransform = GenerateOptimizedFunction<InstancedStaticMeshComponent.UpdateInstanceTransformFunction>(instancedStaticMeshComponentFunctions[head++]);
-				InstancedStaticMeshComponent.removeInstance = GenerateOptimizedFunction<InstancedStaticMeshComponent.RemoveInstanceFunction>(instancedStaticMeshComponentFunctions[head++]);
-				InstancedStaticMeshComponent.clearInstances = GenerateOptimizedFunction<InstancedStaticMeshComponent.ClearInstancesFunction>(instancedStaticMeshComponentFunctions[head++]);
+				InstancedStaticMeshComponent.getInstanceCount = (delegate* unmanaged[Cdecl]<IntPtr, int>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.getInstanceTransform = (delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, Bool, Bool>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.addInstance = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, int>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.updateInstanceTransform = (delegate* unmanaged[Cdecl]<IntPtr, int, in Transform, Bool, Bool, Bool, Bool>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.removeInstance = (delegate* unmanaged[Cdecl]<IntPtr, int, Bool>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.clearInstances = (delegate* unmanaged[Cdecl]<IntPtr, void>)instancedStaticMeshComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
 
-				SkinnedMeshComponent.getBonesNumber = GenerateOptimizedFunction<SkinnedMeshComponent.GetBonesNumberFunction>(skinnedMeshComponentFunctions[head++]);
-				SkinnedMeshComponent.getBoneIndex = GenerateOptimizedFunction<SkinnedMeshComponent.GetBoneIndexFunction>(skinnedMeshComponentFunctions[head++]);
-				SkinnedMeshComponent.getBoneName = GenerateOptimizedFunction<SkinnedMeshComponent.GetBoneNameFunction>(skinnedMeshComponentFunctions[head++]);
-				SkinnedMeshComponent.getBoneTransform = GenerateOptimizedFunction<SkinnedMeshComponent.GetBoneTransformFunction>(skinnedMeshComponentFunctions[head++]);
-				SkinnedMeshComponent.setSkeletalMesh = GenerateOptimizedFunction<SkinnedMeshComponent.SetSkeletalMeshFunction>(skinnedMeshComponentFunctions[head++]);
+				SkinnedMeshComponent.getBonesNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)skinnedMeshComponentFunctions[head++];
+				SkinnedMeshComponent.getBoneIndex = (delegate* unmanaged[Cdecl]<IntPtr, string, int>)skinnedMeshComponentFunctions[head++];
+				SkinnedMeshComponent.getBoneName = (delegate* unmanaged[Cdecl]<IntPtr, int, byte[], void>)skinnedMeshComponentFunctions[head++];
+				SkinnedMeshComponent.getBoneTransform = (delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, void>)skinnedMeshComponentFunctions[head++];
+				SkinnedMeshComponent.setSkeletalMesh = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)skinnedMeshComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* skeletalMeshComponentFunctions = (IntPtr*)buffer[position++];
 
-				SkeletalMeshComponent.isPlaying = GenerateOptimizedFunction<SkeletalMeshComponent.IsPlayingFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.getAnimationInstance = GenerateOptimizedFunction<SkeletalMeshComponent.GetAnimationInstanceFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.setAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.setAnimationMode = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationModeFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.setAnimationBlueprint = GenerateOptimizedFunction<SkeletalMeshComponent.SetAnimationBlueprintFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.play = GenerateOptimizedFunction<SkeletalMeshComponent.PlayFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.playAnimation = GenerateOptimizedFunction<SkeletalMeshComponent.PlayAnimationFunction>(skeletalMeshComponentFunctions[head++]);
-				SkeletalMeshComponent.stop = GenerateOptimizedFunction<SkeletalMeshComponent.StopFunction>(skeletalMeshComponentFunctions[head++]);
+				SkeletalMeshComponent.isPlaying = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.getAnimationInstance = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.setAnimation = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.setAnimationMode = (delegate* unmanaged[Cdecl]<IntPtr, AnimationMode, void>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.setAnimationBlueprint = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.play = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.playAnimation = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)skeletalMeshComponentFunctions[head++];
+				SkeletalMeshComponent.stop = (delegate* unmanaged[Cdecl]<IntPtr, void>)skeletalMeshComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* splineComponentFunctions = (IntPtr*)buffer[position++];
 
-				SplineComponent.isClosedLoop = GenerateOptimizedFunction<SplineComponent.IsClosedLoopFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getDuration = GenerateOptimizedFunction<SplineComponent.GetDurationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getSplinePointType = GenerateOptimizedFunction<SplineComponent.GetSplinePointTypeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getSplinePointsNumber = GenerateOptimizedFunction<SplineComponent.GetSplinePointsNumberFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getSplineSegmentsNumber = GenerateOptimizedFunction<SplineComponent.GetSplineSegmentsNumberFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getTangentAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetTangentAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getTangentAtTime = GenerateOptimizedFunction<SplineComponent.GetTangentAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getTransformAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetTransformAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getTransformAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetTransformAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getArriveTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetArriveTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getDefaultUpVector = GenerateOptimizedFunction<SplineComponent.GetDefaultUpVectorFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getDirectionAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetDirectionAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getDirectionAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetDirectionAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getDirectionAtTime = GenerateOptimizedFunction<SplineComponent.GetDirectionAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getDistanceAlongSplineAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetDistanceAlongSplineAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getLeaveTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetLeaveTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getLocationAndTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetLocationAndTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getLocationAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetLocationAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getLocationAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetLocationAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getLocationAtTime = GenerateOptimizedFunction<SplineComponent.GetLocationAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRightVectorAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetRightVectorAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRightVectorAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetRightVectorAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRightVectorAtTime = GenerateOptimizedFunction<SplineComponent.GetRightVectorAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRollAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetRollAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRollAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetRollAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRollAtTime = GenerateOptimizedFunction<SplineComponent.GetRollAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRotationAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetRotationAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRotationAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetRotationAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getRotationAtTime = GenerateOptimizedFunction<SplineComponent.GetRotationAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getScaleAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetScaleAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getScaleAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetScaleAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getScaleAtTime = GenerateOptimizedFunction<SplineComponent.GetScaleAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getSplineLength = GenerateOptimizedFunction<SplineComponent.GetSplineLengthFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getTransformAtTime = GenerateOptimizedFunction<SplineComponent.GetTransformAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getUpVectorAtDistanceAlongSpline = GenerateOptimizedFunction<SplineComponent.GetUpVectorAtDistanceAlongSplineFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getUpVectorAtSplinePoint = GenerateOptimizedFunction<SplineComponent.GetUpVectorAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.getUpVectorAtTime = GenerateOptimizedFunction<SplineComponent.GetUpVectorAtTimeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setDuration = GenerateOptimizedFunction<SplineComponent.SetDurationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setSplinePointType = GenerateOptimizedFunction<SplineComponent.SetSplinePointTypeFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setClosedLoop = GenerateOptimizedFunction<SplineComponent.SetClosedLoopFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setDefaultUpVector = GenerateOptimizedFunction<SplineComponent.SetDefaultUpVectorFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setLocationAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetLocationAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setTangentAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetTangentAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setTangentsAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetTangentsAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.setUpVectorAtSplinePoint = GenerateOptimizedFunction<SplineComponent.SetUpVectorAtSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.addSplinePoint = GenerateOptimizedFunction<SplineComponent.AddSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.addSplinePointAtIndex = GenerateOptimizedFunction<SplineComponent.AddSplinePointAtIndexFunction>(splineComponentFunctions[head++]);
-				SplineComponent.clearSplinePoints = GenerateOptimizedFunction<SplineComponent.ClearSplinePointsFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findDirectionClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindDirectionClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findLocationClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindLocationClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findUpVectorClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindUpVectorClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findRightVectorClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindRightVectorClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findRollClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindRollClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findScaleClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindScaleClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findTangentClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindTangentClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.findTransformClosestToWorldLocation = GenerateOptimizedFunction<SplineComponent.FindTransformClosestToWorldLocationFunction>(splineComponentFunctions[head++]);
-				SplineComponent.removeSplinePoint = GenerateOptimizedFunction<SplineComponent.RemoveSplinePointFunction>(splineComponentFunctions[head++]);
-				SplineComponent.updateSpline = GenerateOptimizedFunction<SplineComponent.UpdateSplineFunction>(splineComponentFunctions[head++]);
+				SplineComponent.isClosedLoop = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)splineComponentFunctions[head++];
+				SplineComponent.getDuration = (delegate* unmanaged[Cdecl]<IntPtr, float>)splineComponentFunctions[head++];
+				SplineComponent.getSplinePointType = (delegate* unmanaged[Cdecl]<IntPtr, int, SplinePointType>)splineComponentFunctions[head++];
+				SplineComponent.getSplinePointsNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)splineComponentFunctions[head++];
+				SplineComponent.getSplineSegmentsNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)splineComponentFunctions[head++];
+				SplineComponent.getTangentAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getTangentAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getTangentAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getTransformAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Transform, void>)splineComponentFunctions[head++];
+				SplineComponent.getTransformAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, Bool, ref Transform, void>)splineComponentFunctions[head++];
+				SplineComponent.getArriveTangentAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getDefaultUpVector = (delegate* unmanaged[Cdecl]<IntPtr, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getDirectionAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getDirectionAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getDirectionAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getDistanceAlongSplineAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, float>)splineComponentFunctions[head++];
+				SplineComponent.getLeaveTangentAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getLocationAndTangentAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getLocationAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getLocationAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getLocationAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getRightVectorAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getRightVectorAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getRightVectorAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getRollAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, float>)splineComponentFunctions[head++];
+				SplineComponent.getRollAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, float>)splineComponentFunctions[head++];
+				SplineComponent.getRollAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, float>)splineComponentFunctions[head++];
+				SplineComponent.getRotationAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Quaternion, void>)splineComponentFunctions[head++];
+				SplineComponent.getRotationAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Quaternion, void>)splineComponentFunctions[head++];
+				SplineComponent.getRotationAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Quaternion, void>)splineComponentFunctions[head++];
+				SplineComponent.getScaleAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getScaleAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getScaleAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getSplineLength = (delegate* unmanaged[Cdecl]<IntPtr, float>)splineComponentFunctions[head++];
+				SplineComponent.getTransformAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, Bool, ref Transform, void>)splineComponentFunctions[head++];
+				SplineComponent.getUpVectorAtDistanceAlongSpline = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getUpVectorAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.getUpVectorAtTime = (delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.setDuration = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)splineComponentFunctions[head++];
+				SplineComponent.setSplinePointType = (delegate* unmanaged[Cdecl]<IntPtr, int, SplinePointType, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.setClosedLoop = (delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.setDefaultUpVector = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, void>)splineComponentFunctions[head++];
+				SplineComponent.setLocationAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, SplineCoordinateSpace, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.setTangentAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, SplineCoordinateSpace, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.setTangentsAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, in Vector3, SplineCoordinateSpace, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.setUpVectorAtSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, SplineCoordinateSpace, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.addSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.addSplinePointAtIndex = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, int, SplineCoordinateSpace, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.clearSplinePoints = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.findDirectionClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.findLocationClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.findUpVectorClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.findRightVectorClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.findRollClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, float>)splineComponentFunctions[head++];
+				SplineComponent.findScaleClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.findTangentClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void>)splineComponentFunctions[head++];
+				SplineComponent.findTransformClosestToWorldLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, Bool, ref Transform, void>)splineComponentFunctions[head++];
+				SplineComponent.removeSplinePoint = (delegate* unmanaged[Cdecl]<IntPtr, int, Bool, void>)splineComponentFunctions[head++];
+				SplineComponent.updateSpline = (delegate* unmanaged[Cdecl]<IntPtr, void>)splineComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* radialForceComponentFunctions = (IntPtr*)buffer[position++];
 
-				RadialForceComponent.getIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.GetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.getImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.GetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.getLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.GetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.getForceStrength = GenerateOptimizedFunction<RadialForceComponent.GetForceStrengthFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.getImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.GetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.getRadius = GenerateOptimizedFunction<RadialForceComponent.GetRadiusFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.setIgnoreOwningActor = GenerateOptimizedFunction<RadialForceComponent.SetIgnoreOwningActorFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.setImpulseVelocityChange = GenerateOptimizedFunction<RadialForceComponent.SetImpulseVelocityChangeFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.setLinearFalloff = GenerateOptimizedFunction<RadialForceComponent.SetLinearFalloffFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.setForceStrength = GenerateOptimizedFunction<RadialForceComponent.SetForceStrengthFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.setImpulseStrength = GenerateOptimizedFunction<RadialForceComponent.SetImpulseStrengthFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.setRadius = GenerateOptimizedFunction<RadialForceComponent.SetRadiusFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.addCollisionChannelToAffect = GenerateOptimizedFunction<RadialForceComponent.AddCollisionChannelToAffectFunction>(radialForceComponentFunctions[head++]);
-				RadialForceComponent.fireImpulse = GenerateOptimizedFunction<RadialForceComponent.FireImpulseFunction>(radialForceComponentFunctions[head++]);
+				RadialForceComponent.getIgnoreOwningActor = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)radialForceComponentFunctions[head++];
+				RadialForceComponent.getImpulseVelocityChange = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)radialForceComponentFunctions[head++];
+				RadialForceComponent.getLinearFalloff = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)radialForceComponentFunctions[head++];
+				RadialForceComponent.getForceStrength = (delegate* unmanaged[Cdecl]<IntPtr, float>)radialForceComponentFunctions[head++];
+				RadialForceComponent.getImpulseStrength = (delegate* unmanaged[Cdecl]<IntPtr, float>)radialForceComponentFunctions[head++];
+				RadialForceComponent.getRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)radialForceComponentFunctions[head++];
+				RadialForceComponent.setIgnoreOwningActor = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.setImpulseVelocityChange = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.setLinearFalloff = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.setForceStrength = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.setImpulseStrength = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.setRadius = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.addCollisionChannelToAffect = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void>)radialForceComponentFunctions[head++];
+				RadialForceComponent.fireImpulse = (delegate* unmanaged[Cdecl]<IntPtr, void>)radialForceComponentFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* materialInterfaceFunctions = (IntPtr*)buffer[position++];
 
-				MaterialInterface.isTwoSided = GenerateOptimizedFunction<MaterialInterface.IsTwoSidedFunction>(materialInterfaceFunctions[head++]);
+				MaterialInterface.isTwoSided = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)materialInterfaceFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* materialFunctions = (IntPtr*)buffer[position++];
 
-				Material.isDefaultMaterial = GenerateOptimizedFunction<Material.IsDefaultMaterialFunction>(materialFunctions[head++]);
+				Material.isDefaultMaterial = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)materialFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* materialInstanceFunctions = (IntPtr*)buffer[position++];
 
-				MaterialInstance.isChildOf = GenerateOptimizedFunction<MaterialInstance.IsChildOfFunction>(materialInstanceFunctions[head++]);
+				MaterialInstance.isChildOf = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)materialInstanceFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* materialInstanceDynamicFunctions = (IntPtr*)buffer[position++];
 
-				MaterialInstanceDynamic.clearParameterValues = GenerateOptimizedFunction<MaterialInstanceDynamic.ClearParameterValuesFunction>(materialInstanceDynamicFunctions[head++]);
-				MaterialInstanceDynamic.setTextureParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetTextureParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
-				MaterialInstanceDynamic.setVectorParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetVectorParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
-				MaterialInstanceDynamic.setScalarParameterValue = GenerateOptimizedFunction<MaterialInstanceDynamic.SetScalarParameterValueFunction>(materialInstanceDynamicFunctions[head++]);
+				MaterialInstanceDynamic.clearParameterValues = (delegate* unmanaged[Cdecl]<IntPtr, void>)materialInstanceDynamicFunctions[head++];
+				MaterialInstanceDynamic.setTextureParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr, void>)materialInstanceDynamicFunctions[head++];
+				MaterialInstanceDynamic.setVectorParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, string, in LinearColor, void>)materialInstanceDynamicFunctions[head++];
+				MaterialInstanceDynamic.setScalarParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, string, float, void>)materialInstanceDynamicFunctions[head++];
 			}
 
 			unchecked {
@@ -1095,32 +1095,6 @@ namespace UnrealEngine.Framework {
 
 			return Collector.GetFunctionPointer(dynamicDelegate);
 		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static TDelegate GenerateOptimizedFunction<TDelegate>(IntPtr pointer) where TDelegate : class {
-			Type type = typeof(TDelegate);
-			MethodInfo method = type.GetMethod("Invoke");
-			ParameterInfo[] parameterInfos = method.GetParameters();
-			Type[] parameterTypes = new Type[parameterInfos.Length];
-
-			for (int i = 0; i < parameterTypes.Length; i++) {
-				parameterTypes[i] = parameterInfos[i].ParameterType;
-			}
-
-			DynamicMethod dynamicMethod = new(method.Name, method.ReturnType, parameterTypes, Assembly.GetExecutingAssembly().ManifestModule);
-			ILGenerator generator = dynamicMethod.GetILGenerator();
-
-			for (int i = 0; i < parameterTypes.Length; i++) {
-				generator.Emit(OpCodes.Ldarg, i);
-			}
-
-			generator.Emit(OpCodes.Ldc_I8, pointer.ToInt64());
-			generator.Emit(OpCodes.Conv_I);
-			generator.EmitCalli(OpCodes.Calli, CallingConvention.Cdecl, method.ReturnType, parameterTypes);
-			generator.Emit(OpCodes.Ret);
-
-			return dynamicMethod.CreateDelegate(type) as TDelegate;
-		}
 	}
 
 	partial struct LinearColor {
@@ -1242,1433 +1216,792 @@ namespace UnrealEngine.Framework {
 		RadialForce
 	}
 
-	static partial class Assert {
-		internal delegate void OutputMessageFunction(string message);
-
-		internal static OutputMessageFunction outputMessage;
+	static unsafe partial class Assert {
+		internal static delegate* unmanaged[Cdecl]<string, void> outputMessage;
 	}
 
-	static partial class CommandLine {
-		internal delegate void GetFunction(byte[] arguments);
-		internal delegate void SetFunction(string arguments);
-		internal delegate void AppendFunction(string arguments);
-
-		internal static GetFunction get;
-		internal static SetFunction set;
-		internal static AppendFunction append;
+	static unsafe partial class CommandLine {
+		internal static delegate* unmanaged[Cdecl]<byte[], void> get;
+		internal static delegate* unmanaged[Cdecl]<string, void> set;
+		internal static delegate* unmanaged[Cdecl]<string, void> append;
 	}
 
-	static partial class Debug {
-		internal delegate void LogFunction(LogLevel level, string message);
-		internal delegate void HandleExceptionFunction(string exception);
-		internal delegate void AddOnScreenMessageFunction(int key, float timeToDisplay, int displayColor, string message);
-		internal delegate void ClearOnScreenMessagesFunction();
-		internal delegate void DrawBoxFunction(in Vector3 center, in Vector3 extent, in Quaternion rotation, int color, Bool persistentLines, float lifeTime, byte depthPriority, float thickness);
-		internal delegate void DrawCapsuleFunction(in Vector3 center, float halfHeight, float radius, in Quaternion rotation, int color, Bool persistentLines, float lifeTime, byte depthPriority, float thickness);
-		internal delegate void DrawConeFunction(in Vector3 origin, in Vector3 direction, float length, float angleWidth, float angleHeight, int sides, int color, Bool persistentLines, float lifeTime, byte depthPriority, float thickness);
-		internal delegate void DrawCylinderFunction(in Vector3 start, in Vector3 end, float radius, int segments, int color, Bool persistentLines, float lifeTime, byte depthPriority, float thickness);
-		internal delegate void DrawSphereFunction(in Vector3 center, float radius, int segments, int color, Bool persistentLines, float lifeTime, byte depthPriority, float thickness);
-		internal delegate void DrawLineFunction(in Vector3 start, in Vector3 end, int color, Bool persistentLines, float lifeTime, byte depthPriority, float thickness);
-		internal delegate void DrawPointFunction(in Vector3 location, float size, int color, Bool persistentLines, float lifeTime, byte depthPriority);
-		internal delegate void FlushPersistentLinesFunction();
-
-		internal static LogFunction log;
-		internal static HandleExceptionFunction handleException;
-		internal static AddOnScreenMessageFunction addOnScreenMessage;
-		internal static ClearOnScreenMessagesFunction clearOnScreenMessages;
-		internal static DrawBoxFunction drawBox;
-		internal static DrawCapsuleFunction drawCapsule;
-		internal static DrawConeFunction drawCone;
-		internal static DrawCylinderFunction drawCylinder;
-		internal static DrawSphereFunction drawSphere;
-		internal static DrawLineFunction drawLine;
-		internal static DrawPointFunction drawPoint;
-		internal static FlushPersistentLinesFunction flushPersistentLines;
+	static unsafe partial class Debug {
+		internal static delegate* unmanaged[Cdecl]<LogLevel, string, void> log;
+		internal static delegate* unmanaged[Cdecl]<string, void> handleException;
+		internal static delegate* unmanaged[Cdecl]<int, float, int, string, void> addOnScreenMessage;
+		internal static delegate* unmanaged[Cdecl]<void> clearOnScreenMessages;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, int, Bool, float, byte, float, void> drawBox;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, float, float, in Quaternion, int, Bool, float, byte, float, void> drawCapsule;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, float, float, float, int, int, Bool, float, byte, float, void> drawCone;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, float, int, int, Bool, float, byte, float, void> drawCylinder;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, float, int, int, Bool, float, byte, float, void> drawSphere;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, int, Bool, float, byte, float, void> drawLine;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, float, int, Bool, float, byte, void> drawPoint;
+		internal static delegate* unmanaged[Cdecl]<void> flushPersistentLines;
 	}
 
-	internal static class Object {
-		internal delegate Bool IsPendingKillFunction(IntPtr @object);
-		internal delegate Bool IsValidFunction(IntPtr @object);
-		internal delegate IntPtr LoadFunction(ObjectType type, string name);
-		internal delegate void RenameFunction(IntPtr @object, string name);
-		internal delegate Bool InvokeFunction(IntPtr @object, string command);
-		internal delegate IntPtr ToActorFunction(IntPtr @object, ActorType type);
-		internal delegate IntPtr ToComponentFunction(IntPtr @object, ComponentType type);
-		internal delegate uint GetIDFunction(IntPtr @object);
-		internal delegate void GetNameFunction(IntPtr @object, byte[] name);
-		internal delegate Bool GetBoolFunction(IntPtr @object, string name, ref bool value);
-		internal delegate Bool GetByteFunction(IntPtr @object, string name, ref byte value);
-		internal delegate Bool GetShortFunction(IntPtr @object, string name, ref short value);
-		internal delegate Bool GetIntFunction(IntPtr @object, string name, ref int value);
-		internal delegate Bool GetLongFunction(IntPtr @object, string name, ref long value);
-		internal delegate Bool GetUShortFunction(IntPtr @object, string name, ref ushort value);
-		internal delegate Bool GetUIntFunction(IntPtr @object, string name, ref uint value);
-		internal delegate Bool GetULongFunction(IntPtr @object, string name, ref ulong value);
-		internal delegate Bool GetFloatFunction(IntPtr @object, string name, ref float value);
-		internal delegate Bool GetDoubleFunction(IntPtr @object, string name, ref double value);
-		internal delegate Bool GetEnumFunction(IntPtr @object, string name, ref int value);
-		internal delegate Bool GetTextFunction(IntPtr @object, string name, byte[] value);
-		internal delegate Bool SetBoolFunction(IntPtr @object, string name, Bool value);
-		internal delegate Bool SetByteFunction(IntPtr @object, string name, byte value);
-		internal delegate Bool SetShortFunction(IntPtr @object, string name, short value);
-		internal delegate Bool SetIntFunction(IntPtr @object, string name, int value);
-		internal delegate Bool SetLongFunction(IntPtr @object, string name, long value);
-		internal delegate Bool SetUShortFunction(IntPtr @object, string name, ushort value);
-		internal delegate Bool SetUIntFunction(IntPtr @object, string name, uint value);
-		internal delegate Bool SetULongFunction(IntPtr @object, string name, ulong value);
-		internal delegate Bool SetFloatFunction(IntPtr @object, string name, float value);
-		internal delegate Bool SetDoubleFunction(IntPtr @object, string name, double value);
-		internal delegate Bool SetEnumFunction(IntPtr @object, string name, int value);
-		internal delegate Bool SetTextFunction(IntPtr @object, string name, string value);
-
-		internal static IsPendingKillFunction isPendingKill;
-		internal static IsValidFunction isValid;
-		internal static LoadFunction load;
-		internal static RenameFunction rename;
-		internal static InvokeFunction invoke;
-		internal static ToActorFunction toActor;
-		internal static ToComponentFunction toComponent;
-		internal static GetIDFunction getID;
-		internal static GetNameFunction getName;
-		internal static GetBoolFunction getBool;
-		internal static GetByteFunction getByte;
-		internal static GetShortFunction getShort;
-		internal static GetIntFunction getInt;
-		internal static GetLongFunction getLong;
-		internal static GetUShortFunction getUShort;
-		internal static GetUIntFunction getUInt;
-		internal static GetULongFunction getULong;
-		internal static GetFloatFunction getFloat;
-		internal static GetDoubleFunction getDouble;
-		internal static GetEnumFunction getEnum;
-		internal static GetTextFunction getText;
-		internal static SetBoolFunction setBool;
-		internal static SetByteFunction setByte;
-		internal static SetShortFunction setShort;
-		internal static SetIntFunction setInt;
-		internal static SetLongFunction setLong;
-		internal static SetUShortFunction setUShort;
-		internal static SetUIntFunction setUInt;
-		internal static SetULongFunction setULong;
-		internal static SetFloatFunction setFloat;
-		internal static SetDoubleFunction setDouble;
-		internal static SetEnumFunction setEnum;
-		internal static SetTextFunction setText;
+	internal static unsafe class Object {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPendingKill;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isValid;
+		internal static delegate* unmanaged[Cdecl]<ObjectType, string, IntPtr> load;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> rename;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> invoke;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> toActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr> toComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, uint> getID;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref bool, Bool> getBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref byte, Bool> getByte;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref short, Bool> getShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool> getInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref long, Bool> getLong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref ushort, Bool> getUShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref uint, Bool> getUInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref ulong, Bool> getULong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref float, Bool> getFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref double, Bool> getDouble;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool> getEnum;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool> getText;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool> setBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte, Bool> setByte;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, short, Bool> setShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool> setInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, long, Bool> setLong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ushort, Bool> setUShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, uint, Bool> setUInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ulong, Bool> setULong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float, Bool> setFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, double, Bool> setDouble;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool> setEnum;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool> setText;
 	}
 
-	static partial class Application {
-		internal delegate Bool IsCanEverRenderFunction();
-		internal delegate Bool IsPackagedForDistributionFunction();
-		internal delegate Bool IsPackagedForShippingFunction();
-		internal delegate void GetProjectDirectoryFunction(byte[] directory);
-		internal delegate void GetDefaultLanguageFunction(byte[] language);
-		internal delegate void GetProjectNameFunction(byte[] projectName);
-		internal delegate float GetVolumeMultiplierFunction();
-		internal delegate void SetProjectNameFunction(string projectName);
-		internal delegate void SetVolumeMultiplierFunction(float value);
-		internal delegate void RequestExitFunction(Bool force);
-
-		internal static IsCanEverRenderFunction isCanEverRender;
-		internal static IsPackagedForDistributionFunction isPackagedForDistribution;
-		internal static IsPackagedForShippingFunction isPackagedForShipping;
-		internal static GetProjectDirectoryFunction getProjectDirectory;
-		internal static GetDefaultLanguageFunction getDefaultLanguage;
-		internal static GetProjectNameFunction getProjectName;
-		internal static GetVolumeMultiplierFunction getVolumeMultiplier;
-		internal static SetProjectNameFunction setProjectName;
-		internal static SetVolumeMultiplierFunction setVolumeMultiplier;
-		internal static RequestExitFunction requestExit;
+	static unsafe partial class Application {
+		internal static delegate* unmanaged[Cdecl]<Bool> isCanEverRender;
+		internal static delegate* unmanaged[Cdecl]<Bool> isPackagedForDistribution;
+		internal static delegate* unmanaged[Cdecl]<Bool> isPackagedForShipping;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> getProjectDirectory;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> getDefaultLanguage;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> getProjectName;
+		internal static delegate* unmanaged[Cdecl]<float> getVolumeMultiplier;
+		internal static delegate* unmanaged[Cdecl]<string, void> setProjectName;
+		internal static delegate* unmanaged[Cdecl]<float, void> setVolumeMultiplier;
+		internal static delegate* unmanaged[Cdecl]<Bool, void> requestExit;
 	}
 
-	static partial class ConsoleManager {
-		internal delegate Bool IsRegisteredVariableFunction(string name);
-		internal delegate IntPtr FindVariableFunction(string name);
-		internal delegate IntPtr RegisterVariableBoolFunction(string name, string help, Bool defaultValue, Bool readOnly);
-		internal delegate IntPtr RegisterVariableIntFunction(string name, string help, int defaultValue, Bool readOnly);
-		internal delegate IntPtr RegisterVariableFloatFunction(string name, string help, float defaultValue, Bool readOnly);
-		internal delegate IntPtr RegisterVariableStringFunction(string name, string help, string defaultValue, Bool readOnly);
-		internal delegate void RegisterCommandFunction(string name, string help, IntPtr callback, Bool readOnly);
-		internal delegate void UnregisterObjectFunction(string name);
-
-		internal static IsRegisteredVariableFunction isRegisteredVariable;
-		internal static FindVariableFunction findVariable;
-		internal static RegisterVariableBoolFunction registerVariableBool;
-		internal static RegisterVariableIntFunction registerVariableInt;
-		internal static RegisterVariableFloatFunction registerVariableFloat;
-		internal static RegisterVariableStringFunction registerVariableString;
-		internal static RegisterCommandFunction registerCommand;
-		internal static UnregisterObjectFunction unregisterObject;
+	static unsafe partial class ConsoleManager {
+		internal static delegate* unmanaged[Cdecl]<string, Bool> isRegisteredVariable;
+		internal static delegate* unmanaged[Cdecl]<string, IntPtr> findVariable;
+		internal static delegate* unmanaged[Cdecl]<string, string, Bool, Bool, IntPtr> registerVariableBool;
+		internal static delegate* unmanaged[Cdecl]<string, string, int, Bool, IntPtr> registerVariableInt;
+		internal static delegate* unmanaged[Cdecl]<string, string, float, Bool, IntPtr> registerVariableFloat;
+		internal static delegate* unmanaged[Cdecl]<string, string, string, Bool, IntPtr> registerVariableString;
+		internal static delegate* unmanaged[Cdecl]<string, string, IntPtr, Bool, void> registerCommand;
+		internal static delegate* unmanaged[Cdecl]<string, void> unregisterObject;
 	}
 
-	static partial class Engine {
-		internal delegate Bool IsSplitScreenFunction();
-		internal delegate Bool IsEditorFunction();
-		internal delegate Bool IsForegroundWindowFunction();
-		internal delegate Bool IsExitRequestedFunction();
-		internal delegate NetMode GetNetModeFunction();
-		internal delegate uint GetFrameNumberFunction();
-		internal delegate void GetViewportSizeFunction(ref Vector2 value);
-		internal delegate void GetScreenResolutionFunction(ref Vector2 value);
-		internal delegate WindowMode GetWindowModeFunction();
-		internal delegate void GetVersionFunction(byte[] version);
-		internal delegate float GetMaxFPSFunction();
-		internal delegate void SetMaxFPSFunction(float maxFPS);
-		internal delegate void SetTitleFunction(string title);
-		internal delegate void AddActionMappingFunction(string actionName, string key, Bool shift, Bool ctrl, Bool alt, Bool cmd);
-		internal delegate void AddAxisMappingFunction(string axisName, string key, float scale);
-		internal delegate void ForceGarbageCollectionFunction(Bool fullPurge);
-		internal delegate void DelayGarbageCollectionFunction();
-
-		internal static IsSplitScreenFunction isSplitScreen;
-		internal static IsEditorFunction isEditor;
-		internal static IsForegroundWindowFunction isForegroundWindow;
-		internal static IsExitRequestedFunction isExitRequested;
-		internal static GetNetModeFunction getNetMode;
-		internal static GetFrameNumberFunction getFrameNumber;
-		internal static GetViewportSizeFunction getViewportSize;
-		internal static GetScreenResolutionFunction getScreenResolution;
-		internal static GetWindowModeFunction getWindowMode;
-		internal static GetVersionFunction getVersion;
-		internal static GetMaxFPSFunction getMaxFPS;
-		internal static SetMaxFPSFunction setMaxFPS;
-		internal static SetTitleFunction setTitle;
-		internal static AddActionMappingFunction addActionMapping;
-		internal static AddAxisMappingFunction addAxisMapping;
-		internal static ForceGarbageCollectionFunction forceGarbageCollection;
-		internal static DelayGarbageCollectionFunction delayGarbageCollection;
+	static unsafe partial class Engine {
+		internal static delegate* unmanaged[Cdecl]<Bool> isSplitScreen;
+		internal static delegate* unmanaged[Cdecl]<Bool> isEditor;
+		internal static delegate* unmanaged[Cdecl]<Bool> isForegroundWindow;
+		internal static delegate* unmanaged[Cdecl]<Bool> isExitRequested;
+		internal static delegate* unmanaged[Cdecl]<NetMode> getNetMode;
+		internal static delegate* unmanaged[Cdecl]<uint> getFrameNumber;
+		internal static delegate* unmanaged[Cdecl]<ref Vector2, void> getViewportSize;
+		internal static delegate* unmanaged[Cdecl]<ref Vector2, void> getScreenResolution;
+		internal static delegate* unmanaged[Cdecl]<WindowMode> getWindowMode;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> getVersion;
+		internal static delegate* unmanaged[Cdecl]<float> getMaxFPS;
+		internal static delegate* unmanaged[Cdecl]<float, void> setMaxFPS;
+		internal static delegate* unmanaged[Cdecl]<string, void> setTitle;
+		internal static delegate* unmanaged[Cdecl]<string, string, Bool, Bool, Bool, Bool, void> addActionMapping;
+		internal static delegate* unmanaged[Cdecl]<string, string, float, void> addAxisMapping;
+		internal static delegate* unmanaged[Cdecl]<Bool, void> forceGarbageCollection;
+		internal static delegate* unmanaged[Cdecl]<void> delayGarbageCollection;
 	}
 
-	static partial class HeadMountedDisplay {
-		internal delegate Bool IsConnectedFunction();
-		internal delegate Bool GetEnabledFunction();
-		internal delegate Bool GetLowPersistenceModeFunction();
-		internal delegate void GetDeviceNameFunction(byte[] name);
-		internal delegate void SetEnableFunction(Bool value);
-		internal delegate void SetLowPersistenceModeFunction(Bool value);
-
-		internal static IsConnectedFunction isConnected;
-		internal static GetEnabledFunction getEnabled;
-		internal static GetLowPersistenceModeFunction getLowPersistenceMode;
-		internal static GetDeviceNameFunction getDeviceName;
-		internal static SetEnableFunction setEnable;
-		internal static SetLowPersistenceModeFunction setLowPersistenceMode;
+	static unsafe partial class HeadMountedDisplay {
+		internal static delegate* unmanaged[Cdecl]<Bool> isConnected;
+		internal static delegate* unmanaged[Cdecl]<Bool> getEnabled;
+		internal static delegate* unmanaged[Cdecl]<Bool> getLowPersistenceMode;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> getDeviceName;
+		internal static delegate* unmanaged[Cdecl]<Bool, void> setEnable;
+		internal static delegate* unmanaged[Cdecl]<Bool, void> setLowPersistenceMode;
 	}
 
-	static partial class World {
-		internal delegate int GetActorCountFunction();
-		internal delegate float GetDeltaSecondsFunction();
-		internal delegate float GetRealTimeSecondsFunction();
-		internal delegate float GetTimeSecondsFunction();
-		internal delegate void GetCurrentLevelNameFunction(byte[] levelName);
-		internal delegate Bool GetSimulatePhysicsFunction();
-		internal delegate void GetWorldOriginFunction(ref Vector3 value);
-		internal delegate IntPtr GetActorFunction(string name, ActorType type);
-		internal delegate IntPtr GetActorByTagFunction(string tag, ActorType type);
-		internal delegate IntPtr GetActorByIDFunction(uint iD, ActorType type);
-		internal delegate IntPtr GetFirstPlayerControllerFunction();
-		internal delegate void SetOnActorBeginOverlapCallbackFunction(IntPtr callback);
-		internal delegate void SetOnActorEndOverlapCallbackFunction(IntPtr callback);
-		internal delegate void SetOnActorHitCallbackFunction(IntPtr callback);
-		internal delegate void SetOnActorBeginCursorOverCallbackFunction(IntPtr callback);
-		internal delegate void SetOnActorEndCursorOverCallbackFunction(IntPtr callback);
-		internal delegate void SetOnComponentBeginOverlapCallbackFunction(IntPtr callback);
-		internal delegate void SetOnComponentEndOverlapCallbackFunction(IntPtr callback);
-		internal delegate void SetOnComponentHitCallbackFunction(IntPtr callback);
-		internal delegate void SetOnComponentBeginCursorOverCallbackFunction(IntPtr callback);
-		internal delegate void SetOnComponentEndCursorOverCallbackFunction(IntPtr callback);
-		internal delegate void SetSimulatePhysicsFunction(Bool value);
-		internal delegate void SetGravityFunction(float value);
-		internal delegate Bool SetWorldOriginFunction(in Vector3 value);
-		internal delegate void OpenLevelFunction(string levelName);
-		internal delegate Bool LineTraceTestByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool LineTraceTestByProfileFunction(in Vector3 start, in Vector3 end, string profileName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool LineTraceSingleByChannelFunction(in Vector3 start, in Vector3 end, CollisionChannel channel, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool LineTraceSingleByProfileFunction(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool SweepTestByChannelFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool SweepTestByProfileFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool SweepSingleByChannelFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool SweepSingleByProfileFunction(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, byte[] boneName, Bool traceComplex, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool OverlapAnyTestByChannelFunction(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool OverlapAnyTestByProfileFunction(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool OverlapBlockingTestByChannelFunction(in Vector3 location, in Quaternion rotation, CollisionChannel channel, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
-		internal delegate Bool OverlapBlockingTestByProfileFunction(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, IntPtr ignoredActor, IntPtr ignoredComponent);
-
-		internal static GetActorCountFunction getActorCount;
-		internal static GetDeltaSecondsFunction getDeltaSeconds;
-		internal static GetRealTimeSecondsFunction getRealTimeSeconds;
-		internal static GetTimeSecondsFunction getTimeSeconds;
-		internal static GetCurrentLevelNameFunction getCurrentLevelName;
-		internal static GetSimulatePhysicsFunction getSimulatePhysics;
-		internal static GetWorldOriginFunction getWorldOrigin;
-		internal static GetActorFunction getActor;
-		internal static GetActorByTagFunction getActorByTag;
-		internal static GetActorByIDFunction getActorByID;
-		internal static GetFirstPlayerControllerFunction getFirstPlayerController;
-		internal static SetOnActorBeginOverlapCallbackFunction setOnActorBeginOverlapCallback;
-		internal static SetOnActorEndOverlapCallbackFunction setOnActorEndOverlapCallback;
-		internal static SetOnActorHitCallbackFunction setOnActorHitCallback;
-		internal static SetOnActorBeginCursorOverCallbackFunction setOnActorBeginCursorOverCallback;
-		internal static SetOnActorEndCursorOverCallbackFunction setOnActorEndCursorOverCallback;
-		internal static SetOnComponentBeginOverlapCallbackFunction setOnComponentBeginOverlapCallback;
-		internal static SetOnComponentEndOverlapCallbackFunction setOnComponentEndOverlapCallback;
-		internal static SetOnComponentHitCallbackFunction setOnComponentHitCallback;
-		internal static SetOnComponentBeginCursorOverCallbackFunction setOnComponentBeginCursorOverCallback;
-		internal static SetOnComponentEndCursorOverCallbackFunction setOnComponentEndCursorOverCallback;
-		internal static SetSimulatePhysicsFunction setSimulatePhysics;
-		internal static SetGravityFunction setGravity;
-		internal static SetWorldOriginFunction setWorldOrigin;
-		internal static OpenLevelFunction openLevel;
-		internal static LineTraceTestByChannelFunction lineTraceTestByChannel;
-		internal static LineTraceTestByProfileFunction lineTraceTestByProfile;
-		internal static LineTraceSingleByChannelFunction lineTraceSingleByChannel;
-		internal static LineTraceSingleByProfileFunction lineTraceSingleByProfile;
-		internal static SweepTestByChannelFunction sweepTestByChannel;
-		internal static SweepTestByProfileFunction sweepTestByProfile;
-		internal static SweepSingleByChannelFunction sweepSingleByChannel;
-		internal static SweepSingleByProfileFunction sweepSingleByProfile;
-		internal static OverlapAnyTestByChannelFunction overlapAnyTestByChannel;
-		internal static OverlapAnyTestByProfileFunction overlapAnyTestByProfile;
-		internal static OverlapBlockingTestByChannelFunction overlapBlockingTestByChannel;
-		internal static OverlapBlockingTestByProfileFunction overlapBlockingTestByProfile;
+	static unsafe partial class World {
+		internal static delegate* unmanaged[Cdecl]<int> getActorCount;
+		internal static delegate* unmanaged[Cdecl]<float> getDeltaSeconds;
+		internal static delegate* unmanaged[Cdecl]<float> getRealTimeSeconds;
+		internal static delegate* unmanaged[Cdecl]<float> getTimeSeconds;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> getCurrentLevelName;
+		internal static delegate* unmanaged[Cdecl]<Bool> getSimulatePhysics;
+		internal static delegate* unmanaged[Cdecl]<ref Vector3, void> getWorldOrigin;
+		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr> getActor;
+		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr> getActorByTag;
+		internal static delegate* unmanaged[Cdecl]<uint, ActorType, IntPtr> getActorByID;
+		internal static delegate* unmanaged[Cdecl]<IntPtr> getFirstPlayerController;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorBeginOverlapCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorEndOverlapCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorHitCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorBeginCursorOverCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorEndCursorOverCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentBeginOverlapCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentEndOverlapCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentHitCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentBeginCursorOverCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentEndCursorOverCallback;
+		internal static delegate* unmanaged[Cdecl]<Bool, void> setSimulatePhysics;
+		internal static delegate* unmanaged[Cdecl]<float, void> setGravity;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, Bool> setWorldOrigin;
+		internal static delegate* unmanaged[Cdecl]<string, void> openLevel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, Bool, IntPtr, IntPtr, Bool> lineTraceTestByChannel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, Bool, IntPtr, IntPtr, Bool> lineTraceTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> lineTraceSingleByChannel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> lineTraceSingleByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, Bool, IntPtr, IntPtr, Bool> sweepTestByChannel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, Bool, IntPtr, IntPtr, Bool> sweepTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> sweepSingleByChannel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> sweepSingleByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool> overlapAnyTestByChannel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool> overlapAnyTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByChannel;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByProfile;
 	}
 
-	partial class Blueprint {
-		internal delegate Bool IsValidActorClassFunction(IntPtr blueprint, ActorType type);
-		internal delegate Bool IsValidComponentClassFunction(IntPtr blueprint, ComponentType type);
-
-		internal static IsValidActorClassFunction isValidActorClass;
-		internal static IsValidComponentClassFunction isValidComponentClass;
+	unsafe partial class Blueprint {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, Bool> isValidActorClass;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, Bool> isValidComponentClass;
 	}
 
-	partial class ConsoleObject {
-		internal delegate Bool IsBoolFunction(IntPtr consoleObject);
-		internal delegate Bool IsIntFunction(IntPtr consoleObject);
-		internal delegate Bool IsFloatFunction(IntPtr consoleObject);
-		internal delegate Bool IsStringFunction(IntPtr consoleObject);
-
-		internal static IsBoolFunction isBool;
-		internal static IsIntFunction isInt;
-		internal static IsFloatFunction isFloat;
-		internal static IsStringFunction isString;
+	unsafe partial class ConsoleObject {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isString;
 	}
 
-	partial class ConsoleVariable {
-		internal delegate Bool GetBoolFunction(IntPtr consoleVariable);
-		internal delegate int GetIntFunction(IntPtr consoleVariable);
-		internal delegate float GetFloatFunction(IntPtr consoleVariable);
-		internal delegate void GetStringFunction(IntPtr consoleVariable, byte[] value);
-		internal delegate void SetBoolFunction(IntPtr consoleVariable, Bool value);
-		internal delegate void SetIntFunction(IntPtr consoleVariable, int value);
-		internal delegate void SetFloatFunction(IntPtr consoleVariable, float value);
-		internal delegate void SetStringFunction(IntPtr consoleVariable, string value);
-		internal delegate void SetOnChangedCallbackFunction(IntPtr consoleVariable, IntPtr callback);
-		internal delegate void ClearOnChangedCallbackFunction(IntPtr consoleVariable);
-
-		internal static GetBoolFunction getBool;
-		internal static GetIntFunction getInt;
-		internal static GetFloatFunction getFloat;
-		internal static GetStringFunction getString;
-		internal static SetBoolFunction setBool;
-		internal static SetIntFunction setInt;
-		internal static SetFloatFunction setFloat;
-		internal static SetStringFunction setString;
-		internal static SetOnChangedCallbackFunction setOnChangedCallback;
-		internal static ClearOnChangedCallbackFunction clearOnChangedCallback;
+	unsafe partial class ConsoleVariable {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getString;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setString;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setOnChangedCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearOnChangedCallback;
 	}
 
-	partial class Actor {
-		internal delegate Bool IsPendingKillFunction(IntPtr actor);
-		internal delegate Bool IsRootComponentMovableFunction(IntPtr actor);
-		internal delegate Bool IsOverlappingActorFunction(IntPtr actor, IntPtr other);
-		internal delegate IntPtr SpawnFunction(string name, ActorType type, IntPtr blueprint);
-		internal delegate Bool DestroyFunction(IntPtr actor);
-		internal delegate void RenameFunction(IntPtr actor, string name);
-		internal delegate void HideFunction(IntPtr actor, Bool value);
-		internal delegate Bool TeleportToFunction(IntPtr actor, in Vector3 destinationLocation, in Quaternion destinationRotation, Bool isATest, Bool noCheck);
-		internal delegate IntPtr GetComponentFunction(IntPtr actor, string name, ComponentType type);
-		internal delegate IntPtr GetComponentByTagFunction(IntPtr actor, string tag, ComponentType type);
-		internal delegate IntPtr GetComponentByIDFunction(IntPtr actor, uint iD, ComponentType type);
-		internal delegate IntPtr GetRootComponentFunction(IntPtr actor, ComponentType type);
-		internal delegate IntPtr GetInputComponentFunction(IntPtr actor);
-		internal delegate float GetCreationTimeFunction(IntPtr actor);
-		internal delegate Bool GetBlockInputFunction(IntPtr actor);
-		internal delegate float GetDistanceToFunction(IntPtr actor, IntPtr other);
-		internal delegate float GetHorizontalDistanceToFunction(IntPtr actor, IntPtr other);
-		internal delegate void GetBoundsFunction(IntPtr actor, Bool onlyCollidingComponents, ref Vector3 origin, ref Vector3 extent);
-		internal delegate void GetEyesViewPointFunction(IntPtr actor, ref Vector3 location, ref Quaternion rotation);
-		internal delegate Bool SetRootComponentFunction(IntPtr actor, IntPtr rootComponent);
-		internal delegate void SetInputComponentFunction(IntPtr actor, IntPtr inputComponent);
-		internal delegate void SetBlockInputFunction(IntPtr actor, Bool value);
-		internal delegate void SetLifeSpanFunction(IntPtr actor, float lifeSpan);
-		internal delegate void SetEnableInputFunction(IntPtr actor, IntPtr playerController, Bool value);
-		internal delegate void SetEnableCollisionFunction(IntPtr actor, Bool value);
-		internal delegate void AddTagFunction(IntPtr actor, string tag);
-		internal delegate void RemoveTagFunction(IntPtr actor, string tag);
-		internal delegate Bool HasTagFunction(IntPtr actor, string tag);
-		internal delegate void RegisterEventFunction(IntPtr actor, ActorEventType type);
-		internal delegate void UnregisterEventFunction(IntPtr actor, ActorEventType type);
-
-		internal static IsPendingKillFunction isPendingKill;
-		internal static IsRootComponentMovableFunction isRootComponentMovable;
-		internal static IsOverlappingActorFunction isOverlappingActor;
-		internal static SpawnFunction spawn;
-		internal static DestroyFunction destroy;
-		internal static RenameFunction rename;
-		internal static HideFunction hide;
-		internal static TeleportToFunction teleportTo;
-		internal static GetComponentFunction getComponent;
-		internal static GetComponentByTagFunction getComponentByTag;
-		internal static GetComponentByIDFunction getComponentByID;
-		internal static GetRootComponentFunction getRootComponent;
-		internal static GetInputComponentFunction getInputComponent;
-		internal static GetCreationTimeFunction getCreationTime;
-		internal static GetBlockInputFunction getBlockInput;
-		internal static GetDistanceToFunction getDistanceTo;
-		internal static GetHorizontalDistanceToFunction getHorizontalDistanceTo;
-		internal static GetBoundsFunction getBounds;
-		internal static GetEyesViewPointFunction getEyesViewPoint;
-		internal static SetRootComponentFunction setRootComponent;
-		internal static SetInputComponentFunction setInputComponent;
-		internal static SetBlockInputFunction setBlockInput;
-		internal static SetLifeSpanFunction setLifeSpan;
-		internal static SetEnableInputFunction setEnableInput;
-		internal static SetEnableCollisionFunction setEnableCollision;
-		internal static AddTagFunction addTag;
-		internal static RemoveTagFunction removeTag;
-		internal static HasTagFunction hasTag;
-		internal static RegisterEventFunction registerEvent;
-		internal static UnregisterEventFunction unregisterEvent;
+	unsafe partial class Actor {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPendingKill;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isRootComponentMovable;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isOverlappingActor;
+		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr> spawn;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> destroy;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> rename;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> hide;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Quaternion, Bool, Bool, Bool> teleportTo;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr> getComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr> getComponentByTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, uint, ComponentType, IntPtr> getComponentByID;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr> getRootComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getInputComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getCreationTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getBlockInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float> getDistanceTo;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float> getHorizontalDistanceTo;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, ref Vector3, ref Vector3, void> getBounds;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, ref Quaternion, void> getEyesViewPoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> setRootComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setInputComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setBlockInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setLifeSpan;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setEnableInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableCollision;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> addTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> removeTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> hasTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void> registerEvent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void> unregisterEvent;
 	}
 
-	partial class TriggerBase { }
+	unsafe partial class TriggerBase { }
 
-	partial class TriggerBox { }
+	unsafe partial class TriggerBox { }
 
-	partial class TriggerCapsule { }
+	unsafe partial class TriggerCapsule { }
 
-	partial class TriggerSphere { }
+	unsafe partial class TriggerSphere { }
 
-	partial class Pawn {
-		internal delegate void AddControllerYawInputFunction(IntPtr pawn, float value);
-		internal delegate void AddControllerPitchInputFunction(IntPtr pawn, float value);
-		internal delegate void AddControllerRollInputFunction(IntPtr pawn, float value);
-		internal delegate void AddMovementInputFunction(IntPtr pawn, in Vector3 worldDirection, float scaleValue, Bool force);
-		internal delegate AutoPossessAI GetAutoPossessAIFunction(IntPtr pawn);
-		internal delegate AutoReceiveInput GetAutoPossessPlayerFunction(IntPtr pawn);
-		internal delegate void GetGravityDirectionFunction(IntPtr pawn, ref Vector3 value);
-		internal delegate IntPtr GetAIControllerFunction(IntPtr pawn);
-		internal delegate IntPtr GetPlayerControllerFunction(IntPtr pawn);
-		internal delegate void SetAutoPossessAIFunction(IntPtr pawn, AutoPossessAI value);
-		internal delegate void SetAutoPossessPlayerFunction(IntPtr pawn, AutoReceiveInput value);
-
-		internal static AddControllerYawInputFunction addControllerYawInput;
-		internal static AddControllerPitchInputFunction addControllerPitchInput;
-		internal static AddControllerRollInputFunction addControllerRollInput;
-		internal static AddMovementInputFunction addMovementInput;
-		internal static GetAutoPossessAIFunction getAutoPossessAI;
-		internal static GetAutoPossessPlayerFunction getAutoPossessPlayer;
-		internal static GetGravityDirectionFunction getGravityDirection;
-		internal static GetAIControllerFunction getAIController;
-		internal static GetPlayerControllerFunction getPlayerController;
-		internal static SetAutoPossessAIFunction setAutoPossessAI;
-		internal static SetAutoPossessPlayerFunction setAutoPossessPlayer;
+	unsafe partial class Pawn {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addControllerYawInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addControllerPitchInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addControllerRollInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, Bool, void> addMovementInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI> getAutoPossessAI;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput> getAutoPossessPlayer;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getGravityDirection;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getAIController;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayerController;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI, void> setAutoPossessAI;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput, void> setAutoPossessPlayer;
 	}
 
-	partial class Character {
-		internal delegate Bool IsCrouchedFunction(IntPtr character);
-		internal delegate Bool CanCrouchFunction(IntPtr character);
-		internal delegate Bool CanJumpFunction(IntPtr character);
-		internal delegate void CheckJumpInputFunction(IntPtr character, float deltaTime);
-		internal delegate void ClearJumpInputFunction(IntPtr character, float deltaTime);
-		internal delegate void LaunchFunction(IntPtr character, in Vector3 velocity, Bool overrideXY, Bool overrideZ);
-		internal delegate void CrouchFunction(IntPtr character);
-		internal delegate void StopCrouchingFunction(IntPtr character);
-		internal delegate void JumpFunction(IntPtr character);
-		internal delegate void StopJumpingFunction(IntPtr character);
-
-		internal static IsCrouchedFunction isCrouched;
-		internal static CanCrouchFunction canCrouch;
-		internal static CanJumpFunction canJump;
-		internal static CheckJumpInputFunction checkJumpInput;
-		internal static ClearJumpInputFunction clearJumpInput;
-		internal static LaunchFunction launch;
-		internal static CrouchFunction crouch;
-		internal static StopCrouchingFunction stopCrouching;
-		internal static JumpFunction jump;
-		internal static StopJumpingFunction stopJumping;
+	unsafe partial class Character {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isCrouched;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> canCrouch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> canJump;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> checkJumpInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> clearJumpInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, Bool, void> launch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> crouch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stopCrouching;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> jump;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stopJumping;
 	}
 
-	partial class Controller {
-		internal delegate Bool IsLookInputIgnoredFunction(IntPtr controller);
-		internal delegate Bool IsMoveInputIgnoredFunction(IntPtr controller);
-		internal delegate Bool IsPlayerControllerFunction(IntPtr controller);
-		internal delegate IntPtr GetPawnFunction(IntPtr controller);
-		internal delegate IntPtr GetCharacterFunction(IntPtr controller);
-		internal delegate IntPtr GetViewTargetFunction(IntPtr controller);
-		internal delegate void GetControlRotationFunction(IntPtr controller, ref Quaternion value);
-		internal delegate void GetDesiredRotationFunction(IntPtr controller, ref Quaternion value);
-		internal delegate Bool LineOfSightToFunction(IntPtr controller, IntPtr actor, in Vector3 viewPoint, Bool alternateChecks);
-		internal delegate void SetControlRotationFunction(IntPtr controller, in Quaternion value);
-		internal delegate void SetInitialLocationAndRotationFunction(IntPtr controller, in Vector3 newLocation, in Quaternion newRotation);
-		internal delegate void SetIgnoreLookInputFunction(IntPtr controller, Bool value);
-		internal delegate void SetIgnoreMoveInputFunction(IntPtr controller, Bool value);
-		internal delegate void ResetIgnoreLookInputFunction(IntPtr controller);
-		internal delegate void ResetIgnoreMoveInputFunction(IntPtr controller);
-		internal delegate void PossessFunction(IntPtr controller, IntPtr pawn);
-		internal delegate void UnpossessFunction(IntPtr controller);
-
-		internal static IsLookInputIgnoredFunction isLookInputIgnored;
-		internal static IsMoveInputIgnoredFunction isMoveInputIgnored;
-		internal static IsPlayerControllerFunction isPlayerController;
-		internal static GetPawnFunction getPawn;
-		internal static GetCharacterFunction getCharacter;
-		internal static GetViewTargetFunction getViewTarget;
-		internal static GetControlRotationFunction getControlRotation;
-		internal static GetDesiredRotationFunction getDesiredRotation;
-		internal static LineOfSightToFunction lineOfSightTo;
-		internal static SetControlRotationFunction setControlRotation;
-		internal static SetInitialLocationAndRotationFunction setInitialLocationAndRotation;
-		internal static SetIgnoreLookInputFunction setIgnoreLookInput;
-		internal static SetIgnoreMoveInputFunction setIgnoreMoveInput;
-		internal static ResetIgnoreLookInputFunction resetIgnoreLookInput;
-		internal static ResetIgnoreMoveInputFunction resetIgnoreMoveInput;
-		internal static PossessFunction possess;
-		internal static UnpossessFunction unpossess;
+	unsafe partial class Controller {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isLookInputIgnored;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isMoveInputIgnored;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPlayerController;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPawn;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getCharacter;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getViewTarget;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getControlRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getDesiredRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, in Vector3, Bool, Bool> lineOfSightTo;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> setControlRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Quaternion, void> setInitialLocationAndRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setIgnoreLookInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setIgnoreMoveInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> resetIgnoreLookInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> resetIgnoreMoveInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> possess;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> unpossess;
 	}
 
-	partial class AIController {
-		internal delegate void ClearFocusFunction(IntPtr aiController, AIFocusPriority priority);
-		internal delegate void GetFocalPointFunction(IntPtr aiController, ref Vector3 value);
-		internal delegate void SetFocalPointFunction(IntPtr aiController, in Vector3 newFocus, AIFocusPriority priority);
-		internal delegate IntPtr GetFocusActorFunction(IntPtr aiController);
-		internal delegate Bool GetAllowStrafeFunction(IntPtr aiController);
-		internal delegate void SetAllowStrafeFunction(IntPtr aiController, Bool value);
-		internal delegate void SetFocusFunction(IntPtr aiController, IntPtr newFocus, AIFocusPriority priority);
-
-		internal static ClearFocusFunction clearFocus;
-		internal static GetFocalPointFunction getFocalPoint;
-		internal static SetFocalPointFunction setFocalPoint;
-		internal static GetFocusActorFunction getFocusActor;
-		internal static GetAllowStrafeFunction getAllowStrafe;
-		internal static SetAllowStrafeFunction setAllowStrafe;
-		internal static SetFocusFunction setFocus;
+	unsafe partial class AIController {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, AIFocusPriority, void> clearFocus;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getFocalPoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, AIFocusPriority, void> setFocalPoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getFocusActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getAllowStrafe;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setAllowStrafe;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AIFocusPriority, void> setFocus;
 	}
 
-	partial class PlayerController {
-		internal delegate Bool IsPausedFunction(IntPtr playerController);
-		internal delegate Bool GetShowMouseCursorFunction(IntPtr playerController);
-		internal delegate Bool GetEnableMouseOverEventsFunction(IntPtr playerController);
-		internal delegate Bool GetMousePositionFunction(IntPtr playerController, ref float x, ref float y);
-		internal delegate IntPtr GetPlayerFunction(IntPtr playerController);
-		internal delegate IntPtr GetPlayerInputFunction(IntPtr playerController);
-		internal delegate void SetShowMouseCursorFunction(IntPtr playerController, Bool value);
-		internal delegate void SetEnableMouseOverEventsFunction(IntPtr playerController, Bool value);
-		internal delegate void SetMousePositionFunction(IntPtr playerController, float x, float y);
-		internal delegate void ConsoleCommandFunction(IntPtr playerController, string command, Bool writeToLog);
-		internal delegate Bool SetPauseFunction(IntPtr playerController, Bool value);
-		internal delegate void SetViewTargetFunction(IntPtr playerController, IntPtr newViewTarget);
-		internal delegate void SetViewTargetWithBlendFunction(IntPtr playerController, IntPtr newViewTarget, float time, float exponent, BlendType type, Bool lockOutgoing);
-		internal delegate void AddYawInputFunction(IntPtr playerController, float value);
-		internal delegate void AddPitchInputFunction(IntPtr playerController, float value);
-		internal delegate void AddRollInputFunction(IntPtr playerController, float value);
-
-		internal static IsPausedFunction isPaused;
-		internal static GetShowMouseCursorFunction getShowMouseCursor;
-		internal static GetEnableMouseOverEventsFunction getEnableMouseOverEvents;
-		internal static GetMousePositionFunction getMousePosition;
-		internal static GetPlayerFunction getPlayer;
-		internal static GetPlayerInputFunction getPlayerInput;
-		internal static SetShowMouseCursorFunction setShowMouseCursor;
-		internal static SetEnableMouseOverEventsFunction setEnableMouseOverEvents;
-		internal static SetMousePositionFunction setMousePosition;
-		internal static ConsoleCommandFunction consoleCommand;
-		internal static SetPauseFunction setPause;
-		internal static SetViewTargetFunction setViewTarget;
-		internal static SetViewTargetWithBlendFunction setViewTargetWithBlend;
-		internal static AddYawInputFunction addYawInput;
-		internal static AddPitchInputFunction addPitchInput;
-		internal static AddRollInputFunction addRollInput;
+	unsafe partial class PlayerController {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPaused;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getShowMouseCursor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getEnableMouseOverEvents;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, Bool> getMousePosition;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayer;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayerInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setShowMouseCursor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableMouseOverEvents;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, void> setMousePosition;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void> consoleCommand;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool> setPause;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setViewTarget;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, BlendType, Bool, void> setViewTargetWithBlend;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addYawInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addPitchInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addRollInput;
 	}
 
-	partial class Volume {
-		internal delegate Bool EncompassesPointFunction(IntPtr volume, in Vector3 point, float sphereRadius, ref float outDistanceToPoint);
-
-		internal static EncompassesPointFunction encompassesPoint;
+	unsafe partial class Volume {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, ref float, Bool> encompassesPoint;
 	}
 
-	partial class TriggerVolume { }
+	unsafe partial class TriggerVolume { }
 
-	partial class PostProcessVolume {
-		internal delegate Bool GetEnabledFunction(IntPtr postProcessVolume);
-		internal delegate float GetBlendRadiusFunction(IntPtr postProcessVolume);
-		internal delegate float GetBlendWeightFunction(IntPtr postProcessVolume);
-		internal delegate Bool GetUnboundFunction(IntPtr postProcessVolume);
-		internal delegate float GetPriorityFunction(IntPtr postProcessVolume);
-		internal delegate void SetEnabledFunction(IntPtr postProcessVolume, Bool value);
-		internal delegate void SetBlendRadiusFunction(IntPtr postProcessVolume, float value);
-		internal delegate void SetBlendWeightFunction(IntPtr postProcessVolume, float value);
-		internal delegate void SetUnboundFunction(IntPtr postProcessVolume, Bool value);
-		internal delegate void SetPriorityFunction(IntPtr postProcessVolume, float priority);
-
-		internal static GetEnabledFunction getEnabled;
-		internal static GetBlendRadiusFunction getBlendRadius;
-		internal static GetBlendWeightFunction getBlendWeight;
-		internal static GetUnboundFunction getUnbound;
-		internal static GetPriorityFunction getPriority;
-		internal static SetEnabledFunction setEnabled;
-		internal static SetBlendRadiusFunction setBlendRadius;
-		internal static SetBlendWeightFunction setBlendWeight;
-		internal static SetUnboundFunction setUnbound;
-		internal static SetPriorityFunction setPriority;
+	unsafe partial class PostProcessVolume {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getEnabled;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getBlendRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getBlendWeight;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUnbound;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getPriority;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnabled;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setBlendRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setBlendWeight;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUnbound;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setPriority;
 	}
 
-	partial class LevelScript { }
+	unsafe partial class LevelScript { }
 
-	partial class AmbientSound { }
+	unsafe partial class AmbientSound { }
 
-	partial class Light { }
+	unsafe partial class Light { }
 
-	partial class DirectionalLight { }
+	unsafe partial class DirectionalLight { }
 
-	partial class PointLight { }
+	unsafe partial class PointLight { }
 
-	partial class RectLight { }
+	unsafe partial class RectLight { }
 
-	partial class SpotLight { }
+	unsafe partial class SpotLight { }
 
-	partial class SoundBase {
-		internal delegate float GetDurationFunction(IntPtr soundBase);
-
-		internal static GetDurationFunction getDuration;
+	unsafe partial class SoundBase {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getDuration;
 	}
 
-	partial class SoundWave {
-		internal delegate Bool GetLoopFunction(IntPtr soundWave);
-		internal delegate void SetLoopFunction(IntPtr soundWave, Bool value);
-
-		internal static GetLoopFunction getLoop;
-		internal static SetLoopFunction setLoop;
+	unsafe partial class SoundWave {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getLoop;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setLoop;
 	}
 
-	partial class AnimationAsset { }
+	unsafe partial class AnimationAsset { }
 
-	partial class AnimationSequenceBase { }
+	unsafe partial class AnimationSequenceBase { }
 
-	partial class AnimationSequence { }
+	unsafe partial class AnimationSequence { }
 
-	partial class AnimationCompositeBase { }
+	unsafe partial class AnimationCompositeBase { }
 
-	partial class AnimationMontage { }
+	unsafe partial class AnimationMontage { }
 
-	partial class AnimationInstance {
-		internal delegate IntPtr GetCurrentActiveMontageFunction(IntPtr animationInstance);
-		internal delegate Bool IsPlayingFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate float GetPlayRateFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate float GetPositionFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate float GetBlendTimeFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate void GetCurrentSectionFunction(IntPtr animationInstance, IntPtr montage, byte[] sectionName);
-		internal delegate void SetPlayRateFunction(IntPtr animationInstance, IntPtr montage, float value);
-		internal delegate void SetPositionFunction(IntPtr animationInstance, IntPtr montage, float position);
-		internal delegate void SetNextSectionFunction(IntPtr animationInstance, IntPtr montage, string sectionToChange, string nextSection);
-		internal delegate float PlayMontageFunction(IntPtr animationInstance, IntPtr montage, float playRate, float timeToStartMontageAt, Bool stopAllMontages);
-		internal delegate void PauseMontageFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate void ResumeMontageFunction(IntPtr animationInstance, IntPtr montage);
-		internal delegate void StopMontageFunction(IntPtr animationInstance, IntPtr montage, float blendOutTime);
-		internal delegate void JumpToSectionFunction(IntPtr animationInstance, IntPtr montage, string sectionName);
-		internal delegate void JumpToSectionsEndFunction(IntPtr animationInstance, IntPtr montage, string sectionName);
-
-		internal static GetCurrentActiveMontageFunction getCurrentActiveMontage;
-		internal static IsPlayingFunction isPlaying;
-		internal static GetPlayRateFunction getPlayRate;
-		internal static GetPositionFunction getPosition;
-		internal static GetBlendTimeFunction getBlendTime;
-		internal static GetCurrentSectionFunction getCurrentSection;
-		internal static SetPlayRateFunction setPlayRate;
-		internal static SetPositionFunction setPosition;
-		internal static SetNextSectionFunction setNextSection;
-		internal static PlayMontageFunction playMontage;
-		internal static PauseMontageFunction pauseMontage;
-		internal static ResumeMontageFunction resumeMontage;
-		internal static StopMontageFunction stopMontage;
-		internal static JumpToSectionFunction jumpToSection;
-		internal static JumpToSectionsEndFunction jumpToSectionsEnd;
+	unsafe partial class AnimationInstance {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getCurrentActiveMontage;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isPlaying;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float> getPlayRate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float> getPosition;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float> getBlendTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void> getCurrentSection;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void> setPlayRate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void> setPosition;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, string, void> setNextSection;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, Bool, float> playMontage;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> pauseMontage;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> resumeMontage;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void> stopMontage;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void> jumpToSection;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void> jumpToSectionsEnd;
 	}
 
-	partial class Player {
-		internal delegate IntPtr GetPlayerControllerFunction(IntPtr player);
-
-		internal static GetPlayerControllerFunction getPlayerController;
+	unsafe partial class Player {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayerController;
 	}
 
-	partial class PlayerInput {
-		internal delegate Bool IsKeyPressedFunction(IntPtr playerInput, string key);
-		internal delegate float GetTimeKeyPressedFunction(IntPtr playerInput, string key);
-		internal delegate void GetMouseSensitivityFunction(IntPtr playerInput, ref Vector2 value);
-		internal delegate void SetMouseSensitivityFunction(IntPtr playerInput, in Vector2 value);
-		internal delegate void AddActionMappingFunction(IntPtr playerInput, string actionName, string key, Bool shift, Bool ctrl, Bool alt, Bool cmd);
-		internal delegate void AddAxisMappingFunction(IntPtr playerInput, string axisName, string key, float scale);
-		internal delegate void RemoveActionMappingFunction(IntPtr playerInput, string actionName, string key);
-		internal delegate void RemoveAxisMappingFunction(IntPtr playerInput, string axisName, string key);
-
-		internal static IsKeyPressedFunction isKeyPressed;
-		internal static GetTimeKeyPressedFunction getTimeKeyPressed;
-		internal static GetMouseSensitivityFunction getMouseSensitivity;
-		internal static SetMouseSensitivityFunction setMouseSensitivity;
-		internal static AddActionMappingFunction addActionMapping;
-		internal static AddAxisMappingFunction addAxisMapping;
-		internal static RemoveActionMappingFunction removeActionMapping;
-		internal static RemoveAxisMappingFunction removeAxisMapping;
+	unsafe partial class PlayerInput {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isKeyPressed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float> getTimeKeyPressed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void> getMouseSensitivity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector2, void> setMouseSensitivity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool, Bool, Bool, Bool, void> addActionMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, float, void> addAxisMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, void> removeActionMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, void> removeAxisMapping;
 	}
 
-	partial class StreamableRenderAsset { }
+	unsafe partial class StreamableRenderAsset { }
 
-	partial class StaticMesh { }
+	unsafe partial class StaticMesh { }
 
-	partial class SkeletalMesh { }
+	unsafe partial class SkeletalMesh { }
 
-	partial class Texture { }
+	unsafe partial class Texture { }
 
-	partial class Texture2D {
-		internal delegate IntPtr CreateFromFileFunction(string filePath);
-		internal delegate IntPtr CreateFromBufferFunction(byte[] buffer, int length);
-		internal delegate Bool HasAlphaChannelFunction(IntPtr texture2D);
-		internal delegate void GetSizeFunction(IntPtr texture2D, ref Vector2 value);
-		internal delegate PixelFormat GetPixelFormatFunction(IntPtr texture2D);
-
-		internal static CreateFromFileFunction createFromFile;
-		internal static CreateFromBufferFunction createFromBuffer;
-		internal static HasAlphaChannelFunction hasAlphaChannel;
-		internal static GetSizeFunction getSize;
-		internal static GetPixelFormatFunction getPixelFormat;
+	unsafe partial class Texture2D {
+		internal static delegate* unmanaged[Cdecl]<string, IntPtr> createFromFile;
+		internal static delegate* unmanaged[Cdecl]<byte[], int, IntPtr> createFromBuffer;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasAlphaChannel;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void> getSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, PixelFormat> getPixelFormat;
 	}
 
-	partial class ActorComponent {
-		internal delegate Bool IsOwnerSelectedFunction(IntPtr actorComponent);
-		internal delegate IntPtr GetOwnerFunction(IntPtr actorComponent, ActorType type);
-		internal delegate void DestroyFunction(IntPtr actorComponent, Bool promoteChildren);
-		internal delegate void AddTagFunction(IntPtr actorComponent, string tag);
-		internal delegate void RemoveTagFunction(IntPtr actorComponent, string tag);
-		internal delegate Bool HasTagFunction(IntPtr actorComponent, string tag);
-
-		internal static IsOwnerSelectedFunction isOwnerSelected;
-		internal static GetOwnerFunction getOwner;
-		internal static DestroyFunction destroy;
-		internal static AddTagFunction addTag;
-		internal static RemoveTagFunction removeTag;
-		internal static HasTagFunction hasTag;
+	unsafe partial class ActorComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isOwnerSelected;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> getOwner;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> destroy;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> addTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> removeTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> hasTag;
 	}
 
-	partial class InputComponent {
-		internal delegate Bool HasBindingsFunction(IntPtr inputComponent);
-		internal delegate int GetActionBindingsNumberFunction(IntPtr inputComponent);
-		internal delegate void ClearActionBindingsFunction(IntPtr inputComponent);
-		internal delegate void BindActionFunction(IntPtr inputComponent, string actionName, InputEvent keyEvent, Bool executedWhenPaused, IntPtr callback);
-		internal delegate void BindAxisFunction(IntPtr inputComponent, string axisName, Bool executedWhenPaused, IntPtr callback);
-		internal delegate void RemoveActionBindingFunction(IntPtr inputComponent, string actionName, InputEvent keyEvent);
-		internal delegate Bool GetBlockInputFunction(IntPtr inputComponent);
-		internal delegate void SetBlockInputFunction(IntPtr inputComponent, Bool value);
-		internal delegate int GetPriorityFunction(IntPtr inputComponent);
-		internal delegate void SetPriorityFunction(IntPtr inputComponent, int value);
-
-		internal static HasBindingsFunction hasBindings;
-		internal static GetActionBindingsNumberFunction getActionBindingsNumber;
-		internal static ClearActionBindingsFunction clearActionBindings;
-		internal static BindActionFunction bindAction;
-		internal static BindAxisFunction bindAxis;
-		internal static RemoveActionBindingFunction removeActionBinding;
-		internal static GetBlockInputFunction getBlockInput;
-		internal static SetBlockInputFunction setBlockInput;
-		internal static GetPriorityFunction getPriority;
-		internal static SetPriorityFunction setPriority;
+	unsafe partial class InputComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasBindings;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getActionBindingsNumber;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearActionBindings;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, Bool, IntPtr, void> bindAction;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, IntPtr, void> bindAxis;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, void> removeActionBinding;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getBlockInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setBlockInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getPriority;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setPriority;
 	}
 
-	partial class SceneComponent {
-		internal delegate Bool IsAttachedToComponentFunction(IntPtr sceneComponent, IntPtr component);
-		internal delegate Bool IsAttachedToActorFunction(IntPtr sceneComponent, IntPtr actor);
-		internal delegate Bool IsVisibleFunction(IntPtr sceneComponent);
-		internal delegate Bool IsSocketExistsFunction(IntPtr sceneComponent, string socketName);
-		internal delegate Bool HasAnySocketsFunction(IntPtr sceneComponent);
-		internal delegate IntPtr CreateFunction(IntPtr actor, ComponentType type, string name, Bool setAsRoot, IntPtr blueprint);
-		internal delegate Bool AttachToComponentFunction(IntPtr sceneComponent, IntPtr parent, AttachmentTransformRule attachmentRule, string socketName);
-		internal delegate void DetachFromComponentFunction(IntPtr sceneComponent, DetachmentTransformRule detachmentRule);
-		internal delegate void ActivateFunction(IntPtr sceneComponent);
-		internal delegate void DeactivateFunction(IntPtr sceneComponent);
-		internal delegate void UpdateToWorldFunction(IntPtr sceneComponent, TeleportType type, UpdateTransformFlags flags);
-		internal delegate void AddLocalOffsetFunction(IntPtr sceneComponent, in Vector3 deltaLocation);
-		internal delegate void AddLocalRotationFunction(IntPtr sceneComponent, in Quaternion deltaRotation);
-		internal delegate void AddRelativeLocationFunction(IntPtr sceneComponent, in Vector3 deltaLocation);
-		internal delegate void AddRelativeRotationFunction(IntPtr sceneComponent, in Quaternion deltaRotation);
-		internal delegate void AddLocalTransformFunction(IntPtr sceneComponent, in Transform deltaTransform);
-		internal delegate void AddWorldOffsetFunction(IntPtr sceneComponent, in Vector3 deltaLocation);
-		internal delegate void AddWorldRotationFunction(IntPtr sceneComponent, in Quaternion deltaRotation);
-		internal delegate void AddWorldTransformFunction(IntPtr sceneComponent, in Transform deltaTransform);
-		internal delegate void GetAttachedSocketNameFunction(IntPtr sceneComponent, byte[] socketName);
-		internal delegate void GetSocketLocationFunction(IntPtr sceneComponent, string socketName, ref Vector3 value);
-		internal delegate void GetSocketRotationFunction(IntPtr sceneComponent, string socketName, ref Quaternion value);
-		internal delegate void GetComponentVelocityFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void GetComponentLocationFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void GetComponentRotationFunction(IntPtr sceneComponent, ref Quaternion value);
-		internal delegate void GetComponentScaleFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void GetComponentTransformFunction(IntPtr sceneComponent, ref Transform value);
-		internal delegate void GetForwardVectorFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void GetRightVectorFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void GetUpVectorFunction(IntPtr sceneComponent, ref Vector3 value);
-		internal delegate void SetMobilityFunction(IntPtr sceneComponent, ComponentMobility mobility);
-		internal delegate void SetVisibilityFunction(IntPtr sceneComponent, Bool newVisibility, Bool propagateToChildren);
-		internal delegate void SetRelativeLocationFunction(IntPtr sceneComponent, in Vector3 location);
-		internal delegate void SetRelativeRotationFunction(IntPtr sceneComponent, in Quaternion rotation);
-		internal delegate void SetRelativeTransformFunction(IntPtr sceneComponent, in Transform transform);
-		internal delegate void SetWorldLocationFunction(IntPtr sceneComponent, in Vector3 location);
-		internal delegate void SetWorldRotationFunction(IntPtr sceneComponent, in Quaternion rotation);
-		internal delegate void SetWorldScaleFunction(IntPtr sceneComponent, in Vector3 scale);
-		internal delegate void SetWorldTransformFunction(IntPtr sceneComponent, in Transform transform);
-
-		internal static IsAttachedToComponentFunction isAttachedToComponent;
-		internal static IsAttachedToActorFunction isAttachedToActor;
-		internal static IsVisibleFunction isVisible;
-		internal static IsSocketExistsFunction isSocketExists;
-		internal static HasAnySocketsFunction hasAnySockets;
-		internal static CreateFunction create;
-		internal static AttachToComponentFunction attachToComponent;
-		internal static DetachFromComponentFunction detachFromComponent;
-		internal static ActivateFunction activate;
-		internal static DeactivateFunction deactivate;
-		internal static UpdateToWorldFunction updateToWorld;
-		internal static AddLocalOffsetFunction addLocalOffset;
-		internal static AddLocalRotationFunction addLocalRotation;
-		internal static AddRelativeLocationFunction addRelativeLocation;
-		internal static AddRelativeRotationFunction addRelativeRotation;
-		internal static AddLocalTransformFunction addLocalTransform;
-		internal static AddWorldOffsetFunction addWorldOffset;
-		internal static AddWorldRotationFunction addWorldRotation;
-		internal static AddWorldTransformFunction addWorldTransform;
-		internal static GetAttachedSocketNameFunction getAttachedSocketName;
-		internal static GetSocketLocationFunction getSocketLocation;
-		internal static GetSocketRotationFunction getSocketRotation;
-		internal static GetComponentVelocityFunction getComponentVelocity;
-		internal static GetComponentLocationFunction getComponentLocation;
-		internal static GetComponentRotationFunction getComponentRotation;
-		internal static GetComponentScaleFunction getComponentScale;
-		internal static GetComponentTransformFunction getComponentTransform;
-		internal static GetForwardVectorFunction getForwardVector;
-		internal static GetRightVectorFunction getRightVector;
-		internal static GetUpVectorFunction getUpVector;
-		internal static SetMobilityFunction setMobility;
-		internal static SetVisibilityFunction setVisibility;
-		internal static SetRelativeLocationFunction setRelativeLocation;
-		internal static SetRelativeRotationFunction setRelativeRotation;
-		internal static SetRelativeTransformFunction setRelativeTransform;
-		internal static SetWorldLocationFunction setWorldLocation;
-		internal static SetWorldRotationFunction setWorldRotation;
-		internal static SetWorldScaleFunction setWorldScale;
-		internal static SetWorldTransformFunction setWorldTransform;
+	unsafe partial class SceneComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isAttachedToComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isAttachedToActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isVisible;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isSocketExists;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasAnySockets;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr> create;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool> attachToComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void> detachFromComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> activate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> deactivate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, TeleportType, UpdateTransformFlags, void> updateToWorld;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> addLocalOffset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> addLocalRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> addRelativeLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> addRelativeRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> addLocalTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> addWorldOffset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> addWorldRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> addWorldTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getAttachedSocketName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref Vector3, void> getSocketLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref Quaternion, void> getSocketRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getComponentVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getComponentLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getComponentRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getComponentScale;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Transform, void> getComponentTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getForwardVector;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getRightVector;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getUpVector;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentMobility, void> setMobility;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool, void> setVisibility;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setRelativeLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> setRelativeRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> setRelativeTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> setWorldRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setWorldScale;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> setWorldTransform;
 	}
 
-	partial class AudioComponent {
-		internal delegate Bool IsPlayingFunction(IntPtr audioComponent);
-		internal delegate Bool GetPausedFunction(IntPtr audioComponent);
-		internal delegate void SetSoundFunction(IntPtr audioComponent, IntPtr sound);
-		internal delegate void SetPausedFunction(IntPtr audioComponent, Bool value);
-		internal delegate void PlayFunction(IntPtr audioComponent);
-		internal delegate void StopFunction(IntPtr audioComponent);
-		internal delegate void FadeInFunction(IntPtr audioComponent, float duration, float volumeLevel, float startTime, AudioFadeCurve fadeCurve);
-		internal delegate void FadeOutFunction(IntPtr audioComponent, float duration, float volumeLevel, AudioFadeCurve fadeCurve);
-
-		internal static IsPlayingFunction isPlaying;
-		internal static GetPausedFunction getPaused;
-		internal static SetSoundFunction setSound;
-		internal static SetPausedFunction setPaused;
-		internal static PlayFunction play;
-		internal static StopFunction stop;
-		internal static FadeInFunction fadeIn;
-		internal static FadeOutFunction fadeOut;
+	unsafe partial class AudioComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPlaying;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getPaused;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setSound;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setPaused;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> play;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stop;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, float, AudioFadeCurve, void> fadeIn;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, AudioFadeCurve, void> fadeOut;
 	}
 
-	partial class CameraComponent {
-		internal delegate Bool GetConstrainAspectRatioFunction(IntPtr cameraComponent);
-		internal delegate float GetAspectRatioFunction(IntPtr cameraComponent);
-		internal delegate float GetFieldOfViewFunction(IntPtr cameraComponent);
-		internal delegate float GetOrthoFarClipPlaneFunction(IntPtr cameraComponent);
-		internal delegate float GetOrthoNearClipPlaneFunction(IntPtr cameraComponent);
-		internal delegate float GetOrthoWidthFunction(IntPtr cameraComponent);
-		internal delegate Bool GetLockToHeadMountedDisplayFunction(IntPtr cameraComponent);
-		internal delegate void SetProjectionModeFunction(IntPtr cameraComponent, CameraProjectionMode mode);
-		internal delegate void SetConstrainAspectRatioFunction(IntPtr cameraComponent, Bool value);
-		internal delegate void SetAspectRatioFunction(IntPtr cameraComponent, float value);
-		internal delegate void SetFieldOfViewFunction(IntPtr cameraComponent, float value);
-		internal delegate void SetOrthoFarClipPlaneFunction(IntPtr cameraComponent, float value);
-		internal delegate void SetOrthoNearClipPlaneFunction(IntPtr cameraComponent, float value);
-		internal delegate void SetOrthoWidthFunction(IntPtr cameraComponent, float value);
-		internal delegate void SetLockToHeadMountedDisplayFunction(IntPtr cameraComponent, Bool value);
-
-		internal static GetConstrainAspectRatioFunction getConstrainAspectRatio;
-		internal static GetAspectRatioFunction getAspectRatio;
-		internal static GetFieldOfViewFunction getFieldOfView;
-		internal static GetOrthoFarClipPlaneFunction getOrthoFarClipPlane;
-		internal static GetOrthoNearClipPlaneFunction getOrthoNearClipPlane;
-		internal static GetOrthoWidthFunction getOrthoWidth;
-		internal static GetLockToHeadMountedDisplayFunction getLockToHeadMountedDisplay;
-		internal static SetProjectionModeFunction setProjectionMode;
-		internal static SetConstrainAspectRatioFunction setConstrainAspectRatio;
-		internal static SetAspectRatioFunction setAspectRatio;
-		internal static SetFieldOfViewFunction setFieldOfView;
-		internal static SetOrthoFarClipPlaneFunction setOrthoFarClipPlane;
-		internal static SetOrthoNearClipPlaneFunction setOrthoNearClipPlane;
-		internal static SetOrthoWidthFunction setOrthoWidth;
-		internal static SetLockToHeadMountedDisplayFunction setLockToHeadMountedDisplay;
+	unsafe partial class CameraComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getConstrainAspectRatio;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getAspectRatio;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getFieldOfView;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getOrthoFarClipPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getOrthoNearClipPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getOrthoWidth;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getLockToHeadMountedDisplay;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CameraProjectionMode, void> setProjectionMode;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setConstrainAspectRatio;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setAspectRatio;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setFieldOfView;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setOrthoFarClipPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setOrthoNearClipPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setOrthoWidth;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setLockToHeadMountedDisplay;
 	}
 
-	partial class ChildActorComponent {
-		internal delegate IntPtr SetChildActorFunction(IntPtr childActorComponent, ActorType type);
-
-		internal static SetChildActorFunction setChildActor;
+	unsafe partial class ChildActorComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> setChildActor;
 	}
 
-	partial class SpringArmComponent {
-		internal delegate Bool IsCollisionFixAppliedFunction(IntPtr springArmComponent);
-		internal delegate Bool GetDrawDebugLagMarkersFunction(IntPtr springArmComponent);
-		internal delegate Bool GetCollisionTestFunction(IntPtr springArmComponent);
-		internal delegate Bool GetCameraPositionLagFunction(IntPtr springArmComponent);
-		internal delegate Bool GetCameraRotationLagFunction(IntPtr springArmComponent);
-		internal delegate Bool GetCameraLagSubsteppingFunction(IntPtr springArmComponent);
-		internal delegate Bool GetInheritPitchFunction(IntPtr springArmComponent);
-		internal delegate Bool GetInheritRollFunction(IntPtr springArmComponent);
-		internal delegate Bool GetInheritYawFunction(IntPtr springArmComponent);
-		internal delegate float GetCameraLagMaxDistanceFunction(IntPtr springArmComponent);
-		internal delegate float GetCameraLagMaxTimeStepFunction(IntPtr springArmComponent);
-		internal delegate float GetCameraPositionLagSpeedFunction(IntPtr springArmComponent);
-		internal delegate float GetCameraRotationLagSpeedFunction(IntPtr springArmComponent);
-		internal delegate CollisionChannel GetProbeChannelFunction(IntPtr springArmComponent);
-		internal delegate float GetProbeSizeFunction(IntPtr springArmComponent);
-		internal delegate void GetSocketOffsetFunction(IntPtr springArmComponent, ref Vector3 value);
-		internal delegate float GetTargetArmLengthFunction(IntPtr springArmComponent);
-		internal delegate void GetTargetOffsetFunction(IntPtr springArmComponent, ref Vector3 value);
-		internal delegate void GetUnfixedCameraPositionFunction(IntPtr springArmComponent, ref Vector3 value);
-		internal delegate void GetDesiredRotationFunction(IntPtr springArmComponent, ref Quaternion value);
-		internal delegate void GetTargetRotationFunction(IntPtr springArmComponent, ref Quaternion value);
-		internal delegate void SetDrawDebugLagMarkersFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetCollisionTestFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetCameraPositionLagFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetCameraRotationLagFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetCameraLagSubsteppingFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetInheritPitchFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetInheritRollFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetInheritYawFunction(IntPtr springArmComponent, Bool value);
-		internal delegate void SetCameraLagMaxDistanceFunction(IntPtr springArmComponent, float value);
-		internal delegate void SetCameraLagMaxTimeStepFunction(IntPtr springArmComponent, float value);
-		internal delegate void SetCameraPositionLagSpeedFunction(IntPtr springArmComponent, float value);
-		internal delegate void SetCameraRotationLagSpeedFunction(IntPtr springArmComponent, float value);
-		internal delegate void SetProbeChannelFunction(IntPtr springArmComponent, CollisionChannel value);
-		internal delegate void SetProbeSizeFunction(IntPtr springArmComponent, float value);
-		internal delegate void SetSocketOffsetFunction(IntPtr springArmComponent, in Vector3 value);
-		internal delegate void SetTargetArmLengthFunction(IntPtr springArmComponent, float value);
-		internal delegate void SetTargetOffsetFunction(IntPtr springArmComponent, in Vector3 value);
-
-		internal static IsCollisionFixAppliedFunction isCollisionFixApplied;
-		internal static GetDrawDebugLagMarkersFunction getDrawDebugLagMarkers;
-		internal static GetCollisionTestFunction getCollisionTest;
-		internal static GetCameraPositionLagFunction getCameraPositionLag;
-		internal static GetCameraRotationLagFunction getCameraRotationLag;
-		internal static GetCameraLagSubsteppingFunction getCameraLagSubstepping;
-		internal static GetInheritPitchFunction getInheritPitch;
-		internal static GetInheritRollFunction getInheritRoll;
-		internal static GetInheritYawFunction getInheritYaw;
-		internal static GetCameraLagMaxDistanceFunction getCameraLagMaxDistance;
-		internal static GetCameraLagMaxTimeStepFunction getCameraLagMaxTimeStep;
-		internal static GetCameraPositionLagSpeedFunction getCameraPositionLagSpeed;
-		internal static GetCameraRotationLagSpeedFunction getCameraRotationLagSpeed;
-		internal static GetProbeChannelFunction getProbeChannel;
-		internal static GetProbeSizeFunction getProbeSize;
-		internal static GetSocketOffsetFunction getSocketOffset;
-		internal static GetTargetArmLengthFunction getTargetArmLength;
-		internal static GetTargetOffsetFunction getTargetOffset;
-		internal static GetUnfixedCameraPositionFunction getUnfixedCameraPosition;
-		internal static GetDesiredRotationFunction getDesiredRotation;
-		internal static GetTargetRotationFunction getTargetRotation;
-		internal static SetDrawDebugLagMarkersFunction setDrawDebugLagMarkers;
-		internal static SetCollisionTestFunction setCollisionTest;
-		internal static SetCameraPositionLagFunction setCameraPositionLag;
-		internal static SetCameraRotationLagFunction setCameraRotationLag;
-		internal static SetCameraLagSubsteppingFunction setCameraLagSubstepping;
-		internal static SetInheritPitchFunction setInheritPitch;
-		internal static SetInheritRollFunction setInheritRoll;
-		internal static SetInheritYawFunction setInheritYaw;
-		internal static SetCameraLagMaxDistanceFunction setCameraLagMaxDistance;
-		internal static SetCameraLagMaxTimeStepFunction setCameraLagMaxTimeStep;
-		internal static SetCameraPositionLagSpeedFunction setCameraPositionLagSpeed;
-		internal static SetCameraRotationLagSpeedFunction setCameraRotationLagSpeed;
-		internal static SetProbeChannelFunction setProbeChannel;
-		internal static SetProbeSizeFunction setProbeSize;
-		internal static SetSocketOffsetFunction setSocketOffset;
-		internal static SetTargetArmLengthFunction setTargetArmLength;
-		internal static SetTargetOffsetFunction setTargetOffset;
+	unsafe partial class SpringArmComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isCollisionFixApplied;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getDrawDebugLagMarkers;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCollisionTest;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCameraPositionLag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCameraRotationLag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCameraLagSubstepping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getInheritPitch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getInheritRoll;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getInheritYaw;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getCameraLagMaxDistance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getCameraLagMaxTimeStep;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getCameraPositionLagSpeed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getCameraRotationLagSpeed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel> getProbeChannel;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getProbeSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getSocketOffset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getTargetArmLength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getTargetOffset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getUnfixedCameraPosition;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getDesiredRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getTargetRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDrawDebugLagMarkers;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCollisionTest;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCameraPositionLag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCameraRotationLag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCameraLagSubstepping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setInheritPitch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setInheritRoll;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setInheritYaw;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setCameraLagMaxDistance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setCameraLagMaxTimeStep;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setCameraPositionLagSpeed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setCameraRotationLagSpeed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void> setProbeChannel;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setProbeSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setSocketOffset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setTargetArmLength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setTargetOffset;
 	}
 
-	partial class PrimitiveComponent {
-		internal delegate Bool IsGravityEnabledFunction(IntPtr primitiveComponent);
-		internal delegate Bool IsOverlappingComponentFunction(IntPtr primitiveComponent, IntPtr other);
-		internal delegate void AddAngularImpulseInDegreesFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
-		internal delegate void AddAngularImpulseInRadiansFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
-		internal delegate void AddForceFunction(IntPtr primitiveComponent, in Vector3 force, string boneName, Bool accelerationChange);
-		internal delegate void AddForceAtLocationFunction(IntPtr primitiveComponent, in Vector3 force, in Vector3 location, string boneName, Bool localSpace);
-		internal delegate void AddImpulseFunction(IntPtr primitiveComponent, in Vector3 impulse, string boneName, Bool velocityChange);
-		internal delegate void AddImpulseAtLocationFunction(IntPtr primitiveComponent, in Vector3 impulse, in Vector3 location, string boneName);
-		internal delegate void AddRadialForceFunction(IntPtr primitiveComponent, in Vector3 origin, float radius, float strength, Bool linearFalloff, Bool accelerationChange);
-		internal delegate void AddRadialImpulseFunction(IntPtr primitiveComponent, in Vector3 origin, float radius, float strength, Bool linearFalloff, Bool accelerationChange);
-		internal delegate void AddTorqueInDegreesFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
-		internal delegate void AddTorqueInRadiansFunction(IntPtr primitiveComponent, in Vector3 torque, string boneName, Bool accelerationChange);
-		internal delegate float GetMassFunction(IntPtr primitiveComponent);
-		internal delegate void GetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
-		internal delegate void GetPhysicsLinearVelocityAtPointFunction(IntPtr primitiveComponent, ref Vector3 value, in Vector3 point, string boneName);
-		internal delegate void GetPhysicsAngularVelocityInDegreesFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
-		internal delegate void GetPhysicsAngularVelocityInRadiansFunction(IntPtr primitiveComponent, ref Vector3 value, string boneName);
-		internal delegate Bool GetCastShadowFunction(IntPtr primitiveComponent);
-		internal delegate Bool GetOnlyOwnerSeeFunction(IntPtr primitiveComponent);
-		internal delegate Bool GetOwnerNoSeeFunction(IntPtr primitiveComponent);
-		internal delegate Bool GetIgnoreRadialForceFunction(IntPtr primitiveComponent);
-		internal delegate Bool GetIgnoreRadialImpulseFunction(IntPtr primitiveComponent);
-		internal delegate IntPtr GetMaterialFunction(IntPtr primitiveComponent, int elementIndex);
-		internal delegate int GetMaterialsNumberFunction(IntPtr primitiveComponent);
-		internal delegate float GetDistanceToCollisionFunction(IntPtr primitiveComponent, in Vector3 point, ref Vector3 closestPointOnCollision);
-		internal delegate Bool GetSquaredDistanceToCollisionFunction(IntPtr primitiveComponent, in Vector3 point, ref float squaredDistance, ref Vector3 closestPointOnCollision);
-		internal delegate float GetAngularDampingFunction(IntPtr primitiveComponent);
-		internal delegate float GetLinearDampingFunction(IntPtr primitiveComponent);
-		internal delegate void SetGenerateOverlapEventsFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetGenerateHitEventsFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetMassFunction(IntPtr primitiveComponent, float mass, string boneName);
-		internal delegate void SetCenterOfMassFunction(IntPtr primitiveComponent, in Vector3 offset, string boneName);
-		internal delegate void SetPhysicsLinearVelocityFunction(IntPtr primitiveComponent, in Vector3 velocity, Bool addToCurrent, string boneName);
-		internal delegate void SetPhysicsAngularVelocityInDegreesFunction(IntPtr primitiveComponent, in Vector3 angularVelocity, Bool addToCurrent, string boneName);
-		internal delegate void SetPhysicsAngularVelocityInRadiansFunction(IntPtr primitiveComponent, in Vector3 angularVelocity, Bool addToCurrent, string boneName);
-		internal delegate void SetPhysicsMaxAngularVelocityInDegreesFunction(IntPtr primitiveComponent, float maxAngularVelocity, Bool addToCurrent, string boneName);
-		internal delegate void SetPhysicsMaxAngularVelocityInRadiansFunction(IntPtr primitiveComponent, float maxAngularVelocity, Bool addToCurrent, string boneName);
-		internal delegate void SetCastShadowFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetOnlyOwnerSeeFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetOwnerNoSeeFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetIgnoreRadialForceFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetIgnoreRadialImpulseFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetMaterialFunction(IntPtr primitiveComponent, int elementIndex, IntPtr material);
-		internal delegate void SetSimulatePhysicsFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetAngularDampingFunction(IntPtr primitiveComponent, float value);
-		internal delegate void SetLinearDampingFunction(IntPtr primitiveComponent, float value);
-		internal delegate void SetEnableGravityFunction(IntPtr primitiveComponent, Bool value);
-		internal delegate void SetCollisionModeFunction(IntPtr primitiveComponent, CollisionMode mode);
-		internal delegate void SetCollisionChannelFunction(IntPtr primitiveComponent, CollisionChannel channel);
-		internal delegate void SetCollisionProfileNameFunction(IntPtr primitiveComponent, string profileName, Bool updateOverlaps);
-		internal delegate void SetCollisionResponseToChannelFunction(IntPtr primitiveComponent, CollisionChannel channel, CollisionResponse response);
-		internal delegate void SetCollisionResponseToAllChannelsFunction(IntPtr primitiveComponent, CollisionResponse response);
-		internal delegate void SetIgnoreActorWhenMovingFunction(IntPtr primitiveComponent, IntPtr actor, Bool value);
-		internal delegate void SetIgnoreComponentWhenMovingFunction(IntPtr primitiveComponent, IntPtr component, Bool value);
-		internal delegate void ClearMoveIgnoreActorsFunction(IntPtr primitiveComponent);
-		internal delegate void ClearMoveIgnoreComponentsFunction(IntPtr primitiveComponent);
-		internal delegate IntPtr CreateAndSetMaterialInstanceDynamicFunction(IntPtr primitiveComponent, int elementIndex);
-		internal delegate void RegisterEventFunction(IntPtr primitiveComponent, ComponentEventType type);
-		internal delegate void UnregisterEventFunction(IntPtr primitiveComponent, ComponentEventType type);
-
-		internal static IsGravityEnabledFunction isGravityEnabled;
-		internal static IsOverlappingComponentFunction isOverlappingComponent;
-		internal static AddAngularImpulseInDegreesFunction addAngularImpulseInDegrees;
-		internal static AddAngularImpulseInRadiansFunction addAngularImpulseInRadians;
-		internal static AddForceFunction addForce;
-		internal static AddForceAtLocationFunction addForceAtLocation;
-		internal static AddImpulseFunction addImpulse;
-		internal static AddImpulseAtLocationFunction addImpulseAtLocation;
-		internal static AddRadialForceFunction addRadialForce;
-		internal static AddRadialImpulseFunction addRadialImpulse;
-		internal static AddTorqueInDegreesFunction addTorqueInDegrees;
-		internal static AddTorqueInRadiansFunction addTorqueInRadians;
-		internal static GetMassFunction getMass;
-		internal static GetPhysicsLinearVelocityFunction getPhysicsLinearVelocity;
-		internal static GetPhysicsLinearVelocityAtPointFunction getPhysicsLinearVelocityAtPoint;
-		internal static GetPhysicsAngularVelocityInDegreesFunction getPhysicsAngularVelocityInDegrees;
-		internal static GetPhysicsAngularVelocityInRadiansFunction getPhysicsAngularVelocityInRadians;
-		internal static GetCastShadowFunction getCastShadow;
-		internal static GetOnlyOwnerSeeFunction getOnlyOwnerSee;
-		internal static GetOwnerNoSeeFunction getOwnerNoSee;
-		internal static GetIgnoreRadialForceFunction getIgnoreRadialForce;
-		internal static GetIgnoreRadialImpulseFunction getIgnoreRadialImpulse;
-		internal static GetMaterialFunction getMaterial;
-		internal static GetMaterialsNumberFunction getMaterialsNumber;
-		internal static GetDistanceToCollisionFunction getDistanceToCollision;
-		internal static GetSquaredDistanceToCollisionFunction getSquaredDistanceToCollision;
-		internal static GetAngularDampingFunction getAngularDamping;
-		internal static GetLinearDampingFunction getLinearDamping;
-		internal static SetGenerateOverlapEventsFunction setGenerateOverlapEvents;
-		internal static SetGenerateHitEventsFunction setGenerateHitEvents;
-		internal static SetMassFunction setMass;
-		internal static SetCenterOfMassFunction setCenterOfMass;
-		internal static SetPhysicsLinearVelocityFunction setPhysicsLinearVelocity;
-		internal static SetPhysicsAngularVelocityInDegreesFunction setPhysicsAngularVelocityInDegrees;
-		internal static SetPhysicsAngularVelocityInRadiansFunction setPhysicsAngularVelocityInRadians;
-		internal static SetPhysicsMaxAngularVelocityInDegreesFunction setPhysicsMaxAngularVelocityInDegrees;
-		internal static SetPhysicsMaxAngularVelocityInRadiansFunction setPhysicsMaxAngularVelocityInRadians;
-		internal static SetCastShadowFunction setCastShadow;
-		internal static SetOnlyOwnerSeeFunction setOnlyOwnerSee;
-		internal static SetOwnerNoSeeFunction setOwnerNoSee;
-		internal static SetIgnoreRadialForceFunction setIgnoreRadialForce;
-		internal static SetIgnoreRadialImpulseFunction setIgnoreRadialImpulse;
-		internal static SetMaterialFunction setMaterial;
-		internal static SetSimulatePhysicsFunction setSimulatePhysics;
-		internal static SetAngularDampingFunction setAngularDamping;
-		internal static SetLinearDampingFunction setLinearDamping;
-		internal static SetEnableGravityFunction setEnableGravity;
-		internal static SetCollisionModeFunction setCollisionMode;
-		internal static SetCollisionChannelFunction setCollisionChannel;
-		internal static SetCollisionProfileNameFunction setCollisionProfileName;
-		internal static SetCollisionResponseToChannelFunction setCollisionResponseToChannel;
-		internal static SetCollisionResponseToAllChannelsFunction setCollisionResponseToAllChannels;
-		internal static SetIgnoreActorWhenMovingFunction setIgnoreActorWhenMoving;
-		internal static SetIgnoreComponentWhenMovingFunction setIgnoreComponentWhenMoving;
-		internal static ClearMoveIgnoreActorsFunction clearMoveIgnoreActors;
-		internal static ClearMoveIgnoreComponentsFunction clearMoveIgnoreComponents;
-		internal static CreateAndSetMaterialInstanceDynamicFunction createAndSetMaterialInstanceDynamic;
-		internal static RegisterEventFunction registerEvent;
-		internal static UnregisterEventFunction unregisterEvent;
+	unsafe partial class PrimitiveComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isGravityEnabled;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isOverlappingComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addAngularImpulseInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addAngularImpulseInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addForce;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, Bool, void> addForceAtLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addImpulse;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, void> addImpulseAtLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void> addRadialForce;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void> addRadialImpulse;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addTorqueInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addTorqueInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getMass;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void> getPhysicsLinearVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, in Vector3, string, void> getPhysicsLinearVelocityAtPoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void> getPhysicsAngularVelocityInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void> getPhysicsAngularVelocityInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCastShadow;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getOnlyOwnerSee;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getOwnerNoSee;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getIgnoreRadialForce;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getIgnoreRadialImpulse;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr> getMaterial;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getMaterialsNumber;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, float> getDistanceToCollision;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref float, ref Vector3, Bool> getSquaredDistanceToCollision;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getAngularDamping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getLinearDamping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setGenerateOverlapEvents;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setGenerateHitEvents;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, string, void> setMass;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, void> setCenterOfMass;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void> setPhysicsLinearVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void> setPhysicsAngularVelocityInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void> setPhysicsAngularVelocityInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void> setPhysicsMaxAngularVelocityInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void> setPhysicsMaxAngularVelocityInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCastShadow;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setOnlyOwnerSee;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setOwnerNoSee;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setIgnoreRadialForce;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setIgnoreRadialImpulse;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr, void> setMaterial;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setSimulatePhysics;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setAngularDamping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setLinearDamping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableGravity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionMode, void> setCollisionMode;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void> setCollisionChannel;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void> setCollisionProfileName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, CollisionResponse, void> setCollisionResponseToChannel;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionResponse, void> setCollisionResponseToAllChannels;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setIgnoreActorWhenMoving;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setIgnoreComponentWhenMoving;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearMoveIgnoreActors;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearMoveIgnoreComponents;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, IntPtr> createAndSetMaterialInstanceDynamic;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentEventType, void> registerEvent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentEventType, void> unregisterEvent;
 	}
 
-	partial class ShapeComponent {
-		internal delegate Bool GetDynamicObstacleFunction(IntPtr shapeComponent);
-		internal delegate int GetShapeColorFunction(IntPtr shapeComponent);
-		internal delegate void SetDynamicObstacleFunction(IntPtr shapeComponent, Bool value);
-		internal delegate void SetShapeColorFunction(IntPtr shapeComponent, int value);
-
-		internal static GetDynamicObstacleFunction getDynamicObstacle;
-		internal static GetShapeColorFunction getShapeColor;
-		internal static SetDynamicObstacleFunction setDynamicObstacle;
-		internal static SetShapeColorFunction setShapeColor;
+	unsafe partial class ShapeComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getDynamicObstacle;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getShapeColor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDynamicObstacle;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setShapeColor;
 	}
 
-	partial class BoxComponent {
-		internal delegate void GetScaledBoxExtentFunction(IntPtr boxComponent, ref Vector3 value);
-		internal delegate void GetUnscaledBoxExtentFunction(IntPtr boxComponent, ref Vector3 value);
-		internal delegate void SetBoxExtentFunction(IntPtr boxComponent, in Vector3 extent, Bool updateOverlaps);
-		internal delegate void InitBoxExtentFunction(IntPtr boxComponent, in Vector3 extent);
-
-		internal static GetScaledBoxExtentFunction getScaledBoxExtent;
-		internal static GetUnscaledBoxExtentFunction getUnscaledBoxExtent;
-		internal static SetBoxExtentFunction setBoxExtent;
-		internal static InitBoxExtentFunction initBoxExtent;
+	unsafe partial class BoxComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getScaledBoxExtent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getUnscaledBoxExtent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, void> setBoxExtent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> initBoxExtent;
 	}
 
-	partial class SphereComponent {
-		internal delegate float GetScaledSphereRadiusFunction(IntPtr sphereComponent);
-		internal delegate float GetUnscaledSphereRadiusFunction(IntPtr sphereComponent);
-		internal delegate float GetShapeScaleFunction(IntPtr sphereComponent);
-		internal delegate void SetSphereRadiusFunction(IntPtr sphereComponent, float sphereRadius, Bool updateOverlaps);
-		internal delegate void InitSphereRadiusFunction(IntPtr sphereComponent, float sphereRadius);
-
-		internal static GetScaledSphereRadiusFunction getScaledSphereRadius;
-		internal static GetUnscaledSphereRadiusFunction getUnscaledSphereRadius;
-		internal static GetShapeScaleFunction getShapeScale;
-		internal static SetSphereRadiusFunction setSphereRadius;
-		internal static InitSphereRadiusFunction initSphereRadius;
+	unsafe partial class SphereComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getScaledSphereRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getUnscaledSphereRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getShapeScale;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, void> setSphereRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> initSphereRadius;
 	}
 
-	partial class CapsuleComponent {
-		internal delegate float GetScaledCapsuleRadiusFunction(IntPtr capsuleComponent);
-		internal delegate float GetUnscaledCapsuleRadiusFunction(IntPtr capsuleComponent);
-		internal delegate float GetShapeScaleFunction(IntPtr capsuleComponent);
-		internal delegate void GetScaledCapsuleSizeFunction(IntPtr capsuleComponent, ref float radius, ref float halfHeight);
-		internal delegate void GetUnscaledCapsuleSizeFunction(IntPtr capsuleComponent, ref float radius, ref float halfHeight);
-		internal delegate void SetCapsuleRadiusFunction(IntPtr capsuleComponent, float radius, Bool updateOverlaps);
-		internal delegate void SetCapsuleSizeFunction(IntPtr capsuleComponent, float radius, float halfHeight, Bool updateOverlaps);
-		internal delegate void InitCapsuleSizeFunction(IntPtr capsuleComponent, float radius, float halfHeight);
-
-		internal static GetScaledCapsuleRadiusFunction getScaledCapsuleRadius;
-		internal static GetUnscaledCapsuleRadiusFunction getUnscaledCapsuleRadius;
-		internal static GetShapeScaleFunction getShapeScale;
-		internal static GetScaledCapsuleSizeFunction getScaledCapsuleSize;
-		internal static GetUnscaledCapsuleSizeFunction getUnscaledCapsuleSize;
-		internal static SetCapsuleRadiusFunction setCapsuleRadius;
-		internal static SetCapsuleSizeFunction setCapsuleSize;
-		internal static InitCapsuleSizeFunction initCapsuleSize;
+	unsafe partial class CapsuleComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getScaledCapsuleRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getUnscaledCapsuleRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getShapeScale;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, void> getScaledCapsuleSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, void> getUnscaledCapsuleSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, void> setCapsuleRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, Bool, void> setCapsuleSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, void> initCapsuleSize;
 	}
 
-	partial class MeshComponent {
-		internal delegate Bool IsValidMaterialSlotNameFunction(IntPtr meshComponent, string materialSlotName);
-		internal delegate int GetMaterialIndexFunction(IntPtr meshComponent, string materialSlotName);
-
-		internal static IsValidMaterialSlotNameFunction isValidMaterialSlotName;
-		internal static GetMaterialIndexFunction getMaterialIndex;
+	unsafe partial class MeshComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isValidMaterialSlotName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int> getMaterialIndex;
 	}
 
-	partial class LightComponentBase {
-		internal delegate float GetIntensityFunction(IntPtr lightComponentBase);
-		internal delegate Bool GetCastShadowsFunction(IntPtr lightComponentBase);
-		internal delegate void SetCastShadowsFunction(IntPtr lightComponentBase, Bool value);
-
-		internal static GetIntensityFunction getIntensity;
-		internal static GetCastShadowsFunction getCastShadows;
-		internal static SetCastShadowsFunction setCastShadows;
+	unsafe partial class LightComponentBase {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getIntensity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCastShadows;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCastShadows;
 	}
 
-	partial class LightComponent {
-		internal delegate void SetIntensityFunction(IntPtr lightComponent, float value);
-		internal delegate void SetLightColorFunction(IntPtr lightComponent, in LinearColor value);
-
-		internal static SetIntensityFunction setIntensity;
-		internal static SetLightColorFunction setLightColor;
+	unsafe partial class LightComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setIntensity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in LinearColor, void> setLightColor;
 	}
 
-	partial class DirectionalLightComponent { }
+	unsafe partial class DirectionalLightComponent { }
 
-	partial class MotionControllerComponent {
-		internal delegate Bool IsTrackedFunction(IntPtr motionControllerComponent);
-		internal delegate Bool GetDisableLowLatencyUpdateFunction(IntPtr motionControllerComponent);
-		internal delegate ControllerHand GetTrackingSourceFunction(IntPtr motionControllerComponent);
-		internal delegate void SetDisableLowLatencyUpdateFunction(IntPtr motionControllerComponent, Bool value);
-		internal delegate void SetTrackingSourceFunction(IntPtr motionControllerComponent, ControllerHand value);
-		internal delegate void SetTrackingMotionSourceFunction(IntPtr motionControllerComponent, string source);
-
-		internal static IsTrackedFunction isTracked;
-		internal static GetDisableLowLatencyUpdateFunction getDisableLowLatencyUpdate;
-		internal static GetTrackingSourceFunction getTrackingSource;
-		internal static SetDisableLowLatencyUpdateFunction setDisableLowLatencyUpdate;
-		internal static SetTrackingSourceFunction setTrackingSource;
-		internal static SetTrackingMotionSourceFunction setTrackingMotionSource;
+	unsafe partial class MotionControllerComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isTracked;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getDisableLowLatencyUpdate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ControllerHand> getTrackingSource;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDisableLowLatencyUpdate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ControllerHand, void> setTrackingSource;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setTrackingMotionSource;
 	}
 
-	partial class StaticMeshComponent {
-		internal delegate void GetLocalBoundsFunction(IntPtr staticMeshComponent, ref Vector3 min, ref Vector3 max);
-		internal delegate IntPtr GetStaticMeshFunction(IntPtr staticMeshComponent);
-		internal delegate Bool SetStaticMeshFunction(IntPtr staticMeshComponent, IntPtr staticMesh);
-
-		internal static GetLocalBoundsFunction getLocalBounds;
-		internal static GetStaticMeshFunction getStaticMesh;
-		internal static SetStaticMeshFunction setStaticMesh;
+	unsafe partial class StaticMeshComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, ref Vector3, void> getLocalBounds;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getStaticMesh;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> setStaticMesh;
 	}
 
-	partial class InstancedStaticMeshComponent {
-		internal delegate int GetInstanceCountFunction(IntPtr instancedStaticMeshComponent);
-		internal delegate Bool GetInstanceTransformFunction(IntPtr instancedStaticMeshComponent, int instanceIndex, ref Transform value, Bool worldSpace);
-		internal delegate int AddInstanceFunction(IntPtr instancedStaticMeshComponent, in Transform instanceTransform);
-		internal delegate Bool UpdateInstanceTransformFunction(IntPtr instancedStaticMeshComponent, int instanceIndex, in Transform instanceTransform, Bool worldSpace, Bool markRenderStateDirty, Bool teleport);
-		internal delegate Bool RemoveInstanceFunction(IntPtr instancedStaticMeshComponent, int instanceIndex);
-		internal delegate void ClearInstancesFunction(IntPtr instancedStaticMeshComponent);
-
-		internal static GetInstanceCountFunction getInstanceCount;
-		internal static GetInstanceTransformFunction getInstanceTransform;
-		internal static AddInstanceFunction addInstance;
-		internal static UpdateInstanceTransformFunction updateInstanceTransform;
-		internal static RemoveInstanceFunction removeInstance;
-		internal static ClearInstancesFunction clearInstances;
+	unsafe partial class InstancedStaticMeshComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getInstanceCount;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, Bool, Bool> getInstanceTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, int> addInstance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Transform, Bool, Bool, Bool, Bool> updateInstanceTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, Bool> removeInstance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearInstances;
 	}
 
-	partial class SkinnedMeshComponent {
-		internal delegate int GetBonesNumberFunction(IntPtr skinnedMeshComponent);
-		internal delegate int GetBoneIndexFunction(IntPtr skinnedMeshComponent, string boneName);
-		internal delegate void GetBoneNameFunction(IntPtr skinnedMeshComponent, int boneIndex, byte[] boneName);
-		internal delegate void GetBoneTransformFunction(IntPtr skinnedMeshComponent, int boneIndex, ref Transform value);
-		internal delegate void SetSkeletalMeshFunction(IntPtr skinnedMeshComponent, IntPtr skeletalMesh, Bool reinitializePose);
-
-		internal static GetBonesNumberFunction getBonesNumber;
-		internal static GetBoneIndexFunction getBoneIndex;
-		internal static GetBoneNameFunction getBoneName;
-		internal static GetBoneTransformFunction getBoneTransform;
-		internal static SetSkeletalMeshFunction setSkeletalMesh;
+	unsafe partial class SkinnedMeshComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getBonesNumber;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int> getBoneIndex;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, byte[], void> getBoneName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, void> getBoneTransform;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setSkeletalMesh;
 	}
 
-	partial class SkeletalMeshComponent {
-		internal delegate Bool IsPlayingFunction(IntPtr skeletalMeshComponent);
-		internal delegate IntPtr GetAnimationInstanceFunction(IntPtr skeletalMeshComponent);
-		internal delegate void SetAnimationFunction(IntPtr skeletalMeshComponent, IntPtr asset);
-		internal delegate void SetAnimationModeFunction(IntPtr skeletalMeshComponent, AnimationMode mode);
-		internal delegate void SetAnimationBlueprintFunction(IntPtr skeletalMeshComponent, IntPtr blueprint);
-		internal delegate void PlayFunction(IntPtr skeletalMeshComponent, Bool loop);
-		internal delegate void PlayAnimationFunction(IntPtr skeletalMeshComponent, IntPtr asset, Bool loop);
-		internal delegate void StopFunction(IntPtr skeletalMeshComponent);
-
-		internal static IsPlayingFunction isPlaying;
-		internal static GetAnimationInstanceFunction getAnimationInstance;
-		internal static SetAnimationFunction setAnimation;
-		internal static SetAnimationModeFunction setAnimationMode;
-		internal static SetAnimationBlueprintFunction setAnimationBlueprint;
-		internal static PlayFunction play;
-		internal static PlayAnimationFunction playAnimation;
-		internal static StopFunction stop;
+	unsafe partial class SkeletalMeshComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPlaying;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getAnimationInstance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setAnimation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, AnimationMode, void> setAnimationMode;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setAnimationBlueprint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> play;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> playAnimation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stop;
 	}
 
-	partial class SplineComponent {
-		internal delegate Bool IsClosedLoopFunction(IntPtr splineComponent);
-		internal delegate float GetDurationFunction(IntPtr splineComponent);
-		internal delegate SplinePointType GetSplinePointTypeFunction(IntPtr splineComponent, int pointIndex);
-		internal delegate int GetSplinePointsNumberFunction(IntPtr splineComponent);
-		internal delegate int GetSplineSegmentsNumberFunction(IntPtr splineComponent);
-		internal delegate void GetTangentAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetTangentAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
-		internal delegate void GetTransformAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Transform value);
-		internal delegate void GetTransformAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, Bool useScale, ref Transform value);
-		internal delegate void GetArriveTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetDefaultUpVectorFunction(IntPtr splineComponent, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetDirectionAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetDirectionAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetDirectionAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
-		internal delegate float GetDistanceAlongSplineAtSplinePointFunction(IntPtr splineComponent, int pointIndex);
-		internal delegate void GetLeaveTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetLocationAndTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 location, ref Vector3 tangent);
-		internal delegate void GetLocationAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetLocationAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetLocationAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetRightVectorAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetRightVectorAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetRightVectorAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
-		internal delegate float GetRollAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace);
-		internal delegate float GetRollAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace);
-		internal delegate float GetRollAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity);
-		internal delegate void GetRotationAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Quaternion value);
-		internal delegate void GetRotationAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Quaternion value);
-		internal delegate void GetRotationAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Quaternion value);
-		internal delegate void GetScaleAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, ref Vector3 value);
-		internal delegate void GetScaleAtSplinePointFunction(IntPtr splineComponent, int pointIndex, ref Vector3 value);
-		internal delegate void GetScaleAtTimeFunction(IntPtr splineComponent, float time, Bool useConstantVelocity, ref Vector3 value);
-		internal delegate float GetSplineLengthFunction(IntPtr splineComponent);
-		internal delegate void GetTransformAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, Bool useScale, ref Transform value);
-		internal delegate void GetUpVectorAtDistanceAlongSplineFunction(IntPtr splineComponent, float distance, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetUpVectorAtSplinePointFunction(IntPtr splineComponent, int pointIndex, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void GetUpVectorAtTimeFunction(IntPtr splineComponent, float time, SplineCoordinateSpace coordinateSpace, Bool useConstantVelocity, ref Vector3 value);
-		internal delegate void SetDurationFunction(IntPtr splineComponent, float value);
-		internal delegate void SetSplinePointTypeFunction(IntPtr splineComponent, int pointIndex, SplinePointType type, Bool updateSpline);
-		internal delegate void SetClosedLoopFunction(IntPtr splineComponent, Bool value, Bool updateSpline);
-		internal delegate void SetDefaultUpVectorFunction(IntPtr splineComponent, in Vector3 value, SplineCoordinateSpace coordinateSpace);
-		internal delegate void SetLocationAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 value, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
-		internal delegate void SetTangentAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 tangent, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
-		internal delegate void SetTangentsAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 arriveTangent, in Vector3 leaveTangent, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
-		internal delegate void SetUpVectorAtSplinePointFunction(IntPtr splineComponent, int pointIndex, in Vector3 upVector, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
-		internal delegate void AddSplinePointFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
-		internal delegate void AddSplinePointAtIndexFunction(IntPtr splineComponent, in Vector3 location, int pointIndex, SplineCoordinateSpace coordinateSpace, Bool updateSpline);
-		internal delegate void ClearSplinePointsFunction(IntPtr splineComponent, Bool updateSpline);
-		internal delegate void FindDirectionClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void FindLocationClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void FindUpVectorClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void FindRightVectorClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate float FindRollClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace);
-		internal delegate void FindScaleClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, ref Vector3 value);
-		internal delegate void FindTangentClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, ref Vector3 value);
-		internal delegate void FindTransformClosestToWorldLocationFunction(IntPtr splineComponent, in Vector3 location, SplineCoordinateSpace coordinateSpace, Bool useScale, ref Transform value);
-		internal delegate void RemoveSplinePointFunction(IntPtr splineComponent, int pointIndex, Bool updateSpline);
-		internal delegate void UpdateSplineFunction(IntPtr splineComponent);
-
-		internal static IsClosedLoopFunction isClosedLoop;
-		internal static GetDurationFunction getDuration;
-		internal static GetSplinePointTypeFunction getSplinePointType;
-		internal static GetSplinePointsNumberFunction getSplinePointsNumber;
-		internal static GetSplineSegmentsNumberFunction getSplineSegmentsNumber;
-		internal static GetTangentAtDistanceAlongSplineFunction getTangentAtDistanceAlongSpline;
-		internal static GetTangentAtSplinePointFunction getTangentAtSplinePoint;
-		internal static GetTangentAtTimeFunction getTangentAtTime;
-		internal static GetTransformAtDistanceAlongSplineFunction getTransformAtDistanceAlongSpline;
-		internal static GetTransformAtSplinePointFunction getTransformAtSplinePoint;
-		internal static GetArriveTangentAtSplinePointFunction getArriveTangentAtSplinePoint;
-		internal static GetDefaultUpVectorFunction getDefaultUpVector;
-		internal static GetDirectionAtDistanceAlongSplineFunction getDirectionAtDistanceAlongSpline;
-		internal static GetDirectionAtSplinePointFunction getDirectionAtSplinePoint;
-		internal static GetDirectionAtTimeFunction getDirectionAtTime;
-		internal static GetDistanceAlongSplineAtSplinePointFunction getDistanceAlongSplineAtSplinePoint;
-		internal static GetLeaveTangentAtSplinePointFunction getLeaveTangentAtSplinePoint;
-		internal static GetLocationAndTangentAtSplinePointFunction getLocationAndTangentAtSplinePoint;
-		internal static GetLocationAtDistanceAlongSplineFunction getLocationAtDistanceAlongSpline;
-		internal static GetLocationAtSplinePointFunction getLocationAtSplinePoint;
-		internal static GetLocationAtTimeFunction getLocationAtTime;
-		internal static GetRightVectorAtDistanceAlongSplineFunction getRightVectorAtDistanceAlongSpline;
-		internal static GetRightVectorAtSplinePointFunction getRightVectorAtSplinePoint;
-		internal static GetRightVectorAtTimeFunction getRightVectorAtTime;
-		internal static GetRollAtDistanceAlongSplineFunction getRollAtDistanceAlongSpline;
-		internal static GetRollAtSplinePointFunction getRollAtSplinePoint;
-		internal static GetRollAtTimeFunction getRollAtTime;
-		internal static GetRotationAtDistanceAlongSplineFunction getRotationAtDistanceAlongSpline;
-		internal static GetRotationAtSplinePointFunction getRotationAtSplinePoint;
-		internal static GetRotationAtTimeFunction getRotationAtTime;
-		internal static GetScaleAtDistanceAlongSplineFunction getScaleAtDistanceAlongSpline;
-		internal static GetScaleAtSplinePointFunction getScaleAtSplinePoint;
-		internal static GetScaleAtTimeFunction getScaleAtTime;
-		internal static GetSplineLengthFunction getSplineLength;
-		internal static GetTransformAtTimeFunction getTransformAtTime;
-		internal static GetUpVectorAtDistanceAlongSplineFunction getUpVectorAtDistanceAlongSpline;
-		internal static GetUpVectorAtSplinePointFunction getUpVectorAtSplinePoint;
-		internal static GetUpVectorAtTimeFunction getUpVectorAtTime;
-		internal static SetDurationFunction setDuration;
-		internal static SetSplinePointTypeFunction setSplinePointType;
-		internal static SetClosedLoopFunction setClosedLoop;
-		internal static SetDefaultUpVectorFunction setDefaultUpVector;
-		internal static SetLocationAtSplinePointFunction setLocationAtSplinePoint;
-		internal static SetTangentAtSplinePointFunction setTangentAtSplinePoint;
-		internal static SetTangentsAtSplinePointFunction setTangentsAtSplinePoint;
-		internal static SetUpVectorAtSplinePointFunction setUpVectorAtSplinePoint;
-		internal static AddSplinePointFunction addSplinePoint;
-		internal static AddSplinePointAtIndexFunction addSplinePointAtIndex;
-		internal static ClearSplinePointsFunction clearSplinePoints;
-		internal static FindDirectionClosestToWorldLocationFunction findDirectionClosestToWorldLocation;
-		internal static FindLocationClosestToWorldLocationFunction findLocationClosestToWorldLocation;
-		internal static FindUpVectorClosestToWorldLocationFunction findUpVectorClosestToWorldLocation;
-		internal static FindRightVectorClosestToWorldLocationFunction findRightVectorClosestToWorldLocation;
-		internal static FindRollClosestToWorldLocationFunction findRollClosestToWorldLocation;
-		internal static FindScaleClosestToWorldLocationFunction findScaleClosestToWorldLocation;
-		internal static FindTangentClosestToWorldLocationFunction findTangentClosestToWorldLocation;
-		internal static FindTransformClosestToWorldLocationFunction findTransformClosestToWorldLocation;
-		internal static RemoveSplinePointFunction removeSplinePoint;
-		internal static UpdateSplineFunction updateSpline;
+	unsafe partial class SplineComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isClosedLoop;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getDuration;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplinePointType> getSplinePointType;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getSplinePointsNumber;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getSplineSegmentsNumber;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void> getTangentAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getTangentAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void> getTangentAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Transform, void> getTransformAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, Bool, ref Transform, void> getTransformAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getArriveTangentAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, SplineCoordinateSpace, ref Vector3, void> getDefaultUpVector;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void> getDirectionAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getDirectionAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void> getDirectionAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, float> getDistanceAlongSplineAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getLeaveTangentAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, ref Vector3, void> getLocationAndTangentAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void> getLocationAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getLocationAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void> getLocationAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void> getRightVectorAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getRightVectorAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void> getRightVectorAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, float> getRollAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, float> getRollAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, float> getRollAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Quaternion, void> getRotationAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Quaternion, void> getRotationAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Quaternion, void> getRotationAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, ref Vector3, void> getScaleAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, ref Vector3, void> getScaleAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, ref Vector3, void> getScaleAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getSplineLength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, Bool, ref Transform, void> getTransformAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, ref Vector3, void> getUpVectorAtDistanceAlongSpline;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplineCoordinateSpace, ref Vector3, void> getUpVectorAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, SplineCoordinateSpace, Bool, ref Vector3, void> getUpVectorAtTime;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setDuration;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, SplinePointType, Bool, void> setSplinePointType;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool, void> setClosedLoop;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, void> setDefaultUpVector;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, SplineCoordinateSpace, Bool, void> setLocationAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, SplineCoordinateSpace, Bool, void> setTangentAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, in Vector3, SplineCoordinateSpace, Bool, void> setTangentsAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Vector3, SplineCoordinateSpace, Bool, void> setUpVectorAtSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, Bool, void> addSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, int, SplineCoordinateSpace, Bool, void> addSplinePointAtIndex;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> clearSplinePoints;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void> findDirectionClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void> findLocationClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void> findUpVectorClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void> findRightVectorClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, float> findRollClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> findScaleClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, ref Vector3, void> findTangentClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, SplineCoordinateSpace, Bool, ref Transform, void> findTransformClosestToWorldLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, Bool, void> removeSplinePoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> updateSpline;
 	}
 
-	partial class RadialForceComponent {
-		internal delegate Bool GetIgnoreOwningActorFunction(IntPtr radialForceComponent);
-		internal delegate Bool GetImpulseVelocityChangeFunction(IntPtr radialForceComponent);
-		internal delegate Bool GetLinearFalloffFunction(IntPtr radialForceComponent);
-		internal delegate float GetForceStrengthFunction(IntPtr radialForceComponent);
-		internal delegate float GetImpulseStrengthFunction(IntPtr radialForceComponent);
-		internal delegate float GetRadiusFunction(IntPtr radialForceComponent);
-		internal delegate void SetIgnoreOwningActorFunction(IntPtr radialForceComponent, Bool value);
-		internal delegate void SetImpulseVelocityChangeFunction(IntPtr radialForceComponent, Bool value);
-		internal delegate void SetLinearFalloffFunction(IntPtr radialForceComponent, Bool value);
-		internal delegate void SetForceStrengthFunction(IntPtr radialForceComponent, float value);
-		internal delegate void SetImpulseStrengthFunction(IntPtr radialForceComponent, float value);
-		internal delegate void SetRadiusFunction(IntPtr radialForceComponent, float value);
-		internal delegate void AddCollisionChannelToAffectFunction(IntPtr radialForceComponent, CollisionChannel channel);
-		internal delegate void FireImpulseFunction(IntPtr radialForceComponent);
-
-		internal static GetIgnoreOwningActorFunction getIgnoreOwningActor;
-		internal static GetImpulseVelocityChangeFunction getImpulseVelocityChange;
-		internal static GetLinearFalloffFunction getLinearFalloff;
-		internal static GetForceStrengthFunction getForceStrength;
-		internal static GetImpulseStrengthFunction getImpulseStrength;
-		internal static GetRadiusFunction getRadius;
-		internal static SetIgnoreOwningActorFunction setIgnoreOwningActor;
-		internal static SetImpulseVelocityChangeFunction setImpulseVelocityChange;
-		internal static SetLinearFalloffFunction setLinearFalloff;
-		internal static SetForceStrengthFunction setForceStrength;
-		internal static SetImpulseStrengthFunction setImpulseStrength;
-		internal static SetRadiusFunction setRadius;
-		internal static AddCollisionChannelToAffectFunction addCollisionChannelToAffect;
-		internal static FireImpulseFunction fireImpulse;
+	unsafe partial class RadialForceComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getIgnoreOwningActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getImpulseVelocityChange;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getLinearFalloff;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getForceStrength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getImpulseStrength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setIgnoreOwningActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setImpulseVelocityChange;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setLinearFalloff;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setForceStrength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setImpulseStrength;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void> addCollisionChannelToAffect;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> fireImpulse;
 	}
 
-	partial class MaterialInterface {
-		internal delegate Bool IsTwoSidedFunction(IntPtr materialInterface);
-
-		internal static IsTwoSidedFunction isTwoSided;
+	unsafe partial class MaterialInterface {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isTwoSided;
 	}
 
-	partial class Material {
-		internal delegate Bool IsDefaultMaterialFunction(IntPtr material);
-
-		internal static IsDefaultMaterialFunction isDefaultMaterial;
+	unsafe partial class Material {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isDefaultMaterial;
 	}
 
-	partial class MaterialInstance {
-		internal delegate Bool IsChildOfFunction(IntPtr materialInstance, IntPtr material);
-
-		internal static IsChildOfFunction isChildOf;
+	unsafe partial class MaterialInstance {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isChildOf;
 	}
 
-	partial class MaterialInstanceDynamic {
-		internal delegate void ClearParameterValuesFunction(IntPtr materialInstanceDynamic);
-		internal delegate void SetTextureParameterValueFunction(IntPtr materialInstanceDynamic, string parameterName, IntPtr value);
-		internal delegate void SetVectorParameterValueFunction(IntPtr materialInstanceDynamic, string parameterName, in LinearColor value);
-		internal delegate void SetScalarParameterValueFunction(IntPtr materialInstanceDynamic, string parameterName, float value);
-
-		internal static ClearParameterValuesFunction clearParameterValues;
-		internal static SetTextureParameterValueFunction setTextureParameterValue;
-		internal static SetVectorParameterValueFunction setVectorParameterValue;
-		internal static SetScalarParameterValueFunction setScalarParameterValue;
+	unsafe partial class MaterialInstanceDynamic {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearParameterValues;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr, void> setTextureParameterValue;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, in LinearColor, void> setVectorParameterValue;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float, void> setScalarParameterValue;
 	}
 }
