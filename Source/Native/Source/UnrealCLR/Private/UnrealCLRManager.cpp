@@ -72,6 +72,32 @@ void UUnrealCLRManager::ActorEndCursorOver(AActor* Actor) {
 	}
 }
 
+void UUnrealCLRManager::ActorClicked(AActor* Actor, FKey Key) {
+	if (UnrealCLR::Shared::Events[UnrealCLR::OnActorClicked]) {
+		FString key = Key.ToString();
+
+		void* parameters[2] = {
+			Actor,
+			TCHAR_TO_ANSI(*key)
+		};
+
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorClicked], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorKeyDelegate)));
+	}
+}
+
+void UUnrealCLRManager::ActorReleased(AActor* Actor, FKey Key) {
+	if (UnrealCLR::Shared::Events[UnrealCLR::OnActorReleased]) {
+		FString key = Key.ToString();
+
+		void* parameters[2] = {
+			Actor,
+			TCHAR_TO_ANSI(*key)
+		};
+
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnActorReleased], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ActorKeyDelegate)));
+	}
+}
+
 void UUnrealCLRManager::ComponentBeginOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult) {
 	if (UnrealCLR::Shared::Events[UnrealCLR::OnComponentBeginOverlap]) {
 		void* parameters[2] = {
@@ -127,5 +153,31 @@ void UUnrealCLRManager::ComponentEndCursorOver(UPrimitiveComponent* Component) {
 		};
 
 		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentEndCursorOver], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentCursorDelegate)));
+	}
+}
+
+void UUnrealCLRManager::ComponentClicked(UPrimitiveComponent* Component, FKey Key) {
+	if (UnrealCLR::Shared::Events[UnrealCLR::OnComponentClicked]) {
+		FString key = Key.ToString();
+
+		void* parameters[2] = {
+			Component,
+			TCHAR_TO_ANSI(*key)
+		};
+
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentClicked], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentKeyDelegate)));
+	}
+}
+
+void UUnrealCLRManager::ComponentReleased(UPrimitiveComponent* Component, FKey Key) {
+	if (UnrealCLR::Shared::Events[UnrealCLR::OnComponentReleased]) {
+		FString key = Key.ToString();
+
+		void* parameters[2] = {
+			Component,
+			TCHAR_TO_ANSI(*key)
+		};
+
+		UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[UnrealCLR::OnComponentReleased], UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::ComponentKeyDelegate)));
 	}
 }

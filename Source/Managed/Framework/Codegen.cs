@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x282;
+		internal const int checksum = 0x288;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -198,6 +198,8 @@ namespace UnrealEngine.Framework {
 				World.setOnActorBeginOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnActorBeginCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnActorEndCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnActorClickedCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnActorReleasedCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnActorEndOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnActorHitCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnComponentBeginOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
@@ -205,6 +207,8 @@ namespace UnrealEngine.Framework {
 				World.setOnComponentHitCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnComponentBeginCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnComponentEndCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentClickedCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
+				World.setOnComponentReleasedCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setSimulatePhysics = (delegate* unmanaged[Cdecl]<Bool, void>)worldFunctions[head++];
 				World.setGravity = (delegate* unmanaged[Cdecl]<float, void>)worldFunctions[head++];
 				World.setWorldOrigin = (delegate* unmanaged[Cdecl]<in Vector3, Bool>)worldFunctions[head++];
@@ -368,11 +372,13 @@ namespace UnrealEngine.Framework {
 
 				PlayerController.isPaused = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
 				PlayerController.getShowMouseCursor = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
+				PlayerController.getEnableClickEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
 				PlayerController.getEnableMouseOverEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)playerControllerFunctions[head++];
 				PlayerController.getMousePosition = (delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, Bool>)playerControllerFunctions[head++];
 				PlayerController.getPlayer = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerControllerFunctions[head++];
 				PlayerController.getPlayerInput = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerControllerFunctions[head++];
 				PlayerController.setShowMouseCursor = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
+				PlayerController.setEnableClickEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setEnableMouseOverEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setMousePosition = (delegate* unmanaged[Cdecl]<IntPtr, float, float, void>)playerControllerFunctions[head++];
 				PlayerController.consoleCommand = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void>)playerControllerFunctions[head++];
@@ -1348,11 +1354,15 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorHitCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorBeginCursorOverCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorEndCursorOverCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorClickedCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorReleasedCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentBeginOverlapCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentEndOverlapCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentHitCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentBeginCursorOverCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentEndCursorOverCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentClickedCallback;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnComponentReleasedCallback;
 		internal static delegate* unmanaged[Cdecl]<Bool, void> setSimulatePhysics;
 		internal static delegate* unmanaged[Cdecl]<float, void> setGravity;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, Bool> setWorldOrigin;
@@ -1497,11 +1507,13 @@ namespace UnrealEngine.Framework {
 	unsafe partial class PlayerController {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPaused;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getShowMouseCursor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getEnableClickEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getEnableMouseOverEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, Bool> getMousePosition;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayer;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayerInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setShowMouseCursor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableClickEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableMouseOverEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, void> setMousePosition;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void> consoleCommand;

@@ -25,3 +25,11 @@ Called when the mouse cursor is moved over an actor if mouse over events are ena
 `OnActorEndCursorOver` 4  
 Called when the mouse cursor is moved off an actor if mouse over events are enabled in the player controller  
   
+<a name='ActorEventType-OnActorClicked'></a>
+`OnActorClicked` 5  
+Called when the mouse button is clicked while the mouse is over an actor if click events are enabled in the player controller  
+  
+<a name='ActorEventType-OnActorReleased'></a>
+`OnActorReleased` 6  
+Called when the mouse button is released while the mouse is over an actor if click events are enabled in the player controller  
+  

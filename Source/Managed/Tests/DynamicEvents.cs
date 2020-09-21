@@ -26,6 +26,7 @@ namespace UnrealEngine.Tests {
 			PlayerController playerController = World.GetFirstPlayerController();
 
 			playerController.ShowMouseCursor = true;
+			playerController.EnableClickEvents = true;
 			playerController.EnableMouseOverEvents = true;
 			playerController.SetViewTarget(World.GetActor<Camera>("MainCamera"));
 
@@ -34,11 +35,15 @@ namespace UnrealEngine.Tests {
 			World.SetOnActorHitCallback(OnActorHit);
 			World.SetOnActorBeginCursorOverCallback(OnActorBeginCursorOver);
 			World.SetOnActorEndCursorOverCallback(OnActorEndCursorOver);
+			World.SetOnActorClickedCallback(OnActorClicked);
+			World.SetOnActorReleasedCallback(OnActorReleased);
 			World.SetOnComponentBeginOverlapCallback(OnComponentBeginOverlap);
 			World.SetOnComponentEndOverlapCallback(OnComponentEndOverlap);
 			World.SetOnComponentHitCallback(OnComponentHit);
 			World.SetOnComponentBeginCursorOverCallback(OnComponentBeginCursorOver);
 			World.SetOnComponentEndCursorOverCallback(OnComponentEndCursorOver);
+			World.SetOnComponentClickedCallback(OnComponentClicked);
+			World.SetOnComponentReleasedCallback(OnComponentReleased);
 
 			const float linesThickness = 3.0f;
 
@@ -55,12 +60,16 @@ namespace UnrealEngine.Tests {
 			leftActor.RegisterEvent(ActorEventType.OnActorHit);
 			leftActor.RegisterEvent(ActorEventType.OnActorBeginCursorOver);
 			leftActor.RegisterEvent(ActorEventType.OnActorEndCursorOver);
+			leftActor.RegisterEvent(ActorEventType.OnActorClicked);
+			leftActor.RegisterEvent(ActorEventType.OnActorReleased);
 
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginOverlap);
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndOverlap);
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentHit);
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginCursorOver);
 			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndCursorOver);
+			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentClicked);
+			leftStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentReleased);
 			leftStaticMeshComponent.SetGenerateOverlapEvents(true);
 			leftStaticMeshComponent.SetGenerateHitEvents(true);
 
@@ -79,12 +88,16 @@ namespace UnrealEngine.Tests {
 			rightActor.RegisterEvent(ActorEventType.OnActorHit);
 			rightActor.RegisterEvent(ActorEventType.OnActorBeginCursorOver);
 			rightActor.RegisterEvent(ActorEventType.OnActorEndCursorOver);
+			rightActor.RegisterEvent(ActorEventType.OnActorClicked);
+			rightActor.RegisterEvent(ActorEventType.OnActorReleased);
 
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginOverlap);
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndOverlap);
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentHit);
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentBeginCursorOver);
 			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentEndCursorOver);
+			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentClicked);
+			rightStaticMeshComponent.RegisterEvent(ComponentEventType.OnComponentReleased);
 			rightStaticMeshComponent.SetGenerateOverlapEvents(true);
 			rightStaticMeshComponent.SetGenerateHitEvents(true);
 
@@ -155,7 +168,25 @@ namespace UnrealEngine.Tests {
 		}
 
 		private void OnActorEndCursorOver(ObjectReference actor) {
-			Debug.AddOnScreenMessage(2, 3.0f, Color.Plum, "Cursor moved off " + actor.Name);
+			Debug.AddOnScreenMessage(3, 3.0f, Color.Plum, "Cursor moved off " + actor.Name);
+
+			Assert.IsNotNull(actor.ToActor<Actor>());
+		}
+
+		private void OnActorClicked(ObjectReference actor, string key) {
+			Debug.AddOnScreenMessage(4, 3.0f, Color.Thistle, key + " clicked on " + actor.Name);
+
+			if (key == Keys.LeftMouseButton)
+				Debug.AddOnScreenMessage(5, 3.0f, Color.MistyRose, key + " validated on actor!");
+
+			Assert.IsNotNull(actor.ToActor<Actor>());
+		}
+
+		private void OnActorReleased(ObjectReference actor, string key) {
+			Debug.AddOnScreenMessage(6, 3.0f, Color.Thistle, key + " released on " + actor.Name);
+
+			if (key == Keys.LeftMouseButton)
+				Debug.AddOnScreenMessage(5, 3.0f, Color.MistyRose, key + " validated on actor!");
 
 			Assert.IsNotNull(actor.ToActor<Actor>());
 		}
@@ -175,7 +206,7 @@ namespace UnrealEngine.Tests {
 		}
 
 		private void OnComponentHit(ObjectReference hitComponent, ObjectReference otherComponent, in Vector3 normalImpulse, in Hit hit) {
-			Debug.AddOnScreenMessage(3, 3.0f, hitComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, hitComponent.Name + " hit " + otherComponent.Name);
+			Debug.AddOnScreenMessage(7, 3.0f, hitComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, hitComponent.Name + " hit " + otherComponent.Name);
 
 			Assert.IsNotNull(hitComponent.ToComponent<StaticMeshComponent>());
 			Assert.IsNotNull(otherComponent.ToComponent<StaticMeshComponent>());
@@ -183,13 +214,31 @@ namespace UnrealEngine.Tests {
 		}
 
 		private void OnComponentBeginCursorOver(ObjectReference component) {
-			Debug.AddOnScreenMessage(4, 3.0f, Color.Plum, "Cursor moved over " + component.Name);
+			Debug.AddOnScreenMessage(8, 3.0f, Color.Plum, "Cursor moved over " + component.Name);
 
 			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
 		}
 
 		private void OnComponentEndCursorOver(ObjectReference component) {
-			Debug.AddOnScreenMessage(4, 3.0f, Color.Plum, "Cursor moved off " + component.Name);
+			Debug.AddOnScreenMessage(9, 3.0f, Color.Plum, "Cursor moved off " + component.Name);
+
+			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
+		}
+
+		private void OnComponentClicked(ObjectReference component, string key) {
+			Debug.AddOnScreenMessage(10, 3.0f, Color.Thistle, key + " clicked on " + component.Name);
+
+			if (key == Keys.LeftMouseButton)
+				Debug.AddOnScreenMessage(11, 3.0f, Color.MistyRose, key + " validated on component!");
+
+			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
+		}
+
+		private void OnComponentReleased(ObjectReference component, string key) {
+			Debug.AddOnScreenMessage(12, 3.0f, Color.Thistle, key + " released on " + component.Name);
+
+			if (key == Keys.LeftMouseButton)
+				Debug.AddOnScreenMessage(11, 3.0f, Color.MistyRose, key + " validated on component!");
 
 			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
 		}

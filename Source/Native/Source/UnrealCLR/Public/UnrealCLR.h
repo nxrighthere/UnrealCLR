@@ -112,9 +112,11 @@ namespace UnrealCLR {
 		ActorOverlapDelegate,
 		ActorHitDelegate,
 		ActorCursorDelegate,
+		ActorKeyDelegate,
 		ComponentOverlapDelegate,
 		ComponentHitDelegate,
-		ComponentCursorDelegate
+		ComponentCursorDelegate,
+		ComponentKeyDelegate
 	};
 
 	enum struct ArgumentType : int32 {
@@ -146,11 +148,15 @@ namespace UnrealCLR {
 		OnActorHit,
 		OnActorBeginCursorOver,
 		OnActorEndCursorOver,
+		OnActorClicked,
+		OnActorReleased,
 		OnComponentBeginOverlap,
 		OnComponentEndOverlap,
 		OnComponentHit,
 		OnComponentBeginCursorOver,
-		OnComponentEndCursorOver
+		OnComponentEndCursorOver,
+		OnComponentClicked,
+		OnComponentReleased
 	};
 
 	struct Callback {
@@ -308,7 +314,7 @@ namespace UnrealCLR {
 	}
 
 	namespace Shared {
-		constexpr static int32 storageSize = 64;
+		constexpr static int32 storageSize = 128;
 
 		// Non-instantiable
 

@@ -25,3 +25,11 @@ Called when the mouse cursor is moved over a component and mouse over events are
 `OnComponentEndCursorOver` 4  
 Called when the mouse cursor is moved off a component and mouse over events are enabled in the player controller  
   
+<a name='ComponentEventType-OnComponentClicked'></a>
+`OnComponentClicked` 5  
+Called when the mouse button is clicked while the mouse is over a component if click events are enabled in the player controller  
+  
+<a name='ComponentEventType-OnComponentReleased'></a>
+`OnComponentReleased` 6  
+Called when the mouse button is released while the mouse is over a component if click events are enabled in the player controller  
+  

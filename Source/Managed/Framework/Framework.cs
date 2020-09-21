@@ -226,7 +226,15 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Called when the mouse cursor is moved off an actor if mouse over events are enabled in the player controller
 		/// </summary>
-		OnActorEndCursorOver
+		OnActorEndCursorOver,
+		/// <summary>
+		/// Called when the mouse button is clicked while the mouse is over an actor if click events are enabled in the player controller
+		/// </summary>
+		OnActorClicked,
+		/// <summary>
+		/// Called when the mouse button is released while the mouse is over an actor if click events are enabled in the player controller
+		/// </summary>
+		OnActorReleased
 	}
 
 	/// <summary>
@@ -252,7 +260,15 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Called when the mouse cursor is moved off a component and mouse over events are enabled in the player controller
 		/// </summary>
-		OnComponentEndCursorOver
+		OnComponentEndCursorOver,
+		/// <summary>
+		/// Called when the mouse button is clicked while the mouse is over a component if click events are enabled in the player controller
+		/// </summary>
+		OnComponentClicked,
+		/// <summary>
+		/// Called when the mouse button is released while the mouse is over a component if click events are enabled in the player controller
+		/// </summary>
+		OnComponentReleased
 	}
 
 	/// <summary>
@@ -1470,6 +1486,11 @@ namespace UnrealEngine.Framework {
 	public delegate void ActorCursorDelegate(ObjectReference actor);
 
 	/// <summary>
+	/// Delegate for actor key events
+	/// </summary>
+	public delegate void ActorKeyDelegate(ObjectReference actor, string key);
+
+	/// <summary>
 	/// Delegate for component overlap events
 	/// </summary>
 	public delegate void ComponentOverlapDelegate(ObjectReference overlapComponent, ObjectReference otherComponent);
@@ -1483,6 +1504,11 @@ namespace UnrealEngine.Framework {
 	/// Delegate for component cursor events
 	/// </summary>
 	public delegate void ComponentCursorDelegate(ObjectReference component);
+
+	/// <summary>
+	/// Delegate for component key events
+	/// </summary>
+	public delegate void ComponentKeyDelegate(ObjectReference component, string key);
 
 	/// <summary>
 	/// Provides additional static constants and methods for mathematical functions that are lack in <see cref="System.Math"/>, <see cref="System.MathF"/>, and <see cref="System.Numerics"/>
@@ -3694,13 +3720,33 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Sets the callback function that is called the mouse cursor is moved off an actor if mouse over events are enabled in the player controller
+		/// Sets the callback function that is called when the mouse cursor is moved off an actor if mouse over events are enabled in the player controller
 		/// </summary>
 		public static void SetOnActorEndCursorOverCallback(ActorCursorDelegate callback) {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
 			setOnActorEndCursorOverCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when the mouse button is clicked while the mouse is over an actor if click events are enabled in the player controller
+		/// </summary>
+		public static void SetOnActorClickedCallback(ActorKeyDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnActorClickedCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when the mouse button is released while the mouse is over an actor if click events are enabled in the player controller
+		/// </summary>
+		public static void SetOnActorReleasedCallback(ActorKeyDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnActorReleasedCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -3751,6 +3797,26 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(callback));
 
 			setOnComponentEndCursorOverCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when the mouse button is clicked while the mouse is over a component if click events are enabled in the player controller
+		/// </summary>
+		public static void SetOnComponentClickedCallback(ComponentKeyDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnComponentClickedCallback(Collector.GetFunctionPointer(callback));
+		}
+
+		/// <summary>
+		/// Sets the callback function that is called when the mouse button is released while the mouse is over a component if click events are enabled in the player controller
+		/// </summary>
+		public static void SetOnComponentReleasedCallback(ComponentKeyDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnComponentReleasedCallback(Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -5204,6 +5270,14 @@ namespace UnrealEngine.Framework {
 		public bool ShowMouseCursor {
 			get => getShowMouseCursor(Pointer);
 			set => setShowMouseCursor(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether click events should be generated
+		/// </summary>
+		public bool EnableClickEvents {
+			get => getEnableClickEvents(Pointer);
+			set => setEnableClickEvents(Pointer, value);
 		}
 
 		/// <summary>
