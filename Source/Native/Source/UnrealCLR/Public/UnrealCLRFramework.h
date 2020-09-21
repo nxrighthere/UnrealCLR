@@ -1085,6 +1085,7 @@ namespace UnrealCLRFramework {
 
 	namespace MaterialInstance {
 		static bool IsChildOf(UMaterialInstance* MaterialInstance, UMaterialInterface* Material);
+		static UMaterialInstanceDynamic* GetParent(UMaterialInstance* MaterialInstance);
 	}
 
 	namespace MaterialInstanceDynamic {

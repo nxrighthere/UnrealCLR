@@ -1121,6 +1121,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::MaterialInstanceFunctions;
 
 				Shared::MaterialInstanceFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstance::IsChildOf;
+				Shared::MaterialInstanceFunctions[head++] = (void*)&UnrealCLRFramework::MaterialInstance::GetParent;
 
 				checksum += head;
 			}

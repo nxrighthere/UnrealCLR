@@ -29,7 +29,12 @@ namespace UnrealEngine.Tests {
 			rightSkeletalMeshComponent.SetWorldLocation(new(-700.0f, 70.0f, -100.0f));
 			rightSkeletalMeshComponent.SetWorldRotation(Maths.Euler(0.0f, 0.0f, 90.0f));
 			rightSkeletalMeshComponent.SetAnimationMode(AnimationMode.Asset);
-			rightSkeletalMeshComponent.CreateAndSetMaterialInstanceDynamic(0).SetVectorParameterValue("AccentColor", new(0.0f, 0.5f, 1.0f));
+
+			MaterialInstanceDynamic prototypeMaterial = rightSkeletalMeshComponent.CreateAndSetMaterialInstanceDynamic(0);
+
+			prototypeMaterial.SetVectorParameterValue("AccentColor", new(0.0f, 0.5f, 1.0f));
+
+			Assert.IsNotNull(prototypeMaterial.GetParent());
 
 			AnimationMontage rightPrototypeAnimationMontage = AnimationMontage.Load("/Game/Tests/Characters/Animations/RunAnimationMontage");
 

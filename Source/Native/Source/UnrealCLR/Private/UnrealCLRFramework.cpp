@@ -3349,6 +3349,10 @@ namespace UnrealCLRFramework {
 		bool IsChildOf(UMaterialInstance* MaterialInstance, UMaterialInterface* Material) {
 			return MaterialInstance->IsChildOf(Material);
 		}
+
+		UMaterialInstanceDynamic* GetParent(UMaterialInstance* MaterialInstance) {
+			return UMaterialInstanceDynamic::Create(MaterialInstance->Parent, MaterialInstance);
+		}
 	}
 
 	namespace MaterialInstanceDynamic {

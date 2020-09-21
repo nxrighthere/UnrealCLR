@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 ## PrimitiveComponent.GetMaterial(int) Method
-Returns the material at the specified element index  
+Returns the material at the specified element index or `null` on failure  
 ```csharp
 public UnrealEngine.Framework.MaterialInstanceDynamic GetMaterial(int elementIndex);
 ```

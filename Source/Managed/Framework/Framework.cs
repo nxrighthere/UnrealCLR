@@ -8235,9 +8235,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Returns the material at the specified element index
+		/// Returns the material at the specified element index or <c>null</c> on failure
 		/// </summary>
-		public MaterialInstanceDynamic GetMaterial(int elementIndex) => new(getMaterial(Pointer, elementIndex));
+		public MaterialInstanceDynamic GetMaterial(int elementIndex) {
+			IntPtr pointer = getMaterial(Pointer, elementIndex);
+
+			if (pointer != IntPtr.Zero)
+				return new(pointer);
+
+			return null;
+		}
 
 		/// <summary>
 		/// Retrieves distance to closest collision
@@ -9855,6 +9862,18 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(material));
 
 			return isChildOf(Pointer, material.Pointer);
+		}
+
+		/// <summary>
+		/// Returns the parent material or <c>null</c> on failure
+		/// </summary>
+		public MaterialInstanceDynamic GetParent() {
+			IntPtr pointer = getParent(Pointer);
+
+			if (pointer != IntPtr.Zero)
+				return new(pointer);
+
+			return null;
 		}
 	}
 

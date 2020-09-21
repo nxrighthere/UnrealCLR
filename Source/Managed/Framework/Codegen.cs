@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x281;
+		internal const int checksum = 0x282;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -931,6 +931,7 @@ namespace UnrealEngine.Framework {
 				IntPtr* materialInstanceFunctions = (IntPtr*)buffer[position++];
 
 				MaterialInstance.isChildOf = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)materialInstanceFunctions[head++];
+				MaterialInstance.getParent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)materialInstanceFunctions[head++];
 			}
 
 			unchecked {
@@ -1996,6 +1997,7 @@ namespace UnrealEngine.Framework {
 
 	unsafe partial class MaterialInstance {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isChildOf;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getParent;
 	}
 
 	unsafe partial class MaterialInstanceDynamic {

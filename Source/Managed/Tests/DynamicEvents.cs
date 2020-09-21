@@ -72,6 +72,8 @@ namespace UnrealEngine.Tests {
 			leftStaticMeshComponent.SetEnableGravity(false);
 			leftStaticMeshComponent.SetSimulatePhysics(true);
 
+			Assert.IsNotNull(leftStaticMeshComponent.GetMaterial(0));
+
 			rightActor.RegisterEvent(ActorEventType.OnActorBeginOverlap);
 			rightActor.RegisterEvent(ActorEventType.OnActorEndOverlap);
 			rightActor.RegisterEvent(ActorEventType.OnActorHit);
@@ -93,6 +95,8 @@ namespace UnrealEngine.Tests {
 			rightStaticMeshComponent.UpdateToWorld(TeleportType.ResetPhysics);
 			rightStaticMeshComponent.SetEnableGravity(false);
 			rightStaticMeshComponent.SetSimulatePhysics(true);
+
+			Assert.IsNotNull(rightStaticMeshComponent.GetMaterial(0));
 		}
 
 		public void OnTick(float deltaTime) {
