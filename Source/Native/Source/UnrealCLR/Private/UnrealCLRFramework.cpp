@@ -349,6 +349,7 @@ namespace UnrealCLRFramework {
 	static_assert(NetMode::NM_MAX == NetMode(4), "Invalid elements count of the [NetMode] enumeration");
 	static_assert(PixelFormat::PF_MAX == PixelFormat(71), "Invalid elements count of the [PixelFormat] enumeration");
 
+	static_assert(sizeof(Bounds) == 28, "Invalid size of the [Bounds] structure");
 	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");
 
 	namespace Assert {
@@ -2168,6 +2169,10 @@ namespace UnrealCLRFramework {
 			const char* socketName = TCHAR_TO_ANSI(*SceneComponent->GetAttachSocketName().ToString());
 
 			UnrealCLR::Utility::Strcpy(SocketName, socketName, UnrealCLR::Utility::Strlen(socketName));
+		}
+
+		void GetBounds(USceneComponent* SceneComponent, const Transform* LocalToWorld, Bounds* Value) {
+			*Value = SceneComponent->CalcBounds(*LocalToWorld);
 		}
 
 		void GetSocketLocation(USceneComponent* SceneComponent, const char* SocketName, Vector3* Value) {

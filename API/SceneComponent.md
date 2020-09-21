@@ -33,6 +33,7 @@ Derived
 - [Deactivate()](./SceneComponent-Deactivate().md 'UnrealEngine.Framework.SceneComponent.Deactivate()')
 - [DetachFromComponent(UnrealEngine.Framework.DetachmentTransformRule)](./SceneComponent-DetachFromComponent(DetachmentTransformRule).md 'UnrealEngine.Framework.SceneComponent.DetachFromComponent(UnrealEngine.Framework.DetachmentTransformRule)')
 - [GetAttachedSocketName()](./SceneComponent-GetAttachedSocketName().md 'UnrealEngine.Framework.SceneComponent.GetAttachedSocketName()')
+- [GetBounds(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Bounds)](./SceneComponent-GetBounds(Transform_Bounds).md 'UnrealEngine.Framework.SceneComponent.GetBounds(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Bounds)')
 - [GetForwardVector()](./SceneComponent-GetForwardVector().md 'UnrealEngine.Framework.SceneComponent.GetForwardVector()')
 - [GetForwardVector(System.Numerics.Vector3)](./SceneComponent-GetForwardVector(Vector3).md 'UnrealEngine.Framework.SceneComponent.GetForwardVector(System.Numerics.Vector3)')
 - [GetLocation()](./SceneComponent-GetLocation().md 'UnrealEngine.Framework.SceneComponent.GetLocation()')

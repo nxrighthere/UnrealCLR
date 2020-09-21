@@ -22,6 +22,12 @@ namespace UnrealEngine.Tests {
 			Assert.IsTrue(leftSkeletalMeshComponent.IsPlaying);
 			Assert.IsTrue(leftSkeletalMeshComponent.GetBoneName(0) == "root");
 
+			Bounds leftSkeletalMeshComponentBounds = default;
+
+			leftSkeletalMeshComponent.GetBounds(leftSkeletalMeshComponent.GetTransform(), ref leftSkeletalMeshComponentBounds);
+
+			Assert.IsFalse(leftSkeletalMeshComponentBounds == default(Bounds));
+
 			Actor rightPrototype = new("rightPrototype");
 			SkeletalMeshComponent rightSkeletalMeshComponent = new(rightPrototype);
 
@@ -44,6 +50,12 @@ namespace UnrealEngine.Tests {
 
 			Assert.IsTrue(rightPrototypeAnimationInstance.IsPlaying(rightPrototypeAnimationMontage));
 			Assert.IsTrue(rightSkeletalMeshComponent.GetBoneName(0) == "root");
+
+			Bounds rightSkeletalMeshComponentBounds = default;
+
+			rightSkeletalMeshComponent.GetBounds(rightSkeletalMeshComponent.GetTransform(), ref rightSkeletalMeshComponentBounds);
+
+			Assert.IsFalse(rightSkeletalMeshComponentBounds == default(Bounds));
 		}
 
 		public void OnEndPlay() => Debug.ClearOnScreenMessages();

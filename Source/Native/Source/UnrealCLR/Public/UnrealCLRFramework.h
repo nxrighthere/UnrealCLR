@@ -38,6 +38,7 @@ namespace UnrealCLRFramework {
 	using PixelFormat = EPixelFormat;
 	using TeleportType = ETeleportType;
 
+	using Bounds = FBoxSphereBounds;
 	using CollisionShape = FCollisionShape;
 
 	enum struct LogLevel : int32 {
@@ -757,6 +758,7 @@ namespace UnrealCLRFramework {
 		static void AddWorldRotation(USceneComponent* SceneComponent, const Quaternion* DeltaRotation);
 		static void AddWorldTransform(USceneComponent* SceneComponent, const Transform* DeltaTransform);
 		static void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName);
+		static void GetBounds(USceneComponent* SceneComponent, const Transform* LocalToWorld, Bounds* Value);
 		static void GetSocketLocation(USceneComponent* SceneComponent, const char* SocketName, Vector3* Value);
 		static void GetSocketRotation(USceneComponent* SceneComponent, const char* SocketName, Quaternion* Value);
 		static void GetComponentVelocity(USceneComponent* SceneComponent, Vector3* Value);

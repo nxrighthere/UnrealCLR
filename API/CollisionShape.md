@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## CollisionShape Struct
-A representation of the collision shape  
+A collision shape  
 ```csharp
 public struct CollisionShape :
 IEquatable<CollisionShape>

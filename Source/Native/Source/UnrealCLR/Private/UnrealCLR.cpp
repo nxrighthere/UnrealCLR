@@ -679,6 +679,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddWorldRotation;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AddWorldTransform;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetAttachedSocketName;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetBounds;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetSocketLocation;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetSocketRotation;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::GetComponentVelocity;

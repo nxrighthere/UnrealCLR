@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x288;
+		internal const int checksum = 0x289;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -533,6 +533,7 @@ namespace UnrealEngine.Framework {
 				SceneComponent.addWorldRotation = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)sceneComponentFunctions[head++];
 				SceneComponent.addWorldTransform = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)sceneComponentFunctions[head++];
 				SceneComponent.getAttachedSocketName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)sceneComponentFunctions[head++];
+				SceneComponent.getBounds = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, ref Bounds, void>)sceneComponentFunctions[head++];
 				SceneComponent.getSocketLocation = (delegate* unmanaged[Cdecl]<IntPtr, string, ref Vector3, void>)sceneComponentFunctions[head++];
 				SceneComponent.getSocketRotation = (delegate* unmanaged[Cdecl]<IntPtr, string, ref Quaternion, void>)sceneComponentFunctions[head++];
 				SceneComponent.getComponentVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
@@ -1132,6 +1133,15 @@ namespace UnrealEngine.Framework {
 		private Bool startPenetrating;
 	}
 
+	partial struct Bounds {
+		[FieldOffset(0)]
+		private Vector3 origin;
+		[FieldOffset(12)]
+		private Vector3 boxExtent;
+		[FieldOffset(24)]
+		private float sphereRadius;
+	}
+
 	partial struct CollisionShape {
 		[FieldOffset(0)]
 		private CollisionShapeType shapeType;
@@ -1669,6 +1679,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> addWorldRotation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> addWorldTransform;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getAttachedSocketName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, ref Bounds, void> getBounds;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref Vector3, void> getSocketLocation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref Quaternion, void> getSocketRotation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getComponentVelocity;

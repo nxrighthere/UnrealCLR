@@ -78,6 +78,7 @@
 - [Volume](./Volume.md 'UnrealEngine.Framework.Volume')
 - [World](./World.md 'UnrealEngine.Framework.World')
 ### Structs
+- [Bounds](./Bounds.md 'UnrealEngine.Framework.Bounds')
 - [CollisionShape](./CollisionShape.md 'UnrealEngine.Framework.CollisionShape')
 - [Hit](./Hit.md 'UnrealEngine.Framework.Hit')
 - [LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')

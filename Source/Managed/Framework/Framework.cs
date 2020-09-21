@@ -1370,7 +1370,61 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A representation of the collision shape
+	/// A combined axis aligned bounding box and bounding sphere with the same origin
+	/// </summary>
+	[StructLayout(LayoutKind.Explicit, Size = 28)]
+	public partial struct Bounds : IEquatable<Bounds> {
+		/// <summary>
+		/// Returns the origin of the bounding box and sphere
+		/// </summary>
+		public Vector3 Origin => origin;
+
+		/// <summary>
+		/// Returns the extent of the bounding box
+		/// </summary>
+		public Vector3 BoxExtent => boxExtent;
+
+		/// <summary>
+		/// Returns the radius of the bounding sphere
+		/// </summary>
+		public float SphereRadius => sphereRadius;
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(Bounds left, Bounds right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(Bounds left, Bounds right) => !left.Equals(right);
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(Bounds other) => origin == other.origin && boxExtent == other.boxExtent && sphereRadius == other.sphereRadius;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(Bounds)))
+				return false;
+
+			return Equals((Bounds)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => HashCode.Combine(origin, boxExtent, sphereRadius);
+	}
+
+	/// <summary>
+	/// A collision shape
 	/// </summary>
 	[StructLayout(LayoutKind.Explicit, Size = 16)]
 	public partial struct CollisionShape : IEquatable<CollisionShape> {
@@ -7398,6 +7452,11 @@ namespace UnrealEngine.Framework {
 
 			return stringBuffer.BytesToString();
 		}
+
+		/// <summary>
+		/// Retrieves calculated bounds of the component
+		/// </summary>
+		public void GetBounds(in Transform localToWorld, ref Bounds value) => getBounds(Pointer, localToWorld, ref value);
 
 		/// <summary>
 		/// Retrieves location of a socket in world space
