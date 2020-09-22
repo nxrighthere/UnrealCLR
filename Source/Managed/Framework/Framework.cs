@@ -908,7 +908,6 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A linear 32-bit floating-point RGBA color
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct LinearColor : IEquatable<LinearColor> {
 		/// <summary>
 		/// Initializes a new instance the linear color
@@ -1166,7 +1165,6 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Transform composed of location, rotation, and scale
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Transform : IEquatable<Transform> {
 		/// <summary>
 		/// Initializes a new instance the transform
@@ -1253,7 +1251,6 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A trace hit
 	/// </summary>
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Hit : IEquatable<Hit> {
 		/// <summary>
 		/// Returns the location in world space where the moving shape would end up against the impacted object if there was a hit
@@ -1372,7 +1369,6 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A combined axis aligned bounding box and bounding sphere with the same origin
 	/// </summary>
-	[StructLayout(LayoutKind.Explicit, Size = 28)]
 	public partial struct Bounds : IEquatable<Bounds> {
 		/// <summary>
 		/// Returns the origin of the bounding box and sphere
@@ -1426,7 +1422,6 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A collision shape
 	/// </summary>
-	[StructLayout(LayoutKind.Explicit, Size = 16)]
 	public partial struct CollisionShape : IEquatable<CollisionShape> {
 		/// <summary>
 		/// Returns the shape type

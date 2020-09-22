@@ -1105,6 +1105,7 @@ namespace UnrealEngine.Framework {
 		}
 	}
 
+	[StructLayout(LayoutKind.Sequential)]
 	partial struct LinearColor {
 		private float r;
 		private float g;
@@ -1112,12 +1113,14 @@ namespace UnrealEngine.Framework {
 		private float a;
 	}
 
+	[StructLayout(LayoutKind.Sequential)]
 	partial struct Transform {
 		private Quaternion rotation;
 		private Vector3 location;
 		private Vector3 scale;
 	}
 
+	[StructLayout(LayoutKind.Sequential)]
 	partial struct Hit {
 		private Vector3 location;
 		private Vector3 impactLocation;
@@ -1133,6 +1136,7 @@ namespace UnrealEngine.Framework {
 		private Bool startPenetrating;
 	}
 
+	[StructLayout(LayoutKind.Explicit, Size = 28)]
 	partial struct Bounds {
 		[FieldOffset(0)]
 		private Vector3 origin;
@@ -1142,6 +1146,7 @@ namespace UnrealEngine.Framework {
 		private float sphereRadius;
 	}
 
+	[StructLayout(LayoutKind.Explicit, Size = 16)]
 	partial struct CollisionShape {
 		[FieldOffset(0)]
 		private CollisionShapeType shapeType;
