@@ -5,12 +5,15 @@ using System.IO;
 public static class Install {
 	private static void Main() {
 		Console.Title = "UnrealCLR Installation Tool";
-		Console.SetIn(new StreamReader(Console.OpenStandardInput(8192), Console.InputEncoding, false, bufferSize: 1024));
+
+		using StreamReader consoleReader = new StreamReader(Console.OpenStandardInput(8192), Console.InputEncoding, false, bufferSize: 1024);
+
+		Console.SetIn(consoleReader);
 
 		Console.WriteLine("Welcome to UnrealCLR installation tool!");
 		Console.Write(Environment.NewLine + "Please, set a path to an Unreal Engine project: ");
 
-		string projectPath = @"" + Console.ReadLine().Replace("\"", String.Empty).Replace("\'", String.Empty).TrimEnd(Path.DirectorySeparatorChar);
+		string projectPath = @"" + Console.ReadLine().Replace("\"", String.Empty, StringComparison.Ordinal).Replace("\'", String.Empty, StringComparison.Ordinal).TrimEnd(Path.DirectorySeparatorChar);
 		string sourcePath = Directory.GetCurrentDirectory() + "/..";
 
 		if (Directory.GetFiles(projectPath, "*.uproject", SearchOption.TopDirectoryOnly).Length != 0) {
@@ -35,11 +38,11 @@ public static class Install {
 				Console.WriteLine("Copying native source code and the runtime host of the plugin...");
 
 				foreach (string directoriesPath in Directory.GetDirectories(nativeSource, "*", SearchOption.AllDirectories)) {
-					Directory.CreateDirectory(directoriesPath.Replace(nativeSource, projectPath + "/Plugins/UnrealCLR"));
+					Directory.CreateDirectory(directoriesPath.Replace(nativeSource, projectPath + "/Plugins/UnrealCLR", StringComparison.Ordinal));
 				}
 
 				foreach (string filesPath in Directory.GetFiles(nativeSource, "*.*", SearchOption.AllDirectories)) {
-					File.Copy(filesPath, filesPath.Replace(nativeSource, projectPath  + "/Plugins/UnrealCLR"), true);
+					File.Copy(filesPath, filesPath.Replace(nativeSource, projectPath  + "/Plugins/UnrealCLR", StringComparison.Ordinal), true);
 				}
 
 				Console.WriteLine("Launching compilation of the managed runtime...");
@@ -48,7 +51,7 @@ public static class Install {
 					FileName = "dotnet",
 					Arguments =  "publish " + sourcePath + "/Source/Managed/Runtime --configuration Release --framework net5.0 --output \"" + projectPath + "/Plugins/UnrealCLR/Managed\"",
 					CreateNoWindow = false,
-					UseShellExecute = true
+					UseShellExecute = false
 				});
 
 				runtimeCompilation.WaitForExit();
@@ -62,7 +65,7 @@ public static class Install {
 					FileName = "dotnet",
 					Arguments =  "publish " + sourcePath + "/Source/Managed/Framework --configuration Release --framework net5.0",
 					CreateNoWindow = false,
-					UseShellExecute = true
+					UseShellExecute = false
 				});
 
 				frameworkCompilation.WaitForExit();
@@ -81,11 +84,11 @@ public static class Install {
 					Console.WriteLine("Copying the content of the tests...");
 
 					foreach (string directoriesPath in Directory.GetDirectories(contentPath, "*", SearchOption.AllDirectories)) {
-						Directory.CreateDirectory(directoriesPath.Replace(contentPath, projectPath + "/Content"));
+						Directory.CreateDirectory(directoriesPath.Replace(contentPath, projectPath + "/Content", StringComparison.Ordinal));
 					}
 
 					foreach (string filesPath in Directory.GetFiles(contentPath, "*.*", SearchOption.AllDirectories)) {
-						File.Copy(filesPath, filesPath.Replace(contentPath, projectPath  + "/Content"), true);
+						File.Copy(filesPath, filesPath.Replace(contentPath, projectPath  + "/Content", StringComparison.Ordinal), true);
 					}
 
 					Console.WriteLine("Launching compilation of the tests...");
@@ -94,7 +97,7 @@ public static class Install {
 						FileName = "dotnet",
 						Arguments =  "publish " + sourcePath + "/Source/Managed/Tests --configuration Release --framework net5.0 --output \"" + projectPath + "/Managed/Tests\"",
 						CreateNoWindow = false,
-						UseShellExecute = true
+						UseShellExecute = false
 					});
 
 					testsCompilation.WaitForExit();
