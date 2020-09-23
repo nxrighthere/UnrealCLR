@@ -40,7 +40,7 @@ Building
 Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Navigate to `Install` folder, and run `dotnet run` command. Follow the installation instructions. Open the project after the installation process is complete.
 
 #### Upgrading
-To upgrade the plugin, re-run the installation process. Recompile custom code with an updated framework.
+Make sure that the Unreal Engine is not running. Re-run the installation process. Recompile custom code with an updated framework.
 
 ### Manual
 
@@ -57,7 +57,7 @@ dotnet publish --configuration Release --framework net5.0 --output "%Project%/Ma
 ```
 
 #### Upgrading
-To upgrade, delete the plugin folder from a project, and repeat all steps from the compilation section. Recompile custom code with an updated framework.
+Make sure that the Unreal Engine is not running. Delete the plugin folder from a project, and repeat all steps from the compilation section. Recompile custom code with an updated framework.
 
 Running
 --------
