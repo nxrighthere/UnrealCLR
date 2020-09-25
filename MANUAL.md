@@ -119,7 +119,7 @@ module System = // Custom module for loading functions from blueprints
 ```
 </details>
 
-To run a blueprint function, create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution flow:
+To run a blueprint function, create a new or open an existing [level](https://docs.unrealengine.com/en-US/Engine/QuickStart/index.html#3.createanewlevel) of the engine. Open level blueprint by navigating to `Blueprints -> Open Level Blueprint` and create a basic execution flow by right-clicking on the graph and selecting nodes from the .NET category:
 
 <p align="left">
 	<img src="https://github.com/Rageware/Images/raw/master/UnrealCLR/level-graph.png" alt="graph">
