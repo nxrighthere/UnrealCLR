@@ -84,7 +84,7 @@ Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and
 
 Assemblies that no longer referenced and unused in the project will persist in `%Project%/Managed` folder. Consider maintaining this folder through IDE or automation scripts.
 
-Enter the [play mode](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/InEditorTesting/index.html) to execute managed code.
+Enter the [play mode](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/InEditorTesting/index.html) to execute managed code. Stop the play mode to unload assemblies from memory for further recompilation.
 
 #### Blueprint functions
 
@@ -250,8 +250,12 @@ The engine's reflection system allows to dynamically invoke commands, functions,
 Blueprint event dispatcher:
 
 <p align="left">
-	<img src="https://github.com/Rageware/Images/blob/master/UnrealCLR/event-dispatcher.png" alt="event-dispatcher">
+	<img src="https://github.com/Rageware/Images/raw/master/UnrealCLR/event-dispatcher.png" alt="event-dispatcher">
 </p>
+
+```csharp
+blueprint.Invoke($"TestEvent \"{ message }: \" { value }")
+```
 
 See [Actor.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/Actor-Invoke(string).md), [ActorComponent.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ActorComponent-Invoke(string).md), and [AnimationInstance.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/AnimationInstance-Invoke(string).md) methods.
 
