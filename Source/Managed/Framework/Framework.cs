@@ -2074,7 +2074,7 @@ namespace UnrealEngine.Framework {
 		// Quaternion
 
 		/// <summary>
-		/// Returns a rotation that rotates z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis
+		/// Returns a rotation which rotates z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Quaternion Euler(float x, float y, float z) {
@@ -2086,7 +2086,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Returns a rotation that rotates z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis
+		/// Returns a rotation which rotates z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Quaternion Euler(Vector3 eulerAngles) => Euler(eulerAngles.X, eulerAngles.Y, eulerAngles.Z);
@@ -2113,6 +2113,26 @@ namespace UnrealEngine.Framework {
 			float sin = MathF.Sin(halfAngle);
 
 			return new(axis.X * sin, axis.Y * sin, axis.Z * sin, MathF.Cos(halfAngle));
+		}
+
+		/// <summary>
+		/// Returns a rotation which rotates from <paramref name="fromDirection"/> to <paramref name="toDirection"/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Quaternion FromToRotation(Vector3 fromDirection, Vector3 toDirection) {
+			float dot = Vector3.Dot(fromDirection, toDirection);
+			float normal = MathF.Sqrt(SquareMagnitude(fromDirection) * SquareMagnitude(toDirection));
+			float real = normal + dot;
+			Vector3 final = default;
+
+			if (real < Single.Epsilon * normal)	{
+				real = 0.0f;
+				final = MathF.Abs(fromDirection.X) > MathF.Abs(fromDirection.Z) ? new(-fromDirection.Y, fromDirection.X, 0.0f) : new(0.0f, -fromDirection.Z, fromDirection.Y);
+			} else {
+				final = Vector3.Cross(fromDirection, toDirection);
+			}
+
+			return Quaternion.Normalize(new(final, real));
 		}
 
 		/// <summary>

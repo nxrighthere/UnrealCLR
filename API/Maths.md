@@ -29,6 +29,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [Euler(float, float, float)](./Maths-Euler(float_float_float).md 'UnrealEngine.Framework.Maths.Euler(float, float, float)')
 - [Fraction(double)](./Maths-Fraction(double).md 'UnrealEngine.Framework.Maths.Fraction(double)')
 - [Fraction(float)](./Maths-Fraction(float).md 'UnrealEngine.Framework.Maths.Fraction(float)')
+- [FromToRotation(System.Numerics.Vector3, System.Numerics.Vector3)](./Maths-FromToRotation(Vector3_Vector3).md 'UnrealEngine.Framework.Maths.FromToRotation(System.Numerics.Vector3, System.Numerics.Vector3)')
 - [InverseLerp(double, double, double)](./Maths-InverseLerp(double_double_double).md 'UnrealEngine.Framework.Maths.InverseLerp(double, double, double)')
 - [InverseLerp(float, float, float)](./Maths-InverseLerp(float_float_float).md 'UnrealEngine.Framework.Maths.InverseLerp(float, float, float)')
 - [Lerp(double, double, double)](./Maths-Lerp(double_double_double).md 'UnrealEngine.Framework.Maths.Lerp(double, double, double)')

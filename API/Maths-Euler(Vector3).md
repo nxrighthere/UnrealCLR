@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Maths](./Maths.md 'UnrealEngine.Framework.Maths')
 ## Maths.Euler(System.Numerics.Vector3) Method
-Returns a rotation that rotates z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis  
+Returns a rotation which rotates z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis  
 ```csharp
 public static System.Numerics.Quaternion Euler(System.Numerics.Vector3 eulerAngles);
 ```
