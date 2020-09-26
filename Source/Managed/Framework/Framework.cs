@@ -1367,7 +1367,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
-	/// A combined axis aligned bounding box and bounding sphere with the same origin
+	/// A combined axis-aligned bounding box and bounding sphere with the same origin
 	/// </summary>
 	public partial struct Bounds : IEquatable<Bounds> {
 		/// <summary>
@@ -2125,7 +2125,7 @@ namespace UnrealEngine.Framework {
 			float real = normal + dot;
 			Vector3 final = default;
 
-			if (real < Single.Epsilon * normal)	{
+			if (real < Single.Epsilon * normal) {
 				real = 0.0f;
 				final = MathF.Abs(fromDirection.X) > MathF.Abs(fromDirection.Z) ? new(-fromDirection.Y, fromDirection.X, 0.0f) : new(0.0f, -fromDirection.Z, fromDirection.Y);
 			} else {
@@ -7385,6 +7385,16 @@ namespace UnrealEngine.Framework {
 		/// Returns <c>true</c> if the component has any sockets
 		/// </summary>
 		public bool HasAnySockets => hasAnySockets(Pointer);
+
+		/// <summary>
+		/// Returns <c>true</c> if another scene component can be attached as a child
+		/// </summary>
+		public bool CanAttachAsChild(SceneComponent childComponent, string socketName = null) {
+			if (childComponent == null)
+				throw new ArgumentNullException(nameof(childComponent));
+
+			return canAttachAsChild(Pointer, childComponent.Pointer, socketName);
+		}
 
 		/// <summary>
 		/// Attaches the component to another component, optionally at a named socket

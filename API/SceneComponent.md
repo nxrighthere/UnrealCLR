@@ -30,6 +30,7 @@ Derived
 - [AddWorldRotation(System.Numerics.Quaternion)](./SceneComponent-AddWorldRotation(Quaternion).md 'UnrealEngine.Framework.SceneComponent.AddWorldRotation(System.Numerics.Quaternion)')
 - [AddWorldTransform(UnrealEngine.Framework.Transform)](./SceneComponent-AddWorldTransform(Transform).md 'UnrealEngine.Framework.SceneComponent.AddWorldTransform(UnrealEngine.Framework.Transform)')
 - [AttachToComponent(UnrealEngine.Framework.SceneComponent, UnrealEngine.Framework.AttachmentTransformRule, string)](./SceneComponent-AttachToComponent(SceneComponent_AttachmentTransformRule_string).md 'UnrealEngine.Framework.SceneComponent.AttachToComponent(UnrealEngine.Framework.SceneComponent, UnrealEngine.Framework.AttachmentTransformRule, string)')
+- [CanAttachAsChild(UnrealEngine.Framework.SceneComponent, string)](./SceneComponent-CanAttachAsChild(SceneComponent_string).md 'UnrealEngine.Framework.SceneComponent.CanAttachAsChild(UnrealEngine.Framework.SceneComponent, string)')
 - [Deactivate()](./SceneComponent-Deactivate().md 'UnrealEngine.Framework.SceneComponent.Deactivate()')
 - [DetachFromComponent(UnrealEngine.Framework.DetachmentTransformRule)](./SceneComponent-DetachFromComponent(DetachmentTransformRule).md 'UnrealEngine.Framework.SceneComponent.DetachFromComponent(UnrealEngine.Framework.DetachmentTransformRule)')
 - [GetAttachedSocketName()](./SceneComponent-GetAttachedSocketName().md 'UnrealEngine.Framework.SceneComponent.GetAttachedSocketName()')

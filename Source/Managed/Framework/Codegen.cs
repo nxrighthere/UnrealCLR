@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x289;
+		internal const int checksum = 0x28A;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -518,6 +518,7 @@ namespace UnrealEngine.Framework {
 				SceneComponent.isVisible = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.isSocketExists = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.hasAnySockets = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.canAttachAsChild = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr>)sceneComponentFunctions[head++];
 				SceneComponent.attachToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.detachFromComponent = (delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void>)sceneComponentFunctions[head++];
@@ -1669,6 +1670,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isVisible;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isSocketExists;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasAnySockets;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, Bool> canAttachAsChild;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr> create;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool> attachToComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void> detachFromComponent;

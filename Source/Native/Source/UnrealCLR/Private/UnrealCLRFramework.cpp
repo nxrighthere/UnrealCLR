@@ -2069,6 +2069,10 @@ namespace UnrealCLRFramework {
 			return SceneComponent->HasAnySockets();
 		}
 
+		bool CanAttachAsChild(USceneComponent* SceneComponent, USceneComponent* ChildComponent, const char* SocketName) {
+			return SceneComponent->CanAttachAsChild(ChildComponent, FName(ANSI_TO_TCHAR(SocketName)));
+		}
+
 		USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint) {
 			USceneComponent* component = nullptr;
 

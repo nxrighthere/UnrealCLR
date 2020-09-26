@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## Bounds Struct
-A combined axis aligned bounding box and bounding sphere with the same origin  
+A combined axis-aligned bounding box and bounding sphere with the same origin  
 ```csharp
 public struct Bounds :
 IEquatable<Bounds>
