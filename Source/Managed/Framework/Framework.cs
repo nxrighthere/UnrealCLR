@@ -8839,6 +8839,26 @@ namespace UnrealEngine.Framework {
 		internal LightComponent(IntPtr pointer) => Pointer = pointer;
 
 		/// <summary>
+		/// Creates the component attached to an actor and optionally sets it as the root, first component will be set as the root automatically
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		/// <param name="setAsRoot">If <c>true</c>, sets the component as the root</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the component</param>
+		public LightComponent(Actor actor, string name = null, bool setAsRoot = false, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+
+		/// <summary>
 		/// Sets the intensity of the light
 		/// </summary>
 		public void SetIntensity(float value) => setIntensity(Pointer, value);
@@ -8858,6 +8878,26 @@ namespace UnrealEngine.Framework {
 		private protected DirectionalLightComponent() { }
 
 		internal DirectionalLightComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates the component attached to an actor and optionally sets it as the root, first component will be set as the root automatically
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		/// <param name="setAsRoot">If <c>true</c>, sets the component as the root</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the component</param>
+		public DirectionalLightComponent(Actor actor, string name = null, bool setAsRoot = false, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 	}
 
 	/// <summary>
