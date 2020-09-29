@@ -63,7 +63,7 @@ public static class Install {
 
 				var frameworkCompilation = Process.Start(new ProcessStartInfo {
 					FileName = "dotnet",
-					Arguments =  "publish \"" + sourcePath + "/Source/Managed/Framework\" --configuration Release --framework net5.0",
+					Arguments =  "publish \"" + sourcePath + "/Source/Managed/Framework\" --configuration Release --framework net5.0 --output \"" + sourcePath + "/Source/Managed/Framework/bin/Release\"",
 					CreateNoWindow = false,
 					UseShellExecute = false
 				});
