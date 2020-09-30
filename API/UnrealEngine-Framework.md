@@ -31,6 +31,7 @@
 - [DirectionalLightComponent](./DirectionalLightComponent.md 'UnrealEngine.Framework.DirectionalLightComponent')
 - [Engine](./Engine.md 'UnrealEngine.Framework.Engine')
 - [HeadMountedDisplay](./HeadMountedDisplay.md 'UnrealEngine.Framework.HeadMountedDisplay')
+- [HierarchicalInstancedStaticMeshComponent](./HierarchicalInstancedStaticMeshComponent.md 'UnrealEngine.Framework.HierarchicalInstancedStaticMeshComponent')
 - [InputComponent](./InputComponent.md 'UnrealEngine.Framework.InputComponent')
 - [InstancedStaticMeshComponent](./InstancedStaticMeshComponent.md 'UnrealEngine.Framework.InstancedStaticMeshComponent')
 - [Keys](./Keys.md 'UnrealEngine.Framework.Keys')

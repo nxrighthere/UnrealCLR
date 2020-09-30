@@ -990,6 +990,16 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::HierarchicalInstancedStaticMeshComponentFunctions;
+
+				Shared::HierarchicalInstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::HierarchicalInstancedStaticMeshComponent::GetDisableCollision;
+				Shared::HierarchicalInstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::HierarchicalInstancedStaticMeshComponent::SetDisableCollision;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::SkinnedMeshComponentFunctions;
 
 				Shared::SkinnedMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::SkinnedMeshComponent::GetBonesNumber;

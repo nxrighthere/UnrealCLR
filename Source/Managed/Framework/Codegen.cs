@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x28A;
+		internal const int checksum = 0x28D;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -812,6 +812,14 @@ namespace UnrealEngine.Framework {
 
 			unchecked {
 				int head = 0;
+				IntPtr* hierarchicalInstancedStaticMeshComponentFunctions = (IntPtr*)buffer[position++];
+
+				HierarchicalInstancedStaticMeshComponent.getDisableCollision = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)hierarchicalInstancedStaticMeshComponentFunctions[head++];
+				HierarchicalInstancedStaticMeshComponent.setDisableCollision = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)hierarchicalInstancedStaticMeshComponentFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
 				IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
 
 				SkinnedMeshComponent.getBonesNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)skinnedMeshComponentFunctions[head++];
@@ -1229,6 +1237,7 @@ namespace UnrealEngine.Framework {
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
+		HierarchicalInstancedStaticMeshComponent,
 		ChildActor,
 		SpringArm,
 		Box,
@@ -1917,6 +1926,11 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Transform, Bool, Bool, Bool, Bool> updateInstanceTransform;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, Bool> removeInstance;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearInstances;
+	}
+
+	unsafe partial class HierarchicalInstancedStaticMeshComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getDisableCollision;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDisableCollision;
 	}
 
 	unsafe partial class SkinnedMeshComponent {

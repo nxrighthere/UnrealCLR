@@ -27,6 +27,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/DirectionalLightComponent.h"
+#include "Components/HierarchicalInstancedStaticMeshComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/LightComponent.h"
 #include "Components/LightComponentBase.h"
@@ -293,7 +294,7 @@ namespace UnrealCLR {
 
 		static void RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup, ALevelScriptActor* LevelActor);
 		static void HostError(const char_t* Message);
-		static void Invoke(void(*)(), Argument Value);
+		static void Invoke(void(*ManagedFunction)(), Argument Value);
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
 
@@ -364,6 +365,7 @@ namespace UnrealCLR {
 		static void* MotionControllerComponentFunctions[storageSize];
 		static void* StaticMeshComponentFunctions[storageSize];
 		static void* InstancedStaticMeshComponentFunctions[storageSize];
+		static void* HierarchicalInstancedStaticMeshComponentFunctions[storageSize];
 		static void* SkinnedMeshComponentFunctions[storageSize];
 		static void* SkeletalMeshComponentFunctions[storageSize];
 		static void* SplineComponentFunctions[storageSize];

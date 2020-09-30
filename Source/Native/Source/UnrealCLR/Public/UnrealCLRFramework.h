@@ -280,6 +280,7 @@ namespace UnrealCLRFramework {
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
+		HierarchicalInstancedStaticMeshComponent,
 		ChildActor,
 		SpringArm,
 		Box,
@@ -992,6 +993,11 @@ namespace UnrealCLRFramework {
 		static bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
 		static bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex);
 		static void ClearInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent);
+	}
+
+	namespace HierarchicalInstancedStaticMeshComponent {
+		static bool GetDisableCollision(UHierarchicalInstancedStaticMeshComponent* HierarchicalInstancedStaticMeshComponent);
+		static void SetDisableCollision(UHierarchicalInstancedStaticMeshComponent* HierarchicalInstancedStaticMeshComponent, bool Value);
 	}
 
 	namespace SkinnedMeshComponent {

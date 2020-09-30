@@ -142,6 +142,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::InstancedStaticMesh:\
 				Result = Head UInstancedStaticMeshComponent Tail;\
 				break;\
+			case ComponentType::HierarchicalInstancedStaticMeshComponent:\
+				Result = Head UHierarchicalInstancedStaticMeshComponent Tail;\
+				break;\
 			case ComponentType::ChildActor:\
 				Result = Head UChildActorComponent Tail;\
 				break;\
@@ -196,6 +199,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::InstancedStaticMesh:\
 				Result = Head UInstancedStaticMeshComponent Tail;\
+				break;\
+			case ComponentType::HierarchicalInstancedStaticMeshComponent:\
+				Result = Head UHierarchicalInstancedStaticMeshComponent Tail;\
 				break;\
 			case ComponentType::ChildActor:\
 				Result = Head UChildActorComponent Tail;\
@@ -2937,10 +2943,6 @@ namespace UnrealCLRFramework {
 		}
 	}
 
-	namespace DirectionalLightComponent {
-
-	}
-
 	namespace MotionControllerComponent {
 		bool IsTracked(UMotionControllerComponent* MotionControllerComponent) {
 			return MotionControllerComponent->IsTracked();
@@ -3016,6 +3018,16 @@ namespace UnrealCLRFramework {
 
 		void ClearInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent) {
 			InstancedStaticMeshComponent->ClearInstances();
+		}
+	}
+
+	namespace HierarchicalInstancedStaticMeshComponent {
+		bool GetDisableCollision(UHierarchicalInstancedStaticMeshComponent* HierarchicalInstancedStaticMeshComponent) {
+			return HierarchicalInstancedStaticMeshComponent->bDisableCollision;
+		}
+
+		void SetDisableCollision(UHierarchicalInstancedStaticMeshComponent* HierarchicalInstancedStaticMeshComponent, bool Value) {
+			HierarchicalInstancedStaticMeshComponent->bDisableCollision = Value;
 		}
 	}
 
