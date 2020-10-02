@@ -198,12 +198,12 @@ namespace UnrealEngine.Runtime {
 												plugin.userFunctions = (Dictionary<int, IntPtr>)sharedClass.GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { sharedEvents, sharedFunctions, plugin.assembly });
 
 												Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
+
+												return default(IntPtr);
 											} else {
 												Log(LogLevel.Fatal, "Framework loading failed, version is incompatible with the runtime, please, recompile the project with an updated version referenced in " + assembly);
 											}
 										}
-
-										return default(IntPtr);
 									}
 								}
 
