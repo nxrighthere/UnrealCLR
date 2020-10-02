@@ -254,7 +254,7 @@ Blueprint event dispatcher:
 </p>
 
 ```csharp
-blueprint.Invoke($"TestEvent \"{ message }: \" { value }");
+blueprint.Invoke($"TestEvent \"{ message }\" { value }");
 ```
 
 See [Actor.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/Actor-Invoke(string).md), [ActorComponent.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/ActorComponent-Invoke(string).md), and [AnimationInstance.Invoke()](https://github.com/nxrighthere/UnrealCLR/blob/master/API/AnimationInstance-Invoke(string).md) methods.
