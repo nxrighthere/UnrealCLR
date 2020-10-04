@@ -2020,7 +2020,7 @@ namespace UnrealEngine.Framework {
 		public static Vector3 Project(Vector3 value, Vector3 normal) {
 			float squareMagnitude = SquareMagnitude(normal);
 
-			if (squareMagnitude < float.Epsilon)
+			if (squareMagnitude < Single.Epsilon)
 				return Vector3.Zero;
 
 			float dot = Vector3.Dot(value, normal);
@@ -2035,7 +2035,7 @@ namespace UnrealEngine.Framework {
 		public static Vector3 ProjectOnPlane(Vector3 value, Vector3 planeNormal) {
 			float squareMagnitude = SquareMagnitude(planeNormal);
 
-			if (squareMagnitude < float.Epsilon)
+			if (squareMagnitude < Single.Epsilon)
 				return value;
 
 			float dot = Vector3.Dot(value, planeNormal);

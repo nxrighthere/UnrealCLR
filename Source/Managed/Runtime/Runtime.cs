@@ -106,7 +106,7 @@ namespace UnrealEngine.Runtime {
 					Exception(exception.ToString());
 				}
 
-				return default(IntPtr);
+				return default;
 			}
 
 			if (command.type == CommandType.Find) {
@@ -199,7 +199,7 @@ namespace UnrealEngine.Runtime {
 
 												Log(LogLevel.Display, "Framework loaded succesfuly for " + assembly);
 
-												return default(IntPtr);
+												return default;
 											} else {
 												Log(LogLevel.Fatal, "Framework loading failed, version is incompatible with the runtime, please, recompile the project with an updated version referenced in " + assembly);
 											}
@@ -217,13 +217,13 @@ namespace UnrealEngine.Runtime {
 					Exception("Loading of assemblies failed\r\n" + exception.ToString());
 				}
 
-				return default(IntPtr);
+				return default;
 			}
 
 			if (command.type == CommandType.UnloadAssemblies)
 				UnloadAssemblies();
 
-			return default(IntPtr);
+			return default;
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
