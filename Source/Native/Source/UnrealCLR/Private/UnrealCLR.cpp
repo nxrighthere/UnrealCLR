@@ -126,6 +126,15 @@ void UnrealCLR::Module::StartupModule() {
 			return;
 		}
 
+		IPlatformFile& platformFile = FPlatformFileManager::Get().GetPlatformFile();
+
+		if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath)) {
+			platformFile.CreateDirectory(*UnrealCLR::UserAssembliesPath);
+
+			if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath))
+				UE_LOG(LogUnrealCLR, Warning, TEXT("%s: Unable to create a folder for managed assemblies at %s."), ANSI_TO_TCHAR(__FUNCTION__), *UnrealCLR::UserAssembliesPath);
+		}
+
 		if (UnrealCLR::ManagedCommand) {
 			// Framework pointers
 
@@ -1180,16 +1189,6 @@ void UnrealCLR::Module::StartupModule() {
 
 			UnrealCLR::Engine::Manager = NewObject<UUnrealCLRManager>();
 			UnrealCLR::Engine::Manager->AddToRoot();
-
-			IPlatformFile& platformFile = FPlatformFileManager::Get().GetPlatformFile();
-
-			if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath)) {
-				platformFile.CreateDirectory(*UnrealCLR::UserAssembliesPath);
-
-				if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath))
-					UE_LOG(LogUnrealCLR, Error, TEXT("%s: Unable to create a folder for managed assemblies at %s."), ANSI_TO_TCHAR(__FUNCTION__), *UnrealCLR::UserAssembliesPath);
-			}
-
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1221,7 +1220,7 @@ void UnrealCLR::Module::OnWorldPostInitialization(UWorld* World, const UWorld::I
 			UnrealCLR::Engine::World = World;
 
 			if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
-				UnrealCLR::ManagedCommand(UnrealCLR::Command(true));
+				UnrealCLR::ManagedCommand(UnrealCLR::Command(CommandType::LoadAssemblies));
 				UnrealCLR::Status = UnrealCLR::StatusType::Running;
 
 				for (TActorIterator<ALevelScriptActor> currentActor(UnrealCLR::Engine::World); currentActor; ++currentActor) {
@@ -1261,7 +1260,7 @@ void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool Cl
 			OnPostPhysicsTickFunction.UnRegisterTickFunction();
 			OnPostUpdateTickFunction.UnRegisterTickFunction();
 
-			UnrealCLR::ManagedCommand(UnrealCLR::Command(false));
+			UnrealCLR::ManagedCommand(UnrealCLR::Command(CommandType::UnloadAssemblies));
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 		}
 

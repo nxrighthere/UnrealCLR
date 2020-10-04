@@ -223,11 +223,8 @@ namespace UnrealCLR {
 			this->Type = CommandType::Initialize;
 		}
 
-		FORCEINLINE Command(bool ProcessAssemblies) {
-			if (ProcessAssemblies)
-				this->Type = CommandType::LoadAssemblies;
-			else
-				this->Type = CommandType::UnloadAssemblies;
+		FORCEINLINE Command(CommandType Type) {
+			this->Type = Type;
 		}
 
 		FORCEINLINE Command(const char* Method, bool Optional) {
