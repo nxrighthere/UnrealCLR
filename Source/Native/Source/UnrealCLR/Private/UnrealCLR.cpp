@@ -510,6 +510,8 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetMousePosition;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetPlayer;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetPlayerInput;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetHitResultAtScreenPosition;
+				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::GetHitResultUnderCursor;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetShowMouseCursor;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetEnableClickEvents;
 				Shared::PlayerControllerFunctions[head++] = (void*)&UnrealCLRFramework::PlayerController::SetEnableMouseOverEvents;

@@ -585,6 +585,8 @@ namespace UnrealCLRFramework {
 		static bool GetMousePosition(APlayerController* PlayerController, float* X, float* Y);
 		static UPlayer* GetPlayer(APlayerController* PlayerController);
 		static UPlayerInput* GetPlayerInput(APlayerController* PlayerController);
+		static bool GetHitResultAtScreenPosition(APlayerController* PlayerController, const Vector2* ScreenPosition, CollisionChannel TraceChannel, Hit* Hit, bool TraceComplex);
+		static bool GetHitResultUnderCursor(APlayerController* PlayerController, CollisionChannel TraceChannel, Hit* Hit, bool TraceComplex);
 		static void SetShowMouseCursor(APlayerController* PlayerController, bool Value);
 		static void SetEnableClickEvents(APlayerController* PlayerController, bool Value);
 		static void SetEnableMouseOverEvents(APlayerController* PlayerController, bool Value);

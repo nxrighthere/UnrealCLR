@@ -1727,6 +1727,26 @@ namespace UnrealCLRFramework {
 			return PlayerController->PlayerInput;
 		}
 
+		bool GetHitResultAtScreenPosition(APlayerController* PlayerController, const Vector2* ScreenPosition, CollisionChannel TraceChannel, Hit* Hit, bool TraceComplex) {
+			FHitResult hit;
+
+			bool result = PlayerController->GetHitResultAtScreenPosition(*ScreenPosition, TraceChannel, TraceComplex, hit);
+
+			*Hit = hit;
+
+			return result;
+		}
+
+		bool GetHitResultUnderCursor(APlayerController* PlayerController, CollisionChannel TraceChannel, Hit* Hit, bool TraceComplex) {
+			FHitResult hit;
+
+			bool result = PlayerController->GetHitResultUnderCursor(TraceChannel, TraceComplex, hit);
+
+			*Hit = hit;
+
+			return result;
+		}
+
 		void SetShowMouseCursor(APlayerController* PlayerController, bool Value) {
 			PlayerController->bShowMouseCursor = Value;
 		}

@@ -17,6 +17,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [AddRollInput(float)](./PlayerController-AddRollInput(float).md 'UnrealEngine.Framework.PlayerController.AddRollInput(float)')
 - [AddYawInput(float)](./PlayerController-AddYawInput(float).md 'UnrealEngine.Framework.PlayerController.AddYawInput(float)')
 - [ConsoleCommand(string, bool)](./PlayerController-ConsoleCommand(string_bool).md 'UnrealEngine.Framework.PlayerController.ConsoleCommand(string, bool)')
+- [GetHitResultAtScreenPosition(System.Numerics.Vector2, UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, bool)](./PlayerController-GetHitResultAtScreenPosition(Vector2_CollisionChannel_Hit_bool).md 'UnrealEngine.Framework.PlayerController.GetHitResultAtScreenPosition(System.Numerics.Vector2, UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, bool)')
+- [GetHitResultUnderCursor(UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, bool)](./PlayerController-GetHitResultUnderCursor(CollisionChannel_Hit_bool).md 'UnrealEngine.Framework.PlayerController.GetHitResultUnderCursor(UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, bool)')
 - [GetMousePosition(float, float)](./PlayerController-GetMousePosition(float_float).md 'UnrealEngine.Framework.PlayerController.GetMousePosition(float, float)')
 - [GetPlayer()](./PlayerController-GetPlayer().md 'UnrealEngine.Framework.PlayerController.GetPlayer()')
 - [GetPlayerInput()](./PlayerController-GetPlayerInput().md 'UnrealEngine.Framework.PlayerController.GetPlayerInput()')

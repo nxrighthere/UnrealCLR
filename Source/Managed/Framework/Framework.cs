@@ -5466,6 +5466,18 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the first blocking hit from the position on the screen
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetHitResultAtScreenPosition(in Vector2 screenPosition, CollisionChannel traceChannel, ref Hit hit, bool traceComplex = false) => getHitResultAtScreenPosition(Pointer, screenPosition, traceChannel, ref hit, traceComplex);
+
+		/// <summary>
+		/// Retrieves the first blocking hit under the mouse cursor
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetHitResultUnderCursor(CollisionChannel traceChannel, ref Hit hit, bool traceComplex = false) => getHitResultUnderCursor(Pointer, traceChannel, ref hit, traceComplex);
+
+		/// <summary>
 		/// Positions the mouse cursor in screen space, in pixels
 		/// </summary>
 		public void SetMousePosition(float x, float y) => setMousePosition(Pointer, x, y);

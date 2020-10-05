@@ -5,6 +5,7 @@ using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
 	public class DynamicEvents : ISystem {
+		private PlayerController playerController;
 		private Actor leftActor;
 		private Actor rightActor;
 		private StaticMeshComponent leftStaticMeshComponent;
@@ -14,6 +15,7 @@ namespace UnrealEngine.Tests {
 		private const float startY = 450.0f;
 
 		public DynamicEvents() {
+			playerController = World.GetFirstPlayerController();
 			leftActor = new("LeftActor");
 			rightActor = new("RightActor");
 			leftStaticMeshComponent = new(leftActor, "LeftActorComponent", true);
@@ -23,8 +25,6 @@ namespace UnrealEngine.Tests {
 		}
 
 		public void OnBeginPlay() {
-			PlayerController playerController = World.GetFirstPlayerController();
-
 			playerController.ShowMouseCursor = true;
 			playerController.EnableClickEvents = true;
 			playerController.EnableMouseOverEvents = true;
@@ -115,6 +115,11 @@ namespace UnrealEngine.Tests {
 		public void OnTick(float deltaTime) {
 			Translate(leftStaticMeshComponent, 750.0f);
 			Translate(rightStaticMeshComponent, -750.0f);
+
+			Hit hit = default;
+
+			if (playerController.GetHitResultUnderCursor(CollisionChannel.WorldDynamic, ref hit))
+				Debug.AddOnScreenMessage(13, 3.0f, Color.CornflowerBlue, "Cursor hit " + hit.GetActor().Name);
 		}
 
 		public void OnEndPlay() => Debug.ClearOnScreenMessages();

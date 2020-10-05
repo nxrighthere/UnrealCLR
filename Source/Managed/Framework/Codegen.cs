@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x28F;
+		internal const int checksum = 0x291;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -377,6 +377,8 @@ namespace UnrealEngine.Framework {
 				PlayerController.getMousePosition = (delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, Bool>)playerControllerFunctions[head++];
 				PlayerController.getPlayer = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerControllerFunctions[head++];
 				PlayerController.getPlayerInput = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)playerControllerFunctions[head++];
+				PlayerController.getHitResultAtScreenPosition = (delegate* unmanaged[Cdecl]<IntPtr, in Vector2, CollisionChannel, ref Hit, Bool, Bool>)playerControllerFunctions[head++];
+				PlayerController.getHitResultUnderCursor = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, ref Hit, Bool, Bool>)playerControllerFunctions[head++];
 				PlayerController.setShowMouseCursor = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setEnableClickEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setEnableMouseOverEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
@@ -1545,6 +1547,8 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref float, ref float, Bool> getMousePosition;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayer;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayerInput;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector2, CollisionChannel, ref Hit, Bool, Bool> getHitResultAtScreenPosition;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, ref Hit, Bool, Bool> getHitResultUnderCursor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setShowMouseCursor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableClickEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableMouseOverEvents;
