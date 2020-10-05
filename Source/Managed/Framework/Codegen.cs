@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x28D;
+		internal const int checksum = 0x28F;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -468,6 +468,13 @@ namespace UnrealEngine.Framework {
 				PlayerInput.addAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, float, void>)playerInputFunctions[head++];
 				PlayerInput.removeActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, void>)playerInputFunctions[head++];
 				PlayerInput.removeAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, void>)playerInputFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* fontFunctions = (IntPtr*)buffer[position++];
+
+				Font.getStringSize = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, ref int, void>)fontFunctions[head++];
 			}
 
 			unchecked {
@@ -1200,6 +1207,7 @@ namespace UnrealEngine.Framework {
 		StaticMesh,
 		SkeletalMesh,
 		Material,
+		Font,
 		Texture2D
 	}
 
@@ -1635,7 +1643,9 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, void> removeAxisMapping;
 	}
 
-	unsafe partial class Font { }
+	unsafe partial class Font {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, ref int, void> getStringSize;
+	}
 
 	unsafe partial class StreamableRenderAsset { }
 

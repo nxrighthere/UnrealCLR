@@ -621,6 +621,15 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::FontFunctions;
+
+				Shared::FontFunctions[head++] = (void*)&UnrealCLRFramework::Font::GetStringSize;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::Texture2DFunctions;
 
 				Shared::Texture2DFunctions[head++] = (void*)&UnrealCLRFramework::Texture2D::CreateFromFile;

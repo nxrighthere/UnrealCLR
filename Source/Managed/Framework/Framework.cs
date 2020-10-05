@@ -6722,7 +6722,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// A font object that is used to draw text
 	/// </summary>
-	public abstract unsafe partial class Font : IEquatable<Font> {
+	public unsafe partial class Font : IEquatable<Font> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -6743,6 +6743,8 @@ namespace UnrealEngine.Framework {
 
 		private protected Font() { }
 
+		internal Font(IntPtr pointer) => Pointer = pointer;
+
 		/// <summary>
 		/// Returns <c>true</c> if the object is created
 		/// </summary>
@@ -6758,7 +6760,26 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		public override int GetHashCode() => pointer.GetHashCode();
 
+		/// <summary>
+		/// Finds and loads a font by name
+		/// </summary>
+		/// <returns>A font or <c>null</c> on failure</returns>
+		public static Font Load(string name) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
 
+			IntPtr pointer = Object.load(ObjectType.Font, name);
+
+			if (pointer != IntPtr.Zero)
+				return new(pointer);
+
+			return null;
+		}
+
+		/// <summary>
+		/// Retrieves height and width for a string
+		/// </summary>
+		public void GetStringSize(string text, ref int height, ref int width) => getStringSize(Pointer, text, ref height, ref width);
 	}
 
 	/// <summary>

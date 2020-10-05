@@ -2,7 +2,7 @@
 ## Font Class
 A font object that is used to draw text  
 ```csharp
-public abstract class Font :
+public class Font :
 IEquatable<Font>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Font  
@@ -13,3 +13,5 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 ### Methods
 - [Equals(UnrealEngine.Framework.Font)](./Font-Equals(Font).md 'UnrealEngine.Framework.Font.Equals(UnrealEngine.Framework.Font)')
 - [GetHashCode()](./Font-GetHashCode().md 'UnrealEngine.Framework.Font.GetHashCode()')
+- [GetStringSize(string, int, int)](./Font-GetStringSize(string_int_int).md 'UnrealEngine.Framework.Font.GetStringSize(string, int, int)')
+- [Load(string)](./Font-Load(string).md 'UnrealEngine.Framework.Font.Load(string)')

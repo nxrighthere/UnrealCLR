@@ -36,6 +36,7 @@
 #include "Components/SplineComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DirectionalLight.h"
+#include "Engine/Font.h"
 #include "Engine/GameEngine.h"
 #include "Engine/LevelScriptActor.h"
 #include "Engine/Light.h"
@@ -343,6 +344,7 @@ namespace UnrealCLR {
 		static void* AnimationInstanceFunctions[storageSize];
 		static void* PlayerFunctions[storageSize];
 		static void* PlayerInputFunctions[storageSize];
+		static void* FontFunctions[storageSize];
 		static void* Texture2DFunctions[storageSize];
 		static void* ActorComponentFunctions[storageSize];
 		static void* InputComponentFunctions[storageSize];

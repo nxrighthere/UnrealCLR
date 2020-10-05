@@ -506,6 +506,11 @@ namespace UnrealCLRFramework {
 					break;
 				}
 
+				case ObjectType::Font: {
+					object = StaticLoadObject(UFont::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					break;
+				}
+
 				case ObjectType::Texture2D: {
 					object = StaticLoadObject(UTexture2D::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
 					break;
@@ -1933,6 +1938,17 @@ namespace UnrealCLRFramework {
 
 		void RemoveAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key) {
 			PlayerInput->RemoveAxisMapping(FInputAxisKeyMapping(FName(ANSI_TO_TCHAR(AxisName)), FKey(ANSI_TO_TCHAR(Key))));
+		}
+	}
+
+	namespace Font {
+		void GetStringSize(UFont* Font, const char* Text, int32* Height, int32* Width) {
+			int32 height, width;
+
+			Font->GetStringHeightAndWidth(ANSI_TO_TCHAR(Text), height, width);
+
+			*Height = height;
+			*Width = width;
 		}
 	}
 

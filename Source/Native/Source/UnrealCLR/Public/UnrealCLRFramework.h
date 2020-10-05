@@ -243,6 +243,7 @@ namespace UnrealCLRFramework {
 		StaticMesh,
 		SkeletalMesh,
 		Material,
+		Font,
 		Texture2D
 	};
 
@@ -693,7 +694,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Font {
-
+		static void GetStringSize(UFont* Font, const char* Text, int32* Height, int32* Width);
 	}
 
 	namespace StreamableRenderAsset {
