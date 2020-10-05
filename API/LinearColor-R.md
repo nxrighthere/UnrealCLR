@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')
 ## LinearColor.R Property
-Gets or sets the red component of the color  
+Gets or sets the red component of the linear color  
 ```csharp
 public float R { get; set; }
 ```

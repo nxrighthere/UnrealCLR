@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')
 ## LinearColor.ToArray() Method
-Creates an array containing the elements of the color  
+Creates an array containing the elements of the linear color  
 ```csharp
 public float[] ToArray();
 ```

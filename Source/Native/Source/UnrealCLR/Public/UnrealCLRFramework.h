@@ -692,6 +692,10 @@ namespace UnrealCLRFramework {
 		static void RemoveAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key);
 	}
 
+	namespace Font {
+
+	}
+
 	namespace StreamableRenderAsset {
 
 	}

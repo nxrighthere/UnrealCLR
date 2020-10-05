@@ -1635,6 +1635,8 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, void> removeAxisMapping;
 	}
 
+	unsafe partial class Font { }
+
 	unsafe partial class StreamableRenderAsset { }
 
 	unsafe partial class StaticMesh { }

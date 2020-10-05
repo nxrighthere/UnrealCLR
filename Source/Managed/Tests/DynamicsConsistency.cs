@@ -95,7 +95,7 @@ namespace UnrealEngine.Tests {
 		private void MouseYMessage(float axisValue) => Debug.AddOnScreenMessage(2, 3.0f, Color.PaleGoldenrod, "Mouse Y axis value: " + axisValue);
 
 		private void TimeTest() {
-			Debug.AddOnScreenMessage(3, 3.0f, Color.LightCyan, "Time: " + World.RealTime);
+			Debug.AddOnScreenMessage(3, 3.0f, Color.LightCyan, "Time: " + World.Time);
 			Debug.AddOnScreenMessage(4, 3.0f, Color.LightCyan, "Delta time: " + World.DeltaTime);
 			Debug.AddOnScreenMessage(5, 3.0f, Color.LightCyan, "Real time: " + World.RealTime);
 		}

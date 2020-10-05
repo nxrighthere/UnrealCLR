@@ -7,6 +7,7 @@ IEquatable<LinearColor>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Constructors
+- [LinearColor(System.Drawing.Color)](./LinearColor-LinearColor(Color).md 'UnrealEngine.Framework.LinearColor.LinearColor(System.Drawing.Color)')
 - [LinearColor(System.Numerics.Vector3, float)](./LinearColor-LinearColor(Vector3_float).md 'UnrealEngine.Framework.LinearColor.LinearColor(System.Numerics.Vector3, float)')
 - [LinearColor(System.Numerics.Vector4)](./LinearColor-LinearColor(Vector4).md 'UnrealEngine.Framework.LinearColor.LinearColor(System.Numerics.Vector4)')
 - [LinearColor(float, float, float, float)](./LinearColor-LinearColor(float_float_float_float).md 'UnrealEngine.Framework.LinearColor.LinearColor(float, float, float, float)')
@@ -29,6 +30,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [Divide(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)](./LinearColor-Divide(LinearColor_LinearColor).md 'UnrealEngine.Framework.LinearColor.Divide(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)')
 - [Equals(object)](./LinearColor-Equals(object).md 'UnrealEngine.Framework.LinearColor.Equals(object)')
 - [Equals(UnrealEngine.Framework.LinearColor)](./LinearColor-Equals(LinearColor).md 'UnrealEngine.Framework.LinearColor.Equals(UnrealEngine.Framework.LinearColor)')
+- [FromColor(System.Drawing.Color)](./LinearColor-FromColor(Color).md 'UnrealEngine.Framework.LinearColor.FromColor(System.Drawing.Color)')
 - [GetHashCode()](./LinearColor-GetHashCode().md 'UnrealEngine.Framework.LinearColor.GetHashCode()')
 - [Lerp(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor, float)](./LinearColor-Lerp(LinearColor_LinearColor_float).md 'UnrealEngine.Framework.LinearColor.Lerp(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor, float)')
 - [Multiply(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)](./LinearColor-Multiply(LinearColor_LinearColor).md 'UnrealEngine.Framework.LinearColor.Multiply(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)')
@@ -42,6 +44,7 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [operator +(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)](./LinearColor-op_Addition(LinearColor_LinearColor).md 'UnrealEngine.Framework.LinearColor.op_Addition(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)')
 - [operator /(float, UnrealEngine.Framework.LinearColor)](./LinearColor-op_Division(float_LinearColor).md 'UnrealEngine.Framework.LinearColor.op_Division(float, UnrealEngine.Framework.LinearColor)')
 - [operator ==(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)](./LinearColor-op_Equality(LinearColor_LinearColor).md 'UnrealEngine.Framework.LinearColor.op_Equality(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)')
+- [implicit operator LinearColor(System.Drawing.Color)](./LinearColor-op_ImplicitLinearColor(Color).md 'UnrealEngine.Framework.LinearColor.op_Implicit UnrealEngine.Framework.LinearColor(System.Drawing.Color)')
 - [implicit operator string(UnrealEngine.Framework.LinearColor)](./LinearColor-op_Implicitstring(LinearColor).md 'UnrealEngine.Framework.LinearColor.op_Implicit string(UnrealEngine.Framework.LinearColor)')
 - [operator !=(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)](./LinearColor-op_Inequality(LinearColor_LinearColor).md 'UnrealEngine.Framework.LinearColor.op_Inequality(UnrealEngine.Framework.LinearColor, UnrealEngine.Framework.LinearColor)')
 - [operator *(float, UnrealEngine.Framework.LinearColor)](./LinearColor-op_Multiply(float_LinearColor).md 'UnrealEngine.Framework.LinearColor.op_Multiply(float, UnrealEngine.Framework.LinearColor)')

@@ -10,7 +10,7 @@ namespace UnrealEngine.Tests {
 			Assert.IsTrue(false, "Is false");
 			Assert.IsNotNull(actor, "Is null");
 
-			actor = new Actor();
+			actor = new();
 
 			Assert.IsNull(actor, "Is not null");
 		}
