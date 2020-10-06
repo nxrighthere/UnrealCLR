@@ -346,6 +346,12 @@ namespace UnrealCLRFramework {
 
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
+	#if ENGINE_MINOR_VERSION <= 25
+		#define UNREALCLR_PIXEL_FORMAT 71
+	#elif ENGINE_MINOR_VERSION >= 26
+		#define UNREALCLR_PIXEL_FORMAT 72
+	#endif
+
 	static_assert(AudioFadeCurve::Count == AudioFadeCurve(4), "Invalid elements count of the [AudioFadeCurve] enumeration");
 	static_assert(BlendType::VTBlend_MAX == BlendType(5), "Invalid elements count of the [BlendType] enumeration");
 	static_assert(CollisionChannel::ECC_MAX == CollisionChannel(33), "Invalid elements count of the [CollisionChannel] enumeration");
@@ -353,7 +359,7 @@ namespace UnrealCLRFramework {
 	static_assert(ControllerHand::ControllerHand_Count == ControllerHand(17), "Invalid elements count of the [ControllerHand] enumeration");
 	static_assert(InputEvent::IE_MAX == InputEvent(5), "Invalid elements count of the [InputEvent] enumeration");
 	static_assert(NetMode::NM_MAX == NetMode(4), "Invalid elements count of the [NetMode] enumeration");
-	static_assert(PixelFormat::PF_MAX == PixelFormat(71), "Invalid elements count of the [PixelFormat] enumeration");
+	static_assert(PixelFormat::PF_MAX == PixelFormat(UNREALCLR_PIXEL_FORMAT), "Invalid elements count of the [PixelFormat] enumeration");
 
 	static_assert(sizeof(Bounds) == 28, "Invalid size of the [Bounds] structure");
 	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");

@@ -126,14 +126,16 @@ void UnrealCLR::Module::StartupModule() {
 			return;
 		}
 
-		IPlatformFile& platformFile = FPlatformFileManager::Get().GetPlatformFile();
+		#if WITH_EDITOR
+			IPlatformFile& platformFile = FPlatformFileManager::Get().GetPlatformFile();
 
-		if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath)) {
-			platformFile.CreateDirectory(*UnrealCLR::UserAssembliesPath);
+			if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath)) {
+				platformFile.CreateDirectory(*UnrealCLR::UserAssembliesPath);
 
-			if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath))
-				UE_LOG(LogUnrealCLR, Warning, TEXT("%s: Unable to create a folder for managed assemblies at %s."), ANSI_TO_TCHAR(__FUNCTION__), *UnrealCLR::UserAssembliesPath);
-		}
+				if (!platformFile.DirectoryExists(*UnrealCLR::UserAssembliesPath))
+					UE_LOG(LogUnrealCLR, Warning, TEXT("%s: Unable to create a folder for managed assemblies at %s."), ANSI_TO_TCHAR(__FUNCTION__), *UnrealCLR::UserAssembliesPath);
+			}
+		#endif
 
 		if (UnrealCLR::ManagedCommand) {
 			// Framework pointers

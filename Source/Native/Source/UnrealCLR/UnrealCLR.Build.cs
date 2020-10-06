@@ -12,6 +12,7 @@
  * Lesser General Public License for more details.
  */
 
+using System;
 using System.IO;
 using UnrealBuildTool;
 
@@ -52,6 +53,8 @@ public class UnrealCLR : ModuleRules {
 				runtimePath = Path.Combine(ModuleDirectory, "../../Runtime/Linux");
 			else if (Target.Platform == UnrealTargetPlatform.Mac)
 				runtimePath = Path.Combine(ModuleDirectory, "../../Runtime/Mac");
+			else
+				throw new Exception("Unknown platform");
 
 			string[] files = Directory.GetFiles(runtimePath, "*.*", SearchOption.AllDirectories);
 
