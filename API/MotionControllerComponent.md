@@ -9,7 +9,11 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [MotionControllerComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./MotionControllerComponent-MotionControllerComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.MotionControllerComponent.MotionControllerComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
 - [DisableLowLatencyUpdate](./MotionControllerComponent-DisableLowLatencyUpdate.md 'UnrealEngine.Framework.MotionControllerComponent.DisableLowLatencyUpdate')
+- [DisplayDeviceModel](./MotionControllerComponent-DisplayDeviceModel.md 'UnrealEngine.Framework.MotionControllerComponent.DisplayDeviceModel')
 - [IsTracked](./MotionControllerComponent-IsTracked.md 'UnrealEngine.Framework.MotionControllerComponent.IsTracked')
 - [TrackingSource](./MotionControllerComponent-TrackingSource.md 'UnrealEngine.Framework.MotionControllerComponent.TrackingSource')
 ### Methods
+- [SetAssociatedPlayerIndex(int)](./MotionControllerComponent-SetAssociatedPlayerIndex(int).md 'UnrealEngine.Framework.MotionControllerComponent.SetAssociatedPlayerIndex(int)')
+- [SetCustomDisplayMesh(UnrealEngine.Framework.StaticMesh)](./MotionControllerComponent-SetCustomDisplayMesh(StaticMesh).md 'UnrealEngine.Framework.MotionControllerComponent.SetCustomDisplayMesh(UnrealEngine.Framework.StaticMesh)')
+- [SetDisplayModelSource(string)](./MotionControllerComponent-SetDisplayModelSource(string).md 'UnrealEngine.Framework.MotionControllerComponent.SetDisplayModelSource(string)')
 - [SetTrackingMotionSource(string)](./MotionControllerComponent-SetTrackingMotionSource(string).md 'UnrealEngine.Framework.MotionControllerComponent.SetTrackingMotionSource(string)')

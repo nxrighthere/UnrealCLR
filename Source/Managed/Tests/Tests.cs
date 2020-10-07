@@ -32,6 +32,7 @@ namespace UnrealEngine.Tests {
 				TestSystems.SpatialQueries => new SpatialQueries(),
 				TestSystems.StaticMeshes => new StaticMeshes(),
 				TestSystems.TextureAssets => new TextureAssets(),
+				TestSystems.VirtualReality => new VirtualReality(),
 				_ => throw new Exception("Unknown system")
 			};
 
@@ -63,7 +64,8 @@ namespace UnrealEngine.Tests {
 			SkeletalMeshes,
 			SpatialQueries,
 			StaticMeshes,
-			TextureAssets
+			TextureAssets,
+			VirtualReality
 		}
 	}
 

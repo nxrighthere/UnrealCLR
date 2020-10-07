@@ -2990,12 +2990,20 @@ namespace UnrealCLRFramework {
 			return MotionControllerComponent->IsTracked();
 		}
 
+		bool GetDisplayDeviceModel(UMotionControllerComponent* MotionControllerComponent) {
+			return MotionControllerComponent->bDisplayDeviceModel;
+		}
+
 		bool GetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent) {
 			return MotionControllerComponent->bDisableLowLatencyUpdate;
 		}
 
 		ControllerHand GetTrackingSource(UMotionControllerComponent* MotionControllerComponent) {
 			return MotionControllerComponent->GetTrackingSource();
+		}
+
+		void SetDisplayDeviceModel(UMotionControllerComponent* MotionControllerComponent, bool Value) {
+			MotionControllerComponent->bDisplayDeviceModel = true;
 		}
 
 		void SetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent, bool Value) {
@@ -3008,6 +3016,18 @@ namespace UnrealCLRFramework {
 
 		void SetTrackingMotionSource(UMotionControllerComponent* MotionControllerComponent, const char* Source) {
 			MotionControllerComponent->SetTrackingMotionSource(FName(ANSI_TO_TCHAR(Source)));
+		}
+
+		void SetAssociatedPlayerIndex(UMotionControllerComponent* MotionControllerComponent, int32 PlayerIndex) {
+			MotionControllerComponent->SetAssociatedPlayerIndex(PlayerIndex);
+		}
+
+		void SetCustomDisplayMesh(UMotionControllerComponent* MotionControllerComponent, UStaticMesh* StaticMesh) {
+			MotionControllerComponent->SetCustomDisplayMesh(StaticMesh);
+		}
+
+		void SetDisplayModelSource(UMotionControllerComponent* MotionControllerComponent, const char* Source) {
+			MotionControllerComponent->SetDisplayModelSource(FName(ANSI_TO_TCHAR(Source)));
 		}
 	}
 

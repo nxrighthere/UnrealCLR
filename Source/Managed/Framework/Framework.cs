@@ -9099,6 +9099,14 @@ namespace UnrealEngine.Framework {
 		public bool IsTracked => isTracked(Pointer);
 
 		/// <summary>
+		/// Gets or sets whether to render a model associated with the set hand
+		/// </summary>
+		public bool DisplayDeviceModel {
+			get => getDisplayDeviceModel(Pointer);
+			set => setDisplayDeviceModel(Pointer, value);
+		}
+
+		/// <summary>
 		/// Gets or sets whether render transforms within the motion controller hierarchy will be updated a second time immediately before rendering
 		/// </summary>
 		public bool DisableLowLatencyUpdate {
@@ -9118,6 +9126,26 @@ namespace UnrealEngine.Framework {
 		/// Sets the tracking motion source
 		/// </summary>
 		public void SetTrackingMotionSource(string source) => setTrackingMotionSource(Pointer, source);
+
+		/// <summary>
+		/// Sets the player index which the motion controller should automatically follow
+		/// </summary>
+		public void SetAssociatedPlayerIndex(int playerIndex) => setAssociatedPlayerIndex(Pointer, playerIndex);
+
+		/// <summary>
+		/// Sets the custom display mesh that attached to the motion controller
+		/// </summary>
+		public void SetCustomDisplayMesh(StaticMesh staticMesh) {
+			if (staticMesh == null)
+				throw new ArgumentNullException(nameof(staticMesh));
+
+			setCustomDisplayMesh(Pointer, staticMesh.Pointer);
+		}
+
+		/// <summary>
+		/// Sets the display model source
+		/// </summary>
+		public void SetDisplayModelSource(string source) => setDisplayModelSource(Pointer, source);
 	}
 
 	/// <summary>

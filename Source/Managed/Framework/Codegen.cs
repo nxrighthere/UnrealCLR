@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x291;
+		internal const int checksum = 0x296;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -791,11 +791,16 @@ namespace UnrealEngine.Framework {
 				IntPtr* motionControllerComponentFunctions = (IntPtr*)buffer[position++];
 
 				MotionControllerComponent.isTracked = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.getDisplayDeviceModel = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.getDisableLowLatencyUpdate = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.getTrackingSource = (delegate* unmanaged[Cdecl]<IntPtr, ControllerHand>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setDisplayDeviceModel = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setDisableLowLatencyUpdate = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setTrackingSource = (delegate* unmanaged[Cdecl]<IntPtr, ControllerHand, void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setTrackingMotionSource = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setAssociatedPlayerIndex = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setCustomDisplayMesh = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setDisplayModelSource = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)motionControllerComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -1922,11 +1927,16 @@ namespace UnrealEngine.Framework {
 
 	unsafe partial class MotionControllerComponent {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isTracked;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getDisplayDeviceModel;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getDisableLowLatencyUpdate;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ControllerHand> getTrackingSource;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDisplayDeviceModel;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDisableLowLatencyUpdate;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ControllerHand, void> setTrackingSource;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setTrackingMotionSource;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setAssociatedPlayerIndex;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setCustomDisplayMesh;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setDisplayModelSource;
 	}
 
 	unsafe partial class StaticMeshComponent {

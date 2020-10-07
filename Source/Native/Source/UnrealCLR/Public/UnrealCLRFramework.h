@@ -980,11 +980,16 @@ namespace UnrealCLRFramework {
 
 	namespace MotionControllerComponent {
 		static bool IsTracked(UMotionControllerComponent* MotionControllerComponent);
+		static bool GetDisplayDeviceModel(UMotionControllerComponent* MotionControllerComponent);
 		static bool GetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent);
 		static ControllerHand GetTrackingSource(UMotionControllerComponent* MotionControllerComponent);
+		static void SetDisplayDeviceModel(UMotionControllerComponent* MotionControllerComponent, bool Value);
 		static void SetDisableLowLatencyUpdate(UMotionControllerComponent* MotionControllerComponent, bool Value);
 		static void SetTrackingSource(UMotionControllerComponent* MotionControllerComponent, ControllerHand Value);
 		static void SetTrackingMotionSource(UMotionControllerComponent* MotionControllerComponent, const char* Source);
+		static void SetAssociatedPlayerIndex(UMotionControllerComponent* MotionControllerComponent, int32 PlayerIndex);
+		static void SetCustomDisplayMesh(UMotionControllerComponent* MotionControllerComponent, UStaticMesh* StaticMesh);
+		static void SetDisplayModelSource(UMotionControllerComponent* MotionControllerComponent, const char* Source);
 	}
 
 	namespace StaticMeshComponent {

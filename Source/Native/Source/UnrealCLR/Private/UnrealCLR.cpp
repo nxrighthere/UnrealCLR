@@ -976,11 +976,16 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::MotionControllerComponentFunctions;
 
 				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::IsTracked;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::GetDisplayDeviceModel;
 				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::GetDisableLowLatencyUpdate;
 				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::GetTrackingSource;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetDisplayDeviceModel;
 				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetDisableLowLatencyUpdate;
 				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetTrackingSource;
 				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetTrackingMotionSource;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetAssociatedPlayerIndex;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetCustomDisplayMesh;
+				Shared::MotionControllerComponentFunctions[head++] = (void*)&UnrealCLRFramework::MotionControllerComponent::SetDisplayModelSource;
 
 				checksum += head;
 			}
@@ -1263,7 +1268,7 @@ void UnrealCLR::Module::OnWorldPostInitialization(UWorld* World, const UWorld::I
 }
 
 void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources) {
-	if (World->IsGameWorld() && World == UnrealCLR::Engine::World) {
+	if (World->IsGameWorld() && World == UnrealCLR::Engine::World && UnrealCLR::WorldTickState != UnrealCLR::TickState::Stopped) {
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
 			if (UnrealCLR::Shared::Events[OnWorldEnd])
 				UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldEnd]));
