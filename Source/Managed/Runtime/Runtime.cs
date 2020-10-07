@@ -171,6 +171,7 @@ namespace UnrealEngine.Runtime {
 
 						foreach (string assembly in assemblies) {
 							AssemblyName name = null;
+							bool loadingFailed = false;
 
 							try {
 								name = AssemblyName.GetAssemblyName(assembly);
@@ -202,12 +203,17 @@ namespace UnrealEngine.Runtime {
 												return default;
 											} else {
 												Log(LogLevel.Fatal, "Framework loading failed, version is incompatible with the runtime, please, recompile the project with an updated version referenced in " + assembly);
+
+												loadingFailed = true;
 											}
 										}
 									}
 								}
 
 								UnloadAssemblies();
+
+								if (loadingFailed)
+									return default;
 							}
 						}
 					}
