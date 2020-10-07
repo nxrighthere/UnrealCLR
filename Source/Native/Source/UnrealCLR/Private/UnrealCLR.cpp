@@ -1263,7 +1263,7 @@ void UnrealCLR::Module::OnWorldPostInitialization(UWorld* World, const UWorld::I
 }
 
 void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources) {
-	if (World->IsGameWorld() && World == UnrealCLR::Engine::World) {
+	if (World->IsGameWorld() && World == UnrealCLR::Engine::World && UnrealCLR::WorldTickState != UnrealCLR::TickState::Stopped) {
 		if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
 			if (UnrealCLR::Shared::Events[OnWorldEnd])
 				UnrealCLR::ManagedCommand(UnrealCLR::Command(UnrealCLR::Shared::Events[OnWorldEnd]));
