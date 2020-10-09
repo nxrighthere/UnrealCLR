@@ -688,6 +688,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsSocketExists;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::HasAnySockets;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::CanAttachAsChild;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::ForEachAttachedChildren;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::Create;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AttachToComponent;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::DetachFromComponent;

@@ -283,6 +283,8 @@ namespace UnrealEngine.Tests {
 			StaticMeshComponent staticMeshComponent = new(actor, setAsRoot: true);
 			InstancedStaticMeshComponent instancedStaticMeshComponent = new(actor);
 			SceneComponent sceneComponent = new(actor);
+			BoxComponent boxComponent = new(actor);
+			SphereComponent sphereComponent = new(actor);
 
 			sceneComponent.AttachToComponent(instancedStaticMeshComponent, AttachmentTransformRule.KeepRelativeTransform);
 
@@ -294,6 +296,18 @@ namespace UnrealEngine.Tests {
 
 			if (!sceneComponent.IsAttachedToActor(actor)) {
 				Debug.Log(LogLevel.Error, "Component attachment to actor check failed!");
+
+				return;
+			}
+
+			int attachedChildrenCount = 0;
+
+			Action<SceneComponent> OnAttachedChildren = (component) => attachedChildrenCount++;
+
+			staticMeshComponent.ForEachAttachedChildren(OnAttachedChildren);
+
+			if (attachedChildrenCount != 3) {
+				Debug.Log(LogLevel.Error, "Batched component children attachment check failed!");
 
 				return;
 			}

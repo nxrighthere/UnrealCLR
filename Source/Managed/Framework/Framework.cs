@@ -7570,6 +7570,26 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Performs the specified action on each attached children component if any
+		/// </summary>
+		public unsafe void ForEachAttachedChildren<T>(Action<T> action) where T : SceneComponent {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachAttachedChildren(Pointer, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T component = array[i].ToComponent<T>();
+
+				if (component != null)
+					action(component);
+			}
+		}
+
+		/// <summary>
 		/// Attaches the component to another component, optionally at a named socket
 		/// </summary>
 		/// <returns><c>true</c> if successful</returns>

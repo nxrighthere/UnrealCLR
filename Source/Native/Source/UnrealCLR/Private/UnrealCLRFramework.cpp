@@ -2136,6 +2136,21 @@ namespace UnrealCLRFramework {
 			return SceneComponent->CanAttachAsChild(ChildComponent, FName(ANSI_TO_TCHAR(SocketName)));
 		}
 
+		void ForEachAttachedChildren(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements) {
+			static TArray<USceneComponent*> attachedComponents;
+
+			attachedComponents.Reset();
+
+			attachedComponents = SceneComponent->GetAttachChildren();
+
+			int32 elements = attachedComponents.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<USceneComponent*>(attachedComponents.GetData());
+				*Elements = elements;
+			}
+		}
+
 		USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint) {
 			USceneComponent* component = nullptr;
 

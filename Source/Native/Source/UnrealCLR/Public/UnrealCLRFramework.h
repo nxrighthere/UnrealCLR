@@ -753,6 +753,7 @@ namespace UnrealCLRFramework {
 		static bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName);
 		static bool HasAnySockets(USceneComponent* SceneComponent);
 		static bool CanAttachAsChild(USceneComponent* SceneComponent, USceneComponent* ChildComponent, const char* SocketName);
+		static void ForEachAttachedChildren(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements);
 		static USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint);
 		static bool AttachToComponent(USceneComponent* SceneComponent, USceneComponent* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName);
 		static void DetachFromComponent(USceneComponent* SceneComponent, DetachmentTransformRule DetachmentRule);
