@@ -36,6 +36,7 @@ Derived
 - [ClearMoveIgnoreActors()](./PrimitiveComponent-ClearMoveIgnoreActors().md 'UnrealEngine.Framework.PrimitiveComponent.ClearMoveIgnoreActors()')
 - [ClearMoveIgnoreComponents()](./PrimitiveComponent-ClearMoveIgnoreComponents().md 'UnrealEngine.Framework.PrimitiveComponent.ClearMoveIgnoreComponents()')
 - [CreateAndSetMaterialInstanceDynamic(int)](./PrimitiveComponent-CreateAndSetMaterialInstanceDynamic(int).md 'UnrealEngine.Framework.PrimitiveComponent.CreateAndSetMaterialInstanceDynamic(int)')
+- [ForEachOverlappingComponent&lt;T&gt;(System.Action&lt;T&gt;)](./PrimitiveComponent-ForEachOverlappingComponent-T-(Action-T-).md 'UnrealEngine.Framework.PrimitiveComponent.ForEachOverlappingComponent&lt;T&gt;(System.Action&lt;T&gt;)')
 - [GetDistanceToCollision(System.Numerics.Vector3, System.Numerics.Vector3)](./PrimitiveComponent-GetDistanceToCollision(Vector3_Vector3).md 'UnrealEngine.Framework.PrimitiveComponent.GetDistanceToCollision(System.Numerics.Vector3, System.Numerics.Vector3)')
 - [GetMaterial(int)](./PrimitiveComponent-GetMaterial(int).md 'UnrealEngine.Framework.PrimitiveComponent.GetMaterial(int)')
 - [GetPhysicsAngularVelocityInDegrees(System.Numerics.Vector3, string)](./PrimitiveComponent-GetPhysicsAngularVelocityInDegrees(Vector3_string).md 'UnrealEngine.Framework.PrimitiveComponent.GetPhysicsAngularVelocityInDegrees(System.Numerics.Vector3, string)')

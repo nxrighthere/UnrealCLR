@@ -1315,6 +1315,21 @@ namespace UnrealCLRFramework {
 			return Actor->IsOverlappingActor(Other);
 		}
 
+		void ForEachOverlappingActor(AActor* Actor, AActor** Array, int32* Elements) {
+			static TArray<AActor*> overlappingActors;
+
+			overlappingActors.Reset();
+
+			Actor->GetOverlappingActors(overlappingActors);
+
+			int32 elements = overlappingActors.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<AActor*>(overlappingActors.GetData());
+				*Elements = elements;
+			}
+		}
+
 		AActor* Spawn(const char* Name, ActorType Type, UObject* Blueprint) {
 			AActor* actor = nullptr;
 
@@ -2575,6 +2590,21 @@ namespace UnrealCLRFramework {
 			return PrimitiveComponent->IsOverlappingComponent(Other);
 		}
 
+		void ForEachOverlappingComponent(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent** Array, int32* Elements) {
+			static TArray<UPrimitiveComponent*> overlappingComponents;
+
+			overlappingComponents.Reset();
+
+			PrimitiveComponent->GetOverlappingComponents(overlappingComponents);
+
+			int32 elements = overlappingComponents.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<UPrimitiveComponent*>(overlappingComponents.GetData());
+				*Elements = elements;
+			}
+		}
+
 		void AddAngularImpulseInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
@@ -2746,25 +2776,25 @@ namespace UnrealCLRFramework {
 			PrimitiveComponent->SetPhysicsLinearVelocity(*Velocity, AddToCurrent, boneName);
 		}
 
-		static void SetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName) {
+		void SetPhysicsAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
 			PrimitiveComponent->SetPhysicsAngularVelocityInDegrees(*AngularVelocity, AddToCurrent, boneName);
 		}
 
-		static void SetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName) {
+		void SetPhysicsAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* AngularVelocity, bool AddToCurrent, const char* BoneName) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
 			PrimitiveComponent->SetPhysicsAngularVelocityInRadians(*AngularVelocity, AddToCurrent, boneName);
 		}
 
-		static void SetPhysicsMaxAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName) {
+		void SetPhysicsMaxAngularVelocityInDegrees(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
 			PrimitiveComponent->SetPhysicsMaxAngularVelocityInDegrees(MaxAngularVelocity, AddToCurrent, boneName);
 		}
 
-		static void SetPhysicsMaxAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName) {
+		void SetPhysicsMaxAngularVelocityInRadians(UPrimitiveComponent* PrimitiveComponent, float MaxAngularVelocity, bool AddToCurrent, const char* BoneName) {
 			UNREALCLR_SET_BONE_NAME(BoneName);
 
 			PrimitiveComponent->SetPhysicsMaxAngularVelocityInRadians(MaxAngularVelocity, AddToCurrent, boneName);

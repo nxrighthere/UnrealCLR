@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x296;
+		internal const int checksum = 0x298;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -268,6 +268,7 @@ namespace UnrealEngine.Framework {
 				Actor.isPendingKill = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
 				Actor.isRootComponentMovable = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
 				Actor.isOverlappingActor = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)actorFunctions[head++];
+				Actor.forEachOverlappingActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
 				Actor.spawn = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr>)actorFunctions[head++];
 				Actor.destroy = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
 				Actor.rename = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
@@ -657,6 +658,7 @@ namespace UnrealEngine.Framework {
 
 				PrimitiveComponent.isGravityEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.isOverlappingComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.forEachOverlappingComponent = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.addAngularImpulseInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.addAngularImpulseInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.addForce = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
@@ -1450,6 +1452,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPendingKill;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isRootComponentMovable;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isOverlappingActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachOverlappingActor;
 		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr> spawn;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> destroy;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> rename;
@@ -1815,6 +1818,7 @@ namespace UnrealEngine.Framework {
 	unsafe partial class PrimitiveComponent {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isGravityEnabled;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isOverlappingComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachOverlappingComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addAngularImpulseInDegrees;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addAngularImpulseInRadians;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addForce;

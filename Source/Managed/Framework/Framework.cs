@@ -4316,6 +4316,26 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Performs the specified action on each overlapping actor if any
+		/// </summary>
+		public unsafe void ForEachOverlappingActor<T>(Action<T> action) where T : Actor {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachOverlappingActor(Pointer, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T actor = array[i].ToActor<T>();
+
+				if (actor != null)
+					action(actor);
+			}
+		}
+
+		/// <summary>
 		/// Returns the unique ID of the actor, reused by the engine, only unique while the actor is alive
 		/// </summary>
 		public uint ID => Object.getID(Pointer);
@@ -8328,6 +8348,26 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(other));
 
 			return isOverlappingComponent(Pointer, other.Pointer);
+		}
+
+		/// <summary>
+		/// Performs the specified action on each overlapping component if any
+		/// </summary>
+		public unsafe void ForEachOverlappingComponent<T>(Action<T> action) where T : PrimitiveComponent {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachOverlappingComponent(Pointer, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T component = array[i].ToComponent<T>();
+
+				if (component != null)
+					action(component);
+			}
 		}
 
 		/// <summary>

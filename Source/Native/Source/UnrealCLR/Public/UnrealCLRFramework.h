@@ -483,6 +483,7 @@ namespace UnrealCLRFramework {
 		static bool IsPendingKill(AActor* Actor);
 		static bool IsRootComponentMovable(AActor* Actor);
 		static bool IsOverlappingActor(AActor* Actor, AActor* Other);
+		static void ForEachOverlappingActor(AActor* Actor, AActor** Array, int32* Elements);
 		static AActor* Spawn(const char* Name, ActorType Type, UObject* Blueprint);
 		static bool Destroy(AActor* Actor);
 		static void Rename(AActor* Actor, const char* Name);
@@ -866,6 +867,7 @@ namespace UnrealCLRFramework {
 	namespace PrimitiveComponent {
 		static bool IsGravityEnabled(UPrimitiveComponent* PrimitiveComponent);
 		static bool IsOverlappingComponent(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Other);
+		static void ForEachOverlappingComponent(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent** Array, int32* Elements);
 		static void AddAngularImpulseInDegrees(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange);
 		static void AddAngularImpulseInRadians(UPrimitiveComponent* PrimitiveComponent, const Vector3* Impulse, const char* BoneName, bool VelocityChange);
 		static void AddForce(UPrimitiveComponent* PrimitiveComponent, const Vector3* Force, const char* BoneName, bool AccelerationChange);

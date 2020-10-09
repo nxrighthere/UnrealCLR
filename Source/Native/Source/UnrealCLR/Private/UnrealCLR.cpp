@@ -393,6 +393,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsPendingKill;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsRootComponentMovable;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsOverlappingActor;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::ForEachOverlappingActor;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Spawn;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Destroy;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Rename;
@@ -826,6 +827,7 @@ void UnrealCLR::Module::StartupModule() {
 
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::IsOverlappingComponent;
+				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::ForEachOverlappingComponent;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInDegrees;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddAngularImpulseInRadians;
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::AddForce;

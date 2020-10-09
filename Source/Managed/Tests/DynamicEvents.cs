@@ -6,6 +6,8 @@ using UnrealEngine.Framework;
 namespace UnrealEngine.Tests {
 	public class DynamicEvents : ISystem {
 		private PlayerController playerController;
+		private TriggerBox triggerBox;
+		private BoxComponent triggerCollisionComponent;
 		private Actor leftActor;
 		private Actor rightActor;
 		private StaticMeshComponent leftStaticMeshComponent;
@@ -16,6 +18,8 @@ namespace UnrealEngine.Tests {
 
 		public DynamicEvents() {
 			playerController = World.GetFirstPlayerController();
+			triggerBox = new();
+			triggerCollisionComponent = triggerBox.GetComponent<BoxComponent>();
 			leftActor = new("LeftActor");
 			rightActor = new("RightActor");
 			leftStaticMeshComponent = new(leftActor, "LeftActorComponent", true);
@@ -47,13 +51,11 @@ namespace UnrealEngine.Tests {
 
 			const float linesThickness = 3.0f;
 
-			TriggerBox triggerBox = new();
-			BoxComponent collisionComponent = triggerBox.GetComponent<BoxComponent>();
 			Vector3 collisionShape = new(200.0f, 200.0f, 200.0f);
 
-			collisionComponent.SetBoxExtent(collisionShape);
+			triggerCollisionComponent.SetBoxExtent(collisionShape);
 
-			Debug.DrawBox(collisionComponent.GetLocation(), collisionShape, Quaternion.Identity, Color.Aqua, true, thickness: linesThickness);
+			Debug.DrawBox(triggerCollisionComponent.GetLocation(), collisionShape, Quaternion.Identity, Color.Aqua, true, thickness: linesThickness);
 
 			leftActor.RegisterEvent(ActorEventType.OnActorBeginOverlap);
 			leftActor.RegisterEvent(ActorEventType.OnActorEndOverlap);
@@ -120,9 +122,20 @@ namespace UnrealEngine.Tests {
 
 			if (playerController.GetHitResultUnderCursor(CollisionChannel.WorldDynamic, ref hit))
 				Debug.AddOnScreenMessage(13, 3.0f, Color.CornflowerBlue, "Cursor hit " + hit.GetActor().Name);
+
+			triggerBox.ForEachOverlappingActor(OnTriggerOverlapActor);
+			triggerCollisionComponent.ForEachOverlappingComponent(OnTriggerOverlapComponent);
 		}
 
 		public void OnEndPlay() => Debug.ClearOnScreenMessages();
+
+		private Action<Actor> OnTriggerOverlapActor = (actor) => {
+			Debug.AddOnScreenMessage((int)(actor.ID % Int32.MaxValue), 3.0f, Color.Aqua, "Trigger box overlapped " + actor.Name);
+		};
+
+		private Action<StaticMeshComponent> OnTriggerOverlapComponent = (component) => {
+			Debug.AddOnScreenMessage((int)(component.ID % Int32.MaxValue), 3.0f, Color.Aquamarine, "Trigger collision component overlapped " + component.Name);
+		};
 
 		private void Translate(StaticMeshComponent staticMeshComponent, float direction) {
 			if (!stopTranslation) {
