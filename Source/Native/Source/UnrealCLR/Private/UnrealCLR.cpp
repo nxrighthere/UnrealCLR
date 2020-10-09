@@ -301,6 +301,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::WorldFunctions;
 
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::ForEachActor;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorCount;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetDeltaSeconds;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetRealTimeSeconds;

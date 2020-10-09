@@ -3741,6 +3741,26 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Performs the specified action on each actor in the world
+		/// </summary>
+		public static unsafe void ForEachActor<T>(Action<T> action) where T : Actor {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachActor(ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T actor = array[i].ToActor<T>();
+
+				if (actor != null)
+					action(actor);
+			}
+		}
+
+		/// <summary>
 		/// Returns the first actor in the world of the specified class, optionally with the specified name, this operation is slow and should be used with caution
 		/// </summary>
 		/// <param name="name">The name of the actor, may differ from the label in the editor</param>

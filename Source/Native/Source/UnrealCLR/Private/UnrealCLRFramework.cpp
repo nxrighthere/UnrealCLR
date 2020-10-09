@@ -947,6 +947,23 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace World {
+		void ForEachActor(AActor** Array, int32* Elements) {
+			static TArray<AActor*> actors;
+
+			actors.Reset();
+
+			for (TActorIterator<AActor> currentActor(UnrealCLR::Engine::World); currentActor; ++currentActor) {
+				actors.Add(*currentActor);
+			}
+
+			int32 elements = actors.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<AActor*>(actors.GetData());
+				*Elements = elements;
+			}
+		}
+
 		int32 GetActorCount() {
 			return UnrealCLR::Engine::World->GetActorCount();
 		}

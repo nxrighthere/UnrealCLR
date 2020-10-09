@@ -409,6 +409,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace World {
+		static void ForEachActor(AActor** Array, int32* Elements);
 		static int32 GetActorCount();
 		static float GetDeltaSeconds();
 		static float GetRealTimeSeconds();

@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x299;
+		internal const int checksum = 0x29A;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -184,6 +184,7 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* worldFunctions = (IntPtr*)buffer[position++];
 
+				World.forEachActor = (delegate* unmanaged[Cdecl]<ref ObjectReference*, ref int, void>)worldFunctions[head++];
 				World.getActorCount = (delegate* unmanaged[Cdecl]<int>)worldFunctions[head++];
 				World.getDeltaSeconds = (delegate* unmanaged[Cdecl]<float>)worldFunctions[head++];
 				World.getRealTimeSeconds = (delegate* unmanaged[Cdecl]<float>)worldFunctions[head++];
@@ -1381,6 +1382,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	static unsafe partial class World {
+		internal static delegate* unmanaged[Cdecl]<ref ObjectReference*, ref int, void> forEachActor;
 		internal static delegate* unmanaged[Cdecl]<int> getActorCount;
 		internal static delegate* unmanaged[Cdecl]<float> getDeltaSeconds;
 		internal static delegate* unmanaged[Cdecl]<float> getRealTimeSeconds;

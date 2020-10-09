@@ -13,6 +13,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [SimulatePhysics](./World-SimulatePhysics.md 'UnrealEngine.Framework.World.SimulatePhysics')
 - [Time](./World-Time.md 'UnrealEngine.Framework.World.Time')
 ### Methods
+- [ForEachActor&lt;T&gt;(System.Action&lt;T&gt;)](./World-ForEachActor-T-(Action-T-).md 'UnrealEngine.Framework.World.ForEachActor&lt;T&gt;(System.Action&lt;T&gt;)')
 - [GetActor&lt;T&gt;(string)](./World-GetActor-T-(string).md 'UnrealEngine.Framework.World.GetActor&lt;T&gt;(string)')
 - [GetActorByID&lt;T&gt;(uint)](./World-GetActorByID-T-(uint).md 'UnrealEngine.Framework.World.GetActorByID&lt;T&gt;(uint)')
 - [GetActorByTag&lt;T&gt;(string)](./World-GetActorByTag-T-(string).md 'UnrealEngine.Framework.World.GetActorByTag&lt;T&gt;(string)')
