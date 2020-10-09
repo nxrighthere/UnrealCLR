@@ -964,6 +964,200 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A representation of the engine's actor reference
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ActorReference : IEquatable<ActorReference> {
+		private IntPtr pointer;
+
+		internal IntPtr Pointer {
+			get {
+				if (!IsSpawned)
+					throw new InvalidOperationException();
+
+				return pointer;
+			}
+
+			set {
+				if (value == IntPtr.Zero)
+					throw new InvalidOperationException();
+
+				pointer = value;
+			}
+		}
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(ActorReference left, ActorReference right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(ActorReference left, ActorReference right) => !left.Equals(right);
+
+		/// <summary>
+		/// Returns <c>true</c> if the actor is spawned
+		/// </summary>
+		public bool IsSpawned => pointer != IntPtr.Zero && !Object.isPendingKill(pointer);
+
+		/// <summary>
+		/// Returns the unique ID of the object, reused by the engine, only unique while the object is alive
+		/// </summary>
+		public uint ID => Object.getID(Pointer);
+
+		/// <summary>
+		/// Returns the name of the object
+		/// </summary>
+		public string Name {
+			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+				Object.getName(Pointer, stringBuffer);
+
+				return stringBuffer.BytesToString();
+			}
+		}
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(ActorReference other) => IsSpawned && pointer == other.pointer;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(ActorReference)))
+				return false;
+
+			return Equals((ActorReference)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => pointer.GetHashCode();
+
+		/// <summary>
+		/// Converts the actor reference to the actor of the specified class
+		/// </summary>
+		/// <returns>An actor or <c>null</c> on failure</returns>
+		public T ToActor<T>() where T : Actor {
+			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = Object.toActor(Pointer, actor.Type);
+
+			if (pointer != IntPtr.Zero) {
+				actor.Pointer = pointer;
+
+				return actor;
+			}
+
+			return null;
+		}
+	}
+
+	/// <summary>
+	/// A representation of the engine's component reference
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ComponentReference : IEquatable<ComponentReference> {
+		private IntPtr pointer;
+
+		internal IntPtr Pointer {
+			get {
+				if (!IsCreated)
+					throw new InvalidOperationException();
+
+				return pointer;
+			}
+
+			set {
+				if (value == IntPtr.Zero)
+					throw new InvalidOperationException();
+
+				pointer = value;
+			}
+		}
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(ComponentReference left, ComponentReference right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(ComponentReference left, ComponentReference right) => !left.Equals(right);
+
+		/// <summary>
+		/// Returns <c>true</c> if the object is created
+		/// </summary>
+		public bool IsCreated => pointer != IntPtr.Zero && Object.isValid(pointer);
+
+		/// <summary>
+		/// Returns the unique ID of the object, reused by the engine, only unique while the object is alive
+		/// </summary>
+		public uint ID => Object.getID(Pointer);
+
+		/// <summary>
+		/// Returns the name of the object
+		/// </summary>
+		public string Name {
+			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+				Object.getName(Pointer, stringBuffer);
+
+				return stringBuffer.BytesToString();
+			}
+		}
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(ComponentReference other) => IsCreated && pointer == other.pointer;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(ComponentReference)))
+				return false;
+
+			return Equals((ComponentReference)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => pointer.GetHashCode();
+
+		/// <summary>
+		/// Converts the component reference to the component of the specified class
+		/// </summary>
+		/// <returns>A component or <c>null</c> on failure</returns>
+		public T ToComponent<T>() where T : ActorComponent {
+			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = Object.toComponent(Pointer, component.Type);
+
+			if (pointer != IntPtr.Zero) {
+				component.Pointer = pointer;
+
+				return component;
+			}
+
+			return null;
+		}
+	}
+
+	/// <summary>
 	/// A linear 32-bit floating-point RGBA color
 	/// </summary>
 	public partial struct LinearColor : IEquatable<LinearColor> {
@@ -1600,42 +1794,42 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// Delegate for actor overlap events
 	/// </summary>
-	public delegate void ActorOverlapDelegate(ObjectReference overlapActor, ObjectReference otherActor);
+	public delegate void ActorOverlapDelegate(ActorReference overlapActor, ActorReference otherActor);
 
 	/// <summary>
 	/// Delegate for actor hit events
 	/// </summary>
-	public delegate void ActorHitDelegate(ObjectReference hitActor, ObjectReference otherActor, in Vector3 normalImpulse, in Hit hit);
+	public delegate void ActorHitDelegate(ActorReference hitActor, ActorReference otherActor, in Vector3 normalImpulse, in Hit hit);
 
 	/// <summary>
 	/// Delegate for actor cursor events
 	/// </summary>
-	public delegate void ActorCursorDelegate(ObjectReference actor);
+	public delegate void ActorCursorDelegate(ActorReference actor);
 
 	/// <summary>
 	/// Delegate for actor key events
 	/// </summary>
-	public delegate void ActorKeyDelegate(ObjectReference actor, string key);
+	public delegate void ActorKeyDelegate(ActorReference actor, string key);
 
 	/// <summary>
 	/// Delegate for component overlap events
 	/// </summary>
-	public delegate void ComponentOverlapDelegate(ObjectReference overlapComponent, ObjectReference otherComponent);
+	public delegate void ComponentOverlapDelegate(ComponentReference overlapComponent, ComponentReference otherComponent);
 
 	/// <summary>
 	/// Delegate for component hit events
 	/// </summary>
-	public delegate void ComponentHitDelegate(ObjectReference hitComponent, ObjectReference otherComponent, in Vector3 normalImpulse, in Hit hit);
+	public delegate void ComponentHitDelegate(ComponentReference hitComponent, ComponentReference otherComponent, in Vector3 normalImpulse, in Hit hit);
 
 	/// <summary>
 	/// Delegate for component cursor events
 	/// </summary>
-	public delegate void ComponentCursorDelegate(ObjectReference component);
+	public delegate void ComponentCursorDelegate(ComponentReference component);
 
 	/// <summary>
 	/// Delegate for component key events
 	/// </summary>
-	public delegate void ComponentKeyDelegate(ObjectReference component, string key);
+	public delegate void ComponentKeyDelegate(ComponentReference component, string key);
 
 	/// <summary>
 	/// Provides additional static constants and methods for mathematical functions that are lack in <see cref="System.Math"/>, <see cref="System.MathF"/>, and <see cref="System.Numerics"/>

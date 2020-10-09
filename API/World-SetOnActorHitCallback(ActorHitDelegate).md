@@ -6,5 +6,5 @@ public static void SetOnActorHitCallback(UnrealEngine.Framework.ActorHitDelegate
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnActorHitCallback(UnrealEngine-Framework-ActorHitDelegate)-callback'></a>
-`callback` [ActorHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ActorHitDelegate(ObjectReference_ObjectReference_Vector3_Hit).md 'UnrealEngine.Framework.ActorHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')  
+`callback` [ActorHitDelegate(UnrealEngine.Framework.ActorReference, UnrealEngine.Framework.ActorReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ActorHitDelegate(ActorReference_ActorReference_Vector3_Hit).md 'UnrealEngine.Framework.ActorHitDelegate(UnrealEngine.Framework.ActorReference, UnrealEngine.Framework.ActorReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')  
   

@@ -6,5 +6,5 @@ public static void SetOnComponentEndOverlapCallback(UnrealEngine.Framework.Compo
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnComponentEndOverlapCallback(UnrealEngine-Framework-ComponentOverlapDelegate)-callback'></a>
-`callback` [ComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ComponentOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ComponentOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')  
+`callback` [ComponentOverlapDelegate(UnrealEngine.Framework.ComponentReference, UnrealEngine.Framework.ComponentReference)](./ComponentOverlapDelegate(ComponentReference_ComponentReference).md 'UnrealEngine.Framework.ComponentOverlapDelegate(UnrealEngine.Framework.ComponentReference, UnrealEngine.Framework.ComponentReference)')  
   

@@ -149,21 +149,21 @@ namespace UnrealEngine.Tests {
 			}
 		}
 
-		private void OnActorBeginOverlap(ObjectReference overlapActor, ObjectReference otherActor) {
+		private void OnActorBeginOverlap(ActorReference overlapActor, ActorReference otherActor) {
 			Debug.AddOnScreenMessage(-1, 3.0f, overlapActor.ID == leftActor.ID ? Color.Lime : Color.Yellow, overlapActor.Name + " start overlapping " + otherActor.Name);
 
 			Assert.IsNotNull(overlapActor.ToActor<Actor>());
 			Assert.IsNotNull(otherActor.ToActor<Actor>());
 		}
 
-		private void OnActorEndOverlap(ObjectReference overlapActor, ObjectReference otherActor) {
+		private void OnActorEndOverlap(ActorReference overlapActor, ActorReference otherActor) {
 			Debug.AddOnScreenMessage(-1, 3.0f, overlapActor.ID == leftActor.ID ? Color.Lime : Color.Yellow, overlapActor.Name + " stop overlapping " + otherActor.Name);
 
 			Assert.IsNotNull(overlapActor.ToActor<Actor>());
 			Assert.IsNotNull(otherActor.ToActor<Actor>());
 		}
 
-		private void OnActorHit(ObjectReference hitActor, ObjectReference otherActor, in Vector3 normalImpulse, in Hit hit) {
+		private void OnActorHit(ActorReference hitActor, ActorReference otherActor, in Vector3 normalImpulse, in Hit hit) {
 			Debug.AddOnScreenMessage(1, 3.0f, hitActor.ID == leftActor.ID ? Color.Lime : Color.Yellow, hitActor.Name + " hit " + otherActor.Name);
 
 			if (!stopTranslation) {
@@ -179,19 +179,19 @@ namespace UnrealEngine.Tests {
 			Assert.IsNotNull(hit.GetActor());
 		}
 
-		private void OnActorBeginCursorOver(ObjectReference actor) {
+		private void OnActorBeginCursorOver(ActorReference actor) {
 			Debug.AddOnScreenMessage(2, 3.0f, Color.Plum, "Cursor moved over " + actor.Name);
 
 			Assert.IsNotNull(actor.ToActor<Actor>());
 		}
 
-		private void OnActorEndCursorOver(ObjectReference actor) {
+		private void OnActorEndCursorOver(ActorReference actor) {
 			Debug.AddOnScreenMessage(3, 3.0f, Color.Plum, "Cursor moved off " + actor.Name);
 
 			Assert.IsNotNull(actor.ToActor<Actor>());
 		}
 
-		private void OnActorClicked(ObjectReference actor, string key) {
+		private void OnActorClicked(ActorReference actor, string key) {
 			Debug.AddOnScreenMessage(4, 3.0f, Color.Thistle, key + " clicked on " + actor.Name);
 
 			if (key == Keys.LeftMouseButton)
@@ -200,7 +200,7 @@ namespace UnrealEngine.Tests {
 			Assert.IsNotNull(actor.ToActor<Actor>());
 		}
 
-		private void OnActorReleased(ObjectReference actor, string key) {
+		private void OnActorReleased(ActorReference actor, string key) {
 			Debug.AddOnScreenMessage(6, 3.0f, Color.Thistle, key + " released on " + actor.Name);
 
 			if (key == Keys.LeftMouseButton)
@@ -209,21 +209,21 @@ namespace UnrealEngine.Tests {
 			Assert.IsNotNull(actor.ToActor<Actor>());
 		}
 
-		private void OnComponentBeginOverlap(ObjectReference overlapComponent, ObjectReference otherComponent) {
+		private void OnComponentBeginOverlap(ComponentReference overlapComponent, ComponentReference otherComponent) {
 			Debug.AddOnScreenMessage(-1, 3.0f, overlapComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, overlapComponent.Name + " start overlapping " + otherComponent.Name);
 
 			Assert.IsNotNull(overlapComponent.ToComponent<StaticMeshComponent>());
 			Assert.IsNotNull(otherComponent.ToComponent<BoxComponent>());
 		}
 
-		private void OnComponentEndOverlap(ObjectReference overlapComponent, ObjectReference otherComponent) {
+		private void OnComponentEndOverlap(ComponentReference overlapComponent, ComponentReference otherComponent) {
 			Debug.AddOnScreenMessage(-1, 3.0f, overlapComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, overlapComponent.Name + " end overlapping " + otherComponent.Name);
 
 			Assert.IsNotNull(overlapComponent.ToComponent<StaticMeshComponent>());
 			Assert.IsNotNull(otherComponent.ToComponent<BoxComponent>());
 		}
 
-		private void OnComponentHit(ObjectReference hitComponent, ObjectReference otherComponent, in Vector3 normalImpulse, in Hit hit) {
+		private void OnComponentHit(ComponentReference hitComponent, ComponentReference otherComponent, in Vector3 normalImpulse, in Hit hit) {
 			Debug.AddOnScreenMessage(7, 3.0f, hitComponent.ID == leftStaticMeshComponent.ID ? Color.Lime : Color.Yellow, hitComponent.Name + " hit " + otherComponent.Name);
 
 			Assert.IsNotNull(hitComponent.ToComponent<StaticMeshComponent>());
@@ -231,19 +231,19 @@ namespace UnrealEngine.Tests {
 			Assert.IsNotNull(hit.GetActor());
 		}
 
-		private void OnComponentBeginCursorOver(ObjectReference component) {
+		private void OnComponentBeginCursorOver(ComponentReference component) {
 			Debug.AddOnScreenMessage(8, 3.0f, Color.Plum, "Cursor moved over " + component.Name);
 
 			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
 		}
 
-		private void OnComponentEndCursorOver(ObjectReference component) {
+		private void OnComponentEndCursorOver(ComponentReference component) {
 			Debug.AddOnScreenMessage(9, 3.0f, Color.Plum, "Cursor moved off " + component.Name);
 
 			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
 		}
 
-		private void OnComponentClicked(ObjectReference component, string key) {
+		private void OnComponentClicked(ComponentReference component, string key) {
 			Debug.AddOnScreenMessage(10, 3.0f, Color.Thistle, key + " clicked on " + component.Name);
 
 			if (key == Keys.LeftMouseButton)
@@ -252,7 +252,7 @@ namespace UnrealEngine.Tests {
 			Assert.IsNotNull(component.ToComponent<StaticMeshComponent>());
 		}
 
-		private void OnComponentReleased(ObjectReference component, string key) {
+		private void OnComponentReleased(ComponentReference component, string key) {
 			Debug.AddOnScreenMessage(12, 3.0f, Color.Thistle, key + " released on " + component.Name);
 
 			if (key == Keys.LeftMouseButton)

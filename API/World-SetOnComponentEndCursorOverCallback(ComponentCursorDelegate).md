@@ -6,5 +6,5 @@ public static void SetOnComponentEndCursorOverCallback(UnrealEngine.Framework.Co
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnComponentEndCursorOverCallback(UnrealEngine-Framework-ComponentCursorDelegate)-callback'></a>
-`callback` [ComponentCursorDelegate(UnrealEngine.Framework.ObjectReference)](./ComponentCursorDelegate(ObjectReference).md 'UnrealEngine.Framework.ComponentCursorDelegate(UnrealEngine.Framework.ObjectReference)')  
+`callback` [ComponentCursorDelegate(UnrealEngine.Framework.ComponentReference)](./ComponentCursorDelegate(ComponentReference).md 'UnrealEngine.Framework.ComponentCursorDelegate(UnrealEngine.Framework.ComponentReference)')  
   

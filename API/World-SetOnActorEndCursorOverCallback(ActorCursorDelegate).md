@@ -6,5 +6,5 @@ public static void SetOnActorEndCursorOverCallback(UnrealEngine.Framework.ActorC
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnActorEndCursorOverCallback(UnrealEngine-Framework-ActorCursorDelegate)-callback'></a>
-`callback` [ActorCursorDelegate(UnrealEngine.Framework.ObjectReference)](./ActorCursorDelegate(ObjectReference).md 'UnrealEngine.Framework.ActorCursorDelegate(UnrealEngine.Framework.ObjectReference)')  
+`callback` [ActorCursorDelegate(UnrealEngine.Framework.ActorReference)](./ActorCursorDelegate(ActorReference).md 'UnrealEngine.Framework.ActorCursorDelegate(UnrealEngine.Framework.ActorReference)')  
   

@@ -6,5 +6,5 @@ public static void SetOnComponentReleasedCallback(UnrealEngine.Framework.Compone
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnComponentReleasedCallback(UnrealEngine-Framework-ComponentKeyDelegate)-callback'></a>
-`callback` [ComponentKeyDelegate(UnrealEngine.Framework.ObjectReference, string)](./ComponentKeyDelegate(ObjectReference_string).md 'UnrealEngine.Framework.ComponentKeyDelegate(UnrealEngine.Framework.ObjectReference, string)')  
+`callback` [ComponentKeyDelegate(UnrealEngine.Framework.ComponentReference, string)](./ComponentKeyDelegate(ComponentReference_string).md 'UnrealEngine.Framework.ComponentKeyDelegate(UnrealEngine.Framework.ComponentReference, string)')  
   

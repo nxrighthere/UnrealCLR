@@ -6,5 +6,5 @@ public static void SetOnActorEndOverlapCallback(UnrealEngine.Framework.ActorOver
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnActorEndOverlapCallback(UnrealEngine-Framework-ActorOverlapDelegate)-callback'></a>
-`callback` [ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)](./ActorOverlapDelegate(ObjectReference_ObjectReference).md 'UnrealEngine.Framework.ActorOverlapDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference)')  
+`callback` [ActorOverlapDelegate(UnrealEngine.Framework.ActorReference, UnrealEngine.Framework.ActorReference)](./ActorOverlapDelegate(ActorReference_ActorReference).md 'UnrealEngine.Framework.ActorOverlapDelegate(UnrealEngine.Framework.ActorReference, UnrealEngine.Framework.ActorReference)')  
   

@@ -6,5 +6,5 @@ public static void SetOnComponentHitCallback(UnrealEngine.Framework.ComponentHit
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnComponentHitCallback(UnrealEngine-Framework-ComponentHitDelegate)-callback'></a>
-`callback` [ComponentHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ComponentHitDelegate(ObjectReference_ObjectReference_Vector3_Hit).md 'UnrealEngine.Framework.ComponentHitDelegate(UnrealEngine.Framework.ObjectReference, UnrealEngine.Framework.ObjectReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')  
+`callback` [ComponentHitDelegate(UnrealEngine.Framework.ComponentReference, UnrealEngine.Framework.ComponentReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)](./ComponentHitDelegate(ComponentReference_ComponentReference_Vector3_Hit).md 'UnrealEngine.Framework.ComponentHitDelegate(UnrealEngine.Framework.ComponentReference, UnrealEngine.Framework.ComponentReference, System.Numerics.Vector3, UnrealEngine.Framework.Hit)')  
   

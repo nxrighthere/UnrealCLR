@@ -6,5 +6,5 @@ public static void SetOnActorReleasedCallback(UnrealEngine.Framework.ActorKeyDel
 ```
 #### Parameters
 <a name='UnrealEngine-Framework-World-SetOnActorReleasedCallback(UnrealEngine-Framework-ActorKeyDelegate)-callback'></a>
-`callback` [ActorKeyDelegate(UnrealEngine.Framework.ObjectReference, string)](./ActorKeyDelegate(ObjectReference_string).md 'UnrealEngine.Framework.ActorKeyDelegate(UnrealEngine.Framework.ObjectReference, string)')  
+`callback` [ActorKeyDelegate(UnrealEngine.Framework.ActorReference, string)](./ActorKeyDelegate(ActorReference_string).md 'UnrealEngine.Framework.ActorKeyDelegate(UnrealEngine.Framework.ActorReference, string)')  
   
