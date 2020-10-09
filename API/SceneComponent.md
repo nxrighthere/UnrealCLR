@@ -33,7 +33,7 @@ Derived
 - [CanAttachAsChild(UnrealEngine.Framework.SceneComponent, string)](./SceneComponent-CanAttachAsChild(SceneComponent_string).md 'UnrealEngine.Framework.SceneComponent.CanAttachAsChild(UnrealEngine.Framework.SceneComponent, string)')
 - [Deactivate()](./SceneComponent-Deactivate().md 'UnrealEngine.Framework.SceneComponent.Deactivate()')
 - [DetachFromComponent(UnrealEngine.Framework.DetachmentTransformRule)](./SceneComponent-DetachFromComponent(DetachmentTransformRule).md 'UnrealEngine.Framework.SceneComponent.DetachFromComponent(UnrealEngine.Framework.DetachmentTransformRule)')
-- [ForEachAttachedChildren&lt;T&gt;(System.Action&lt;T&gt;)](./SceneComponent-ForEachAttachedChildren-T-(Action-T-).md 'UnrealEngine.Framework.SceneComponent.ForEachAttachedChildren&lt;T&gt;(System.Action&lt;T&gt;)')
+- [ForEachAttachedChild&lt;T&gt;(System.Action&lt;T&gt;)](./SceneComponent-ForEachAttachedChild-T-(Action-T-).md 'UnrealEngine.Framework.SceneComponent.ForEachAttachedChild&lt;T&gt;(System.Action&lt;T&gt;)')
 - [GetAttachedSocketName()](./SceneComponent-GetAttachedSocketName().md 'UnrealEngine.Framework.SceneComponent.GetAttachedSocketName()')
 - [GetBounds(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Bounds)](./SceneComponent-GetBounds(Transform_Bounds).md 'UnrealEngine.Framework.SceneComponent.GetBounds(UnrealEngine.Framework.Transform, UnrealEngine.Framework.Bounds)')
 - [GetForwardVector()](./SceneComponent-GetForwardVector().md 'UnrealEngine.Framework.SceneComponent.GetForwardVector()')

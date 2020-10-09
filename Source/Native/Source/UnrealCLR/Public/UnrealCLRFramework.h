@@ -484,6 +484,9 @@ namespace UnrealCLRFramework {
 		static bool IsPendingKill(AActor* Actor);
 		static bool IsRootComponentMovable(AActor* Actor);
 		static bool IsOverlappingActor(AActor* Actor, AActor* Other);
+		static void ForEachComponent(AActor* Actor, UActorComponent** Array, int32* Elements);
+		static void ForEachAttachedActor(AActor* Actor, AActor** Array, int32* Elements);
+		static void ForEachChildActor(AActor* Actor, AActor** Array, int32* Elements);
 		static void ForEachOverlappingActor(AActor* Actor, AActor** Array, int32* Elements);
 		static AActor* Spawn(const char* Name, ActorType Type, UObject* Blueprint);
 		static bool Destroy(AActor* Actor);
@@ -728,7 +731,7 @@ namespace UnrealCLRFramework {
 	namespace ActorComponent {
 		static bool IsOwnerSelected(UActorComponent* ActorComponent);
 		static AActor* GetOwner(UActorComponent* ActorComponent, ActorType Type);
-		static void Destroy(UActorComponent* ActorComponent, bool PromoteChildren);
+		static void Destroy(UActorComponent* ActorComponent, bool PromoteChild);
 		static void AddTag(UActorComponent* ActorComponent, const char* Tag);
 		static void RemoveTag(UActorComponent* ActorComponent, const char* Tag);
 		static bool HasTag(UActorComponent* ActorComponent, const char* Tag);
@@ -754,7 +757,7 @@ namespace UnrealCLRFramework {
 		static bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName);
 		static bool HasAnySockets(USceneComponent* SceneComponent);
 		static bool CanAttachAsChild(USceneComponent* SceneComponent, USceneComponent* ChildComponent, const char* SocketName);
-		static void ForEachAttachedChildren(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements);
+		static void ForEachAttachedChild(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements);
 		static USceneComponent* Create(AActor* Actor, ComponentType Type, const char* Name, bool SetAsRoot, UObject* Blueprint);
 		static bool AttachToComponent(USceneComponent* SceneComponent, USceneComponent* Parent, AttachmentTransformRule AttachmentRule, const char* SocketName);
 		static void DetachFromComponent(USceneComponent* SceneComponent, DetachmentTransformRule DetachmentRule);

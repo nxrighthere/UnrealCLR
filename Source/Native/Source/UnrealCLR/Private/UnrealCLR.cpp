@@ -394,6 +394,9 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsPendingKill;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsRootComponentMovable;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::IsOverlappingActor;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::ForEachComponent;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::ForEachAttachedActor;
+				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::ForEachChildActor;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::ForEachOverlappingActor;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Spawn;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::Destroy;
@@ -689,7 +692,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsSocketExists;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::HasAnySockets;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::CanAttachAsChild;
-				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::ForEachAttachedChildren;
+				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::ForEachAttachedChild;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::Create;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::AttachToComponent;
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::DetachFromComponent;

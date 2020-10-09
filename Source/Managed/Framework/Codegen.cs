@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x29A;
+		internal const int checksum = 0x29D;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -269,6 +269,9 @@ namespace UnrealEngine.Framework {
 				Actor.isPendingKill = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
 				Actor.isRootComponentMovable = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
 				Actor.isOverlappingActor = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)actorFunctions[head++];
+				Actor.forEachComponent = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
+				Actor.forEachAttachedActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
+				Actor.forEachChildActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
 				Actor.forEachOverlappingActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
 				Actor.spawn = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr>)actorFunctions[head++];
 				Actor.destroy = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
@@ -530,7 +533,7 @@ namespace UnrealEngine.Framework {
 				SceneComponent.isSocketExists = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.hasAnySockets = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.canAttachAsChild = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, Bool>)sceneComponentFunctions[head++];
-				SceneComponent.forEachAttachedChildren = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)sceneComponentFunctions[head++];
+				SceneComponent.forEachAttachedChild = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)sceneComponentFunctions[head++];
 				SceneComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr>)sceneComponentFunctions[head++];
 				SceneComponent.attachToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.detachFromComponent = (delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void>)sceneComponentFunctions[head++];
@@ -1455,6 +1458,9 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPendingKill;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isRootComponentMovable;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isOverlappingActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachAttachedActor;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachChildActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachOverlappingActor;
 		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr> spawn;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> destroy;
@@ -1707,7 +1713,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isSocketExists;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasAnySockets;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, Bool> canAttachAsChild;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachAttachedChildren;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachAttachedChild;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr> create;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool> attachToComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void> detachFromComponent;

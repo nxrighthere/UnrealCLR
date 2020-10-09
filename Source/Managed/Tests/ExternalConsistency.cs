@@ -273,6 +273,30 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
+			int attachedActorCount = 0;
+
+			Action<Actor> OnAttachedActor = (actor) => attachedActorCount++;
+
+			actor.ForEachAttachedActor(OnAttachedActor);
+
+			if (attachedActorCount != 1) {
+				Debug.Log(LogLevel.Error, "Batched attached actor check failed!");
+
+				return;
+			}
+
+			int childActorCount = 0;
+
+			Action<Actor> OnChildActor = (actor) => childActorCount++;
+
+			actor.ForEachChildActor(OnChildActor);
+
+			if (childActorCount != 1) {
+				Debug.Log(LogLevel.Error, "Batched child actor check failed!");
+
+				return;
+			}
+
 			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
@@ -300,14 +324,26 @@ namespace UnrealEngine.Tests {
 				return;
 			}
 
-			int attachedChildrenCount = 0;
+			int componentCount = 0;
 
-			Action<SceneComponent> OnAttachedChildren = (component) => attachedChildrenCount++;
+			Action<SceneComponent> OnComponent = (component) => componentCount++;
 
-			staticMeshComponent.ForEachAttachedChildren(OnAttachedChildren);
+			actor.ForEachComponent(OnComponent);
 
-			if (attachedChildrenCount != 3) {
-				Debug.Log(LogLevel.Error, "Batched component children attachment check failed!");
+			if (componentCount != 5) {
+				Debug.Log(LogLevel.Error, "Batched component check failed!");
+
+				return;
+			}
+
+			int attachedChildCount = 0;
+
+			Action<SceneComponent> OnAttachedChild = (component) => attachedChildCount++;
+
+			staticMeshComponent.ForEachAttachedChild(OnAttachedChild);
+
+			if (attachedChildCount != 3) {
+				Debug.Log(LogLevel.Error, "Batched component child attachment check failed!");
 
 				return;
 			}

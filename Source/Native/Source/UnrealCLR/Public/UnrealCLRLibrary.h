@@ -34,9 +34,9 @@ class UUnrealCLRLibrary : public UBlueprintFunctionLibrary {
 
 	public:
 
-	UFUNCTION(BlueprintCallable, Category = ".NET", meta = (ToolTip = "Executes the managed function with optional object reference argument"))
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = ".NET", meta = (ToolTip = "Executes the managed function with optional object reference argument"))
 	static void ExecuteManagedFunction(FManagedFunction ManagedFunction, UObject* Object);
 
-	UFUNCTION(BlueprintCallable, Category = ".NET", meta = (ToolTip = "Finds the managed function from loaded assembly, optional parameter suppresses errors if the function was not found"))
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = ".NET", meta = (ToolTip = "Finds the managed function from loaded assembly, optional parameter suppresses errors if the function was not found"))
 	static FManagedFunction FindManagedFunction(FString Method, bool Optional, bool& Result);
 };

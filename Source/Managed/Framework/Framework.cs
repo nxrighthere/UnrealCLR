@@ -4530,6 +4530,66 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Performs the specified action on each component if any
+		/// </summary>
+		public unsafe void ForEachComponent<T>(Action<T> action) where T : ActorComponent {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachComponent(Pointer, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T component = array[i].ToComponent<T>();
+
+				if (component != null)
+					action(component);
+			}
+		}
+
+		/// <summary>
+		/// Performs the specified action on each attached actor if any
+		/// </summary>
+		public unsafe void ForEachAttachedActor<T>(Action<T> action) where T : Actor {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachAttachedActor(Pointer, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T actor = array[i].ToActor<T>();
+
+				if (actor != null)
+					action(actor);
+			}
+		}
+
+		/// <summary>
+		/// Performs the specified action on each child actor with <see cref="ChildActorComponent"/>, including children of child if any
+		/// </summary>
+		public unsafe void ForEachChildActor<T>(Action<T> action) where T : Actor {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			ObjectReference* array = null;
+			int elements = 0;
+
+			forEachChildActor(Pointer, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				T actor = array[i].ToActor<T>();
+
+				if (actor != null)
+					action(actor);
+			}
+		}
+
+		/// <summary>
 		/// Performs the specified action on each overlapping actor if any
 		/// </summary>
 		public unsafe void ForEachOverlappingActor<T>(Action<T> action) where T : Actor {
@@ -7581,8 +7641,8 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Unregisters the component, removes it from its outer actor's components array and marks for pending kill
 		/// </summary>
-		/// <param name="promoteChildren">Promotes the children component in the hierarchy during the destruction</param>
-		public void Destroy(bool promoteChildren = false) => destroy(Pointer, promoteChildren);
+		/// <param name="promoteChild">Promotes the child component in the hierarchy during the destruction</param>
+		public void Destroy(bool promoteChild = false) => destroy(Pointer, promoteChild);
 
 		/// <summary>
 		/// Returns <c>true</c> if the component's owner is selected in the editor
@@ -7784,16 +7844,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Performs the specified action on each attached children component if any
+		/// Performs the specified action on each attached child component if any
 		/// </summary>
-		public unsafe void ForEachAttachedChildren<T>(Action<T> action) where T : SceneComponent {
+		public unsafe void ForEachAttachedChild<T>(Action<T> action) where T : SceneComponent {
 			if (action == null)
 				throw new ArgumentNullException(nameof(action));
 
 			ObjectReference* array = null;
 			int elements = 0;
 
-			forEachAttachedChildren(Pointer, ref array, ref elements);
+			forEachAttachedChild(Pointer, ref array, ref elements);
 
 			for (int i = 0; i < elements; i++) {
 				T component = array[i].ToComponent<T>();

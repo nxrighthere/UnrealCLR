@@ -1332,6 +1332,51 @@ namespace UnrealCLRFramework {
 			return Actor->IsOverlappingActor(Other);
 		}
 
+		void ForEachComponent(AActor* Actor, UActorComponent** Array, int32* Elements) {
+			static TArray<UActorComponent*> components;
+
+			components.Reset();
+
+			Actor->GetComponents(components);
+
+			int32 elements = components.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<UActorComponent*>(components.GetData());
+				*Elements = elements;
+			}
+		}
+
+		void ForEachAttachedActor(AActor* Actor, AActor** Array, int32* Elements) {
+			static TArray<AActor*> actors;
+
+			actors.Reset();
+
+			Actor->GetAttachedActors(actors);
+
+			int32 elements = actors.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<AActor*>(actors.GetData());
+				*Elements = elements;
+			}
+		}
+
+		void ForEachChildActor(AActor* Actor, AActor** Array, int32* Elements) {
+			static TArray<AActor*> actors;
+
+			actors.Reset();
+
+			Actor->GetAllChildActors(actors);
+
+			int32 elements = actors.Num();
+
+			if (elements > 0) {
+				*Array = reinterpret_cast<AActor*>(actors.GetData());
+				*Elements = elements;
+			}
+		}
+
 		void ForEachOverlappingActor(AActor* Actor, AActor** Array, int32* Elements) {
 			static TArray<AActor*> overlappingActors;
 
@@ -2046,8 +2091,8 @@ namespace UnrealCLRFramework {
 			return actor;
 		}
 
-		void Destroy(UActorComponent* ActorComponent, bool PromoteChildren) {
-			ActorComponent->DestroyComponent(PromoteChildren);
+		void Destroy(UActorComponent* ActorComponent, bool PromoteChild) {
+			ActorComponent->DestroyComponent(PromoteChild);
 		}
 
 		void AddTag(UActorComponent* ActorComponent, const char* Tag) {
@@ -2153,7 +2198,7 @@ namespace UnrealCLRFramework {
 			return SceneComponent->CanAttachAsChild(ChildComponent, FName(ANSI_TO_TCHAR(SocketName)));
 		}
 
-		void ForEachAttachedChildren(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements) {
+		void ForEachAttachedChild(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements) {
 			static TArray<USceneComponent*> attachedComponents;
 
 			attachedComponents.Reset();
