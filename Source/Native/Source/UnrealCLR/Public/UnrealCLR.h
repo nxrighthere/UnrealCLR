@@ -118,7 +118,8 @@ namespace UnrealCLR {
 		ComponentOverlapDelegate,
 		ComponentHitDelegate,
 		ComponentCursorDelegate,
-		ComponentKeyDelegate
+		ComponentKeyDelegate,
+		CharacterLandedDelegate
 	};
 
 	enum struct ArgumentType : int32 {

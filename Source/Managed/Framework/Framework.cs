@@ -1832,6 +1832,11 @@ namespace UnrealEngine.Framework {
 	public delegate void ComponentKeyDelegate(ComponentReference component, string key);
 
 	/// <summary>
+	/// Delegate for character landing events
+	/// </summary>
+	public delegate void CharacterLandedDelegate(in Hit hit);
+
+	/// <summary>
 	/// Provides additional static constants and methods for mathematical functions that are lack in <see cref="System.Math"/>, <see cref="System.MathF"/>, and <see cref="System.Numerics"/>
 	/// </summary>
 	public static class Maths {
@@ -5442,6 +5447,16 @@ namespace UnrealEngine.Framework {
 		/// Stops the character from jumping on the next update
 		/// </summary>
 		public void StopJumping() => stopJumping(Pointer);
+
+		/// <summary>
+		/// Sets the callback function that is called when the character landing after falling
+		/// </summary>
+		public void SetOnLandedCallback(CharacterLandedDelegate callback) {
+			if (callback == null)
+				throw new ArgumentNullException(nameof(callback));
+
+			setOnLandedCallback(Pointer, Collector.GetFunctionPointer(callback));
+		}
 	}
 
 	/// <summary>

@@ -1679,6 +1679,14 @@ namespace UnrealCLRFramework {
 		void StopJumping(ACharacter* Character) {
 			Character->StopJumping();
 		}
+
+		void SetOnLandedCallback(ACharacter* Character, CharacterLandedDelegate Callback) {
+			UUnrealCLRCharacter* character = NewObject<UUnrealCLRCharacter>(Character);
+
+			character->LandedCallback = (void*)Callback;
+
+			Character->LandedDelegate.AddDynamic(character, &UUnrealCLRCharacter::Landed);
+		}
 	}
 
 	namespace Controller {

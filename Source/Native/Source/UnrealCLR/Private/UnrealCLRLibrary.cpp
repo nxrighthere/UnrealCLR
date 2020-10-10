@@ -33,3 +33,15 @@ FManagedFunction UUnrealCLRLibrary::FindManagedFunction(FString Method, bool Opt
 
 	return managedFunction;
 }
+
+UUnrealCLRCharacter::UUnrealCLRCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) { }
+
+void UUnrealCLRCharacter::Landed(const FHitResult& Hit) {
+	UnrealCLRFramework::Hit hit(Hit);
+
+	void* parameters[1] = {
+		&hit
+	};
+
+	UnrealCLR::ManagedCommand(UnrealCLR::Command(LandedCallback, UnrealCLR::Callback(parameters, UnrealCLR::CallbackType::CharacterLandedDelegate)));
+}

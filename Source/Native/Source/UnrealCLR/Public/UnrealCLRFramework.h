@@ -233,6 +233,8 @@ namespace UnrealCLRFramework {
 
 	typedef void (*ComponentKeyDelegate)(UPrimitiveComponent* Component, const char* Key);
 
+	typedef void (*CharacterLandedDelegate)(const Hit* Hit);
+
 	// Enumerable
 
 	enum struct ObjectType : int32 {
@@ -550,6 +552,7 @@ namespace UnrealCLRFramework {
 		static void StopCrouching(ACharacter* Character);
 		static void Jump(ACharacter* Character);
 		static void StopJumping(ACharacter* Character);
+		static void SetOnLandedCallback(ACharacter* Character, CharacterLandedDelegate Callback);
 	}
 
 	namespace Controller {

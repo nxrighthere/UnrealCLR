@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x29D;
+		internal const int checksum = 0x29E;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -333,6 +333,7 @@ namespace UnrealEngine.Framework {
 				Character.stopCrouching = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
 				Character.jump = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
 				Character.stopJumping = (delegate* unmanaged[Cdecl]<IntPtr, void>)characterFunctions[head++];
+				Character.setOnLandedCallback = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)characterFunctions[head++];
 			}
 
 			unchecked {
@@ -1524,6 +1525,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stopCrouching;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> jump;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stopJumping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setOnLandedCallback;
 	}
 
 	unsafe partial class Controller {

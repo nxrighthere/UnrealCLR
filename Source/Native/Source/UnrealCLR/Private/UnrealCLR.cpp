@@ -462,6 +462,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::StopCrouching;
 				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::Jump;
 				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::StopJumping;
+				Shared::CharacterFunctions[head++] = (void*)&UnrealCLRFramework::Character::SetOnLandedCallback;
 
 				checksum += head;
 			}
@@ -1351,6 +1352,8 @@ void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
 				reinterpret_cast<UnrealCLRFramework::ComponentCursorDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]));
 			else if (Value.Callback.Type == CallbackType::ComponentKeyDelegate)
 				reinterpret_cast<UnrealCLRFramework::ComponentKeyDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]), static_cast<const char*>(Value.Callback.Parameters[1]));
+			else if (Value.Callback.Type == CallbackType::CharacterLandedDelegate)
+				reinterpret_cast<UnrealCLRFramework::CharacterLandedDelegate>(ManagedFunction)(static_cast<const UnrealCLRFramework::Hit*>(Value.Callback.Parameters[0]));
 			break;
 		}
 
