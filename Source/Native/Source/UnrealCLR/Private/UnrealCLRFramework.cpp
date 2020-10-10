@@ -1594,28 +1594,24 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Pawn {
-		void AddControllerYawInput(APawn* Pawn, float Value) {
-			Pawn->AddControllerYawInput(Value);
-		}
-
-		void AddControllerPitchInput(APawn* Pawn, float Value) {
-			Pawn->AddControllerPitchInput(Value);
-		}
-
-		void AddControllerRollInput(APawn* Pawn, float Value) {
-			Pawn->AddControllerRollInput(Value);
-		}
-
-		void AddMovementInput(APawn* Pawn, const Vector3* WorldDirection, float ScaleValue, bool Force) {
-			Pawn->AddMovementInput(*WorldDirection, ScaleValue, Force);
-		}
-
 		AutoPossessAI GetAutoPossessAI(APawn* Pawn) {
 			return Pawn->AutoPossessAI;
 		}
 
 		AutoReceiveInput GetAutoPossessPlayer(APawn* Pawn) {
 			return Pawn->AutoPossessPlayer;
+		}
+
+		bool GetControllerRotationYaw(APawn* Pawn) {
+			return Pawn->bUseControllerRotationYaw;
+		}
+
+		bool GetControllerRotationPitch(APawn* Pawn) {
+			return Pawn->bUseControllerRotationPitch;
+		}
+
+		bool GetControllerRotationRoll(APawn* Pawn) {
+			return Pawn->bUseControllerRotationRoll;
 		}
 
 		void GetGravityDirection(APawn* Pawn, Vector3* Value) {
@@ -1636,6 +1632,34 @@ namespace UnrealCLRFramework {
 
 		void SetAutoPossessPlayer(APawn* Pawn, AutoReceiveInput Value) {
 			Pawn->AutoPossessPlayer = Value;
+		}
+
+		void SetControllerRotationYaw(APawn* Pawn, bool Value) {
+			Pawn->bUseControllerRotationYaw = Value;
+		}
+
+		void SetControllerRotationPitch(APawn* Pawn, bool Value) {
+			Pawn->bUseControllerRotationPitch = Value;
+		}
+
+		void SetControllerRotationRoll(APawn* Pawn, bool Value) {
+			Pawn->bUseControllerRotationRoll = Value;
+		}
+
+		void AddControllerYawInput(APawn* Pawn, float Value) {
+			Pawn->AddControllerYawInput(Value);
+		}
+
+		void AddControllerPitchInput(APawn* Pawn, float Value) {
+			Pawn->AddControllerPitchInput(Value);
+		}
+
+		void AddControllerRollInput(APawn* Pawn, float Value) {
+			Pawn->AddControllerRollInput(Value);
+		}
+
+		void AddMovementInput(APawn* Pawn, const Vector3* WorldDirection, float ScaleValue, bool Force) {
+			Pawn->AddMovementInput(*WorldDirection, ScaleValue, Force);
 		}
 	}
 

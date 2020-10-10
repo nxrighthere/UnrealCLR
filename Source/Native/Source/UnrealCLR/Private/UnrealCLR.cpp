@@ -433,17 +433,23 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PawnFunctions;
 
-				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerYawInput;
-				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerPitchInput;
-				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerRollInput;
-				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddMovementInput;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAutoPossessAI;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAutoPossessPlayer;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetControllerRotationYaw;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetControllerRotationPitch;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetControllerRotationRoll;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetGravityDirection;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAIController;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetPlayerController;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetAutoPossessAI;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetAutoPossessPlayer;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetControllerRotationYaw;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetControllerRotationPitch;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::SetControllerRotationRoll;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerYawInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerPitchInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddControllerRollInput;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::AddMovementInput;
 
 				checksum += head;
 			}

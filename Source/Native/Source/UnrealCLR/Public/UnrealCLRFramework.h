@@ -528,17 +528,23 @@ namespace UnrealCLRFramework {
 	namespace TriggerSphere { }
 
 	namespace Pawn {
-		static void AddControllerYawInput(APawn* Pawn, float Value);
-		static void AddControllerPitchInput(APawn* Pawn, float Value);
-		static void AddControllerRollInput(APawn* Pawn, float Value);
-		static void AddMovementInput(APawn* Pawn, const Vector3* WorldDirection, float ScaleValue, bool Force);
 		static AutoPossessAI GetAutoPossessAI(APawn* Pawn);
 		static AutoReceiveInput GetAutoPossessPlayer(APawn* Pawn);
+		static bool GetControllerRotationYaw(APawn* Pawn);
+		static bool GetControllerRotationPitch(APawn* Pawn);
+		static bool GetControllerRotationRoll(APawn* Pawn);
 		static void GetGravityDirection(APawn* Pawn, Vector3* Value);
 		static AAIController* GetAIController(APawn* Pawn);
 		static APlayerController* GetPlayerController(APawn* Pawn);
 		static void SetAutoPossessAI(APawn* Pawn, AutoPossessAI Value);
 		static void SetAutoPossessPlayer(APawn* Pawn, AutoReceiveInput Value);
+		static void SetControllerRotationYaw(APawn* Pawn, bool Value);
+		static void SetControllerRotationPitch(APawn* Pawn, bool Value);
+		static void SetControllerRotationRoll(APawn* Pawn, bool Value);
+		static void AddControllerYawInput(APawn* Pawn, float Value);
+		static void AddControllerPitchInput(APawn* Pawn, float Value);
+		static void AddControllerRollInput(APawn* Pawn, float Value);
+		static void AddMovementInput(APawn* Pawn, const Vector3* WorldDirection, float ScaleValue, bool Force);
 	}
 
 	namespace Character {

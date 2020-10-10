@@ -5294,29 +5294,6 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Adds yaw (turn) input to the controller, if it's a local <see cref="PlayerController"/>
-		/// </summary>
-		public void AddControllerYawInput(float value) => addControllerYawInput(Pointer, value);
-
-		/// <summary>
-		/// Adds pitch (look up) input to the controller, if it's a local <see cref="PlayerController"/>
-		/// </summary>
-		public void AddControllerPitchInput(float value) => addControllerPitchInput(Pointer, value);
-
-		/// <summary>
-		/// Adds roll input to the controller, if it's a local <see cref="PlayerController"/>
-		/// </summary>
-		public void AddControllerRollInput(float value) => addControllerRollInput(Pointer, value);
-
-		/// <summary>
-		/// Adds movement input along the given world direction vector (usually normalized)
-		/// </summary>
-		/// <param name="worldDirection">Direction in world space to apply input</param>
-		/// <param name="scaleValue">Scale to apply to input, 0.5f applies half the normal value, while -1.0 would reverse the direction</param>
-		/// <param name="force">If <c>true</c>, always add the input, ignoring the result of <see cref="Controller.IsMoveInputIgnored"/></param>
-		public void AddMovementInput(in Vector3 worldDirection, float scaleValue = 1.0f, bool force = false) => addMovementInput(Pointer, worldDirection, scaleValue, force);
-
-		/// <summary>
 		/// Gets or sets the automatic possession type by an AI controller
 		/// </summary>
 		public AutoPossessAI AutoPossessAI {
@@ -5330,6 +5307,30 @@ namespace UnrealEngine.Framework {
 		public AutoReceiveInput AutoPossessPlayer {
 			get => getAutoPossessPlayer(Pointer);
 			set => setAutoPossessPlayer(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether yaw will be updated to match the controller's control rotation yaw, if controlled by a <see cref="PlayerController"/>
+		/// </summary>
+		public bool ControllerRotationYaw {
+			get => getControllerRotationYaw(Pointer);
+			set => setControllerRotationYaw(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether pitch will be updated to match the controller's control rotation pitch, if controlled by a <see cref="PlayerController"/>
+		/// </summary>
+		public bool ControllerRotationPitch {
+			get => getControllerRotationPitch(Pointer);
+			set => setControllerRotationPitch(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether roll will be updated to match the controller's control rotation roll, if controlled by a <see cref="PlayerController"/>
+		/// </summary>
+		public bool ControllerRotationRoll {
+			get => getControllerRotationRoll(Pointer);
+			set => setControllerRotationRoll(Pointer, value);
 		}
 
 		/// <summary>
@@ -5371,6 +5372,29 @@ namespace UnrealEngine.Framework {
 
 			return null;
 		}
+
+		/// <summary>
+		/// Adds yaw (turn) input to the controller, if it's a local <see cref="PlayerController"/>
+		/// </summary>
+		public void AddControllerYawInput(float value) => addControllerYawInput(Pointer, value);
+
+		/// <summary>
+		/// Adds pitch (look up) input to the controller, if it's a local <see cref="PlayerController"/>
+		/// </summary>
+		public void AddControllerPitchInput(float value) => addControllerPitchInput(Pointer, value);
+
+		/// <summary>
+		/// Adds roll input to the controller, if it's a local <see cref="PlayerController"/>
+		/// </summary>
+		public void AddControllerRollInput(float value) => addControllerRollInput(Pointer, value);
+
+		/// <summary>
+		/// Adds movement input along the given world direction vector (usually normalized)
+		/// </summary>
+		/// <param name="worldDirection">Direction in world space to apply input</param>
+		/// <param name="scaleValue">Scale to apply to input, 0.5f applies half the normal value, while -1.0 would reverse the direction</param>
+		/// <param name="force">If <c>true</c>, always add the input, ignoring the result of <see cref="Controller.IsMoveInputIgnored"/></param>
+		public void AddMovementInput(in Vector3 worldDirection, float scaleValue = 1.0f, bool force = false) => addMovementInput(Pointer, worldDirection, scaleValue, force);
 	}
 
 	/// <summary>

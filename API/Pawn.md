@@ -13,6 +13,9 @@ Derived
 ### Properties
 - [AutoPossessAI](./Pawn-AutoPossessAI.md 'UnrealEngine.Framework.Pawn.AutoPossessAI')
 - [AutoPossessPlayer](./Pawn-AutoPossessPlayer.md 'UnrealEngine.Framework.Pawn.AutoPossessPlayer')
+- [ControllerRotationPitch](./Pawn-ControllerRotationPitch.md 'UnrealEngine.Framework.Pawn.ControllerRotationPitch')
+- [ControllerRotationRoll](./Pawn-ControllerRotationRoll.md 'UnrealEngine.Framework.Pawn.ControllerRotationRoll')
+- [ControllerRotationYaw](./Pawn-ControllerRotationYaw.md 'UnrealEngine.Framework.Pawn.ControllerRotationYaw')
 ### Methods
 - [AddControllerPitchInput(float)](./Pawn-AddControllerPitchInput(float).md 'UnrealEngine.Framework.Pawn.AddControllerPitchInput(float)')
 - [AddControllerRollInput(float)](./Pawn-AddControllerRollInput(float).md 'UnrealEngine.Framework.Pawn.AddControllerRollInput(float)')
