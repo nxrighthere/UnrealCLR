@@ -1405,7 +1405,7 @@ namespace UnrealCLRFramework {
 				#endif
 			}
 
-			if (Name) {
+			if (actor && Name) {
 				FString name(ANSI_TO_TCHAR(Name));
 
 				actor->Rename(*name);
