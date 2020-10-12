@@ -183,7 +183,7 @@ namespace UnrealEngine.Runtime {
 
 							if (name?.Name != frameworkAssemblyName) {
 								plugin = new();
-								plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; });
+								plugin.loader = PluginLoader.CreateFromAssemblyFile(assembly, config => { config.DefaultContext = assembliesContextManager.assembliesContext; config.IsUnloadable = true; config.LoadInMemory = true; });
 								plugin.assembly = plugin.loader.LoadAssemblyFromPath(assembly);
 
 								AssemblyName[] referencedAssemblies = plugin.assembly.GetReferencedAssemblies();

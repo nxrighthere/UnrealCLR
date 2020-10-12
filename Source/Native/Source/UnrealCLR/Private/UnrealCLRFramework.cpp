@@ -758,7 +758,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetProjectDirectory(char* Directory) {
-			const char* directory = TCHAR_TO_ANSI(FGenericPlatformMisc::ProjectDir());
+			const char* directory = TCHAR_TO_ANSI(*FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()));
 
 			UnrealCLR::Utility::Strcpy(Directory, directory, UnrealCLR::Utility::Strlen(directory));
 		}

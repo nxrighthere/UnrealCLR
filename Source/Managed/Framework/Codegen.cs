@@ -1084,7 +1084,7 @@ namespace UnrealEngine.Framework {
 				}
 			}
 
-			Directory.SetCurrentDirectory(Path.Project);
+			Directory.SetCurrentDirectory(Application.ProjectDirectory);
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();

@@ -28,22 +28,6 @@ using System.Text;
 namespace UnrealEngine.Framework {
 	// Internal
 
-	internal static class Path {
-		private static string project;
-
-		// Determines the path of the project by parsing assembly location
-		internal static string Project {
-			get {
-				if (project == null) {
-					project = Assembly.GetExecutingAssembly().Location;
-					project = project.Substring(0, project.IndexOf("Managed", StringComparison.Ordinal));
-				}
-
-				return project;
-			}
-		}
-	}
-
 	internal static class ArrayPool {
 		[ThreadStatic]
 		private static byte[] stringBuffer;
@@ -3429,7 +3413,7 @@ namespace UnrealEngine.Framework {
 
 			handleException(stringBuffer.ToString());
 
-			using (StreamWriter streamWriter = File.AppendText(Path.Project + "/Saved/Logs/Exceptions-" + Assembly.GetCallingAssembly().GetName().Name + ".log")) {
+			using (StreamWriter streamWriter = File.AppendText(Application.ProjectDirectory + "Saved/Logs/Exceptions-" + Assembly.GetCallingAssembly().GetName().Name + ".log")) {
 				streamWriter.WriteLine(stringBuffer);
 				streamWriter.Close();
 			}
