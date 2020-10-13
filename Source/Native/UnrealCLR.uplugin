@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.24",
+	"VersionName": "1.25",
 	"FriendlyName": "UnrealCLR",
 	"Description": ".NET 5 integration",
 	"Category": "Scripting",

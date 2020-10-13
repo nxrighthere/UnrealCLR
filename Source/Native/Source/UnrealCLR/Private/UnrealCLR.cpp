@@ -19,7 +19,7 @@
 DEFINE_LOG_CATEGORY(LogUnrealCLR);
 
 void UnrealCLR::Module::StartupModule() {
-	#define HOSTFXR_VERSION "5.0.0-rc.1.20451.14"
+	#define HOSTFXR_VERSION "5.0.0-rc.2.20475.5"
 	#define HOSTFXR_WINDOWS "/hostfxr.dll"
 	#define HOSTFXR_MAC "/libhostfxr.dylib"
 	#define HOSTFXR_LINUX "/libhostfxr.so"
