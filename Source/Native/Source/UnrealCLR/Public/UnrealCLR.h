@@ -21,6 +21,7 @@
 
 #include "AIController.h"
 #include "Animation/AnimInstance.h"
+#include "AssetRegistryModule.h"
 #include "Camera/CameraActor.h"
 #include "Camera/CameraComponent.h"
 #include "Components/AudioComponent.h"
@@ -56,6 +57,7 @@
 #include "GameFramework/PlayerInput.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
+#include "IAssetRegistry.h"
 #include "ImageUtils.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Misc/DefaultValueHelper.h"
@@ -328,6 +330,8 @@ namespace UnrealCLR {
 
 		// Instantiable
 
+		static void* AssetFunctions[storageSize];
+		static void* AssetRegistryFunctions[storageSize];
 		static void* BlueprintFunctions[storageSize];
 		static void* ConsoleObjectFunctions[storageSize];
 		static void* ConsoleVariableFunctions[storageSize];

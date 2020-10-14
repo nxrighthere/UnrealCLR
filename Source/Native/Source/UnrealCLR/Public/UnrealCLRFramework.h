@@ -457,6 +457,18 @@ namespace UnrealCLRFramework {
 
 	// Instantiable
 
+	namespace Asset {
+		static bool IsValid(FAssetData* Asset);
+		static void GetName(FAssetData* Asset, char* Name);
+		static void GetPath(FAssetData* Asset, char* Path);
+	}
+
+	namespace AssetRegistry {
+		static IAssetRegistry* Get();
+		static bool HasAssets(IAssetRegistry* AssetRegistry, const char* Path, bool Recursive);
+		static void ForEachAsset(IAssetRegistry* AssetRegistry, const char* Path, bool Recursive, bool IncludeOnlyOnDiskAssets, FAssetData** Array, int32* Elements);
+	}
+
 	namespace Blueprint {
 		static bool IsValidActorClass(UBlueprint* Blueprint, ActorType Type);
 		static bool IsValidComponentClass(UBlueprint* Blueprint, ComponentType Type);

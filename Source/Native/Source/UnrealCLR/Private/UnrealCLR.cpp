@@ -349,6 +349,28 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::AssetFunctions;
+
+				Shared::AssetFunctions[head++] = (void*)&UnrealCLRFramework::Asset::IsValid;
+				Shared::AssetFunctions[head++] = (void*)&UnrealCLRFramework::Asset::GetName;
+				Shared::AssetFunctions[head++] = (void*)&UnrealCLRFramework::Asset::GetPath;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::AssetRegistryFunctions;
+
+				Shared::AssetRegistryFunctions[head++] = (void*)&UnrealCLRFramework::AssetRegistry::Get;
+				Shared::AssetRegistryFunctions[head++] = (void*)&UnrealCLRFramework::AssetRegistry::HasAssets;
+				Shared::AssetRegistryFunctions[head++] = (void*)&UnrealCLRFramework::AssetRegistry::ForEachAsset;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::BlueprintFunctions;
 
 				Shared::BlueprintFunctions[head++] = (void*)&UnrealCLRFramework::Blueprint::IsValidActorClass;

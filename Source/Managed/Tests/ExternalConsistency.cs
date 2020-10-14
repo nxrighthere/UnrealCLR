@@ -7,6 +7,7 @@ using UnrealEngine.Framework;
 namespace UnrealEngine.Tests {
 	public class ExternalConsistency : ISystem {
 		public void OnBeginPlay() {
+			AssetRegistryTest();
 			CommandLineArgumentsTest();
 			ReferencesEqualityTest();
 			NamingTest();
@@ -20,6 +21,35 @@ namespace UnrealEngine.Tests {
 			TagsTest();
 
 			Debug.AddOnScreenMessage(-1, 10.0f, Color.MediumTurquoise, "Verify " + MethodBase.GetCurrentMethod().DeclaringType + " results in output log!");
+		}
+
+		private void AssetRegistryTest() {
+			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
+
+			AssetRegistry assetRegistry = new();
+
+			if (!assetRegistry.HasAssets("/Game/Tests", true)) {
+				Debug.Log(LogLevel.Error, "Asset registry assets path test failed!");
+
+				return;
+			}
+
+			bool assetFound = false;
+
+			Action<Asset> OnAsset = (asset) => {
+				if (asset.Path == "/Game/Tests/Tests")
+					assetFound = true;
+			};
+
+			assetRegistry.ForEachAsset(OnAsset, "/Game/Tests", true);
+
+			if (!assetFound) {
+				Debug.Log(LogLevel.Error, "Asset registry path to asset test failed!");
+
+				return;
+			}
+
+			Debug.Log(LogLevel.Display, "Test passed successfully");
 		}
 
 		private void CommandLineArgumentsTest() {

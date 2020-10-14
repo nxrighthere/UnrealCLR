@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2A4;
+		internal const int checksum = 0x2AC;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -226,6 +226,24 @@ namespace UnrealEngine.Framework {
 				World.overlapAnyTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.overlapBlockingTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.overlapBlockingTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* assetFunctions = (IntPtr*)buffer[position++];
+
+				Asset.isValid = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)assetFunctions[head++];
+				Asset.getName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)assetFunctions[head++];
+				Asset.getPath = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)assetFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* assetRegistryFunctions = (IntPtr*)buffer[position++];
+
+				AssetRegistry.get = (delegate* unmanaged[Cdecl]<IntPtr>)assetRegistryFunctions[head++];
+				AssetRegistry.hasAssets = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool>)assetRegistryFunctions[head++];
+				AssetRegistry.forEachAsset = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool, ref Asset*, ref int, void>)assetRegistryFunctions[head++];
 			}
 
 			unchecked {
@@ -1434,6 +1452,18 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool> overlapAnyTestByProfile;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByChannel;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByProfile;
+	}
+
+	unsafe partial struct Asset {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isValid;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getPath;
+	}
+
+	unsafe partial class AssetRegistry {
+		internal static delegate* unmanaged[Cdecl]<IntPtr> get;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool> hasAssets;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool, ref Asset*, ref int, void> forEachAsset;
 	}
 
 	unsafe partial class Blueprint {

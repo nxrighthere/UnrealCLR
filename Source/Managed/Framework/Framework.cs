@@ -4315,6 +4315,163 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A representation of the asset
+	/// </summary>
+	public unsafe partial struct Asset : IEquatable<Asset> {
+		private IntPtr pointer;
+
+		internal IntPtr Pointer {
+			get {
+				if (!IsCreated)
+					throw new InvalidOperationException();
+
+				return pointer;
+			}
+
+			set {
+				if (value == IntPtr.Zero)
+					throw new InvalidOperationException();
+
+				pointer = value;
+			}
+		}
+
+		/// <summary>
+		/// Tests for equality between two objects
+		/// </summary>
+		public static bool operator ==(Asset left, Asset right) => left.Equals(right);
+
+		/// <summary>
+		/// Tests for inequality between two objects
+		/// </summary>
+		public static bool operator !=(Asset left, Asset right) => !left.Equals(right);
+
+		/// <summary>
+		/// Returns <c>true</c> if the object is created
+		/// </summary>
+		public bool IsCreated => pointer != IntPtr.Zero && isValid(pointer);
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(Asset other) => IsCreated && pointer == other.pointer;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public override bool Equals(object value) {
+			if (value == null)
+				return false;
+
+			if (!ReferenceEquals(value.GetType(), typeof(Asset)))
+				return false;
+
+			return Equals((Asset)value);
+		}
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => pointer.GetHashCode();
+
+		/// <summary>
+		/// Returns the name of the asset
+		/// </summary>
+		public string Name {
+			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+				getName(Pointer, stringBuffer);
+
+				return stringBuffer.BytesToString();
+			}
+		}
+
+		/// <summary>
+		/// Returns the path to the asset
+		/// </summary>
+		public string Path {
+			get {
+				byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+				getPath(Pointer, stringBuffer);
+
+				return stringBuffer.BytesToString();
+			}
+		}
+	}
+
+	/// <summary>
+	/// An asset registry
+	/// </summary>
+	public unsafe partial class AssetRegistry : IEquatable<AssetRegistry> {
+		private IntPtr pointer;
+
+		internal IntPtr Pointer {
+			get {
+				if (!IsCreated)
+					throw new InvalidOperationException();
+
+				return pointer;
+			}
+
+			set {
+				if (value == IntPtr.Zero)
+					throw new InvalidOperationException();
+
+				pointer = value;
+			}
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the asset registry
+		/// </summary>
+		public AssetRegistry() => Pointer = get();
+
+		/// <summary>
+		/// Returns <c>true</c> if the object is created
+		/// </summary>
+		public bool IsCreated => pointer != IntPtr.Zero;
+
+		/// <summary>
+		/// Indicates equality of objects
+		/// </summary>
+		public bool Equals(AssetRegistry other) => IsCreated && pointer == other?.pointer;
+
+		/// <summary>
+		/// Returns a hash code for the object
+		/// </summary>
+		public override int GetHashCode() => pointer.GetHashCode();
+
+		/// <summary>
+		/// Checks whether the given path contain assets, optionally testing sub-paths
+		/// </summary>
+		public bool HasAssets(string path, bool recursive = false) {
+			if (path == null)
+				throw new ArgumentNullException(nameof(path));
+
+			return hasAssets(Pointer, path, recursive);
+		}
+
+		/// <summary>
+		/// Performs the specified action on each asset if any
+		/// </summary>
+		public unsafe void ForEachAsset(Action<Asset> action, string path, bool recursive = false, bool includeOnlyOnDiskAssets = false) {
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
+			Asset* array = null;
+			int elements = 0;
+
+			forEachAsset(Pointer, path, recursive, includeOnlyOnDiskAssets, ref array, ref elements);
+
+			for (int i = 0; i < elements; i++) {
+				action(array[i]);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Interface for console objects
 	/// </summary>
 	public unsafe partial class ConsoleObject : IEquatable<ConsoleObject> {

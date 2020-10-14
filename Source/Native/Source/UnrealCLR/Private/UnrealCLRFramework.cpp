@@ -714,6 +714,67 @@ namespace UnrealCLRFramework {
 		}
 	}
 
+	namespace Asset {
+		bool IsValid(FAssetData* Asset) {
+			return Asset->IsValid();
+		}
+
+		void GetName(FAssetData* Asset, char* Name) {
+			const char* name = TCHAR_TO_ANSI(*Asset->AssetName.ToString());
+
+			UnrealCLR::Utility::Strcpy(Name, name, UnrealCLR::Utility::Strlen(name));
+		}
+
+		void GetPath(FAssetData* Asset, char* Path) {
+			FString objectPath = Asset->ObjectPath.ToString();
+
+			int32 index = INDEX_NONE;
+
+			if (objectPath.FindLastChar(TCHAR('.'), index))
+				objectPath = FString(index, *objectPath);
+
+			const char* path = TCHAR_TO_ANSI(*objectPath);
+
+			UnrealCLR::Utility::Strcpy(Path, path, UnrealCLR::Utility::Strlen(path));
+		}
+	}
+
+	namespace AssetRegistry {
+		IAssetRegistry* Get() {
+			static IAssetRegistry* assetRegistry;
+
+			if (!assetRegistry)
+				assetRegistry = &FModuleManager::Get().LoadModuleChecked<FAssetRegistryModule>(TEXT("AssetRegistry")).Get();
+
+			return assetRegistry;
+		}
+
+		bool HasAssets(IAssetRegistry* AssetRegistry, const char* Path, bool Recursive) {
+			return AssetRegistry->HasAssets(FName(ANSI_TO_TCHAR(Path)), Recursive);
+		}
+
+		void ForEachAsset(IAssetRegistry* AssetRegistry, const char* Path, bool Recursive, bool IncludeOnlyOnDiskAssets, FAssetData** Array, int32* Elements) {
+			static TArray<FAssetData> assets;
+			static TArray<FAssetData*> references;
+
+			assets.Reset();
+			references.Reset();
+
+			AssetRegistry->GetAssetsByPath(FName(ANSI_TO_TCHAR(Path)), assets, Recursive, IncludeOnlyOnDiskAssets);
+
+			int32 elements = assets.Num();
+
+			if (elements > 0) {
+				for (int32 i = 0; i < elements; i++) {
+					references.Add(&assets[i]);
+				}
+
+				*Array = reinterpret_cast<FAssetData*>(references.GetData());
+				*Elements = references.Num();
+			}
+		}
+	}
+
 	namespace Blueprint {
 		bool IsValidActorClass(UBlueprint* Blueprint, ActorType Type) {
 			#if WITH_EDITOR

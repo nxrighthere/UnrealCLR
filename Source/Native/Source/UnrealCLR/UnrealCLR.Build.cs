@@ -30,6 +30,7 @@ public class UnrealCLR : ModuleRules {
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
 			"AIModule",
+			"AssetRegistry",
 			"CoreUObject",
 			"Engine",
 			"HeadMountedDisplay",

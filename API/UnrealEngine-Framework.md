@@ -12,6 +12,7 @@
 - [AnimationSequenceBase](./AnimationSequenceBase.md 'UnrealEngine.Framework.AnimationSequenceBase')
 - [Application](./Application.md 'UnrealEngine.Framework.Application')
 - [Assert](./Assert.md 'UnrealEngine.Framework.Assert')
+- [AssetRegistry](./AssetRegistry.md 'UnrealEngine.Framework.AssetRegistry')
 - [AudioComponent](./AudioComponent.md 'UnrealEngine.Framework.AudioComponent')
 - [Blueprint](./Blueprint.md 'UnrealEngine.Framework.Blueprint')
 - [BoxComponent](./BoxComponent.md 'UnrealEngine.Framework.BoxComponent')
@@ -81,6 +82,7 @@
 - [World](./World.md 'UnrealEngine.Framework.World')
 ### Structs
 - [ActorReference](./ActorReference.md 'UnrealEngine.Framework.ActorReference')
+- [Asset](./Asset.md 'UnrealEngine.Framework.Asset')
 - [Bounds](./Bounds.md 'UnrealEngine.Framework.Bounds')
 - [CollisionShape](./CollisionShape.md 'UnrealEngine.Framework.CollisionShape')
 - [ComponentReference](./ComponentReference.md 'UnrealEngine.Framework.ComponentReference')
