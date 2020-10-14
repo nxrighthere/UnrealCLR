@@ -1602,15 +1602,15 @@ namespace UnrealCLRFramework {
 			return Pawn->AutoPossessPlayer;
 		}
 
-		bool GetControllerRotationYaw(APawn* Pawn) {
+		bool GetUseControllerRotationYaw(APawn* Pawn) {
 			return Pawn->bUseControllerRotationYaw;
 		}
 
-		bool GetControllerRotationPitch(APawn* Pawn) {
+		bool GetUseControllerRotationPitch(APawn* Pawn) {
 			return Pawn->bUseControllerRotationPitch;
 		}
 
-		bool GetControllerRotationRoll(APawn* Pawn) {
+		bool GetUseControllerRotationRoll(APawn* Pawn) {
 			return Pawn->bUseControllerRotationRoll;
 		}
 
@@ -1634,15 +1634,15 @@ namespace UnrealCLRFramework {
 			Pawn->AutoPossessPlayer = Value;
 		}
 
-		void SetControllerRotationYaw(APawn* Pawn, bool Value) {
+		void SetUseControllerRotationYaw(APawn* Pawn, bool Value) {
 			Pawn->bUseControllerRotationYaw = Value;
 		}
 
-		void SetControllerRotationPitch(APawn* Pawn, bool Value) {
+		void SetUseControllerRotationPitch(APawn* Pawn, bool Value) {
 			Pawn->bUseControllerRotationPitch = Value;
 		}
 
-		void SetControllerRotationRoll(APawn* Pawn, bool Value) {
+		void SetUseControllerRotationRoll(APawn* Pawn, bool Value) {
 			Pawn->bUseControllerRotationRoll = Value;
 		}
 

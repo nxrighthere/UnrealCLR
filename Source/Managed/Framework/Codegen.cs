@@ -308,17 +308,17 @@ namespace UnrealEngine.Framework {
 
 				Pawn.getAutoPossessAI = (delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI>)pawnFunctions[head++];
 				Pawn.getAutoPossessPlayer = (delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput>)pawnFunctions[head++];
-				Pawn.getControllerRotationYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
-				Pawn.getControllerRotationPitch = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
-				Pawn.getControllerRotationRoll = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
+				Pawn.getUseControllerRotationYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
+				Pawn.getUseControllerRotationPitch = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
+				Pawn.getUseControllerRotationRoll = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
 				Pawn.getGravityDirection = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)pawnFunctions[head++];
 				Pawn.getAIController = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)pawnFunctions[head++];
 				Pawn.getPlayerController = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)pawnFunctions[head++];
 				Pawn.setAutoPossessAI = (delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI, void>)pawnFunctions[head++];
 				Pawn.setAutoPossessPlayer = (delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput, void>)pawnFunctions[head++];
-				Pawn.setControllerRotationYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)pawnFunctions[head++];
-				Pawn.setControllerRotationPitch = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)pawnFunctions[head++];
-				Pawn.setControllerRotationRoll = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)pawnFunctions[head++];
+				Pawn.setUseControllerRotationYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)pawnFunctions[head++];
+				Pawn.setUseControllerRotationPitch = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)pawnFunctions[head++];
+				Pawn.setUseControllerRotationRoll = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)pawnFunctions[head++];
 				Pawn.addControllerYawInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)pawnFunctions[head++];
 				Pawn.addControllerPitchInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)pawnFunctions[head++];
 				Pawn.addControllerRollInput = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)pawnFunctions[head++];
@@ -1509,17 +1509,17 @@ namespace UnrealEngine.Framework {
 	unsafe partial class Pawn {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI> getAutoPossessAI;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput> getAutoPossessPlayer;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getControllerRotationYaw;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getControllerRotationPitch;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getControllerRotationRoll;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUseControllerRotationYaw;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUseControllerRotationPitch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUseControllerRotationRoll;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getGravityDirection;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getAIController;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getPlayerController;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI, void> setAutoPossessAI;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput, void> setAutoPossessPlayer;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setControllerRotationYaw;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setControllerRotationPitch;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setControllerRotationRoll;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUseControllerRotationYaw;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUseControllerRotationPitch;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUseControllerRotationRoll;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addControllerYawInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addControllerPitchInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> addControllerRollInput;

@@ -5296,25 +5296,25 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Gets or sets whether yaw will be updated to match the controller's control rotation yaw, if controlled by a <see cref="PlayerController"/>
 		/// </summary>
-		public bool ControllerRotationYaw {
-			get => getControllerRotationYaw(Pointer);
-			set => setControllerRotationYaw(Pointer, value);
+		public bool UseControllerRotationYaw {
+			get => getUseControllerRotationYaw(Pointer);
+			set => setUseControllerRotationYaw(Pointer, value);
 		}
 
 		/// <summary>
 		/// Gets or sets whether pitch will be updated to match the controller's control rotation pitch, if controlled by a <see cref="PlayerController"/>
 		/// </summary>
-		public bool ControllerRotationPitch {
-			get => getControllerRotationPitch(Pointer);
-			set => setControllerRotationPitch(Pointer, value);
+		public bool UseControllerRotationPitch {
+			get => getUseControllerRotationPitch(Pointer);
+			set => setUseControllerRotationPitch(Pointer, value);
 		}
 
 		/// <summary>
 		/// Gets or sets whether roll will be updated to match the controller's control rotation roll, if controlled by a <see cref="PlayerController"/>
 		/// </summary>
-		public bool ControllerRotationRoll {
-			get => getControllerRotationRoll(Pointer);
-			set => setControllerRotationRoll(Pointer, value);
+		public bool UseControllerRotationRoll {
+			get => getUseControllerRotationRoll(Pointer);
+			set => setUseControllerRotationRoll(Pointer, value);
 		}
 
 		/// <summary>
