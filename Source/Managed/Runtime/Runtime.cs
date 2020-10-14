@@ -30,6 +30,26 @@ namespace UnrealEngine.Runtime {
 		Fatal
 	}
 
+	internal enum CallbackType : int {
+		ActorOverlapDelegate,
+		ActorHitDelegate,
+		ActorCursorDelegate,
+		ActorKeyDelegate,
+		ComponentOverlapDelegate,
+		ComponentHitDelegate,
+		ComponentCursorDelegate,
+		ComponentKeyDelegate,
+		CharacterLandedDelegate
+	}
+
+	internal enum ArgumentType : int {
+		None,
+		Single,
+		Integer,
+		Pointer,
+		Callback
+	}
+
 	internal enum CommandType : int {
 		Initialize = 1,
 		LoadAssemblies = 2,
@@ -38,8 +58,26 @@ namespace UnrealEngine.Runtime {
 		Execute = 5
 	}
 
+	[StructLayout(LayoutKind.Explicit, Size = 16)]
+	internal unsafe struct Callback {
+		[FieldOffset(0)]
+		internal IntPtr* parameters;
+		[FieldOffset(8)]
+		internal CallbackType type;
+	}
+
+	[StructLayout(LayoutKind.Explicit, Size = 24)]
 	internal unsafe struct Argument {
-		internal fixed byte data[24];
+		[FieldOffset(0)]
+		internal float single;
+		[FieldOffset(0)]
+		internal uint integer;
+		[FieldOffset(0)]
+		internal IntPtr pointer;
+		[FieldOffset(0)]
+		internal Callback callback;
+		[FieldOffset(16)]
+		internal ArgumentType type;
 	}
 
 	[StructLayout(LayoutKind.Explicit, Size = 40)]
@@ -91,7 +129,6 @@ namespace UnrealEngine.Runtime {
 		private static IntPtr sharedFunctions;
 		private static int sharedChecksum;
 
-		private static delegate* unmanaged[Cdecl]<IntPtr, Argument, void> Invoke;
 		private static delegate* unmanaged[Cdecl]<string, void> Exception;
 		private static delegate* unmanaged[Cdecl]<LogLevel, string, void> Log;
 
@@ -99,7 +136,42 @@ namespace UnrealEngine.Runtime {
 		internal static unsafe IntPtr ManagedCommand(Command command) {
 			if (command.type == CommandType.Execute) {
 				try {
-					Invoke(command.function, command.value);
+					switch (command.value.type) {
+						case ArgumentType.None: {
+							((delegate* unmanaged[Cdecl]<void>)command.function)();
+							break;
+						}
+
+						case ArgumentType.Single: {
+							((delegate* unmanaged[Cdecl]<float, void>)command.function)(command.value.single);
+							break;
+						}
+
+						case ArgumentType.Integer: {
+							((delegate* unmanaged[Cdecl]<uint, void>)command.function)(command.value.integer);
+							break;
+						}
+
+						case ArgumentType.Pointer: {
+							((delegate* unmanaged[Cdecl]<IntPtr, void>)command.function)(command.value.pointer);
+							break;
+						}
+
+						case ArgumentType.Callback: {
+							if (command.value.callback.type == CallbackType.ActorOverlapDelegate || command.value.callback.type == CallbackType.ComponentOverlapDelegate || command.value.callback.type == CallbackType.ActorKeyDelegate || command.value.callback.type == CallbackType.ComponentKeyDelegate)
+								((delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)command.function)(command.value.callback.parameters[0], command.value.callback.parameters[1]);
+							else if (command.value.callback.type == CallbackType.ActorHitDelegate || command.value.callback.type == CallbackType.ComponentHitDelegate)
+								((delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, IntPtr, void>)command.function)(command.value.callback.parameters[0], command.value.callback.parameters[1], command.value.callback.parameters[2], command.value.callback.parameters[3]);
+							else if (command.value.callback.type == CallbackType.ActorCursorDelegate || command.value.callback.type == CallbackType.ComponentCursorDelegate || command.value.callback.type == CallbackType.CharacterLandedDelegate)
+								((delegate* unmanaged[Cdecl]<IntPtr, void>)command.function)(command.value.callback.parameters[0]);
+							else
+								throw new Exception("Unknown callback type");
+							break;
+						}
+
+						default:
+							throw new Exception("Unknown function type");
+					}
 				}
 
 				catch (Exception exception) {
@@ -138,7 +210,6 @@ namespace UnrealEngine.Runtime {
 						int head = 0;
 						IntPtr* runtimeFunctions = (IntPtr*)buffer[position++];
 
-						Invoke = (delegate* unmanaged[Cdecl]<IntPtr, Argument, void>)runtimeFunctions[head++];
 						Exception = (delegate* unmanaged[Cdecl]<string, void>)runtimeFunctions[head++];
 						Log = (delegate* unmanaged[Cdecl]<LogLevel, string, void>)runtimeFunctions[head++];
 					}

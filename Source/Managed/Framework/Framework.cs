@@ -44,7 +44,7 @@ namespace UnrealEngine.Framework {
 		[ThreadStatic]
 		private static List<object> references;
 
-		public static IntPtr GetFunctionPointer<TDelegate>(TDelegate reference) where TDelegate : class {
+		public static IntPtr GetFunctionPointer(Delegate reference) {
 			if (references == null)
 				references = new();
 

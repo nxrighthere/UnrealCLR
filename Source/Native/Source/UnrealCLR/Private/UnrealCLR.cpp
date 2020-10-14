@@ -1201,9 +1201,8 @@ void UnrealCLR::Module::StartupModule() {
 
 			// Runtime pointers
 
-			Shared::RuntimeFunctions[0] = (void*)&UnrealCLR::Module::Invoke;
-			Shared::RuntimeFunctions[1] = (void*)&UnrealCLR::Module::Exception;
-			Shared::RuntimeFunctions[2] = (void*)&UnrealCLR::Module::Log;
+			Shared::RuntimeFunctions[0] = (void*)&UnrealCLR::Module::Exception;
+			Shared::RuntimeFunctions[1] = (void*)&UnrealCLR::Module::Log;
 
 			constexpr void* functions[3] = {
 				Shared::RuntimeFunctions,
@@ -1317,55 +1316,6 @@ void UnrealCLR::Module::RegisterTickFunction(FTickFunction& TickFunction, ETicki
 
 void UnrealCLR::Module::HostError(const char_t* Message) {
 	UE_LOG(LogUnrealCLR, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(Message));
-}
-
-void UnrealCLR::Module::Invoke(void(*ManagedFunction)(), Argument Value) {
-	switch (Value.Type) {
-		case ArgumentType::None: {
-			ManagedFunction();
-			break;
-		}
-
-		case ArgumentType::Single: {
-			reinterpret_cast<void(*)(float)>(ManagedFunction)(Value.Single);
-			break;
-		}
-
-		case ArgumentType::Integer: {
-			reinterpret_cast<void(*)(uint32_t)>(ManagedFunction)(Value.Integer);
-			break;
-		}
-
-		case ArgumentType::Pointer: {
-			reinterpret_cast<void(*)(void*)>(ManagedFunction)(Value.Pointer);
-			break;
-		}
-
-		case ArgumentType::Callback: {
-			if (Value.Callback.Type == CallbackType::ActorOverlapDelegate)
-				reinterpret_cast<UnrealCLRFramework::ActorOverlapDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]), static_cast<AActor*>(Value.Callback.Parameters[1]));
-			else if (Value.Callback.Type == CallbackType::ActorHitDelegate)
-				reinterpret_cast<UnrealCLRFramework::ActorHitDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]), static_cast<AActor*>(Value.Callback.Parameters[1]), static_cast<const UnrealCLRFramework::Vector3*>(Value.Callback.Parameters[2]), static_cast<const UnrealCLRFramework::Hit*>(Value.Callback.Parameters[3]));
-			else if (Value.Callback.Type == CallbackType::ActorCursorDelegate)
-				reinterpret_cast<UnrealCLRFramework::ActorCursorDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]));
-			else if (Value.Callback.Type == CallbackType::ActorKeyDelegate)
-				reinterpret_cast<UnrealCLRFramework::ActorKeyDelegate>(ManagedFunction)(static_cast<AActor*>(Value.Callback.Parameters[0]), static_cast<const char*>(Value.Callback.Parameters[1]));
-			else if (Value.Callback.Type == CallbackType::ComponentOverlapDelegate)
-				reinterpret_cast<UnrealCLRFramework::ComponentOverlapDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[1]));
-			else if (Value.Callback.Type == CallbackType::ComponentHitDelegate)
-				reinterpret_cast<UnrealCLRFramework::ComponentHitDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]), static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[1]), static_cast<const UnrealCLRFramework::Vector3*>(Value.Callback.Parameters[2]), static_cast<const UnrealCLRFramework::Hit*>(Value.Callback.Parameters[3]));
-			else if (Value.Callback.Type == CallbackType::ComponentCursorDelegate)
-				reinterpret_cast<UnrealCLRFramework::ComponentCursorDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]));
-			else if (Value.Callback.Type == CallbackType::ComponentKeyDelegate)
-				reinterpret_cast<UnrealCLRFramework::ComponentKeyDelegate>(ManagedFunction)(static_cast<UPrimitiveComponent*>(Value.Callback.Parameters[0]), static_cast<const char*>(Value.Callback.Parameters[1]));
-			else if (Value.Callback.Type == CallbackType::CharacterLandedDelegate)
-				reinterpret_cast<UnrealCLRFramework::CharacterLandedDelegate>(ManagedFunction)(static_cast<const UnrealCLRFramework::Hit*>(Value.Callback.Parameters[0]));
-			break;
-		}
-
-		default:
-			break;
-	}
 }
 
 void UnrealCLR::Module::Exception(const char* Message) {
