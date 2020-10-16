@@ -1031,6 +1031,7 @@ namespace UnrealCLRFramework {
 		static bool GetInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, Transform* Value, bool WorldSpace);
 		static int32 AddInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform);
 		static bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
+		static bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
 		static bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex);
 		static void ClearInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent);
 	}

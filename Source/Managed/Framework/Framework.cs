@@ -9777,6 +9777,22 @@ namespace UnrealEngine.Framework {
 		public bool UpdateInstanceTransform(int instanceIndex, in Transform instanceTransform, bool worldSpace = false, bool markRenderStateDirty = false, bool teleport = false) => updateInstanceTransform(Pointer, instanceIndex, instanceTransform, worldSpace, markRenderStateDirty, teleport);
 
 		/// <summary>
+		/// Updates the transform for an array of instances
+		/// </summary>
+		/// <param name="startInstanceIndex">The starting index of the instances to update</param>
+		/// <param name="instanceTransforms">The new transforms to apply</param>
+		/// <param name="worldSpace">If <c>true</c>, the new transforms are interpreted as a world space transforms, otherwise it is interpreted as local space</param>
+		/// <param name="markRenderStateDirty">If the render state is marked as dirty the change should be visible immediately</param>
+		/// <param name="teleport">Whether the instances physics should be moved normally, or teleported (moved instantly, ignoring velocity)</param>
+		/// <returns><c>true</c> if successful</returns>
+		public bool BatchUpdateInstanceTransforms(int startInstanceIndex, Transform[] instanceTransforms, bool worldSpace = false, bool markRenderStateDirty = false, bool teleport = false) {
+			if (instanceTransforms == null)
+				throw new ArgumentNullException(nameof(instanceTransforms));
+
+			return batchUpdateInstanceTransforms(Pointer, startInstanceIndex, instanceTransforms.Length, instanceTransforms, worldSpace, markRenderStateDirty, teleport);
+		}
+
+		/// <summary>
 		/// Removes the specified instance
 		/// </summary>
 		public bool RemoveInstance(int instanceIndex) => removeInstance(Pointer, instanceIndex);

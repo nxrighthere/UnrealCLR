@@ -1045,6 +1045,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::GetInstanceTransform;
 				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::AddInstance;
 				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::UpdateInstanceTransform;
+				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::BatchUpdateInstanceTransforms;
 				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::RemoveInstance;
 				Shared::InstancedStaticMeshComponentFunctions[head++] = (void*)&UnrealCLRFramework::InstancedStaticMeshComponent::ClearInstances;
 
