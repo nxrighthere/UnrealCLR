@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2AD;
+		internal const int checksum = 0x2B8;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -684,6 +684,22 @@ namespace UnrealEngine.Framework {
 
 			unchecked {
 				int head = 0;
+				IntPtr* postProcessComponentFunctions = (IntPtr*)buffer[position++];
+
+				PostProcessComponent.getEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)postProcessComponentFunctions[head++];
+				PostProcessComponent.getBlendRadius = (delegate* unmanaged[Cdecl]<IntPtr, float>)postProcessComponentFunctions[head++];
+				PostProcessComponent.getBlendWeight = (delegate* unmanaged[Cdecl]<IntPtr, float>)postProcessComponentFunctions[head++];
+				PostProcessComponent.getUnbound = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)postProcessComponentFunctions[head++];
+				PostProcessComponent.getPriority = (delegate* unmanaged[Cdecl]<IntPtr, float>)postProcessComponentFunctions[head++];
+				PostProcessComponent.setEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)postProcessComponentFunctions[head++];
+				PostProcessComponent.setBlendRadius = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)postProcessComponentFunctions[head++];
+				PostProcessComponent.setBlendWeight = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)postProcessComponentFunctions[head++];
+				PostProcessComponent.setUnbound = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)postProcessComponentFunctions[head++];
+				PostProcessComponent.setPriority = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)postProcessComponentFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
 				IntPtr* primitiveComponentFunctions = (IntPtr*)buffer[position++];
 
 				PrimitiveComponent.isGravityEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
@@ -1285,9 +1301,10 @@ namespace UnrealEngine.Framework {
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
-		HierarchicalInstancedStaticMeshComponent,
+		HierarchicalInstancedStaticMesh,
 		ChildActor,
 		SpringArm,
+		PostProcess,
 		Box,
 		Sphere,
 		Capsule,
@@ -1868,6 +1885,19 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setSocketOffset;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setTargetArmLength;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setTargetOffset;
+	}
+
+	unsafe partial class PostProcessComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getEnabled;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getBlendRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getBlendWeight;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUnbound;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getPriority;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnabled;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setBlendRadius;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setBlendWeight;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUnbound;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setPriority;
 	}
 
 	unsafe partial class PrimitiveComponent {

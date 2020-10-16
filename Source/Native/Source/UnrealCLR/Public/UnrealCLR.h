@@ -32,6 +32,7 @@
 #include "Components/InputComponent.h"
 #include "Components/LightComponent.h"
 #include "Components/LightComponentBase.h"
+#include "Components/PostProcessComponent.h"
 #include "Components/ShapeComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/SplineComponent.h"
@@ -357,6 +358,7 @@ namespace UnrealCLR {
 		static void* CameraComponentFunctions[storageSize];
 		static void* ChildActorComponentFunctions[storageSize];
 		static void* SpringArmComponentFunctions[storageSize];
+		static void* PostProcessComponentFunctions[storageSize];
 		static void* PrimitiveComponentFunctions[storageSize];
 		static void* ShapeComponentFunctions[storageSize];
 		static void* BoxComponentFunctions[storageSize];

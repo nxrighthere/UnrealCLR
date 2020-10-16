@@ -142,7 +142,7 @@ namespace UnrealCLRFramework {
 			case ComponentType::InstancedStaticMesh:\
 				Result = Head UInstancedStaticMeshComponent Tail;\
 				break;\
-			case ComponentType::HierarchicalInstancedStaticMeshComponent:\
+			case ComponentType::HierarchicalInstancedStaticMesh:\
 				Result = Head UHierarchicalInstancedStaticMeshComponent Tail;\
 				break;\
 			case ComponentType::ChildActor:\
@@ -150,6 +150,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::SpringArm:\
 				Result = Head USpringArmComponent Tail;\
+				break;\
+			case ComponentType::PostProcess:\
+				Result = Head UPostProcessComponent Tail;\
 				break;\
 			case ComponentType::Box:\
 				Result = Head UBoxComponent Tail;\
@@ -200,7 +203,7 @@ namespace UnrealCLRFramework {
 			case ComponentType::InstancedStaticMesh:\
 				Result = Head UInstancedStaticMeshComponent Tail;\
 				break;\
-			case ComponentType::HierarchicalInstancedStaticMeshComponent:\
+			case ComponentType::HierarchicalInstancedStaticMesh:\
 				Result = Head UHierarchicalInstancedStaticMeshComponent Tail;\
 				break;\
 			case ComponentType::ChildActor:\
@@ -208,6 +211,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::SpringArm:\
 				Result = Head USpringArmComponent Tail;\
+				break;\
+			case ComponentType::PostProcess:\
+				Result = Head UPostProcessComponent Tail;\
 				break;\
 			case ComponentType::Box:\
 				Result = Head UBoxComponent Tail;\
@@ -2751,6 +2757,48 @@ namespace UnrealCLRFramework {
 		}
 	}
 
+	namespace PostProcessComponent {
+		bool GetEnabled(UPostProcessComponent* PostProcessComponent) {
+			return PostProcessComponent->bEnabled;
+		}
+
+		float GetBlendRadius(UPostProcessComponent* PostProcessComponent) {
+			return PostProcessComponent->BlendRadius;
+		}
+
+		float GetBlendWeight(UPostProcessComponent* PostProcessComponent) {
+			return PostProcessComponent->BlendWeight;
+		}
+
+		bool GetUnbound(UPostProcessComponent* PostProcessComponent) {
+			return PostProcessComponent->bUnbound;
+		}
+
+		float GetPriority(UPostProcessComponent* PostProcessComponent) {
+			return PostProcessComponent->Priority;
+		}
+
+		void SetEnabled(UPostProcessComponent* PostProcessComponent, bool Value) {
+			PostProcessComponent->bEnabled = Value;
+		}
+
+		void SetBlendRadius(UPostProcessComponent* PostProcessComponent, float Value) {
+			PostProcessComponent->BlendRadius = Value;
+		}
+
+		void SetBlendWeight(UPostProcessComponent* PostProcessComponent, float Value) {
+			PostProcessComponent->BlendWeight = Value;
+		}
+
+		void SetUnbound(UPostProcessComponent* PostProcessComponent, bool Value) {
+			PostProcessComponent->bUnbound = Value;
+		}
+
+		void SetPriority(UPostProcessComponent* PostProcessComponent, float Priority) {
+			PostProcessComponent->Priority = Priority;
+		}
+	}
+
 	namespace PrimitiveComponent {
 		bool IsGravityEnabled(UPrimitiveComponent* PrimitiveComponent) {
 			return PrimitiveComponent->IsGravityEnabled();
@@ -3274,7 +3322,7 @@ namespace UnrealCLRFramework {
 			return InstancedStaticMeshComponent->UpdateInstanceTransform(InstanceIndex, *InstanceTransform, WorldSpace, MarkRenderStateDirty, Teleport);
 		}
 
-		bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
+		bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, const Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
 			bool result = true;
 
 			for (int32 i = StartInstanceIndex; i < EndInstanceIndex; i++) {

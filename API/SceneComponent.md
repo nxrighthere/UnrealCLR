@@ -11,6 +11,7 @@ Derived
 &#8627; [CameraComponent](./CameraComponent.md 'UnrealEngine.Framework.CameraComponent')  
 &#8627; [ChildActorComponent](./ChildActorComponent.md 'UnrealEngine.Framework.ChildActorComponent')  
 &#8627; [LightComponentBase](./LightComponentBase.md 'UnrealEngine.Framework.LightComponentBase')  
+&#8627; [PostProcessComponent](./PostProcessComponent.md 'UnrealEngine.Framework.PostProcessComponent')  
 &#8627; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')  
 &#8627; [RadialForceComponent](./RadialForceComponent.md 'UnrealEngine.Framework.RadialForceComponent')  
 &#8627; [SpringArmComponent](./SpringArmComponent.md 'UnrealEngine.Framework.SpringArmComponent')  

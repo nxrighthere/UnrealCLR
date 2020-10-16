@@ -8804,6 +8804,77 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// A component that is used for post-processing manipulations
+	/// </summary>
+	public unsafe partial class PostProcessComponent : SceneComponent {
+		internal override ComponentType Type => ComponentType.PostProcess;
+
+		private protected PostProcessComponent() { }
+
+		internal PostProcessComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates the component attached to an actor and optionally sets it as the root, first component will be set as the root automatically
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		/// <param name="setAsRoot">If <c>true</c>, sets the component as the root</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the component</param>
+		public PostProcessComponent(Actor actor, string name = null, bool setAsRoot = false, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the volume is enabled
+		/// </summary>
+		public bool Enabled {
+			get => getEnabled(Pointer);
+			set => setEnabled(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the world space radius around the volume that is used for blending if not unbound
+		/// </summary>
+		public float BlendRadius {
+			get => getBlendRadius(Pointer);
+			set => setBlendRadius(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the blend weight, 0.0f indicates no effect, 1.0f indicates full effect
+		/// </summary>
+		public float BlendWeight {
+			get => getBlendWeight(Pointer);
+			set => setBlendWeight(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the volume covers the whole world or only the area inside its bounds
+		/// </summary>
+		public bool Unbound {
+			get => getUnbound(Pointer);
+			set => setUnbound(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the priority of the volume
+		/// </summary>
+		public float Priority {
+			get => getPriority(Pointer);
+			set => setPriority(Pointer, value);
+		}
+	}
+
+	/// <summary>
 	/// An abstract component that contains or generates some sort of geometry, generally to be rendered or used as collision data
 	/// </summary>
 	public abstract unsafe partial class PrimitiveComponent : SceneComponent {
@@ -9807,7 +9878,7 @@ namespace UnrealEngine.Framework {
 	/// A component that efficiently renders multiple instances of the same <see cref="StaticMeshComponent"/> with different level of detail
 	/// </summary>
 	public unsafe partial class HierarchicalInstancedStaticMeshComponent : InstancedStaticMeshComponent {
-		internal override ComponentType Type => ComponentType.HierarchicalInstancedStaticMeshComponent;
+		internal override ComponentType Type => ComponentType.HierarchicalInstancedStaticMesh;
 
 		private protected HierarchicalInstancedStaticMeshComponent() { }
 

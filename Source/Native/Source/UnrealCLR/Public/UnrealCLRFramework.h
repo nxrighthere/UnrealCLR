@@ -283,9 +283,10 @@ namespace UnrealCLRFramework {
 		MotionController,
 		StaticMesh,
 		InstancedStaticMesh,
-		HierarchicalInstancedStaticMeshComponent,
+		HierarchicalInstancedStaticMesh,
 		ChildActor,
 		SpringArm,
+		PostProcess,
 		Box,
 		Sphere,
 		Capsule,
@@ -890,6 +891,19 @@ namespace UnrealCLRFramework {
 		static void SetTargetOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value);
 	}
 
+	namespace PostProcessComponent {
+		static bool GetEnabled(UPostProcessComponent* PostProcessComponent);
+		static float GetBlendRadius(UPostProcessComponent* PostProcessComponent);
+		static float GetBlendWeight(UPostProcessComponent* PostProcessComponent);
+		static bool GetUnbound(UPostProcessComponent* PostProcessComponent);
+		static float GetPriority(UPostProcessComponent* PostProcessComponent);
+		static void SetEnabled(UPostProcessComponent* PostProcessComponent, bool Value);
+		static void SetBlendRadius(UPostProcessComponent* PostProcessComponent, float Value);
+		static void SetBlendWeight(UPostProcessComponent* PostProcessComponent, float Value);
+		static void SetUnbound(UPostProcessComponent* PostProcessComponent, bool Value);
+		static void SetPriority(UPostProcessComponent* PostProcessComponent, float Priority);
+	}
+
 	namespace PrimitiveComponent {
 		static bool IsGravityEnabled(UPrimitiveComponent* PrimitiveComponent);
 		static bool IsOverlappingComponent(UPrimitiveComponent* PrimitiveComponent, UPrimitiveComponent* Other);
@@ -1031,7 +1045,7 @@ namespace UnrealCLRFramework {
 		static bool GetInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, Transform* Value, bool WorldSpace);
 		static int32 AddInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform);
 		static bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
-		static bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
+		static bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, const Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport);
 		static bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex);
 		static void ClearInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent);
 	}

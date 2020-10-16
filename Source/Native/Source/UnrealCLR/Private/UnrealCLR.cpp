@@ -857,6 +857,24 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::PostProcessComponentFunctions;
+
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::GetEnabled;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::GetBlendRadius;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::GetBlendWeight;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::GetUnbound;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::GetPriority;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::SetEnabled;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::SetBlendRadius;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::SetBlendWeight;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::SetUnbound;
+				Shared::PostProcessComponentFunctions[head++] = (void*)&UnrealCLRFramework::PostProcessComponent::SetPriority;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::PrimitiveComponentFunctions;
 
 				Shared::PrimitiveComponentFunctions[head++] = (void*)&UnrealCLRFramework::PrimitiveComponent::IsGravityEnabled;

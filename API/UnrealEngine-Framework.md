@@ -53,6 +53,7 @@
 - [PlayerController](./PlayerController.md 'UnrealEngine.Framework.PlayerController')
 - [PlayerInput](./PlayerInput.md 'UnrealEngine.Framework.PlayerInput')
 - [PointLight](./PointLight.md 'UnrealEngine.Framework.PointLight')
+- [PostProcessComponent](./PostProcessComponent.md 'UnrealEngine.Framework.PostProcessComponent')
 - [PostProcessVolume](./PostProcessVolume.md 'UnrealEngine.Framework.PostProcessVolume')
 - [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 - [RadialForceComponent](./RadialForceComponent.md 'UnrealEngine.Framework.RadialForceComponent')
