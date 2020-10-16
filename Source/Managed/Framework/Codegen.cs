@@ -1015,7 +1015,7 @@ namespace UnrealEngine.Framework {
 
 					if (type.Name == "Main" && type.IsPublic) {
 						foreach (MethodInfo method in methods) {
-							if (method.IsPublic && method.IsStatic) {
+							if (method.IsPublic && method.IsStatic && !method.IsGenericMethod) {
 								ParameterInfo[] parameterInfos = method.GetParameters();
 
 								if (parameterInfos.Length <= 1) {
@@ -1087,7 +1087,7 @@ namespace UnrealEngine.Framework {
 					}
 
 					foreach (MethodInfo method in methods) {
-						if (method.IsPublic && method.IsStatic) {
+						if (method.IsPublic && method.IsStatic && !method.IsGenericMethod) {
 							ParameterInfo[] parameterInfos = method.GetParameters();
 
 							if (parameterInfos.Length <= 1) {
