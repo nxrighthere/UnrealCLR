@@ -14,7 +14,7 @@
 Getting started
 --------
 ### Development
-UnrealCLR not tied to how organized the development environment. Any IDE such as [Visual Studio](https://visualstudio.microsoft.com), [Visual Code](https://code.visualstudio.com), or [Rider](https://www.jetbrains.com/rider/), can be used to manage a project. A programmer has full freedom to set up the building pipeline in any desirable way just as for a regular .NET library.
+UnrealCLR is not tied to how organized the development environment is. Any IDE such as [Visual Studio](https://visualstudio.microsoft.com), [Visual Code](https://code.visualstudio.com), or [Rider](https://www.jetbrains.com/rider/), can be used to manage a project. A programmer has full freedom to set up the building pipeline in any desirable way just as for a regular .NET library.
 
 ### Project
 After [building and installing](https://github.com/nxrighthere/UnrealCLR#building) the plugin, use IDE or [CLI tool](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new) to create a [.NET class library](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new#classlib) project which targets `net5.0` in any preferable location. Don't store source code in `%Project%/Managed` folder of the engine's project, it's used exclusively for loading and packaging user assemblies by the plugin.
