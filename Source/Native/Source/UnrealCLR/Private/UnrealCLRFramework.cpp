@@ -369,6 +369,7 @@ namespace UnrealCLRFramework {
 
 	static_assert(sizeof(Bounds) == 28, "Invalid size of the [Bounds] structure");
 	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");
+	static_assert(sizeof(Transform) == 48, "Invalid size of the [Transform] structure");
 
 	namespace Assert {
 		void OutputMessage(const char* Message) {
@@ -3323,15 +3324,7 @@ namespace UnrealCLRFramework {
 		}
 
 		bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, const Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
-			bool result = true;
-
-			for (int32 i = StartInstanceIndex; i < EndInstanceIndex; i++) {
-				bool updateResult = InstancedStaticMeshComponent->UpdateInstanceTransform(i, InstanceTransforms[i], WorldSpace, MarkRenderStateDirty, Teleport);
-
-				result = result && updateResult;
-			}
-
-			return result;
+			return InstancedStaticMeshComponent->BatchUpdateInstancesTransforms(StartInstanceIndex, TArray<FTransform>(InstanceTransforms, EndInstanceIndex), WorldSpace, MarkRenderStateDirty, Teleport);
 		}
 
 		bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex) {
