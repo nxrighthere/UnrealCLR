@@ -26,7 +26,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2C3;
+		internal const int checksum = 0x2C4;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -635,6 +635,7 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* childActorComponentFunctions = (IntPtr*)buffer[position++];
 
+				ChildActorComponent.getChildActor = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)childActorComponentFunctions[head++];
 				ChildActorComponent.setChildActor = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)childActorComponentFunctions[head++];
 			}
 
@@ -1863,6 +1864,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	unsafe partial class ChildActorComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> getChildActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> setChildActor;
 	}
 

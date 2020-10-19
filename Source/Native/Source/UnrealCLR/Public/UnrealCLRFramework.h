@@ -838,6 +838,7 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace ChildActorComponent {
+		static AActor* GetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type);
 		static AActor* SetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type);
 	}
 

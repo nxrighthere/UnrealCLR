@@ -287,6 +287,14 @@ namespace UnrealEngine.Tests {
 			TriggerBox childActor = childActorComponent.SetChildActor<TriggerBox>();
 
 			if (childActor == null) {
+				Debug.Log(LogLevel.Error, "Child actor creation check failed!");
+
+				return;
+			}
+
+			childActor = childActorComponent.GetChildActor<TriggerBox>();
+
+			if (childActor == null) {
 				Debug.Log(LogLevel.Error, "Child actor obtainment check failed!");
 
 				return;

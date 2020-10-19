@@ -2599,6 +2599,14 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace ChildActorComponent {
+		AActor* GetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type) {
+			AActor* actor = nullptr;
+
+			UNREALCLR_GET_ACTOR_TYPE(Type, Cast<, >(ChildActorComponent->GetChildActor()), actor);
+
+			return actor;
+		}
+
 		AActor* SetChildActor(UChildActorComponent* ChildActorComponent, ActorType Type) {
 			TSubclassOf<AActor> type;
 

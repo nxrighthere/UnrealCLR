@@ -8564,6 +8564,23 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Gets the child actor
+		/// </summary>
+		/// <returns>An actor or <c>null</c> on failure</returns>
+		public T GetChildActor<T>() where T : Actor {
+			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
+			IntPtr pointer = getChildActor(Pointer, actor.Type);
+
+			if (pointer != IntPtr.Zero) {
+				actor.Pointer = pointer;
+
+				return actor;
+			}
+
+			return null;
+		}
+
+		/// <summary>
 		/// Sets the child actor
 		/// </summary>
 		/// <returns>An actor or <c>null</c> on failure</returns>

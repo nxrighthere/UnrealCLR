@@ -8,4 +8,5 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Constructors
 - [ChildActorComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./ChildActorComponent-ChildActorComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.ChildActorComponent.ChildActorComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Methods
+- [GetChildActor&lt;T&gt;()](./ChildActorComponent-GetChildActor-T-().md 'UnrealEngine.Framework.ChildActorComponent.GetChildActor&lt;T&gt;()')
 - [SetChildActor&lt;T&gt;()](./ChildActorComponent-SetChildActor-T-().md 'UnrealEngine.Framework.ChildActorComponent.SetChildActor&lt;T&gt;()')

@@ -804,6 +804,7 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::ChildActorComponentFunctions;
 
+				Shared::ChildActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ChildActorComponent::GetChildActor;
 				Shared::ChildActorComponentFunctions[head++] = (void*)&UnrealCLRFramework::ChildActorComponent::SetChildActor;
 
 				checksum += head;
