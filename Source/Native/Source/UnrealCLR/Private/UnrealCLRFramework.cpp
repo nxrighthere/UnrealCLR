@@ -2498,7 +2498,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetWorldTransform(USceneComponent* SceneComponent, const Transform* Transform) {
-			SceneComponent->SetWorldTransform(*Transform);
+			SceneComponent->SetWorldTransform(FTransform(Transform->GetRotation(), Transform->GetTranslation(), Transform->GetScale3D()));
 		}
 	}
 
