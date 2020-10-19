@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[Actor](./Actor.md 'UnrealEngine.Framework.Actor')
 ## Actor.Hide(bool) Method
-Sets the actor to be hidden  
+Hides the actor  
 ```csharp
 public void Hide(bool value);
 ```

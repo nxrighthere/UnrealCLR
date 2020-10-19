@@ -1,6 +1,6 @@
 ### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework').[SkinnedMeshComponent](./SkinnedMeshComponent.md 'UnrealEngine.Framework.SkinnedMeshComponent')
 ## SkinnedMeshComponent.SetSkeletalMesh(UnrealEngine.Framework.SkeletalMesh, bool) Method
-Changes the skeletal mesh  
+Sets the skeletal mesh  
 ```csharp
 public void SetSkeletalMesh(UnrealEngine.Framework.SkeletalMesh skeletalMesh, bool reinitializePose=true);
 ```

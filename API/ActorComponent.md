@@ -2,7 +2,7 @@
 ## ActorComponent Class
 The base class of components that define reusable behavior and can be added to different types of actors  
 ```csharp
-public class ActorComponent :
+public abstract class ActorComponent :
 IEquatable<ActorComponent>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; ActorComponent  

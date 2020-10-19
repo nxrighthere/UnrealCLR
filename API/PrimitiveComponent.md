@@ -11,6 +11,7 @@ Derived
 &#8627; [MotionControllerComponent](./MotionControllerComponent.md 'UnrealEngine.Framework.MotionControllerComponent')  
 &#8627; [ShapeComponent](./ShapeComponent.md 'UnrealEngine.Framework.ShapeComponent')  
 &#8627; [SplineComponent](./SplineComponent.md 'UnrealEngine.Framework.SplineComponent')  
+&#8627; [TextRenderComponent](./TextRenderComponent.md 'UnrealEngine.Framework.TextRenderComponent')  
 ### Properties
 - [AngularDamping](./PrimitiveComponent-AngularDamping.md 'UnrealEngine.Framework.PrimitiveComponent.AngularDamping')
 - [CastShadow](./PrimitiveComponent-CastShadow.md 'UnrealEngine.Framework.PrimitiveComponent.CastShadow')

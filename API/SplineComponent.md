@@ -5,6 +5,8 @@ Represents a spline shape
 public class SplineComponent : PrimitiveComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; SplineComponent  
+### Constructors
+- [SplineComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)](./SplineComponent-SplineComponent(Actor_string_bool_Blueprint).md 'UnrealEngine.Framework.SplineComponent.SplineComponent(UnrealEngine.Framework.Actor, string, bool, UnrealEngine.Framework.Blueprint)')
 ### Properties
 - [Duration](./SplineComponent-Duration.md 'UnrealEngine.Framework.SplineComponent.Duration')
 - [IsClosedLoop](./SplineComponent-IsClosedLoop.md 'UnrealEngine.Framework.SplineComponent.IsClosedLoop')

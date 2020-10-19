@@ -72,6 +72,7 @@
 - [StaticMesh](./StaticMesh.md 'UnrealEngine.Framework.StaticMesh')
 - [StaticMeshComponent](./StaticMeshComponent.md 'UnrealEngine.Framework.StaticMeshComponent')
 - [StreamableRenderAsset](./StreamableRenderAsset.md 'UnrealEngine.Framework.StreamableRenderAsset')
+- [TextRenderComponent](./TextRenderComponent.md 'UnrealEngine.Framework.TextRenderComponent')
 - [Texture](./Texture.md 'UnrealEngine.Framework.Texture')
 - [Texture2D](./Texture2D.md 'UnrealEngine.Framework.Texture2D')
 - [TriggerBase](./TriggerBase.md 'UnrealEngine.Framework.TriggerBase')
@@ -109,6 +110,7 @@
 - [ComponentMobility](./ComponentMobility.md 'UnrealEngine.Framework.ComponentMobility')
 - [ControllerHand](./ControllerHand.md 'UnrealEngine.Framework.ControllerHand')
 - [DetachmentTransformRule](./DetachmentTransformRule.md 'UnrealEngine.Framework.DetachmentTransformRule')
+- [HorizontalTextAligment](./HorizontalTextAligment.md 'UnrealEngine.Framework.HorizontalTextAligment')
 - [InputEvent](./InputEvent.md 'UnrealEngine.Framework.InputEvent')
 - [LogLevel](./LogLevel.md 'UnrealEngine.Framework.LogLevel')
 - [NetMode](./NetMode.md 'UnrealEngine.Framework.NetMode')
@@ -117,6 +119,7 @@
 - [SplinePointType](./SplinePointType.md 'UnrealEngine.Framework.SplinePointType')
 - [TeleportType](./TeleportType.md 'UnrealEngine.Framework.TeleportType')
 - [UpdateTransformFlags](./UpdateTransformFlags.md 'UnrealEngine.Framework.UpdateTransformFlags')
+- [VerticalTextAligment](./VerticalTextAligment.md 'UnrealEngine.Framework.VerticalTextAligment')
 - [WindowMode](./WindowMode.md 'UnrealEngine.Framework.WindowMode')
 ### Delegates
 - [ActorCursorDelegate(UnrealEngine.Framework.ActorReference)](./ActorCursorDelegate(ActorReference).md 'UnrealEngine.Framework.ActorCursorDelegate(UnrealEngine.Framework.ActorReference)')

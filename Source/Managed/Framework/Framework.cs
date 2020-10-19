@@ -636,6 +636,30 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Defines the horizontal text aligment type
+	/// </summary>
+	public enum HorizontalTextAligment : int {
+		/// <summary/>
+		Left,
+		/// <summary/>
+		Center,
+		/// <summary/>
+		Right
+	}
+
+	/// <summary>
+	/// Defines the vertical text aligment type
+	/// </summary>
+	public enum VerticalTextAligment : int {
+		/// <summary/>
+		Top,
+		/// <summary/>
+		Center,
+		/// <summary/>
+		Bottom
+	}
+
+	/// <summary>
 	/// Defines input behavior type
 	/// </summary>
 	public enum InputEvent : int {
@@ -5119,7 +5143,7 @@ namespace UnrealEngine.Framework {
 		public bool Invoke(string command) => Object.invoke(Pointer, command);
 
 		/// <summary>
-		/// Sets the actor to be hidden
+		/// Hides the actor
 		/// </summary>
 		public void Hide(bool value) => hide(Pointer, value);
 
@@ -7464,7 +7488,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
-	public unsafe partial class ActorComponent : IEquatable<ActorComponent> {
+	public abstract unsafe partial class ActorComponent : IEquatable<ActorComponent> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
@@ -9557,6 +9581,97 @@ namespace UnrealEngine.Framework {
 	}
 
 	/// <summary>
+	/// Renders text in the world
+	/// </summary>
+	public unsafe partial class TextRenderComponent : PrimitiveComponent {
+		internal override ComponentType Type => ComponentType.TextRender;
+
+		private protected TextRenderComponent() { }
+
+		internal TextRenderComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates the component attached to an actor and optionally sets it as the root, first component will be set as the root automatically
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		/// <param name="setAsRoot">If <c>true</c>, sets the component as the root</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the component</param>
+		public TextRenderComponent(Actor actor, string name = null, bool setAsRoot = false, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+
+		/// <summary>
+		/// Sets the font of the component
+		/// </summary>
+		public void SetFont(Font value) {
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			setFont(Pointer, value.Pointer);
+		}
+
+		/// <summary>
+		/// Sets the text of the component
+		/// </summary>
+		public void SetText(string value) => setText(Pointer, value);
+
+		/// <summary>
+		/// Sets the text material of the component
+		/// </summary>
+		public void SetTextMaterial(MaterialInterface material) {
+			if (material == null)
+				throw new ArgumentNullException(nameof(material));
+
+			setTextMaterial(Pointer, material.Pointer);
+		}
+
+		/// <summary>
+		/// Sets the text render color of the component
+		/// </summary>
+		public void SetTextRenderColor(Color value) => setTextRenderColor(Pointer, value.ToArgb());
+
+		/// <summary>
+		/// Sets the herizontal alignment
+		/// </summary>
+		public void SetHorizontalAlignment(HorizontalTextAligment value) => setHorizontalAlignment(Pointer, value);
+
+		/// <summary>
+		/// Sets the horizontal spacing adjustment
+		/// </summary>
+		public void SetHorizontalSpacingAdjustment(float value) => setHorizontalSpacingAdjustment(Pointer, value);
+
+		/// <summary>
+		/// Sets the vertical alignment
+		/// </summary>
+		public void SetVerticalAlignment(VerticalTextAligment value) => setVerticalAlignment(Pointer, value);
+
+		/// <summary>
+		/// Sets the vertical spacing adjustment
+		/// </summary>
+		public void SetVerticalSpacingAdjustment(float value) => setVerticalSpacingAdjustment(Pointer, value);
+
+		/// <summary>
+		/// Sets the text scale
+		/// </summary>
+		public void SetScale(in Vector2 value) => setScale(Pointer, value);
+
+		/// <summary>
+		/// Sets the world size of the text 
+		/// </summary>
+		public void SetWorldSize(float value) => setWorldSize(Pointer, value);
+	}
+
+	/// <summary>
 	/// The base class of light components
 	/// </summary>
 	public abstract unsafe partial class LightComponentBase : SceneComponent {
@@ -9957,7 +10072,7 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
-		/// Changes the skeletal mesh
+		/// Sets the skeletal mesh
 		/// </summary>
 		public void SetSkeletalMesh(SkeletalMesh skeletalMesh, bool reinitializePose = true) {
 			if (skeletalMesh == null)
@@ -10069,6 +10184,26 @@ namespace UnrealEngine.Framework {
 		private protected SplineComponent() { }
 
 		internal SplineComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates the component attached to an actor and optionally sets it as the root, first component will be set as the root automatically
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		/// <param name="setAsRoot">If <c>true</c>, sets the component as the root</param>
+		/// <param name="blueprint">The blueprint class to use as a base class, should be equal to the exact type of the component</param>
+		public SplineComponent(Actor actor, string name = null, bool setAsRoot = false, Blueprint blueprint = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			if (blueprint != null && !blueprint.IsValidClass(Type))
+				throw new InvalidOperationException();
+
+			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
 
 		/// <summary>
 		/// Returns <c>true</c> if the spline is a closed loop

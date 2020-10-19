@@ -36,6 +36,7 @@
 #include "Components/ShapeComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/SplineComponent.h"
+#include "Components/TextRenderComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/Font.h"
@@ -365,6 +366,7 @@ namespace UnrealCLR {
 		static void* SphereComponentFunctions[storageSize];
 		static void* CapsuleComponentFunctions[storageSize];
 		static void* MeshComponentFunctions[storageSize];
+		static void* TextRenderComponentFunctions[storageSize];
 		static void* LightComponentBaseFunctions[storageSize];
 		static void* LightComponentFunctions[storageSize];
 		static void* MotionControllerComponentFunctions[storageSize];

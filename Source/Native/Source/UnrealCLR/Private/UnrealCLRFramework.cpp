@@ -166,6 +166,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::SkeletalMesh:\
 				Result = Head USkeletalMeshComponent Tail;\
 				break;\
+			case ComponentType::TextRender:\
+				Result = Head UTextRenderComponent Tail;\
+				break;\
 			case ComponentType::Spline:\
 				Result = Head USplineComponent Tail;\
 				break;\
@@ -226,6 +229,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::SkeletalMesh:\
 				Result = Head USkeletalMeshComponent Tail;\
+				break;\
+			case ComponentType::TextRender:\
+				Result = Head UTextRenderComponent Tail;\
 				break;\
 			case ComponentType::Spline:\
 				Result = Head USplineComponent Tail;\
@@ -3207,6 +3213,49 @@ namespace UnrealCLRFramework {
 
 		int32 GetMaterialIndex(UMeshComponent* MeshComponent, const char* MaterialSlotName) {
 			return MeshComponent->GetMaterialIndex(FName(ANSI_TO_TCHAR(MaterialSlotName)));
+		}
+	}
+
+	namespace TextRenderComponent {
+		void SetFont(UTextRenderComponent* TextRenderComponent, UFont* Value) {
+			TextRenderComponent->SetFont(Value);
+		}
+
+		void SetText(UTextRenderComponent* TextRenderComponent, const char* Value) {
+			TextRenderComponent->SetText(FText::FromString(FString(ANSI_TO_TCHAR(Value))));
+		}
+
+		void SetTextMaterial(UTextRenderComponent* TextRenderComponent, UMaterialInterface* Material) {
+			TextRenderComponent->SetTextMaterial(Material);
+		}
+
+		void SetTextRenderColor(UTextRenderComponent* TextRenderComponent, Color Value) {
+			TextRenderComponent->SetTextRenderColor(Value);
+		}
+
+		void SetHorizontalAlignment(UTextRenderComponent* TextRenderComponent, HorizontalTextAligment Value) {
+			TextRenderComponent->SetHorizontalAlignment(Value);
+		}
+
+		void SetHorizontalSpacingAdjustment(UTextRenderComponent* TextRenderComponent, float Value) {
+			TextRenderComponent->SetHorizSpacingAdjust(Value);
+		}
+
+		void SetVerticalAlignment(UTextRenderComponent* TextRenderComponent, VerticalTextAligment Value) {
+			TextRenderComponent->SetVerticalAlignment(Value);
+		}
+
+		void SetVerticalSpacingAdjustment(UTextRenderComponent* TextRenderComponent, float Value) {
+			TextRenderComponent->SetVertSpacingAdjust(Value);
+		}
+
+		void SetScale(UTextRenderComponent* TextRenderComponent, const Vector2* Value) {
+			TextRenderComponent->SetXScale(Value->X);
+			TextRenderComponent->SetYScale(Value->Y);
+		}
+
+		void SetWorldSize(UTextRenderComponent* TextRenderComponent, float Value) {
+			TextRenderComponent->SetWorldSize(Value);
 		}
 	}
 

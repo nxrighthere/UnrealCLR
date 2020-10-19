@@ -1006,6 +1006,24 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::TextRenderComponentFunctions;
+
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetFont;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetText;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetTextMaterial;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetTextRenderColor;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetHorizontalAlignment;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetHorizontalSpacingAdjustment;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetVerticalAlignment;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetVerticalSpacingAdjustment;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetScale;
+				Shared::TextRenderComponentFunctions[head++] = (void*)&UnrealCLRFramework::TextRenderComponent::SetWorldSize;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::LightComponentBaseFunctions;
 
 				Shared::LightComponentBaseFunctions[head++] = (void*)&UnrealCLRFramework::LightComponentBase::GetIntensity;
