@@ -7464,7 +7464,7 @@ namespace UnrealEngine.Framework {
 	/// <summary>
 	/// The base class of components that define reusable behavior and can be added to different types of actors
 	/// </summary>
-	public unsafe partial class ActorComponent : IEquatable<ActorComponent> {
+	public abstract unsafe partial class ActorComponent : IEquatable<ActorComponent> {
 		private IntPtr pointer;
 
 		internal IntPtr Pointer {
