@@ -17,3 +17,4 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 - [ForEachAsset(System.Action&lt;UnrealEngine.Framework.Asset&gt;, string, bool, bool)](./AssetRegistry-ForEachAsset(Action-Asset-_string_bool_bool).md 'UnrealEngine.Framework.AssetRegistry.ForEachAsset(System.Action&lt;UnrealEngine.Framework.Asset&gt;, string, bool, bool)')
 - [GetHashCode()](./AssetRegistry-GetHashCode().md 'UnrealEngine.Framework.AssetRegistry.GetHashCode()')
 - [HasAssets(string, bool)](./AssetRegistry-HasAssets(string_bool).md 'UnrealEngine.Framework.AssetRegistry.HasAssets(string, bool)')
+
