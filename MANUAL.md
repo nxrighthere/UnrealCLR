@@ -137,7 +137,7 @@ The framework provides world events that are executed by the engine in a predete
 
 `OnWorldBegin()` Called after the world is initialized before the level script.
 
-`OnWorldPostBegin()` Called after the level script.
+`OnWorldPostBegin()` Called after the level script when default actors are spawned.
 
 `OnWorldEnd()` Called before deinitialization of the world after the level script.
 
