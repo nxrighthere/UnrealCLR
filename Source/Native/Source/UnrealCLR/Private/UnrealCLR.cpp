@@ -1314,7 +1314,7 @@ void UnrealCLR::Module::OnWorldPostInitialization(UWorld* World, const UWorld::I
 				UnrealCLR::ManagedCommand(UnrealCLR::Command(CommandType::LoadAssemblies));
 				UnrealCLR::Status = UnrealCLR::StatusType::Running;
 
-				for (TActorIterator<ALevelScriptActor> currentActor(UnrealCLR::Engine::World); currentActor; ++currentActor) {
+				for (TActorIterator<AWorldSettings> currentActor(UnrealCLR::Engine::World); currentActor; ++currentActor) {
 					RegisterTickFunction(OnPrePhysicsTickFunction, TG_PrePhysics, *currentActor);
 					RegisterTickFunction(OnDuringPhysicsTickFunction, TG_DuringPhysics, *currentActor);
 					RegisterTickFunction(OnPostPhysicsTickFunction, TG_PostPhysics, *currentActor);
@@ -1362,7 +1362,7 @@ void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool Cl
 	}
 }
 
-void UnrealCLR::Module::RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup, ALevelScriptActor* LevelActor) {
+void UnrealCLR::Module::RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup, AWorldSettings* LevelActor) {
 	TickFunction.bCanEverTick = true;
 	TickFunction.bTickEvenWhenPaused = false;
 	TickFunction.bStartWithTickEnabled = true;

@@ -295,7 +295,7 @@ namespace UnrealCLR {
 		void OnWorldPostInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues);
 		void OnWorldCleanup(UWorld* World, bool SessionEnded, bool CleanupResources);
 
-		static void RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup, ALevelScriptActor* LevelActor);
+		static void RegisterTickFunction(FTickFunction& TickFunction, ETickingGroup TickGroup, AWorldSettings* LevelActor);
 		static void HostError(const char_t* Message);
 		static void Exception(const char* Message);
 		static void Log(UnrealCLR::LogLevel Level, const char* Message);
