@@ -36,7 +36,7 @@ Building
 ### Prerequisites
 - Unreal Engine 4.25.4 or higher
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html#runtheunrealenginepre-requisiteinstaller) with platform-specific dependencies
-- [.NET 5 SDK 5.0.100-rc.2](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [.NET 5 SDK 5.0.102](https://dotnet.microsoft.com/download/dotnet/5.0)
 
 ### Auto
 
