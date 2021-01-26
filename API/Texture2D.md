@@ -2,7 +2,7 @@
 ## Texture2D Class
 A texture asset  
 ```csharp
-public class Texture2D : Texture
+public class Texture2D : UnrealEngine.Framework.Texture
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [StreamableRenderAsset](./StreamableRenderAsset.md 'UnrealEngine.Framework.StreamableRenderAsset') &#129106; [Texture](./Texture.md 'UnrealEngine.Framework.Texture') &#129106; Texture2D  
 ### Constructors

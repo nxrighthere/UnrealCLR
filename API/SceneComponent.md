@@ -2,7 +2,7 @@
 ## SceneComponent Class
 The base class of components that can be transformed or attached, but has no rendering or collision capabilities  
 ```csharp
-public class SceneComponent : ActorComponent
+public class SceneComponent : UnrealEngine.Framework.ActorComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; SceneComponent  
 

@@ -2,7 +2,7 @@
 ## Brush Class
 The base class of brushes for level construction  
 ```csharp
-public class Brush : Actor
+public class Brush : UnrealEngine.Framework.Actor
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; Brush  
 

@@ -2,7 +2,7 @@
 ## MaterialInstanceDynamic Class
 A dynamic instance of the material  
 ```csharp
-public class MaterialInstanceDynamic : MaterialInstance
+public class MaterialInstanceDynamic : UnrealEngine.Framework.MaterialInstance
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [MaterialInterface](./MaterialInterface.md 'UnrealEngine.Framework.MaterialInterface') &#129106; [MaterialInstance](./MaterialInstance.md 'UnrealEngine.Framework.MaterialInstance') &#129106; MaterialInstanceDynamic  
 ### Methods

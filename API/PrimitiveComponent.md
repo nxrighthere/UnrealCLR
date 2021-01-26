@@ -2,7 +2,7 @@
 ## PrimitiveComponent Class
 An abstract component that contains or generates some sort of geometry, generally to be rendered or used as collision data  
 ```csharp
-public abstract class PrimitiveComponent : SceneComponent
+public abstract class PrimitiveComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; PrimitiveComponent  
 

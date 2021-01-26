@@ -2,7 +2,7 @@
 ## AIController Class
 The base class of controllers for an AI-controlled [Pawn](./Pawn.md 'UnrealEngine.Framework.Pawn')  
 ```csharp
-public class AIController : Controller
+public class AIController : UnrealEngine.Framework.Controller
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; [Controller](./Controller.md 'UnrealEngine.Framework.Controller') &#129106; AIController  
 ### Constructors

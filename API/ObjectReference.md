@@ -3,7 +3,7 @@
 A representation of the engine's object reference  
 ```csharp
 public struct ObjectReference :
-IEquatable<ObjectReference>
+System.IEquatable<UnrealEngine.Framework.ObjectReference>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[ObjectReference](./ObjectReference.md 'UnrealEngine.Framework.ObjectReference')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties

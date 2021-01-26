@@ -3,7 +3,7 @@
 A representation of the engine's actor reference  
 ```csharp
 public struct ActorReference :
-IEquatable<ActorReference>
+System.IEquatable<UnrealEngine.Framework.ActorReference>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[ActorReference](./ActorReference.md 'UnrealEngine.Framework.ActorReference')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties

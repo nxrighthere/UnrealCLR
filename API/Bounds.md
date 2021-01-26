@@ -3,7 +3,7 @@
 A combined axis-aligned bounding box and bounding sphere with the same origin  
 ```csharp
 public struct Bounds :
-IEquatable<Bounds>
+System.IEquatable<UnrealEngine.Framework.Bounds>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Bounds](./Bounds.md 'UnrealEngine.Framework.Bounds')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties

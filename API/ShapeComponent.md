@@ -2,7 +2,7 @@
 ## ShapeComponent Class
 An abstract component that is represented by a simple geometrical shape  
 ```csharp
-public abstract class ShapeComponent : PrimitiveComponent
+public abstract class ShapeComponent : UnrealEngine.Framework.PrimitiveComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; ShapeComponent  
 

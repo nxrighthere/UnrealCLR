@@ -2,7 +2,7 @@
 ## RadialForceComponent Class
 A component that emits a radial force or impulse that can affect physics objects and destructible objects  
 ```csharp
-public class RadialForceComponent : SceneComponent
+public class RadialForceComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; RadialForceComponent  
 ### Constructors

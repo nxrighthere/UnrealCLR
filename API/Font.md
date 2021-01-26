@@ -3,7 +3,7 @@
 A font object that is used to draw text  
 ```csharp
 public class Font :
-IEquatable<Font>
+System.IEquatable<UnrealEngine.Framework.Font>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Font  
 

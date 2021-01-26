@@ -2,7 +2,7 @@
 ## ChildActorComponent Class
 A component that automatically spawns and destroys a child actor  
 ```csharp
-public class ChildActorComponent : SceneComponent
+public class ChildActorComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; ChildActorComponent  
 ### Constructors

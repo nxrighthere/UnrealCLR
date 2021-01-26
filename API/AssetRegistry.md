@@ -3,7 +3,7 @@
 An asset registry  
 ```csharp
 public class AssetRegistry :
-IEquatable<AssetRegistry>
+System.IEquatable<UnrealEngine.Framework.AssetRegistry>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; AssetRegistry  
 

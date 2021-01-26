@@ -3,7 +3,7 @@
 A representation of the asset  
 ```csharp
 public struct Asset :
-IEquatable<Asset>
+System.IEquatable<UnrealEngine.Framework.Asset>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Asset](./Asset.md 'UnrealEngine.Framework.Asset')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties

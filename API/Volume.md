@@ -2,7 +2,7 @@
 ## Volume Class
 An editable 3D volume placed in a level, different types of volumes perform different functions  
 ```csharp
-public abstract class Volume : Brush
+public abstract class Volume : UnrealEngine.Framework.Brush
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; [Brush](./Brush.md 'UnrealEngine.Framework.Brush') &#129106; Volume  
 

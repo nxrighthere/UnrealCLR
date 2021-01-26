@@ -2,7 +2,7 @@
 ## SkeletalMeshComponent Class
 A component that is used to create an instance of an animated [SkeletalMesh](./SkeletalMesh.md 'UnrealEngine.Framework.SkeletalMesh') asset  
 ```csharp
-public class SkeletalMeshComponent : SkinnedMeshComponent
+public class SkeletalMeshComponent : UnrealEngine.Framework.SkinnedMeshComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; [MeshComponent](./MeshComponent.md 'UnrealEngine.Framework.MeshComponent') &#129106; [SkinnedMeshComponent](./SkinnedMeshComponent.md 'UnrealEngine.Framework.SkinnedMeshComponent') &#129106; SkeletalMeshComponent  
 ### Constructors

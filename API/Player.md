@@ -3,7 +3,7 @@
 A player representation  
 ```csharp
 public class Player :
-IEquatable<Player>
+System.IEquatable<UnrealEngine.Framework.Player>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Player  
 

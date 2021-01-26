@@ -2,11 +2,14 @@
 ## World.ForEachActor&lt;T&gt;(System.Action&lt;T&gt;) Method
 Performs the specified action on each actor in the world  
 ```csharp
-public static void ForEachActor<T>(System.Action<T> action);
+public static void ForEachActor<T>(System.Action<T> action)
+    where T : UnrealEngine.Framework.Actor;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-World-ForEachActor-T-(System-Action-T-)-T'></a>
 `T`  
+
+Constraints [Actor](./Actor.md 'UnrealEngine.Framework.Actor')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-World-ForEachActor-T-(System-Action-T-)-action'></a>

@@ -3,7 +3,7 @@
 A render asset that can be streamed at runtime  
 ```csharp
 public abstract class StreamableRenderAsset :
-IEquatable<StreamableRenderAsset>
+System.IEquatable<UnrealEngine.Framework.StreamableRenderAsset>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; StreamableRenderAsset  
 

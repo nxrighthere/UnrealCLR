@@ -2,7 +2,7 @@
 ## PlayerController Class
 An actor that is used by human players to control a [Pawn](./Pawn.md 'UnrealEngine.Framework.Pawn')  
 ```csharp
-public class PlayerController : Controller
+public class PlayerController : UnrealEngine.Framework.Controller
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; [Controller](./Controller.md 'UnrealEngine.Framework.Controller') &#129106; PlayerController  
 ### Constructors

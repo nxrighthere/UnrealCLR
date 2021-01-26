@@ -2,12 +2,15 @@
 ## World.GetActorByTag&lt;T&gt;(string) Method
 Returns the first actor in the world of the specified class and tag, this operation is slow and should be used with caution  
 ```csharp
-public static T GetActorByTag<T>(string tag);
+public static T GetActorByTag<T>(string tag)
+    where T : UnrealEngine.Framework.Actor;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-World-GetActorByTag-T-(string)-T'></a>
 `T`  
 The type of the actor  
+
+Constraints [Actor](./Actor.md 'UnrealEngine.Framework.Actor')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-World-GetActorByTag-T-(string)-tag'></a>

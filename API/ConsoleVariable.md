@@ -2,7 +2,7 @@
 ## ConsoleVariable Class
 Interface for console variables  
 ```csharp
-public class ConsoleVariable : ConsoleObject
+public class ConsoleVariable : UnrealEngine.Framework.ConsoleObject
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ConsoleObject](./ConsoleObject.md 'UnrealEngine.Framework.ConsoleObject') &#129106; ConsoleVariable  
 ### Methods

@@ -3,7 +3,7 @@
 The base class of animation assets that can be played and evaluated to produce a pose  
 ```csharp
 public abstract class AnimationAsset :
-IEquatable<AnimationAsset>
+System.IEquatable<UnrealEngine.Framework.AnimationAsset>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; AnimationAsset  
 

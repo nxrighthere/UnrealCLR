@@ -2,7 +2,7 @@
 ## LightComponent Class
 A component that represents light  
 ```csharp
-public class LightComponent : LightComponentBase
+public class LightComponent : UnrealEngine.Framework.LightComponentBase
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [LightComponentBase](./LightComponentBase.md 'UnrealEngine.Framework.LightComponentBase') &#129106; LightComponent  
 

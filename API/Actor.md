@@ -3,7 +3,7 @@
 The base class of an object that can be placed or spawned in a level  
 ```csharp
 public class Actor :
-IEquatable<Actor>
+System.IEquatable<UnrealEngine.Framework.Actor>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Actor  
 

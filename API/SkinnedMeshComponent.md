@@ -2,7 +2,7 @@
 ## SkinnedMeshComponent Class
 A component that supports bone skinned mesh rendering  
 ```csharp
-public abstract class SkinnedMeshComponent : MeshComponent
+public abstract class SkinnedMeshComponent : UnrealEngine.Framework.MeshComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; [MeshComponent](./MeshComponent.md 'UnrealEngine.Framework.MeshComponent') &#129106; SkinnedMeshComponent  
 

@@ -2,7 +2,7 @@
 ## Light Class
 A light actor that can be placed in a level  
 ```csharp
-public abstract class Light : Actor
+public abstract class Light : UnrealEngine.Framework.Actor
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; Light  
 

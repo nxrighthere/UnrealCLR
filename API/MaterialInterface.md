@@ -3,7 +3,7 @@
 The base class of materials that can be applied to meshes  
 ```csharp
 public abstract class MaterialInterface :
-IEquatable<MaterialInterface>
+System.IEquatable<UnrealEngine.Framework.MaterialInterface>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; MaterialInterface  
 

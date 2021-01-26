@@ -3,7 +3,7 @@
 The base class of playable sound objects  
 ```csharp
 public abstract class SoundBase :
-IEquatable<SoundBase>
+System.IEquatable<UnrealEngine.Framework.SoundBase>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; SoundBase  
 

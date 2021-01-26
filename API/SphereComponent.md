@@ -2,7 +2,7 @@
 ## SphereComponent Class
 A sphere generally used for simple collision  
 ```csharp
-public class SphereComponent : ShapeComponent
+public class SphereComponent : UnrealEngine.Framework.ShapeComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; [ShapeComponent](./ShapeComponent.md 'UnrealEngine.Framework.ShapeComponent') &#129106; SphereComponent  
 ### Constructors

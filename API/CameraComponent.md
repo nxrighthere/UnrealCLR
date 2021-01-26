@@ -2,7 +2,7 @@
 ## CameraComponent Class
 Represents a camera viewpoint and settings, such as projection type, field of view, and post-process overrides  
 ```csharp
-public class CameraComponent : SceneComponent
+public class CameraComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; CameraComponent  
 ### Constructors

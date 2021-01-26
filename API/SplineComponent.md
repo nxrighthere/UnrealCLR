@@ -2,7 +2,7 @@
 ## SplineComponent Class
 Represents a spline shape  
 ```csharp
-public class SplineComponent : PrimitiveComponent
+public class SplineComponent : UnrealEngine.Framework.PrimitiveComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; SplineComponent  
 ### Constructors

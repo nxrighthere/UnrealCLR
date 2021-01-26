@@ -3,7 +3,7 @@
 A linear 32-bit floating-point RGBA color  
 ```csharp
 public struct LinearColor :
-IEquatable<LinearColor>
+System.IEquatable<UnrealEngine.Framework.LinearColor>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[LinearColor](./LinearColor.md 'UnrealEngine.Framework.LinearColor')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Constructors

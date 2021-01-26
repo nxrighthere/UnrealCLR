@@ -3,7 +3,7 @@
 A trace hit  
 ```csharp
 public struct Hit :
-IEquatable<Hit>
+System.IEquatable<UnrealEngine.Framework.Hit>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Hit](./Hit.md 'UnrealEngine.Framework.Hit')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties

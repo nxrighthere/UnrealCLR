@@ -2,7 +2,7 @@
 ## AnimationSequenceBase Class
 The base class of animation sequences  
 ```csharp
-public abstract class AnimationSequenceBase : AnimationAsset
+public abstract class AnimationSequenceBase : UnrealEngine.Framework.AnimationAsset
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [AnimationAsset](./AnimationAsset.md 'UnrealEngine.Framework.AnimationAsset') &#129106; AnimationSequenceBase  
 

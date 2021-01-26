@@ -3,7 +3,7 @@
 A representation of the engine's component reference  
 ```csharp
 public struct ComponentReference :
-IEquatable<ComponentReference>
+System.IEquatable<UnrealEngine.Framework.ComponentReference>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[ComponentReference](./ComponentReference.md 'UnrealEngine.Framework.ComponentReference')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Properties

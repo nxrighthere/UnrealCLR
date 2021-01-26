@@ -2,7 +2,7 @@
 ## StaticMeshComponent Class
 A component that is used to create an instance of a static mesh, a piece of geometry that consists of a static set of polygons  
 ```csharp
-public class StaticMeshComponent : MeshComponent
+public class StaticMeshComponent : UnrealEngine.Framework.MeshComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; [MeshComponent](./MeshComponent.md 'UnrealEngine.Framework.MeshComponent') &#129106; StaticMeshComponent  
 

@@ -2,11 +2,14 @@
 ## SceneComponent.ForEachAttachedChild&lt;T&gt;(System.Action&lt;T&gt;) Method
 Performs the specified action on each attached child component if any  
 ```csharp
-public void ForEachAttachedChild<T>(System.Action<T> action);
+public void ForEachAttachedChild<T>(System.Action<T> action)
+    where T : UnrealEngine.Framework.SceneComponent;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-SceneComponent-ForEachAttachedChild-T-(System-Action-T-)-T'></a>
 `T`  
+
+Constraints [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-SceneComponent-ForEachAttachedChild-T-(System-Action-T-)-action'></a>

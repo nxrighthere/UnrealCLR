@@ -2,11 +2,14 @@
 ## Actor.ForEachAttachedActor&lt;T&gt;(System.Action&lt;T&gt;) Method
 Performs the specified action on each attached actor if any  
 ```csharp
-public void ForEachAttachedActor<T>(System.Action<T> action);
+public void ForEachAttachedActor<T>(System.Action<T> action)
+    where T : UnrealEngine.Framework.Actor;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-Actor-ForEachAttachedActor-T-(System-Action-T-)-T'></a>
 `T`  
+
+Constraints [Actor](./Actor.md 'UnrealEngine.Framework.Actor')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-Actor-ForEachAttachedActor-T-(System-Action-T-)-action'></a>

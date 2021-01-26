@@ -2,7 +2,8 @@
 ## Assert.IsNull&lt;T&gt;(T, string, int, string) Method
 Logs an assertion if value is not `null`, and prints it on the screen  
 ```csharp
-public static void IsNull<T>(T value, string message=null, int callerLineNumber=0, string callerFilePath=null);
+public static void IsNull<T>(T value, string message=null, int callerLineNumber=0, string callerFilePath=null)
+    where T : class;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-Assert-IsNull-T-(T_string_int_string)-T'></a>

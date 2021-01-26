@@ -2,7 +2,7 @@
 ## TextRenderComponent Class
 Renders text in the world  
 ```csharp
-public class TextRenderComponent : PrimitiveComponent
+public class TextRenderComponent : UnrealEngine.Framework.PrimitiveComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent') &#129106; TextRenderComponent  
 ### Constructors

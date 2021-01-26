@@ -2,7 +2,7 @@
 ## AudioComponent Class
 A component that is used to play a sound  
 ```csharp
-public class AudioComponent : SceneComponent
+public class AudioComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; AudioComponent  
 ### Constructors

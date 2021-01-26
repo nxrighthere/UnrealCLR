@@ -2,7 +2,7 @@
 ## Pawn Class
 The base class of actors that can be possessed by players or AI  
 ```csharp
-public class Pawn : Actor
+public class Pawn : UnrealEngine.Framework.Actor
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; Pawn  
 

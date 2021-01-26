@@ -2,7 +2,7 @@
 ## PostProcessVolume Class
 An actor that is used for post-processing manipulations  
 ```csharp
-public class PostProcessVolume : Volume
+public class PostProcessVolume : UnrealEngine.Framework.Volume
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [Actor](./Actor.md 'UnrealEngine.Framework.Actor') &#129106; [Brush](./Brush.md 'UnrealEngine.Framework.Brush') &#129106; [Volume](./Volume.md 'UnrealEngine.Framework.Volume') &#129106; PostProcessVolume  
 ### Constructors

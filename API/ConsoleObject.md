@@ -3,7 +3,7 @@
 Interface for console objects  
 ```csharp
 public class ConsoleObject :
-IEquatable<ConsoleObject>
+System.IEquatable<UnrealEngine.Framework.ConsoleObject>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; ConsoleObject  
 

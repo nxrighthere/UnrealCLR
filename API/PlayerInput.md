@@ -3,7 +3,7 @@
 An input manager of [PlayerController](./PlayerController.md 'UnrealEngine.Framework.PlayerController')  
 ```csharp
 public class PlayerInput :
-IEquatable<PlayerInput>
+System.IEquatable<UnrealEngine.Framework.PlayerInput>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; PlayerInput  
 

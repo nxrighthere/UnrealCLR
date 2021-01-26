@@ -2,7 +2,7 @@
 ## PostProcessComponent Class
 A component that is used for post-processing manipulations  
 ```csharp
-public class PostProcessComponent : SceneComponent
+public class PostProcessComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; PostProcessComponent  
 ### Constructors

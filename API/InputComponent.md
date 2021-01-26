@@ -2,7 +2,7 @@
 ## InputComponent Class
 An input component is a transient component that enables an actor to bind various forms of input events to delegate functions  
 ```csharp
-public class InputComponent : ActorComponent
+public class InputComponent : UnrealEngine.Framework.ActorComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; InputComponent  
 ### Properties

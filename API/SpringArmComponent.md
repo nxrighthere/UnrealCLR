@@ -2,7 +2,7 @@
 ## SpringArmComponent Class
 A component that maintains its children at a fixed distance from the parent, but will retract the children if there is a collision, and spring back when there is no collision  
 ```csharp
-public class SpringArmComponent : SceneComponent
+public class SpringArmComponent : UnrealEngine.Framework.SceneComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent') &#129106; SpringArmComponent  
 ### Constructors

@@ -3,7 +3,7 @@
 Transform composed of location, rotation, and scale  
 ```csharp
 public struct Transform :
-IEquatable<Transform>
+System.IEquatable<UnrealEngine.Framework.Transform>
 ```
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Transform](./Transform.md 'UnrealEngine.Framework.Transform')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  
 ### Constructors

@@ -2,11 +2,14 @@
 ## AnimationInstance.GetEnum&lt;T&gt;(string, T) Method
 Retrieves the value of the enum property  
 ```csharp
-public bool GetEnum<T>(string name, ref T value);
+public bool GetEnum<T>(string name, ref T value)
+    where T : System.Enum;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-AnimationInstance-GetEnum-T-(string_T)-T'></a>
 `T`  
+
+Constraints [System.Enum](https://docs.microsoft.com/en-us/dotnet/api/System.Enum 'System.Enum')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-AnimationInstance-GetEnum-T-(string_T)-name'></a>

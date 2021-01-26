@@ -2,7 +2,7 @@
 ## StaticMesh Class
 A piece of geometry that consists of a static set of polygons  
 ```csharp
-public class StaticMesh : StreamableRenderAsset
+public class StaticMesh : UnrealEngine.Framework.StreamableRenderAsset
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [StreamableRenderAsset](./StreamableRenderAsset.md 'UnrealEngine.Framework.StreamableRenderAsset') &#129106; StaticMesh  
 ### Fields

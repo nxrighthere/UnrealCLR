@@ -2,11 +2,14 @@
 ## PrimitiveComponent.ForEachOverlappingComponent&lt;T&gt;(System.Action&lt;T&gt;) Method
 Performs the specified action on each overlapping component if any  
 ```csharp
-public void ForEachOverlappingComponent<T>(System.Action<T> action);
+public void ForEachOverlappingComponent<T>(System.Action<T> action)
+    where T : UnrealEngine.Framework.PrimitiveComponent;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-PrimitiveComponent-ForEachOverlappingComponent-T-(System-Action-T-)-T'></a>
 `T`  
+
+Constraints [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-PrimitiveComponent-ForEachOverlappingComponent-T-(System-Action-T-)-action'></a>

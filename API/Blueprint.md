@@ -3,7 +3,7 @@
 An asset that provides an intuitive node-based interface  
 ```csharp
 public class Blueprint :
-IEquatable<Blueprint>
+System.IEquatable<UnrealEngine.Framework.Blueprint>
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Blueprint  
 

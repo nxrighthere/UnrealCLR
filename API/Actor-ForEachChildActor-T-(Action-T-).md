@@ -2,11 +2,14 @@
 ## Actor.ForEachChildActor&lt;T&gt;(System.Action&lt;T&gt;) Method
 Performs the specified action on each child actor with [ChildActorComponent](./ChildActorComponent.md 'UnrealEngine.Framework.ChildActorComponent'), including children of child if any  
 ```csharp
-public void ForEachChildActor<T>(System.Action<T> action);
+public void ForEachChildActor<T>(System.Action<T> action)
+    where T : UnrealEngine.Framework.Actor;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-Actor-ForEachChildActor-T-(System-Action-T-)-T'></a>
 `T`  
+
+Constraints [Actor](./Actor.md 'UnrealEngine.Framework.Actor')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-Actor-ForEachChildActor-T-(System-Action-T-)-action'></a>

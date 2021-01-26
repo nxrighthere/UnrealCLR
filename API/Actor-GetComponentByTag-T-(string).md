@@ -2,12 +2,15 @@
 ## Actor.GetComponentByTag&lt;T&gt;(string) Method
 Returns the component of the actor if matches the specified type and tag  
 ```csharp
-public T GetComponentByTag<T>(string tag);
+public T GetComponentByTag<T>(string tag)
+    where T : UnrealEngine.Framework.ActorComponent;
 ```
 #### Type parameters
 <a name='UnrealEngine-Framework-Actor-GetComponentByTag-T-(string)-T'></a>
 `T`  
 The type of the component  
+
+Constraints [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent')  
   
 #### Parameters
 <a name='UnrealEngine-Framework-Actor-GetComponentByTag-T-(string)-tag'></a>
