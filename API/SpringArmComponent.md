@@ -24,6 +24,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [ProbeChannel](./SpringArmComponent-ProbeChannel.md 'UnrealEngine.Framework.SpringArmComponent.ProbeChannel')
 - [ProbeSize](./SpringArmComponent-ProbeSize.md 'UnrealEngine.Framework.SpringArmComponent.ProbeSize')
 - [TargetArmLength](./SpringArmComponent-TargetArmLength.md 'UnrealEngine.Framework.SpringArmComponent.TargetArmLength')
+- [UsePawnControlRotation](./SpringArmComponent-UsePawnControlRotation.md 'UnrealEngine.Framework.SpringArmComponent.UsePawnControlRotation')
 ### Methods
 - [GetDesiredRotation()](./SpringArmComponent-GetDesiredRotation().md 'UnrealEngine.Framework.SpringArmComponent.GetDesiredRotation()')
 - [GetDesiredRotation(System.Numerics.Quaternion)](./SpringArmComponent-GetDesiredRotation(Quaternion).md 'UnrealEngine.Framework.SpringArmComponent.GetDesiredRotation(System.Numerics.Quaternion)')

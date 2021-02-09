@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine 4 .NET 5 integration 
+ *  Unreal Engine 4 .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -2712,6 +2712,10 @@ namespace UnrealCLRFramework {
 			*Value = SpringArmComponent->GetTargetRotation().Quaternion();
 		}
 
+		bool GetUsePawnControlRotation(USpringArmComponent* SpringArmComponent) {
+			return SpringArmComponent->bUsePawnControlRotation;
+		}
+
 		void SetDrawDebugLagMarkers(USpringArmComponent* SpringArmComponent, bool Value) {
 			SpringArmComponent->bDrawDebugLagMarkers = Value;
 		}
@@ -2778,6 +2782,10 @@ namespace UnrealCLRFramework {
 
 		void SetTargetOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value) {
 			SpringArmComponent->TargetOffset = *Value;
+		}
+
+		void SetUsePawnControlRotation(USpringArmComponent* SpringArmComponent, bool value) {
+			SpringArmComponent->bUsePawnControlRotation = value;
 		}
 	}
 

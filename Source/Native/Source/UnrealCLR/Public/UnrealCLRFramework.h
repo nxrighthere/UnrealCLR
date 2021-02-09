@@ -873,6 +873,7 @@ namespace UnrealCLRFramework {
 		static void GetUnfixedCameraPosition(USpringArmComponent* SpringArmComponent, Vector3* Value);
 		static void GetDesiredRotation(USpringArmComponent* SpringArmComponent, Quaternion* Value);
 		static void GetTargetRotation(USpringArmComponent* SpringArmComponent, Quaternion* Value);
+		static bool GetUsePawnControlRotation(USpringArmComponent* SpringArmComponent);
 		static void SetDrawDebugLagMarkers(USpringArmComponent* SpringArmComponent, bool Value);
 		static void SetCollisionTest(USpringArmComponent* SpringArmComponent, bool Value);
 		static void SetCameraPositionLag(USpringArmComponent* SpringArmComponent, bool Value);
@@ -890,6 +891,7 @@ namespace UnrealCLRFramework {
 		static void SetSocketOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value);
 		static void SetTargetArmLength(USpringArmComponent* SpringArmComponent, float Value);
 		static void SetTargetOffset(USpringArmComponent* SpringArmComponent, const Vector3* Value);
+		static void SetUsePawnControlRotation(USpringArmComponent* SpringArmComponent, bool value);
 	}
 
 	namespace PostProcessComponent {

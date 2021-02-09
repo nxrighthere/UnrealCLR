@@ -844,6 +844,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetUnfixedCameraPosition;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetDesiredRotation;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetTargetRotation;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::GetUsePawnControlRotation;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetDrawDebugLagMarkers;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCollisionTest;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetCameraPositionLag;
@@ -861,6 +862,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetSocketOffset;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetTargetArmLength;
 				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetTargetOffset;
+				Shared::SpringArmComponentFunctions[head++] = (void*)&UnrealCLRFramework::SpringArmComponent::SetUsePawnControlRotation;
 
 				checksum += head;
 			}

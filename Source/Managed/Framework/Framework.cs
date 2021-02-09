@@ -8763,6 +8763,14 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Gets or sets if the component should use the view/control rotation of the pawn
+		/// </summary>
+		public bool UsePawnControlRotation {
+			get => getUsePawnControlRotation(Pointer);
+			set => setUsePawnControlRotation(Pointer, value);
+		}
+
+		/// <summary>
 		/// Retrieves offset at the end of the spring arm, can be used instead of the relative offset of the attached component to ensure the line trace works as desired
 		/// </summary>
 		public void GetSocketOffset(ref Vector3 value) => getSocketOffset(Pointer, ref value);

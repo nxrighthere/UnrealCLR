@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2C4;
+		internal const int checksum = 0x2C6;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -673,6 +673,7 @@ namespace UnrealEngine.Framework {
 				SpringArmComponent.getUnfixedCameraPosition = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)springArmComponentFunctions[head++];
 				SpringArmComponent.getDesiredRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)springArmComponentFunctions[head++];
 				SpringArmComponent.getTargetRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.getUsePawnControlRotation = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)springArmComponentFunctions[head++];
 				SpringArmComponent.setDrawDebugLagMarkers = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
 				SpringArmComponent.setCollisionTest = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
 				SpringArmComponent.setCameraPositionLag = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
@@ -690,6 +691,7 @@ namespace UnrealEngine.Framework {
 				SpringArmComponent.setSocketOffset = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)springArmComponentFunctions[head++];
 				SpringArmComponent.setTargetArmLength = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)springArmComponentFunctions[head++];
 				SpringArmComponent.setTargetOffset = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)springArmComponentFunctions[head++];
+				SpringArmComponent.setUsePawnControlRotation = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)springArmComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -1899,6 +1901,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getUnfixedCameraPosition;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getDesiredRotation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getTargetRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUsePawnControlRotation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDrawDebugLagMarkers;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCollisionTest;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCameraPositionLag;
@@ -1916,6 +1919,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setSocketOffset;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setTargetArmLength;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setTargetOffset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUsePawnControlRotation;
 	}
 
 	unsafe partial class PostProcessComponent {
