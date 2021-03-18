@@ -1,0 +1,5755 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0/linux-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {},
+    ".NETCoreApp,Version=v5.0/linux-x64": {
+      "Microsoft.Build.Tasks.Git/1.1.0-beta-20206-02": {},
+      "Microsoft.DiaSymReader.Native/1.7.0": {},
+      "Microsoft.DotNet.Build.Tasks.Installers/5.0.0-beta.21063.3": {},
+      "Microsoft.DotNet.Build.Tasks.Packaging/5.0.0-beta.21063.3": {},
+      "Microsoft.Net.Compilers.Toolset/3.8.0-4.20503.2": {},
+      "Microsoft.NETCore.App/5.0.4-servicing.21116.14": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "Microsoft.NETCore.App.Internal/5.0.4-servicing.21116.14": {
+        "dependencies": {
+          "Microsoft.NETCore.DotNetHostPolicy": "5.0.4",
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "Microsoft.NETCore.Targets": "5.0.0",
+          "NETStandard.Library": "2.2.0-prerelease.19564.1",
+          "runtime.linux-x64.Microsoft.NETCore.App": "5.0.4-servicing.21116.14"
+        }
+      },
+      "Microsoft.NETCore.DotNetHostPolicy/5.0.4": {
+        "dependencies": {
+          "runtime.linux-x64.Microsoft.NETCore.DotNetHostPolicy": "5.0.4"
+        }
+      },
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "Microsoft.NETCore.Targets/5.0.0": {},
+      "Microsoft.NETFramework.ReferenceAssemblies/1.0.0-preview.2": {},
+      "Microsoft.SourceLink.AzureRepos.Git/1.1.0-beta-20206-02": {
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "1.1.0-beta-20206-02",
+          "Microsoft.SourceLink.Common": "1.1.0-beta-20206-02"
+        }
+      },
+      "Microsoft.SourceLink.Common/1.1.0-beta-20206-02": {},
+      "Microsoft.SourceLink.GitHub/1.1.0-beta-20206-02": {
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "1.1.0-beta-20206-02",
+          "Microsoft.SourceLink.Common": "1.1.0-beta-20206-02"
+        }
+      },
+      "NETStandard.Library/2.2.0-prerelease.19564.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "runtime.linux-x64.Microsoft.NETCore.App/5.0.4-servicing.21116.14": {
+        "runtime": {
+          "runtimes/linux-x64/lib/net5.0/Microsoft.CSharp.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/Microsoft.VisualBasic.Core.dll": {
+            "assemblyVersion": "10.0.6.0",
+            "fileVersion": "11.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/Microsoft.VisualBasic.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/Microsoft.Win32.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/Microsoft.Win32.Registry.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.AppContext.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Buffers.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Collections.Concurrent.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Collections.Immutable.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Collections.NonGeneric.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Collections.Specialized.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Collections.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ComponentModel.Annotations.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ComponentModel.DataAnnotations.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ComponentModel.EventBasedAsync.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ComponentModel.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ComponentModel.TypeConverter.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ComponentModel.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Configuration.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Console.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Data.Common.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Data.DataSetExtensions.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Data.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.Contracts.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.Debug.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.FileVersionInfo.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.Process.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.StackTrace.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.TextWriterTraceListener.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.Tools.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.TraceSource.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Diagnostics.Tracing.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Drawing.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Drawing.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Dynamic.Runtime.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Formats.Asn1.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Globalization.Calendars.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Globalization.Extensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Globalization.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.Compression.Brotli.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.Compression.FileSystem.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.Compression.ZipFile.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.Compression.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.FileSystem.AccessControl.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.FileSystem.DriveInfo.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.FileSystem.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.FileSystem.Watcher.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.FileSystem.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.IsolatedStorage.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.MemoryMappedFiles.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.Pipes.AccessControl.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.Pipes.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.UnmanagedMemoryStream.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.IO.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Linq.Expressions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Linq.Parallel.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Linq.Queryable.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Linq.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Memory.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Http.Json.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Http.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.HttpListener.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Mail.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.NameResolution.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.NetworkInformation.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Ping.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Requests.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Security.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.ServicePoint.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.Sockets.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.WebClient.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.WebHeaderCollection.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.WebProxy.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.WebSockets.Client.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.WebSockets.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Net.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Numerics.Vectors.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Numerics.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ObjectModel.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Private.DataContractSerialization.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Private.Uri.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Private.Xml.Linq.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Private.Xml.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.DispatchProxy.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.Emit.ILGeneration.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.Emit.Lightweight.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.Emit.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.Extensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.Metadata.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.TypeExtensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Reflection.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Resources.Reader.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Resources.ResourceManager.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Resources.Writer.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.CompilerServices.VisualC.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Extensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Handles.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.InteropServices.RuntimeInformation.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.InteropServices.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Intrinsics.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Loader.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Numerics.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Serialization.Formatters.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Serialization.Json.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Serialization.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Serialization.Xml.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.Serialization.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Runtime.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.AccessControl.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Claims.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.Algorithms.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.Cng.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.Csp.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.Encoding.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.OpenSsl.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Cryptography.X509Certificates.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Principal.Windows.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.Principal.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.SecureString.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Security.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ServiceModel.Web.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ServiceProcess.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Text.Encoding.CodePages.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Text.Encoding.Extensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Text.Encoding.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Text.Encodings.Web.dll": {
+            "assemblyVersion": "5.0.0.1",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Text.Json.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Text.RegularExpressions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Channels.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Overlapped.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Tasks.Dataflow.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Tasks.Extensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Tasks.Parallel.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Tasks.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Thread.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.ThreadPool.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.Timer.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Threading.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Transactions.Local.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Transactions.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.ValueTuple.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Web.HttpUtility.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Web.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Windows.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.Linq.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.ReaderWriter.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.Serialization.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.XDocument.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.XPath.XDocument.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.XPath.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.XmlDocument.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.XmlSerializer.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.Xml.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/System.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/WindowsBase.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/mscorlib.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/lib/net5.0/netstandard.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "5.0.421.11614"
+          }
+        },
+        "native": {
+          "runtimes/linux-x64/native/System.Private.CoreLib.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.421.11614"
+          },
+          "runtimes/linux-x64/native/createdump": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.IO.Compression.Native.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.IO.Compression.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.Native.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.Net.Security.Native.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.Net.Security.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.Security.Cryptography.Native.OpenSsl.a": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSystem.Security.Cryptography.Native.OpenSsl.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libclrjit.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libcoreclr.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libcoreclrtraceptprovider.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libdbgshim.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libmscordaccore.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libmscordbi.so": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "runtime.linux-x64.Microsoft.NETCore.DotNetHostPolicy/5.0.4": {
+        "native": {
+          "runtimes/linux-x64/native/libhostpolicy.so": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Build.Tasks.Git/1.1.0-beta-20206-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hZ9leS9Yd9MHpqvviMftSJFDcLYu2h1DrapW1TDm1s1fgOy71c8HvArNMd3fseVkXmp3VTfGnkgcw0FR+TI6xw==",
+      "path": "microsoft.build.tasks.git/1.1.0-beta-20206-02",
+      "hashPath": "microsoft.build.tasks.git.1.1.0-beta-20206-02.nupkg.sha512"
+    },
+    "Microsoft.DiaSymReader.Native/1.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vIzndj0MoWW2Mp/iztUSKvmR9vZTqOVQ6PBvwA57+CDoiz7eUMU15rrAX+/QA0bkmwQ08GRibFBB9LNOl0EiBA==",
+      "path": "microsoft.diasymreader.native/1.7.0",
+      "hashPath": "microsoft.diasymreader.native.1.7.0.nupkg.sha512"
+    },
+    "Microsoft.DotNet.Build.Tasks.Installers/5.0.0-beta.21063.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NKnyHro1Pt5Hed/FUStTjOzz7VVDHubnA0yLzTfGM2Jjrr5CPquoik0CjUL4XI8ex73aMUAeSYRI9ABlE3vT3g==",
+      "path": "microsoft.dotnet.build.tasks.installers/5.0.0-beta.21063.3",
+      "hashPath": "microsoft.dotnet.build.tasks.installers.5.0.0-beta.21063.3.nupkg.sha512"
+    },
+    "Microsoft.DotNet.Build.Tasks.Packaging/5.0.0-beta.21063.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ePw5Fxof1g5bds+VaR+ow3W2oWnsSeaddMFPXYYL4hcPQpyHOUeutzWgnqAS7G/rmcilR0nX//sLirlgJiC2KQ==",
+      "path": "microsoft.dotnet.build.tasks.packaging/5.0.0-beta.21063.3",
+      "hashPath": "microsoft.dotnet.build.tasks.packaging.5.0.0-beta.21063.3.nupkg.sha512"
+    },
+    "Microsoft.Net.Compilers.Toolset/3.8.0-4.20503.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jfscID/5IHHPVVEbFCAJEUEWCeWNZCLwyBcUFG3/u44oiRd/aseDOYRzl3OnIIvcwzi0U2lSAs6Lt2+rdRIDMg==",
+      "path": "microsoft.net.compilers.toolset/3.8.0-4.20503.2",
+      "hashPath": "microsoft.net.compilers.toolset.3.8.0-4.20503.2.nupkg.sha512"
+    },
+    "Microsoft.NETCore.App/5.0.4-servicing.21116.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-844cH3FtLkf+TZy8rIDsm1LZja/z2hVkcC3NNRFw/h0WehP30/3VsuK8SrjJFi/TwiISBsTtbZhbsfTDBWssmg==",
+      "path": "microsoft.netcore.app/5.0.4-servicing.21116.14",
+      "hashPath": "microsoft.netcore.app.5.0.4-servicing.21116.14.nupkg.sha512"
+    },
+    "Microsoft.NETCore.App.Internal/5.0.4-servicing.21116.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-k1lUtbVa5WWnkhqv6c7iiQrQnBqLxACnTUc2QkvW9gsjbVVW0GhZvaVy/wJ+FYEmXSB6orYXlk9pVroN17YFuA==",
+      "path": "microsoft.netcore.app.internal/5.0.4-servicing.21116.14",
+      "hashPath": "microsoft.netcore.app.internal.5.0.4-servicing.21116.14.nupkg.sha512"
+    },
+    "Microsoft.NETCore.DotNetHostPolicy/5.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q490xz8+Zdhp6mu5IsOTZEj7aurL31FosjbbDnoExs5MLmPfUMGZEB2kQ5cEubCkQ+icI88FU1rVk/Ab8KHRkg=="
+    },
+    "Microsoft.NETCore.Platforms/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Targets/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XpSaRv9/+V4KQ5KPbvRoArKy1o9WHizFEdOXPBLHXRZ0zwPGK5cTcWo1SveD7uayrfhod1uAAscip65qLeAjCw==",
+      "path": "microsoft.netcore.targets/5.0.0",
+      "hashPath": "microsoft.netcore.targets.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.NETFramework.ReferenceAssemblies/1.0.0-preview.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m+pJPEO7HyXvrOna5Sr3s77ewXonjYWJTNL6drh8xACnMNxnlqUDKx9HfGeSE9wmfY0lQwppaeZpFTPGaH7kZg==",
+      "path": "microsoft.netframework.referenceassemblies/1.0.0-preview.2",
+      "hashPath": "microsoft.netframework.referenceassemblies.1.0.0-preview.2.nupkg.sha512"
+    },
+    "Microsoft.SourceLink.AzureRepos.Git/1.1.0-beta-20206-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vVYhSds9TfraTQkGHHMDMVWnr3kCkTZ7vmqUmrXQBDJFXiWTuMoP5RRa9s1M/KmgB4szi5TOb7sOaHWKDT9qDA==",
+      "path": "microsoft.sourcelink.azurerepos.git/1.1.0-beta-20206-02",
+      "hashPath": "microsoft.sourcelink.azurerepos.git.1.1.0-beta-20206-02.nupkg.sha512"
+    },
+    "Microsoft.SourceLink.Common/1.1.0-beta-20206-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aek0RTQ+4Bf11WvqaXajwYoaBWkX2edBjAr5XJOvhAsHX6/9vPOb7IpHAiE/NyCse7IcpGWslJZHNkv4UBEFqw==",
+      "path": "microsoft.sourcelink.common/1.1.0-beta-20206-02",
+      "hashPath": "microsoft.sourcelink.common.1.1.0-beta-20206-02.nupkg.sha512"
+    },
+    "Microsoft.SourceLink.GitHub/1.1.0-beta-20206-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7A7P0EwL+lypaI/CEvG4IcpAlQeAt04uPPw1SO6Q9Jwz2nE9309pQXJ4TfP/RLL8IOObACidN66+gVR+bJDZHw==",
+      "path": "microsoft.sourcelink.github/1.1.0-beta-20206-02",
+      "hashPath": "microsoft.sourcelink.github.1.1.0-beta-20206-02.nupkg.sha512"
+    },
+    "NETStandard.Library/2.2.0-prerelease.19564.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-y7Z0OKA/O5mW8aPEI4oXTSjinUTwGDwKEZMKTGdzb+vLgGRuvrZrs1YidcFN2kIKOo/11bOSNfKn4lsOLUWHkQ==",
+      "path": "netstandard.library/2.2.0-prerelease.19564.1",
+      "hashPath": "netstandard.library.2.2.0-prerelease.19564.1.nupkg.sha512"
+    },
+    "runtime.linux-x64.Microsoft.NETCore.App/5.0.4-servicing.21116.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V619DzOsOiV1kEmg8d7yEKp4w5YUl+KqEbmivig6MhVdU5us109pBcjvl1EexR1uMXamwBZwSPPipABoGsRwfA==",
+      "path": "runtime.linux-x64.microsoft.netcore.app/5.0.4-servicing.21116.14",
+      "hashPath": "runtime.linux-x64.microsoft.netcore.app.5.0.4-servicing.21116.14.nupkg.sha512"
+    },
+    "runtime.linux-x64.Microsoft.NETCore.DotNetHostPolicy/5.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5xw6x4mUf9Nv9PDqkQt5cWmXE3EDqprb37sMM4BNUkkcHbJ8AO1BlZk16BC/h9KHjzVxBUboWw4HGIo8HugWaQ=="
+    }
+  },
+  "runtimes": {
+    "linux-arm": [
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-arm64": [
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-musl-arm": [
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-musl-arm64": [
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-musl-x64": [
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-x64": [
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.4.0.0-armel": [
+      "tizen.4.0.0",
+      "tizen-armel",
+      "tizen",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.0.0-armel": [
+      "tizen.5.0.0",
+      "tizen.4.0.0-armel",
+      "tizen.4.0.0",
+      "tizen-armel",
+      "tizen",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine": [
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine-arm": [
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine-arm64": [
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine-x64": [
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.10": [
+      "alpine.3.9",
+      "alpine.3.8",
+      "alpine.3.7",
+      "alpine.3.6",
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.10-arm": [
+      "alpine.3.10",
+      "alpine.3.9-arm",
+      "alpine.3.9",
+      "alpine.3.8-arm",
+      "alpine.3.8",
+      "alpine.3.7-arm",
+      "alpine.3.7",
+      "alpine.3.6-arm",
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.10-arm64": [
+      "alpine.3.10",
+      "alpine.3.9-arm64",
+      "alpine.3.9",
+      "alpine.3.8-arm64",
+      "alpine.3.8",
+      "alpine.3.7-arm64",
+      "alpine.3.7",
+      "alpine.3.6-arm64",
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.10-x64": [
+      "alpine.3.10",
+      "alpine.3.9-x64",
+      "alpine.3.9",
+      "alpine.3.8-x64",
+      "alpine.3.8",
+      "alpine.3.7-x64",
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.11": [
+      "alpine.3.10",
+      "alpine.3.9",
+      "alpine.3.8",
+      "alpine.3.7",
+      "alpine.3.6",
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.11-arm": [
+      "alpine.3.11",
+      "alpine.3.10-arm",
+      "alpine.3.10",
+      "alpine.3.9-arm",
+      "alpine.3.9",
+      "alpine.3.8-arm",
+      "alpine.3.8",
+      "alpine.3.7-arm",
+      "alpine.3.7",
+      "alpine.3.6-arm",
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.11-arm64": [
+      "alpine.3.11",
+      "alpine.3.10-arm64",
+      "alpine.3.10",
+      "alpine.3.9-arm64",
+      "alpine.3.9",
+      "alpine.3.8-arm64",
+      "alpine.3.8",
+      "alpine.3.7-arm64",
+      "alpine.3.7",
+      "alpine.3.6-arm64",
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.11-x64": [
+      "alpine.3.11",
+      "alpine.3.10-x64",
+      "alpine.3.10",
+      "alpine.3.9-x64",
+      "alpine.3.9",
+      "alpine.3.8-x64",
+      "alpine.3.8",
+      "alpine.3.7-x64",
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.12": [
+      "alpine.3.11",
+      "alpine.3.10",
+      "alpine.3.9",
+      "alpine.3.8",
+      "alpine.3.7",
+      "alpine.3.6",
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.12-arm": [
+      "alpine.3.12",
+      "alpine.3.11-arm",
+      "alpine.3.11",
+      "alpine.3.10-arm",
+      "alpine.3.10",
+      "alpine.3.9-arm",
+      "alpine.3.9",
+      "alpine.3.8-arm",
+      "alpine.3.8",
+      "alpine.3.7-arm",
+      "alpine.3.7",
+      "alpine.3.6-arm",
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.12-arm64": [
+      "alpine.3.12",
+      "alpine.3.11-arm64",
+      "alpine.3.11",
+      "alpine.3.10-arm64",
+      "alpine.3.10",
+      "alpine.3.9-arm64",
+      "alpine.3.9",
+      "alpine.3.8-arm64",
+      "alpine.3.8",
+      "alpine.3.7-arm64",
+      "alpine.3.7",
+      "alpine.3.6-arm64",
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.12-x64": [
+      "alpine.3.12",
+      "alpine.3.11-x64",
+      "alpine.3.11",
+      "alpine.3.10-x64",
+      "alpine.3.10",
+      "alpine.3.9-x64",
+      "alpine.3.9",
+      "alpine.3.8-x64",
+      "alpine.3.8",
+      "alpine.3.7-x64",
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.6": [
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.6-arm": [
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.6-arm64": [
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.6-x64": [
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.7": [
+      "alpine.3.6",
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.7-arm": [
+      "alpine.3.7",
+      "alpine.3.6-arm",
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.7-arm64": [
+      "alpine.3.7",
+      "alpine.3.6-arm64",
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.7-x64": [
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.8": [
+      "alpine.3.7",
+      "alpine.3.6",
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.8-arm": [
+      "alpine.3.8",
+      "alpine.3.7-arm",
+      "alpine.3.7",
+      "alpine.3.6-arm",
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.8-arm64": [
+      "alpine.3.8",
+      "alpine.3.7-arm64",
+      "alpine.3.7",
+      "alpine.3.6-arm64",
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.8-x64": [
+      "alpine.3.8",
+      "alpine.3.7-x64",
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.9": [
+      "alpine.3.8",
+      "alpine.3.7",
+      "alpine.3.6",
+      "alpine",
+      "linux-musl",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.9-arm": [
+      "alpine.3.9",
+      "alpine.3.8-arm",
+      "alpine.3.8",
+      "alpine.3.7-arm",
+      "alpine.3.7",
+      "alpine.3.6-arm",
+      "alpine.3.6",
+      "alpine-arm",
+      "alpine",
+      "linux-musl-arm",
+      "linux-musl",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.9-arm64": [
+      "alpine.3.9",
+      "alpine.3.8-arm64",
+      "alpine.3.8",
+      "alpine.3.7-arm64",
+      "alpine.3.7",
+      "alpine.3.6-arm64",
+      "alpine.3.6",
+      "alpine-arm64",
+      "alpine",
+      "linux-musl-arm64",
+      "linux-musl",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.9-x64": [
+      "alpine.3.9",
+      "alpine.3.8-x64",
+      "alpine.3.8",
+      "alpine.3.7-x64",
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android-arm": [
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android-arm64": [
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android-x64": [
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android-x86": [
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.21": [
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.21-arm": [
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.21-arm64": [
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.21-x64": [
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.21-x86": [
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.22": [
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.22-arm": [
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.22-arm64": [
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.22-x64": [
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.22-x86": [
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.23": [
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.23-arm": [
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.23-arm64": [
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.23-x64": [
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.23-x86": [
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.24": [
+      "android.23",
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.24-arm": [
+      "android.24",
+      "android.23-arm",
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.24-arm64": [
+      "android.24",
+      "android.23-arm64",
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.24-x64": [
+      "android.24",
+      "android.23-x64",
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.24-x86": [
+      "android.24",
+      "android.23-x86",
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.25": [
+      "android.24",
+      "android.23",
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.25-arm": [
+      "android.25",
+      "android.24-arm",
+      "android.24",
+      "android.23-arm",
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.25-arm64": [
+      "android.25",
+      "android.24-arm64",
+      "android.24",
+      "android.23-arm64",
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.25-x64": [
+      "android.25",
+      "android.24-x64",
+      "android.24",
+      "android.23-x64",
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.25-x86": [
+      "android.25",
+      "android.24-x86",
+      "android.24",
+      "android.23-x86",
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.26": [
+      "android.25",
+      "android.24",
+      "android.23",
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.26-arm": [
+      "android.26",
+      "android.25-arm",
+      "android.25",
+      "android.24-arm",
+      "android.24",
+      "android.23-arm",
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.26-arm64": [
+      "android.26",
+      "android.25-arm64",
+      "android.25",
+      "android.24-arm64",
+      "android.24",
+      "android.23-arm64",
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.26-x64": [
+      "android.26",
+      "android.25-x64",
+      "android.25",
+      "android.24-x64",
+      "android.24",
+      "android.23-x64",
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.26-x86": [
+      "android.26",
+      "android.25-x86",
+      "android.25",
+      "android.24-x86",
+      "android.24",
+      "android.23-x86",
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.27": [
+      "android.26",
+      "android.25",
+      "android.24",
+      "android.23",
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.27-arm": [
+      "android.27",
+      "android.26-arm",
+      "android.26",
+      "android.25-arm",
+      "android.25",
+      "android.24-arm",
+      "android.24",
+      "android.23-arm",
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.27-arm64": [
+      "android.27",
+      "android.26-arm64",
+      "android.26",
+      "android.25-arm64",
+      "android.25",
+      "android.24-arm64",
+      "android.24",
+      "android.23-arm64",
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.27-x64": [
+      "android.27",
+      "android.26-x64",
+      "android.26",
+      "android.25-x64",
+      "android.25",
+      "android.24-x64",
+      "android.24",
+      "android.23-x64",
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.27-x86": [
+      "android.27",
+      "android.26-x86",
+      "android.26",
+      "android.25-x86",
+      "android.25",
+      "android.24-x86",
+      "android.24",
+      "android.23-x86",
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.28": [
+      "android.27",
+      "android.26",
+      "android.25",
+      "android.24",
+      "android.23",
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.28-arm": [
+      "android.28",
+      "android.27-arm",
+      "android.27",
+      "android.26-arm",
+      "android.26",
+      "android.25-arm",
+      "android.25",
+      "android.24-arm",
+      "android.24",
+      "android.23-arm",
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.28-arm64": [
+      "android.28",
+      "android.27-arm64",
+      "android.27",
+      "android.26-arm64",
+      "android.26",
+      "android.25-arm64",
+      "android.25",
+      "android.24-arm64",
+      "android.24",
+      "android.23-arm64",
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.28-x64": [
+      "android.28",
+      "android.27-x64",
+      "android.27",
+      "android.26-x64",
+      "android.26",
+      "android.25-x64",
+      "android.25",
+      "android.24-x64",
+      "android.24",
+      "android.23-x64",
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.28-x86": [
+      "android.28",
+      "android.27-x86",
+      "android.27",
+      "android.26-x86",
+      "android.26",
+      "android.25-x86",
+      "android.25",
+      "android.24-x86",
+      "android.24",
+      "android.23-x86",
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.29": [
+      "android.28",
+      "android.27",
+      "android.26",
+      "android.25",
+      "android.24",
+      "android.23",
+      "android.22",
+      "android.21",
+      "android",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.29-arm": [
+      "android.29",
+      "android.28-arm",
+      "android.28",
+      "android.27-arm",
+      "android.27",
+      "android.26-arm",
+      "android.26",
+      "android.25-arm",
+      "android.25",
+      "android.24-arm",
+      "android.24",
+      "android.23-arm",
+      "android.23",
+      "android.22-arm",
+      "android.22",
+      "android.21-arm",
+      "android.21",
+      "android-arm",
+      "android",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.29-arm64": [
+      "android.29",
+      "android.28-arm64",
+      "android.28",
+      "android.27-arm64",
+      "android.27",
+      "android.26-arm64",
+      "android.26",
+      "android.25-arm64",
+      "android.25",
+      "android.24-arm64",
+      "android.24",
+      "android.23-arm64",
+      "android.23",
+      "android.22-arm64",
+      "android.22",
+      "android.21-arm64",
+      "android.21",
+      "android-arm64",
+      "android",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.29-x64": [
+      "android.29",
+      "android.28-x64",
+      "android.28",
+      "android.27-x64",
+      "android.27",
+      "android.26-x64",
+      "android.26",
+      "android.25-x64",
+      "android.25",
+      "android.24-x64",
+      "android.24",
+      "android.23-x64",
+      "android.23",
+      "android.22-x64",
+      "android.22",
+      "android.21-x64",
+      "android.21",
+      "android-x64",
+      "android",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "android.29-x86": [
+      "android.29",
+      "android.28-x86",
+      "android.28",
+      "android.27-x86",
+      "android.27",
+      "android.26-x86",
+      "android.26",
+      "android.25-x86",
+      "android.25",
+      "android.24-x86",
+      "android.24",
+      "android.23-x86",
+      "android.23",
+      "android.22-x86",
+      "android.22",
+      "android.21-x86",
+      "android.21",
+      "android-x86",
+      "android",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "arch": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "arch-x64": [
+      "arch",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos": [
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos-arm64": [
+      "centos",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos-x64": [
+      "centos",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.7": [
+      "centos",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.7-x64": [
+      "centos.7",
+      "centos-x64",
+      "rhel.7-x64",
+      "centos",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.8": [
+      "centos",
+      "rhel.8",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.8-arm64": [
+      "centos.8",
+      "centos-arm64",
+      "rhel.8-arm64",
+      "centos",
+      "rhel.8",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.8-x64": [
+      "centos.8",
+      "centos-x64",
+      "rhel.8-x64",
+      "centos",
+      "rhel.8",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.9": [
+      "centos",
+      "rhel.9",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.9-arm64": [
+      "centos.9",
+      "centos-arm64",
+      "rhel.9-arm64",
+      "centos",
+      "rhel.9",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "centos.9-x64": [
+      "centos.9",
+      "centos-x64",
+      "rhel.9-x64",
+      "centos",
+      "rhel.9",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian-arm": [
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian-arm64": [
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian-armel": [
+      "debian",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian-x64": [
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian-x86": [
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.10": [
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.10-arm": [
+      "debian.10",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.10-arm64": [
+      "debian.10",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.10-armel": [
+      "debian.10",
+      "debian-armel",
+      "debian",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.10-x64": [
+      "debian.10",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.10-x86": [
+      "debian.10",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.8": [
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.8-arm": [
+      "debian.8",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.8-arm64": [
+      "debian.8",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.8-armel": [
+      "debian.8",
+      "debian-armel",
+      "debian",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.8-x64": [
+      "debian.8",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.8-x86": [
+      "debian.8",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.9": [
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.9-arm": [
+      "debian.9",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.9-arm64": [
+      "debian.9",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.9-armel": [
+      "debian.9",
+      "debian-armel",
+      "debian",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.9-x64": [
+      "debian.9",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "debian.9-x86": [
+      "debian.9",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora-arm64": [
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora-x64": [
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.23": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.23-arm64": [
+      "fedora.23",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.23-x64": [
+      "fedora.23",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.24": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.24-arm64": [
+      "fedora.24",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.24-x64": [
+      "fedora.24",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.25": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.25-arm64": [
+      "fedora.25",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.25-x64": [
+      "fedora.25",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.26": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.26-arm64": [
+      "fedora.26",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.26-x64": [
+      "fedora.26",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.27": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.27-arm64": [
+      "fedora.27",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.27-x64": [
+      "fedora.27",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.28": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.28-arm64": [
+      "fedora.28",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.28-x64": [
+      "fedora.28",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.29": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.29-arm64": [
+      "fedora.29",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.29-x64": [
+      "fedora.29",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.30": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.30-arm64": [
+      "fedora.30",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.30-x64": [
+      "fedora.30",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.31": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.31-arm64": [
+      "fedora.31",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.31-x64": [
+      "fedora.31",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.32": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.32-arm64": [
+      "fedora.32",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.32-x64": [
+      "fedora.32",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.33": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.33-arm64": [
+      "fedora.33",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.33-x64": [
+      "fedora.33",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.34": [
+      "fedora",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.34-arm64": [
+      "fedora.34",
+      "fedora-arm64",
+      "fedora",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.34-x64": [
+      "fedora.34",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "gentoo": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "gentoo-x64": [
+      "gentoo",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux": [
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-armel": [
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-musl": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-musl-armel": [
+      "linux-musl",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-musl-x86": [
+      "linux-musl",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linux-x86": [
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17": [
+      "ubuntu.14.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17-x64": [
+      "linuxmint.17",
+      "ubuntu.14.04-x64",
+      "ubuntu.14.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17.1": [
+      "linuxmint.17",
+      "ubuntu.14.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17.1-x64": [
+      "linuxmint.17.1",
+      "linuxmint.17-x64",
+      "linuxmint.17",
+      "ubuntu.14.04-x64",
+      "ubuntu.14.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17.2": [
+      "linuxmint.17.1",
+      "linuxmint.17",
+      "ubuntu.14.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17.2-x64": [
+      "linuxmint.17.2",
+      "linuxmint.17.1-x64",
+      "linuxmint.17.1",
+      "linuxmint.17-x64",
+      "linuxmint.17",
+      "ubuntu.14.04-x64",
+      "ubuntu.14.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17.3": [
+      "linuxmint.17.2",
+      "linuxmint.17.1",
+      "linuxmint.17",
+      "ubuntu.14.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.17.3-x64": [
+      "linuxmint.17.3",
+      "linuxmint.17.2-x64",
+      "linuxmint.17.2",
+      "linuxmint.17.1-x64",
+      "linuxmint.17.1",
+      "linuxmint.17-x64",
+      "linuxmint.17",
+      "ubuntu.14.04-x64",
+      "ubuntu.14.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18": [
+      "ubuntu.16.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18-x64": [
+      "linuxmint.18",
+      "ubuntu.16.04-x64",
+      "ubuntu.16.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18.1": [
+      "linuxmint.18",
+      "ubuntu.16.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18.1-x64": [
+      "linuxmint.18.1",
+      "linuxmint.18-x64",
+      "linuxmint.18",
+      "ubuntu.16.04-x64",
+      "ubuntu.16.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18.2": [
+      "linuxmint.18.1",
+      "linuxmint.18",
+      "ubuntu.16.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18.2-x64": [
+      "linuxmint.18.2",
+      "linuxmint.18.1-x64",
+      "linuxmint.18.1",
+      "linuxmint.18-x64",
+      "linuxmint.18",
+      "ubuntu.16.04-x64",
+      "ubuntu.16.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18.3": [
+      "linuxmint.18.2",
+      "linuxmint.18.1",
+      "linuxmint.18",
+      "ubuntu.16.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.18.3-x64": [
+      "linuxmint.18.3",
+      "linuxmint.18.2-x64",
+      "linuxmint.18.2",
+      "linuxmint.18.1-x64",
+      "linuxmint.18.1",
+      "linuxmint.18-x64",
+      "linuxmint.18",
+      "ubuntu.16.04-x64",
+      "ubuntu.16.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.19": [
+      "ubuntu.18.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.19-x64": [
+      "linuxmint.19",
+      "ubuntu.18.04-x64",
+      "ubuntu.18.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.19.1": [
+      "linuxmint.19",
+      "ubuntu.18.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.19.1-x64": [
+      "linuxmint.19.1",
+      "linuxmint.19-x64",
+      "linuxmint.19",
+      "ubuntu.18.04-x64",
+      "ubuntu.18.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.19.2": [
+      "linuxmint.19.1",
+      "linuxmint.19",
+      "ubuntu.18.04",
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "linuxmint.19.2-x64": [
+      "linuxmint.19.2",
+      "linuxmint.19.1-x64",
+      "linuxmint.19.1",
+      "linuxmint.19-x64",
+      "linuxmint.19",
+      "ubuntu.18.04-x64",
+      "ubuntu.18.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol": [
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol-x64": [
+      "ol",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7": [
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7-x64": [
+      "ol.7",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.0": [
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.0-x64": [
+      "ol.7.0",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.1": [
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.1-x64": [
+      "ol.7.1",
+      "ol.7.0-x64",
+      "rhel.7.1-x64",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.2": [
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.2-x64": [
+      "ol.7.2",
+      "ol.7.1-x64",
+      "rhel.7.2-x64",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0-x64",
+      "rhel.7.1-x64",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.3": [
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.3-x64": [
+      "ol.7.3",
+      "ol.7.2-x64",
+      "rhel.7.3-x64",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1-x64",
+      "rhel.7.2-x64",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0-x64",
+      "rhel.7.1-x64",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.4": [
+      "ol.7.3",
+      "rhel.7.4",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.4-x64": [
+      "ol.7.4",
+      "ol.7.3-x64",
+      "rhel.7.4-x64",
+      "ol.7.3",
+      "rhel.7.4",
+      "ol.7.2-x64",
+      "rhel.7.3-x64",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1-x64",
+      "rhel.7.2-x64",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0-x64",
+      "rhel.7.1-x64",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.5": [
+      "ol.7.4",
+      "rhel.7.5",
+      "ol.7.3",
+      "rhel.7.4",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.5-x64": [
+      "ol.7.5",
+      "ol.7.4-x64",
+      "rhel.7.5-x64",
+      "ol.7.4",
+      "rhel.7.5",
+      "ol.7.3-x64",
+      "rhel.7.4-x64",
+      "ol.7.3",
+      "rhel.7.4",
+      "ol.7.2-x64",
+      "rhel.7.3-x64",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1-x64",
+      "rhel.7.2-x64",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0-x64",
+      "rhel.7.1-x64",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.6": [
+      "ol.7.5",
+      "rhel.7.6",
+      "ol.7.4",
+      "rhel.7.5",
+      "ol.7.3",
+      "rhel.7.4",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7",
+      "rhel.7.0",
+      "ol",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.7.6-x64": [
+      "ol.7.6",
+      "ol.7.5-x64",
+      "rhel.7.6-x64",
+      "ol.7.5",
+      "rhel.7.6",
+      "ol.7.4-x64",
+      "rhel.7.5-x64",
+      "ol.7.4",
+      "rhel.7.5",
+      "ol.7.3-x64",
+      "rhel.7.4-x64",
+      "ol.7.3",
+      "rhel.7.4",
+      "ol.7.2-x64",
+      "rhel.7.3-x64",
+      "ol.7.2",
+      "rhel.7.3",
+      "ol.7.1-x64",
+      "rhel.7.2-x64",
+      "ol.7.1",
+      "rhel.7.2",
+      "ol.7.0-x64",
+      "rhel.7.1-x64",
+      "ol.7.0",
+      "rhel.7.1",
+      "ol.7-x64",
+      "rhel.7.0-x64",
+      "ol.7",
+      "rhel.7.0",
+      "ol-x64",
+      "rhel.7-x64",
+      "ol",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.8": [
+      "ol",
+      "rhel.8",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.8-x64": [
+      "ol.8",
+      "ol-x64",
+      "rhel.8-x64",
+      "ol",
+      "rhel.8",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.8.0": [
+      "ol.8",
+      "rhel.8.0",
+      "ol",
+      "rhel.8",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ol.8.0-x64": [
+      "ol.8.0",
+      "ol.8-x64",
+      "rhel.8.0-x64",
+      "ol.8",
+      "rhel.8.0",
+      "ol-x64",
+      "rhel.8-x64",
+      "ol",
+      "rhel.8",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse-x64": [
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.13.2": [
+      "opensuse",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.13.2-x64": [
+      "opensuse.13.2",
+      "opensuse-x64",
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.15.0": [
+      "opensuse",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.15.0-x64": [
+      "opensuse.15.0",
+      "opensuse-x64",
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.15.1": [
+      "opensuse",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.15.1-x64": [
+      "opensuse.15.1",
+      "opensuse-x64",
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.42.1": [
+      "opensuse",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.42.1-x64": [
+      "opensuse.42.1",
+      "opensuse-x64",
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.42.2": [
+      "opensuse",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.42.2-x64": [
+      "opensuse.42.2",
+      "opensuse-x64",
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.42.3": [
+      "opensuse",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "opensuse.42.3-x64": [
+      "opensuse.42.3",
+      "opensuse-x64",
+      "opensuse",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel-arm64": [
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel-x64": [
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.6": [
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.6-x64": [
+      "rhel.6",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7": [
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7-x64": [
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.0": [
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.0-x64": [
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.1": [
+      "rhel.7.0",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.1-x64": [
+      "rhel.7.1",
+      "rhel.7.0-x64",
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.2": [
+      "rhel.7.1",
+      "rhel.7.0",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.2-x64": [
+      "rhel.7.2",
+      "rhel.7.1-x64",
+      "rhel.7.1",
+      "rhel.7.0-x64",
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.3": [
+      "rhel.7.2",
+      "rhel.7.1",
+      "rhel.7.0",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.3-x64": [
+      "rhel.7.3",
+      "rhel.7.2-x64",
+      "rhel.7.2",
+      "rhel.7.1-x64",
+      "rhel.7.1",
+      "rhel.7.0-x64",
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.4": [
+      "rhel.7.3",
+      "rhel.7.2",
+      "rhel.7.1",
+      "rhel.7.0",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.4-x64": [
+      "rhel.7.4",
+      "rhel.7.3-x64",
+      "rhel.7.3",
+      "rhel.7.2-x64",
+      "rhel.7.2",
+      "rhel.7.1-x64",
+      "rhel.7.1",
+      "rhel.7.0-x64",
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.5": [
+      "rhel.7.4",
+      "rhel.7.3",
+      "rhel.7.2",
+      "rhel.7.1",
+      "rhel.7.0",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.5-x64": [
+      "rhel.7.5",
+      "rhel.7.4-x64",
+      "rhel.7.4",
+      "rhel.7.3-x64",
+      "rhel.7.3",
+      "rhel.7.2-x64",
+      "rhel.7.2",
+      "rhel.7.1-x64",
+      "rhel.7.1",
+      "rhel.7.0-x64",
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.6": [
+      "rhel.7.5",
+      "rhel.7.4",
+      "rhel.7.3",
+      "rhel.7.2",
+      "rhel.7.1",
+      "rhel.7.0",
+      "rhel.7",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.7.6-x64": [
+      "rhel.7.6",
+      "rhel.7.5-x64",
+      "rhel.7.5",
+      "rhel.7.4-x64",
+      "rhel.7.4",
+      "rhel.7.3-x64",
+      "rhel.7.3",
+      "rhel.7.2-x64",
+      "rhel.7.2",
+      "rhel.7.1-x64",
+      "rhel.7.1",
+      "rhel.7.0-x64",
+      "rhel.7.0",
+      "rhel.7-x64",
+      "rhel.7",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8": [
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8-arm64": [
+      "rhel.8",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8-x64": [
+      "rhel.8",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8.0": [
+      "rhel.8",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8.0-arm64": [
+      "rhel.8.0",
+      "rhel.8-arm64",
+      "rhel.8",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8.0-x64": [
+      "rhel.8.0",
+      "rhel.8-x64",
+      "rhel.8",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8.1": [
+      "rhel.8.0",
+      "rhel.8",
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8.1-arm64": [
+      "rhel.8.1",
+      "rhel.8.0-arm64",
+      "rhel.8.0",
+      "rhel.8-arm64",
+      "rhel.8",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.8.1-x64": [
+      "rhel.8.1",
+      "rhel.8.0-x64",
+      "rhel.8.0",
+      "rhel.8-x64",
+      "rhel.8",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.9": [
+      "rhel",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.9-arm64": [
+      "rhel.9",
+      "rhel-arm64",
+      "rhel",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "rhel.9-x64": [
+      "rhel.9",
+      "rhel-x64",
+      "rhel",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles-x64": [
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12": [
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12-x64": [
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.1": [
+      "sles.12",
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.1-x64": [
+      "sles.12.1",
+      "sles.12-x64",
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.2": [
+      "sles.12.1",
+      "sles.12",
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.2-x64": [
+      "sles.12.2",
+      "sles.12.1-x64",
+      "sles.12.1",
+      "sles.12-x64",
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.3": [
+      "sles.12.2",
+      "sles.12.1",
+      "sles.12",
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.3-x64": [
+      "sles.12.3",
+      "sles.12.2-x64",
+      "sles.12.2",
+      "sles.12.1-x64",
+      "sles.12.1",
+      "sles.12-x64",
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.4": [
+      "sles.12.3",
+      "sles.12.2",
+      "sles.12.1",
+      "sles.12",
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.12.4-x64": [
+      "sles.12.4",
+      "sles.12.3-x64",
+      "sles.12.3",
+      "sles.12.2-x64",
+      "sles.12.2",
+      "sles.12.1-x64",
+      "sles.12.1",
+      "sles.12-x64",
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.15": [
+      "sles.12.4",
+      "sles.12.3",
+      "sles.12.2",
+      "sles.12.1",
+      "sles.12",
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.15-x64": [
+      "sles.15",
+      "sles.12.4-x64",
+      "sles.12.4",
+      "sles.12.3-x64",
+      "sles.12.3",
+      "sles.12.2-x64",
+      "sles.12.2",
+      "sles.12.1-x64",
+      "sles.12.1",
+      "sles.12-x64",
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.15.1": [
+      "sles.15",
+      "sles.12.4",
+      "sles.12.3",
+      "sles.12.2",
+      "sles.12.1",
+      "sles.12",
+      "sles",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "sles.15.1-x64": [
+      "sles.15.1",
+      "sles.15-x64",
+      "sles.15",
+      "sles.12.4-x64",
+      "sles.12.4",
+      "sles.12.3-x64",
+      "sles.12.3",
+      "sles.12.2-x64",
+      "sles.12.2",
+      "sles.12.1-x64",
+      "sles.12.1",
+      "sles.12-x64",
+      "sles.12",
+      "sles-x64",
+      "sles",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen": [
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen-arm64": [
+      "tizen",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen-armel": [
+      "tizen",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen-x86": [
+      "tizen",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.4.0.0": [
+      "tizen",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.4.0.0-arm64": [
+      "tizen.4.0.0",
+      "tizen-arm64",
+      "tizen",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.4.0.0-x86": [
+      "tizen.4.0.0",
+      "tizen-x86",
+      "tizen",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.0.0": [
+      "tizen.4.0.0",
+      "tizen",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.0.0-arm64": [
+      "tizen.5.0.0",
+      "tizen.4.0.0-arm64",
+      "tizen.4.0.0",
+      "tizen-arm64",
+      "tizen",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.0.0-x86": [
+      "tizen.5.0.0",
+      "tizen.4.0.0-x86",
+      "tizen.4.0.0",
+      "tizen-x86",
+      "tizen",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.5.0": [
+      "tizen.5.0.0",
+      "tizen.4.0.0",
+      "tizen",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.5.0-arm64": [
+      "tizen.5.5.0",
+      "tizen.5.0.0-arm64",
+      "tizen.5.0.0",
+      "tizen.4.0.0-arm64",
+      "tizen.4.0.0",
+      "tizen-arm64",
+      "tizen",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.5.0-armel": [
+      "tizen.5.5.0",
+      "tizen.5.0.0-armel",
+      "tizen.5.0.0",
+      "tizen.4.0.0-armel",
+      "tizen.4.0.0",
+      "tizen-armel",
+      "tizen",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.5.5.0-x86": [
+      "tizen.5.5.0",
+      "tizen.5.0.0-x86",
+      "tizen.5.0.0",
+      "tizen.4.0.0-x86",
+      "tizen.4.0.0",
+      "tizen-x86",
+      "tizen",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.6.0.0": [
+      "tizen.5.5.0",
+      "tizen.5.0.0",
+      "tizen.4.0.0",
+      "tizen",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.6.0.0-arm64": [
+      "tizen.6.0.0",
+      "tizen.5.5.0-arm64",
+      "tizen.5.5.0",
+      "tizen.5.0.0-arm64",
+      "tizen.5.0.0",
+      "tizen.4.0.0-arm64",
+      "tizen.4.0.0",
+      "tizen-arm64",
+      "tizen",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.6.0.0-armel": [
+      "tizen.6.0.0",
+      "tizen.5.5.0-armel",
+      "tizen.5.5.0",
+      "tizen.5.0.0-armel",
+      "tizen.5.0.0",
+      "tizen.4.0.0-armel",
+      "tizen.4.0.0",
+      "tizen-armel",
+      "tizen",
+      "linux-armel",
+      "linux",
+      "unix-armel",
+      "unix",
+      "any",
+      "base"
+    ],
+    "tizen.6.0.0-x86": [
+      "tizen.6.0.0",
+      "tizen.5.5.0-x86",
+      "tizen.5.5.0",
+      "tizen.5.0.0-x86",
+      "tizen.5.0.0",
+      "tizen.4.0.0-x86",
+      "tizen.4.0.0",
+      "tizen-x86",
+      "tizen",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu": [
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu-arm": [
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu-arm64": [
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu-x64": [
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu-x86": [
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.04-arm": [
+      "ubuntu.14.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.04-x64": [
+      "ubuntu.14.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.04-x86": [
+      "ubuntu.14.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.10-arm": [
+      "ubuntu.14.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.10-x64": [
+      "ubuntu.14.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.14.10-x86": [
+      "ubuntu.14.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.04-arm": [
+      "ubuntu.15.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.04-x64": [
+      "ubuntu.15.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.04-x86": [
+      "ubuntu.15.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.10-arm": [
+      "ubuntu.15.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.10-x64": [
+      "ubuntu.15.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.15.10-x86": [
+      "ubuntu.15.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.04-arm": [
+      "ubuntu.16.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.04-arm64": [
+      "ubuntu.16.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.04-x64": [
+      "ubuntu.16.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.04-x86": [
+      "ubuntu.16.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.10-arm": [
+      "ubuntu.16.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.10-arm64": [
+      "ubuntu.16.10",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.10-x64": [
+      "ubuntu.16.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.16.10-x86": [
+      "ubuntu.16.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.04-arm": [
+      "ubuntu.17.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.04-arm64": [
+      "ubuntu.17.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.04-x64": [
+      "ubuntu.17.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.04-x86": [
+      "ubuntu.17.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.10-arm": [
+      "ubuntu.17.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.10-arm64": [
+      "ubuntu.17.10",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.10-x64": [
+      "ubuntu.17.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.17.10-x86": [
+      "ubuntu.17.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.04-arm": [
+      "ubuntu.18.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.04-arm64": [
+      "ubuntu.18.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.04-x64": [
+      "ubuntu.18.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.04-x86": [
+      "ubuntu.18.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.10-arm": [
+      "ubuntu.18.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.10-arm64": [
+      "ubuntu.18.10",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.10-x64": [
+      "ubuntu.18.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.18.10-x86": [
+      "ubuntu.18.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.04-arm": [
+      "ubuntu.19.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.04-arm64": [
+      "ubuntu.19.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.04-x64": [
+      "ubuntu.19.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.04-x86": [
+      "ubuntu.19.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.10-arm": [
+      "ubuntu.19.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.10-arm64": [
+      "ubuntu.19.10",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.10-x64": [
+      "ubuntu.19.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.19.10-x86": [
+      "ubuntu.19.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.04-arm": [
+      "ubuntu.20.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.04-arm64": [
+      "ubuntu.20.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.04-x64": [
+      "ubuntu.20.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.04-x86": [
+      "ubuntu.20.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.10-arm": [
+      "ubuntu.20.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.10-arm64": [
+      "ubuntu.20.10",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.10-x64": [
+      "ubuntu.20.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.20.10-x86": [
+      "ubuntu.20.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.04": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.04-arm": [
+      "ubuntu.21.04",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.04-arm64": [
+      "ubuntu.21.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.04-x64": [
+      "ubuntu.21.04",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.04-x86": [
+      "ubuntu.21.04",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.10": [
+      "ubuntu",
+      "debian",
+      "linux",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.10-arm": [
+      "ubuntu.21.10",
+      "ubuntu-arm",
+      "ubuntu",
+      "debian-arm",
+      "debian",
+      "linux-arm",
+      "linux",
+      "unix-arm",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.10-arm64": [
+      "ubuntu.21.10",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.10-x64": [
+      "ubuntu.21.10",
+      "ubuntu-x64",
+      "ubuntu",
+      "debian-x64",
+      "debian",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "ubuntu.21.10-x86": [
+      "ubuntu.21.10",
+      "ubuntu-x86",
+      "ubuntu",
+      "debian-x86",
+      "debian",
+      "linux-x86",
+      "linux",
+      "unix-x86",
+      "unix",
+      "any",
+      "base"
+    ]
+  }
+}
