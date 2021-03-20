@@ -387,8 +387,8 @@ namespace UnrealCLRFramework {
 	static_assert(sizeof(Transform) == 48, "Invalid size of the [Transform] structure");
 
 	namespace Assert {
-		void OutputMessage(const char* Message) {
-			FString message(ANSI_TO_TCHAR(Message));
+		void OutputMessage(const uint8* Message) {
+			FString message(UTF8_TO_TCHAR(Message));
 
 			UE_LOG(LogUnrealManaged, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
 
@@ -413,8 +413,8 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Debug {
-		void Log(LogLevel Level, const char* Message) {
-			#define UNREALCLR_FRAMEWORK_LOG(Verbosity) UE_LOG(LogUnrealManaged, Verbosity, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(ANSI_TO_TCHAR(Message)));
+		void Log(LogLevel Level, const uint8* Message) {
+			#define UNREALCLR_FRAMEWORK_LOG(Verbosity) UE_LOG(LogUnrealManaged, Verbosity, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(UTF8_TO_TCHAR(Message)));
 
 			if (Level == LogLevel::Display) {
 				UNREALCLR_FRAMEWORK_LOG(Display);
@@ -427,12 +427,12 @@ namespace UnrealCLRFramework {
 			}
 		}
 
-		void HandleException(const char* Message) {
-			GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *FString(ANSI_TO_TCHAR(Message)));
+		void Exception(const uint8* Message) {
+			GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *FString(UTF8_TO_TCHAR(Message)));
 		}
 
-		void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const char* Message) {
-			GEngine->AddOnScreenDebugMessage((uint64)Key, TimeToDisplay, DisplayColor, *FString(ANSI_TO_TCHAR(Message)));
+		void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const uint8* Message) {
+			GEngine->AddOnScreenDebugMessage((uint64)Key, TimeToDisplay, DisplayColor, *FString(UTF8_TO_TCHAR(Message)));
 		}
 
 		void ClearOnScreenMessages() {
@@ -557,10 +557,10 @@ namespace UnrealCLRFramework {
 			Object->Rename(*name);
 		}
 
-		bool Invoke(UObject* Object, const char* Command) {
+		bool Invoke(UObject* Object, const uint8* Command) {
 			static FOutputDeviceNull outputDevice;
 
-			return Object->CallFunctionByNameWithArguments(ANSI_TO_TCHAR(Command), outputDevice, nullptr, true);
+			return Object->CallFunctionByNameWithArguments(UTF8_TO_TCHAR(Command), outputDevice, nullptr, true);
 		}
 
 		AActor* ToActor(UObject* Object, ActorType Type) {

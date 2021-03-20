@@ -55,7 +55,7 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* assertFunctions = (IntPtr*)buffer[position++];
 
-				Assert.outputMessage = (delegate* unmanaged[Cdecl]<string, void>)assertFunctions[head++];
+				Assert.outputMessage = (delegate* unmanaged[Cdecl]<byte[], void>)assertFunctions[head++];
 			}
 
 			unchecked {
@@ -71,9 +71,9 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* debugFunctions = (IntPtr*)buffer[position++];
 
-				Debug.log = (delegate* unmanaged[Cdecl]<LogLevel, string, void>)debugFunctions[head++];
-				Debug.handleException = (delegate* unmanaged[Cdecl]<string, void>)debugFunctions[head++];
-				Debug.addOnScreenMessage = (delegate* unmanaged[Cdecl]<int, float, int, string, void>)debugFunctions[head++];
+				Debug.log = (delegate* unmanaged[Cdecl]<LogLevel, byte[], void>)debugFunctions[head++];
+				Debug.exception = (delegate* unmanaged[Cdecl]<byte[], void>)debugFunctions[head++];
+				Debug.addOnScreenMessage = (delegate* unmanaged[Cdecl]<int, float, int, byte[], void>)debugFunctions[head++];
 				Debug.clearOnScreenMessages = (delegate* unmanaged[Cdecl]<void>)debugFunctions[head++];
 				Debug.drawBox = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, int, Bool, float, byte, float, void>)debugFunctions[head++];
 				Debug.drawCapsule = (delegate* unmanaged[Cdecl]<in Vector3, float, float, in Quaternion, int, Bool, float, byte, float, void>)debugFunctions[head++];
@@ -93,7 +93,7 @@ namespace UnrealEngine.Framework {
 				Object.isValid = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)objectFunctions[head++];
 				Object.load = (delegate* unmanaged[Cdecl]<ObjectType, string, IntPtr>)objectFunctions[head++];
 				Object.rename = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)objectFunctions[head++];
-				Object.invoke = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)objectFunctions[head++];
+				Object.invoke = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)objectFunctions[head++];
 				Object.toActor = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)objectFunctions[head++];
 				Object.toComponent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr>)objectFunctions[head++];
 				Object.getID = (delegate* unmanaged[Cdecl]<IntPtr, uint>)objectFunctions[head++];
@@ -1346,7 +1346,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	static unsafe partial class Assert {
-		internal static delegate* unmanaged[Cdecl]<string, void> outputMessage;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> outputMessage;
 	}
 
 	static unsafe partial class CommandLine {
@@ -1356,9 +1356,9 @@ namespace UnrealEngine.Framework {
 	}
 
 	static unsafe partial class Debug {
-		internal static delegate* unmanaged[Cdecl]<LogLevel, string, void> log;
-		internal static delegate* unmanaged[Cdecl]<string, void> handleException;
-		internal static delegate* unmanaged[Cdecl]<int, float, int, string, void> addOnScreenMessage;
+		internal static delegate* unmanaged[Cdecl]<LogLevel, byte[], void> log;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> exception;
+		internal static delegate* unmanaged[Cdecl]<int, float, int, byte[], void> addOnScreenMessage;
 		internal static delegate* unmanaged[Cdecl]<void> clearOnScreenMessages;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, int, Bool, float, byte, float, void> drawBox;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, float, float, in Quaternion, int, Bool, float, byte, float, void> drawCapsule;
@@ -1375,7 +1375,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isValid;
 		internal static delegate* unmanaged[Cdecl]<ObjectType, string, IntPtr> load;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> rename;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> invoke;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> invoke;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> toActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr> toComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, uint> getID;

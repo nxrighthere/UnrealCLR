@@ -177,7 +177,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::Functions[position++] = Shared::DebugFunctions;
 
 				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::Log;
-				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::HandleException;
+				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::Exception;
 				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::AddOnScreenMessage;
 				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::ClearOnScreenMessages;
 				Shared::DebugFunctions[head++] = (void*)&UnrealCLRFramework::Debug::DrawBox;
