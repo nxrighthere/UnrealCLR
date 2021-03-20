@@ -27,6 +27,11 @@ namespace UnrealEngine.Tests {
 			playerController.SetViewTarget(mainCamera);
 			playerController.Possess(pawnVR);
 
+			Pawn playerPawn = playerController.GetPawn();
+
+			Assert.IsTrue(playerPawn.IsControlled);
+			Assert.IsTrue(playerPawn.IsPlayerControlled);
+
 			leftHand.DisplayDeviceModel = true;
 			leftHand.SetTrackingMotionSource("Left");
 

@@ -464,6 +464,8 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::PawnFunctions;
 
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::IsControlled;
+				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::IsPlayerControlled;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAutoPossessAI;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetAutoPossessPlayer;
 				Shared::PawnFunctions[head++] = (void*)&UnrealCLRFramework::Pawn::GetUseControllerRotationYaw;

@@ -1677,6 +1677,14 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Pawn {
+		bool IsControlled(APawn* Pawn) {
+			return Pawn->IsPawnControlled();
+		}
+
+		bool IsPlayerControlled(APawn* Pawn) {
+			return Pawn->IsPlayerControlled();
+		}
+
 		AutoPossessAI GetAutoPossessAI(APawn* Pawn) {
 			return Pawn->AutoPossessAI;
 		}

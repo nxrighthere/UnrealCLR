@@ -13,6 +13,8 @@ Derived
 ### Properties
 - [AutoPossessAI](./Pawn-AutoPossessAI.md 'UnrealEngine.Framework.Pawn.AutoPossessAI')
 - [AutoPossessPlayer](./Pawn-AutoPossessPlayer.md 'UnrealEngine.Framework.Pawn.AutoPossessPlayer')
+- [IsControlled](./Pawn-IsControlled.md 'UnrealEngine.Framework.Pawn.IsControlled')
+- [IsPlayerControlled](./Pawn-IsPlayerControlled.md 'UnrealEngine.Framework.Pawn.IsPlayerControlled')
 - [UseControllerRotationPitch](./Pawn-UseControllerRotationPitch.md 'UnrealEngine.Framework.Pawn.UseControllerRotationPitch')
 - [UseControllerRotationRoll](./Pawn-UseControllerRotationRoll.md 'UnrealEngine.Framework.Pawn.UseControllerRotationRoll')
 - [UseControllerRotationYaw](./Pawn-UseControllerRotationYaw.md 'UnrealEngine.Framework.Pawn.UseControllerRotationYaw')

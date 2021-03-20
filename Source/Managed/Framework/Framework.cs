@@ -5468,6 +5468,16 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if the pawn is possesed by a <see cref="Controller"/>
+		/// </summary>
+		public bool IsControlled => isControlled(Pointer);
+
+		/// <summary>
+		/// Returns <c>true</c> if the pawn is possesed by a <see cref="PlayerController"/>
+		/// </summary>
+		public bool IsPlayerControlled => isPlayerControlled(Pointer);
+
+		/// <summary>
 		/// Gets or sets the automatic possession type by an AI controller
 		/// </summary>
 		public AutoPossessAI AutoPossessAI {

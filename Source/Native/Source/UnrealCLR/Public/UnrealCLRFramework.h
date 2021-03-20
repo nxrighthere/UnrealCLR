@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine 4 .NET 5 integration 
+ *  Unreal Engine 4 .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -541,6 +541,8 @@ namespace UnrealCLRFramework {
 	namespace TriggerSphere { }
 
 	namespace Pawn {
+		static bool IsControlled(APawn* Pawn);
+		static bool IsPlayerControlled(APawn* Pawn);
 		static AutoPossessAI GetAutoPossessAI(APawn* Pawn);
 		static AutoReceiveInput GetAutoPossessPlayer(APawn* Pawn);
 		static bool GetUseControllerRotationYaw(APawn* Pawn);

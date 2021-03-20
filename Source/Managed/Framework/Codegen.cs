@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2C6;
+		internal const int checksum = 0x2C8;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -333,6 +333,8 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* pawnFunctions = (IntPtr*)buffer[position++];
 
+				Pawn.isControlled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
+				Pawn.isPlayerControlled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
 				Pawn.getAutoPossessAI = (delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI>)pawnFunctions[head++];
 				Pawn.getAutoPossessPlayer = (delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput>)pawnFunctions[head++];
 				Pawn.getUseControllerRotationYaw = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)pawnFunctions[head++];
@@ -1587,6 +1589,8 @@ namespace UnrealEngine.Framework {
 	unsafe partial class TriggerSphere { }
 
 	unsafe partial class Pawn {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isControlled;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPlayerControlled;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoPossessAI> getAutoPossessAI;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, AutoReceiveInput> getAutoPossessPlayer;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUseControllerRotationYaw;
