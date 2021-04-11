@@ -384,7 +384,6 @@ namespace UnrealCLRFramework {
 
 	static_assert(sizeof(Bounds) == 28, "Invalid size of the [Bounds] structure");
 	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");
-	static_assert(sizeof(Transform) == 48, "Invalid size of the [Transform] structure");
 
 	namespace Assert {
 		void OutputMessage(const uint8* Message) {
@@ -2515,7 +2514,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetWorldTransform(USceneComponent* SceneComponent, const Transform* Transform) {
-			SceneComponent->SetWorldTransform(FTransform(Transform->GetRotation(), Transform->GetTranslation(), Transform->GetScale3D()));
+			SceneComponent->SetWorldTransform(*Transform);
 		}
 	}
 
@@ -3406,7 +3405,15 @@ namespace UnrealCLRFramework {
 		}
 
 		bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, const Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
-			return InstancedStaticMeshComponent->BatchUpdateInstancesTransforms(StartInstanceIndex, TArray<FTransform>(InstanceTransforms, EndInstanceIndex), WorldSpace, MarkRenderStateDirty, Teleport);
+			static TArray<FTransform> instanceTransforms;
+
+			instanceTransforms.Reset();
+
+			for (int32 i = 0; i < EndInstanceIndex; i++) {
+				instanceTransforms.Add(InstanceTransforms[i]);
+			}
+
+			return InstancedStaticMeshComponent->BatchUpdateInstancesTransforms(StartInstanceIndex, instanceTransforms, WorldSpace, MarkRenderStateDirty, Teleport);
 		}
 
 		bool RemoveInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex) {

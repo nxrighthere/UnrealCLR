@@ -1215,13 +1215,10 @@ namespace UnrealEngine.Framework {
 		private float a;
 	}
 
-	[StructLayout(LayoutKind.Explicit, Size = 48)]
+	[StructLayout(LayoutKind.Sequential)]
 	partial struct Transform {
-		[FieldOffset(0)]
-		private Quaternion rotation;
-		[FieldOffset(16)]
 		private Vector3 location;
-		[FieldOffset(32)]
+		private Quaternion rotation;
 		private Vector3 scale;
 	}
 

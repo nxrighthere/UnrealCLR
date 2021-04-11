@@ -51,7 +51,6 @@ namespace UnrealCLRFramework {
 
 	using Bounds = FBoxSphereBounds;
 	using CollisionShape = FCollisionShape;
-	using Transform = FTransform;
 
 	enum struct LogLevel : int32 {
 		Display,
@@ -161,6 +160,19 @@ namespace UnrealCLRFramework {
 		}
 
 		FORCEINLINE operator FQuat() const { return FQuat(X, Y, Z, W); }
+	};
+
+	struct Transform {
+		Vector3 Location;
+		Quaternion Rotation;
+		Vector3 Scale;
+
+		FORCEINLINE Transform(const FTransform& Value) :
+			Location(Value.GetTranslation()),
+			Rotation(Value.GetRotation()),
+			Scale(Value.GetScale3D()) { }
+
+		FORCEINLINE operator FTransform() const { return FTransform(Rotation, Location, Scale); }
 	};
 
 	struct LinearColor {
