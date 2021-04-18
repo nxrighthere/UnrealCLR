@@ -1,8 +1,0 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework').[PrimitiveComponent](PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
-## PrimitiveComponent.CastShadow Property
-Gets or sets whether the component should cast a shadow  
-```csharp
-public bool CastShadow { get; set; }
-```
-#### Property Value
-[System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')

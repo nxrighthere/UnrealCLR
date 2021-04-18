@@ -33,7 +33,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="$(DefineConstants.Contains('API_REFERENCE'))">
-    <PackageReference Include="DefaultDocumentation" Version="0.7.2" PrivateAssets="all" />
+    <PackageReference Include="DefaultDocumentation" Version="0.6.15" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

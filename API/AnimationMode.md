@@ -1,17 +1,19 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework')
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AnimationMode Enum
 Defines the animation mode  
 ```csharp
 public enum AnimationMode
-
 ```
-#### Fields
-<a name='UnrealEngine_Framework_AnimationMode_Asset'></a>
-`Asset` 1  
-  
-<a name='UnrealEngine_Framework_AnimationMode_Blueprint'></a>
+### Fields
+<a name='AnimationMode-Blueprint'></a>
 `Blueprint` 0  
   
-<a name='UnrealEngine_Framework_AnimationMode_Custom'></a>
+  
+<a name='AnimationMode-Asset'></a>
+`Asset` 1  
+  
+  
+<a name='AnimationMode-Custom'></a>
 `Custom` 2  
+  
   

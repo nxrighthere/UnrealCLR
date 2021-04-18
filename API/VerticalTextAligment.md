@@ -1,17 +1,19 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework')
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## VerticalTextAligment Enum
 Defines the vertical text aligment type  
 ```csharp
 public enum VerticalTextAligment
-
 ```
-#### Fields
-<a name='UnrealEngine_Framework_VerticalTextAligment_Bottom'></a>
-`Bottom` 2  
+### Fields
+<a name='VerticalTextAligment-Top'></a>
+`Top` 0  
   
-<a name='UnrealEngine_Framework_VerticalTextAligment_Center'></a>
+  
+<a name='VerticalTextAligment-Center'></a>
 `Center` 1  
   
-<a name='UnrealEngine_Framework_VerticalTextAligment_Top'></a>
-`Top` 0  
+  
+<a name='VerticalTextAligment-Bottom'></a>
+`Bottom` 2  
+  
   

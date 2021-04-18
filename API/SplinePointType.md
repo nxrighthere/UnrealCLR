@@ -1,23 +1,27 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework')
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## SplinePointType Enum
 Defines the spline point type  
 ```csharp
 public enum SplinePointType
-
 ```
-#### Fields
-<a name='UnrealEngine_Framework_SplinePointType_Constant'></a>
-`Constant` 2  
+### Fields
+<a name='SplinePointType-Linear'></a>
+`Linear` 0  
   
-<a name='UnrealEngine_Framework_SplinePointType_Curve'></a>
+  
+<a name='SplinePointType-Curve'></a>
 `Curve` 1  
   
-<a name='UnrealEngine_Framework_SplinePointType_CurveClamped'></a>
+  
+<a name='SplinePointType-Constant'></a>
+`Constant` 2  
+  
+  
+<a name='SplinePointType-CurveClamped'></a>
 `CurveClamped` 3  
   
-<a name='UnrealEngine_Framework_SplinePointType_CurveCustomTangent'></a>
+  
+<a name='SplinePointType-CurveCustomTangent'></a>
 `CurveCustomTangent` 4  
   
-<a name='UnrealEngine_Framework_SplinePointType_Linear'></a>
-`Linear` 0  
   

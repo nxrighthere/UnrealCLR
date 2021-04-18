@@ -1,8 +1,0 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework').[InputComponent](InputComponent.md 'UnrealEngine.Framework.InputComponent')
-## InputComponent.ActionBindingsNumber Property
-Returns the number of action bindings  
-```csharp
-public int ActionBindingsNumber { get; }
-```
-#### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')

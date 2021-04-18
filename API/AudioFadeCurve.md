@@ -1,20 +1,23 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework')
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## AudioFadeCurve Enum
 Defines the type of fade to adjust audio volume  
 ```csharp
-public enum AudioFadeCurve
- : System.Byte
+public enum AudioFadeCurve : System.Byte
 ```
-#### Fields
-<a name='UnrealEngine_Framework_AudioFadeCurve_Linear'></a>
+### Fields
+<a name='AudioFadeCurve-Linear'></a>
 `Linear` 0  
   
-<a name='UnrealEngine_Framework_AudioFadeCurve_Logarithmic'></a>
+  
+<a name='AudioFadeCurve-Logarithmic'></a>
 `Logarithmic` 1  
   
-<a name='UnrealEngine_Framework_AudioFadeCurve_SCurve'></a>
+  
+<a name='AudioFadeCurve-SCurve'></a>
 `SCurve` 2  
   
-<a name='UnrealEngine_Framework_AudioFadeCurve_Sin'></a>
+  
+<a name='AudioFadeCurve-Sin'></a>
 `Sin` 3  
+  
   

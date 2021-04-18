@@ -1,17 +1,19 @@
-### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework')
+### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
 ## CollisionShapeType Enum
 Defines the collision shape type  
 ```csharp
 public enum CollisionShapeType
-
 ```
-#### Fields
-<a name='UnrealEngine_Framework_CollisionShapeType_Box'></a>
+### Fields
+<a name='CollisionShapeType-Box'></a>
 `Box` 1  
   
-<a name='UnrealEngine_Framework_CollisionShapeType_Capsule'></a>
+  
+<a name='CollisionShapeType-Sphere'></a>
+`Sphere` 2  
+  
+  
+<a name='CollisionShapeType-Capsule'></a>
 `Capsule` 3  
   
-<a name='UnrealEngine_Framework_CollisionShapeType_Sphere'></a>
-`Sphere` 2  
   
