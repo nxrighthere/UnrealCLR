@@ -1,15 +1,14 @@
-### [UnrealEngine.Framework](./UnrealEngine-Framework.md 'UnrealEngine.Framework')
+### [UnrealEngine.Framework](UnrealEngine_Framework.md 'UnrealEngine.Framework')
 ## SplineCoordinateSpace Enum
 Defines coordinate space  
 ```csharp
 public enum SplineCoordinateSpace
+
 ```
-### Fields
-<a name='SplineCoordinateSpace-Local'></a>
+#### Fields
+<a name='UnrealEngine_Framework_SplineCoordinateSpace_Local'></a>
 `Local` 0  
   
-  
-<a name='SplineCoordinateSpace-World'></a>
+<a name='UnrealEngine_Framework_SplineCoordinateSpace_World'></a>
 `World` 1  
-  
   
