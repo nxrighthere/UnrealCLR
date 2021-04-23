@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2C8;
+		internal const int checksum = 0x2CB;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -205,6 +205,7 @@ namespace UnrealEngine.Framework {
 				World.getActorByTag = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr>)worldFunctions[head++];
 				World.getActorByID = (delegate* unmanaged[Cdecl]<uint, ActorType, IntPtr>)worldFunctions[head++];
 				World.getFirstPlayerController = (delegate* unmanaged[Cdecl]<IntPtr>)worldFunctions[head++];
+				World.getGameMode = (delegate* unmanaged[Cdecl]<IntPtr>)worldFunctions[head++];
 				World.setOnActorBeginOverlapCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnActorBeginCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
 				World.setOnActorEndCursorOverCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)worldFunctions[head++];
@@ -327,6 +328,13 @@ namespace UnrealEngine.Framework {
 				Actor.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)actorFunctions[head++];
 				Actor.registerEvent = (delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void>)actorFunctions[head++];
 				Actor.unregisterEvent = (delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void>)actorFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* gameModeBaseFunctions = (IntPtr*)buffer[position++];
+
+				GameModeBase.swapPlayerControllers = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void>)gameModeBaseFunctions[head++];
 			}
 
 			unchecked {
@@ -1315,7 +1323,8 @@ namespace UnrealEngine.Framework {
 		SpotLight,
 		TriggerVolume,
 		PostProcessVolume,
-		LevelScript
+		LevelScript,
+		GameModeBase
 	}
 
 	internal enum ComponentType : int {
@@ -1471,6 +1480,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr> getActorByTag;
 		internal static delegate* unmanaged[Cdecl]<uint, ActorType, IntPtr> getActorByID;
 		internal static delegate* unmanaged[Cdecl]<IntPtr> getFirstPlayerController;
+		internal static delegate* unmanaged[Cdecl]<IntPtr> getGameMode;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorBeginOverlapCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorEndOverlapCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> setOnActorHitCallback;
@@ -1575,6 +1585,10 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> hasTag;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void> registerEvent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void> unregisterEvent;
+	}
+
+	unsafe partial class GameModeBase {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void> swapPlayerControllers;
 	}
 
 	unsafe partial class TriggerBase { }

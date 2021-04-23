@@ -278,7 +278,8 @@ namespace UnrealCLRFramework {
 		SpotLight,
 		TriggerVolume,
 		PostProcessVolume,
-		LevelScript
+		LevelScript,
+		GameModeBase
 	};
 
 	enum struct ComponentType : int32 {
@@ -436,6 +437,7 @@ namespace UnrealCLRFramework {
 		static AActor* GetActorByTag(const char* Tag, ActorType Type);
 		static AActor* GetActorByID(uint32 ID, ActorType Type);
 		static APlayerController* GetFirstPlayerController();
+		static AGameModeBase* GetGameMode();
 		static void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback);
 		static void SetOnActorEndOverlapCallback(ActorOverlapDelegate Callback);
 		static void SetOnActorHitCallback(ActorHitDelegate Callback);
@@ -542,6 +544,10 @@ namespace UnrealCLRFramework {
 		static bool HasTag(AActor* Actor, const char* Tag);
 		static void RegisterEvent(AActor* Actor, ActorEventType Type);
 		static void UnregisterEvent(AActor* Actor, ActorEventType Type);
+	}
+
+	namespace GameModeBase {
+		static void SwapPlayerControllers(AGameModeBase* GameModeBase, APlayerController* PlayerController, APlayerController* NewPlayerController);
 	}
 
 	namespace TriggerBase { }

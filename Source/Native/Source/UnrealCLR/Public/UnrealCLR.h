@@ -64,6 +64,7 @@
 #include "EngineUtils.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/GameModeBase.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerInput.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -347,6 +348,7 @@ namespace UnrealCLR {
 		static void* ConsoleObjectFunctions[storageSize];
 		static void* ConsoleVariableFunctions[storageSize];
 		static void* ActorFunctions[storageSize];
+		static void* GameModeBaseFunctions[storageSize];
 		static void* PawnFunctions[storageSize];
 		static void* CharacterFunctions[storageSize];
 		static void* ControllerFunctions[storageSize];

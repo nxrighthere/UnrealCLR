@@ -32,6 +32,7 @@
 - [DirectionalLightComponent](./DirectionalLightComponent.md 'UnrealEngine.Framework.DirectionalLightComponent')
 - [Engine](./Engine.md 'UnrealEngine.Framework.Engine')
 - [Font](./Font.md 'UnrealEngine.Framework.Font')
+- [GameModeBase](./GameModeBase.md 'UnrealEngine.Framework.GameModeBase')
 - [HeadMountedDisplay](./HeadMountedDisplay.md 'UnrealEngine.Framework.HeadMountedDisplay')
 - [HierarchicalInstancedStaticMeshComponent](./HierarchicalInstancedStaticMeshComponent.md 'UnrealEngine.Framework.HierarchicalInstancedStaticMeshComponent')
 - [InputComponent](./InputComponent.md 'UnrealEngine.Framework.InputComponent')

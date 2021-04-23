@@ -4047,6 +4047,19 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns the current game mode instance which is always valid during gameplay on the server
+		/// </summary>
+		/// <returns>A game mode or <c>null</c> on failure</returns>
+		public static GameModeBase GetGameMode() {
+			IntPtr pointer = getGameMode();
+
+			if (pointer != IntPtr.Zero)
+				return new(pointer);
+
+			return null;
+		}
+
+		/// <summary>
 		/// Retrieves the current location of the <a href="https://docs.unrealengine.com/en-US/Engine/LevelStreaming/WorldBrowser/index.html">world origin</a> to a reference
 		/// </summary>
 		public static void GetWorldOrigin(ref Vector3 value) => getWorldOrigin(ref value);
@@ -5439,6 +5452,30 @@ namespace UnrealEngine.Framework {
 				throw new InvalidOperationException();
 
 			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+		}
+	}
+
+	/// <summary>
+	/// Defines the game being played, instantiated only on the server
+	/// </summary>
+	public unsafe partial class GameModeBase : Actor {
+		internal override ActorType Type => ActorType.GameModeBase;
+
+		private protected GameModeBase() { }
+
+		internal GameModeBase(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Swaps player controllers
+		/// </summary>
+		public void SwapPlayerControllers(PlayerController playerController, PlayerController newPlayerController) {
+			if (playerController == null)
+				throw new ArgumentNullException(nameof(playerController));
+
+			if (newPlayerController == null)
+				throw new ArgumentNullException(nameof(newPlayerController));
+
+			swapPlayerControllers(Pointer, playerController.Pointer, newPlayerController.Pointer);
 		}
 	}
 

@@ -12,6 +12,7 @@ Derived
 &#8627; [Brush](./Brush.md 'UnrealEngine.Framework.Brush')  
 &#8627; [Camera](./Camera.md 'UnrealEngine.Framework.Camera')  
 &#8627; [Controller](./Controller.md 'UnrealEngine.Framework.Controller')  
+&#8627; [GameModeBase](./GameModeBase.md 'UnrealEngine.Framework.GameModeBase')  
 &#8627; [LevelScript](./LevelScript.md 'UnrealEngine.Framework.LevelScript')  
 &#8627; [Light](./Light.md 'UnrealEngine.Framework.Light')  
 &#8627; [Pawn](./Pawn.md 'UnrealEngine.Framework.Pawn')  

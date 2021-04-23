@@ -114,6 +114,9 @@ namespace UnrealCLRFramework {
 			case ActorType::LevelScript:\
 				Result = Head ALevelScriptActor Tail;\
 				break;\
+			case ActorType::GameModeBase:\
+				Result = Head AGameModeBase Tail;\
+				break;\
 			default:\
 				break;\
 		}\
@@ -1137,6 +1140,10 @@ namespace UnrealCLRFramework {
 			return UnrealCLR::Engine::World->GetFirstPlayerController();
 		}
 
+		AGameModeBase* GetGameMode() {
+			return UnrealCLR::Engine::World->GetAuthGameMode();
+		}
+
 		void SetOnActorBeginOverlapCallback(ActorOverlapDelegate Callback) {
 			UnrealCLR::Shared::Events[UnrealCLR::OnActorBeginOverlap] = (void*)Callback;
 		}
@@ -1672,6 +1679,12 @@ namespace UnrealCLRFramework {
 
 		void UnregisterEvent(AActor* Actor, ActorEventType Type) {
 			UNREALCLR_SET_ACTOR_EVENT(Type, UNREALCLR_NONE, RemoveDynamic);
+		}
+	}
+
+	namespace GameModeBase {
+		void SwapPlayerControllers(AGameModeBase* GameModeBase, APlayerController* PlayerController, APlayerController* NewPlayerController) {
+			GameModeBase->SwapPlayerControllers(PlayerController, NewPlayerController);
 		}
 	}
 

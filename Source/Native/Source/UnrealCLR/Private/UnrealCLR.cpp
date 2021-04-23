@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine 4 .NET 5 integration 
+ *  Unreal Engine 4 .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -322,6 +322,7 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorByTag;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetActorByID;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetFirstPlayerController;
+				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::GetGameMode;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorBeginOverlapCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorBeginCursorOverCallback;
 				Shared::WorldFunctions[head++] = (void*)&UnrealCLRFramework::World::SetOnActorEndCursorOverCallback;
@@ -456,6 +457,15 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::HasTag;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::RegisterEvent;
 				Shared::ActorFunctions[head++] = (void*)&UnrealCLRFramework::Actor::UnregisterEvent;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::GameModeBaseFunctions;
+
+				Shared::GameModeBaseFunctions[head++] = (void*)&UnrealCLRFramework::GameModeBase::SwapPlayerControllers;
 
 				checksum += head;
 			}

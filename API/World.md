@@ -18,6 +18,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [GetActorByID&lt;T&gt;(uint)](./World-GetActorByID-T-(uint).md 'UnrealEngine.Framework.World.GetActorByID&lt;T&gt;(uint)')
 - [GetActorByTag&lt;T&gt;(string)](./World-GetActorByTag-T-(string).md 'UnrealEngine.Framework.World.GetActorByTag&lt;T&gt;(string)')
 - [GetFirstPlayerController()](./World-GetFirstPlayerController().md 'UnrealEngine.Framework.World.GetFirstPlayerController()')
+- [GetGameMode()](./World-GetGameMode().md 'UnrealEngine.Framework.World.GetGameMode()')
 - [GetWorldOrigin()](./World-GetWorldOrigin().md 'UnrealEngine.Framework.World.GetWorldOrigin()')
 - [GetWorldOrigin(System.Numerics.Vector3)](./World-GetWorldOrigin(Vector3).md 'UnrealEngine.Framework.World.GetWorldOrigin(System.Numerics.Vector3)')
 - [LineTraceSingleByChannel(System.Numerics.Vector3, System.Numerics.Vector3, UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, bool, UnrealEngine.Framework.Actor, UnrealEngine.Framework.PrimitiveComponent)](./World-LineTraceSingleByChannel(Vector3_Vector3_CollisionChannel_Hit_bool_Actor_PrimitiveComponent).md 'UnrealEngine.Framework.World.LineTraceSingleByChannel(System.Numerics.Vector3, System.Numerics.Vector3, UnrealEngine.Framework.CollisionChannel, UnrealEngine.Framework.Hit, bool, UnrealEngine.Framework.Actor, UnrealEngine.Framework.PrimitiveComponent)')
