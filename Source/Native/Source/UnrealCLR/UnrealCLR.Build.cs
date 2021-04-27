@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine 4 .NET 5 integration 
+ *  Unreal Engine 4 .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,8 +26,13 @@ using System.IO;
 using UnrealBuildTool;
 
 public class UnrealCLR : ModuleRules {
-	public UnrealCLR(ReadOnlyTargetRules Target) : base(Target)	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+	public UnrealCLR(ReadOnlyTargetRules Target) : base(Target) {
+		#if UE_4_24_OR_LATER
+			bLegacyPublicIncludePaths = false;
+			DefaultBuildSettings = BuildSettingsVersion.V2;
+		#else
+			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+		#endif
 
 		PublicIncludePaths.AddRange(new string[] { });
 
