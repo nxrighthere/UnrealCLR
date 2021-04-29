@@ -9,7 +9,8 @@
     <ServerGarbageCollection>False</ServerGarbageCollection>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
-    <NoWarn>CA1028, CA1030, CA1031, CA1034, CA1067, CA1303, CA1305, CA1720</NoWarn>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <NoWarn>CA1008, CA1014, CA1024, CA1028, CA1030, CA1031, CA1034, CA1067, CA1303, CA1305, CA1508, CA1708, CA1711, CA1720, CA1725, CA2201</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -23,8 +24,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Copyright>Copyright (c) 2020 Stanislav Denisov (nxrighthere@gmail.com)</Copyright>
-    <PackageLicenseExpression>LGPLv3 with a static linking exception</PackageLicenseExpression>
+    <Copyright>Copyright (c) 2021 Stanislav Denisov (nxrighthere@gmail.com)</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,9 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.3.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.3.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
