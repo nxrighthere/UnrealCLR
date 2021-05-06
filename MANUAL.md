@@ -103,7 +103,7 @@ Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and
 
 Assemblies that no longer referenced and unused in the project will persist in `%Project%/Managed` folder. Consider maintaining this folder through IDE or automation scripts.
 
-Enter the [play mode](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/InEditorTesting/index.html) to execute managed code. Stop the play mode to unload assemblies from memory for further recompilation.
+Enter the [play mode](https://docs.unrealengine.com/en-US/Basics/HowTo/PIE/index.html) to execute managed code. Stop the play mode to unload assemblies from memory for further recompilation.
 
 #### Blueprint functions
 
