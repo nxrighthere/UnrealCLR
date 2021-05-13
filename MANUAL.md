@@ -51,7 +51,7 @@ using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace Game {
-	public static class Main { // Indicates the main entry point for automatic loading by the plugin
+	public class Main { // Indicates the main entry point for automatic loading by the plugin
 		public static void OnWorldBegin() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Hello, Unreal Engine!");
 
 		public static void OnWorldPostBegin() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "How's it going?");
@@ -116,7 +116,7 @@ using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace Game {
-	public static class System { // Custom class for loading functions from blueprints
+	public class System { // Custom class for loading functions from blueprints
 		public static void Function() => Debug.AddOnScreenMessage(-1, 10.0f, Color.DeepPink, "Blueprint function invoked!");
 	}
 }
@@ -179,7 +179,7 @@ using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace Game {
-	public static class Main {
+	public class Main {
 		private static Entity[] entities = new Entity[32];
 
 		public static void OnWorldBegin() {
@@ -219,7 +219,7 @@ using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace Game {
-	public static class Main {
+	public class Main {
 		private static Actor[] entities = new Actor[32];
 		private static bool[] canTick = new bool[entities.Length];
 
