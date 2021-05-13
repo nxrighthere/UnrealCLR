@@ -3,7 +3,7 @@ using System.Drawing;
 using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
-	public static class Main {
+	public class Main {
 		private static ISystem runningSystem;
 
 		public static void OnWorldPostBegin() {

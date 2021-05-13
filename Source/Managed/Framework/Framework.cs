@@ -5466,6 +5466,14 @@ namespace UnrealEngine.Framework {
 		internal GameModeBase(IntPtr pointer) => Pointer = pointer;
 
 		/// <summary>
+		/// Gets or sets whether the game perform seamless map travels which loads in the background and doesn't disconnect clients
+		/// </summary>
+		public bool UseSeamlessTravel {
+			get => getUseSeamlessTravel(Pointer);
+			set => setUseSeamlessTravel(Pointer, value);
+		}
+
+		/// <summary>
 		/// Swaps player controllers
 		/// </summary>
 		public void SwapPlayerControllers(PlayerController playerController, PlayerController newPlayerController) {

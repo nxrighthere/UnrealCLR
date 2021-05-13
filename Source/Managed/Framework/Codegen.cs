@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2CB;
+		internal const int checksum = 0x2CD;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -334,6 +334,8 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* gameModeBaseFunctions = (IntPtr*)buffer[position++];
 
+				GameModeBase.getUseSeamlessTravel = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)gameModeBaseFunctions[head++];
+				GameModeBase.setUseSeamlessTravel = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)gameModeBaseFunctions[head++];
 				GameModeBase.swapPlayerControllers = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void>)gameModeBaseFunctions[head++];
 			}
 
@@ -1588,6 +1590,8 @@ namespace UnrealEngine.Framework {
 	}
 
 	unsafe partial class GameModeBase {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUseSeamlessTravel;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUseSeamlessTravel;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, IntPtr, void> swapPlayerControllers;
 	}
 

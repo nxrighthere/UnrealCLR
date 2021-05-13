@@ -1683,6 +1683,14 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace GameModeBase {
+		bool GetUseSeamlessTravel(AGameModeBase* GameModeBase) {
+			return GameModeBase->bUseSeamlessTravel;
+		}
+
+		void SetUseSeamlessTravel(AGameModeBase* GameModeBase, bool Value) {
+			GameModeBase->bUseSeamlessTravel = Value;
+		}
+
 		void SwapPlayerControllers(AGameModeBase* GameModeBase, APlayerController* PlayerController, APlayerController* NewPlayerController) {
 			GameModeBase->SwapPlayerControllers(PlayerController, NewPlayerController);
 		}

@@ -465,6 +465,8 @@ void UnrealCLR::Module::StartupModule() {
 				int32 head = 0;
 				Shared::Functions[position++] = Shared::GameModeBaseFunctions;
 
+				Shared::GameModeBaseFunctions[head++] = (void*)&UnrealCLRFramework::GameModeBase::GetUseSeamlessTravel;
+				Shared::GameModeBaseFunctions[head++] = (void*)&UnrealCLRFramework::GameModeBase::SetUseSeamlessTravel;
 				Shared::GameModeBaseFunctions[head++] = (void*)&UnrealCLRFramework::GameModeBase::SwapPlayerControllers;
 
 				checksum += head;
