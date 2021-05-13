@@ -8,5 +8,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 ### Properties
 - [UseSeamlessTravel](./GameModeBase-UseSeamlessTravel.md 'UnrealEngine.Framework.GameModeBase.UseSeamlessTravel')
 ### Methods
-- [HandleSeamlessTravelPlayer(UnrealEngine.Framework.Controller)](./GameModeBase-HandleSeamlessTravelPlayer(Controller).md 'UnrealEngine.Framework.GameModeBase.HandleSeamlessTravelPlayer(UnrealEngine.Framework.Controller)')
 - [SwapPlayerControllers(UnrealEngine.Framework.PlayerController, UnrealEngine.Framework.PlayerController)](./GameModeBase-SwapPlayerControllers(PlayerController_PlayerController).md 'UnrealEngine.Framework.GameModeBase.SwapPlayerControllers(UnrealEngine.Framework.PlayerController, UnrealEngine.Framework.PlayerController)')
