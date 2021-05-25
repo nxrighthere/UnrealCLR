@@ -10041,6 +10041,11 @@ namespace UnrealEngine.Framework {
 		public int AddInstance(in Transform instanceTransform) => addInstance(Pointer, instanceTransform);
 
 		/// <summary>
+		/// Adds an instance to the component using the transform that will be applied at instantiation
+		/// </summary>
+		public int* AddInstances(in Transform[] instanceTransform, bool shouldReturnIndices = false) => addInstances(Pointer, instanceTransform, shouldReturnIndices);
+
+		/// <summary>
 		/// Updates the transform for the specified instance
 		/// </summary>
 		/// <param name="instanceIndex">The index of the instance to update</param>

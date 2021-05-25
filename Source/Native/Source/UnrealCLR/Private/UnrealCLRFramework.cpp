@@ -3421,6 +3421,10 @@ namespace UnrealCLRFramework {
 			return InstancedStaticMeshComponent->AddInstance(*InstanceTransform);
 		}
 
+		int32* AddInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform, bool ShouldReturnIndices) {
+			return InstancedStaticMeshComponent->AddInstances(*InstanceTransform, ShouldReturnIndices);
+		}
+
 		bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
 			return InstancedStaticMeshComponent->UpdateInstanceTransform(InstanceIndex, *InstanceTransform, WorldSpace, MarkRenderStateDirty, Teleport);
 		}
