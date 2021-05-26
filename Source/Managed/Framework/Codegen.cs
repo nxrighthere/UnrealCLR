@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2CD;
+		internal const int checksum = 0x2CE;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -906,7 +906,8 @@ namespace UnrealEngine.Framework {
 
 				InstancedStaticMeshComponent.getInstanceCount = (delegate* unmanaged[Cdecl]<IntPtr, int>)instancedStaticMeshComponentFunctions[head++];
 				InstancedStaticMeshComponent.getInstanceTransform = (delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, Bool, Bool>)instancedStaticMeshComponentFunctions[head++];
-				InstancedStaticMeshComponent.addInstance = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, int>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.addInstance = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)instancedStaticMeshComponentFunctions[head++];
+				InstancedStaticMeshComponent.addInstances = (delegate* unmanaged[Cdecl]<IntPtr, int, Transform[], void>)instancedStaticMeshComponentFunctions[head++];
 				InstancedStaticMeshComponent.updateInstanceTransform = (delegate* unmanaged[Cdecl]<IntPtr, int, in Transform, Bool, Bool, Bool, Bool>)instancedStaticMeshComponentFunctions[head++];
 				InstancedStaticMeshComponent.batchUpdateInstanceTransforms = (delegate* unmanaged[Cdecl]<IntPtr, int, int, Transform[], Bool, Bool, Bool, Bool>)instancedStaticMeshComponentFunctions[head++];
 				InstancedStaticMeshComponent.removeInstance = (delegate* unmanaged[Cdecl]<IntPtr, int, Bool>)instancedStaticMeshComponentFunctions[head++];
@@ -2104,7 +2105,8 @@ namespace UnrealEngine.Framework {
 	unsafe partial class InstancedStaticMeshComponent {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getInstanceCount;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, Bool, Bool> getInstanceTransform;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, int> addInstance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> addInstance;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, int, Transform[], void> addInstances;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, in Transform, Bool, Bool, Bool, Bool> updateInstanceTransform;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, int, Transform[], Bool, Bool, Bool, Bool> batchUpdateInstanceTransforms;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, Bool> removeInstance;

@@ -10038,7 +10038,17 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Adds an instance to the component using the transform that will be applied at instantiation
 		/// </summary>
-		public int AddInstance(in Transform instanceTransform) => addInstance(Pointer, instanceTransform);
+		public void AddInstance(in Transform instanceTransform) => addInstance(Pointer, instanceTransform);
+
+		/// <summary>
+		/// Adds multiple instances to the component using the transforms that will be applied at instantiation
+		/// </summary>
+		public void AddInstances(Transform[] instanceTransforms) {
+			if (instanceTransforms == null)
+				throw new ArgumentNullException(nameof(instanceTransforms));
+
+			addInstances(Pointer, instanceTransforms.Length, instanceTransforms);
+		}
 
 		/// <summary>
 		/// Updates the transform for the specified instance

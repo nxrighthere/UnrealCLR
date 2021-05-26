@@ -14,6 +14,7 @@ Derived
 - [InstanceCount](./InstancedStaticMeshComponent-InstanceCount.md 'UnrealEngine.Framework.InstancedStaticMeshComponent.InstanceCount')
 ### Methods
 - [AddInstance(UnrealEngine.Framework.Transform)](./InstancedStaticMeshComponent-AddInstance(Transform).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.AddInstance(UnrealEngine.Framework.Transform)')
+- [AddInstances(UnrealEngine.Framework.Transform[])](./InstancedStaticMeshComponent-AddInstances(Transform--).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.AddInstances(UnrealEngine.Framework.Transform[])')
 - [BatchUpdateInstanceTransforms(int, UnrealEngine.Framework.Transform[], bool, bool, bool)](./InstancedStaticMeshComponent-BatchUpdateInstanceTransforms(int_Transform--_bool_bool_bool).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.BatchUpdateInstanceTransforms(int, UnrealEngine.Framework.Transform[], bool, bool, bool)')
 - [ClearInstances()](./InstancedStaticMeshComponent-ClearInstances().md 'UnrealEngine.Framework.InstancedStaticMeshComponent.ClearInstances()')
 - [GetInstanceTransform(int, UnrealEngine.Framework.Transform, bool)](./InstancedStaticMeshComponent-GetInstanceTransform(int_Transform_bool).md 'UnrealEngine.Framework.InstancedStaticMeshComponent.GetInstanceTransform(int, UnrealEngine.Framework.Transform, bool)')

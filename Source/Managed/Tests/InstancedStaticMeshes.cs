@@ -34,8 +34,9 @@ namespace UnrealEngine.Tests {
 				sceneComponent.SetRelativeRotation(Maths.CreateFromYawPitchRoll(5.0f * i, 0.0f, 0.0f));
 				sceneComponent.AddLocalOffset(new(15.0f * i, 20.0f * i, 25.0f * i));
 				sceneComponent.GetTransform(ref transforms[i]);
-				instancedStaticMeshComponent.AddInstance(transforms[i]);
 			}
+
+			instancedStaticMeshComponent.AddInstances(transforms);
 
 			Debug.AddOnScreenMessage(-1, 3.0f, Color.LightGreen, "Instances are created! Number of instances: " + instancedStaticMeshComponent.InstanceCount);
 		}

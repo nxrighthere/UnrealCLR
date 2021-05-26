@@ -3417,8 +3417,20 @@ namespace UnrealCLRFramework {
 			return result;
 		}
 
-		int32 AddInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform) {
-			return InstancedStaticMeshComponent->AddInstance(*InstanceTransform);
+		void AddInstance(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, const Transform* InstanceTransform) {
+			InstancedStaticMeshComponent->AddInstance(*InstanceTransform);
+		}
+
+		void AddInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 EndInstanceIndex, const Transform InstanceTransforms[]) {
+			static TArray<FTransform> instanceTransforms;
+
+			instanceTransforms.Reset();
+
+			for (int32 i = 0; i < EndInstanceIndex; i++) {
+				instanceTransforms.Add(InstanceTransforms[i]);
+			}
+
+			InstancedStaticMeshComponent->AddInstances(instanceTransforms, false);
 		}
 
 		bool UpdateInstanceTransform(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 InstanceIndex, const Transform* InstanceTransform, bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
