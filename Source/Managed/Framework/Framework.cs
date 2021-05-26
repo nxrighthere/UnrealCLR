@@ -519,7 +519,11 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Smoothly accelerates and decelerates, ease amount can be controlled
 		/// </summary>
-		EaseInOut
+		EaseInOut,
+		/// <summary>
+		/// The game's camera system has already performed the blending. Engine should not blend at all
+		/// </summary>
+		PreBlended
 	}
 
 	/// <summary>
