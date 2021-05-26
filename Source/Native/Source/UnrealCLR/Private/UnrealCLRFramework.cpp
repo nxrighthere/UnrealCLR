@@ -3441,6 +3441,7 @@ namespace UnrealCLRFramework {
 		bool BatchUpdateInstanceTransforms(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 StartInstanceIndex, int32 EndInstanceIndex, const Transform InstanceTransforms[], bool WorldSpace, bool MarkRenderStateDirty, bool Teleport) {
 			static TArray<FTransform> instanceTransforms;
 
+			instanceTransforms.Reserve(EndInstanceIndex - StartInstanceIndex);
 			instanceTransforms.Reset();
 
 			for (int32 i = 0; i < EndInstanceIndex; i++) {
