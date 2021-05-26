@@ -3424,6 +3424,7 @@ namespace UnrealCLRFramework {
 		void AddInstances(UInstancedStaticMeshComponent* InstancedStaticMeshComponent, int32 EndInstanceIndex, const Transform InstanceTransforms[]) {
 			static TArray<FTransform> instanceTransforms;
 
+			instanceTransforms.Reserve(EndInstanceIndex + 1);
 			instanceTransforms.Reset();
 
 			for (int32 i = 0; i < EndInstanceIndex; i++) {
