@@ -3444,7 +3444,7 @@ namespace UnrealCLRFramework {
 			instanceTransforms.Reserve(EndInstanceIndex - StartInstanceIndex);
 			instanceTransforms.Reset();
 
-			for (int32 i = 0; i < EndInstanceIndex; i++) {
+			for (int32 i = 0; i < EndInstanceIndex - StartInstanceIndex; i++) {
 				instanceTransforms.Add(InstanceTransforms[i]);
 			}
 
