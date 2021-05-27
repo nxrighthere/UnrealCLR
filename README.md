@@ -47,7 +47,7 @@ Create a new or use an existing Unreal Engine C++ or blueprints project. Clone t
 Make sure that the Unreal Engine is not running. Re-run the installation process. Recompile custom code with an updated framework.
 
 #### Command-line options
-`--project-path <path>` Sets a path to the Unreal Engine project
+`--project-path <path>` Sets a path to an Unreal Engine project
 
 `--compile-tests <true/false>` Indicates whether tests should be compiled
 

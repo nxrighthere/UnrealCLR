@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine 4 .NET 5 integration
+ *  Unreal Engine .NET 5 integration 
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
