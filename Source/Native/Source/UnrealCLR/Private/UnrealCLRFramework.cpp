@@ -370,14 +370,21 @@ namespace UnrealCLRFramework {
 
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
-	#if ENGINE_MINOR_VERSION <= 25
-		#define UNREALCLR_PIXEL_FORMAT 71
-	#elif ENGINE_MINOR_VERSION >= 26
+	#if ENGINE_MAJOR_VERSION == 4
+		#define UNREALCLR_BLEND_TYPE 5
+
+		#if ENGINE_MINOR_VERSION <= 25
+			#define UNREALCLR_PIXEL_FORMAT 71
+		#elif ENGINE_MINOR_VERSION >= 26
+			#define UNREALCLR_PIXEL_FORMAT 72
+		#endif
+	#elif ENGINE_MAJOR_VERSION == 5
 		#define UNREALCLR_PIXEL_FORMAT 72
+		#define UNREALCLR_BLEND_TYPE 6
 	#endif
 
 	static_assert(AudioFadeCurve::Count == AudioFadeCurve(4), "Invalid elements count of the [AudioFadeCurve] enumeration");
-	static_assert(BlendType::VTBlend_MAX == BlendType(5), "Invalid elements count of the [BlendType] enumeration");
+	static_assert(BlendType::VTBlend_MAX == BlendType(UNREALCLR_BLEND_TYPE), "Invalid elements count of the [BlendType] enumeration");
 	static_assert(CollisionChannel::ECC_MAX == CollisionChannel(33), "Invalid elements count of the [CollisionChannel] enumeration");
 	static_assert(CollisionResponse::ECR_MAX == CollisionResponse(3), "Invalid elements count of the [CollisionResponse] enumeration");
 	static_assert(ControllerHand::ControllerHand_Count == ControllerHand(17), "Invalid elements count of the [ControllerHand] enumeration");
