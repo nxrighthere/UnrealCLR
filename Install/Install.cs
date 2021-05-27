@@ -3,31 +3,66 @@ using System.Diagnostics;
 using System.IO;
 
 public static class Install {
-	private static void Main() {
+	private static void Main(string[] arguments) {
 		Console.Title = "UnrealCLR Installation Tool";
 
-		using StreamReader consoleReader = new StreamReader(Console.OpenStandardInput(8192), Console.InputEncoding, false, bufferSize: 1024);
+		using StreamReader consoleReader = new(Console.OpenStandardInput(8192), Console.InputEncoding, false, bufferSize: 1024);
 
 		Console.SetIn(consoleReader);
 
-		Console.WriteLine("Welcome to UnrealCLR installation tool!");
-		Console.Write(Environment.NewLine + "Please, set a path to an Unreal Engine project: ");
+		string projectPath = null;
+		bool? compileTestsOption = null;
+		bool? overwriteFilesOption = null;
 
-		string projectPath = @"" + Console.ReadLine().Replace("\"", String.Empty, StringComparison.Ordinal).Replace("\'", String.Empty, StringComparison.Ordinal).TrimEnd(Path.DirectorySeparatorChar);
+		for (int i = 0; i < arguments.Length; i++) {
+			if (arguments[i].Contains("--project-path", StringComparison.Ordinal))
+				projectPath = arguments[i + 1];
+
+			if (arguments[i].Contains("--compile-tests", StringComparison.Ordinal))
+				compileTestsOption = bool.Parse(arguments[i + 1]);
+
+			if (arguments[i].Contains("--overwrite-files", StringComparison.Ordinal))
+				overwriteFilesOption = true;
+		}
+
+		Console.WriteLine("Welcome to the UnrealCLR installation tool!");
+
+		if (String.IsNullOrEmpty(projectPath)) {
+			Console.Write(Environment.NewLine + "Please, set a path to an Unreal Engine project: ");
+
+			projectPath = @"" + Console.ReadLine();
+		}
+
+		projectPath = projectPath.Replace("\"", String.Empty, StringComparison.Ordinal).Replace("\'", String.Empty, StringComparison.Ordinal).TrimEnd(Path.DirectorySeparatorChar);
+
 		string sourcePath = Directory.GetCurrentDirectory() + "/..";
 
 		if (Directory.GetFiles(projectPath, "*.uproject", SearchOption.TopDirectoryOnly).Length != 0) {
 			Console.WriteLine($"Project file found in \"{ projectPath }\" folder!");
-			Console.Write(Environment.NewLine + "Do you want to compile and install the tests? [y/n] ");
 
 			bool compileTests = false;
 
-			if (Console.ReadKey(false).Key == ConsoleKey.Y)
-				compileTests = true;
+			if (compileTestsOption != null) {
+				compileTests = compileTestsOption.GetValueOrDefault();
+			} else {
+				Console.Write(Environment.NewLine + "Do you want to compile and install tests? [y/n] ");
 
-			Console.Write(Environment.NewLine + "Installation will delete all previous files of the plugin" + (compileTests ? " and content of tests" : String.Empty) + ". Do you want to continue? [y/n] ");
+				if (Console.ReadKey(false).Key == ConsoleKey.Y)
+					compileTests = true;
+			}
 
-			if (Console.ReadKey(false).Key == ConsoleKey.Y) {
+			bool overwriteFiles = false;
+
+			if (overwriteFilesOption != null) {
+				overwriteFiles = overwriteFilesOption.GetValueOrDefault();
+			} else {
+				Console.Write(Environment.NewLine + "Installation will delete all previous files of the plugin" + (compileTests ? " and content of tests" : String.Empty) + ". Do you want to continue? [y/n] ");
+
+				if (Console.ReadKey(false).Key == ConsoleKey.Y)
+					overwriteFiles = true;
+			}
+
+			if (overwriteFiles) {
 				string nativeSource = sourcePath + "/Source/Native";
 
 				Console.WriteLine(Environment.NewLine + "Removing the previous plugin installation...");
