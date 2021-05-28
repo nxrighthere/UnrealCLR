@@ -16,6 +16,7 @@ namespace UnrealEngine.Tests {
 		private const string byteProperty = "Test Byte";
 		private const string intProperty = "Test Int";
 		private const string floatProperty = "Test Float";
+		private const string stringProperty = "Test String";
 		private const string textProperty = "Test Text";
 
 		public BlueprintsExtensibility() {
@@ -40,21 +41,25 @@ namespace UnrealEngine.Tests {
 			TestActorByteProperty();
 			TestActorIntProperty();
 			TestActorFloatProperty();
+			TestActorStringProperty();
 			TestActorTextProperty();
 			TestSceneComponentBoolProperty();
 			TestSceneComponentByteProperty();
 			TestSceneComponentIntProperty();
 			TestSceneComponentFloatProperty();
+			TestSceneComponentStringProperty();
 			TestSceneComponentTextProperty();
 			TestLevelScriptBoolProperty();
 			TestLevelScriptByteProperty();
 			TestLevelScriptIntProperty();
 			TestLevelScriptFloatProperty();
+			TestLevelScriptStringProperty();
 			TestLevelScriptTextProperty();
 			TestAnimationBoolProperty();
 			TestAnimationByteProperty();
 			TestAnimationIntProperty();
 			TestAnimationFloatProperty();
+			TestAnimationStringProperty();
 			TestAnimationTextProperty();
 		}
 
@@ -104,10 +109,21 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
 		}
 
+		private void TestActorStringProperty() {
+			string value = String.Empty;
+
+			Assert.IsTrue(actor.SetString(stringProperty, "Test string from managed code"));
+
+			if (actor.GetString(stringProperty, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " actor property value retrievement failed!");
+		}
+
 		private void TestActorTextProperty() {
 			string value = String.Empty;
 
-			Assert.IsTrue(actor.SetText(textProperty, "Test message from managed code"));
+			Assert.IsTrue(actor.SetText(textProperty, "Test text from managed code"));
 
 			if (actor.GetText(textProperty, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " actor property value retrieved: " + value);
@@ -159,10 +175,21 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
 		}
 
+		private void TestSceneComponentStringProperty() {
+			string value = String.Empty;
+
+			Assert.IsTrue(sceneComponent.SetString(stringProperty, "Test string from managed code"));
+
+			if (sceneComponent.GetString(stringProperty, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " scene component property value retrievement failed!");
+		}
+
 		private void TestSceneComponentTextProperty() {
 			string value = String.Empty;
 
-			Assert.IsTrue(sceneComponent.SetText(textProperty, "Test message from managed code"));
+			Assert.IsTrue(sceneComponent.SetText(textProperty, "Test text from managed code"));
 
 			if (sceneComponent.GetText(textProperty, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " scene component property value retrieved: " + value);
@@ -214,10 +241,21 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
 		}
 
+		private void TestLevelScriptStringProperty() {
+			string value = String.Empty;
+
+			Assert.IsTrue(levelScript.SetString(stringProperty, "Test string message from managed code"));
+
+			if (levelScript.GetString(stringProperty, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " level script property value retrievement failed!");
+		}
+
 		private void TestLevelScriptTextProperty() {
 			string value = String.Empty;
 
-			Assert.IsTrue(levelScript.SetText(textProperty, "Test message from managed code"));
+			Assert.IsTrue(levelScript.SetText(textProperty, "Test text message from managed code"));
 
 			if (levelScript.GetText(textProperty, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " level script property value retrieved: " + value);
@@ -269,10 +307,21 @@ namespace UnrealEngine.Tests {
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " animation property value retrievement failed!");
 		}
 
+		private void TestAnimationStringProperty() {
+			string value = String.Empty;
+
+			Assert.IsTrue(animationInstance.SetString(stringProperty, "Test string message from managed code"));
+
+			if (animationInstance.GetString(stringProperty, ref value))
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " animation property value retrieved: " + value);
+			else
+				Debug.AddOnScreenMessage(-1, 30.0f, Color.Red, value.GetType() + " animation property value retrievement failed!");
+		}
+
 		private void TestAnimationTextProperty() {
 			string value = String.Empty;
 
-			Assert.IsTrue(animationInstance.SetText(textProperty, "Test message from managed code"));
+			Assert.IsTrue(animationInstance.SetText(textProperty, "Test text message from managed code"));
 
 			if (animationInstance.GetText(textProperty, ref value))
 				Debug.AddOnScreenMessage(-1, 30.0f, Color.LimeGreen, value.GetType() + " animation property value retrieved: " + value);

@@ -356,6 +356,7 @@ namespace UnrealCLRFramework {
 		static bool GetFloat(UObject* Object, const char* Name, float* Value);
 		static bool GetDouble(UObject* Object, const char* Name, double* Value);
 		static bool GetEnum(UObject* Object, const char* Name, int32* Value);
+		static bool GetString(UObject* Object, const char* Name, char* Value);
 		static bool GetText(UObject* Object, const char* Name, char* Value);
 		static bool SetBool(UObject* Object, const char* Name, bool value);
 		static bool SetByte(UObject* Object, const char* Name, uint8 Value);
@@ -368,6 +369,7 @@ namespace UnrealCLRFramework {
 		static bool SetFloat(UObject* Object, const char* Name, float Value);
 		static bool SetDouble(UObject* Object, const char* Name, double Value);
 		static bool SetEnum(UObject* Object, const char* Name, int32 Value);
+		static bool SetString(UObject* Object, const char* Name, const char* Value);
 		static bool SetText(UObject* Object, const char* Name, const char* Value);
 	}
 

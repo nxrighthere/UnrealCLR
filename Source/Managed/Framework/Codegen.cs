@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2CE;
+		internal const int checksum = 0x2D0;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -109,6 +109,7 @@ namespace UnrealEngine.Framework {
 				Object.getFloat = (delegate* unmanaged[Cdecl]<IntPtr, string, ref float, Bool>)objectFunctions[head++];
 				Object.getDouble = (delegate* unmanaged[Cdecl]<IntPtr, string, ref double, Bool>)objectFunctions[head++];
 				Object.getEnum = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool>)objectFunctions[head++];
+				Object.getString = (delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool>)objectFunctions[head++];
 				Object.getText = (delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool>)objectFunctions[head++];
 				Object.setBool = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool>)objectFunctions[head++];
 				Object.setByte = (delegate* unmanaged[Cdecl]<IntPtr, string, byte, Bool>)objectFunctions[head++];
@@ -121,6 +122,7 @@ namespace UnrealEngine.Framework {
 				Object.setFloat = (delegate* unmanaged[Cdecl]<IntPtr, string, float, Bool>)objectFunctions[head++];
 				Object.setDouble = (delegate* unmanaged[Cdecl]<IntPtr, string, double, Bool>)objectFunctions[head++];
 				Object.setEnum = (delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool>)objectFunctions[head++];
+				Object.setString = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool>)objectFunctions[head++];
 				Object.setText = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool>)objectFunctions[head++];
 			}
 
@@ -1402,6 +1404,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref float, Bool> getFloat;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref double, Bool> getDouble;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool> getEnum;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool> getString;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool> getText;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool> setBool;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte, Bool> setByte;
@@ -1414,6 +1417,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float, Bool> setFloat;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, double, Bool> setDouble;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool> setEnum;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool> setString;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool> setText;
 	}
 

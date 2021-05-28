@@ -654,6 +654,24 @@ namespace UnrealCLRFramework {
 			return false;
 		}
 
+		bool GetString(UObject* Object, const char* Name, char* Value) {
+			FName name(ANSI_TO_TCHAR(Name));
+
+			for (TFieldIterator<FStrProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
+				FStrProperty* property = *currentProperty;
+
+				if (property->GetFName() == name) {
+					const char* string = TCHAR_TO_ANSI(*property->GetPropertyValue_InContainer(Object));
+
+					UnrealCLR::Utility::Strcpy(Value, string, UnrealCLR::Utility::Strlen(string));
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 		bool GetText(UObject* Object, const char* Name, char* Value) {
 			FName name(ANSI_TO_TCHAR(Name));
 
@@ -720,6 +738,22 @@ namespace UnrealCLRFramework {
 
 				if (property->GetFName() == name) {
 					property->SetIntPropertyValue(property->ContainerPtrToValuePtr<int32>(Object), static_cast<int64>(Value));
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		bool SetString(UObject* Object, const char* Name, const char* Value) {
+			FName name(ANSI_TO_TCHAR(Name));
+
+			for (TFieldIterator<FStrProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
+				FStrProperty* property = *currentProperty;
+
+				if (property->GetFName() == name) {
+					property->SetPropertyValue_InContainer(Object, FString(ANSI_TO_TCHAR(Value)));
 
 					return true;
 				}

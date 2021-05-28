@@ -4952,6 +4952,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the value of the string property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetString(string name, ref string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			if (Object.getString(Pointer, name, stringBuffer)) {
+				value = stringBuffer.BytesToString();
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Retrieves the value of the text property
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
@@ -5088,6 +5107,20 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
+		}
+
+		/// <summary>
+		/// Sets the value of the string property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetString(string name, string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			return Object.setString(Pointer, name, value);
 		}
 
 		/// <summary>
@@ -6727,6 +6760,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the value of the string property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetString(string name, ref string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			if (Object.getString(Pointer, name, stringBuffer)) {
+				value = stringBuffer.BytesToString();
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Retrieves the value of the text property
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
@@ -6863,6 +6915,20 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
+		}
+
+		/// <summary>
+		/// Sets the value of the string property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetString(string name, string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			return Object.setString(Pointer, name, value);
 		}
 
 		/// <summary>
@@ -7733,6 +7799,25 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Retrieves the value of the string property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool GetString(string name, ref string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			byte[] stringBuffer = ArrayPool.GetStringBuffer();
+
+			if (Object.getString(Pointer, name, stringBuffer)) {
+				value = stringBuffer.BytesToString();
+
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Retrieves the value of the text property
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
@@ -7869,6 +7954,20 @@ namespace UnrealEngine.Framework {
 				throw new ArgumentNullException(nameof(name));
 
 			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
+		}
+
+		/// <summary>
+		/// Sets the value of the string property
+		/// </summary>
+		/// <returns><c>true</c> on success</returns>
+		public bool SetString(string name, string value) {
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			return Object.setString(Pointer, name, value);
 		}
 
 		/// <summary>
