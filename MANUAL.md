@@ -99,7 +99,7 @@ module Main = // Indicates the main entry point for automatic loading by the plu
 
 All functions of the main entry point are optional, and it's not necessary to implement them for every [tick group](https://docs.unrealengine.com/en-US/Programming/UnrealArchitecture/Actors/Ticking/index.html).
 
-Build a .NET assembly to `%Project%/Managed` folder of the engine's project, and make sure that no other assemblies of other .NET projects are stored there.
+[Publish](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish) a .NET assembly to `%Project%/Managed` folder of the engine's project, and make sure that no other assemblies of other .NET projects are stored there.
 
 Assemblies that no longer referenced and unused in the project will persist in `%Project%/Managed` folder. Consider maintaining this folder through IDE or automation scripts.
 
