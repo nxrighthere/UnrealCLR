@@ -371,7 +371,11 @@ namespace UnrealCLRFramework {
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
 	#if ENGINE_MAJOR_VERSION == 4
-		#define UNREALCLR_BLEND_TYPE 5
+		#if ENGINE_MINOR_VERSION <= 26
+			#define UNREALCLR_BLEND_TYPE 5
+		#elif ENGINE_MINOR_VERSION >= 27
+			#define UNREALCLR_BLEND_TYPE 6
+		#endif
 
 		#if ENGINE_MINOR_VERSION <= 25
 			#define UNREALCLR_PIXEL_FORMAT 71
