@@ -22,7 +22,6 @@
  */
 
 #include "UnrealCLRLibrary.h"
-#include "UnrealCLR.h"
 
 FManagedFunction::FManagedFunction() : Pointer() { }
 
