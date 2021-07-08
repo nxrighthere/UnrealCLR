@@ -38,7 +38,7 @@ struct UNREALCLR_API FManagedFunction {
 };
 
 UCLASS()
-class UUnrealCLRLibrary : public UBlueprintFunctionLibrary {
+class UNREALCLR_API UUnrealCLRLibrary : public UBlueprintFunctionLibrary {
 	GENERATED_UCLASS_BODY()
 
 	public:
@@ -51,7 +51,7 @@ class UUnrealCLRLibrary : public UBlueprintFunctionLibrary {
 };
 
 UCLASS()
-class UUnrealCLRCharacter : public UObject {
+class UNREALCLR_API UUnrealCLRCharacter : public UObject {
 	GENERATED_UCLASS_BODY()
 
 	public:
