@@ -184,7 +184,13 @@ namespace UnrealEngine.Runtime {
 				}
 
 				catch (Exception exception) {
-					Exception(exception.ToString());
+					try {
+						Exception(exception.ToString());
+					}
+
+					catch (FileNotFoundException fileNotFoundException) {
+						Exception("One of the project dependencies is missed! Please, publish the project instead of building it\r\n" + fileNotFoundException.ToString());
+					}
 				}
 
 				return default;
