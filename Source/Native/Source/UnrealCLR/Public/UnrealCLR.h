@@ -365,6 +365,7 @@ namespace UnrealCLR {
 		static void* Texture2DFunctions[storageSize];
 		static void* ActorComponentFunctions[storageSize];
 		static void* InputComponentFunctions[storageSize];
+		static void* MovementComponentFunctions[storageSize];
 		static void* SceneComponentFunctions[storageSize];
 		static void* AudioComponentFunctions[storageSize];
 		static void* CameraComponentFunctions[storageSize];

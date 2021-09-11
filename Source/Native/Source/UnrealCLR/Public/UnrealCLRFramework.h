@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration 
+ *  Unreal Engine .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -48,6 +48,7 @@ namespace UnrealCLRFramework {
 	using PixelFormat = EPixelFormat;
 	using TeleportType = ETeleportType;
 	using VerticalTextAligment = EVerticalTextAligment;
+	using PlaneConstraintAxis = EPlaneConstraintAxisSetting;
 
 	using Bounds = FBoxSphereBounds;
 	using CollisionShape = FCollisionShape;
@@ -286,6 +287,7 @@ namespace UnrealCLRFramework {
 		// Non-attachable
 		Actor,
 		Input,
+		Movement,
 		// Attachable
 		Scene,
 		Audio,
@@ -794,6 +796,32 @@ namespace UnrealCLRFramework {
 		static void SetBlockInput(UInputComponent* InputComponent, bool Value);
 		static int32 GetPriority(UInputComponent* InputComponent);
 		static void SetPriority(UInputComponent* InputComponent, int32 Value);
+	}
+
+	namespace MovementComponent {
+		static bool GetConstrainToPlane(UMovementComponent* MovementComponent);
+		static bool GetSnapToPlaneAtStart(UMovementComponent* MovementComponent);
+		static bool GetUpdateOnlyIfRendered(UMovementComponent* MovementComponent);
+		static void GetVelocity(UMovementComponent* MovementComponent, Vector3* Value);
+		static PlaneConstraintAxis GetPlaneConstraint(UMovementComponent* MovementComponent);
+		static void GetPlaneConstraintNormal(UMovementComponent* MovementComponent, Vector3* Value);
+		static void GetPlaneConstraintOrigin(UMovementComponent* MovementComponent, Vector3* Value);
+		static float GetGravity(UMovementComponent* MovementComponent);
+		static float GetMaxSpeed(UMovementComponent* MovementComponent);
+		static void SetConstrainToPlane(UMovementComponent* MovementComponent, bool Value);
+		static void SetSnapToPlaneAtStart(UMovementComponent* MovementComponent, bool Value);
+		static void SetUpdateOnlyIfRendered(UMovementComponent* MovementComponent, bool Value);
+		static void SetVelocity(UMovementComponent* MovementComponent, const Vector3* Value);
+		static void SetPlaneConstraint(UMovementComponent* MovementComponent, PlaneConstraintAxis Value);
+		static void SetPlaneConstraintNormal(UMovementComponent* MovementComponent, const Vector3* Value);
+		static void SetPlaneConstraintOrigin(UMovementComponent* MovementComponent, const Vector3* Value);
+		static void SetPlaneConstraintFromVectors(UMovementComponent* MovementComponent, const Vector3* Forward, const Vector3* Up);
+		static bool IsExceedingMaxSpeed(UMovementComponent* MovementComponent, float MaxSpeed);
+		static bool IsInWater(UMovementComponent* MovementComponent);
+		static void StopMovement(UMovementComponent* MovementComponent);
+		static void ConstrainDirectionToPlane(UMovementComponent* MovementComponent, const Vector3* Direction, Vector3* Value);
+		static void ConstrainLocationToPlane(UMovementComponent* MovementComponent, const Vector3* Location, Vector3* Value);
+		static void ConstrainNormalToPlane(UMovementComponent* MovementComponent, const Vector3* Normal, Vector3* Value);
 	}
 
 	namespace SceneComponent {

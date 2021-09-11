@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2D0;
+		internal const int checksum = 0x2E8;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -569,6 +569,35 @@ namespace UnrealEngine.Framework {
 				InputComponent.setBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)inputComponentFunctions[head++];
 				InputComponent.getPriority = (delegate* unmanaged[Cdecl]<IntPtr, int>)inputComponentFunctions[head++];
 				InputComponent.setPriority = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)inputComponentFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* movementComponentFunctions = (IntPtr*)buffer[position++];
+
+				MovementComponent.getConstrainToPlane = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)movementComponentFunctions[head++];
+				MovementComponent.getSnapToPlaneAtStart = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)movementComponentFunctions[head++];
+				MovementComponent.getVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.getPlaneConstraint = (delegate* unmanaged[Cdecl]<IntPtr, PlaneConstraintAxis>)movementComponentFunctions[head++];
+				MovementComponent.getUpdateOnlyIfRendered = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)movementComponentFunctions[head++];
+				MovementComponent.getPlaneConstraintNormal = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.getPlaneConstraintOrigin = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.getGravity = (delegate* unmanaged[Cdecl]<IntPtr, float>)movementComponentFunctions[head++];
+				MovementComponent.getMaxSpeed = (delegate* unmanaged[Cdecl]<IntPtr, float>)movementComponentFunctions[head++];
+				MovementComponent.setConstrainToPlane = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)movementComponentFunctions[head++];
+				MovementComponent.setSnapToPlaneAtStart = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)movementComponentFunctions[head++];
+				MovementComponent.setUpdateOnlyIfRendered = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)movementComponentFunctions[head++];
+				MovementComponent.setVelocity = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.setPlaneConstraint = (delegate* unmanaged[Cdecl]<IntPtr, PlaneConstraintAxis, void>)movementComponentFunctions[head++];
+				MovementComponent.setPlaneConstraintNormal = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.setPlaneConstraintOrigin = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.setPlaneConstraintFromVectors = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.isExceedingMaxSpeed = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool>)movementComponentFunctions[head++];
+				MovementComponent.isInWater = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)movementComponentFunctions[head++];
+				MovementComponent.stopMovement = (delegate* unmanaged[Cdecl]<IntPtr, void>)movementComponentFunctions[head++];
+				MovementComponent.constrainDirectionToPlane = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.constrainLocationToPlane = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)movementComponentFunctions[head++];
+				MovementComponent.constrainNormalToPlane = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)movementComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -1336,6 +1365,7 @@ namespace UnrealEngine.Framework {
 		// Non-attachable
 		Actor,
 		Input,
+		Movement,
 		// Attachable
 		Scene,
 		Audio,
@@ -1822,6 +1852,32 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setBlockInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getPriority;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setPriority;
+	}
+
+	unsafe partial class MovementComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getConstrainToPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getSnapToPlaneAtStart;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getUpdateOnlyIfRendered;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, PlaneConstraintAxis> getPlaneConstraint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getPlaneConstraintNormal;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getPlaneConstraintOrigin;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getGravity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getMaxSpeed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setConstrainToPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setSnapToPlaneAtStart;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setUpdateOnlyIfRendered;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, PlaneConstraintAxis, void> setPlaneConstraint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setPlaneConstraintNormal;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setPlaneConstraintOrigin;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, void> setPlaneConstraintFromVectors;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool> isExceedingMaxSpeed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isInWater;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, void> stopMovement;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> constrainDirectionToPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> constrainLocationToPlane;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> constrainNormalToPlane;
 	}
 
 	unsafe partial class SceneComponent {

@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration 
+ *  Unreal Engine .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -129,6 +129,9 @@ namespace UnrealCLRFramework {
 				break;\
 			case ComponentType::Input:\
 				Result = Head UInputComponent Tail;\
+				break;\
+			case ComponentType::Movement:\
+				Result = Head UMovementComponent Tail;\
 				break;\
 			case ComponentType::Scene:\
 				Result = Head USceneComponent Tail;\
@@ -2349,6 +2352,100 @@ namespace UnrealCLRFramework {
 
 		void SetPriority(UInputComponent* InputComponent, int32 Value) {
 			InputComponent->Priority = Value;
+		}
+	}
+
+	namespace MovementComponent {
+		bool GetConstrainToPlane(UMovementComponent* MovementComponent) {
+			return MovementComponent->bConstrainToPlane;
+		}
+
+		bool GetSnapToPlaneAtStart(UMovementComponent* MovementComponent) {
+			return MovementComponent->bSnapToPlaneAtStart;
+		}
+
+		bool GetUpdateOnlyIfRendered(UMovementComponent* MovementComponent) {
+			return MovementComponent->bUpdateOnlyIfRendered;
+		}
+
+		void GetVelocity(UMovementComponent* MovementComponent, Vector3* Value) {
+			*Value = MovementComponent->Velocity;
+		}
+
+		PlaneConstraintAxis GetPlaneConstraint(UMovementComponent* MovementComponent) {
+			return MovementComponent->GetPlaneConstraintAxisSetting();
+		}
+
+		void GetPlaneConstraintNormal(UMovementComponent* MovementComponent, Vector3* Value) {
+			*Value = MovementComponent->GetPlaneConstraintNormal();
+		}
+
+		void GetPlaneConstraintOrigin(UMovementComponent* MovementComponent, Vector3* Value) {
+			*Value = MovementComponent->GetPlaneConstraintOrigin();
+		}
+
+		float GetGravity(UMovementComponent* MovementComponent) {
+			return MovementComponent->GetGravityZ();
+		}
+
+		float GetMaxSpeed(UMovementComponent* MovementComponent) {
+			return MovementComponent->GetMaxSpeed();
+		}
+
+		void SetConstrainToPlane(UMovementComponent* MovementComponent, bool Value) {
+			MovementComponent->bConstrainToPlane = Value;
+		}
+
+		void SetSnapToPlaneAtStart(UMovementComponent* MovementComponent, bool Value) {
+			MovementComponent->bSnapToPlaneAtStart = Value;
+		}
+
+		void SetUpdateOnlyIfRendered(UMovementComponent* MovementComponent, bool Value) {
+			MovementComponent->bUpdateOnlyIfRendered = Value;
+		}
+
+		void SetVelocity(UMovementComponent* MovementComponent, const Vector3* Value) {
+			MovementComponent->Velocity = *Value;
+		}
+
+		void SetPlaneConstraint(UMovementComponent* MovementComponent, PlaneConstraintAxis Value) {
+			MovementComponent->SetPlaneConstraintAxisSetting(Value);
+		}
+
+		void SetPlaneConstraintNormal(UMovementComponent* MovementComponent, const Vector3* Value) {
+			MovementComponent->SetPlaneConstraintNormal(*Value);
+		}
+
+		 void SetPlaneConstraintOrigin(UMovementComponent* MovementComponent, const Vector3* Value) {
+			MovementComponent->SetPlaneConstraintOrigin(*Value);
+		 }
+
+		void SetPlaneConstraintFromVectors(UMovementComponent* MovementComponent, const Vector3* Forward, const Vector3* Up) {
+			MovementComponent->SetPlaneConstraintFromVectors(*Forward, *Up);
+		}
+
+		bool IsExceedingMaxSpeed(UMovementComponent* MovementComponent, float MaxSpeed) {
+			return MovementComponent->IsExceedingMaxSpeed(MaxSpeed);
+		}
+
+		bool IsInWater(UMovementComponent* MovementComponent) {
+			return MovementComponent->IsInWater();
+		}
+
+		void StopMovement(UMovementComponent* MovementComponent) {
+			MovementComponent->StopMovementImmediately();
+		}
+
+		void ConstrainDirectionToPlane(UMovementComponent* MovementComponent, const Vector3* Direction, Vector3* Value) {
+			*Value = MovementComponent->ConstrainDirectionToPlane(*Direction);
+		}
+
+		void ConstrainLocationToPlane(UMovementComponent* MovementComponent, const Vector3* Location, Vector3* Value) {
+			*Value = MovementComponent->ConstrainLocationToPlane(*Location);
+		}
+
+		void ConstrainNormalToPlane(UMovementComponent* MovementComponent, const Vector3* Normal, Vector3* Value) {
+			*Value = MovementComponent->ConstrainNormalToPlane(*Normal);
 		}
 	}
 

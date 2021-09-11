@@ -9,6 +9,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 Derived  
 &#8627; [InputComponent](./InputComponent.md 'UnrealEngine.Framework.InputComponent')  
+&#8627; [MovementComponent](./MovementComponent.md 'UnrealEngine.Framework.MovementComponent')  
 &#8627; [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')  
 
 Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')  

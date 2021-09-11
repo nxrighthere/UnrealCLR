@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration 
+ *  Unreal Engine .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -732,6 +732,37 @@ void UnrealCLR::Module::StartupModule() {
 				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::SetBlockInput;
 				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::GetPriority;
 				Shared::InputComponentFunctions[head++] = (void*)&UnrealCLRFramework::InputComponent::SetPriority;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
+				Shared::Functions[position++] = Shared::MovementComponentFunctions;
+
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetConstrainToPlane;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetSnapToPlaneAtStart;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetVelocity;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetPlaneConstraint;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetUpdateOnlyIfRendered;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetPlaneConstraintNormal;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetPlaneConstraintOrigin;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetGravity;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::GetMaxSpeed;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetConstrainToPlane;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetSnapToPlaneAtStart;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetUpdateOnlyIfRendered;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetVelocity;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetPlaneConstraint;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetPlaneConstraintNormal;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetPlaneConstraintOrigin;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::SetPlaneConstraintFromVectors;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::IsExceedingMaxSpeed;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::IsInWater;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::StopMovement;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::ConstrainDirectionToPlane;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::ConstrainLocationToPlane;
+				Shared::MovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::MovementComponent::ConstrainNormalToPlane;
 
 				checksum += head;
 			}

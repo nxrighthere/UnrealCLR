@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration 
+ *  Unreal Engine .NET 5 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -670,6 +670,32 @@ namespace UnrealEngine.Framework {
 		Center,
 		/// <summary/>
 		Bottom
+	}
+
+	/// <summary>
+	/// Defines behavior when movement is restricted to a 2D plane defined by a specific axis/normal, so that movement along the locked axis will not be possible
+	/// </summary>
+	public enum PlaneConstraintAxis : byte {
+		/// <summary>
+		/// Lock movement to a user-defined axis
+		/// </summary>
+		Custom,
+		/// <summary>
+		/// Lock movement in the X axis
+		/// </summary>
+		X,
+		/// <summary>
+		/// Lock movement in the Y axis
+		/// </summary>
+		Y,
+		/// <summary>
+		/// Lock movement in the Z axis
+		/// </summary>
+		Z,
+		/// <summary>
+		/// Use the global physics project setting
+		/// </summary>
+		UseGlobalPhysicsSetting
 	}
 
 	/// <summary>
@@ -8132,6 +8158,157 @@ namespace UnrealEngine.Framework {
 		/// Removes the action binding
 		/// </summary>
 		public void RemoveActionBinding(string actionName, InputEvent keyEvent) => removeActionBinding(Pointer, actionName, keyEvent);
+	}
+
+	/// <summary>
+	/// An abstract component that defines functionality for moving a <see cref="PrimitiveComponent"/>
+	/// </summary>
+	public abstract unsafe partial class MovementComponent : ActorComponent {
+		internal override ComponentType Type => ComponentType.Movement;
+
+		private protected MovementComponent() { }
+
+		internal MovementComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Gets or sets whether the movement will be constrained to a plane
+		/// </summary>
+		public bool ConstrainToPlane {
+			get => getConstrainToPlane(Pointer);
+			set => setConstrainToPlane(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether the updated component will be snapped to the plane when first is attached, if plane constraints are enabled
+		/// </summary>
+		public bool SnapToPlaneAtStart {
+			get => getSnapToPlaneAtStart(Pointer);
+			set => setSnapToPlaneAtStart(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets whether should be skipped if the updated component was not recently rendered
+		/// </summary>
+		public bool UpdateOnlyIfRendered {
+			get => getUpdateOnlyIfRendered(Pointer);
+			set => setUpdateOnlyIfRendered(Pointer, value);
+		}
+
+		/// <summary>
+		/// Gets or sets the plane constraint axis
+		/// </summary>
+		public PlaneConstraintAxis PlaneConstraint {
+			get => getPlaneConstraint(Pointer);
+			set => setPlaneConstraint(Pointer, value);
+		}
+
+		/// <summary>
+		/// Retrieves the current velocity of updated component
+		/// </summary>
+		public void GetVelocity(ref Vector3 value) => getVelocity(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the current velocity of updated component
+		/// </summary>
+		public Vector3 GetVelocity() {
+			Vector3 value = default;
+
+			getVelocity(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the normal of the plane that constrains movement, enforced if the plane constraint is enabled
+		/// </summary>
+		public void GetPlaneConstraintNormal(ref Vector3 value) => getPlaneConstraintNormal(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the normal of the plane that constrains movement, enforced if the plane constraint is enabled
+		/// </summary>
+		public Vector3 GetPlaneConstraintNormal() {
+			Vector3 value = default;
+
+			getPlaneConstraintNormal(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves the plane constraint origin
+		/// </summary>
+		public void GetPlaneConstraintOrigin(ref Vector3 value) => getPlaneConstraintOrigin(Pointer, ref value);
+
+		/// <summary>
+		/// Returns the plane constraint origin
+		/// </summary>
+		public Vector3 GetPlaneConstraintOrigin() {
+			Vector3 value = default;
+
+			getPlaneConstraintOrigin(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns gravity that affects the component
+		/// </summary>
+		public float GetGravity() => getGravity(Pointer);
+
+		/// <summary>
+		/// Returns maximum speed of the component in current movement mode
+		/// </summary>
+		public float GetMaxSpeed() => getMaxSpeed(Pointer);
+
+		/// <summary>
+		/// Sets the current velocity of updated component
+		/// </summary>
+		public void SetVelocity(in Vector3 value) => setVelocity(Pointer, value);
+
+		/// <summary>
+		/// Sets the normal of the plane that constrains movement, enforced if the plane constraint is enabled
+		/// </summary>
+		public void SetPlaneConstraintNormal(in Vector3 value) => setPlaneConstraintNormal(Pointer, value);
+
+		/// <summary>
+		/// Sets the origin of the plane that constrains movement, enforced if the plane constraint is enabled
+		/// </summary>
+		public void SetPlaneConstraintOrigin(in Vector3 value) => setPlaneConstraintOrigin(Pointer, value);
+
+		/// <summary>
+		/// Sets the plane that constrains movement computed from the forward and up vectors, enforced if the plane constraint is enabled
+		/// </summary>
+		public void SetPlaneConstraintFromVectors(in Vector3 forward, in Vector3 up) => setPlaneConstraintFromVectors(Pointer, forward, up);
+
+		/// <summary>
+		/// Returns <c>true</c> if the current velocity is exceeding the given max speed within a small error tolerance
+		/// </summary>
+		public bool IsExceedingMaxSpeed(float maxSpeed) => isExceedingMaxSpeed(Pointer, maxSpeed);
+
+		/// <summary>
+		/// Returns <c>true</c> if it's in physics volume with water flag
+		/// </summary>
+		public bool IsInWater() => isInWater(Pointer);
+
+		/// <summary>
+		/// Stops movement immediately, zeroes velocity, usually zeros acceleration for components with acceleration
+		/// </summary>
+		public void StopMovement() => stopMovement(Pointer);
+
+		/// <summary>
+		/// Constrains a direction vector to the plane constraint, if enabled
+		/// </summary>
+		public void ConstrainDirectionToPlane(in Vector3 direction, ref Vector3 value) => constrainDirectionToPlane(Pointer, direction, ref value);
+
+		/// <summary>
+		/// Constrains a location vector to the plane constraint, if enabled
+		/// </summary>
+		public void ConstrainLocationToPlane(in Vector3 location, ref Vector3 value) => constrainLocationToPlane(Pointer, location, ref value);
+
+		/// <summary>
+		/// Constrains a normal vector (of unit length) to the plane constraint, if enabled
+		/// </summary>
+		public void ConstrainNormalToPlane(in Vector3 normal, ref Vector3 value) => constrainNormalToPlane(Pointer, normal, ref value);
 	}
 
 	/// <summary>
