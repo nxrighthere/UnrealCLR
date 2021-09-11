@@ -133,6 +133,9 @@ namespace UnrealCLRFramework {
 			case ComponentType::Movement:\
 				Result = Head UMovementComponent Tail;\
 				break;\
+			case ComponentType::RotatingMovement:\
+				Result = Head URotatingMovementComponent Tail;\
+				break;\
 			case ComponentType::Scene:\
 				Result = Head USceneComponent Tail;\
 				break;\
@@ -195,7 +198,7 @@ namespace UnrealCLRFramework {
 		}\
 	}
 
-	#define UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, Head, Tail, Result) {\
+	#define UNREALCLR_GET_MOVABLE_COMPONENT_TYPE(Type, Head, Tail, Result) {\
 		switch (Type) {\
 			case ComponentType::Scene:\
 				Result = Head USceneComponent Tail;\
@@ -300,6 +303,13 @@ namespace UnrealCLRFramework {
 			queryParams.AddIgnoredActor(IgnoredActor);\
 		if (IgnoredComponent)\
 			queryParams.AddIgnoredComponent(IgnoredComponent);
+
+	#define UNREALCLR_SET_COMPONENT_INSTANCE(Component, Name)\
+		Actor->AddInstanceComponent(Component);\
+		component->OnComponentCreated();\
+		component->RegisterComponent();\
+		if (Name)\
+			component->Rename(*FString(ANSI_TO_TCHAR(Name)));
 
 	#define UNREALCLR_SET_ACTOR_EVENT(Type, Condition, Method) {\
 		switch (Type) {\
@@ -864,7 +874,7 @@ namespace UnrealCLRFramework {
 			#if WITH_EDITOR
 				TSubclassOf<USceneComponent> type;
 
-				UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+				UNREALCLR_GET_MOVABLE_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
 				return Blueprint->ParentClass == type;
 			#else
@@ -1635,7 +1645,7 @@ namespace UnrealCLRFramework {
 			USceneComponent* rootComponent = Actor->GetRootComponent();
 			TSubclassOf<UActorComponent> type;
 
-			UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
+			UNREALCLR_GET_MOVABLE_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
 			if (rootComponent->IsA(type))
 				component = rootComponent;
@@ -2449,6 +2459,40 @@ namespace UnrealCLRFramework {
 		}
 	}
 
+	namespace RotatingMovementComponent {
+		URotatingMovementComponent* Create(AActor* Actor, const char* Name) {
+			URotatingMovementComponent* component = NewObject<URotatingMovementComponent>(Actor);
+
+			UNREALCLR_SET_COMPONENT_INSTANCE(component, Name);
+
+			return component;
+		}
+
+		bool GetRotationInLocalSpace(URotatingMovementComponent* RotatingMovementComponent) {
+			return RotatingMovementComponent->bRotationInLocalSpace;
+		}
+
+		void GetPivotTranslation(URotatingMovementComponent* RotatingMovementComponent, Vector3* Value) {
+			*Value = RotatingMovementComponent->PivotTranslation;
+		}
+
+		void GetRotationRate(URotatingMovementComponent* RotatingMovementComponent, Quaternion* Value) {
+			*Value = RotatingMovementComponent->RotationRate.Quaternion();
+		}
+
+		void SetRotationInLocalSpace(URotatingMovementComponent* RotatingMovementComponent, bool Value) {
+			RotatingMovementComponent->bRotationInLocalSpace = Value;
+		}
+
+		void SetPivotTranslation(URotatingMovementComponent* RotatingMovementComponent, const Vector3* Value) {
+			RotatingMovementComponent->PivotTranslation = *Value;
+		}
+
+		void SetRotationRate(URotatingMovementComponent* RotatingMovementComponent, const Quaternion* Value) {
+			RotatingMovementComponent->RotationRate = FRotator(*Value);
+		}
+	}
+
 	namespace SceneComponent {
 		bool IsAttachedToComponent(USceneComponent* SceneComponent, USceneComponent* Component) {
 			return SceneComponent->IsAttachedTo(Component);
@@ -2502,12 +2546,12 @@ namespace UnrealCLRFramework {
 			USceneComponent* component = nullptr;
 
 			if (!Blueprint) {
-				UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, NewObject<, >(Actor), component);
+				UNREALCLR_GET_MOVABLE_COMPONENT_TYPE(Type, NewObject<, >(Actor), component);
 			} else {
 				#if !WITH_EDITOR
-					UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, NewObject<, >(Actor, Cast<UClass>(Blueprint)), component);
+					UNREALCLR_GET_MOVABLE_COMPONENT_TYPE(Type, NewObject<, >(Actor, Cast<UClass>(Blueprint)), component);
 				#else
-					UNREALCLR_GET_ATTACHABLE_COMPONENT_TYPE(Type, NewObject<, >(Actor, Cast<UBlueprint>(Blueprint)->GeneratedClass), component);
+					UNREALCLR_GET_MOVABLE_COMPONENT_TYPE(Type, NewObject<, >(Actor, Cast<UBlueprint>(Blueprint)->GeneratedClass), component);
 				#endif
 			}
 
@@ -2519,12 +2563,7 @@ namespace UnrealCLRFramework {
 				else
 					component->AttachToComponent(rootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
-				Actor->AddInstanceComponent(component);
-				component->OnComponentCreated();
-				component->RegisterComponent();
-
-				if (Name)
-					component->Rename(*FString(ANSI_TO_TCHAR(Name)));
+				UNREALCLR_SET_COMPONENT_INSTANCE(component, Name);
 			}
 
 			return component;

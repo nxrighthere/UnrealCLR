@@ -16,6 +16,7 @@ namespace UnrealEngine.Tests {
 			ChildActorsTest();
 			ComponentsAttachmentTest();
 			ComponentsMatchingTest();
+			NonSceneComponentTest();
 			ObjectIDsTest();
 			MaxFramesPerSecondTest();
 			TagsTest();
@@ -417,6 +418,21 @@ namespace UnrealEngine.Tests {
 
 			if (actor.GetRootComponent<StaticMeshComponent>() == null) {
 				Debug.Log(LogLevel.Error, "Component type matching to the root component failed!");
+
+				return;
+			}
+
+			Debug.Log(LogLevel.Display, "Test passed successfully");
+		}
+
+		private void NonSceneComponentTest() {
+			Debug.Log(LogLevel.Display, "Starting " + MethodBase.GetCurrentMethod().Name + "...");
+
+			Actor actor = new();
+			RotatingMovementComponent rotatingMovementComponent = new(actor, "TestName");
+
+			if (rotatingMovementComponent == null) {
+				Debug.Log(LogLevel.Error, "Component was not instantiated!");
 
 				return;
 			}

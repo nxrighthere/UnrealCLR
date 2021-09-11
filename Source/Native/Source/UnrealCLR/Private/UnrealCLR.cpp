@@ -769,6 +769,21 @@ void UnrealCLR::Module::StartupModule() {
 
 			{
 				int32 head = 0;
+				Shared::Functions[position++] = Shared::RotatingMovementComponentFunctions;
+
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::Create;
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::GetRotationInLocalSpace;
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::GetPivotTranslation;
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::GetRotationRate;
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::SetRotationInLocalSpace;
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::SetPivotTranslation;
+				Shared::RotatingMovementComponentFunctions[head++] = (void*)&UnrealCLRFramework::RotatingMovementComponent::SetRotationRate;
+
+				checksum += head;
+			}
+
+			{
+				int32 head = 0;
 				Shared::Functions[position++] = Shared::SceneComponentFunctions;
 
 				Shared::SceneComponentFunctions[head++] = (void*)&UnrealCLRFramework::SceneComponent::IsAttachedToComponent;

@@ -35,7 +35,7 @@ namespace UnrealEngine.Framework {
 	// Automatically generated
 
 	internal static class Shared {
-		internal const int checksum = 0x2E8;
+		internal const int checksum = 0x2F0;
 		internal static Dictionary<int, IntPtr> userFunctions = new();
 		private const string dynamicTypesAssemblyName = "UnrealEngine.DynamicTypes";
 		private static readonly ModuleBuilder moduleBuilder = AssemblyBuilder.DefineDynamicAssembly(new(dynamicTypesAssemblyName), AssemblyBuilderAccess.RunAndCollect).DefineDynamicModule(dynamicTypesAssemblyName);
@@ -598,6 +598,19 @@ namespace UnrealEngine.Framework {
 				MovementComponent.constrainDirectionToPlane = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)movementComponentFunctions[head++];
 				MovementComponent.constrainLocationToPlane = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)movementComponentFunctions[head++];
 				MovementComponent.constrainNormalToPlane = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void>)movementComponentFunctions[head++];
+			}
+
+			unchecked {
+				int head = 0;
+				IntPtr* rotatingMovementComponentFunctions = (IntPtr*)buffer[position++];
+
+				RotatingMovementComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.getRotationInLocalSpace = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.getPivotTranslation = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.getRotationRate = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.setRotationInLocalSpace = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.setPivotTranslation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.setRotationRate = (delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void>)rotatingMovementComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -1362,11 +1375,12 @@ namespace UnrealEngine.Framework {
 	}
 
 	internal enum ComponentType : int {
-		// Non-attachable
+		// Non-movable
 		Actor,
 		Input,
 		Movement,
-		// Attachable
+		RotatingMovement,
+		// Movable
 		Scene,
 		Audio,
 		Camera,
@@ -1878,6 +1892,16 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> constrainDirectionToPlane;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> constrainLocationToPlane;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, ref Vector3, void> constrainNormalToPlane;
+	}
+
+	unsafe partial class RotatingMovementComponent {
+		internal static delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr> create;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getRotationInLocalSpace;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getPivotTranslation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getRotationRate;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setRotationInLocalSpace;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, void> setPivotTranslation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Quaternion, void> setRotationRate;
 	}
 
 	unsafe partial class SceneComponent {

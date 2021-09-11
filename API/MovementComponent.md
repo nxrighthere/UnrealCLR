@@ -5,8 +5,12 @@ An abstract component that defines functionality for moving a [PrimitiveComponen
 public abstract class MovementComponent : UnrealEngine.Framework.ActorComponent
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ActorComponent](./ActorComponent.md 'UnrealEngine.Framework.ActorComponent') &#129106; MovementComponent  
+
+Derived  
+&#8627; [RotatingMovementComponent](./RotatingMovementComponent.md 'UnrealEngine.Framework.RotatingMovementComponent')  
 ### Properties
 - [ConstrainToPlane](./MovementComponent-ConstrainToPlane.md 'UnrealEngine.Framework.MovementComponent.ConstrainToPlane')
+- [IsInWater](./MovementComponent-IsInWater.md 'UnrealEngine.Framework.MovementComponent.IsInWater')
 - [PlaneConstraint](./MovementComponent-PlaneConstraint.md 'UnrealEngine.Framework.MovementComponent.PlaneConstraint')
 - [SnapToPlaneAtStart](./MovementComponent-SnapToPlaneAtStart.md 'UnrealEngine.Framework.MovementComponent.SnapToPlaneAtStart')
 - [UpdateOnlyIfRendered](./MovementComponent-UpdateOnlyIfRendered.md 'UnrealEngine.Framework.MovementComponent.UpdateOnlyIfRendered')
@@ -23,7 +27,6 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [GetVelocity()](./MovementComponent-GetVelocity().md 'UnrealEngine.Framework.MovementComponent.GetVelocity()')
 - [GetVelocity(System.Numerics.Vector3)](./MovementComponent-GetVelocity(Vector3).md 'UnrealEngine.Framework.MovementComponent.GetVelocity(System.Numerics.Vector3)')
 - [IsExceedingMaxSpeed(float)](./MovementComponent-IsExceedingMaxSpeed(float).md 'UnrealEngine.Framework.MovementComponent.IsExceedingMaxSpeed(float)')
-- [IsInWater()](./MovementComponent-IsInWater().md 'UnrealEngine.Framework.MovementComponent.IsInWater()')
 - [SetPlaneConstraintFromVectors(System.Numerics.Vector3, System.Numerics.Vector3)](./MovementComponent-SetPlaneConstraintFromVectors(Vector3_Vector3).md 'UnrealEngine.Framework.MovementComponent.SetPlaneConstraintFromVectors(System.Numerics.Vector3, System.Numerics.Vector3)')
 - [SetPlaneConstraintNormal(System.Numerics.Vector3)](./MovementComponent-SetPlaneConstraintNormal(Vector3).md 'UnrealEngine.Framework.MovementComponent.SetPlaneConstraintNormal(System.Numerics.Vector3)')
 - [SetPlaneConstraintOrigin(System.Numerics.Vector3)](./MovementComponent-SetPlaneConstraintOrigin(Vector3).md 'UnrealEngine.Framework.MovementComponent.SetPlaneConstraintOrigin(System.Numerics.Vector3)')

@@ -8203,6 +8203,11 @@ namespace UnrealEngine.Framework {
 		}
 
 		/// <summary>
+		/// Returns <c>true</c> if it's in physics volume with water flag
+		/// </summary>
+		public bool IsInWater => isInWater(Pointer);
+
+		/// <summary>
 		/// Retrieves the current velocity of updated component
 		/// </summary>
 		public void GetVelocity(ref Vector3 value) => getVelocity(Pointer, ref value);
@@ -8286,11 +8291,6 @@ namespace UnrealEngine.Framework {
 		public bool IsExceedingMaxSpeed(float maxSpeed) => isExceedingMaxSpeed(Pointer, maxSpeed);
 
 		/// <summary>
-		/// Returns <c>true</c> if it's in physics volume with water flag
-		/// </summary>
-		public bool IsInWater() => isInWater(Pointer);
-
-		/// <summary>
 		/// Stops movement immediately, zeroes velocity, usually zeros acceleration for components with acceleration
 		/// </summary>
 		public void StopMovement() => stopMovement(Pointer);
@@ -8309,6 +8309,82 @@ namespace UnrealEngine.Framework {
 		/// Constrains a normal vector (of unit length) to the plane constraint, if enabled
 		/// </summary>
 		public void ConstrainNormalToPlane(in Vector3 normal, ref Vector3 value) => constrainNormalToPlane(Pointer, normal, ref value);
+	}
+
+	/// <summary>
+	/// A component that performs continuous rotation at a specific rotation rate
+	/// </summary>
+	public unsafe partial class RotatingMovementComponent : MovementComponent {
+		internal override ComponentType Type => ComponentType.RotatingMovement;
+
+		private protected RotatingMovementComponent() { }
+
+		internal RotatingMovementComponent(IntPtr pointer) => Pointer = pointer;
+
+		/// <summary>
+		/// Creates the component attached to an actor
+		/// </summary>
+		/// <param name="actor">The actor to attach the component to</param>
+		/// <param name="name">The name of the component</param>
+		public RotatingMovementComponent(Actor actor, string name = null) {
+			if (name?.Length == 0)
+				name = null;
+
+			if (actor == null)
+				throw new ArgumentNullException(nameof(actor));
+
+			Pointer = create(actor.Pointer, name);
+		}
+
+		/// <summary>
+		/// Gets or sets whether rotation is applied in local or world space
+		/// </summary>
+		public bool RotationInLocalSpace {
+			get => getRotationInLocalSpace(Pointer);
+			set => setRotationInLocalSpace(Pointer, value);
+		}
+
+		/// <summary>
+		/// Retrieves translation of pivot point around which the component rotates, relative to the current rotation
+		/// </summary>
+		public void GetPivotTranslation(ref Vector3 value) => getPivotTranslation(Pointer, ref value);
+
+		/// <summary>
+		/// Returns translation of pivot point around which the component rotates, relative to the current rotation
+		/// </summary>
+		public Vector3 GetPivotTranslation() {
+			Vector3 value = default;
+
+			getPivotTranslation(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Retrieves yaw, pitch, and roll rotation rate of the component
+		/// </summary>
+		public void GetRotationRate(ref Quaternion value) => getRotationRate(Pointer, ref value);
+
+		/// <summary>
+		/// Returns yaw, pitch, and roll rotation rate of the component
+		/// </summary>
+		public Quaternion GetRotationRate() {
+			Quaternion value = default;
+
+			getRotationRate(Pointer, ref value);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Sets translation of pivot point around which the component rotates, relative to the current rotation
+		/// </summary>
+		public void SetPivotTranslation(in Vector3 value) => setPivotTranslation(Pointer, value);
+
+		/// <summary>
+		/// Sets yaw, pitch, and roll rotation rate of the component
+		/// </summary>
+		public void SetRotationRate(in Quaternion value) => setRotationRate(Pointer, value);
 	}
 
 	/// <summary>

@@ -67,6 +67,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerInput.h"
+#include "GameFramework/RotatingMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "IAssetRegistry.h"
@@ -366,6 +367,7 @@ namespace UnrealCLR {
 		static void* ActorComponentFunctions[storageSize];
 		static void* InputComponentFunctions[storageSize];
 		static void* MovementComponentFunctions[storageSize];
+		static void* RotatingMovementComponentFunctions[storageSize];
 		static void* SceneComponentFunctions[storageSize];
 		static void* AudioComponentFunctions[storageSize];
 		static void* CameraComponentFunctions[storageSize];

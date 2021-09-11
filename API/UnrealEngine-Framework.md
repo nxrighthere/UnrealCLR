@@ -60,6 +60,7 @@
 - [PrimitiveComponent](./PrimitiveComponent.md 'UnrealEngine.Framework.PrimitiveComponent')
 - [RadialForceComponent](./RadialForceComponent.md 'UnrealEngine.Framework.RadialForceComponent')
 - [RectLight](./RectLight.md 'UnrealEngine.Framework.RectLight')
+- [RotatingMovementComponent](./RotatingMovementComponent.md 'UnrealEngine.Framework.RotatingMovementComponent')
 - [SceneComponent](./SceneComponent.md 'UnrealEngine.Framework.SceneComponent')
 - [ShapeComponent](./ShapeComponent.md 'UnrealEngine.Framework.ShapeComponent')
 - [SkeletalMesh](./SkeletalMesh.md 'UnrealEngine.Framework.SkeletalMesh')

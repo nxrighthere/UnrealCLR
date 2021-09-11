@@ -284,11 +284,12 @@ namespace UnrealCLRFramework {
 	};
 
 	enum struct ComponentType : int32 {
-		// Non-attachable
+		// Non-movable
 		Actor,
 		Input,
 		Movement,
-		// Attachable
+		RotatingMovement,
+		// Movable
 		Scene,
 		Audio,
 		Camera,
@@ -822,6 +823,16 @@ namespace UnrealCLRFramework {
 		static void ConstrainDirectionToPlane(UMovementComponent* MovementComponent, const Vector3* Direction, Vector3* Value);
 		static void ConstrainLocationToPlane(UMovementComponent* MovementComponent, const Vector3* Location, Vector3* Value);
 		static void ConstrainNormalToPlane(UMovementComponent* MovementComponent, const Vector3* Normal, Vector3* Value);
+	}
+
+	namespace RotatingMovementComponent {
+		static URotatingMovementComponent* Create(AActor* Actor, const char* Name);
+		static bool GetRotationInLocalSpace(URotatingMovementComponent* RotatingMovementComponent);
+		static void GetPivotTranslation(URotatingMovementComponent* RotatingMovementComponent, Vector3* Value);
+		static void GetRotationRate(URotatingMovementComponent* RotatingMovementComponent, Quaternion* Value);
+		static void SetRotationInLocalSpace(URotatingMovementComponent* RotatingMovementComponent, bool Value);
+		static void SetPivotTranslation(URotatingMovementComponent* RotatingMovementComponent, const Vector3* Value);
+		static void SetRotationRate(URotatingMovementComponent* RotatingMovementComponent, const Quaternion* Value);
 	}
 
 	namespace SceneComponent {
