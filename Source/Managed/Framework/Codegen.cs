@@ -63,8 +63,8 @@ namespace UnrealEngine.Framework {
 				IntPtr* commandLineFunctions = (IntPtr*)buffer[position++];
 
 				CommandLine.get = (delegate* unmanaged[Cdecl]<byte[], void>)commandLineFunctions[head++];
-				CommandLine.set = (delegate* unmanaged[Cdecl]<string, void>)commandLineFunctions[head++];
-				CommandLine.append = (delegate* unmanaged[Cdecl]<string, void>)commandLineFunctions[head++];
+				CommandLine.set = (delegate* unmanaged[Cdecl]<byte[], void>)commandLineFunctions[head++];
+				CommandLine.append = (delegate* unmanaged[Cdecl]<byte[], void>)commandLineFunctions[head++];
 			}
 
 			unchecked {
@@ -91,39 +91,39 @@ namespace UnrealEngine.Framework {
 
 				Object.isPendingKill = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)objectFunctions[head++];
 				Object.isValid = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)objectFunctions[head++];
-				Object.load = (delegate* unmanaged[Cdecl]<ObjectType, string, IntPtr>)objectFunctions[head++];
-				Object.rename = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)objectFunctions[head++];
+				Object.load = (delegate* unmanaged[Cdecl]<ObjectType, byte[], IntPtr>)objectFunctions[head++];
+				Object.rename = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)objectFunctions[head++];
 				Object.invoke = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)objectFunctions[head++];
 				Object.toActor = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)objectFunctions[head++];
 				Object.toComponent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr>)objectFunctions[head++];
 				Object.getID = (delegate* unmanaged[Cdecl]<IntPtr, uint>)objectFunctions[head++];
 				Object.getName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)objectFunctions[head++];
-				Object.getBool = (delegate* unmanaged[Cdecl]<IntPtr, string, ref bool, Bool>)objectFunctions[head++];
-				Object.getByte = (delegate* unmanaged[Cdecl]<IntPtr, string, ref byte, Bool>)objectFunctions[head++];
-				Object.getShort = (delegate* unmanaged[Cdecl]<IntPtr, string, ref short, Bool>)objectFunctions[head++];
-				Object.getInt = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool>)objectFunctions[head++];
-				Object.getLong = (delegate* unmanaged[Cdecl]<IntPtr, string, ref long, Bool>)objectFunctions[head++];
-				Object.getUShort = (delegate* unmanaged[Cdecl]<IntPtr, string, ref ushort, Bool>)objectFunctions[head++];
-				Object.getUInt = (delegate* unmanaged[Cdecl]<IntPtr, string, ref uint, Bool>)objectFunctions[head++];
-				Object.getULong = (delegate* unmanaged[Cdecl]<IntPtr, string, ref ulong, Bool>)objectFunctions[head++];
-				Object.getFloat = (delegate* unmanaged[Cdecl]<IntPtr, string, ref float, Bool>)objectFunctions[head++];
-				Object.getDouble = (delegate* unmanaged[Cdecl]<IntPtr, string, ref double, Bool>)objectFunctions[head++];
-				Object.getEnum = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool>)objectFunctions[head++];
-				Object.getString = (delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool>)objectFunctions[head++];
-				Object.getText = (delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool>)objectFunctions[head++];
-				Object.setBool = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool>)objectFunctions[head++];
-				Object.setByte = (delegate* unmanaged[Cdecl]<IntPtr, string, byte, Bool>)objectFunctions[head++];
-				Object.setShort = (delegate* unmanaged[Cdecl]<IntPtr, string, short, Bool>)objectFunctions[head++];
-				Object.setInt = (delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool>)objectFunctions[head++];
-				Object.setLong = (delegate* unmanaged[Cdecl]<IntPtr, string, long, Bool>)objectFunctions[head++];
-				Object.setUShort = (delegate* unmanaged[Cdecl]<IntPtr, string, ushort, Bool>)objectFunctions[head++];
-				Object.setUInt = (delegate* unmanaged[Cdecl]<IntPtr, string, uint, Bool>)objectFunctions[head++];
-				Object.setULong = (delegate* unmanaged[Cdecl]<IntPtr, string, ulong, Bool>)objectFunctions[head++];
-				Object.setFloat = (delegate* unmanaged[Cdecl]<IntPtr, string, float, Bool>)objectFunctions[head++];
-				Object.setDouble = (delegate* unmanaged[Cdecl]<IntPtr, string, double, Bool>)objectFunctions[head++];
-				Object.setEnum = (delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool>)objectFunctions[head++];
-				Object.setString = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool>)objectFunctions[head++];
-				Object.setText = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool>)objectFunctions[head++];
+				Object.getBool = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref bool, Bool>)objectFunctions[head++];
+				Object.getByte = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref byte, Bool>)objectFunctions[head++];
+				Object.getShort = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref short, Bool>)objectFunctions[head++];
+				Object.getInt = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref int, Bool>)objectFunctions[head++];
+				Object.getLong = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref long, Bool>)objectFunctions[head++];
+				Object.getUShort = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref ushort, Bool>)objectFunctions[head++];
+				Object.getUInt = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref uint, Bool>)objectFunctions[head++];
+				Object.getULong = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref ulong, Bool>)objectFunctions[head++];
+				Object.getFloat = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref float, Bool>)objectFunctions[head++];
+				Object.getDouble = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref double, Bool>)objectFunctions[head++];
+				Object.getEnum = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref int, Bool>)objectFunctions[head++];
+				Object.getString = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool>)objectFunctions[head++];
+				Object.getText = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool>)objectFunctions[head++];
+				Object.setBool = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, Bool>)objectFunctions[head++];
+				Object.setByte = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte, Bool>)objectFunctions[head++];
+				Object.setShort = (delegate* unmanaged[Cdecl]<IntPtr, byte[], short, Bool>)objectFunctions[head++];
+				Object.setInt = (delegate* unmanaged[Cdecl]<IntPtr, byte[], int, Bool>)objectFunctions[head++];
+				Object.setLong = (delegate* unmanaged[Cdecl]<IntPtr, byte[], long, Bool>)objectFunctions[head++];
+				Object.setUShort = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ushort, Bool>)objectFunctions[head++];
+				Object.setUInt = (delegate* unmanaged[Cdecl]<IntPtr, byte[], uint, Bool>)objectFunctions[head++];
+				Object.setULong = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ulong, Bool>)objectFunctions[head++];
+				Object.setFloat = (delegate* unmanaged[Cdecl]<IntPtr, byte[], float, Bool>)objectFunctions[head++];
+				Object.setDouble = (delegate* unmanaged[Cdecl]<IntPtr, byte[], double, Bool>)objectFunctions[head++];
+				Object.setEnum = (delegate* unmanaged[Cdecl]<IntPtr, byte[], int, Bool>)objectFunctions[head++];
+				Object.setString = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool>)objectFunctions[head++];
+				Object.setText = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool>)objectFunctions[head++];
 			}
 
 			unchecked {
@@ -137,7 +137,7 @@ namespace UnrealEngine.Framework {
 				Application.getDefaultLanguage = (delegate* unmanaged[Cdecl]<byte[], void>)applicationFunctions[head++];
 				Application.getProjectName = (delegate* unmanaged[Cdecl]<byte[], void>)applicationFunctions[head++];
 				Application.getVolumeMultiplier = (delegate* unmanaged[Cdecl]<float>)applicationFunctions[head++];
-				Application.setProjectName = (delegate* unmanaged[Cdecl]<string, void>)applicationFunctions[head++];
+				Application.setProjectName = (delegate* unmanaged[Cdecl]<byte[], void>)applicationFunctions[head++];
 				Application.setVolumeMultiplier = (delegate* unmanaged[Cdecl]<float, void>)applicationFunctions[head++];
 				Application.requestExit = (delegate* unmanaged[Cdecl]<Bool, void>)applicationFunctions[head++];
 			}
@@ -146,14 +146,14 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* consoleManagerFunctions = (IntPtr*)buffer[position++];
 
-				ConsoleManager.isRegisteredVariable = (delegate* unmanaged[Cdecl]<string, Bool>)consoleManagerFunctions[head++];
-				ConsoleManager.findVariable = (delegate* unmanaged[Cdecl]<string, IntPtr>)consoleManagerFunctions[head++];
-				ConsoleManager.registerVariableBool = (delegate* unmanaged[Cdecl]<string, string, Bool, Bool, IntPtr>)consoleManagerFunctions[head++];
-				ConsoleManager.registerVariableInt = (delegate* unmanaged[Cdecl]<string, string, int, Bool, IntPtr>)consoleManagerFunctions[head++];
-				ConsoleManager.registerVariableFloat = (delegate* unmanaged[Cdecl]<string, string, float, Bool, IntPtr>)consoleManagerFunctions[head++];
-				ConsoleManager.registerVariableString = (delegate* unmanaged[Cdecl]<string, string, string, Bool, IntPtr>)consoleManagerFunctions[head++];
-				ConsoleManager.registerCommand = (delegate* unmanaged[Cdecl]<string, string, IntPtr, Bool, void>)consoleManagerFunctions[head++];
-				ConsoleManager.unregisterObject = (delegate* unmanaged[Cdecl]<string, void>)consoleManagerFunctions[head++];
+				ConsoleManager.isRegisteredVariable = (delegate* unmanaged[Cdecl]<byte[], Bool>)consoleManagerFunctions[head++];
+				ConsoleManager.findVariable = (delegate* unmanaged[Cdecl]<byte[], IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableBool = (delegate* unmanaged[Cdecl]<byte[], byte[], Bool, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableInt = (delegate* unmanaged[Cdecl]<byte[], byte[], int, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableFloat = (delegate* unmanaged[Cdecl]<byte[], byte[], float, Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerVariableString = (delegate* unmanaged[Cdecl]<byte[], byte[], byte[], Bool, IntPtr>)consoleManagerFunctions[head++];
+				ConsoleManager.registerCommand = (delegate* unmanaged[Cdecl]<byte[], byte[], IntPtr, Bool, void>)consoleManagerFunctions[head++];
+				ConsoleManager.unregisterObject = (delegate* unmanaged[Cdecl]<byte[], void>)consoleManagerFunctions[head++];
 			}
 
 			unchecked {
@@ -172,9 +172,9 @@ namespace UnrealEngine.Framework {
 				Engine.getVersion = (delegate* unmanaged[Cdecl]<byte[], void>)engineFunctions[head++];
 				Engine.getMaxFPS = (delegate* unmanaged[Cdecl]<float>)engineFunctions[head++];
 				Engine.setMaxFPS = (delegate* unmanaged[Cdecl]<float, void>)engineFunctions[head++];
-				Engine.setTitle = (delegate* unmanaged[Cdecl]<string, void>)engineFunctions[head++];
-				Engine.addActionMapping = (delegate* unmanaged[Cdecl]<string, string, Bool, Bool, Bool, Bool, void>)engineFunctions[head++];
-				Engine.addAxisMapping = (delegate* unmanaged[Cdecl]<string, string, float, void>)engineFunctions[head++];
+				Engine.setTitle = (delegate* unmanaged[Cdecl]<byte[], void>)engineFunctions[head++];
+				Engine.addActionMapping = (delegate* unmanaged[Cdecl]<byte[], byte[], Bool, Bool, Bool, Bool, void>)engineFunctions[head++];
+				Engine.addAxisMapping = (delegate* unmanaged[Cdecl]<byte[], byte[], float, void>)engineFunctions[head++];
 				Engine.forceGarbageCollection = (delegate* unmanaged[Cdecl]<Bool, void>)engineFunctions[head++];
 				Engine.delayGarbageCollection = (delegate* unmanaged[Cdecl]<void>)engineFunctions[head++];
 			}
@@ -203,8 +203,8 @@ namespace UnrealEngine.Framework {
 				World.getCurrentLevelName = (delegate* unmanaged[Cdecl]<byte[], void>)worldFunctions[head++];
 				World.getSimulatePhysics = (delegate* unmanaged[Cdecl]<Bool>)worldFunctions[head++];
 				World.getWorldOrigin = (delegate* unmanaged[Cdecl]<ref Vector3, void>)worldFunctions[head++];
-				World.getActor = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr>)worldFunctions[head++];
-				World.getActorByTag = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr>)worldFunctions[head++];
+				World.getActor = (delegate* unmanaged[Cdecl]<byte[], ActorType, IntPtr>)worldFunctions[head++];
+				World.getActorByTag = (delegate* unmanaged[Cdecl]<byte[], ActorType, IntPtr>)worldFunctions[head++];
 				World.getActorByID = (delegate* unmanaged[Cdecl]<uint, ActorType, IntPtr>)worldFunctions[head++];
 				World.getFirstPlayerController = (delegate* unmanaged[Cdecl]<IntPtr>)worldFunctions[head++];
 				World.getGameMode = (delegate* unmanaged[Cdecl]<IntPtr>)worldFunctions[head++];
@@ -225,19 +225,19 @@ namespace UnrealEngine.Framework {
 				World.setSimulatePhysics = (delegate* unmanaged[Cdecl]<Bool, void>)worldFunctions[head++];
 				World.setGravity = (delegate* unmanaged[Cdecl]<float, void>)worldFunctions[head++];
 				World.setWorldOrigin = (delegate* unmanaged[Cdecl]<in Vector3, Bool>)worldFunctions[head++];
-				World.openLevel = (delegate* unmanaged[Cdecl]<string, void>)worldFunctions[head++];
+				World.openLevel = (delegate* unmanaged[Cdecl]<byte[], void>)worldFunctions[head++];
 				World.lineTraceTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
-				World.lineTraceTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.lineTraceTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.lineTraceSingleByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
-				World.lineTraceSingleByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.lineTraceSingleByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, byte[], ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.sweepTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
-				World.sweepTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.sweepTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, byte[], in CollisionShape, Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.sweepSingleByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
-				World.sweepSingleByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.sweepSingleByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, byte[], in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.overlapAnyTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
-				World.overlapAnyTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.overlapAnyTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, byte[], in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 				World.overlapBlockingTestByChannel = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
-				World.overlapBlockingTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
+				World.overlapBlockingTestByProfile = (delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, byte[], in CollisionShape, IntPtr, IntPtr, Bool>)worldFunctions[head++];
 			}
 
 			unchecked {
@@ -254,8 +254,8 @@ namespace UnrealEngine.Framework {
 				IntPtr* assetRegistryFunctions = (IntPtr*)buffer[position++];
 
 				AssetRegistry.get = (delegate* unmanaged[Cdecl]<IntPtr>)assetRegistryFunctions[head++];
-				AssetRegistry.hasAssets = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool>)assetRegistryFunctions[head++];
-				AssetRegistry.forEachAsset = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool, ref Asset*, ref int, void>)assetRegistryFunctions[head++];
+				AssetRegistry.hasAssets = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, Bool>)assetRegistryFunctions[head++];
+				AssetRegistry.forEachAsset = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, Bool, ref Asset*, ref int, void>)assetRegistryFunctions[head++];
 			}
 
 			unchecked {
@@ -287,7 +287,7 @@ namespace UnrealEngine.Framework {
 				ConsoleVariable.setBool = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)consoleVariableFunctions[head++];
 				ConsoleVariable.setInt = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)consoleVariableFunctions[head++];
 				ConsoleVariable.setFloat = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)consoleVariableFunctions[head++];
-				ConsoleVariable.setString = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)consoleVariableFunctions[head++];
+				ConsoleVariable.setString = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)consoleVariableFunctions[head++];
 				ConsoleVariable.setOnChangedCallback = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)consoleVariableFunctions[head++];
 				ConsoleVariable.clearOnChangedCallback = (delegate* unmanaged[Cdecl]<IntPtr, void>)consoleVariableFunctions[head++];
 			}
@@ -303,13 +303,13 @@ namespace UnrealEngine.Framework {
 				Actor.forEachAttachedActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
 				Actor.forEachChildActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
 				Actor.forEachOverlappingActor = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)actorFunctions[head++];
-				Actor.spawn = (delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr>)actorFunctions[head++];
+				Actor.spawn = (delegate* unmanaged[Cdecl]<byte[], ActorType, IntPtr, IntPtr>)actorFunctions[head++];
 				Actor.destroy = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorFunctions[head++];
-				Actor.rename = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
+				Actor.rename = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)actorFunctions[head++];
 				Actor.hide = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorFunctions[head++];
 				Actor.teleportTo = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Quaternion, Bool, Bool, Bool>)actorFunctions[head++];
-				Actor.getComponent = (delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr>)actorFunctions[head++];
-				Actor.getComponentByTag = (delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr>)actorFunctions[head++];
+				Actor.getComponent = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ComponentType, IntPtr>)actorFunctions[head++];
+				Actor.getComponentByTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ComponentType, IntPtr>)actorFunctions[head++];
 				Actor.getComponentByID = (delegate* unmanaged[Cdecl]<IntPtr, uint, ComponentType, IntPtr>)actorFunctions[head++];
 				Actor.getRootComponent = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr>)actorFunctions[head++];
 				Actor.getInputComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr>)actorFunctions[head++];
@@ -325,9 +325,9 @@ namespace UnrealEngine.Framework {
 				Actor.setLifeSpan = (delegate* unmanaged[Cdecl]<IntPtr, float, void>)actorFunctions[head++];
 				Actor.setEnableInput = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)actorFunctions[head++];
 				Actor.setEnableCollision = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorFunctions[head++];
-				Actor.addTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
-				Actor.removeTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorFunctions[head++];
-				Actor.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)actorFunctions[head++];
+				Actor.addTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)actorFunctions[head++];
+				Actor.removeTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)actorFunctions[head++];
+				Actor.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)actorFunctions[head++];
 				Actor.registerEvent = (delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void>)actorFunctions[head++];
 				Actor.unregisterEvent = (delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void>)actorFunctions[head++];
 			}
@@ -436,7 +436,7 @@ namespace UnrealEngine.Framework {
 				PlayerController.setEnableClickEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setEnableMouseOverEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setMousePosition = (delegate* unmanaged[Cdecl]<IntPtr, float, float, void>)playerControllerFunctions[head++];
-				PlayerController.consoleCommand = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void>)playerControllerFunctions[head++];
+				PlayerController.consoleCommand = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, void>)playerControllerFunctions[head++];
 				PlayerController.setPause = (delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool>)playerControllerFunctions[head++];
 				PlayerController.setViewTarget = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)playerControllerFunctions[head++];
 				PlayerController.setViewTargetWithBlend = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, BlendType, Bool, void>)playerControllerFunctions[head++];
@@ -495,13 +495,13 @@ namespace UnrealEngine.Framework {
 				AnimationInstance.getCurrentSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void>)animationInstanceFunctions[head++];
 				AnimationInstance.setPlayRate = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)animationInstanceFunctions[head++];
 				AnimationInstance.setPosition = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)animationInstanceFunctions[head++];
-				AnimationInstance.setNextSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, string, void>)animationInstanceFunctions[head++];
+				AnimationInstance.setNextSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], byte[], void>)animationInstanceFunctions[head++];
 				AnimationInstance.playMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, Bool, float>)animationInstanceFunctions[head++];
 				AnimationInstance.pauseMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)animationInstanceFunctions[head++];
 				AnimationInstance.resumeMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)animationInstanceFunctions[head++];
 				AnimationInstance.stopMontage = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void>)animationInstanceFunctions[head++];
-				AnimationInstance.jumpToSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void>)animationInstanceFunctions[head++];
-				AnimationInstance.jumpToSectionsEnd = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void>)animationInstanceFunctions[head++];
+				AnimationInstance.jumpToSection = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void>)animationInstanceFunctions[head++];
+				AnimationInstance.jumpToSectionsEnd = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void>)animationInstanceFunctions[head++];
 			}
 
 			unchecked {
@@ -515,28 +515,28 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* playerInputFunctions = (IntPtr*)buffer[position++];
 
-				PlayerInput.isKeyPressed = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)playerInputFunctions[head++];
-				PlayerInput.getTimeKeyPressed = (delegate* unmanaged[Cdecl]<IntPtr, string, float>)playerInputFunctions[head++];
+				PlayerInput.isKeyPressed = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)playerInputFunctions[head++];
+				PlayerInput.getTimeKeyPressed = (delegate* unmanaged[Cdecl]<IntPtr, byte[], float>)playerInputFunctions[head++];
 				PlayerInput.getMouseSensitivity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void>)playerInputFunctions[head++];
 				PlayerInput.setMouseSensitivity = (delegate* unmanaged[Cdecl]<IntPtr, in Vector2, void>)playerInputFunctions[head++];
-				PlayerInput.addActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool, Bool, Bool, Bool, void>)playerInputFunctions[head++];
-				PlayerInput.addAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, float, void>)playerInputFunctions[head++];
-				PlayerInput.removeActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, void>)playerInputFunctions[head++];
-				PlayerInput.removeAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, string, string, void>)playerInputFunctions[head++];
+				PlayerInput.addActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool, Bool, Bool, Bool, void>)playerInputFunctions[head++];
+				PlayerInput.addAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], float, void>)playerInputFunctions[head++];
+				PlayerInput.removeActionMapping = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], void>)playerInputFunctions[head++];
+				PlayerInput.removeAxisMapping = (delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], void>)playerInputFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* fontFunctions = (IntPtr*)buffer[position++];
 
-				Font.getStringSize = (delegate* unmanaged[Cdecl]<IntPtr, string, ref int, ref int, void>)fontFunctions[head++];
+				Font.getStringSize = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref int, ref int, void>)fontFunctions[head++];
 			}
 
 			unchecked {
 				int head = 0;
 				IntPtr* texture2DFunctions = (IntPtr*)buffer[position++];
 
-				Texture2D.createFromFile = (delegate* unmanaged[Cdecl]<string, IntPtr>)texture2DFunctions[head++];
+				Texture2D.createFromFile = (delegate* unmanaged[Cdecl]<byte[], IntPtr>)texture2DFunctions[head++];
 				Texture2D.createFromBuffer = (delegate* unmanaged[Cdecl]<byte[], int, IntPtr>)texture2DFunctions[head++];
 				Texture2D.hasAlphaChannel = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)texture2DFunctions[head++];
 				Texture2D.getSize = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void>)texture2DFunctions[head++];
@@ -550,9 +550,9 @@ namespace UnrealEngine.Framework {
 				ActorComponent.isOwnerSelected = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)actorComponentFunctions[head++];
 				ActorComponent.getOwner = (delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr>)actorComponentFunctions[head++];
 				ActorComponent.destroy = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)actorComponentFunctions[head++];
-				ActorComponent.addTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorComponentFunctions[head++];
-				ActorComponent.removeTag = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)actorComponentFunctions[head++];
-				ActorComponent.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)actorComponentFunctions[head++];
+				ActorComponent.addTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)actorComponentFunctions[head++];
+				ActorComponent.removeTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)actorComponentFunctions[head++];
+				ActorComponent.hasTag = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)actorComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -562,9 +562,9 @@ namespace UnrealEngine.Framework {
 				InputComponent.hasBindings = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)inputComponentFunctions[head++];
 				InputComponent.getActionBindingsNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)inputComponentFunctions[head++];
 				InputComponent.clearActionBindings = (delegate* unmanaged[Cdecl]<IntPtr, void>)inputComponentFunctions[head++];
-				InputComponent.bindAction = (delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, Bool, IntPtr, void>)inputComponentFunctions[head++];
-				InputComponent.bindAxis = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, IntPtr, void>)inputComponentFunctions[head++];
-				InputComponent.removeActionBinding = (delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, void>)inputComponentFunctions[head++];
+				InputComponent.bindAction = (delegate* unmanaged[Cdecl]<IntPtr, byte[], InputEvent, Bool, IntPtr, void>)inputComponentFunctions[head++];
+				InputComponent.bindAxis = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, IntPtr, void>)inputComponentFunctions[head++];
+				InputComponent.removeActionBinding = (delegate* unmanaged[Cdecl]<IntPtr, byte[], InputEvent, void>)inputComponentFunctions[head++];
 				InputComponent.getBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)inputComponentFunctions[head++];
 				InputComponent.setBlockInput = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)inputComponentFunctions[head++];
 				InputComponent.getPriority = (delegate* unmanaged[Cdecl]<IntPtr, int>)inputComponentFunctions[head++];
@@ -604,7 +604,7 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* rotatingMovementComponentFunctions = (IntPtr*)buffer[position++];
 
-				RotatingMovementComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr>)rotatingMovementComponentFunctions[head++];
+				RotatingMovementComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, byte[], IntPtr>)rotatingMovementComponentFunctions[head++];
 				RotatingMovementComponent.getRotationInLocalSpace = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)rotatingMovementComponentFunctions[head++];
 				RotatingMovementComponent.getPivotTranslation = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)rotatingMovementComponentFunctions[head++];
 				RotatingMovementComponent.getRotationRate = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)rotatingMovementComponentFunctions[head++];
@@ -620,12 +620,12 @@ namespace UnrealEngine.Framework {
 				SceneComponent.isAttachedToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.isAttachedToActor = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)sceneComponentFunctions[head++];
 				SceneComponent.isVisible = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
-				SceneComponent.isSocketExists = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.isSocketExists = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)sceneComponentFunctions[head++];
 				SceneComponent.hasAnySockets = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)sceneComponentFunctions[head++];
-				SceneComponent.canAttachAsChild = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.canAttachAsChild = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], Bool>)sceneComponentFunctions[head++];
 				SceneComponent.forEachAttachedChild = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)sceneComponentFunctions[head++];
-				SceneComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr>)sceneComponentFunctions[head++];
-				SceneComponent.attachToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool>)sceneComponentFunctions[head++];
+				SceneComponent.create = (delegate* unmanaged[Cdecl]<IntPtr, ComponentType, byte[], Bool, IntPtr, IntPtr>)sceneComponentFunctions[head++];
+				SceneComponent.attachToComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, byte[], Bool>)sceneComponentFunctions[head++];
 				SceneComponent.detachFromComponent = (delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void>)sceneComponentFunctions[head++];
 				SceneComponent.activate = (delegate* unmanaged[Cdecl]<IntPtr, void>)sceneComponentFunctions[head++];
 				SceneComponent.deactivate = (delegate* unmanaged[Cdecl]<IntPtr, void>)sceneComponentFunctions[head++];
@@ -640,8 +640,8 @@ namespace UnrealEngine.Framework {
 				SceneComponent.addWorldTransform = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, void>)sceneComponentFunctions[head++];
 				SceneComponent.getAttachedSocketName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)sceneComponentFunctions[head++];
 				SceneComponent.getBounds = (delegate* unmanaged[Cdecl]<IntPtr, in Transform, ref Bounds, void>)sceneComponentFunctions[head++];
-				SceneComponent.getSocketLocation = (delegate* unmanaged[Cdecl]<IntPtr, string, ref Vector3, void>)sceneComponentFunctions[head++];
-				SceneComponent.getSocketRotation = (delegate* unmanaged[Cdecl]<IntPtr, string, ref Quaternion, void>)sceneComponentFunctions[head++];
+				SceneComponent.getSocketLocation = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref Vector3, void>)sceneComponentFunctions[head++];
+				SceneComponent.getSocketRotation = (delegate* unmanaged[Cdecl]<IntPtr, byte[], ref Quaternion, void>)sceneComponentFunctions[head++];
 				SceneComponent.getComponentVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
 				SceneComponent.getComponentLocation = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void>)sceneComponentFunctions[head++];
 				SceneComponent.getComponentRotation = (delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void>)sceneComponentFunctions[head++];
@@ -773,21 +773,21 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.isGravityEnabled = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.isOverlappingComponent = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.forEachOverlappingComponent = (delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addAngularImpulseInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addAngularImpulseInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addForce = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addForceAtLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addImpulse = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addImpulseAtLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addAngularImpulseInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addAngularImpulseInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addForce = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addForceAtLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addImpulse = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addImpulseAtLocation = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, byte[], void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.addRadialForce = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.addRadialImpulse = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addTorqueInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.addTorqueInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addTorqueInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.addTorqueInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.getMass = (delegate* unmanaged[Cdecl]<IntPtr, float>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.getPhysicsLinearVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, in Vector3, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.getPhysicsAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.getPhysicsAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsLinearVelocity = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsLinearVelocityAtPoint = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, in Vector3, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.getPhysicsAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, byte[], void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.getCastShadow = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.getOnlyOwnerSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.getOwnerNoSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool>)primitiveComponentFunctions[head++];
@@ -801,13 +801,13 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.getLinearDamping = (delegate* unmanaged[Cdecl]<IntPtr, float>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setGenerateOverlapEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setGenerateHitEvents = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setMass = (delegate* unmanaged[Cdecl]<IntPtr, float, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setCenterOfMass = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setPhysicsLinearVelocity = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setPhysicsAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setPhysicsAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setMass = (delegate* unmanaged[Cdecl]<IntPtr, float, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCenterOfMass = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsLinearVelocity = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsMaxAngularVelocityInDegrees = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, byte[], void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setPhysicsMaxAngularVelocityInRadians = (delegate* unmanaged[Cdecl]<IntPtr, float, Bool, byte[], void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setCastShadow = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setOnlyOwnerSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setOwnerNoSee = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
@@ -820,7 +820,7 @@ namespace UnrealEngine.Framework {
 				PrimitiveComponent.setEnableGravity = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setCollisionMode = (delegate* unmanaged[Cdecl]<IntPtr, CollisionMode, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setCollisionChannel = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void>)primitiveComponentFunctions[head++];
-				PrimitiveComponent.setCollisionProfileName = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void>)primitiveComponentFunctions[head++];
+				PrimitiveComponent.setCollisionProfileName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setCollisionResponseToChannel = (delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, CollisionResponse, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setCollisionResponseToAllChannels = (delegate* unmanaged[Cdecl]<IntPtr, CollisionResponse, void>)primitiveComponentFunctions[head++];
 				PrimitiveComponent.setIgnoreActorWhenMoving = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)primitiveComponentFunctions[head++];
@@ -881,8 +881,8 @@ namespace UnrealEngine.Framework {
 				int head = 0;
 				IntPtr* meshComponentFunctions = (IntPtr*)buffer[position++];
 
-				MeshComponent.isValidMaterialSlotName = (delegate* unmanaged[Cdecl]<IntPtr, string, Bool>)meshComponentFunctions[head++];
-				MeshComponent.getMaterialIndex = (delegate* unmanaged[Cdecl]<IntPtr, string, int>)meshComponentFunctions[head++];
+				MeshComponent.isValidMaterialSlotName = (delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool>)meshComponentFunctions[head++];
+				MeshComponent.getMaterialIndex = (delegate* unmanaged[Cdecl]<IntPtr, byte[], int>)meshComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -890,7 +890,7 @@ namespace UnrealEngine.Framework {
 				IntPtr* textRenderComponentFunctions = (IntPtr*)buffer[position++];
 
 				TextRenderComponent.setFont = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)textRenderComponentFunctions[head++];
-				TextRenderComponent.setText = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)textRenderComponentFunctions[head++];
+				TextRenderComponent.setText = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)textRenderComponentFunctions[head++];
 				TextRenderComponent.setTextMaterial = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)textRenderComponentFunctions[head++];
 				TextRenderComponent.setTextRenderColor = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)textRenderComponentFunctions[head++];
 				TextRenderComponent.setHorizontalAlignment = (delegate* unmanaged[Cdecl]<IntPtr, HorizontalTextAligment, void>)textRenderComponentFunctions[head++];
@@ -929,10 +929,10 @@ namespace UnrealEngine.Framework {
 				MotionControllerComponent.setDisplayDeviceModel = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setDisableLowLatencyUpdate = (delegate* unmanaged[Cdecl]<IntPtr, Bool, void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setTrackingSource = (delegate* unmanaged[Cdecl]<IntPtr, ControllerHand, void>)motionControllerComponentFunctions[head++];
-				MotionControllerComponent.setTrackingMotionSource = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setTrackingMotionSource = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setAssociatedPlayerIndex = (delegate* unmanaged[Cdecl]<IntPtr, int, void>)motionControllerComponentFunctions[head++];
 				MotionControllerComponent.setCustomDisplayMesh = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void>)motionControllerComponentFunctions[head++];
-				MotionControllerComponent.setDisplayModelSource = (delegate* unmanaged[Cdecl]<IntPtr, string, void>)motionControllerComponentFunctions[head++];
+				MotionControllerComponent.setDisplayModelSource = (delegate* unmanaged[Cdecl]<IntPtr, byte[], void>)motionControllerComponentFunctions[head++];
 			}
 
 			unchecked {
@@ -971,7 +971,7 @@ namespace UnrealEngine.Framework {
 				IntPtr* skinnedMeshComponentFunctions = (IntPtr*)buffer[position++];
 
 				SkinnedMeshComponent.getBonesNumber = (delegate* unmanaged[Cdecl]<IntPtr, int>)skinnedMeshComponentFunctions[head++];
-				SkinnedMeshComponent.getBoneIndex = (delegate* unmanaged[Cdecl]<IntPtr, string, int>)skinnedMeshComponentFunctions[head++];
+				SkinnedMeshComponent.getBoneIndex = (delegate* unmanaged[Cdecl]<IntPtr, byte[], int>)skinnedMeshComponentFunctions[head++];
 				SkinnedMeshComponent.getBoneName = (delegate* unmanaged[Cdecl]<IntPtr, int, byte[], void>)skinnedMeshComponentFunctions[head++];
 				SkinnedMeshComponent.getBoneTransform = (delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, void>)skinnedMeshComponentFunctions[head++];
 				SkinnedMeshComponent.setSkeletalMesh = (delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void>)skinnedMeshComponentFunctions[head++];
@@ -1103,9 +1103,9 @@ namespace UnrealEngine.Framework {
 				IntPtr* materialInstanceDynamicFunctions = (IntPtr*)buffer[position++];
 
 				MaterialInstanceDynamic.clearParameterValues = (delegate* unmanaged[Cdecl]<IntPtr, void>)materialInstanceDynamicFunctions[head++];
-				MaterialInstanceDynamic.setTextureParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr, void>)materialInstanceDynamicFunctions[head++];
-				MaterialInstanceDynamic.setVectorParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, string, in LinearColor, void>)materialInstanceDynamicFunctions[head++];
-				MaterialInstanceDynamic.setScalarParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, string, float, void>)materialInstanceDynamicFunctions[head++];
+				MaterialInstanceDynamic.setTextureParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, byte[], IntPtr, void>)materialInstanceDynamicFunctions[head++];
+				MaterialInstanceDynamic.setVectorParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, byte[], in LinearColor, void>)materialInstanceDynamicFunctions[head++];
+				MaterialInstanceDynamic.setScalarParameterValue = (delegate* unmanaged[Cdecl]<IntPtr, byte[], float, void>)materialInstanceDynamicFunctions[head++];
 			}
 
 			unchecked {
@@ -1408,8 +1408,8 @@ namespace UnrealEngine.Framework {
 
 	static unsafe partial class CommandLine {
 		internal static delegate* unmanaged[Cdecl]<byte[], void> get;
-		internal static delegate* unmanaged[Cdecl]<string, void> set;
-		internal static delegate* unmanaged[Cdecl]<string, void> append;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> set;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> append;
 	}
 
 	static unsafe partial class Debug {
@@ -1430,39 +1430,39 @@ namespace UnrealEngine.Framework {
 	internal static unsafe class Object {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isPendingKill;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isValid;
-		internal static delegate* unmanaged[Cdecl]<ObjectType, string, IntPtr> load;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> rename;
+		internal static delegate* unmanaged[Cdecl]<ObjectType, byte[], IntPtr> load;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> rename;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> invoke;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> toActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr> toComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, uint> getID;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getName;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref bool, Bool> getBool;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref byte, Bool> getByte;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref short, Bool> getShort;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool> getInt;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref long, Bool> getLong;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref ushort, Bool> getUShort;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref uint, Bool> getUInt;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref ulong, Bool> getULong;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref float, Bool> getFloat;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref double, Bool> getDouble;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, Bool> getEnum;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool> getString;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte[], Bool> getText;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool> setBool;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, byte, Bool> setByte;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, short, Bool> setShort;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool> setInt;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, long, Bool> setLong;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ushort, Bool> setUShort;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, uint, Bool> setUInt;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ulong, Bool> setULong;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float, Bool> setFloat;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, double, Bool> setDouble;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int, Bool> setEnum;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool> setString;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool> setText;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref bool, Bool> getBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref byte, Bool> getByte;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref short, Bool> getShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref int, Bool> getInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref long, Bool> getLong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref ushort, Bool> getUShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref uint, Bool> getUInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref ulong, Bool> getULong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref float, Bool> getFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref double, Bool> getDouble;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref int, Bool> getEnum;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool> getString;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool> getText;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, Bool> setBool;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte, Bool> setByte;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], short, Bool> setShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], int, Bool> setInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], long, Bool> setLong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ushort, Bool> setUShort;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], uint, Bool> setUInt;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ulong, Bool> setULong;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], float, Bool> setFloat;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], double, Bool> setDouble;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], int, Bool> setEnum;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool> setString;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool> setText;
 	}
 
 	static unsafe partial class Application {
@@ -1473,20 +1473,20 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<byte[], void> getDefaultLanguage;
 		internal static delegate* unmanaged[Cdecl]<byte[], void> getProjectName;
 		internal static delegate* unmanaged[Cdecl]<float> getVolumeMultiplier;
-		internal static delegate* unmanaged[Cdecl]<string, void> setProjectName;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> setProjectName;
 		internal static delegate* unmanaged[Cdecl]<float, void> setVolumeMultiplier;
 		internal static delegate* unmanaged[Cdecl]<Bool, void> requestExit;
 	}
 
 	static unsafe partial class ConsoleManager {
-		internal static delegate* unmanaged[Cdecl]<string, Bool> isRegisteredVariable;
-		internal static delegate* unmanaged[Cdecl]<string, IntPtr> findVariable;
-		internal static delegate* unmanaged[Cdecl]<string, string, Bool, Bool, IntPtr> registerVariableBool;
-		internal static delegate* unmanaged[Cdecl]<string, string, int, Bool, IntPtr> registerVariableInt;
-		internal static delegate* unmanaged[Cdecl]<string, string, float, Bool, IntPtr> registerVariableFloat;
-		internal static delegate* unmanaged[Cdecl]<string, string, string, Bool, IntPtr> registerVariableString;
-		internal static delegate* unmanaged[Cdecl]<string, string, IntPtr, Bool, void> registerCommand;
-		internal static delegate* unmanaged[Cdecl]<string, void> unregisterObject;
+		internal static delegate* unmanaged[Cdecl]<byte[], Bool> isRegisteredVariable;
+		internal static delegate* unmanaged[Cdecl]<byte[], IntPtr> findVariable;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], Bool, Bool, IntPtr> registerVariableBool;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], int, Bool, IntPtr> registerVariableInt;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], float, Bool, IntPtr> registerVariableFloat;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], byte[], Bool, IntPtr> registerVariableString;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], IntPtr, Bool, void> registerCommand;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> unregisterObject;
 	}
 
 	static unsafe partial class Engine {
@@ -1502,9 +1502,9 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<byte[], void> getVersion;
 		internal static delegate* unmanaged[Cdecl]<float> getMaxFPS;
 		internal static delegate* unmanaged[Cdecl]<float, void> setMaxFPS;
-		internal static delegate* unmanaged[Cdecl]<string, void> setTitle;
-		internal static delegate* unmanaged[Cdecl]<string, string, Bool, Bool, Bool, Bool, void> addActionMapping;
-		internal static delegate* unmanaged[Cdecl]<string, string, float, void> addAxisMapping;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> setTitle;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], Bool, Bool, Bool, Bool, void> addActionMapping;
+		internal static delegate* unmanaged[Cdecl]<byte[], byte[], float, void> addAxisMapping;
 		internal static delegate* unmanaged[Cdecl]<Bool, void> forceGarbageCollection;
 		internal static delegate* unmanaged[Cdecl]<void> delayGarbageCollection;
 	}
@@ -1527,8 +1527,8 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<byte[], void> getCurrentLevelName;
 		internal static delegate* unmanaged[Cdecl]<Bool> getSimulatePhysics;
 		internal static delegate* unmanaged[Cdecl]<ref Vector3, void> getWorldOrigin;
-		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr> getActor;
-		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr> getActorByTag;
+		internal static delegate* unmanaged[Cdecl]<byte[], ActorType, IntPtr> getActor;
+		internal static delegate* unmanaged[Cdecl]<byte[], ActorType, IntPtr> getActorByTag;
 		internal static delegate* unmanaged[Cdecl]<uint, ActorType, IntPtr> getActorByID;
 		internal static delegate* unmanaged[Cdecl]<IntPtr> getFirstPlayerController;
 		internal static delegate* unmanaged[Cdecl]<IntPtr> getGameMode;
@@ -1549,19 +1549,19 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<Bool, void> setSimulatePhysics;
 		internal static delegate* unmanaged[Cdecl]<float, void> setGravity;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, Bool> setWorldOrigin;
-		internal static delegate* unmanaged[Cdecl]<string, void> openLevel;
+		internal static delegate* unmanaged[Cdecl]<byte[], void> openLevel;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, Bool, IntPtr, IntPtr, Bool> lineTraceTestByChannel;
-		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, Bool, IntPtr, IntPtr, Bool> lineTraceTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, byte[], Bool, IntPtr, IntPtr, Bool> lineTraceTestByProfile;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, CollisionChannel, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> lineTraceSingleByChannel;
-		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, string, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> lineTraceSingleByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, byte[], ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> lineTraceSingleByProfile;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, Bool, IntPtr, IntPtr, Bool> sweepTestByChannel;
-		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, Bool, IntPtr, IntPtr, Bool> sweepTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, byte[], in CollisionShape, Bool, IntPtr, IntPtr, Bool> sweepTestByProfile;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, CollisionChannel, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> sweepSingleByChannel;
-		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, string, in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> sweepSingleByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Vector3, in Quaternion, byte[], in CollisionShape, ref Hit, byte[], Bool, IntPtr, IntPtr, Bool> sweepSingleByProfile;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool> overlapAnyTestByChannel;
-		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool> overlapAnyTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, byte[], in CollisionShape, IntPtr, IntPtr, Bool> overlapAnyTestByProfile;
 		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, CollisionChannel, in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByChannel;
-		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, string, in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByProfile;
+		internal static delegate* unmanaged[Cdecl]<in Vector3, in Quaternion, byte[], in CollisionShape, IntPtr, IntPtr, Bool> overlapBlockingTestByProfile;
 	}
 
 	unsafe partial struct Asset {
@@ -1572,8 +1572,8 @@ namespace UnrealEngine.Framework {
 
 	unsafe partial class AssetRegistry {
 		internal static delegate* unmanaged[Cdecl]<IntPtr> get;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool> hasAssets;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, Bool, ref Asset*, ref int, void> forEachAsset;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, Bool> hasAssets;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, Bool, ref Asset*, ref int, void> forEachAsset;
 	}
 
 	unsafe partial class Blueprint {
@@ -1596,7 +1596,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setBool;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setInt;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setFloat;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setString;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> setString;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setOnChangedCallback;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearOnChangedCallback;
 	}
@@ -1609,13 +1609,13 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachAttachedActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachChildActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachOverlappingActor;
-		internal static delegate* unmanaged[Cdecl]<string, ActorType, IntPtr, IntPtr> spawn;
+		internal static delegate* unmanaged[Cdecl]<byte[], ActorType, IntPtr, IntPtr> spawn;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> destroy;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> rename;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> rename;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> hide;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Quaternion, Bool, Bool, Bool> teleportTo;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr> getComponent;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ComponentType, IntPtr> getComponentByTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ComponentType, IntPtr> getComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ComponentType, IntPtr> getComponentByTag;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, uint, ComponentType, IntPtr> getComponentByID;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, IntPtr> getRootComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr> getInputComponent;
@@ -1631,9 +1631,9 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, void> setLifeSpan;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setEnableInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableCollision;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> addTag;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> removeTag;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> hasTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> addTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> removeTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> hasTag;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void> registerEvent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorEventType, void> unregisterEvent;
 	}
@@ -1732,7 +1732,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableClickEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableMouseOverEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float, float, void> setMousePosition;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void> consoleCommand;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, void> consoleCommand;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, Bool> setPause;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setViewTarget;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, BlendType, Bool, void> setViewTargetWithBlend;
@@ -1802,13 +1802,13 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void> getCurrentSection;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void> setPlayRate;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void> setPosition;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, string, void> setNextSection;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], byte[], void> setNextSection;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, float, Bool, float> playMontage;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> pauseMontage;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> resumeMontage;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, float, void> stopMontage;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void> jumpToSection;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, void> jumpToSectionsEnd;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void> jumpToSection;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], void> jumpToSectionsEnd;
 	}
 
 	unsafe partial class Player {
@@ -1816,18 +1816,18 @@ namespace UnrealEngine.Framework {
 	}
 
 	unsafe partial class PlayerInput {
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isKeyPressed;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float> getTimeKeyPressed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> isKeyPressed;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], float> getTimeKeyPressed;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void> getMouseSensitivity;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector2, void> setMouseSensitivity;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, Bool, Bool, Bool, Bool, void> addActionMapping;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, float, void> addAxisMapping;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, void> removeActionMapping;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, string, void> removeAxisMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], Bool, Bool, Bool, Bool, void> addActionMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], float, void> addAxisMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], void> removeActionMapping;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], byte[], void> removeAxisMapping;
 	}
 
 	unsafe partial class Font {
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref int, ref int, void> getStringSize;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref int, ref int, void> getStringSize;
 	}
 
 	unsafe partial class StreamableRenderAsset { }
@@ -1839,7 +1839,7 @@ namespace UnrealEngine.Framework {
 	unsafe partial class Texture { }
 
 	unsafe partial class Texture2D {
-		internal static delegate* unmanaged[Cdecl]<string, IntPtr> createFromFile;
+		internal static delegate* unmanaged[Cdecl]<byte[], IntPtr> createFromFile;
 		internal static delegate* unmanaged[Cdecl]<byte[], int, IntPtr> createFromBuffer;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasAlphaChannel;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector2, void> getSize;
@@ -1850,18 +1850,18 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isOwnerSelected;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ActorType, IntPtr> getOwner;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> destroy;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> addTag;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> removeTag;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> hasTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> addTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> removeTag;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> hasTag;
 	}
 
 	unsafe partial class InputComponent {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasBindings;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getActionBindingsNumber;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearActionBindings;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, Bool, IntPtr, void> bindAction;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, IntPtr, void> bindAxis;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, InputEvent, void> removeActionBinding;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], InputEvent, Bool, IntPtr, void> bindAction;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, IntPtr, void> bindAxis;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], InputEvent, void> removeActionBinding;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getBlockInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setBlockInput;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getPriority;
@@ -1895,7 +1895,7 @@ namespace UnrealEngine.Framework {
 	}
 
 	unsafe partial class RotatingMovementComponent {
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr> create;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], IntPtr> create;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getRotationInLocalSpace;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getPivotTranslation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getRotationRate;
@@ -1908,12 +1908,12 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isAttachedToComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isAttachedToActor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isVisible;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isSocketExists;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> isSocketExists;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> hasAnySockets;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, string, Bool> canAttachAsChild;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, byte[], Bool> canAttachAsChild;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachAttachedChild;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, string, Bool, IntPtr, IntPtr> create;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, string, Bool> attachToComponent;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ComponentType, byte[], Bool, IntPtr, IntPtr> create;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, AttachmentTransformRule, byte[], Bool> attachToComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, DetachmentTransformRule, void> detachFromComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> activate;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> deactivate;
@@ -1928,8 +1928,8 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, void> addWorldTransform;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> getAttachedSocketName;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Transform, ref Bounds, void> getBounds;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref Vector3, void> getSocketLocation;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, ref Quaternion, void> getSocketRotation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref Vector3, void> getSocketLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], ref Quaternion, void> getSocketRotation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getComponentVelocity;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, void> getComponentLocation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Quaternion, void> getComponentRotation;
@@ -2043,21 +2043,21 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> isGravityEnabled;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool> isOverlappingComponent;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ref ObjectReference*, ref int, void> forEachOverlappingComponent;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addAngularImpulseInDegrees;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addAngularImpulseInRadians;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addForce;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, Bool, void> addForceAtLocation;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addImpulse;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, string, void> addImpulseAtLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void> addAngularImpulseInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void> addAngularImpulseInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void> addForce;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, byte[], Bool, void> addForceAtLocation;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void> addImpulse;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, in Vector3, byte[], void> addImpulseAtLocation;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void> addRadialForce;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, float, float, Bool, Bool, void> addRadialImpulse;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addTorqueInDegrees;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, Bool, void> addTorqueInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void> addTorqueInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], Bool, void> addTorqueInRadians;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getMass;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void> getPhysicsLinearVelocity;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, in Vector3, string, void> getPhysicsLinearVelocityAtPoint;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void> getPhysicsAngularVelocityInDegrees;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, string, void> getPhysicsAngularVelocityInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, byte[], void> getPhysicsLinearVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, in Vector3, byte[], void> getPhysicsLinearVelocityAtPoint;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, byte[], void> getPhysicsAngularVelocityInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, ref Vector3, byte[], void> getPhysicsAngularVelocityInRadians;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getCastShadow;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getOnlyOwnerSee;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool> getOwnerNoSee;
@@ -2071,13 +2071,13 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, float> getLinearDamping;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setGenerateOverlapEvents;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setGenerateHitEvents;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, float, string, void> setMass;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, string, void> setCenterOfMass;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void> setPhysicsLinearVelocity;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void> setPhysicsAngularVelocityInDegrees;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, string, void> setPhysicsAngularVelocityInRadians;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void> setPhysicsMaxAngularVelocityInDegrees;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, string, void> setPhysicsMaxAngularVelocityInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, byte[], void> setMass;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, byte[], void> setCenterOfMass;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, byte[], void> setPhysicsLinearVelocity;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, byte[], void> setPhysicsAngularVelocityInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, in Vector3, Bool, byte[], void> setPhysicsAngularVelocityInRadians;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, byte[], void> setPhysicsMaxAngularVelocityInDegrees;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, float, Bool, byte[], void> setPhysicsMaxAngularVelocityInRadians;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setCastShadow;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setOnlyOwnerSee;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setOwnerNoSee;
@@ -2090,7 +2090,7 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setEnableGravity;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionMode, void> setCollisionMode;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, void> setCollisionChannel;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool, void> setCollisionProfileName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool, void> setCollisionProfileName;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionChannel, CollisionResponse, void> setCollisionResponseToChannel;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, CollisionResponse, void> setCollisionResponseToAllChannels;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setIgnoreActorWhenMoving;
@@ -2136,13 +2136,13 @@ namespace UnrealEngine.Framework {
 	}
 
 	unsafe partial class MeshComponent {
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, Bool> isValidMaterialSlotName;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int> getMaterialIndex;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], Bool> isValidMaterialSlotName;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], int> getMaterialIndex;
 	}
 
 	unsafe partial class TextRenderComponent {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setFont;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setText;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> setText;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setTextMaterial;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setTextRenderColor;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, HorizontalTextAligment, void> setHorizontalAlignment;
@@ -2174,10 +2174,10 @@ namespace UnrealEngine.Framework {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDisplayDeviceModel;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, Bool, void> setDisableLowLatencyUpdate;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, ControllerHand, void> setTrackingSource;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setTrackingMotionSource;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> setTrackingMotionSource;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, void> setAssociatedPlayerIndex;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, void> setCustomDisplayMesh;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, void> setDisplayModelSource;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], void> setDisplayModelSource;
 	}
 
 	unsafe partial class StaticMeshComponent {
@@ -2204,7 +2204,7 @@ namespace UnrealEngine.Framework {
 
 	unsafe partial class SkinnedMeshComponent {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int> getBonesNumber;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, int> getBoneIndex;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], int> getBoneIndex;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, byte[], void> getBoneName;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, int, ref Transform, void> getBoneTransform;
 		internal static delegate* unmanaged[Cdecl]<IntPtr, IntPtr, Bool, void> setSkeletalMesh;
@@ -2315,8 +2315,8 @@ namespace UnrealEngine.Framework {
 
 	unsafe partial class MaterialInstanceDynamic {
 		internal static delegate* unmanaged[Cdecl]<IntPtr, void> clearParameterValues;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, IntPtr, void> setTextureParameterValue;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, in LinearColor, void> setVectorParameterValue;
-		internal static delegate* unmanaged[Cdecl]<IntPtr, string, float, void> setScalarParameterValue;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], IntPtr, void> setTextureParameterValue;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], in LinearColor, void> setVectorParameterValue;
+		internal static delegate* unmanaged[Cdecl]<IntPtr, byte[], float, void> setScalarParameterValue;
 	}
 }

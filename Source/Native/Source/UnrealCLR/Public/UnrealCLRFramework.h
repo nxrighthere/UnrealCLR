@@ -314,7 +314,7 @@ namespace UnrealCLRFramework {
 	// Non-instantiable
 
 	namespace Assert {
-		static void OutputMessage(const uint8* Message);
+		static void OutputMessage(const char* Message);
 	}
 
 	namespace CommandLine {
@@ -324,9 +324,9 @@ namespace UnrealCLRFramework {
 	}
 
 	namespace Debug {
-		static void Log(LogLevel Level, const uint8* Message);
-		static void Exception(const uint8* Exception);
-		static void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const uint8* Message);
+		static void Log(LogLevel Level, const char* Message);
+		static void Exception(const char* Exception);
+		static void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const char* Message);
 		static void ClearOnScreenMessages();
 		static void DrawBox(const Vector3* Center, const Vector3* Extent, const Quaternion* Rotation, Color Color, bool PersistentLines, float LifeTime, uint8 DepthPriority, float Thickness);
 		static void DrawCapsule(const Vector3* Center, float HalfHeight, float Radius, const Quaternion* Rotation, Color Color, bool PersistentLines, float LifeTime, uint8 DepthPriority, float Thickness);
@@ -343,7 +343,7 @@ namespace UnrealCLRFramework {
 		static bool IsValid(UObject* Object);
 		static UObject* Load(ObjectType Type, const char* Name);
 		static void Rename(UObject* Object, const char* Name);
-		static bool Invoke(UObject* Object, const uint8* Command);
+		static bool Invoke(UObject* Object, const char* Command);
 		static AActor* ToActor(UObject* Object, ActorType Type);
 		static UActorComponent* ToComponent(UObject* Object, ComponentType Type);
 		static uint32 GetID(UObject* Object);

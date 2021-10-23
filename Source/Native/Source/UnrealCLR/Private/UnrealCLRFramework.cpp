@@ -263,7 +263,7 @@ namespace UnrealCLRFramework {
 	}
 
 	#define UNREALCLR_GET_PROPERTY_VALUE(Type, Object, Name, Value)\
-		FName name(ANSI_TO_TCHAR(Name));\
+		FName name(UTF8_TO_TCHAR(Name));\
 		for (TFieldIterator<Type> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {\
 			Type* property = *currentProperty;\
 			if (property->GetFName() == name) {\
@@ -274,7 +274,7 @@ namespace UnrealCLRFramework {
 		return false;
 
 	#define UNREALCLR_SET_PROPERTY_VALUE(Type, Object, Name, Value)\
-		FName name(ANSI_TO_TCHAR(Name));\
+		FName name(UTF8_TO_TCHAR(Name));\
 		for (TFieldIterator<Type> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {\
 			Type* property = *currentProperty;\
 			if (property->GetFName() == name) {\
@@ -286,7 +286,7 @@ namespace UnrealCLRFramework {
 
 	#define UNREALCLR_GET_BONE_NAME(Hit, Name)\
 		if (Name && Hit.BoneName.GetStringLength() > 0) {\
-			const char* boneName = TCHAR_TO_ANSI(*Hit.BoneName.ToString());\
+			const char* boneName = TCHAR_TO_UTF8(*Hit.BoneName.ToString());\
 			UnrealCLR::Utility::Strcpy(Name, boneName, UnrealCLR::Utility::Strlen(boneName));\
 		}
 
@@ -295,7 +295,7 @@ namespace UnrealCLRFramework {
 		if (!Name)\
 			boneName = NAME_None;\
 		else\
-			boneName = FName(ANSI_TO_TCHAR(Name));
+			boneName = FName(UTF8_TO_TCHAR(Name));
 
 	#define UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent)\
 		FCollisionQueryParams queryParams;\
@@ -309,7 +309,7 @@ namespace UnrealCLRFramework {
 		component->OnComponentCreated();\
 		component->RegisterComponent();\
 		if (Name)\
-			component->Rename(*FString(ANSI_TO_TCHAR(Name)));
+			component->Rename(*FString(UTF8_TO_TCHAR(Name)));
 
 	#define UNREALCLR_SET_ACTOR_EVENT(Type, Condition, Method) {\
 		switch (Type) {\
@@ -413,10 +413,10 @@ namespace UnrealCLRFramework {
 	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");
 
 	namespace Assert {
-		void OutputMessage(const uint8* Message) {
+		void OutputMessage(const char* Message) {
 			FString message(UTF8_TO_TCHAR(Message));
 
-			UE_LOG(LogUnrealManaged, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
+			UE_LOG(LogUnrealManaged, Error, TEXT("%s: %s"), UTF8_TO_TCHAR(__FUNCTION__), *message);
 
 			GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *message);
 		}
@@ -424,23 +424,23 @@ namespace UnrealCLRFramework {
 
 	namespace CommandLine {
 		void Get(char* Arguments) {
-			const char* arguments = TCHAR_TO_ANSI(FCommandLine::Get());
+			const char* arguments = TCHAR_TO_UTF8(FCommandLine::Get());
 
 			UnrealCLR::Utility::Strcpy(Arguments, arguments, UnrealCLR::Utility::Strlen(arguments));
 		}
 
 		void Set(const char* Arguments) {
-			FCommandLine::Set(ANSI_TO_TCHAR(Arguments));
+			FCommandLine::Set(UTF8_TO_TCHAR(Arguments));
 		}
 
 		void Append(const char* Arguments) {
-			FCommandLine::Append(ANSI_TO_TCHAR(Arguments));
+			FCommandLine::Append(UTF8_TO_TCHAR(Arguments));
 		}
 	}
 
 	namespace Debug {
-		void Log(LogLevel Level, const uint8* Message) {
-			#define UNREALCLR_FRAMEWORK_LOG(Verbosity) UE_LOG(LogUnrealManaged, Verbosity, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(UTF8_TO_TCHAR(Message)));
+		void Log(LogLevel Level, const char* Message) {
+			#define UNREALCLR_FRAMEWORK_LOG(Verbosity) UE_LOG(LogUnrealManaged, Verbosity, TEXT("%s: %s"), UTF8_TO_TCHAR(__FUNCTION__), *FString(UTF8_TO_TCHAR(Message)));
 
 			if (Level == LogLevel::Display) {
 				UNREALCLR_FRAMEWORK_LOG(Display);
@@ -453,11 +453,11 @@ namespace UnrealCLRFramework {
 			}
 		}
 
-		void Exception(const uint8* Message) {
+		void Exception(const char* Message) {
 			GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *FString(UTF8_TO_TCHAR(Message)));
 		}
 
-		void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const uint8* Message) {
+		void AddOnScreenMessage(int32 Key, float TimeToDisplay, Color DisplayColor, const char* Message) {
 			GEngine->AddOnScreenDebugMessage((uint64)Key, TimeToDisplay, DisplayColor, *FString(UTF8_TO_TCHAR(Message)));
 		}
 
@@ -513,9 +513,9 @@ namespace UnrealCLRFramework {
 			switch (Type) {
 				case ObjectType::Blueprint: {
 					#if WITH_EDITOR
-						object = StaticLoadObject(UBlueprint::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+						object = StaticLoadObject(UBlueprint::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					#else
-						FString name(ANSI_TO_TCHAR(Name));
+						FString name(UTF8_TO_TCHAR(Name));
 						int32 index = INDEX_NONE;
 
 						if (name.FindLastChar(TCHAR('/'), index)) {
@@ -531,42 +531,42 @@ namespace UnrealCLRFramework {
 				}
 
 				case ObjectType::SoundWave: {
-					object = StaticLoadObject(USoundWave::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(USoundWave::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::AnimationSequence: {
-					object = StaticLoadObject(UAnimSequence::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(UAnimSequence::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::AnimationMontage: {
-					object = StaticLoadObject(UAnimMontage::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(UAnimMontage::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::StaticMesh: {
-					object = StaticLoadObject(UStaticMesh::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(UStaticMesh::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::SkeletalMesh: {
-					object = StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(USkeletalMesh::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::Material: {
-					object = StaticLoadObject(UMaterial::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(UMaterial::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::Font: {
-					object = StaticLoadObject(UFont::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(UFont::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
 				case ObjectType::Texture2D: {
-					object = StaticLoadObject(UTexture2D::StaticClass(), nullptr, *FString(ANSI_TO_TCHAR(Name)));
+					object = StaticLoadObject(UTexture2D::StaticClass(), nullptr, *FString(UTF8_TO_TCHAR(Name)));
 					break;
 				}
 
@@ -578,12 +578,12 @@ namespace UnrealCLRFramework {
 		}
 
 		void Rename(UObject* Object, const char* Name) {
-			FString name(ANSI_TO_TCHAR(Name));
+			FString name(UTF8_TO_TCHAR(Name));
 
 			Object->Rename(*name);
 		}
 
-		bool Invoke(UObject* Object, const uint8* Command) {
+		bool Invoke(UObject* Object, const char* Command) {
 			static FOutputDeviceNull outputDevice;
 
 			return Object->CallFunctionByNameWithArguments(UTF8_TO_TCHAR(Command), outputDevice, nullptr, true);
@@ -610,7 +610,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetName(UObject* Object, char* Name) {
-			const char* name = TCHAR_TO_ANSI(*Object->GetName());
+			const char* name = TCHAR_TO_UTF8(*Object->GetName());
 
 			UnrealCLR::Utility::Strcpy(Name, name, UnrealCLR::Utility::Strlen(name));
 		}
@@ -656,7 +656,7 @@ namespace UnrealCLRFramework {
 		}
 
 		bool GetEnum(UObject* Object, const char* Name, int32* Value) {
-			FName name(ANSI_TO_TCHAR(Name));
+			FName name(UTF8_TO_TCHAR(Name));
 
 			for (TFieldIterator<FNumericProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
 				FNumericProperty* property = *currentProperty;
@@ -672,15 +672,15 @@ namespace UnrealCLRFramework {
 		}
 
 		bool GetString(UObject* Object, const char* Name, char* Value) {
-			FName name(ANSI_TO_TCHAR(Name));
+			FName name(UTF8_TO_TCHAR(Name));
 
 			for (TFieldIterator<FStrProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
 				FStrProperty* property = *currentProperty;
 
 				if (property->GetFName() == name) {
-					const char* string = TCHAR_TO_ANSI(*property->GetPropertyValue_InContainer(Object));
+					const char* string = TCHAR_TO_UTF8(*property->GetPropertyValue_InContainer(Object));
 
-					UnrealCLR::Utility::Strcpy(Value, string, UnrealCLR::Utility::Strlen(string));
+					UnrealCLR::Utility::Strcpy((char*)Value, string, UnrealCLR::Utility::Strlen(string));
 
 					return true;
 				}
@@ -690,13 +690,13 @@ namespace UnrealCLRFramework {
 		}
 
 		bool GetText(UObject* Object, const char* Name, char* Value) {
-			FName name(ANSI_TO_TCHAR(Name));
+			FName name(UTF8_TO_TCHAR(Name));
 
 			for (TFieldIterator<FTextProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
 				FTextProperty* property = *currentProperty;
 
 				if (property->GetFName() == name) {
-					const char* string = TCHAR_TO_ANSI(*property->GetPropertyValue_InContainer(Object).ToString());
+					const char* string = TCHAR_TO_UTF8(*property->GetPropertyValue_InContainer(Object).ToString());
 
 					UnrealCLR::Utility::Strcpy(Value, string, UnrealCLR::Utility::Strlen(string));
 
@@ -748,7 +748,7 @@ namespace UnrealCLRFramework {
 		}
 
 		bool SetEnum(UObject* Object, const char* Name, int32 Value) {
-			FName name(ANSI_TO_TCHAR(Name));
+			FName name(UTF8_TO_TCHAR(Name));
 
 			for (TFieldIterator<FNumericProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
 				FNumericProperty* property = *currentProperty;
@@ -764,13 +764,13 @@ namespace UnrealCLRFramework {
 		}
 
 		bool SetString(UObject* Object, const char* Name, const char* Value) {
-			FName name(ANSI_TO_TCHAR(Name));
+			FName name(UTF8_TO_TCHAR(Name));
 
 			for (TFieldIterator<FStrProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
 				FStrProperty* property = *currentProperty;
 
 				if (property->GetFName() == name) {
-					property->SetPropertyValue_InContainer(Object, FString(ANSI_TO_TCHAR(Value)));
+					property->SetPropertyValue_InContainer(Object, FString(UTF8_TO_TCHAR(Value)));
 
 					return true;
 				}
@@ -780,13 +780,13 @@ namespace UnrealCLRFramework {
 		}
 
 		bool SetText(UObject* Object, const char* Name, const char* Value) {
-			FName name(ANSI_TO_TCHAR(Name));
+			FName name(UTF8_TO_TCHAR(Name));
 
 			for (TFieldIterator<FTextProperty> currentProperty(Object->GetClass()); currentProperty; ++currentProperty) {
 				FTextProperty* property = *currentProperty;
 
 				if (property->GetFName() == name) {
-					property->SetPropertyValue_InContainer(Object, FText::FromString(FString(ANSI_TO_TCHAR(Value))));
+					property->SetPropertyValue_InContainer(Object, FText::FromString(FString(UTF8_TO_TCHAR(Value))));
 
 					return true;
 				}
@@ -802,7 +802,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetName(FAssetData* Asset, char* Name) {
-			const char* name = TCHAR_TO_ANSI(*Asset->AssetName.ToString());
+			const char* name = TCHAR_TO_UTF8(*Asset->AssetName.ToString());
 
 			UnrealCLR::Utility::Strcpy(Name, name, UnrealCLR::Utility::Strlen(name));
 		}
@@ -815,7 +815,7 @@ namespace UnrealCLRFramework {
 			if (objectPath.FindLastChar(TCHAR('.'), index))
 				objectPath = FString(index, *objectPath);
 
-			const char* path = TCHAR_TO_ANSI(*objectPath);
+			const char* path = TCHAR_TO_UTF8(*objectPath);
 
 			UnrealCLR::Utility::Strcpy(Path, path, UnrealCLR::Utility::Strlen(path));
 		}
@@ -832,7 +832,7 @@ namespace UnrealCLRFramework {
 		}
 
 		bool HasAssets(IAssetRegistry* AssetRegistry, const char* Path, bool Recursive) {
-			return AssetRegistry->HasAssets(FName(ANSI_TO_TCHAR(Path)), Recursive);
+			return AssetRegistry->HasAssets(FName(UTF8_TO_TCHAR(Path)), Recursive);
 		}
 
 		void ForEachAsset(IAssetRegistry* AssetRegistry, const char* Path, bool Recursive, bool IncludeOnlyOnDiskAssets, FAssetData** Array, int32* Elements) {
@@ -842,7 +842,7 @@ namespace UnrealCLRFramework {
 			assets.Reset();
 			references.Reset();
 
-			AssetRegistry->GetAssetsByPath(FName(ANSI_TO_TCHAR(Path)), assets, Recursive, IncludeOnlyOnDiskAssets);
+			AssetRegistry->GetAssetsByPath(FName(UTF8_TO_TCHAR(Path)), assets, Recursive, IncludeOnlyOnDiskAssets);
 
 			int32 elements = assets.Num();
 
@@ -901,19 +901,19 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetProjectDirectory(char* Directory) {
-			const char* directory = TCHAR_TO_ANSI(*FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()));
+			const char* directory = TCHAR_TO_UTF8(*FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()));
 
 			UnrealCLR::Utility::Strcpy(Directory, directory, UnrealCLR::Utility::Strlen(directory));
 		}
 
 		void GetDefaultLanguage(char* Language) {
-			const char* language = TCHAR_TO_ANSI(*FGenericPlatformMisc::GetDefaultLanguage());
+			const char* language = TCHAR_TO_UTF8(*FGenericPlatformMisc::GetDefaultLanguage());
 
 			UnrealCLR::Utility::Strcpy(Language, language, UnrealCLR::Utility::Strlen(language));
 		}
 
 		void GetProjectName(char* ProjectName) {
-			const char* projectName = TCHAR_TO_ANSI(FApp::GetProjectName());
+			const char* projectName = TCHAR_TO_UTF8(FApp::GetProjectName());
 
 			UnrealCLR::Utility::Strcpy(ProjectName, projectName, UnrealCLR::Utility::Strlen(projectName));
 		}
@@ -923,7 +923,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetProjectName(const char* ProjectName) {
-			FApp::SetProjectName(ANSI_TO_TCHAR(ProjectName));
+			FApp::SetProjectName(UTF8_TO_TCHAR(ProjectName));
 		}
 
 		void SetVolumeMultiplier(float Value) {
@@ -937,27 +937,27 @@ namespace UnrealCLRFramework {
 
 	namespace ConsoleManager {
 		bool IsRegisteredVariable(const char* Name) {
-			return IConsoleManager::Get().IsNameRegistered(ANSI_TO_TCHAR(Name));
+			return IConsoleManager::Get().IsNameRegistered(UTF8_TO_TCHAR(Name));
 		}
 
 		IConsoleVariable* FindVariable(const char* Name) {
-			return IConsoleManager::Get().FindConsoleVariable(ANSI_TO_TCHAR(Name));
+			return IConsoleManager::Get().FindConsoleVariable(UTF8_TO_TCHAR(Name));
 		}
 
 		IConsoleVariable* RegisterVariableBool(const char* Name, const char* Help, bool DefaultValue, bool ReadOnly) {
-			return IConsoleManager::Get().RegisterConsoleVariable(ANSI_TO_TCHAR(Name), DefaultValue, ANSI_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
+			return IConsoleManager::Get().RegisterConsoleVariable(UTF8_TO_TCHAR(Name), DefaultValue, UTF8_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
 		IConsoleVariable* RegisterVariableInt(const char* Name, const char* Help, int32 DefaultValue, bool ReadOnly) {
-			return IConsoleManager::Get().RegisterConsoleVariable(ANSI_TO_TCHAR(Name), DefaultValue, ANSI_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
+			return IConsoleManager::Get().RegisterConsoleVariable(UTF8_TO_TCHAR(Name), DefaultValue, UTF8_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
 		IConsoleVariable* RegisterVariableFloat(const char* Name, const char* Help, float DefaultValue, bool ReadOnly) {
-			return IConsoleManager::Get().RegisterConsoleVariable(ANSI_TO_TCHAR(Name), DefaultValue, ANSI_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
+			return IConsoleManager::Get().RegisterConsoleVariable(UTF8_TO_TCHAR(Name), DefaultValue, UTF8_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
 		IConsoleVariable* RegisterVariableString(const char* Name, const char* Help, const char* DefaultValue, bool ReadOnly) {
-			return IConsoleManager::Get().RegisterConsoleVariable(ANSI_TO_TCHAR(Name), ANSI_TO_TCHAR(DefaultValue), ANSI_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
+			return IConsoleManager::Get().RegisterConsoleVariable(UTF8_TO_TCHAR(Name), UTF8_TO_TCHAR(DefaultValue), UTF8_TO_TCHAR(Help), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
 		void RegisterCommand(const char* Name, const char* Help, ConsoleCommandDelegate Callback, bool ReadOnly) {
@@ -972,11 +972,11 @@ namespace UnrealCLRFramework {
 				}
 			};
 
-			IConsoleManager::Get().RegisterConsoleCommand(ANSI_TO_TCHAR(Name), ANSI_TO_TCHAR(Help), FConsoleCommandWithArgsDelegate::CreateLambda(callback), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
+			IConsoleManager::Get().RegisterConsoleCommand(UTF8_TO_TCHAR(Name), UTF8_TO_TCHAR(Help), FConsoleCommandWithArgsDelegate::CreateLambda(callback), !ReadOnly ? ECVF_Default : ECVF_ReadOnly);
 		}
 
 		void UnregisterObject(const char* Name) {
-			IConsoleManager::Get().UnregisterConsoleObject(ANSI_TO_TCHAR(Name), false);
+			IConsoleManager::Get().UnregisterConsoleObject(UTF8_TO_TCHAR(Name), false);
 		}
 	}
 
@@ -1018,7 +1018,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetVersion(char* Version) {
-			const char* version = TCHAR_TO_ANSI(*FEngineVersion::Current().ToString());
+			const char* version = TCHAR_TO_UTF8(*FEngineVersion::Current().ToString());
 
 			UnrealCLR::Utility::Strcpy(Version, version, UnrealCLR::Utility::Strlen(version));
 		}
@@ -1038,16 +1038,16 @@ namespace UnrealCLRFramework {
 				TSharedPtr<SWindow> gameViewportWindow = gameEngine->GameViewportWindow.Pin();
 
 				if (gameViewportWindow.IsValid())
-					gameViewportWindow->SetTitle(FText::FromString(FString(ANSI_TO_TCHAR(Title))));
+					gameViewportWindow->SetTitle(FText::FromString(FString(UTF8_TO_TCHAR(Title))));
 			}
 		}
 
 		void AddActionMapping(const char* ActionName, const char* Key, bool Shift, bool Ctrl, bool Alt, bool Cmd) {
-			UPlayerInput::AddEngineDefinedActionMapping(FInputActionKeyMapping(FName(ANSI_TO_TCHAR(ActionName)), FKey(ANSI_TO_TCHAR(Key)), Shift, Ctrl, Alt, Cmd));
+			UPlayerInput::AddEngineDefinedActionMapping(FInputActionKeyMapping(FName(UTF8_TO_TCHAR(ActionName)), FKey(UTF8_TO_TCHAR(Key)), Shift, Ctrl, Alt, Cmd));
 		}
 
 		void AddAxisMapping(const char* AxisName, const char* Key, float Scale) {
-			UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping(FName(ANSI_TO_TCHAR(AxisName)), FKey(ANSI_TO_TCHAR(Key)), Scale));
+			UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping(FName(UTF8_TO_TCHAR(AxisName)), FKey(UTF8_TO_TCHAR(Key)), Scale));
 		}
 
 		void ForceGarbageCollection(bool FullPurge) {
@@ -1075,7 +1075,7 @@ namespace UnrealCLRFramework {
 		void GetDeviceName(char* Name) {
 			FName deviceName = UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName();
 
-			const char* name = TCHAR_TO_ANSI(*deviceName.ToString());
+			const char* name = TCHAR_TO_UTF8(*deviceName.ToString());
 
 			UnrealCLR::Utility::Strcpy(Name, name, UnrealCLR::Utility::Strlen(name));
 		}
@@ -1128,7 +1128,7 @@ namespace UnrealCLRFramework {
 
 			mapName.RemoveFromStart(UnrealCLR::Engine::World->StreamingLevelsPrefix);
 
-			const char* levelName = TCHAR_TO_ANSI(*mapName);
+			const char* levelName = TCHAR_TO_UTF8(*mapName);
 
 			UnrealCLR::Utility::Strcpy(LevelName, levelName, UnrealCLR::Utility::Strlen(levelName));
 		}
@@ -1147,7 +1147,7 @@ namespace UnrealCLRFramework {
 			TSubclassOf<AActor> type;
 
 			if (Name)
-				name = FString(ANSI_TO_TCHAR(Name));
+				name = FString(UTF8_TO_TCHAR(Name));
 
 			UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
@@ -1164,7 +1164,7 @@ namespace UnrealCLRFramework {
 		AActor* GetActorByTag(const char* Tag, ActorType Type) {
 			AActor* actor = nullptr;
 			TSubclassOf<AActor> type;
-			FName tag(ANSI_TO_TCHAR(Tag));
+			FName tag(UTF8_TO_TCHAR(Tag));
 
 			UNREALCLR_GET_ACTOR_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
@@ -1274,7 +1274,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void OpenLevel(const char* LevelName) {
-			GEngine->SetClientTravel(UnrealCLR::Engine::World, ANSI_TO_TCHAR(LevelName), TRAVEL_Absolute);
+			GEngine->SetClientTravel(UnrealCLR::Engine::World, UTF8_TO_TCHAR(LevelName), TRAVEL_Absolute);
 		}
 
 		bool LineTraceTestByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
@@ -1290,7 +1290,7 @@ namespace UnrealCLRFramework {
 
 			queryParams.bTraceComplex = TraceComplex;
 
-			return UnrealCLR::Engine::World->LineTraceTestByProfile(*Start, *End, FName(ANSI_TO_TCHAR(ProfileName)), queryParams);
+			return UnrealCLR::Engine::World->LineTraceTestByProfile(*Start, *End, FName(UTF8_TO_TCHAR(ProfileName)), queryParams);
 		}
 
 		bool LineTraceSingleByChannel(const Vector3* Start, const Vector3* End, CollisionChannel Channel, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
@@ -1316,7 +1316,7 @@ namespace UnrealCLRFramework {
 
 			queryParams.bTraceComplex = TraceComplex;
 
-			bool result = UnrealCLR::Engine::World->LineTraceSingleByProfile(hit, *Start, *End, FName(ANSI_TO_TCHAR(ProfileName)), queryParams);
+			bool result = UnrealCLR::Engine::World->LineTraceSingleByProfile(hit, *Start, *End, FName(UTF8_TO_TCHAR(ProfileName)), queryParams);
 
 			UNREALCLR_GET_BONE_NAME(hit, BoneName);
 
@@ -1338,7 +1338,7 @@ namespace UnrealCLRFramework {
 
 			queryParams.bTraceComplex = TraceComplex;
 
-			return UnrealCLR::Engine::World->SweepTestByProfile( *Start, *End, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+			return UnrealCLR::Engine::World->SweepTestByProfile( *Start, *End, *Rotation, FName(UTF8_TO_TCHAR(ProfileName)), *Shape, queryParams);
 		}
 
 		bool SweepSingleByChannel(const Vector3* Start, const Vector3* End, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, Hit* Hit, char* BoneName, bool TraceComplex, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
@@ -1364,7 +1364,7 @@ namespace UnrealCLRFramework {
 
 			queryParams.bTraceComplex = TraceComplex;
 
-			bool result = UnrealCLR::Engine::World->SweepSingleByProfile(hit, *Start, *End, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+			bool result = UnrealCLR::Engine::World->SweepSingleByProfile(hit, *Start, *End, *Rotation, FName(UTF8_TO_TCHAR(ProfileName)), *Shape, queryParams);
 
 			UNREALCLR_GET_BONE_NAME(hit, BoneName);
 
@@ -1382,7 +1382,7 @@ namespace UnrealCLRFramework {
 		bool OverlapAnyTestByProfile(const Vector3* Location, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
 			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
 
-			return UnrealCLR::Engine::World->OverlapAnyTestByProfile(*Location, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+			return UnrealCLR::Engine::World->OverlapAnyTestByProfile(*Location, *Rotation, FName(UTF8_TO_TCHAR(ProfileName)), *Shape, queryParams);
 		}
 
 		bool OverlapBlockingTestByChannel(const Vector3* Location, const Quaternion* Rotation, CollisionChannel Channel, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
@@ -1394,7 +1394,7 @@ namespace UnrealCLRFramework {
 		bool OverlapBlockingTestByProfile(const Vector3* Location, const Quaternion* Rotation, const char* ProfileName, const CollisionShape* Shape, AActor* IgnoredActor, UPrimitiveComponent* IgnoredComponent) {
 			UNREALCLR_SET_COLLISION_QUERY_PARAMS(IgnoredActor, IgnoredComponent);
 
-			return UnrealCLR::Engine::World->OverlapBlockingTestByProfile(*Location, *Rotation, FName(ANSI_TO_TCHAR(ProfileName)), *Shape, queryParams);
+			return UnrealCLR::Engine::World->OverlapBlockingTestByProfile(*Location, *Rotation, FName(UTF8_TO_TCHAR(ProfileName)), *Shape, queryParams);
 		}
 	}
 
@@ -1430,7 +1430,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetString(IConsoleVariable* ConsoleVariable, char* Value) {
-			const char* value = TCHAR_TO_ANSI(*ConsoleVariable->GetString());
+			const char* value = TCHAR_TO_UTF8(*ConsoleVariable->GetString());
 
 			UnrealCLR::Utility::Strcpy(Value, value, UnrealCLR::Utility::Strlen(value));
 		}
@@ -1448,7 +1448,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetString(IConsoleVariable* ConsoleVariable, const char* Value) {
-			ConsoleVariable->Set(ANSI_TO_TCHAR(Value));
+			ConsoleVariable->Set(UTF8_TO_TCHAR(Value));
 		}
 
 		void SetOnChangedCallback(IConsoleVariable* ConsoleVariable, ConsoleVariableDelegate Callback) {
@@ -1553,7 +1553,7 @@ namespace UnrealCLRFramework {
 			}
 
 			if (actor && Name) {
-				FString name(ANSI_TO_TCHAR(Name));
+				FString name(UTF8_TO_TCHAR(Name));
 
 				actor->Rename(*name);
 
@@ -1570,7 +1570,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void Rename(AActor* Actor, const char* Name) {
-			FString name(ANSI_TO_TCHAR(Name));
+			FString name(UTF8_TO_TCHAR(Name));
 
 			Actor->Rename(*name);
 
@@ -1593,7 +1593,7 @@ namespace UnrealCLRFramework {
 			TSubclassOf<UActorComponent> type;
 
 			if (Name)
-				name = FString(ANSI_TO_TCHAR(Name));
+				name = FString(UTF8_TO_TCHAR(Name));
 
 			UNREALCLR_GET_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
@@ -1610,7 +1610,7 @@ namespace UnrealCLRFramework {
 		UActorComponent* GetComponentByTag(AActor* Actor, const char* Tag, ComponentType Type) {
 			UActorComponent* component = nullptr;
 			TSubclassOf<UActorComponent> type;
-			FName tag(ANSI_TO_TCHAR(Tag));
+			FName tag(UTF8_TO_TCHAR(Tag));
 
 			UNREALCLR_GET_COMPONENT_TYPE(Type, UNREALCLR_NONE, ::StaticClass(), type);
 
@@ -1720,15 +1720,15 @@ namespace UnrealCLRFramework {
 		}
 
 		void AddTag(AActor* Actor, const char* Tag) {
-			Actor->Tags.AddUnique(FName(ANSI_TO_TCHAR(Tag)));
+			Actor->Tags.AddUnique(FName(UTF8_TO_TCHAR(Tag)));
 		}
 
 		void RemoveTag(AActor* Actor, const char* Tag) {
-			Actor->Tags.Remove(FName(ANSI_TO_TCHAR(Tag)));
+			Actor->Tags.Remove(FName(UTF8_TO_TCHAR(Tag)));
 		}
 
 		bool HasTag(AActor* Actor, const char* Tag) {
-			return Actor->ActorHasTag(FName(ANSI_TO_TCHAR(Tag)));
+			return Actor->ActorHasTag(FName(UTF8_TO_TCHAR(Tag)));
 		}
 
 		void RegisterEvent(AActor* Actor, ActorEventType Type) {
@@ -2048,7 +2048,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void ConsoleCommand(APlayerController* PlayerController, const char* Command, bool WriteToLog) {
-			PlayerController->ConsoleCommand(FString(ANSI_TO_TCHAR(Command)), WriteToLog);
+			PlayerController->ConsoleCommand(FString(UTF8_TO_TCHAR(Command)), WriteToLog);
 		}
 
 		bool SetPause(APlayerController* PlayerController, bool Value) {
@@ -2162,7 +2162,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetCurrentSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, char* SectionName) {
-			const char* sectionName = TCHAR_TO_ANSI(*AnimationInstance->Montage_GetCurrentSection(Montage).ToString());
+			const char* sectionName = TCHAR_TO_UTF8(*AnimationInstance->Montage_GetCurrentSection(Montage).ToString());
 
 			UnrealCLR::Utility::Strcpy(SectionName, sectionName, UnrealCLR::Utility::Strlen(sectionName));
 		}
@@ -2176,7 +2176,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetNextSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionToChange, const char* NextSection) {
-			AnimationInstance->Montage_SetNextSection(FName(ANSI_TO_TCHAR(SectionToChange)), FName(ANSI_TO_TCHAR(NextSection)), Montage);
+			AnimationInstance->Montage_SetNextSection(FName(UTF8_TO_TCHAR(SectionToChange)), FName(UTF8_TO_TCHAR(NextSection)), Montage);
 		}
 
 		float PlayMontage(UAnimInstance* AnimationInstance, UAnimMontage* Montage, float PlayRate, float TimeToStartMontageAt, bool StopAllMontages) {
@@ -2196,11 +2196,11 @@ namespace UnrealCLRFramework {
 		}
 
 		void JumpToSection(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
-			AnimationInstance->Montage_JumpToSection(FName(ANSI_TO_TCHAR(SectionName)), Montage);
+			AnimationInstance->Montage_JumpToSection(FName(UTF8_TO_TCHAR(SectionName)), Montage);
 		}
 
 		void JumpToSectionsEnd(UAnimInstance* AnimationInstance, UAnimMontage* Montage, const char* SectionName) {
-			AnimationInstance->Montage_JumpToSectionsEnd(FName(ANSI_TO_TCHAR(SectionName)), Montage);
+			AnimationInstance->Montage_JumpToSectionsEnd(FName(UTF8_TO_TCHAR(SectionName)), Montage);
 		}
 	}
 
@@ -2212,11 +2212,11 @@ namespace UnrealCLRFramework {
 
 	namespace PlayerInput {
 		bool IsKeyPressed(UPlayerInput* PlayerInput, const char* Key) {
-			return PlayerInput->IsPressed(FKey(ANSI_TO_TCHAR(Key)));
+			return PlayerInput->IsPressed(FKey(UTF8_TO_TCHAR(Key)));
 		}
 
 		float GetTimeKeyPressed(UPlayerInput* PlayerInput, const char* Key) {
-			return PlayerInput->GetTimeDown(FKey(ANSI_TO_TCHAR(Key)));
+			return PlayerInput->GetTimeDown(FKey(UTF8_TO_TCHAR(Key)));
 		}
 
 		void GetMouseSensitivity(UPlayerInput* PlayerInput, Vector2* Value) {
@@ -2229,19 +2229,19 @@ namespace UnrealCLRFramework {
 		}
 
 		void AddActionMapping(UPlayerInput* PlayerInput, const char* ActionName, const char* Key, bool Shift, bool Ctrl, bool Alt, bool Cmd) {
-			PlayerInput->AddActionMapping(FInputActionKeyMapping(FName(ANSI_TO_TCHAR(ActionName)), FKey(ANSI_TO_TCHAR(Key)), Shift, Ctrl, Alt, Cmd));
+			PlayerInput->AddActionMapping(FInputActionKeyMapping(FName(UTF8_TO_TCHAR(ActionName)), FKey(UTF8_TO_TCHAR(Key)), Shift, Ctrl, Alt, Cmd));
 		}
 
 		void AddAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key, float Scale) {
-			PlayerInput->AddAxisMapping(FInputAxisKeyMapping(FName(ANSI_TO_TCHAR(AxisName)), FKey(ANSI_TO_TCHAR(Key)), Scale));
+			PlayerInput->AddAxisMapping(FInputAxisKeyMapping(FName(UTF8_TO_TCHAR(AxisName)), FKey(UTF8_TO_TCHAR(Key)), Scale));
 		}
 
 		void RemoveActionMapping(UPlayerInput* PlayerInput, const char* ActionName, const char* Key) {
-			PlayerInput->RemoveActionMapping(FInputActionKeyMapping(FName(ANSI_TO_TCHAR(ActionName)), FKey(ANSI_TO_TCHAR(Key))));
+			PlayerInput->RemoveActionMapping(FInputActionKeyMapping(FName(UTF8_TO_TCHAR(ActionName)), FKey(UTF8_TO_TCHAR(Key))));
 		}
 
 		void RemoveAxisMapping(UPlayerInput* PlayerInput, const char* AxisName, const char* Key) {
-			PlayerInput->RemoveAxisMapping(FInputAxisKeyMapping(FName(ANSI_TO_TCHAR(AxisName)), FKey(ANSI_TO_TCHAR(Key))));
+			PlayerInput->RemoveAxisMapping(FInputAxisKeyMapping(FName(UTF8_TO_TCHAR(AxisName)), FKey(UTF8_TO_TCHAR(Key))));
 		}
 	}
 
@@ -2249,7 +2249,7 @@ namespace UnrealCLRFramework {
 		void GetStringSize(UFont* Font, const char* Text, int32* Height, int32* Width) {
 			int32 height, width;
 
-			Font->GetStringHeightAndWidth(ANSI_TO_TCHAR(Text), height, width);
+			Font->GetStringHeightAndWidth(UTF8_TO_TCHAR(Text), height, width);
 
 			*Height = height;
 			*Width = width;
@@ -2258,7 +2258,7 @@ namespace UnrealCLRFramework {
 
 	namespace Texture2D {
 		UTexture2D* CreateFromFile(const char* FilePath) {
-			return FImageUtils::ImportFileAsTexture2D(FString(ANSI_TO_TCHAR(FilePath)));
+			return FImageUtils::ImportFileAsTexture2D(FString(UTF8_TO_TCHAR(FilePath)));
 		}
 
 		UTexture2D* CreateFromBuffer(const uint8* Buffer, int32 Length) {
@@ -2297,15 +2297,15 @@ namespace UnrealCLRFramework {
 		}
 
 		void AddTag(UActorComponent* ActorComponent, const char* Tag) {
-			ActorComponent->ComponentTags.AddUnique(FName(ANSI_TO_TCHAR(Tag)));
+			ActorComponent->ComponentTags.AddUnique(FName(UTF8_TO_TCHAR(Tag)));
 		}
 
 		void RemoveTag(UActorComponent* ActorComponent, const char* Tag) {
-			ActorComponent->ComponentTags.Remove(FName(ANSI_TO_TCHAR(Tag)));
+			ActorComponent->ComponentTags.Remove(FName(UTF8_TO_TCHAR(Tag)));
 		}
 
 		bool HasTag(UActorComponent* ActorComponent, const char* Tag) {
-			return ActorComponent->ComponentHasTag(FName(ANSI_TO_TCHAR(Tag)));
+			return ActorComponent->ComponentHasTag(FName(UTF8_TO_TCHAR(Tag)));
 		}
 	}
 
@@ -2323,7 +2323,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void BindAction(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent, bool ExecutedWhenPaused, InputDelegate Callback) {
-			FInputActionBinding actionBinding(FName(ANSI_TO_TCHAR(ActionName)), KeyEvent);
+			FInputActionBinding actionBinding(FName(UTF8_TO_TCHAR(ActionName)), KeyEvent);
 
 			actionBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			actionBinding.ActionDelegate.GetDelegateForManualSet().BindLambda([Callback]() {
@@ -2334,7 +2334,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void BindAxis(UInputComponent* InputComponent, const char* AxisName, bool ExecutedWhenPaused, InputAxisDelegate Callback) {
-			FInputAxisBinding axisBinding(FName(ANSI_TO_TCHAR(AxisName)));
+			FInputAxisBinding axisBinding(FName(UTF8_TO_TCHAR(AxisName)));
 
 			axisBinding.bExecuteWhenPaused = ExecutedWhenPaused;
 			axisBinding.AxisDelegate.GetDelegateForManualSet().BindLambda([Callback](float AxisValue) {
@@ -2345,7 +2345,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void RemoveActionBinding(UInputComponent* InputComponent, const char* ActionName, InputEvent KeyEvent) {
-			InputComponent->RemoveActionBinding(FName(ANSI_TO_TCHAR(ActionName)), KeyEvent);
+			InputComponent->RemoveActionBinding(FName(UTF8_TO_TCHAR(ActionName)), KeyEvent);
 		}
 
 		bool GetBlockInput(UInputComponent* InputComponent) {
@@ -2516,7 +2516,7 @@ namespace UnrealCLRFramework {
 		}
 
 		bool IsSocketExists(USceneComponent* SceneComponent, const char* SocketName) {
-			return SceneComponent->DoesSocketExist(FName(ANSI_TO_TCHAR(SocketName)));
+			return SceneComponent->DoesSocketExist(FName(UTF8_TO_TCHAR(SocketName)));
 		}
 
 		bool HasAnySockets(USceneComponent* SceneComponent) {
@@ -2524,7 +2524,7 @@ namespace UnrealCLRFramework {
 		}
 
 		bool CanAttachAsChild(USceneComponent* SceneComponent, USceneComponent* ChildComponent, const char* SocketName) {
-			return SceneComponent->CanAttachAsChild(ChildComponent, FName(ANSI_TO_TCHAR(SocketName)));
+			return SceneComponent->CanAttachAsChild(ChildComponent, FName(UTF8_TO_TCHAR(SocketName)));
 		}
 
 		void ForEachAttachedChild(USceneComponent* SceneComponent, USceneComponent** Array, int32* Elements) {
@@ -2576,7 +2576,7 @@ namespace UnrealCLRFramework {
 			UNREALCLR_GET_ATTACHMENT_RULE(AttachmentRule, attachmentRules);
 
 			if (SocketName)
-				socketName = FName(ANSI_TO_TCHAR(SocketName));
+				socketName = FName(UTF8_TO_TCHAR(SocketName));
 
 			return SceneComponent->AttachToComponent(Parent, attachmentRules, socketName);
 		}
@@ -2634,7 +2634,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetAttachedSocketName(USceneComponent* SceneComponent, char* SocketName) {
-			const char* socketName = TCHAR_TO_ANSI(*SceneComponent->GetAttachSocketName().ToString());
+			const char* socketName = TCHAR_TO_UTF8(*SceneComponent->GetAttachSocketName().ToString());
 
 			UnrealCLR::Utility::Strcpy(SocketName, socketName, UnrealCLR::Utility::Strlen(socketName));
 		}
@@ -2644,11 +2644,11 @@ namespace UnrealCLRFramework {
 		}
 
 		void GetSocketLocation(USceneComponent* SceneComponent, const char* SocketName, Vector3* Value) {
-			*Value = SceneComponent->GetSocketLocation(FName(ANSI_TO_TCHAR(SocketName)));
+			*Value = SceneComponent->GetSocketLocation(FName(UTF8_TO_TCHAR(SocketName)));
 		}
 
 		void GetSocketRotation(USceneComponent* SceneComponent, const char* SocketName, Quaternion* Value) {
-			*Value = SceneComponent->GetSocketQuaternion(FName(ANSI_TO_TCHAR(SocketName)));
+			*Value = SceneComponent->GetSocketQuaternion(FName(UTF8_TO_TCHAR(SocketName)));
 		}
 
 		void GetComponentVelocity(USceneComponent* SceneComponent, Vector3* Value) {
@@ -3308,7 +3308,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetCollisionProfileName(UPrimitiveComponent* PrimitiveComponent, const char* ProfileName, bool UpdateOverlaps) {
-			PrimitiveComponent->SetCollisionProfileName(FName(ANSI_TO_TCHAR(ProfileName)), UpdateOverlaps);
+			PrimitiveComponent->SetCollisionProfileName(FName(UTF8_TO_TCHAR(ProfileName)), UpdateOverlaps);
 		}
 
 		void SetCollisionResponseToChannel(UPrimitiveComponent* PrimitiveComponent, CollisionChannel Channel, CollisionResponse Response) {
@@ -3442,11 +3442,11 @@ namespace UnrealCLRFramework {
 
 	namespace MeshComponent {
 		bool IsValidMaterialSlotName(UMeshComponent* MeshComponent, const char* MaterialSlotName) {
-			return MeshComponent->IsMaterialSlotNameValid(FName(ANSI_TO_TCHAR(MaterialSlotName)));
+			return MeshComponent->IsMaterialSlotNameValid(FName(UTF8_TO_TCHAR(MaterialSlotName)));
 		}
 
 		int32 GetMaterialIndex(UMeshComponent* MeshComponent, const char* MaterialSlotName) {
-			return MeshComponent->GetMaterialIndex(FName(ANSI_TO_TCHAR(MaterialSlotName)));
+			return MeshComponent->GetMaterialIndex(FName(UTF8_TO_TCHAR(MaterialSlotName)));
 		}
 	}
 
@@ -3456,7 +3456,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetText(UTextRenderComponent* TextRenderComponent, const char* Value) {
-			TextRenderComponent->SetText(FText::FromString(FString(ANSI_TO_TCHAR(Value))));
+			TextRenderComponent->SetText(FText::FromString(FString(UTF8_TO_TCHAR(Value))));
 		}
 
 		void SetTextMaterial(UTextRenderComponent* TextRenderComponent, UMaterialInterface* Material) {
@@ -3547,7 +3547,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetTrackingMotionSource(UMotionControllerComponent* MotionControllerComponent, const char* Source) {
-			MotionControllerComponent->SetTrackingMotionSource(FName(ANSI_TO_TCHAR(Source)));
+			MotionControllerComponent->SetTrackingMotionSource(FName(UTF8_TO_TCHAR(Source)));
 		}
 
 		void SetAssociatedPlayerIndex(UMotionControllerComponent* MotionControllerComponent, int32 PlayerIndex) {
@@ -3559,7 +3559,7 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetDisplayModelSource(UMotionControllerComponent* MotionControllerComponent, const char* Source) {
-			MotionControllerComponent->SetDisplayModelSource(FName(ANSI_TO_TCHAR(Source)));
+			MotionControllerComponent->SetDisplayModelSource(FName(UTF8_TO_TCHAR(Source)));
 		}
 	}
 
@@ -3657,11 +3657,11 @@ namespace UnrealCLRFramework {
 		}
 
 		int32 GetBoneIndex(USkinnedMeshComponent* SkinnedMeshComponent, const char* BoneName) {
-			return SkinnedMeshComponent->GetBoneIndex(FName(ANSI_TO_TCHAR(BoneName)));
+			return SkinnedMeshComponent->GetBoneIndex(FName(UTF8_TO_TCHAR(BoneName)));
 		}
 
 		void GetBoneName(USkinnedMeshComponent* SkinnedMeshComponent, int32 BoneIndex, char* BoneName) {
-			const char* boneName = TCHAR_TO_ANSI(*SkinnedMeshComponent->GetBoneName(BoneIndex).ToString());
+			const char* boneName = TCHAR_TO_UTF8(*SkinnedMeshComponent->GetBoneName(BoneIndex).ToString());
 
 			UnrealCLR::Utility::Strcpy(BoneName, boneName, UnrealCLR::Utility::Strlen(boneName));
 		}
@@ -4042,15 +4042,15 @@ namespace UnrealCLRFramework {
 		}
 
 		void SetTextureParameterValue(UMaterialInstanceDynamic* MaterialInstanceDynamic, const char* ParameterName, UTexture* Value) {
-			MaterialInstanceDynamic->SetTextureParameterValue(FName(ANSI_TO_TCHAR(ParameterName)), Value);
+			MaterialInstanceDynamic->SetTextureParameterValue(FName(UTF8_TO_TCHAR(ParameterName)), Value);
 		}
 
 		void SetVectorParameterValue(UMaterialInstanceDynamic* MaterialInstanceDynamic, const char* ParameterName, const LinearColor* Value) {
-			MaterialInstanceDynamic->SetVectorParameterValue(FName(ANSI_TO_TCHAR(ParameterName)), *Value);
+			MaterialInstanceDynamic->SetVectorParameterValue(FName(UTF8_TO_TCHAR(ParameterName)), *Value);
 		}
 
 		void SetScalarParameterValue(UMaterialInstanceDynamic* MaterialInstanceDynamic, const char* ParameterName, float Value) {
-			MaterialInstanceDynamic->SetScalarParameterValue(FName(ANSI_TO_TCHAR(ParameterName)), Value);
+			MaterialInstanceDynamic->SetScalarParameterValue(FName(UTF8_TO_TCHAR(ParameterName)), Value);
 		}
 	}
 }

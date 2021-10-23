@@ -68,6 +68,14 @@ namespace UnrealEngine.Framework {
 		internal static T GetOrAdd<S, T>(this IDictionary<S, T> dictionary, S key, Func<T> valueCreator) => dictionary.TryGetValue(key, out var value) ? value : dictionary[key] = valueCreator();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte[] StringToBytes(this string value) {
+			if (value != null)
+				return Encoding.UTF8.GetBytes(value);
+
+			return null;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static string BytesToString(this byte[] buffer) {
 			int end;
 
@@ -3365,7 +3373,7 @@ namespace UnrealEngine.Framework {
 			if (message != null)
 				stringBuffer.AppendFormat(" with message: {0}", message);
 
-			outputMessage(Encoding.UTF8.GetBytes(stringBuffer.ToString()));
+			outputMessage(stringBuffer.ToString().StringToBytes());
 
 			Debugger.Break();
 		}
@@ -3429,7 +3437,7 @@ namespace UnrealEngine.Framework {
 			if (arguments == null)
 				throw new ArgumentNullException(nameof(arguments));
 
-			set(arguments);
+			set(arguments.StringToBytes());
 		}
 
 		/// <summary>
@@ -3439,7 +3447,7 @@ namespace UnrealEngine.Framework {
 			if (arguments == null)
 				throw new ArgumentNullException(nameof(arguments));
 
-			append(arguments);
+			append(arguments.StringToBytes());
 		}
 	}
 
@@ -3457,7 +3465,7 @@ namespace UnrealEngine.Framework {
 			if (message == null)
 				throw new ArgumentNullException(nameof(message));
 
-			log(level, Encoding.UTF8.GetBytes(message));
+			log(level, message.StringToBytes());
 		}
 
 		/// <summary>
@@ -3474,7 +3482,7 @@ namespace UnrealEngine.Framework {
 			.AppendLine().AppendFormat("Source: {0}", exception.Source)
 			.AppendLine();
 
-			Debug.exception(Encoding.UTF8.GetBytes(stringBuffer.ToString()));
+			Debug.exception(stringBuffer.ToString().StringToBytes());
 
 			using (StreamWriter streamWriter = File.AppendText(Application.ProjectDirectory + "Saved/Logs/Exceptions-" + Assembly.GetCallingAssembly().GetName().Name + ".log")) {
 				streamWriter.WriteLine(stringBuffer);
@@ -3489,7 +3497,7 @@ namespace UnrealEngine.Framework {
 			if (message == null)
 				throw new ArgumentNullException(nameof(message));
 
-			addOnScreenMessage(key, timeToDisplay, displayColor.ToArgb(), Encoding.UTF8.GetBytes(message));
+			addOnScreenMessage(key, timeToDisplay, displayColor.ToArgb(), message.StringToBytes());
 		}
 
 		/// <summary>
@@ -3596,7 +3604,7 @@ namespace UnrealEngine.Framework {
 			}
 
 			set {
-				setProjectName(value);
+				setProjectName(value.StringToBytes());
 			}
 		}
 
@@ -3625,7 +3633,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return isRegisteredVariable(name);
+			return isRegisteredVariable(name.StringToBytes());
 		}
 
 		/// <summary>
@@ -3636,7 +3644,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			if (findVariable(name) != IntPtr.Zero)
+			if (findVariable(name.StringToBytes()) != IntPtr.Zero)
 				return new(name);
 
 			return null;
@@ -3657,7 +3665,7 @@ namespace UnrealEngine.Framework {
 			if (help == null)
 				throw new ArgumentNullException(nameof(help));
 
-			if (registerVariableBool(name, help, defaultValue, readOnly) != IntPtr.Zero)
+			if (registerVariableBool(name.StringToBytes(), help.StringToBytes(), defaultValue, readOnly) != IntPtr.Zero)
 				return new(name);
 
 			return null;
@@ -3678,7 +3686,7 @@ namespace UnrealEngine.Framework {
 			if (help == null)
 				throw new ArgumentNullException(nameof(help));
 
-			if (registerVariableInt(name, help, defaultValue, readOnly) != IntPtr.Zero)
+			if (registerVariableInt(name.StringToBytes(), help.StringToBytes(), defaultValue, readOnly) != IntPtr.Zero)
 				return new(name);
 
 			return null;
@@ -3699,7 +3707,7 @@ namespace UnrealEngine.Framework {
 			if (help == null)
 				throw new ArgumentNullException(nameof(help));
 
-			if (registerVariableFloat(name, help, defaultValue, readOnly) != IntPtr.Zero)
+			if (registerVariableFloat(name.StringToBytes(), help.StringToBytes(), defaultValue, readOnly) != IntPtr.Zero)
 				return new(name);
 
 			return null;
@@ -3720,7 +3728,7 @@ namespace UnrealEngine.Framework {
 			if (help == null)
 				throw new ArgumentNullException(nameof(help));
 
-			if (registerVariableString(name, help, defaultValue, readOnly) != IntPtr.Zero)
+			if (registerVariableString(name.StringToBytes(), help.StringToBytes(), defaultValue.StringToBytes(), readOnly) != IntPtr.Zero)
 				return new(name);
 
 			return null;
@@ -3743,7 +3751,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			registerCommand(name, help, Collector.GetFunctionPointer(callback), readOnly);
+			registerCommand(name.StringToBytes(), help.StringToBytes(), Collector.GetFunctionPointer(callback), readOnly);
 		}
 
 		/// <summary>
@@ -3753,7 +3761,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			unregisterObject(name);
+			unregisterObject(name.StringToBytes());
 		}
 	}
 
@@ -3877,7 +3885,7 @@ namespace UnrealEngine.Framework {
 			if (key == null)
 				throw new ArgumentNullException(nameof(key));
 
-			addActionMapping(actionName, key, shift, ctrl, alt, cmd);
+			addActionMapping(actionName.StringToBytes(), key.StringToBytes(), shift, ctrl, alt, cmd);
 		}
 
 		/// <summary>
@@ -3893,13 +3901,13 @@ namespace UnrealEngine.Framework {
 			if (key == null)
 				throw new ArgumentNullException(nameof(key));
 
-			addAxisMapping(axisName, key, scale);
+			addAxisMapping(axisName.StringToBytes(), key.StringToBytes(), scale);
 		}
 
 		/// <summary>
 		/// Sets the window title
 		/// </summary>
-		public static void SetTitle(string title) => setTitle(title);
+		public static void SetTitle(string title) => setTitle(title.StringToBytes());
 	}
 
 	/// <summary>
@@ -4014,7 +4022,7 @@ namespace UnrealEngine.Framework {
 		/// <returns>An actor or <c>null</c> on failure</returns>
 		public static T GetActor<T>(string name = null) where T : Actor {
 			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
-			IntPtr pointer = getActor(name, actor.Type);
+			IntPtr pointer = getActor(name.StringToBytes(), actor.Type);
 
 			if (pointer != IntPtr.Zero) {
 				actor.Pointer = pointer;
@@ -4033,7 +4041,7 @@ namespace UnrealEngine.Framework {
 		/// <returns>An actor or <c>null</c> on failure</returns>
 		public static T GetActorByTag<T>(string tag) where T : Actor {
 			T actor = FormatterServices.GetUninitializedObject(typeof(T)) as T;
-			IntPtr pointer = getActorByTag(tag, actor.Type);
+			IntPtr pointer = getActorByTag(tag.StringToBytes(), actor.Type);
 
 			if (pointer != IntPtr.Zero) {
 				actor.Pointer = pointer;
@@ -4259,7 +4267,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Travels to another level
 		/// </summary>
-		public static void OpenLevel(string levelName) => openLevel(levelName);
+		public static void OpenLevel(string levelName) => openLevel(levelName.StringToBytes());
 
 		/// <summary>
 		/// Traces a ray against the world using a specific channel
@@ -4271,7 +4279,7 @@ namespace UnrealEngine.Framework {
 		/// Traces a ray against the world using a specific profile
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
-		public static bool LineTraceTestByProfile(in Vector3 start, in Vector3 end, string profileName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceTestByProfile(start, end, profileName, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+		public static bool LineTraceTestByProfile(in Vector3 start, in Vector3 end, string profileName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceTestByProfile(start, end, profileName.StringToBytes(), traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
 		/// Traces a ray against the world using a specific channel and retrieves the first blocking hit
@@ -4297,7 +4305,7 @@ namespace UnrealEngine.Framework {
 		/// Traces a ray against the world using a specific profile and retrieves the first blocking hit
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
-		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceSingleByProfile(start, end, profileName, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => lineTraceSingleByProfile(start, end, profileName.StringToBytes(), ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
 		/// Traces a ray against the world using a specific profile and retrieves the first blocking hit with a bone name
@@ -4306,7 +4314,7 @@ namespace UnrealEngine.Framework {
 		public static bool LineTraceSingleByProfile(in Vector3 start, in Vector3 end, string profileName, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			bool result = lineTraceSingleByProfile(start, end, profileName, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+			bool result = lineTraceSingleByProfile(start, end, profileName.StringToBytes(), ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 			boneName = stringBuffer.BytesToString();
 
@@ -4323,7 +4331,7 @@ namespace UnrealEngine.Framework {
 		/// Sweeps a shape against the world using a specific profile
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
-		public static bool SweepTestByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepTestByProfile(start, end, rotation, profileName, shape, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+		public static bool SweepTestByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepTestByProfile(start, end, rotation, profileName.StringToBytes(), shape, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
 		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit
@@ -4349,7 +4357,7 @@ namespace UnrealEngine.Framework {
 		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
-		public static bool SweepSingleByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepSingleByProfile(start, end, rotation, profileName, shape, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+		public static bool SweepSingleByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => sweepSingleByProfile(start, end, rotation, profileName.StringToBytes(), shape, ref hit, null, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
 		/// Sweeps a shape against the world using a specific profile and retrieves the first blocking hit with a bone name
@@ -4358,7 +4366,7 @@ namespace UnrealEngine.Framework {
 		public static bool SweepSingleByProfile(in Vector3 start, in Vector3 end, in Quaternion rotation, string profileName, in CollisionShape shape, ref Hit hit, ref string boneName, bool traceComplex = false, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) {
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			bool result = sweepSingleByProfile(start, end, rotation, profileName, shape, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+			bool result = sweepSingleByProfile(start, end, rotation, profileName.StringToBytes(), shape, ref hit, stringBuffer, traceComplex, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 			boneName = stringBuffer.BytesToString();
 
@@ -4375,7 +4383,7 @@ namespace UnrealEngine.Framework {
 		/// Tests the collision shape at the specified location using a specific profile to determine if any blocking or overlapping occurred
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
-		public static bool OverlapAnyTestByProfile(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapAnyTestByProfile(location, rotation, profileName, shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+		public static bool OverlapAnyTestByProfile(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapAnyTestByProfile(location, rotation, profileName.StringToBytes(), shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 
 		/// <summary>
 		/// Tests the collision shape at the specified location using a specific channel to determine if any blocking occurred
@@ -4387,7 +4395,7 @@ namespace UnrealEngine.Framework {
 		/// Tests the collision shape at the specified location using a specific profile to determine if any blocking occurred
 		/// </summary>
 		/// <returns><c>true</c> on success</returns>
-		public static bool OverlapBlockingTestByProfile(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapBlockingTestByProfile(location, rotation, profileName, shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
+		public static bool OverlapBlockingTestByProfile(in Vector3 location, in Quaternion rotation, string profileName, in CollisionShape shape, Actor ignoredActor = null, PrimitiveComponent ignoredComponent = null) => overlapBlockingTestByProfile(location, rotation, profileName.StringToBytes(), shape, ignoredActor != null ? ignoredActor.Pointer : IntPtr.Zero, ignoredComponent != null ? ignoredComponent.Pointer : IntPtr.Zero);
 	}
 
 	/// <summary>
@@ -4526,7 +4534,7 @@ namespace UnrealEngine.Framework {
 			if (path == null)
 				throw new ArgumentNullException(nameof(path));
 
-			return hasAssets(Pointer, path, recursive);
+			return hasAssets(Pointer, path.StringToBytes(), recursive);
 		}
 
 		/// <summary>
@@ -4539,7 +4547,7 @@ namespace UnrealEngine.Framework {
 			Asset* array = null;
 			int elements = 0;
 
-			forEachAsset(Pointer, path, recursive, includeOnlyOnDiskAssets, ref array, ref elements);
+			forEachAsset(Pointer, path.StringToBytes(), recursive, includeOnlyOnDiskAssets, ref array, ref elements);
 
 			for (int i = 0; i < elements; i++) {
 				action(array[i]);
@@ -4568,7 +4576,7 @@ namespace UnrealEngine.Framework {
 
 		internal IntPtr Pointer {
 			get {
-				IntPtr pointer = ConsoleManager.findVariable(Name);
+				IntPtr pointer = ConsoleManager.findVariable(Name.StringToBytes());
 
 				if (pointer == IntPtr.Zero)
 					throw new InvalidOperationException();
@@ -4584,7 +4592,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns <c>true</c> if the object is created
 		/// </summary>
-		public bool IsCreated => name != null && ConsoleManager.isRegisteredVariable(name);
+		public bool IsCreated => name != null && ConsoleManager.isRegisteredVariable(name.StringToBytes());
 
 		/// <summary>
 		/// Indicates equality of objects
@@ -4669,7 +4677,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the value as a string
 		/// </summary>
-		public void SetString(string value) => setString(Pointer, value);
+		public void SetString(string value) => setString(Pointer, value.StringToBytes());
 
 		/// <summary>
 		/// Sets the callback function that is called when the console variable value changes
@@ -4728,7 +4736,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -4856,7 +4864,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getBool(Pointer, name, ref value);
+			return Object.getBool(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4867,7 +4875,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getByte(Pointer, name, ref value);
+			return Object.getByte(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4878,7 +4886,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getShort(Pointer, name, ref value);
+			return Object.getShort(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4889,7 +4897,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getInt(Pointer, name, ref value);
+			return Object.getInt(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4900,7 +4908,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getLong(Pointer, name, ref value);
+			return Object.getLong(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4911,7 +4919,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getUShort(Pointer, name, ref value);
+			return Object.getUShort(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4922,7 +4930,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getUInt(Pointer, name, ref value);
+			return Object.getUInt(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4933,7 +4941,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getULong(Pointer, name, ref value);
+			return Object.getULong(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4944,7 +4952,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getFloat(Pointer, name, ref value);
+			return Object.getFloat(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4955,7 +4963,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getDouble(Pointer, name, ref value);
+			return Object.getDouble(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -4968,7 +4976,7 @@ namespace UnrealEngine.Framework {
 
 			int data = 0;
 
-			if (Object.getEnum(Pointer, name, ref data)) {
+			if (Object.getEnum(Pointer, name.StringToBytes(), ref data)) {
 				value = (T)Enum.ToObject(typeof(T), data);
 
 				return true;
@@ -4987,7 +4995,7 @@ namespace UnrealEngine.Framework {
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			if (Object.getString(Pointer, name, stringBuffer)) {
+			if (Object.getString(Pointer, name.StringToBytes(), stringBuffer)) {
 				value = stringBuffer.BytesToString();
 
 				return true;
@@ -5006,7 +5014,7 @@ namespace UnrealEngine.Framework {
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			if (Object.getText(Pointer, name, stringBuffer)) {
+			if (Object.getText(Pointer, name.StringToBytes(), stringBuffer)) {
 				value = stringBuffer.BytesToString();
 
 				return true;
@@ -5022,7 +5030,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setBool(Pointer, name, value);
+			return Object.setBool(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5033,7 +5041,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setByte(Pointer, name, value);
+			return Object.setByte(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5044,7 +5052,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setShort(Pointer, name, value);
+			return Object.setShort(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5055,7 +5063,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setInt(Pointer, name, value);
+			return Object.setInt(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5066,7 +5074,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setLong(Pointer, name, value);
+			return Object.setLong(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5077,7 +5085,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setUShort(Pointer, name, value);
+			return Object.setUShort(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5088,7 +5096,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setUInt(Pointer, name, value);
+			return Object.setUInt(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5099,7 +5107,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setULong(Pointer, name, value);
+			return Object.setULong(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5110,7 +5118,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setFloat(Pointer, name, value);
+			return Object.setFloat(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5121,7 +5129,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setDouble(Pointer, name, value);
+			return Object.setDouble(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -5132,7 +5140,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
+			return Object.setEnum(Pointer, name.StringToBytes(), Convert.ToInt32(value));
 		}
 
 		/// <summary>
@@ -5146,7 +5154,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			return Object.setString(Pointer, name, value);
+			return Object.setString(Pointer, name.StringToBytes(), value.StringToBytes());
 		}
 
 		/// <summary>
@@ -5160,7 +5168,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			return Object.setText(Pointer, name, value);
+			return Object.setText(Pointer, name.StringToBytes(), value.StringToBytes());
 		}
 
 		/// <summary>
@@ -5219,13 +5227,13 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			rename(Pointer, name);
+			rename(Pointer, name.StringToBytes());
 		}
 
 		/// <summary>
 		/// Invokes a command, function, or an event with optional arguments
 		/// </summary>
-		public bool Invoke(string command) => Object.invoke(Pointer, Encoding.UTF8.GetBytes(command));
+		public bool Invoke(string command) => Object.invoke(Pointer, command.StringToBytes());
 
 		/// <summary>
 		/// Hides the actor
@@ -5283,7 +5291,7 @@ namespace UnrealEngine.Framework {
 		/// <returns>A component or <c>null</c> on failure</returns>
 		public T GetComponent<T>(string name = null) where T : ActorComponent {
 			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
-			IntPtr pointer = getComponent(Pointer, name, component.Type);
+			IntPtr pointer = getComponent(Pointer, name.StringToBytes(), component.Type);
 
 			if (pointer != IntPtr.Zero) {
 				component.Pointer = pointer;
@@ -5302,7 +5310,7 @@ namespace UnrealEngine.Framework {
 		/// <returns>A component or <c>null</c> on failure</returns>
 		public T GetComponentByTag<T>(string tag) where T : ActorComponent {
 			T component = FormatterServices.GetUninitializedObject(typeof(T)) as T;
-			IntPtr pointer = getComponentByTag(Pointer, tag, component.Type);
+			IntPtr pointer = getComponentByTag(Pointer, tag.StringToBytes(), component.Type);
 
 			if (pointer != IntPtr.Zero) {
 				component.Pointer = pointer;
@@ -5384,17 +5392,17 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Adds a tag to the actor that can be used for grouping and categorizing
 		/// </summary>
-		public void AddTag(string tag) => addTag(Pointer, tag);
+		public void AddTag(string tag) => addTag(Pointer, tag.StringToBytes());
 
 		/// <summary>
 		/// Removes a tag from the actor
 		/// </summary>
-		public void RemoveTag(string tag) => removeTag(Pointer, tag);
+		public void RemoveTag(string tag) => removeTag(Pointer, tag.StringToBytes());
 
 		/// <summary>
 		/// Indicates whether the actor has a tag
 		/// </summary>
-		public bool HasTag(string tag) => hasTag(Pointer, tag);
+		public bool HasTag(string tag) => hasTag(Pointer, tag.StringToBytes());
 
 		/// <summary>
 		/// Registers an event notification for the actor
@@ -5429,7 +5437,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -5462,7 +5470,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -5488,7 +5496,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -5514,7 +5522,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -5572,7 +5580,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -5711,7 +5719,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -5946,7 +5954,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -6028,7 +6036,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -6112,7 +6120,7 @@ namespace UnrealEngine.Framework {
 		/// </summary>
 		/// <param name="command">A command to execute, string of commands optionally separated by a <c>|</c> symbol</param>
 		/// <param name="writeToLog"></param>
-		public void ConsoleCommand(string command, bool writeToLog = false) => consoleCommand(Pointer, command, writeToLog);
+		public void ConsoleCommand(string command, bool writeToLog = false) => consoleCommand(Pointer, command.StringToBytes(), writeToLog);
 
 		/// <summary>
 		/// Pauses a local game
@@ -6184,7 +6192,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6222,7 +6230,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6248,7 +6256,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -6325,7 +6333,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6358,7 +6366,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6384,7 +6392,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6410,7 +6418,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6436,7 +6444,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = spawn(name, Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = spawn(name.StringToBytes(), Type, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -6503,7 +6511,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.SoundWave, name);
+			IntPtr pointer = Object.load(ObjectType.SoundWave, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -6585,7 +6593,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.AnimationSequence, name);
+			IntPtr pointer = Object.load(ObjectType.AnimationSequence, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -6617,7 +6625,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.AnimationMontage, name);
+			IntPtr pointer = Object.load(ObjectType.AnimationMontage, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -6664,7 +6672,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getBool(Pointer, name, ref value);
+			return Object.getBool(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6675,7 +6683,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getByte(Pointer, name, ref value);
+			return Object.getByte(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6686,7 +6694,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getShort(Pointer, name, ref value);
+			return Object.getShort(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6697,7 +6705,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getInt(Pointer, name, ref value);
+			return Object.getInt(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6708,7 +6716,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getLong(Pointer, name, ref value);
+			return Object.getLong(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6719,7 +6727,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getUShort(Pointer, name, ref value);
+			return Object.getUShort(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6730,7 +6738,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getUInt(Pointer, name, ref value);
+			return Object.getUInt(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6741,7 +6749,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getULong(Pointer, name, ref value);
+			return Object.getULong(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6752,7 +6760,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getFloat(Pointer, name, ref value);
+			return Object.getFloat(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6763,7 +6771,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getDouble(Pointer, name, ref value);
+			return Object.getDouble(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -6776,7 +6784,7 @@ namespace UnrealEngine.Framework {
 
 			int data = 0;
 
-			if (Object.getEnum(Pointer, name, ref data)) {
+			if (Object.getEnum(Pointer, name.StringToBytes(), ref data)) {
 				value = (T)Enum.ToObject(typeof(T), data);
 
 				return true;
@@ -6795,7 +6803,7 @@ namespace UnrealEngine.Framework {
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			if (Object.getString(Pointer, name, stringBuffer)) {
+			if (Object.getString(Pointer, name.StringToBytes(), stringBuffer)) {
 				value = stringBuffer.BytesToString();
 
 				return true;
@@ -6814,7 +6822,7 @@ namespace UnrealEngine.Framework {
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			if (Object.getText(Pointer, name, stringBuffer)) {
+			if (Object.getText(Pointer, name.StringToBytes(), stringBuffer)) {
 				value = stringBuffer.BytesToString();
 
 				return true;
@@ -6830,7 +6838,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setBool(Pointer, name, value);
+			return Object.setBool(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6841,7 +6849,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setByte(Pointer, name, value);
+			return Object.setByte(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6852,7 +6860,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setShort(Pointer, name, value);
+			return Object.setShort(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6863,7 +6871,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setInt(Pointer, name, value);
+			return Object.setInt(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6874,7 +6882,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setLong(Pointer, name, value);
+			return Object.setLong(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6885,7 +6893,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setUShort(Pointer, name, value);
+			return Object.setUShort(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6896,7 +6904,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setUInt(Pointer, name, value);
+			return Object.setUInt(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6907,7 +6915,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setULong(Pointer, name, value);
+			return Object.setULong(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6918,7 +6926,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setFloat(Pointer, name, value);
+			return Object.setFloat(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6929,7 +6937,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setDouble(Pointer, name, value);
+			return Object.setDouble(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -6940,7 +6948,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
+			return Object.setEnum(Pointer, name.StringToBytes(), Convert.ToInt32(value));
 		}
 
 		/// <summary>
@@ -6954,7 +6962,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			return Object.setString(Pointer, name, value);
+			return Object.setString(Pointer, name.StringToBytes(), value.StringToBytes());
 		}
 
 		/// <summary>
@@ -6968,7 +6976,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			return Object.setText(Pointer, name, value);
+			return Object.setText(Pointer, name.StringToBytes(), value.StringToBytes());
 		}
 
 		/// <summary>
@@ -6984,7 +6992,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Invokes a command, function, or an event with optional arguments
 		/// </summary>
-		public bool Invoke(string command) => Object.invoke(Pointer, Encoding.UTF8.GetBytes(command));
+		public bool Invoke(string command) => Object.invoke(Pointer, command.StringToBytes());
 
 		/// <summary>
 		/// Returns the current active animation montage or <c>null</c> on failure
@@ -7079,7 +7087,7 @@ namespace UnrealEngine.Framework {
 			if (montage == null)
 				throw new ArgumentNullException(nameof(montage));
 
-			setNextSection(Pointer, montage.Pointer, sectionToChange, nextSection);
+			setNextSection(Pointer, montage.Pointer, sectionToChange.StringToBytes(), nextSection.StringToBytes());
 		}
 
 		/// <summary>
@@ -7128,7 +7136,7 @@ namespace UnrealEngine.Framework {
 			if (sectionName == null)
 				throw new ArgumentNullException(nameof(sectionName));
 
-			jumpToSection(Pointer, montage.Pointer, sectionName);
+			jumpToSection(Pointer, montage.Pointer, sectionName.StringToBytes());
 		}
 
 		/// <summary>
@@ -7141,7 +7149,7 @@ namespace UnrealEngine.Framework {
 			if (sectionName == null)
 				throw new ArgumentNullException(nameof(sectionName));
 
-			jumpToSectionsEnd(Pointer, montage.Pointer, sectionName);
+			jumpToSectionsEnd(Pointer, montage.Pointer, sectionName.StringToBytes());
 		}
 	}
 
@@ -7247,7 +7255,7 @@ namespace UnrealEngine.Framework {
 			if (key == null)
 				throw new ArgumentNullException(nameof(key));
 
-			return isKeyPressed(Pointer, key);
+			return isKeyPressed(Pointer, key.StringToBytes());
 		}
 
 		/// <summary>
@@ -7257,7 +7265,7 @@ namespace UnrealEngine.Framework {
 			if (key == null)
 				throw new ArgumentNullException(nameof(key));
 
-			return getTimeKeyPressed(Pointer, key);
+			return getTimeKeyPressed(Pointer, key.StringToBytes());
 		}
 
 		/// <summary>
@@ -7297,7 +7305,7 @@ namespace UnrealEngine.Framework {
 			if (key == null)
 				throw new ArgumentNullException(nameof(key));
 
-			addActionMapping(Pointer, actionName, key, shift, ctrl, alt, cmd);
+			addActionMapping(Pointer, actionName.StringToBytes(), key.StringToBytes(), shift, ctrl, alt, cmd);
 		}
 
 		/// <summary>
@@ -7313,18 +7321,18 @@ namespace UnrealEngine.Framework {
 			if (key == null)
 				throw new ArgumentNullException(nameof(key));
 
-			addAxisMapping(Pointer, axisName, key, scale);
+			addAxisMapping(Pointer, axisName.StringToBytes(), key.StringToBytes(), scale);
 		}
 
 		/// <summary>
 		/// Removes a player-specific action mapping
 		/// </summary>
-		public void RemoveActionMapping(string actionName, string key) => removeActionMapping(Pointer, actionName, key);
+		public void RemoveActionMapping(string actionName, string key) => removeActionMapping(Pointer, actionName.StringToBytes(), key.StringToBytes());
 
 		/// <summary>
 		/// Removes a player-specific mapping between an axis and key
 		/// </summary>
-		public void RemoveAxisMapping(string axisName, string key) => removeAxisMapping(Pointer, axisName, key);
+		public void RemoveAxisMapping(string axisName, string key) => removeAxisMapping(Pointer, axisName.StringToBytes(), key.StringToBytes());
 	}
 
 	/// <summary>
@@ -7380,7 +7388,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.Blueprint, name);
+			IntPtr pointer = Object.load(ObjectType.Blueprint, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -7438,7 +7446,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.Font, name);
+			IntPtr pointer = Object.load(ObjectType.Font, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -7449,7 +7457,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Retrieves height and width for a string
 		/// </summary>
-		public void GetStringSize(string text, ref int height, ref int width) => getStringSize(Pointer, text, ref height, ref width);
+		public void GetStringSize(string text, ref int height, ref int width) => getStringSize(Pointer, text.StringToBytes(), ref height, ref width);
 	}
 
 	/// <summary>
@@ -7533,7 +7541,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.StaticMesh, name);
+			IntPtr pointer = Object.load(ObjectType.StaticMesh, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -7558,7 +7566,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.SkeletalMesh, name);
+			IntPtr pointer = Object.load(ObjectType.SkeletalMesh, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -7589,7 +7597,7 @@ namespace UnrealEngine.Framework {
 			if (filePath == null)
 				throw new ArgumentNullException(nameof(filePath));
 
-			Pointer = createFromFile(filePath);
+			Pointer = createFromFile(filePath.StringToBytes());
 		}
 
 		/// <summary>
@@ -7610,7 +7618,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.Texture2D, name);
+			IntPtr pointer = Object.load(ObjectType.Texture2D, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -7703,7 +7711,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getBool(Pointer, name, ref value);
+			return Object.getBool(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7714,7 +7722,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getByte(Pointer, name, ref value);
+			return Object.getByte(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7725,7 +7733,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getShort(Pointer, name, ref value);
+			return Object.getShort(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7736,7 +7744,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getInt(Pointer, name, ref value);
+			return Object.getInt(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7747,7 +7755,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getLong(Pointer, name, ref value);
+			return Object.getLong(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7758,7 +7766,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getUShort(Pointer, name, ref value);
+			return Object.getUShort(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7769,7 +7777,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getUInt(Pointer, name, ref value);
+			return Object.getUInt(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7780,7 +7788,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getULong(Pointer, name, ref value);
+			return Object.getULong(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7791,7 +7799,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getFloat(Pointer, name, ref value);
+			return Object.getFloat(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7802,7 +7810,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.getDouble(Pointer, name, ref value);
+			return Object.getDouble(Pointer, name.StringToBytes(), ref value);
 		}
 
 		/// <summary>
@@ -7815,7 +7823,7 @@ namespace UnrealEngine.Framework {
 
 			int data = 0;
 
-			if (Object.getEnum(Pointer, name, ref data)) {
+			if (Object.getEnum(Pointer, name.StringToBytes(), ref data)) {
 				value = (T)Enum.ToObject(typeof(T), data);
 
 				return true;
@@ -7834,7 +7842,7 @@ namespace UnrealEngine.Framework {
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			if (Object.getString(Pointer, name, stringBuffer)) {
+			if (Object.getString(Pointer, name.StringToBytes(), stringBuffer)) {
 				value = stringBuffer.BytesToString();
 
 				return true;
@@ -7853,7 +7861,7 @@ namespace UnrealEngine.Framework {
 
 			byte[] stringBuffer = ArrayPool.GetStringBuffer();
 
-			if (Object.getText(Pointer, name, stringBuffer)) {
+			if (Object.getText(Pointer, name.StringToBytes(), stringBuffer)) {
 				value = stringBuffer.BytesToString();
 
 				return true;
@@ -7869,7 +7877,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setBool(Pointer, name, value);
+			return Object.setBool(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7880,7 +7888,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setByte(Pointer, name, value);
+			return Object.setByte(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7891,7 +7899,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setShort(Pointer, name, value);
+			return Object.setShort(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7902,7 +7910,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setInt(Pointer, name, value);
+			return Object.setInt(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7913,7 +7921,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setLong(Pointer, name, value);
+			return Object.setLong(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7924,7 +7932,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setUShort(Pointer, name, value);
+			return Object.setUShort(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7935,7 +7943,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setUInt(Pointer, name, value);
+			return Object.setUInt(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7946,7 +7954,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setULong(Pointer, name, value);
+			return Object.setULong(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7957,7 +7965,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setFloat(Pointer, name, value);
+			return Object.setFloat(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7968,7 +7976,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setDouble(Pointer, name, value);
+			return Object.setDouble(Pointer, name.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -7979,7 +7987,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			return Object.setEnum(Pointer, name, Convert.ToInt32(value));
+			return Object.setEnum(Pointer, name.StringToBytes(), Convert.ToInt32(value));
 		}
 
 		/// <summary>
@@ -7993,7 +8001,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			return Object.setString(Pointer, name, value);
+			return Object.setString(Pointer, name.StringToBytes(), value.StringToBytes());
 		}
 
 		/// <summary>
@@ -8007,7 +8015,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			return Object.setText(Pointer, name, value);
+			return Object.setText(Pointer, name.StringToBytes(), value.StringToBytes());
 		}
 
 		/// <summary>
@@ -8027,13 +8035,13 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			Object.rename(Pointer, name);
+			Object.rename(Pointer, name.StringToBytes());
 		}
 
 		/// <summary>
 		/// Invokes a command, function, or an event with optional arguments
 		/// </summary>
-		public bool Invoke(string command) => Object.invoke(Pointer, Encoding.UTF8.GetBytes(command));
+		public bool Invoke(string command) => Object.invoke(Pointer, command.StringToBytes());
 
 		/// <summary>
 		/// Unregisters the component, removes it from its outer actor's components array and marks for pending kill
@@ -8067,17 +8075,17 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Adds a tag to the component that can be used for grouping and categorizing
 		/// </summary>
-		public void AddTag(string tag) => addTag(Pointer, tag);
+		public void AddTag(string tag) => addTag(Pointer, tag.StringToBytes());
 
 		/// <summary>
 		/// Removes a tag from the component
 		/// </summary>
-		public void RemoveTag(string tag) => removeTag(Pointer, tag);
+		public void RemoveTag(string tag) => removeTag(Pointer, tag.StringToBytes());
 
 		/// <summary>
 		/// Indicates whether the component has a tag
 		/// </summary>
-		public bool HasTag(string tag) => hasTag(Pointer, tag);
+		public bool HasTag(string tag) => hasTag(Pointer, tag.StringToBytes());
 	}
 
 	/// <summary>
@@ -8135,7 +8143,7 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			bindAction(Pointer, actionName, keyEvent, executedWhenPaused, Collector.GetFunctionPointer(callback));
+			bindAction(Pointer, actionName.StringToBytes(), keyEvent, executedWhenPaused, Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
@@ -8151,13 +8159,13 @@ namespace UnrealEngine.Framework {
 			if (callback == null)
 				throw new ArgumentNullException(nameof(callback));
 
-			bindAxis(Pointer, axisName, executedWhenPaused, Collector.GetFunctionPointer(callback));
+			bindAxis(Pointer, axisName.StringToBytes(), executedWhenPaused, Collector.GetFunctionPointer(callback));
 		}
 
 		/// <summary>
 		/// Removes the action binding
 		/// </summary>
-		public void RemoveActionBinding(string actionName, InputEvent keyEvent) => removeActionBinding(Pointer, actionName, keyEvent);
+		public void RemoveActionBinding(string actionName, InputEvent keyEvent) => removeActionBinding(Pointer, actionName.StringToBytes(), keyEvent);
 	}
 
 	/// <summary>
@@ -8333,7 +8341,7 @@ namespace UnrealEngine.Framework {
 			if (actor == null)
 				throw new ArgumentNullException(nameof(actor));
 
-			Pointer = create(actor.Pointer, name);
+			Pointer = create(actor.Pointer, name.StringToBytes());
 		}
 
 		/// <summary>
@@ -8414,7 +8422,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -8449,7 +8457,7 @@ namespace UnrealEngine.Framework {
 			if (socketName == null)
 				throw new ArgumentNullException(nameof(socketName));
 
-			return isSocketExists(Pointer, socketName);
+			return isSocketExists(Pointer, socketName.StringToBytes());
 		}
 
 		/// <summary>
@@ -8464,7 +8472,7 @@ namespace UnrealEngine.Framework {
 			if (childComponent == null)
 				throw new ArgumentNullException(nameof(childComponent));
 
-			return canAttachAsChild(Pointer, childComponent.Pointer, socketName);
+			return canAttachAsChild(Pointer, childComponent.Pointer, socketName.StringToBytes());
 		}
 
 		/// <summary>
@@ -8495,7 +8503,7 @@ namespace UnrealEngine.Framework {
 			if (parent == null)
 				throw new ArgumentNullException(nameof(parent));
 
-			return attachToComponent(Pointer, parent.Pointer, attachmentRule, socketName);
+			return attachToComponent(Pointer, parent.Pointer, attachmentRule, socketName.StringToBytes());
 		}
 
 		/// <summary>
@@ -8577,7 +8585,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Retrieves location of a socket in world space
 		/// </summary>
-		public void GetSocketLocation(string socketName, ref Vector3 value) => getSocketLocation(Pointer, socketName, ref value);
+		public void GetSocketLocation(string socketName, ref Vector3 value) => getSocketLocation(Pointer, socketName.StringToBytes(), ref value);
 
 		/// <summary>
 		/// Returns location of a socket in world space
@@ -8585,7 +8593,7 @@ namespace UnrealEngine.Framework {
 		public Vector3 GetSocketLocation(string socketName) {
 			Vector3 value = default;
 
-			getSocketLocation(Pointer, socketName, ref value);
+			getSocketLocation(Pointer, socketName.StringToBytes(), ref value);
 
 			return value;
 		}
@@ -8593,7 +8601,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Retrieves rotation of a socket in world space
 		/// </summary>
-		public void GetSocketRotation(string socketName, ref Quaternion value) => getSocketRotation(Pointer, socketName, ref value);
+		public void GetSocketRotation(string socketName, ref Quaternion value) => getSocketRotation(Pointer, socketName.StringToBytes(), ref value);
 
 		/// <summary>
 		/// Returns rotation of a socket in world space
@@ -8601,7 +8609,7 @@ namespace UnrealEngine.Framework {
 		public Quaternion GetSocketRotation(string socketName) {
 			Quaternion value = default;
 
-			getSocketRotation(Pointer, socketName, ref value);
+			getSocketRotation(Pointer, socketName.StringToBytes(), ref value);
 
 			return value;
 		}
@@ -8807,7 +8815,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -8888,7 +8896,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -8980,7 +8988,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -9045,7 +9053,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -9299,7 +9307,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -9456,7 +9464,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="impulse">Magnitude and direction of the impulse to apply, the direction is the axis of rotation</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="velocityChange">If <c>true</c>, <paramref name="impulse"/> is taken as a change in velocity instead of a physical force (the mass will have no effect)</param>
-		public void AddAngularImpulseInDegrees(in Vector3 impulse, string boneName = null, bool velocityChange = false) => addAngularImpulseInDegrees(Pointer, impulse, boneName, velocityChange);
+		public void AddAngularImpulseInDegrees(in Vector3 impulse, string boneName = null, bool velocityChange = false) => addAngularImpulseInDegrees(Pointer, impulse, boneName.StringToBytes(), velocityChange);
 
 		/// <summary>
 		/// Adds an angular impulse in radians to a rigid body
@@ -9464,7 +9472,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="impulse">Magnitude and direction of the impulse to apply, the direction is the axis of rotation</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="velocityChange">If <c>true</c>, <paramref name="impulse"/> is taken as a change in velocity instead of a physical force (the mass will have no effect)</param>
-		public void AddAngularImpulseInRadians(in Vector3 impulse, string boneName = null, bool velocityChange = false) => addAngularImpulseInRadians(Pointer, impulse, boneName, velocityChange);
+		public void AddAngularImpulseInRadians(in Vector3 impulse, string boneName = null, bool velocityChange = false) => addAngularImpulseInRadians(Pointer, impulse, boneName.StringToBytes(), velocityChange);
 
 		/// <summary>
 		/// Adds a force to a rigid body
@@ -9472,7 +9480,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="force">Force vector to apply, magnitude indicates strength of force</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="accelerationChange">If <c>true</c>, <paramref name="force"/> is taken as a change in acceleration instead of a physical force (the mass will have no effect)</param>
-		public void AddForce(in Vector3 force, string boneName = null, bool accelerationChange = false) => addForce(Pointer, force, boneName, accelerationChange);
+		public void AddForce(in Vector3 force, string boneName = null, bool accelerationChange = false) => addForce(Pointer, force, boneName.StringToBytes(), accelerationChange);
 
 		/// <summary>
 		/// Adds a force to a rigid body at a specific location, optionally in local space
@@ -9481,7 +9489,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="location">A point in world or local space to apply the force at</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="localSpace">If <c>true</c>, applies force in local space instead of world space</param>
-		public void AddForceAtLocation(in Vector3 force, in Vector3 location, string boneName = null, bool localSpace = false) => addForceAtLocation(Pointer, force, location, boneName, localSpace);
+		public void AddForceAtLocation(in Vector3 force, in Vector3 location, string boneName = null, bool localSpace = false) => addForceAtLocation(Pointer, force, location, boneName.StringToBytes(), localSpace);
 
 		/// <summary>
 		/// Adds an impulse to a rigid body
@@ -9489,7 +9497,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="impulse">Magnitude and direction of the impulse to apply</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="velocityChange">If <c>true</c>, <paramref name="impulse"/> is taken as a change in velocity instead of a physical force (the mass will have no effect)</param>
-		public void AddImpulse(in Vector3 impulse, string boneName = null, bool velocityChange = false) => addImpulse(Pointer, impulse, boneName, velocityChange);
+		public void AddImpulse(in Vector3 impulse, string boneName = null, bool velocityChange = false) => addImpulse(Pointer, impulse, boneName.StringToBytes(), velocityChange);
 
 		/// <summary>
 		/// Adds an impulse to a rigid body at a specific location
@@ -9497,7 +9505,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="impulse">Magnitude and direction of the impulse to apply</param>
 		/// <param name="location">A point in world space to apply the impulse at</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
-		public void AddImpulseAtLocation(in Vector3 impulse, in Vector3 location, string boneName = null) => addImpulseAtLocation(Pointer, impulse, location, boneName);
+		public void AddImpulseAtLocation(in Vector3 impulse, in Vector3 location, string boneName = null) => addImpulseAtLocation(Pointer, impulse, location, boneName.StringToBytes());
 
 		/// <summary>
 		/// Adds a force to all rigid bodies in the component, originating from the supplied world-space location
@@ -9525,7 +9533,7 @@ namespace UnrealEngine.Framework {
 		/// <param name="torque">Torque to apply, direction is axis of rotation and magnitude is strength of the torque</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="accelerationChange">If <c>true</c>, <paramref name="torque"/> is taken as a change in acceleration instead of a physical force (the mass will have no effect)</param>
-		public void AddTorqueInDegrees(in Vector3 torque, string boneName = null, bool accelerationChange = false) => addTorqueInDegrees(Pointer, torque, boneName, accelerationChange);
+		public void AddTorqueInDegrees(in Vector3 torque, string boneName = null, bool accelerationChange = false) => addTorqueInDegrees(Pointer, torque, boneName.StringToBytes(), accelerationChange);
 
 		/// <summary>
 		/// Adds a torque in radians to a rigid body
@@ -9533,12 +9541,12 @@ namespace UnrealEngine.Framework {
 		/// <param name="torque">Torque to apply, direction is axis of rotation and magnitude is strength of the torque</param>
 		/// <param name="boneName">If applied to <see cref="SkeletalMeshComponent"/>, the name of the body to apply an angular impulse to, or <c>null</c> to indicate the root body</param>
 		/// <param name="accelerationChange">If <c>true</c>, <paramref name="torque"/> is taken as a change in acceleration instead of a physical force (the mass will have no effect)</param>
-		public void AddTorqueInRadians(in Vector3 torque, string boneName = null, bool accelerationChange = false) => addTorqueInRadians(Pointer, torque, boneName, accelerationChange);
+		public void AddTorqueInRadians(in Vector3 torque, string boneName = null, bool accelerationChange = false) => addTorqueInRadians(Pointer, torque, boneName.StringToBytes(), accelerationChange);
 
 		/// <summary>
 		/// Retrieves the linear velocity of a single body
 		/// </summary>
-		public void GetPhysicsLinearVelocity(ref Vector3 value, string boneName = null) => getPhysicsLinearVelocity(Pointer, ref value, boneName);
+		public void GetPhysicsLinearVelocity(ref Vector3 value, string boneName = null) => getPhysicsLinearVelocity(Pointer, ref value, boneName.StringToBytes());
 
 		/// <summary>
 		/// Returns the linear velocity of a single body
@@ -9546,7 +9554,7 @@ namespace UnrealEngine.Framework {
 		public Vector3 GetPhysicsLinearVelocity(string boneName = null) {
 			Vector3 value = default;
 
-			getPhysicsLinearVelocity(Pointer, ref value, boneName);
+			getPhysicsLinearVelocity(Pointer, ref value, boneName.StringToBytes());
 
 			return value;
 		}
@@ -9554,7 +9562,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Retrieves the linear velocity of a point on a single body
 		/// </summary>
-		public void GetPhysicsLinearVelocityAtPoint(ref Vector3 value, in Vector3 point, string boneName = null) => getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName);
+		public void GetPhysicsLinearVelocityAtPoint(ref Vector3 value, in Vector3 point, string boneName = null) => getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName.StringToBytes());
 
 		/// <summary>
 		/// Returns the linear velocity of a point on a single body
@@ -9562,7 +9570,7 @@ namespace UnrealEngine.Framework {
 		public Vector3 GetPhysicsLinearVelocityAtPoint(in Vector3 point, string boneName = null) {
 			Vector3 value = default;
 
-			getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName);
+			getPhysicsLinearVelocityAtPoint(Pointer, ref value, point, boneName.StringToBytes());
 
 			return value;
 		}
@@ -9570,7 +9578,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Retrieves the angular velocity in degrees of a single body
 		/// </summary>
-		public void GetPhysicsAngularVelocityInDegrees(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName);
+		public void GetPhysicsAngularVelocityInDegrees(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName.StringToBytes());
 
 		/// <summary>
 		/// Returns the angular velocity in degrees of a single body
@@ -9578,7 +9586,7 @@ namespace UnrealEngine.Framework {
 		public Vector3 GetPhysicsAngularVelocityInDegrees(string boneName = null) {
 			Vector3 value = default;
 
-			getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName);
+			getPhysicsAngularVelocityInDegrees(Pointer, ref value, boneName.StringToBytes());
 
 			return value;
 		}
@@ -9586,7 +9594,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Retrieves the angular velocity in radians of a single body
 		/// </summary>
-		public void GetPhysicsAngularVelocityInRadians(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName);
+		public void GetPhysicsAngularVelocityInRadians(ref Vector3 value, string boneName = null) => getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName.StringToBytes());
 
 		/// <summary>
 		/// Returns the angular velocity in radians of a single body
@@ -9594,7 +9602,7 @@ namespace UnrealEngine.Framework {
 		public Vector3 GetPhysicsAngularVelocityInRadians(string boneName = null) {
 			Vector3 value = default;
 
-			getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName);
+			getPhysicsAngularVelocityInRadians(Pointer, ref value, boneName.StringToBytes());
 
 			return value;
 		}
@@ -9653,37 +9661,37 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the mass in kilograms of a rigid body
 		/// </summary>
-		public void SetMass(float mass, string boneName = null) => setMass(Pointer, mass, boneName);
+		public void SetMass(float mass, string boneName = null) => setMass(Pointer, mass, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets the center of mass of a single body
 		/// </summary>
-		public void SetCenterOfMass(in Vector3 offset, string boneName = null) => setCenterOfMass(Pointer, offset, boneName);
+		public void SetCenterOfMass(in Vector3 offset, string boneName = null) => setCenterOfMass(Pointer, offset, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets the linear velocity of a single body
 		/// </summary>
-		public void SetPhysicsLinearVelocity(in Vector3 velocity, bool addToCurrent = false, string boneName = null) => setPhysicsLinearVelocity(Pointer, velocity, addToCurrent, boneName);
+		public void SetPhysicsLinearVelocity(in Vector3 velocity, bool addToCurrent = false, string boneName = null) => setPhysicsLinearVelocity(Pointer, velocity, addToCurrent, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets the angular velocity in degrees of a single body
 		/// </summary>
-		public void SetPhysicsAngularVelocityInDegrees(in Vector3 angularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsAngularVelocityInDegrees(Pointer, angularVelocity, addToCurrent, boneName);
+		public void SetPhysicsAngularVelocityInDegrees(in Vector3 angularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsAngularVelocityInDegrees(Pointer, angularVelocity, addToCurrent, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets the angular velocity in radians of a single body
 		/// </summary>
-		public void SetPhysicsAngularVelocityInRadians(in Vector3 angularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsAngularVelocityInRadians(Pointer, angularVelocity, addToCurrent, boneName);
+		public void SetPhysicsAngularVelocityInRadians(in Vector3 angularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsAngularVelocityInRadians(Pointer, angularVelocity, addToCurrent, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets the maximum angular velocity in degrees of a single body
 		/// </summary>
-		public void SetPhysicsMaxAngularVelocityInDegrees(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInDegrees(Pointer, maxAngularVelocity, addToCurrent, boneName);
+		public void SetPhysicsMaxAngularVelocityInDegrees(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInDegrees(Pointer, maxAngularVelocity, addToCurrent, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets the maximum angular velocity in radians of a single body
 		/// </summary>
-		public void SetPhysicsMaxAngularVelocityInRadians(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInRadians(Pointer, maxAngularVelocity, addToCurrent, boneName);
+		public void SetPhysicsMaxAngularVelocityInRadians(float maxAngularVelocity, bool addToCurrent = false, string boneName = null) => setPhysicsMaxAngularVelocityInRadians(Pointer, maxAngularVelocity, addToCurrent, boneName.StringToBytes());
 
 		/// <summary>
 		/// Sets whether a single body should use physics simulation, or should be kinematic, if the component is currently attached to something, beginning simulation will detach it
@@ -9708,7 +9716,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the collision <a href="https://docs.unrealengine.com/en-US/Engine/Physics/Collision/Reference/index.html">profile name</a> of the component
 		/// </summary>
-		public void SetCollisionProfileName(string profileName, bool updateOverlaps = true) => setCollisionProfileName(Pointer, profileName, updateOverlaps);
+		public void SetCollisionProfileName(string profileName, bool updateOverlaps = true) => setCollisionProfileName(Pointer, profileName.StringToBytes(), updateOverlaps);
 
 		/// <summary>
 		/// Sets the collision response to channel of the component
@@ -9825,7 +9833,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -9898,7 +9906,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -9954,7 +9962,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10011,7 +10019,7 @@ namespace UnrealEngine.Framework {
 			if (materialSlotName == null)
 				throw new ArgumentNullException(nameof(materialSlotName));
 
-			return isValidMaterialSlotName(Pointer, materialSlotName);
+			return isValidMaterialSlotName(Pointer, materialSlotName.StringToBytes());
 		}
 
 		/// <summary>
@@ -10021,7 +10029,7 @@ namespace UnrealEngine.Framework {
 			if (materialSlotName == null)
 				throw new ArgumentNullException(nameof(materialSlotName));
 
-			return getMaterialIndex(Pointer, materialSlotName);
+			return getMaterialIndex(Pointer, materialSlotName.StringToBytes());
 		}
 	}
 
@@ -10052,7 +10060,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10068,7 +10076,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the text of the component
 		/// </summary>
-		public void SetText(string value) => setText(Pointer, value);
+		public void SetText(string value) => setText(Pointer, value.StringToBytes());
 
 		/// <summary>
 		/// Sets the text material of the component
@@ -10163,7 +10171,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10204,7 +10212,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 	}
 
@@ -10235,7 +10243,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10270,7 +10278,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the tracking motion source
 		/// </summary>
-		public void SetTrackingMotionSource(string source) => setTrackingMotionSource(Pointer, source);
+		public void SetTrackingMotionSource(string source) => setTrackingMotionSource(Pointer, source.StringToBytes());
 
 		/// <summary>
 		/// Sets the player index which the motion controller should automatically follow
@@ -10290,7 +10298,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Sets the display model source
 		/// </summary>
-		public void SetDisplayModelSource(string source) => setDisplayModelSource(Pointer, source);
+		public void SetDisplayModelSource(string source) => setDisplayModelSource(Pointer, source.StringToBytes());
 	}
 
 	/// <summary>
@@ -10320,7 +10328,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10378,7 +10386,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10471,7 +10479,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10497,7 +10505,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns the index of a bone by name
 		/// </summary>
-		public int GetBoneIndex(string boneName) => getBoneIndex(Pointer, boneName);
+		public int GetBoneIndex(string boneName) => getBoneIndex(Pointer, boneName.StringToBytes());
 
 		/// <summary>
 		/// Returns the name of a bone by index
@@ -10564,7 +10572,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -10657,7 +10665,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -11320,7 +11328,7 @@ namespace UnrealEngine.Framework {
 			if (blueprint != null && !blueprint.IsValidClass(Type))
 				throw new InvalidOperationException();
 
-			Pointer = create(actor.Pointer, Type, name, setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
+			Pointer = create(actor.Pointer, Type, name.StringToBytes(), setAsRoot, blueprint != null ? blueprint.Pointer : IntPtr.Zero);
 		}
 
 		/// <summary>
@@ -11443,7 +11451,7 @@ namespace UnrealEngine.Framework {
 			if (name == null)
 				throw new ArgumentNullException(nameof(name));
 
-			IntPtr pointer = Object.load(ObjectType.Material, name);
+			IntPtr pointer = Object.load(ObjectType.Material, name.StringToBytes());
 
 			if (pointer != IntPtr.Zero)
 				return new(pointer);
@@ -11509,7 +11517,7 @@ namespace UnrealEngine.Framework {
 			if (value == null)
 				throw new ArgumentNullException(nameof(value));
 
-			setTextureParameterValue(Pointer, parameterName, value.Pointer);
+			setTextureParameterValue(Pointer, parameterName.StringToBytes(), value.Pointer);
 		}
 
 		/// <summary>
@@ -11519,7 +11527,7 @@ namespace UnrealEngine.Framework {
 			if (parameterName == null)
 				throw new ArgumentNullException(nameof(parameterName));
 
-			setVectorParameterValue(Pointer, parameterName, value);
+			setVectorParameterValue(Pointer, parameterName.StringToBytes(), value);
 		}
 
 		/// <summary>
@@ -11529,7 +11537,7 @@ namespace UnrealEngine.Framework {
 			if (parameterName == null)
 				throw new ArgumentNullException(nameof(parameterName));
 
-			setScalarParameterValue(Pointer, parameterName, value);
+			setScalarParameterValue(Pointer, parameterName.StringToBytes(), value);
 		}
 	}
 }
