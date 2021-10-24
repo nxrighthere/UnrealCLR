@@ -416,7 +416,7 @@ namespace UnrealCLRFramework {
 		void OutputMessage(const char* Message) {
 			FString message(UTF8_TO_TCHAR(Message));
 
-			UE_LOG(LogUnrealManaged, Error, TEXT("%s: %s"), UTF8_TO_TCHAR(__FUNCTION__), *message);
+			UE_LOG(LogUnrealManaged, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
 
 			GEngine->AddOnScreenDebugMessage((uint64)-1, 60.0f, FColor::Red, *message);
 		}
@@ -440,7 +440,7 @@ namespace UnrealCLRFramework {
 
 	namespace Debug {
 		void Log(LogLevel Level, const char* Message) {
-			#define UNREALCLR_FRAMEWORK_LOG(Verbosity) UE_LOG(LogUnrealManaged, Verbosity, TEXT("%s: %s"), UTF8_TO_TCHAR(__FUNCTION__), *FString(UTF8_TO_TCHAR(Message)));
+			#define UNREALCLR_FRAMEWORK_LOG(Verbosity) UE_LOG(LogUnrealManaged, Verbosity, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *FString(UTF8_TO_TCHAR(Message)));
 
 			if (Level == LogLevel::Display) {
 				UNREALCLR_FRAMEWORK_LOG(Display);
