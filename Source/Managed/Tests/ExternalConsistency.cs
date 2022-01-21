@@ -1,9 +1,3 @@
-using System;
-using System.Drawing;
-using System.Numerics;
-using System.Reflection;
-using UnrealEngine.Framework;
-
 namespace UnrealEngine.Tests {
 	public class ExternalConsistency : ISystem {
 		public void OnBeginPlay() {

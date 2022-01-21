@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration
+ *  Unreal Engine .NET 6 integration
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,7 +28,7 @@
 DEFINE_LOG_CATEGORY(LogUnrealCLR);
 
 void UnrealCLR::Module::StartupModule() {
-	#define HOSTFXR_VERSION "5.0.12"
+	#define HOSTFXR_VERSION "6.0.1"
 	#define HOSTFXR_WINDOWS "/hostfxr.dll"
 	#define HOSTFXR_MAC "/libhostfxr.dylib"
 	#define HOSTFXR_LINUX "/libhostfxr.so"

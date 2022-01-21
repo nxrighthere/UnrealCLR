@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <Platforms>x64</Platforms>
     <EnableDynamicLoading>True</EnableDynamicLoading>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -10,7 +10,7 @@
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>False</AppendRuntimeIdentifierToOutputPath>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <NoWarn>CA1008, CA1014, CA1024, CA1028, CA1030, CA1031, CA1034, CA1067, CA1303, CA1305, CA1508, CA1708, CA1711, CA1720, CA1725, CA2201</NoWarn>
+    <NoWarn>CA1008, CA1014, CA1024, CA1028, CA1030, CA1031, CA1034, CA1067, CA1303, CA1305, CA1508, CA1708, CA1711, CA1720, CA1725, CA1845, CA2201</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

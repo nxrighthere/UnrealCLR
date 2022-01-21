@@ -1,6 +1,3 @@
-using System.Drawing;
-using UnrealEngine.Framework;
-
 namespace UnrealEngine.Tests {
 	public class AssertionConsistency : ISystem {
 		private Actor actor;

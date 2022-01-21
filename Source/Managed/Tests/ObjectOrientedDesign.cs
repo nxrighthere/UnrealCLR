@@ -1,8 +1,3 @@
-using System;
-using System.Drawing;
-using System.Numerics;
-using UnrealEngine.Framework;
-
 namespace UnrealEngine.Tests {
 	public class ObjectOrientedDesign : ISystem {
 		private Entity[] entities;

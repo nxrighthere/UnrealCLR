@@ -1,7 +1,3 @@
-using System;
-using System.Numerics;
-using UnrealEngine.Framework;
-
 namespace UnrealEngine.Tests {
 	public class TextRenderer : ISystem {
 		private Actor actor;

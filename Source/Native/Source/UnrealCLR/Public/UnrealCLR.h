@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration 
+ *  Unreal Engine .NET 6 integration 
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -328,7 +328,7 @@ namespace UnrealCLR {
 	}
 
 	namespace Shared {
-		constexpr static int32 storageSize = 128;
+		static constexpr int32 storageSize = 128;
 
 		// Non-instantiable
 

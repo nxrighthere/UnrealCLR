@@ -1,6 +1,8 @@
-using System;
-using System.Drawing;
-using UnrealEngine.Framework;
+global using System;
+global using System.Drawing;
+global using System.Numerics;
+global using System.Reflection;
+global using UnrealEngine.Framework;
 
 namespace UnrealEngine.Tests {
 	public class Main {

@@ -1,6 +1,3 @@
-using System;
-using UnrealEngine.Framework;
-
 namespace UnrealEngine.Tests {
 	public class ExceptionsConsistency : ISystem {
 		private const string consoleVariable = "TestVariable";

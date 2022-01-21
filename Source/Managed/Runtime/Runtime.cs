@@ -1,5 +1,5 @@
 /*
- *  Unreal Engine .NET 5 integration 
+ *  Unreal Engine .NET 6 integration 
  *  Copyright (c) 2021 Stanislav Denisov
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -327,21 +327,9 @@ namespace UnrealEngine.Runtime {
 				assembliesContextManager.UnloadAssembliesContext();
 				assembliesContextManager = null;
 
-				uint unloadAttempts = 0;
-
-				while (assembliesContextWeakReference.IsAlive) {
+				if (assembliesContextWeakReference.IsAlive) {
 					GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
 					GC.WaitForPendingFinalizers();
-
-					unloadAttempts++;
-
-					if (unloadAttempts == 5000) {
-						Log(LogLevel.Warning, "Unloading of assemblies took more time than expected. Trying to unload assemblies to the next breakpoint...");
-					} else if (unloadAttempts == 10000) {
-						Log(LogLevel.Error, "Unloading of assemblies was failed! This might be caused by running threads, strong GC handles, or by other sources that prevent cooperative unloading.");
-
-						break;
-					}
 				}
 
 				assembliesContextManager = new();

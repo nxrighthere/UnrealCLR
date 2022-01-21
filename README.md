@@ -4,7 +4,7 @@
 
 [![PayPal](https://github.com/Rageware/Shields/blob/master/paypal.svg)](https://www.paypal.me/nxrighthere) [![Coinbase](https://github.com/Rageware/Shields/blob/master/coinbase.svg)](https://commerce.coinbase.com/checkout/03e11816-b6fc-4e14-b974-29a1d0886697)
 
-UnrealCLR is a plugin which natively integrates .NET host into the Unreal Engine with the Common Language Runtime for direct execution of managed code to build a game/application logic using the full power of C# 9.0, F# 5.0, and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
+UnrealCLR is a plugin which natively integrates .NET host into the Unreal Engine with the Common Language Runtime for direct execution of managed code to build a game/application logic using the full power of C# 10.0, F# 6.0, and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
 
 [API reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md) | [Manual](https://github.com/nxrighthere/UnrealCLR/blob/master/MANUAL.md) | [Code of Conduct](https://github.com/nxrighthere/UnrealCLR/blob/master/CODE_OF_CONDUCT.md) | [Community](https://github.com/nxrighthere/UnrealCLR/discussions) | [Roadmap](https://github.com/users/nxrighthere/projects/5?fullscreen=true) | [Contact](mailto:nxrighthere@gmail.com)
 
@@ -36,7 +36,7 @@ Building
 ### Prerequisites
 - Unreal Engine 4.25.4 or higher
 - A native [compilation toolchain](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html#runtheunrealenginepre-requisiteinstaller) with platform-specific dependencies
-- [.NET 5 SDK 5.0.403](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [.NET 6 SDK 6.0.101](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ### Auto
 
@@ -58,13 +58,13 @@ Make sure that the Unreal Engine is not running. Re-run the installation process
 #### Compilation
 
 ##### Plugin
-Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework net5.0 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
+Create a new or use an existing Unreal Engine C++ or blueprints project. Clone the repository or download a desirable version from the [releases](https://github.com/nxrighthere/UnrealCLR/releases) section. Copy the content of the `Source/Native` folder to `%Project%/Plugins/UnrealCLR` directory. Compile the managed runtime from `Source/Managed/Runtime` folder by running the following command: `dotnet publish --configuration Release --framework net6.0 --output "%Project%/Plugins/UnrealCLR/Managed"`. Restart Unreal Engine, open the project, and build the plugin.
 
 ##### Tests
 To quickly start testing, open a project with the plugin in Unreal Engine, copy all folders from the `Content` of the repository to `%Project%/Content` directory, and wait until they loaded in the Content Browser. Compile the managed assemblies from `Source/Managed/Tests` folder by running the following commands:
 ```
-dotnet publish "../Framework" --configuration Release --framework net5.0
-dotnet publish --configuration Release --framework net5.0 --output "%Project%/Managed/Tests"
+dotnet publish "../Framework" --configuration Release --framework net6.0
+dotnet publish --configuration Release --framework net6.0 --output "%Project%/Managed/Tests"
 ```
 
 #### Upgrading
