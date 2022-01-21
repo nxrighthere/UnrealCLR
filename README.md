@@ -28,7 +28,7 @@ Features:
 The plugin is available for Windows, Linux, and macOS (x64).
 
 <p align="center"> 
-  <img src="https://i.imgur.com/ITARWUQ.png" alt="megagrant">
+  <img src="https://github.com/Rageware/Images/blob/master/epic-megagrants.png" alt="megagrant">
 </p>
 
 Building
