@@ -1352,8 +1352,6 @@ void UnrealCLR::Module::StartupModule() {
 				return;
 			}
 
-			UnrealCLR::Engine::Manager = NewObject<UUnrealCLRManager>();
-			UnrealCLR::Engine::Manager->AddToRoot();
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 
 			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1368,11 +1366,6 @@ void UnrealCLR::Module::StartupModule() {
 }
 
 void UnrealCLR::Module::ShutdownModule() {
-	if (UnrealCLR::Engine::Manager) {
-		UnrealCLR::Engine::Manager->RemoveFromRoot();
-		UnrealCLR::Engine::Manager = nullptr;
-	}
-
 	FWorldDelegates::OnPostWorldInitialization.Remove(OnWorldPostInitializationHandle);
 	FWorldDelegates::OnWorldCleanup.Remove(OnWorldCleanupHandle);
 
@@ -1382,6 +1375,8 @@ void UnrealCLR::Module::ShutdownModule() {
 void UnrealCLR::Module::OnWorldPostInitialization(UWorld* World, const UWorld::InitializationValues InitializationValues) {
 	if (World->IsGameWorld()) {
 		if (UnrealCLR::WorldTickState == TickState::Stopped) {
+			UnrealCLR::Engine::Manager = NewObject<UUnrealCLRManager>();
+			UnrealCLR::Engine::Manager->AddToRoot();
 			UnrealCLR::Engine::World = World;
 
 			if (UnrealCLR::Status != UnrealCLR::StatusType::Stopped) {
@@ -1430,6 +1425,8 @@ void UnrealCLR::Module::OnWorldCleanup(UWorld* World, bool SessionEnded, bool Cl
 		}
 
 		UnrealCLR::Engine::World = nullptr;
+		UnrealCLR::Engine::Manager->RemoveFromRoot();
+		UnrealCLR::Engine::Manager = nullptr;
 		UnrealCLR::WorldTickState = UnrealCLR::TickState::Stopped;
 
 		FMemory::Memset(UnrealCLR::Shared::Events, 0, sizeof(UnrealCLR::Shared::Events));
