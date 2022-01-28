@@ -35,7 +35,7 @@ public static class Install {
 
 		projectPath = projectPath.Replace("\"", String.Empty, StringComparison.Ordinal).Replace("\'", String.Empty, StringComparison.Ordinal).TrimEnd(Path.DirectorySeparatorChar);
 
-		string sourcePath = Directory.GetCurrentDirectory() + "/..";
+		string sourcePath = Path.Combine(Directory.GetCurrentDirectory(), "..");
 
 		if (Directory.GetFiles(projectPath, "*.uproject", SearchOption.TopDirectoryOnly).Length != 0) {
 			Console.WriteLine($"Project file found in \"{ projectPath }\" folder!");
@@ -63,21 +63,21 @@ public static class Install {
 			}
 
 			if (overwriteFiles) {
-				string nativeSource = sourcePath + "/Source/Native";
+				string nativeSource = Path.Combine(sourcePath, "Source/Native");
 
 				Console.WriteLine(Environment.NewLine + "Removing the previous plugin installation...");
 
-				if (Directory.Exists(projectPath + "/Plugins/UnrealCLR"))
-					Directory.Delete(projectPath + "/Plugins/UnrealCLR", true);
+				if (Directory.Exists(Path.Combine(projectPath, "Plugins/UnrealCLR")))
+					Directory.Delete(Path.Combine(projectPath, "Plugins/UnrealCLR"), true);
 
 				Console.WriteLine("Copying native source code and the runtime host of the plugin...");
 
 				foreach (string directoriesPath in Directory.GetDirectories(nativeSource, "*", SearchOption.AllDirectories)) {
-					Directory.CreateDirectory(directoriesPath.Replace(nativeSource, projectPath + "/Plugins/UnrealCLR", StringComparison.Ordinal));
+					Directory.CreateDirectory(directoriesPath.Replace(nativeSource, Path.Combine(projectPath, "Plugins/UnrealCLR"), StringComparison.Ordinal));
 				}
 
 				foreach (string filesPath in Directory.GetFiles(nativeSource, "*.*", SearchOption.AllDirectories)) {
-					File.Copy(filesPath, filesPath.Replace(nativeSource, projectPath  + "/Plugins/UnrealCLR", StringComparison.Ordinal), true);
+					File.Copy(filesPath, filesPath.Replace(nativeSource, Path.Combine(projectPath, "Plugins/UnrealCLR"), StringComparison.Ordinal), true);
 				}
 
 				Console.WriteLine("Launching compilation of the managed runtime...");
@@ -105,25 +105,26 @@ public static class Install {
 
 				frameworkCompilation.WaitForExit();
 
+
 				if (frameworkCompilation.ExitCode != 0)
 					Error("Compilation of the framework was finished with an error (Exit code: " + frameworkCompilation.ExitCode + ")!");
 
 				if (compileTests) {
-					string contentPath = sourcePath + "/Content";
+					string contentPath = Path.Combine(sourcePath, "Content");
 
 					Console.WriteLine("Removing the previous content of the tests...");
 
-					if (Directory.Exists(projectPath + "/Content/Tests"))
-						Directory.Delete(projectPath + "/Content/Tests", true);
+					if (Directory.Exists(Path.Combine(projectPath, "Content/Tests")))
+						Directory.Delete(Path.Combine(projectPath, "Content/Tests"), true);
 
 					Console.WriteLine("Copying the content of the tests...");
 
 					foreach (string directoriesPath in Directory.GetDirectories(contentPath, "*", SearchOption.AllDirectories)) {
-						Directory.CreateDirectory(directoriesPath.Replace(contentPath, projectPath + "/Content", StringComparison.Ordinal));
+						Directory.CreateDirectory(directoriesPath.Replace(contentPath, Path.Combine(projectPath, "Content"), StringComparison.Ordinal));
 					}
 
 					foreach (string filesPath in Directory.GetFiles(contentPath, "*.*", SearchOption.AllDirectories)) {
-						File.Copy(filesPath, filesPath.Replace(contentPath, projectPath  + "/Content", StringComparison.Ordinal), true);
+						File.Copy(filesPath, filesPath.Replace(contentPath, Path.Combine(projectPath, "Content"), StringComparison.Ordinal), true);
 					}
 
 					Console.WriteLine("Launching compilation of the tests...");
