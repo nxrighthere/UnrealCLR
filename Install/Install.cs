@@ -109,11 +109,6 @@ public static class Install {
 				if (frameworkCompilation.ExitCode != 0)
 					Error("Compilation of the framework was finished with an error (Exit code: " + frameworkCompilation.ExitCode + ")!");
 
-				File.Copy(
-					Path.Combine(sourcePath, "Source/Managed/Framework/bin/Release/UnrealEngine.Framework.dll"),
-					Path.Combine(projectPath, "Plugins/UnrealCLR/Managed/UnrealEngine.Framework.dll")
-					, true);
-
 				if (compileTests) {
 					string contentPath = Path.Combine(sourcePath, "Content");
 
