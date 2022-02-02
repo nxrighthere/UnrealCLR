@@ -95,7 +95,7 @@ Use your favorite IDE and [.NET tools](https://github.com/natemcmaster/dotnet-to
 Essentials
 --------
 ### Exceptions
-The runtime redirects all unhandled exceptions to log files, the console window, and on-screen messages of the engine, however, it's highly recommended to use [try-catch](https://docs.microsoft.com/en-us/dotnet/standard/exceptions/how-to-use-the-try-catch-block-to-catch-exceptions) blocks in C# to override redirections with custom handlers. Use [option types](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options) in F# to avoid exceptions altogether. It's necessary to have an attached debugger to properly trace exceptions in the editor or standalone.
+The runtime redirects all unhandled exceptions to log files, the console window, and on-screen messages of the engine, however, it's highly recommended to use [try-catch](https://docs.microsoft.com/en-us/dotnet/standard/exceptions/how-to-use-the-try-catch-block-to-catch-exceptions) blocks in C# to override redirections with custom handlers. It's necessary to have an attached debugger to properly trace exceptions in the editor or standalone. Use [option types](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options) in F# to avoid exceptions altogether.
 
 ### Memory management
 Unreal Engine, as well as .NET runtime, utilizes a garbage collector for memory management. The framework is designed with consistency in mind to prevent crashes and validate memory transparently for a programmer, no matter how objects were created and freed: with C++, C#, F#, or blueprints.
