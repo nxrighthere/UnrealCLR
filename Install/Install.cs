@@ -105,7 +105,6 @@ public static class Install {
 
 				frameworkCompilation.WaitForExit();
 
-
 				if (frameworkCompilation.ExitCode != 0)
 					Error("Compilation of the framework was finished with an error (Exit code: " + frameworkCompilation.ExitCode + ")!");
 

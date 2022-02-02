@@ -29,18 +29,18 @@ DEFINE_LOG_CATEGORY(LogUnrealCLR);
 
 void UnrealCLR::Module::StartupModule() {
 	#define HOSTFXR_VERSION "6.0.1"
-	#define HOSTFXR_WINDOWS "/hostfxr.dll"
-	#define HOSTFXR_MAC "/libhostfxr.dylib"
-	#define HOSTFXR_LINUX "/libhostfxr.so"
+	#define HOSTFXR_WINDOWS "hostfxr.dll"
+	#define HOSTFXR_MAC "libhostfxr.dylib"
+	#define HOSTFXR_LINUX "libhostfxr.so"
 
 	#ifdef UNREALCLR_WINDOWS
-		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Win64/host/fxr/" HOSTFXR_VERSION HOSTFXR_WINDOWS
+		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Win64/host/fxr/" HOSTFXR_VERSION "/" HOSTFXR_WINDOWS
 		#define UNREALCLR_PLATFORM_STRING(string) string
 	#elif defined(UNREALCLR_MAC)
-		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Mac/host/fxr/" HOSTFXR_VERSION HOSTFXR_MAC
+		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Mac/host/fxr/" HOSTFXR_VERSION "/" HOSTFXR_MAC
 		#define UNREALCLR_PLATFORM_STRING(string) TCHAR_TO_ANSI(string)
 	#elif defined(UNREALCLR_UNIX)
-		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Linux/host/fxr/" HOSTFXR_VERSION HOSTFXR_LINUX
+		#define HOSTFXR_PATH "Plugins/UnrealCLR/Runtime/Linux/host/fxr/" HOSTFXR_VERSION "/" HOSTFXR_LINUX
 		#define UNREALCLR_PLATFORM_STRING(string) TCHAR_TO_ANSI(string)
 	#else
 		#error "Unknown platform"
@@ -99,7 +99,7 @@ void UnrealCLR::Module::StartupModule() {
 			return;
 		}
 
-		HostfxrSetErrorWriter(HostError);
+		HostfxrSetErrorWriter(&HostError);
 
 		hostfxr_handle HostfxrContext = nullptr;
 
@@ -1361,7 +1361,7 @@ void UnrealCLR::Module::StartupModule() {
 			return;
 		}
 	} else {
-		UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host library loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));
 	}
 }
 
