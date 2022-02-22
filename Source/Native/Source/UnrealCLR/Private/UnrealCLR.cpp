@@ -128,7 +128,7 @@ void UnrealCLR::Module::StartupModule() {
 		load_assembly_and_get_function_pointer_fn HostfxrLoadAssemblyAndGetFunctionPointer = (load_assembly_and_get_function_pointer_fn)hostfxrLoadAssemblyAndGetFunctionPointer;
 
 		if (HostfxrLoadAssemblyAndGetFunctionPointer && HostfxrLoadAssemblyAndGetFunctionPointer(UNREALCLR_PLATFORM_STRING(*runtimeAssemblyPath), UNREALCLR_PLATFORM_STRING(*runtimeTypeName), UNREALCLR_PLATFORM_STRING(*runtimeMethodName), UNMANAGEDCALLERSONLY_METHOD, nullptr, (void**)&UnrealCLR::ManagedCommand) == 0) {
-			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
+			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly loaded successfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 		} else {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly loading failed!"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -1345,7 +1345,7 @@ void UnrealCLR::Module::StartupModule() {
 			};
 
 			if (reinterpret_cast<intptr_t>(UnrealCLR::ManagedCommand(UnrealCLR::Command(functions, checksum))) == 0xF) {
-				UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly initialized succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
+				UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host runtime assembly initialized successfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 			} else {
 				UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly initialization failed!"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -1354,7 +1354,7 @@ void UnrealCLR::Module::StartupModule() {
 
 			UnrealCLR::Status = UnrealCLR::StatusType::Idle;
 
-			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host loaded succesfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
+			UE_LOG(LogUnrealCLR, Display, TEXT("%s: Host loaded successfuly!"), ANSI_TO_TCHAR(__FUNCTION__));
 		} else {
 			UE_LOG(LogUnrealCLR, Error, TEXT("%s: Host runtime assembly unable to load the initialization function!"), ANSI_TO_TCHAR(__FUNCTION__));
 
