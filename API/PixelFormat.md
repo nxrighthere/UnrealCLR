@@ -291,5 +291,55 @@ public enum PixelFormat
   
 <a name='PixelFormat-R8'></a>
 `R8` 71  
+
+
+<a name='PixelFormat-B5G5R5A1UNorm'></a>
+`B5G5R5A1UNorm` 72  
   
   
+<a name='PixelFormat-ASTC4x4HDR'></a>
+`ASTC4x4HDR` 73  
+  
+  
+<a name='PixelFormat-ASTC6x6HDR'></a>
+`ASTC6x6HDR` 74  
+  
+  
+<a name='PixelFormat-ASTC8x8HDR'></a>
+`ASTC8x8HDR` 75  
+  
+  
+<a name='PixelFormat-ASTC10x10HDR'></a>
+`ASTC10x10HDR` 76  
+
+
+<a name='PixelFormat-ASTC12x12HDR'></a>
+`ASTC12x12HDR` 77  
+  
+  
+<a name='PixelFormat-G16R16SNorm'></a>
+`G16R16SNorm` 78  
+  
+  
+<a name='PixelFormat-R8G8UInt'></a>
+`R8G8UInt` 79  
+  
+  
+<a name='PixelFormat-R32G32B32UInt'></a>
+`R32G32B32UInt` 80  
+  
+  
+<a name='PixelFormat-R32G32B32SInt'></a>
+`R32G32B32SInt` 81  
+  
+  
+<a name='PixelFormat-R32G32B32F'></a>
+`R32G32B32F` 82  
+  
+  
+<a name='PixelFormat-R8SInt'></a>
+`R8SInt` 83  
+  
+  
+<a name='PixelFormat-R64UInt'></a>
+`R64UInt` 84  
