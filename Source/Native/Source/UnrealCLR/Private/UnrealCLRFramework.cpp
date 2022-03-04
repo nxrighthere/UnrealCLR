@@ -403,7 +403,7 @@ namespace UnrealCLRFramework {
 		#define UNREALCLR_PIXEL_FORMAT 85
 		#define UNREALCLR_CONTROLLER_HAND 18
 
-		// Large World Coordinates changed to double sphere radius to double but will be refactored to double in UE5 stable release. 
+		// Large World Coordinates changed float sphere radius to double but this will be refactored to double in UE5 stable release. 
 		// Currently this is aliased to FLargeWorldCoordinatesReal. Check Engine\Source\Runtime\CoreUObject\Public\UObject\NoExportTypes.h for FVector where it explains.
 		#define UNREALCLR_BOUNDS_SIZE 56	
 
