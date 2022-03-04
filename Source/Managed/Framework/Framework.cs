@@ -633,6 +633,8 @@ namespace UnrealEngine.Framework {
 		/// <summary/>
 		Gun,
 		/// <summary/>
+		HMD,
+		/// <summary/>
 		Special1,
 		/// <summary/>
 		Special2,
@@ -901,7 +903,33 @@ namespace UnrealEngine.Framework {
 		/// <summary/>
 		ETC2RG11EAC = 70,
 		/// <summary/>
-		R8 = 71
+		R8 = 71,
+		/// <summary/>
+		B5G5R5A1UNorm = 72,
+		/// <summary/>
+		ASTC4x4HDR = 73,
+		/// <summary/>
+		ASTC6x6HDR = 74,
+		/// <summary/>
+		ASTC8x8HDR = 75,
+		/// <summary/>
+		ASTC10x10HDR = 76,
+		/// <summary/>
+		ASTC12x12HDR = 77,
+		/// <summary/>
+		G16R16SNorm = 78,
+		/// <summary/>
+		R8G8UInt = 79, 
+		/// <summary/>
+		R32G32B32UInt = 80, 
+		/// <summary/>
+		R32G32B32SInt = 81, 
+		/// <summary/>
+		R32G32B32F = 82,
+		/// <summary/>
+		R8SInt = 83, 
+		/// <summary/>
+		R64UInt = 84, 
 	}
 
 	/// <summary>
@@ -1710,7 +1738,7 @@ namespace UnrealEngine.Framework {
 		/// <summary>
 		/// Returns the radius of the bounding sphere
 		/// </summary>
-		public float SphereRadius => sphereRadius;
+		public double SphereRadius => sphereRadius;
 
 		/// <summary>
 		/// Tests for equality between two objects
