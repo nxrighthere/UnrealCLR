@@ -2,8 +2,6 @@
 	<img src="https://i.imgur.com/c6Zn7SE.png" alt="alt logo">
 </p>
 
-[![PayPal](https://github.com/Rageware/Shields/blob/master/paypal.svg)](https://www.paypal.me/nxrighthere) [![Coinbase](https://github.com/Rageware/Shields/blob/master/coinbase.svg)](https://commerce.coinbase.com/checkout/03e11816-b6fc-4e14-b974-29a1d0886697)
-
 UnrealCLR is a plugin which natively integrates .NET host into the Unreal Engine with the Common Language Runtime for direct execution of managed code to build a game/application logic using the full power of C# 10.0, F# 6.0, and .NET facilities with engine API. The project is aimed at stability, performance, and maintainability.
 
 [API reference](https://github.com/nxrighthere/UnrealCLR/blob/master/API/UnrealEngine-Framework.md) | [Manual](https://github.com/nxrighthere/UnrealCLR/blob/master/MANUAL.md) | [Code of Conduct](https://github.com/nxrighthere/UnrealCLR/blob/master/CODE_OF_CONDUCT.md) | [Community](https://github.com/nxrighthere/UnrealCLR/discussions) | [Roadmap](https://github.com/users/nxrighthere/projects/5?fullscreen=true) | [Contact](mailto:nxrighthere@gmail.com)
