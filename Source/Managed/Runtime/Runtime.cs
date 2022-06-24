@@ -307,6 +307,7 @@ namespace UnrealEngine.Runtime {
 
 				catch (Exception exception) {
 					Exception("Loading of assemblies failed\r\n" + exception.ToString());
+					UnloadAssemblies();
 				}
 
 				return default;
