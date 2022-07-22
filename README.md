@@ -15,7 +15,7 @@ Features:
 - Continuously evolving framework for access to the engine API from managed code written in idiomatic C#
 - High-performance interoperability through optimized code and utilization of blittable data types
 - Support of .NET facilities including hardware-accelerated math with transparent re-mapping to vector types of the engine
-- Support of .NET tools for debugging and profiling such as [JetBrains](https://www.jetbrains.com/products.html#lang=csharp) product line, [dnSpy](https://github.com/0xd4d/dnSpy) debugger, and [others](https://github.com/natemcmaster/dotnet-tools)
+- Support of .NET tools for debugging and profiling such as [JetBrains](https://www.jetbrains.com/products.html#lang=csharp) product line, [dnSpy](https://github.com/0xd4d/dnSpy) debugger, and [others](https://www.nuget.org/packages?packagetype=dotnettool)
 - Full independence from the compilation pipeline of assemblies with support of [NuGet](https://www.nuget.org) packages, analyzers, and generators
 - Automatic project packaging for standalone distribution
 - Carefully handcrafted source code for best maintainability and performance
