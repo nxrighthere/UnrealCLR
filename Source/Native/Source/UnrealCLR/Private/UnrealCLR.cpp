@@ -1450,9 +1450,15 @@ void UnrealCLR::Module::HostError(const char_t* Message) {
 }
 
 void UnrealCLR::Module::Exception(const char* Message) {
-	FString message(ANSI_TO_TCHAR(Message));
+	const FString message(ANSI_TO_TCHAR(Message));
 
-	UE_LOG(LogUnrealCLR, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *message);
+	FString OutputLog(message);
+
+	OutputLog.ReplaceCharInline(TEXT('\n'), TEXT(' '));
+	OutputLog.ReplaceCharInline(TEXT('\r'), TEXT(' '));
+	OutputLog.ReplaceInline(TEXT("     "), TEXT(" "));
+
+	UE_LOG(LogUnrealCLR, Error, TEXT("%s: %s"), ANSI_TO_TCHAR(__FUNCTION__), *OutputLog);
 
 	GEngine->AddOnScreenDebugMessage((uint64)-1, 10.0f, FColor::Red, *message);
 }
