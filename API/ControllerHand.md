@@ -27,49 +27,51 @@ public enum ControllerHand : System.Byte
   
 <a name='ControllerHand-Gun'></a>
 `Gun` 5  
+
+
+<a name='ControllerHand-HMD'></a>
+`HMD` 6  
   
-  
+   
 <a name='ControllerHand-Special1'></a>
-`Special1` 6  
+`Special1` 7  
   
   
 <a name='ControllerHand-Special2'></a>
-`Special2` 7  
+`Special2` 8  
   
   
 <a name='ControllerHand-Special3'></a>
-`Special3` 8  
+`Special3` 9  
   
   
 <a name='ControllerHand-Special4'></a>
-`Special4` 9  
+`Special4` 10  
   
   
 <a name='ControllerHand-Special5'></a>
-`Special5` 10  
+`Special5` 11  
   
   
 <a name='ControllerHand-Special6'></a>
-`Special6` 11  
+`Special6` 12  
   
   
 <a name='ControllerHand-Special7'></a>
-`Special7` 12  
+`Special7` 13  
   
   
 <a name='ControllerHand-Special8'></a>
-`Special8` 13  
+`Special8` 14  
   
   
 <a name='ControllerHand-Special9'></a>
-`Special9` 14  
+`Special9` 15  
   
   
 <a name='ControllerHand-Special10'></a>
-`Special10` 15  
+`Special10` 16  
   
   
 <a name='ControllerHand-Special11'></a>
-`Special11` 16  
-  
-  
+`Special11` 17  

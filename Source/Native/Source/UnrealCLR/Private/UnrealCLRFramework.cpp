@@ -384,6 +384,9 @@ namespace UnrealCLRFramework {
 	#define UNREALCLR_COLOR_TO_INTEGER(Color) (Color.A << 24) + (Color.R << 16) + (Color.G << 8) + Color.B
 
 	#if ENGINE_MAJOR_VERSION == 4
+		#define UNREALCLR_CONTROLLER_HAND 17
+		#define UNREALCLR_BOUNDS_SIZE 28
+
 		#if ENGINE_MINOR_VERSION <= 26
 			#define UNREALCLR_BLEND_TYPE 5
 		#elif ENGINE_MINOR_VERSION >= 27
@@ -396,20 +399,37 @@ namespace UnrealCLRFramework {
 			#define UNREALCLR_PIXEL_FORMAT 72
 		#endif
 	#elif ENGINE_MAJOR_VERSION == 5
-		#define UNREALCLR_PIXEL_FORMAT 72
 		#define UNREALCLR_BLEND_TYPE 6
+		#define UNREALCLR_PIXEL_FORMAT 85
+		#define UNREALCLR_CONTROLLER_HAND 18
+
+		// Large World Coordinates changed float sphere radius to double but this will be refactored to double in UE5 stable release. 
+		// Currently this is aliased to FLargeWorldCoordinatesReal. Check Engine\Source\Runtime\CoreUObject\Public\UObject\NoExportTypes.h for FVector where it explains.
+		#define UNREALCLR_BOUNDS_SIZE 56	
+
+		#ifdef BRANCH_NAME
+			// There may be a better way to get this information
+			#ifdef BRANCH_NAME == "++UE5+Release-5.0-EarlyAccess"
+				#define UNREALCLR_PIXEL_FORMAT 72
+			#else 
+				#define UNREALCLR_PIXEL_FORMAT 85
+			#endif
+		#else
+			#define UNREALCLR_PIXEL_FORMAT 85
+		#endif
+
 	#endif
 
 	static_assert(AudioFadeCurve::Count == AudioFadeCurve(4), "Invalid elements count of the [AudioFadeCurve] enumeration");
 	static_assert(BlendType::VTBlend_MAX == BlendType(UNREALCLR_BLEND_TYPE), "Invalid elements count of the [BlendType] enumeration");
 	static_assert(CollisionChannel::ECC_MAX == CollisionChannel(33), "Invalid elements count of the [CollisionChannel] enumeration");
 	static_assert(CollisionResponse::ECR_MAX == CollisionResponse(3), "Invalid elements count of the [CollisionResponse] enumeration");
-	static_assert(ControllerHand::ControllerHand_Count == ControllerHand(17), "Invalid elements count of the [ControllerHand] enumeration");
+	static_assert(ControllerHand::ControllerHand_Count == ControllerHand(UNREALCLR_CONTROLLER_HAND), "Invalid elements count of the [ControllerHand] enumeration");
 	static_assert(InputEvent::IE_MAX == InputEvent(5), "Invalid elements count of the [InputEvent] enumeration");
 	static_assert(NetMode::NM_MAX == NetMode(4), "Invalid elements count of the [NetMode] enumeration");
 	static_assert(PixelFormat::PF_MAX == PixelFormat(UNREALCLR_PIXEL_FORMAT), "Invalid elements count of the [PixelFormat] enumeration");
 
-	static_assert(sizeof(Bounds) == 28, "Invalid size of the [Bounds] structure");
+	static_assert(sizeof(Bounds) == UNREALCLR_BOUNDS_SIZE, "Invalid size of the [Bounds] structure");
 	static_assert(sizeof(CollisionShape) == 16, "Invalid size of the [CollisionShape] structure");
 
 	namespace Assert {
@@ -982,7 +1002,11 @@ namespace UnrealCLRFramework {
 
 	namespace Engine {
 		bool IsSplitScreen() {
+#if ENGINE_MAJOR_VERSION >= 5
+			return GEngine->HasMultipleLocalPlayers(UnrealCLR::Engine::World);
+#else
 			return GEngine->IsSplitScreen(UnrealCLR::Engine::World);
+#endif
 		}
 
 		bool IsEditor() {
